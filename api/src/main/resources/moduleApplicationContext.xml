@@ -24,16 +24,16 @@
 	<bean parent="serviceContext">
 		<property name="moduleService">
 			<list>
-				<value>${project.parent.groupId}.${project.parent.artifactId}.api.aijarService</value>
+				<value>${project.parent.groupId}.${project.parent.artifactId}.api.AijarService</value>
 				<bean
 					class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
 					<property name="transactionManager">
 						<ref bean="transactionManager" />
 					</property>
 					<property name="target">
-						<bean class="${project.parent.groupId}.${project.parent.artifactId}.api.impl.aijarServiceImpl">
+						<bean class="${project.parent.groupId}.${project.parent.artifactId}.api.impl.AijarServiceImpl">
 							<property name="dao">
-								<bean class="${project.parent.groupId}.${project.parent.artifactId}.api.db.hibernate.HibernateaijarDAO">
+								<bean class="${project.parent.groupId}.${project.parent.artifactId}.api.db.hibernate.HibernateAijarDAO">
 									<property name="sessionFactory">
 										<ref bean="sessionFactory" />
 									</property>

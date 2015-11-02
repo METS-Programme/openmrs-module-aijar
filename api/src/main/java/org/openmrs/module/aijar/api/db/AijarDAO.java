@@ -11,26 +11,16 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-package org.openmrs.module.aijar.api;
+package org.openmrs.module.aijar.api.db;
 
-import org.openmrs.api.OpenmrsService;
-import org.springframework.transaction.annotation.Transactional;
+import org.openmrs.module.aijar.api.AijarService;
 
 /**
- * This service exposes module's core functionality. It is a Spring managed bean which is configured in moduleApplicationContext.xml.
- * <p>
- * It can be accessed only via Context:<br>
- * <code>
- * Context.getService(aijarService.class).someMethod();
- * </code>
- * 
- * @see org.openmrs.api.context.Context
+ *  Database methods for {@link AijarService}.
  */
-@Transactional
-public interface aijarService extends OpenmrsService {
-     
+public interface AijarDAO {
+	
 	/*
-	 * Add service methods here
-	 * 
+	 * Add DAO methods here
 	 */
 }

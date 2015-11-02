@@ -16,12 +16,12 @@ package org.openmrs.module.aijar.api.db.hibernate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.SessionFactory;
-import org.openmrs.module.aijar.api.db.aijarDAO;
+import org.openmrs.module.aijar.api.db.AijarDAO;
 
 /**
- * It is a default implementation of  {@link aijarDAO}.
+ * It is a default implementation of  {@link AijarDAO}.
  */
-public class HibernateaijarDAO implements aijarDAO {
+public class HibernateAijarDAO implements AijarDAO {
 	protected final Log log = LogFactory.getLog(this.getClass());
 	
 	private SessionFactory sessionFactory;

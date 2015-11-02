@@ -11,16 +11,29 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-package org.openmrs.module.aijar.api.db;
+package org.openmrs.module.aijar;
 
-import org.openmrs.module.aijar.api.aijarService;
+import java.io.Serializable;
+import org.openmrs.BaseOpenmrsObject;
+import org.openmrs.BaseOpenmrsMetadata;
 
 /**
- *  Database methods for {@link aijarService}.
+ * It is a model class. It should extend either {@link BaseOpenmrsObject} or {@link BaseOpenmrsMetadata}.
  */
-public interface aijarDAO {
+public class Aijar extends BaseOpenmrsObject implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	
-	/*
-	 * Add DAO methods here
-	 */
+	private Integer id;
+	
+	@Override
+	public Integer getId() {
+		return id;
+	}
+	
+	@Override
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
 }

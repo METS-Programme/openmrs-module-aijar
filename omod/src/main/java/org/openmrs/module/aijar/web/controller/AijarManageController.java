@@ -11,34 +11,26 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-package org.openmrs.module.aijar.api.impl;
+package org.openmrs.module.aijar.web.controller;
 
-import org.openmrs.api.impl.BaseOpenmrsService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openmrs.module.aijar.api.aijarService;
-import org.openmrs.module.aijar.api.db.aijarDAO;
+import org.openmrs.api.context.Context;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * It is a default implementation of {@link aijarService}.
+ * The main controller.
  */
-public class aijarServiceImpl extends BaseOpenmrsService implements aijarService {
+@Controller
+public class  AijarManageController {
 	
-	protected final Log log = LogFactory.getLog(this.getClass());
+	protected final Log log = LogFactory.getLog(getClass());
 	
-	private aijarDAO dao;
-	
-	/**
-     * @param dao the dao to set
-     */
-    public void setDao(aijarDAO dao) {
-	    this.dao = dao;
-    }
-    
-    /**
-     * @return the dao
-     */
-    public aijarDAO getDao() {
-	    return dao;
-    }
+	@RequestMapping(value = "/module/aijar/manage", method = RequestMethod.GET)
+	public void manage(ModelMap model) {
+		model.addAttribute("user", Context.getAuthenticatedUser());
+	}
 }

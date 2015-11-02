@@ -13,18 +13,24 @@
  */
 package org.openmrs.module.aijar.api;
 
-import static org.junit.Assert.*;
-import org.junit.Test;
-import org.openmrs.api.context.Context;
-import org.openmrs.test.BaseModuleContextSensitiveTest;
+import org.openmrs.api.OpenmrsService;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Tests {@link ${aijarService}}.
+ * This service exposes module's core functionality. It is a Spring managed bean which is configured in moduleApplicationContext.xml.
+ * <p>
+ * It can be accessed only via Context:<br>
+ * <code>
+ * Context.getService(aijarService.class).someMethod();
+ * </code>
+ * 
+ * @see org.openmrs.api.context.Context
  */
-public class  aijarServiceTest extends BaseModuleContextSensitiveTest {
-	
-	@Test
-	public void shouldSetupContext() {
-		assertNotNull(Context.getService(aijarService.class));
-	}
+@Transactional
+public interface AijarService extends OpenmrsService {
+     
+	/*
+	 * Add service methods here
+	 * 
+	 */
 }
