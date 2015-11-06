@@ -25,8 +25,9 @@
     <data-sources>
         <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Data Source" id="7">
             <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
-            <property name="odaURL">jdbc:mysql://localhost:3307/openmrs?autoReconnect=true</property>
-            <property name="odaUser">root</property>
+            <property name="odaURL">jdbc:mysql://localhost:3306/openmrs?autoReconnect=true</property>
+            <property name="odaUser">openmrs</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">b3Blbm1ycw==</encrypted-property>
         </oda-data-source>
     </data-sources>
     <data-sets>
@@ -94,7 +95,7 @@
             </list-property>
             <property name="queryText">/*Returns facility art initiation records*/
 /*Returns art initiation records*/
-select person_id, min(value_datetime) value_datetime from obs 
+select person_id, min(value_datetime) value_datetime from obs
 where concept_id =99161
 and voided=0
 group by person_id
@@ -485,10 +486,10 @@ and voided=0
                 </structure>
             </list-property>
             <property name="queryText">/*This query returns all enrolled patients along with their enrolment date, age, names and gender*/
-select person.person_id, person.gender, 
-person.birthdate, encounter.encounter_id, encounter.encounter_datetime, 
-encounter.encounter_type, person_name.given_name, 
-person_name.family_name, 
+select person.person_id, person.gender,
+person.birthdate, encounter.encounter_id, encounter.encounter_datetime,
+encounter.encounter_type, person_name.given_name,
+person_name.family_name,
 datediff(now(), person.birthdate)/365.25 as age
 from person, encounter, person_name
 where person.person_id=encounter.patient_id
@@ -830,7 +831,7 @@ and person_name.voided=0
                     <property name="nativeDataType">12</property>
                 </structure>
             </list-property>
-            <property name="queryText">select count(*) n, a.location_id, b.facility, b.hsd from encounter a 
+            <property name="queryText">select count(*) n, a.location_id, b.facility, b.hsd from encounter a
 
 inner join
 
@@ -839,7 +840,7 @@ county_district as hsd from location) b
 on a.location_id=b.location_id
 
 group by a.location_id
-order by n desc 
+order by n desc
 limit 1
 
 </property>
@@ -1269,7 +1270,7 @@ BirtDateTime.quarter(row["value_datetime"])&lt;=BirtDateTime.quarter(params["rep
                 </structure>
             </list-property>
             <property name="queryText">/*Returns eligibility for ART as entered via the summary page*/
-select person_id, value_datetime from obs where 
+select person_id, value_datetime from obs where
 concept_id=90297
 and voided=0</property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
@@ -4805,7 +4806,7 @@ BirtDateTime.quarter(row["identifierName::encounter_datetime"])==BirtDateTime.qu
                                                     <expression name="value">row["identifierName::person_id"]</expression>
                                                 </structure>
                                             </list-property>
-                                            <expression name="filterExpr">dataSetRow["identifierName::gender"]=="F" &amp;&amp; 
+                                            <expression name="filterExpr">dataSetRow["identifierName::gender"]=="F" &amp;&amp;
 dataSetRow["identifierName::age"]&lt;2</expression>
                                         </structure>
                                         <structure>
