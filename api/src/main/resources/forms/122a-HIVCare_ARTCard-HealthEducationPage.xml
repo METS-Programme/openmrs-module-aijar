@@ -5,6 +5,9 @@
     </macros>
 
     <style>
+        #inner tbody tr:nth-child(odd) {
+            background-color: #ccc;
+        }
 
         #br {
             display: table-row
@@ -29,7 +32,7 @@
             margin: 1px
         }
 
-        td.vertical-text {
+        #inner td.vertical-text {
             transform: rotate(90deg);
             white-space: pre-wrap;
             width: 100px;
@@ -133,6 +136,7 @@
         }
     </script>
     <table id="inner">
+        <thead>
         <tr>
             <th colspan="5">
                 HEALTH EDUCATION PAGE
@@ -164,7 +168,8 @@
             <th>Date/Comments</th>
             <th>Date/Comments</th>
         </tr>
-
+        </thead>
+        <tbody>
         <tr>
             <td rowspan="11" class="vertical-text">
                 Educate on basics, prevention, disclosure
@@ -1287,8 +1292,7 @@
                 </span>
             </td>
         </tr>
-
-
+        </tbody>
     </table>
     <submit/>
     <br/>
