@@ -28,6 +28,13 @@
             border-width: 1px;
             margin: 1px
         }
+
+        td.vertical-text {
+            transform: rotate(90deg);
+            white-space: pre-wrap;
+            width: 100px;
+        }
+
     </style>
 
     <script type="text/javascript">
@@ -48,9 +55,10 @@
                 }
 
                 disableFn();
+
                 $j(this).children("#trigger").find(":checkbox:first").change(function () {
                     var checked = $j(this).attr("checked");
-                    if (checked == true) {
+                    if (checked == "checked") {
                         enableFn();
                     } else {
                         disableFn();
@@ -126,22 +134,30 @@
     </script>
     <table id="inner">
         <tr>
-            <th colspan="4">
+            <th colspan="5">
                 HEALTH EDUCATION PAGE
+            </th>
+
+        </tr>
+        <tr>
+            <th colspan="5">
+                Followup-education, Support and Preparation for ARV therapy
             </th>
         </tr>
         <tr>
-            <td colspan="4">
-                Enrollment Date:
+            <td colspan="5">
+                <b>Enrollment Date:</b>
                 <encounterDate/>
-                Location:
+                <b>Location:</b>
                 <encounterLocation default="1"/>
-                Clinical Team Leader:
+                <b>Clinical Team Leader:</b>
                 <encounterProvider role="Provider"/>
             </td>
         </tr>
 
         <tr>
+            <th>
+            </th>
             <th>
             </th>
             <th>Date/Comments</th>
@@ -150,6 +166,9 @@
         </tr>
 
         <tr>
+            <td rowspan="11" class="vertical-text">
+                Educate on basics, prevention, disclosure
+            </td>
             <td>Basic HIV education, transmission:</td>
             <td>
                 <span class="enableDisable">
@@ -158,7 +177,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99200"/>
-                        <obs conceptId="99201" size="15"/>
+                        <obs conceptId="99201" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -169,7 +188,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99200"/>
-                        <obs conceptId="99201" size="15"/>
+                        <obs conceptId="99201" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -180,7 +199,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99200"/>
-                        <obs conceptId="99201" size="15"/>
+                        <obs conceptId="99201" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -195,7 +214,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99202"/>
-                        <obs conceptId="99203" size="15"/>
+                        <obs conceptId="99203" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -206,7 +225,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99202"/>
-                        <obs conceptId="99203" size="15"/>
+                        <obs conceptId="99203" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -217,7 +236,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99202"/>
-                        <obs conceptId="99203" size="15"/>
+                        <obs conceptId="99203" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -232,7 +251,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99204"/>
-                        <obs conceptId="99205" size="15"/>
+                        <obs conceptId="99205" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -243,7 +262,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99204"/>
-                        <obs conceptId="99205" size="15"/>
+                        <obs conceptId="99205" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -254,7 +273,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99204"/>
-                        <obs conceptId="99205" size="15"/>
+                        <obs conceptId="99205" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -269,7 +288,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99206"/>
-                        <obs conceptId="99207" size="15"/>
+                        <obs conceptId="99207" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -280,7 +299,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99206"/>
-                        <obs conceptId="99207" size="15"/>
+                        <obs conceptId="99207" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -291,7 +310,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99206"/>
-                        <obs conceptId="99207" size="15"/>
+                        <obs conceptId="99207" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -306,7 +325,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99208"/>
-                        <obs conceptId="99209" size="15"/>
+                        <obs conceptId="99209" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -317,7 +336,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99208"/>
-                        <obs conceptId="99209" size="15"/>
+                        <obs conceptId="99209" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -328,7 +347,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99208"/>
-                        <obs conceptId="99209" size="15"/>
+                        <obs conceptId="99209" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -343,7 +362,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99210"/>
-                        <obs conceptId="99211" size="15"/>
+                        <obs conceptId="99211" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -354,7 +373,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99210"/>
-                        <obs conceptId="99211" size="15"/>
+                        <obs conceptId="99211" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -365,7 +384,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99210"/>
-                        <obs conceptId="99211" size="15"/>
+                        <obs conceptId="99211" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -380,7 +399,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99212"/>
-                        <obs conceptId="99213" size="15"/>
+                        <obs conceptId="99213" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -391,7 +410,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99212"/>
-                        <obs conceptId="99213" size="15"/>
+                        <obs conceptId="99213" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -402,7 +421,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99212"/>
-                        <obs conceptId="99213" size="15"/>
+                        <obs conceptId="99213" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -417,7 +436,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99214"/>
-                        <obs conceptId="99215" size="15"/>
+                        <obs conceptId="99215" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -428,7 +447,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99214"/>
-                        <obs conceptId="99215" size="15"/>
+                        <obs conceptId="99215" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -439,7 +458,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99214"/>
-                        <obs conceptId="99215" size="15"/>
+                        <obs conceptId="99215" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -454,7 +473,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99216"/>
-                        <obs conceptId="99217" size="15"/>
+                        <obs conceptId="99217" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -465,7 +484,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99216"/>
-                        <obs conceptId="99217" size="15"/>
+                        <obs conceptId="99217" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -476,7 +495,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99216"/>
-                        <obs conceptId="99217" size="15"/>
+                        <obs conceptId="99217" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -491,7 +510,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99218"/>
-                        <obs conceptId="99219" size="15"/>
+                        <obs conceptId="99219" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -502,7 +521,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99218"/>
-                        <obs conceptId="99219" size="15"/>
+                        <obs conceptId="99219" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -513,7 +532,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99218"/>
-                        <obs conceptId="99219" size="15"/>
+                        <obs conceptId="99219" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -528,7 +547,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99220"/>
-                        <obs conceptId="99221" size="15"/>
+                        <obs conceptId="99221" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -539,7 +558,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99220"/>
-                        <obs conceptId="99221" size="15"/>
+                        <obs conceptId="99221" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -550,13 +569,16 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99220"/>
-                        <obs conceptId="99221" size="15"/>
+                        <obs conceptId="99221" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
         </tr>
 
         <tr>
+            <td rowspan="4" class="vertical-text">
+                Progressio on RX
+            </td>
             <td>Progression of disease:</td>
             <td>
                 <span class="enableDisable">
@@ -565,7 +587,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99222"/>
-                        <obs conceptId="99223" size="15"/>
+                        <obs conceptId="99223" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -576,7 +598,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99222"/>
-                        <obs conceptId="99223" size="15"/>
+                        <obs conceptId="99223" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -587,7 +609,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99222"/>
-                        <obs conceptId="99223" size="15"/>
+                        <obs conceptId="99223" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -602,7 +624,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99224"/>
-                        <obs conceptId="99225" size="15"/>
+                        <obs conceptId="99225" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -613,7 +635,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99224"/>
-                        <obs conceptId="99225" size="15"/>
+                        <obs conceptId="99225" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -624,7 +646,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99224"/>
-                        <obs conceptId="99225" size="15"/>
+                        <obs conceptId="99225" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -639,7 +661,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99226"/>
-                        <obs conceptId="99227" size="15"/>
+                        <obs conceptId="99227" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -650,7 +672,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99226"/>
-                        <obs conceptId="99227" size="15"/>
+                        <obs conceptId="99227" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -661,7 +683,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99226"/>
-                        <obs conceptId="99227" size="15"/>
+                        <obs conceptId="99227" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -676,7 +698,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99228"/>
-                        <obs conceptId="99229" size="15"/>
+                        <obs conceptId="99229" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -687,7 +709,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99228"/>
-                        <obs conceptId="99229" size="15"/>
+                        <obs conceptId="99229" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -698,13 +720,16 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99228"/>
-                        <obs conceptId="99229" size="15"/>
+                        <obs conceptId="99229" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
         </tr>
 
         <tr>
+            <td rowspan="10" class="vertical-text">
+                ART Preparation, initiation, support, monitor, Rx
+            </td>
             <td>ART--educate on essentials(locally adapted):</td>
             <td>
                 <span class="enableDisable">
@@ -713,7 +738,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99230"/>
-                        <obs conceptId="99231" size="15"/>
+                        <obs conceptId="99231" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -724,7 +749,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99230"/>
-                        <obs conceptId="99231" size="15"/>
+                        <obs conceptId="99231" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -735,7 +760,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99230"/>
-                        <obs conceptId="99231" size="15"/>
+                        <obs conceptId="99231" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -751,7 +776,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99233"/>
-                        <obs conceptId="99232" size="15"/>
+                        <obs conceptId="99232" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -762,7 +787,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99233"/>
-                        <obs conceptId="99232" size="15"/>
+                        <obs conceptId="99232" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -773,7 +798,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99233"/>
-                        <obs conceptId="99232" size="15"/>
+                        <obs conceptId="99232" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -788,7 +813,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99234"/>
-                        <obs conceptId="99235" size="15"/>
+                        <obs conceptId="99235" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -799,7 +824,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99234"/>
-                        <obs conceptId="99235" size="15"/>
+                        <obs conceptId="99235" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -810,7 +835,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99234"/>
-                        <obs conceptId="99235" size="15"/>
+                        <obs conceptId="99235" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -825,7 +850,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99236"/>
-                        <obs conceptId="99237" size="15"/>
+                        <obs conceptId="99237" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -836,7 +861,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99236"/>
-                        <obs conceptId="99237" size="15"/>
+                        <obs conceptId="99237" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -847,7 +872,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99236"/>
-                        <obs conceptId="99237" size="15"/>
+                        <obs conceptId="99237" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -862,7 +887,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99238"/>
-                        <obs conceptId="99239" size="15"/>
+                        <obs conceptId="99239" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -873,7 +898,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99238"/>
-                        <obs conceptId="99239" size="15"/>
+                        <obs conceptId="99239" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -884,7 +909,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99238"/>
-                        <obs conceptId="99239" size="15"/>
+                        <obs conceptId="99239" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -899,7 +924,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99240"/>
-                        <obs conceptId="99241" size="15"/>
+                        <obs conceptId="99241" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -910,7 +935,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99240"/>
-                        <obs conceptId="99241" size="15"/>
+                        <obs conceptId="99241" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -921,7 +946,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99240"/>
-                        <obs conceptId="99241" size="15"/>
+                        <obs conceptId="99241" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -936,7 +961,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99242"/>
-                        <obs conceptId="99243" size="15"/>
+                        <obs conceptId="99243" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -947,7 +972,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99242"/>
-                        <obs conceptId="99243" size="15"/>
+                        <obs conceptId="99243" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -958,7 +983,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99242"/>
-                        <obs conceptId="99243" size="15"/>
+                        <obs conceptId="99243" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -973,7 +998,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99244"/>
-                        <obs conceptId="99245" size="15"/>
+                        <obs conceptId="99245" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -984,7 +1009,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99244"/>
-                        <obs conceptId="99245" size="15"/>
+                        <obs conceptId="99245" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -995,7 +1020,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99244"/>
-                        <obs conceptId="99245" size="15"/>
+                        <obs conceptId="99245" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -1010,7 +1035,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99248"/>
-                        <obs conceptId="99247" size="15"/>
+                        <obs conceptId="99247" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -1021,7 +1046,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99248"/>
-                        <obs conceptId="99247" size="15"/>
+                        <obs conceptId="99247" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -1032,7 +1057,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99248"/>
-                        <obs conceptId="99247" size="15"/>
+                        <obs conceptId="99247" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -1047,7 +1072,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99249"/>
-                        <obs conceptId="99250" size="15"/>
+                        <obs conceptId="99250" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -1058,7 +1083,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99249"/>
-                        <obs conceptId="99250" size="15"/>
+                        <obs conceptId="99250" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -1069,50 +1094,16 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99249"/>
-                        <obs conceptId="99250" size="15"/>
+                        <obs conceptId="99250" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
         </tr>
 
         <tr>
-            <td>Which does, why missed:</td>
-            <td>
-                <span class="enableDisable">
-                    <span id="trigger">
-                        <obs conceptId="99193" answerConceptId="90003"/>
-                    </span>
-                    <span id="disabled">
-                        <obs conceptId="99251"/>
-                        <obs conceptId="99252" size="15"/>
-                    </span>
-                </span>
+            <td rowspan="5" class="vertical-text">
+                Home-based Care
             </td>
-            <td>
-                <span class="enableDisable">
-                    <span id="trigger">
-                        <obs conceptId="99193" answerConceptId="90003"/>
-                    </span>
-                    <span id="disabled">
-                        <obs conceptId="99251"/>
-                        <obs conceptId="99252" size="15"/>
-                    </span>
-                </span>
-            </td>
-            <td>
-                <span class="enableDisable">
-                    <span id="trigger">
-                        <obs conceptId="99193" answerConceptId="90003"/>
-                    </span>
-                    <span id="disabled">
-                        <obs conceptId="99251"/>
-                        <obs conceptId="99252" size="15"/>
-                    </span>
-                </span>
-            </td>
-        </tr>
-
-        <tr>
             <td>ARV support group:</td>
             <td>
                 <span class="enableDisable">
@@ -1121,7 +1112,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99253"/>
-                        <obs conceptId="99254" size="15"/>
+                        <obs conceptId="99254" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -1132,7 +1123,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99253"/>
-                        <obs conceptId="99254" size="15"/>
+                        <obs conceptId="99254" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -1143,7 +1134,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99253"/>
-                        <obs conceptId="99254" size="15"/>
+                        <obs conceptId="99254" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -1158,7 +1149,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99255"/>
-                        <obs conceptId="99256" size="15"/>
+                        <obs conceptId="99256" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -1169,7 +1160,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99255"/>
-                        <obs conceptId="99256" size="15"/>
+                        <obs conceptId="99256" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -1180,7 +1171,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99255"/>
-                        <obs conceptId="99256" size="15"/>
+                        <obs conceptId="99256" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -1195,7 +1186,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99257"/>
-                        <obs conceptId="99258" size="15"/>
+                        <obs conceptId="99258" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -1206,7 +1197,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99257"/>
-                        <obs conceptId="99258" size="15"/>
+                        <obs conceptId="99258" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -1217,7 +1208,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99257"/>
-                        <obs conceptId="99258" size="15"/>
+                        <obs conceptId="99258" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -1232,7 +1223,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99259"/>
-                        <obs conceptId="99260" size="15"/>
+                        <obs conceptId="99260" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -1243,7 +1234,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99259"/>
-                        <obs conceptId="99260" size="15"/>
+                        <obs conceptId="99260" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -1254,44 +1245,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99259"/>
-                        <obs conceptId="99260" size="15"/>
-                    </span>
-                </span>
-            </td>
-        </tr>
-
-        <tr>
-            <td>Home-base care-specify:</td>
-            <td>
-                <span class="enableDisable">
-                    <span id="trigger">
-                        <obs conceptId="99198" answerConceptId="90003"/>
-                    </span>
-                    <span id="disabled">
-                        <obs conceptId="99261"/>
-                        <obs conceptId="99262" size="15"/>
-                    </span>
-                </span>
-            </td>
-            <td>
-                <span class="enableDisable">
-                    <span id="trigger">
-                        <obs conceptId="99198" answerConceptId="90003"/>
-                    </span>
-                    <span id="disabled">
-                        <obs conceptId="99261"/>
-                        <obs conceptId="99262" size="15"/>
-                    </span>
-                </span>
-            </td>
-            <td>
-                <span class="enableDisable">
-                    <span id="trigger">
-                        <obs conceptId="99198" answerConceptId="90003"/>
-                    </span>
-                    <span id="disabled">
-                        <obs conceptId="99261"/>
-                        <obs conceptId="99262" size="15"/>
+                        <obs conceptId="99260" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -1306,7 +1260,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99263"/>
-                        <obs conceptId="99264" size="15"/>
+                        <obs conceptId="99264" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -1317,7 +1271,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99263"/>
-                        <obs conceptId="99264" size="15"/>
+                        <obs conceptId="99264" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
@@ -1328,7 +1282,7 @@
                     </span>
                     <span id="disabled">
                         <obs conceptId="99263"/>
-                        <obs conceptId="99264" size="15"/>
+                        <obs conceptId="99264" rows="2" cols="30"/>
                     </span>
                 </span>
             </td>
