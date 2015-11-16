@@ -106,6 +106,7 @@
             color:#ffffff;
         }
 
+
     </style>
     <!-- jquery loaded for nonessential purposes. -->
 
@@ -328,6 +329,9 @@
 
         }
 
+        $j('#w200_0').click(function() {
+            if($j('#w200_0').is(':checked')) { alert("it's checked"); }
+        });
 
         if(jQuery){
             $j(document).ready(function(){
@@ -339,7 +343,7 @@
 
                 $j("#comfirmedDate").change(function() {
 
-                    alert($(this).find("input[type$='text']").val() );
+                    alert($j(this).find("input[type$='text']").val() );
 
                 });
 
@@ -383,8 +387,8 @@
                     }
                     disableFn();
                     $j(this).children("#trigger").find(":checkbox:first").change(function(){
-                        var checked = $(this).attr("checked");
-                        if(checked == true){
+                        var checked = $j(this).attr("checked");
+                        if(checked =="checked"){
                             enableFn();
                         }else{
                             disableFn();
@@ -419,7 +423,7 @@
                                 var flip;
                                 var checked = $j(this).siblings(":checkbox:first").attr("checked");
                                 if($j(this).attr("name") == $j(this).parents("#checkboxAll:first").find(":checkbox:first").attr("name")){
-                                    checked = $(this).attr("checked");
+                                    checked = $j(this).attr("checked");
                                     flip = checked;
                                 }else{
                                     flip = !checked;
@@ -524,7 +528,7 @@
                         <td>Parish:
                             <lookup class="value" expression="patient.personAddress.address4"/>
                         </td>
-                        <td>Village:
+                        <td>Village;
                             <lookup class="value" expression="patient.personAddress.address3"/>
                         </td>
                         <td></td>
@@ -1104,7 +1108,7 @@
                         <td class="checkboxGroup">
                             <span class="enableDisable">
                                 <span id="trigger">
-                                    <obs conceptId="99110" answerConceptId="90003"
+                                    <obs conceptId="99110" answerConceptId="90003" id="trigger"
                                          answerLabel="HIV care transfer in from"/>
                                 </span>
                                 <span id="disabled">
