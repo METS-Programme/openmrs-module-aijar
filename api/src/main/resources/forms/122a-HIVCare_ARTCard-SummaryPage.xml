@@ -333,6 +333,7 @@
             if($j('#w200_0').is(':checked')) { alert("it's checked"); }
         });
 
+
         if(jQuery){
             $j(document).ready(function(){
                 if ( $j.browser.msie ) {
@@ -451,6 +452,32 @@
                 });
             });
         }
+    </script>
+
+    <script type="text/javascript">
+        $j(document).ready(function() {
+            $j('input[type=radio][name=w200]').change(function() {
+                if (this.value == '90004') {
+                    //UnCheck The Checked Boxes
+                    $j("#w202").prop("checked", false);
+                    $j("#w210").prop("checked", false);
+                    $j("#w218").prop("checked", false);
+                    $j("#w226").prop("checked", false);
+
+                    $j("input#w202").attr("disabled", true);
+                    $j("input#w210").attr("disabled", true);
+                    $j("input#w218").attr("disabled", true);
+                    $j("input#w226").attr("disabled", true);
+
+                }
+                else if (this.value == '90003') {
+                    $j("input#w202").removeAttr("disabled");
+                    $j("input#w210").removeAttr("disabled");
+                    $j("input#w218").removeAttr("disabled");
+                    $j("input#w226").removeAttr("disabled");
+                }
+            });
+        });
     </script>
 
     <script type="text/javascript">
@@ -991,7 +1018,7 @@
                         </td>
                     </tr>
 
-                    <tr bgcolor="#C0C0C0">
+                    <tr bgcolor="#C0C0C0" class="hideShowPriorOptions">
                         <td colspan="2">
                             <b>Prior ART/Date</b>
                         </td>
@@ -999,14 +1026,14 @@
                         <td></td>
                     </tr>
 
-                    <tr class="checkboxGroup">
+                    <tr class="checkboxGroup hideShowPriorOptions">
                         <td>
                             <obsgroup groupingConceptId="99066">
 
                                 <span class="enableDisable">
 
                                     <span id="trigger">
-                                        <obs conceptId="99056" answerConceptId="90003" answerLabel="PEP:"/>
+                                        <obs conceptId="99056" answerConceptId="90003" answerLabel="PEP:" id="hideShowPriorOptions"/>
                                     </span>
 
                                     <span id="disabled">
@@ -1024,7 +1051,7 @@
                         </td>
                     </tr>
 
-                    <tr>
+                    <tr class="hideShowPriorOptions">
                         <td>
                             <obsgroup groupingConceptId="99598">
                                 <span class="enableDisable">
@@ -1045,7 +1072,7 @@
                     </tr>
 
 
-                    <tr>
+                    <tr class="hideShowPriorOptions">
                         <td>
                             <excludeIf velocityTest="$patient.gender =='M' ">
                                 <obsgroup groupingConceptId="99067">
@@ -1067,7 +1094,7 @@
                         </td>
                     </tr>
 
-                    <tr>
+                    <tr class="hideShowPriorOptions">
                         <td>
                             <obsgroup groupingConceptId="99068">
                                 <span class="enableDisable">
