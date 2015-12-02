@@ -10,22 +10,13 @@
             padding: 0;
         }
 
-        .custome-table {
+        .custom-table {
             margin-bottom: 0;
         }
 
-        .custome-panel {
+        .custom-panel {
             padding: 0;
         }
-
-        .col-custome {
-            padding: 0px;
-        }
-
-        /*        .row{
-                    margin-top: 10px;
-                    margin-bottom: 10px;
-                }*/
     </style>
     <!-- jquery loaded for nonessential purposes. -->
 
@@ -624,8 +615,8 @@
                     <div class="panel-heading">
                         FACILITY/CLIENT INFORMATION
                     </div>
-                    <div class="panel-body custome-panel">
-                        <table class="table table-bordered custome-table">
+                    <div class="panel-body custom-panel">
+                        <table class="table table-bordered custom-table">
                             <tr>
                                 <td colspan="2">Health Unit:
                                     <encounterLocation default="1"/>
@@ -743,8 +734,8 @@
                         Treatment supporter
                     </div>
 
-                    <div class="panel-body custome-panel">
-                        <table class="table table-bordered custome-table">
+                    <div class="panel-body custom-panel">
+                        <table class="table table-bordered custom-table">
                             <tr>
                                 <td colspan="3">
                                     <obs size="15" conceptId="99142" labelText="Medicine pick-up if ill:"/>
@@ -792,11 +783,11 @@
 
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-10 custome-table custome-panel">
+                        <div class="col-lg-10 custom-table custom-panel">
                             <div class="panel panel-primary">
                                 <div class="panel-heading">Family members and partners</div>
-                                <div class="panel-body custome-panel">
-                                    <table class="table table-bordered custome-table">
+                                <div class="panel-body custom-panel">
+                                    <table class="table table-bordered custom-table">
                                         <thead>
                                         <tr>
                                             <th>Names of family members and partners</th>
@@ -946,8 +937,8 @@
                             </div>
                             <div class="panel panel-primary">
                                 <div class="panel-heading">Exposed Infant</div>
-                                <div class="panel-body custome-panel">
-                                    <table class="table table-bordered custome-table table-responsive">
+                                <div class="panel-body custom-panel">
+                                    <table class="table table-bordered custom-table table-responsive">
                                         <thead>
                                         <tr>
                                             <th rowspan="2">Name/#</th>
@@ -1169,8 +1160,8 @@
                     <div class="panel-heading">
                         Prior ART
                     </div>
-                    <div class="panel-body custome-panel">
-                        <table class="table table-bordered custome-table table-responsive">
+                    <div class="panel-body custom-panel">
+                        <table class="table table-bordered custom-table table-responsive">
                             <tr>
                                 <td colspan="4">Prior ART:
                                     <obs conceptId="99055" answerConceptIds="90003,90004" answerLabels="Yes,None"
@@ -1281,8 +1272,8 @@
                     <div class="panel-heading">
                         HIV Care
                     </div>
-                    <div class="panel-body custome-panel">
-                        <table class="table table-bordered custome-table table-responsive">
+                    <div class="panel-body custom-panel">
+                        <table class="table table-bordered custom-table table-responsive">
                             <tr>
                                 <td colspan="3">
                                     <b>HIV Care/Date</b>
@@ -1343,8 +1334,8 @@
                     <div class="panel-heading">
                         Drug Allergies/Relevant Medical conditions
                     </div>
-                    <div class="panel-body custome-panel">
-                        <table valign="top" class="table table-bordered custome-table table-responsive">
+                    <div class="panel-body custom-panel">
+                        <table valign="top" class="table table-bordered custom-table table-responsive">
                             <thead>
                             <tr>
                                 <th>Drug Allergies</th>
@@ -1383,8 +1374,8 @@
                     <div class="panel-heading">
                         ART CARE
                     </div>
-                    <div class="panel-body custome-panel">
-                        <table class="table table-bordered custome-table table-responsive">
+                    <div class="panel-body custom-panel">
+                        <table class="table table-bordered custom-table table-responsive">
                             <tr>
                                 <obsgroup groupingConceptId="99065">
                                     <td>
@@ -1430,8 +1421,8 @@
 
                 <div class="panel panel-primary">
                     <div class="panel-heading">At start ART</div>
-                    <div class="panel-body custome-panel">
-                        <table class="table table-bordered custome-table table-responsive">
+                    <div class="panel-body custom-panel">
+                        <table class="table table-bordered custom-table table-responsive">
                             <tr>
                                 <td colspan="3">At start ART:
                                     <obs conceptId="99069" labelText="Wt"/>
@@ -1452,8 +1443,8 @@
                 <!--Substitute within 1st line section-->
                 <div class="panel panel-primary">
                     <div class="panel-heading">Substitute within 1st line</div>
-                    <div class="panel-body custome-panel">
-                        <table class="table table-bordered custome-table table-responsive">
+                    <div class="panel-body custom-panel">
+                        <table class="table table-bordered custom-table table-responsive">
 
                             <tr>
                                 <obsgroup groupingConceptId="99062">
@@ -1534,8 +1525,8 @@
 
                 <div class="panel panel-primary">
                     <div class="panel-heading">Switch to 2nd-line(or substitute within 2nd- line)</div>
-                    <div class="panel-body custome-panel">
-                        <table class="table table-bordered custome-table table-responsive">
+                    <div class="panel-body custom-panel">
+                        <table class="table table-bordered custom-table table-responsive">
                             <!--Switch to second line-->
 
                             <tr>
@@ -1604,8 +1595,8 @@
 
                 <div class="panel panel-primary" style="width: 115%;">
                     <div class="panel-heading">ART treatment interruptions--STOP or missed drug pick up</div>
-                    <div class="panel-body custome-panel">
-                        <table class="table table-bordered custome-table table-responsive">
+                    <div class="panel-body custom-panel">
+                        <table class="table table-bordered custom-table table-responsive">
                             <tr>
 
                                 <td><b><br/>Date<br/> <br/>Reason<br/> Why <br/><br/>Restart<br/>Date</b>
@@ -1689,8 +1680,8 @@
 
                 <div class="panel panel-primary">
                     <div class="panel-heading">Status and Date</div>
-                    <div class="panel-body custome-panel">
-                        <table class="table table-bordered custome-table table-responsive" width="100%">
+                    <div class="panel-body custom-panel">
+                        <table class="table table-bordered custom-table table-responsive" width="100%">
                             <tr>
                                 <td>
                                     <obsgroup groupingConceptId="99166">
