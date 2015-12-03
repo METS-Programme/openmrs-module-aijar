@@ -3,7 +3,6 @@
         headerColor =#8fabc7
         fontOnHeaderColor = white
     </macros>
-    <link href="../../scripts/twitterbootstrap/css/bootstrap.min.css?v=1.9.9" type="text/css" rel="stylesheet"/>
     <style>
         #inner {
             width: 2000px;
@@ -80,15 +79,8 @@
                     group.find("input").attr("disabled", disable);
                     group.find('select').attr("disabled", disable);
 
-                    //if (disable )
-                    //group.find("input[type$='text']").val("");
-
-
                 }
                 else if (class_name.indexOf('GrandChildren') == -1) {
-                    // if (disable )
-                    // group.find("input[type$='text']").val("");
-
                     group.find("input").attr("disabled", disable);
                 }
 
@@ -144,9 +136,6 @@
 
                 if (class_name.indexOf('Children') == -1) {
                     group.find("input").attr("disabled", disable);
-
-                    //if (disable )
-                    //group.find("input[type$='text']").val("");
 
                 }
 
@@ -226,9 +215,6 @@
 
                 if (class_name.indexOf('Child') == -1) {
                     group.find("input").attr("disabled", disable);
-
-                    //if (disable )
-                    //group.find("input[type$='text']").val("");
 
                 }
 
