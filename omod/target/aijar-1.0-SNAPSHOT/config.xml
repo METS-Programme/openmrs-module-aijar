@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<module configVersion="1.2">
+
+	<!-- Module Properties -->
+	<id>aijar</id>
+	<name>aijar Module</name>
+	<version>1.0-SNAPSHOT</version>
+	<package>org.openmrs.module.aijar</package>
+	<author>simon</author>
+	<description>
+		custom project
+	</description>
+	<updateURL>https://modules.openmrs.org/modules/download/aijar/update.rdf</updateURL>
+	<require_version>1.9.9</require_version>
+	<!-- / Module Properties -->
+
+	
+	<!-- Module Activator -->
+	<activator>org.openmrs.module.aijar.aijarActivator</activator>
+	
+	
+	<!-- Adds link to admin page -->
+	<extension>
+		<point>org.openmrs.admin.list</point>
+		<class>org.openmrs.module.aijar.extension.html.AdminList</class>
+	</extension>
+	
+	<!-- Maps hibernate file's, if present -->
+	<mappingFiles>
+				
+		aijar.hbm.xml
+				
+	</mappingFiles>
+
+	<!-- Internationalization -->
+	<!-- All message codes should start with aijar. -->
+	<messages>
+		<lang>en</lang>
+		<file>messages.properties</file>
+	</messages>
+	<messages>
+		<lang>fr</lang>
+		<file>messages_fr.properties</file>
+	</messages>
+	<messages>
+		<lang>es</lang>
+		<file>messages_es.properties</file>
+	</messages>
+	<!-- /Internationalization -->
+
+</module>
+
