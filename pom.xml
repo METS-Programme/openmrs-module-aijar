@@ -17,14 +17,15 @@
 	</developers>
 	
 	<organization>
-		<name>OpenMRS</name>
-		<url>http://openmrs.org</url>
+		<name>Monitoring and Evaluation Technical Support Project (METS)</name>
+		<url>http://mets.or.ug</url>
 	</organization>
 
 	<scm>
-		<connection>scm:svn:https://svn.openmrs.org/openmrs-modules/aijar/trunk/</connection>
-		<developerConnection>scm:svn:https://svn.openmrs.org/openmrs-modules/aijar/trunk/</developerConnection>
-		<url>https://svn.openmrs.org/openmrs-modules/aijar/trunk/</url>
+		<connection>scm:git:git@github.com:ssmusoke/openmrs-module-aijar.git</connection>
+		<developerConnection>scm:git:git@github.com:openmrs/openmrs-module-aijar.git</developerConnection>
+		<url>scm:git:https://github.com/openmrs/openmrs-module-aijar</url>
+		<tag>HEAD</tag>
 	</scm>
 
 	<modules>
@@ -35,6 +36,7 @@
 	<properties>
 		<openMRSVersion>1.9.9</openMRSVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<reportingVersion>0.9.8.1</reportingVersion>
 	</properties>
 
 	<dependencyManagement>
@@ -67,6 +69,13 @@
 				<groupId>org.openmrs.web</groupId>
 				<artifactId>openmrs-web</artifactId>
 				<version>${openMRSVersion}</version>
+				<type>jar</type>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>reporting-api</artifactId>
+				<version>${reportingVersion}</version>
 				<type>jar</type>
 				<scope>provided</scope>
 			</dependency>
