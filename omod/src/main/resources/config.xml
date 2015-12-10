@@ -17,7 +17,7 @@
 
 	
 	<!-- Module Activator -->
-	<activator>${project.parent.groupId}.${project.parent.artifactId}.aijarActivator</activator>
+	<activator>${project.parent.groupId}.${project.parent.artifactId}.AijarActivator</activator>
 	
 	
 	<!-- Adds link to admin page -->
