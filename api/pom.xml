@@ -75,6 +75,21 @@
 
         <dependency>
             <groupId>org.openmrs.module</groupId>
+            <artifactId>metadatadeploy-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>metadatamapping-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>metadatasharing-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
             <artifactId>reporting-api</artifactId>
         </dependency>
 
@@ -95,6 +110,10 @@
 			<resource>
 				<directory>src/main/resources</directory>
 				<filtering>true</filtering>
+                <excludes>
+                    <exclude>database/**</exclude>
+                    <exclude>reports/**</exclude>
+                </excludes>
 			</resource>
 		</resources>
 
