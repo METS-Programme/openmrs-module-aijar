@@ -17,8 +17,12 @@
 
 	
 	<!-- Module Activator -->
-	<activator>${project.parent.groupId}.${project.parent.artifactId}.aijarActivator</activator>
-	
+	<activator>${project.parent.groupId}.${project.parent.artifactId}.AijarActivator</activator>
+
+	<dependency>
+		<groupId>org.openmrs.module</groupId>
+		<artifactId>uiframework-api</artifactId>
+	</dependency>
 	
 	<!-- Adds link to admin page -->
 	<extension>
@@ -48,6 +52,22 @@
 		<file>messages_es.properties</file>
 	</messages>
 	<!-- /Internationalization -->
+
+	<!-- Required Modules -->
+	<require_modules>
+        <require_module>
+            org.openmrs.module.htmlformentry
+        </require_module>
+        <require_module>
+            org.openmrs.module.htmlformentryui
+        </require_module>
+        <require_module>
+            org.openmrs.module.reporting
+        </require_module>
+        <require_module>
+            org.openmrs.module.uiframework
+        </require_module>
+	</require_modules>
 
 </module>
 
