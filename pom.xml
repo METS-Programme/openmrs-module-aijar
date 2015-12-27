@@ -8,11 +8,13 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Aijar</name>
-    <description>Customizations for Uganda distribution based on OpenMRS</description>
+    <description>Customizations for Uganda OpenMRS distribution</description>
     <url>https://wiki.openmrs.org/display/docs/aijar+Module+Module</url>
 
     <developers>
-
+        <developer>
+            <name>Jonathan Mpango</name>
+        </developer>
         <developer>
             <name>Simon Peter Muwanga</name>
         </developer>
