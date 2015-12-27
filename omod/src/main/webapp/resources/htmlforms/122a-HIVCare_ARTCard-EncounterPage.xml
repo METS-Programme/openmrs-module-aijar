@@ -1,5 +1,8 @@
-<htmlform formName="HIV Encounter" formEncounterType="2588faef-d5cb-404f-85e1-fab34cc339b4"
-	formVersion="1.2">
+<htmlform formName="ART Encounter"
+          formDescription="A visit for a client to an ART clinic"
+          formEncounterType="e9d150fa-37fe-49ec-b144-3267e92f1a36"
+          formUuid="1e0479d7-0cc1-4132-9f2e-32b0b6360823"
+          formVersion="1.2">
 	<macros>
 		headerColor =#8fabc7
 		fontOnHeaderColor = white

@@ -1,5 +1,8 @@
-<htmlform formName="HIV Care" formEncounterType="0dfcb8e1-36a9-4ec3-b3e1-0422a98cd1c0"
-	formVersion="1.2">
+<htmlform formName="ART Health Education"
+          formDescription="Captures health eduction and counseling encounters"
+          formEncounterType="e9d150fa-37fe-49ec-b144-3267e92f1a36"
+          formUuid="a3de6fde-3a09-42a1-845e-8c1caac9a96a"
+          formVersion="1.2">
 	<macros>
 		headerColor =#8fabc7
 		fontOnHeaderColor = white

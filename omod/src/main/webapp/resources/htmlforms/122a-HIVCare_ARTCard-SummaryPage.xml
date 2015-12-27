@@ -1,5 +1,8 @@
-<htmlform formName="HIV Enroll" formEncounterType="e9d150fa-37fe-49ec-b144-3267e92f1a36"
-	formVersion="1.2">
+<htmlform formName="ART Summary"
+          formDescription="Summary information for a client to an ART clinic"
+          formEncounterType="e9d150fa-37fe-49ec-b144-3267e92f1a36"
+          formUuid="edeac3a2-a96c-11e5-bf7f-feff819cdc9f"
+          formVersion="1.2">
 	<macros> headerColor =#8fabc7
 		fontOnHeaderColor = white
 	</macros> <!-- jquery loaded for nonessential purposes. -->
