@@ -79,7 +79,10 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             FormService formService = Context.getFormService();
             HtmlFormEntryService htmlFormEntryService = Context.getService(HtmlFormEntryService.class);
 
-            List<String> htmlforms = Arrays.asList("aijar:htmlforms/122a-HIVCare_ARTCard-SummaryPage.xml");
+            List<String> htmlforms = Arrays.asList("aijar:htmlforms/122a-HIVCare_ARTCard-SummaryPage.xml",
+                    "aijar:htmlforms/122a-HIVCare_ARTCard-HealthEducationPage.xml",
+                    "aijar:htmlforms/122a-HIVCare_ARTCard-EncounterPage.xml",
+                    "aijar:htmlforms/082a-ExposedInfantClinicalChart.xml");
 
             if (htmlforms != null) {
                 for (String htmlform : htmlforms) {
