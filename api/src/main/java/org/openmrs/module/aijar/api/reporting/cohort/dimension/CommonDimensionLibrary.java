@@ -18,6 +18,10 @@ public class CommonDimensionLibrary {
     @Autowired
     private CohortDefinitionLibrary cohortDefinitionLibrary;
 
+    /**
+     * Gender dimension
+     * @return the dimension
+     */
     public CohortDefinitionDimension genders() {
         CohortDefinitionDimension dimGender = new CohortDefinitionDimension();
         dimGender.setName("Gender");
@@ -26,8 +30,11 @@ public class CommonDimensionLibrary {
 
         return dimGender;
     }
-
-    public CohortDefinitionDimension ages() {
+    /**
+     * Dimension of age using the standard age groups
+     * @return the dimension
+     */
+    public CohortDefinitionDimension standardAgeGroups() {
         CohortDefinitionDimension dimAges = new CohortDefinitionDimension();
         dimAges.setName("AgesGroup (< 2 years, 2 - 5 years, 5 - 14 years, 15+ years)");
         dimAges.addParameter(new Parameter("effectiveDate", "Effective Date", Date.class));
