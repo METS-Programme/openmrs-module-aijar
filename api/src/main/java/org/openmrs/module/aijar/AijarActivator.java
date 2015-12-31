@@ -82,7 +82,8 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             List<String> htmlforms = Arrays.asList("aijar:htmlforms/122a-HIVCare_ARTCard-SummaryPage.xml",
                     "aijar:htmlforms/122a-HIVCare_ARTCard-HealthEducationPage.xml",
                     "aijar:htmlforms/122a-HIVCare_ARTCard-EncounterPage.xml",
-                    "aijar:htmlforms/082a-ExposedInfantClinicalChart.xml");
+                    "aijar:htmlforms/082a-ExposedInfantClinicalChart-SummaryPage.xml",
+                    "aijar:htmlforms/082a-ExposedInfantClinicalChart-EncounterPage.xml");
 
             if (htmlforms != null) {
                 for (String htmlform : htmlforms) {

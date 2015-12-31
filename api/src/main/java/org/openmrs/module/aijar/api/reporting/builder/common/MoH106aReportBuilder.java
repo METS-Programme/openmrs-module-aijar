@@ -1,5 +1,7 @@
 package org.openmrs.module.aijar.api.reporting.builder.common;
 
+import java.util.Date;
+
 import org.openmrs.module.aijar.api.reporting.cohort.ReportingUtils;
 import org.openmrs.module.aijar.api.reporting.cohort.dimension.CommonDimensionLibrary;
 import org.openmrs.module.aijar.api.reporting.cohort.indicator.CohortIndicatorLibrary;
@@ -8,8 +10,6 @@ import org.openmrs.module.reporting.dataset.definition.DataSetDefinition;
 import org.openmrs.module.reporting.evaluation.parameter.Parameter;
 import org.openmrs.module.reporting.report.definition.ReportDefinition;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.Date;
 
 /**
  * Created by ssmusoke on 10/12/2015.
@@ -29,11 +29,11 @@ public class MoH106aReportBuilder {
         cidsd.addParameter(new Parameter("endDate", "End Date", Date.class));
 
         cidsd.addDimension("Gender", ReportingUtils.map(commonDimensionLibrary.genders()));
-        cidsd.addDimension("Ages", ReportingUtils.map(commonDimensionLibrary.ages()));
+      //  cidsd.addDimension("Ages", ReportingUtils.map(commonDimensionLibrary.ages()));
 
         String indParams = "startDate=${startDate},endDate=${endDate}";
 
-        cidsd.addColumn("A", "A Label", ReportingUtils.map(cohortIndicatorLibrary.cumulativeEnrolled()), "");
+       // cidsd.addColumn("A", "A Label", ReportingUtils.map(cohortIndicatorLibrary.cumulativeEnrolled()), "");
 
         return cidsd;
     }
