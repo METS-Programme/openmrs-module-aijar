@@ -15,22 +15,35 @@ package org.openmrs.module.aijar.web.controller;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openmrs.api.context.Context;
+import org.openmrs.module.aijar.api.reporting.builder.common.SetupMissedAppointmentsReport;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 /**
  * The main controller.
  */
 @Controller
-public class  AijarManageController {
+public class AijarManageController {
 	
 	protected final Log log = LogFactory.getLog(getClass());
 	
-	@RequestMapping(value = "/module/aijar/manage", method = RequestMethod.GET)
+	@RequestMapping(value = "/module/aijar/manageReports", method = RequestMethod.GET)
 	public void manage(ModelMap model) {
-		model.addAttribute("user", Context.getAuthenticatedUser());
+	}
+	
+	@RequestMapping("/module/aijar/register_missedAppointmentsReport")
+	public ModelAndView registerMissedAppointmentsList() throws Exception {
+		new SetupMissedAppointmentsReport().setup();
+		return new ModelAndView(new RedirectView("manageReports.form"));
+	}
+	
+	@RequestMapping("/module/aijar/remove_missedAppointmentsReport")
+	public ModelAndView removeMissedAppointmentsList() throws Exception {
+		new SetupMissedAppointmentsReport().delete();
+		return new ModelAndView(new RedirectView("manageReports.form"));
 	}
 }
