@@ -55,23 +55,20 @@ public class SetupMissedAppointmentsReport {
         ReportDefinition reportDefinition = new ReportDefinition();
         reportDefinition.setName("Missed Appointments Report");
 
-        reportDefinition.addParameter(new Parameter("location", "Health Center", Location.class));
-
-        SqlCohortDefinition location = new SqlCohortDefinition();
-        location.setQuery("SELECT * FROM (SELECT A.person_id, B.nextAppointmentDate , gender as sex, birthdate, family_name, given_name, middle_name, identifier FROM obs A INNER JOIN " +
+        SqlCohortDefinition missedAppointmentChortDefinition = new SqlCohortDefinition();
+        missedAppointmentChortDefinition.setQuery("SELECT * FROM (SELECT A.person_id, B.nextAppointmentDate , gender as sex, birthdate, family_name, given_name, middle_name, identifier FROM obs A INNER JOIN " +
                 "  (SELECT obs_id, person_id, max(value_datetime) nextAppointmentDate FROM obs WHERE  concept_id = 5096 AND Voided = 0 GROUP BY person_id) B ON A.obs_id = B.obs_id AND A.person_id = B.person_id " +
                 "  INNER JOIN person c ON A.person_id = c.person_id INNER JOIN person_name d ON A.person_id = d.person_id INNER JOIN patient_identifier e ON A.person_id = e.patient_id AND identifier_type =  4) A " +
                 "  WHERE  A.nextAppointmentDate BETWEEN :startDate AND :endDate" +
                 "    AND A.person_id NOT IN (SELECT person_Id FROM (SELECT person_Id, max(obs_datetime) DeathDate FROM obs WHERE concept_id IN( 99112, 90306) AND value_numeric = 1  and voided = 0 GROUP BY person_Id)AA)");
-        location.setName("At location");
-        location.addParameter(new Parameter("location", "location", Location.class));
-        location.addParameter(new Parameter("startDate", "Start Date", Date.class));
-        location.addParameter(new Parameter("endDate", "End Date", Date.class));
+        //location.setName("At location");
+        //location.addParameter(new Parameter("location", "location", Location.class));
+        missedAppointmentChortDefinition.addParameter(new Parameter("startDate", "Start Date", Date.class));
+        missedAppointmentChortDefinition.addParameter(new Parameter("endDate", "End Date", Date.class));
 
-        reportDefinition.setBaseCohortDefinition(location, ParameterizableUtil.createParameterMappings("startDate=${startDate},endDate=${endDate}"));
+        reportDefinition.setBaseCohortDefinition(missedAppointmentChortDefinition, ParameterizableUtil.createParameterMappings("startDate=${startDate}"));
         reportDefinition.addParameter(new Parameter("startDate", "Start Date", Date.class));
         reportDefinition.addParameter(new Parameter("endDate", "End Date", Date.class));
-        createDataSetDefinition(reportDefinition);
 
         createDataSetDefinition(reportDefinition);
 
