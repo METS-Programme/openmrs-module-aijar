@@ -111,10 +111,19 @@
 				<directory>src/main/resources</directory>
 				<filtering>true</filtering>
                 <excludes>
-                    <exclude>database/**</exclude>
                     <exclude>reports/**</exclude>
+                    <!-- exclude XLS binary files from filtering as this causes corruption of the files -->
+                    <exclude>*.xls</exclude>
                 </excludes>
 			</resource>
+            <!-- Add the XLS report files to the omod without filtering -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>*.xls</include>
+                </includes>
+            </resource>
 		</resources>
 
 		<testResources>
