@@ -61,4 +61,12 @@ public class ReportingUtils {
 
         return cohortIndicator;
     }
+
+    public static Parameter startDate() {
+        return new Parameter("startDate", "Start Date", Date.class);
+    }
+
+    public static Parameter endDate() {
+        return new Parameter("endDate", "End Date", Date.class);
+    }
 }
