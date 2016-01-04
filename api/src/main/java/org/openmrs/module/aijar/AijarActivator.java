@@ -21,6 +21,7 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.Module;
 import org.openmrs.module.ModuleActivator;
 import org.openmrs.module.ModuleFactory;
+import org.openmrs.module.aijar.api.reporting.builder.common.SetupMissedAppointmentsReport;
 import org.openmrs.module.htmlformentry.HtmlFormEntryService;
 import org.openmrs.module.htmlformentryui.HtmlFormUtil;
 import org.openmrs.ui.framework.resource.ResourceFactory;
@@ -70,6 +71,13 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             throw new RuntimeException("failed to setup the required modules", e);
         }
 
+        //Register Reports
+        try {
+            registerReports();
+        } catch (Exception e) {
+            throw new RuntimeException("failed to register reports", e);
+        }
+
         log.info("aijar Module started");
     }
 
@@ -102,6 +110,18 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             }
         }
 
+    }
+
+    /**
+     * Allows to automatically register report definitions at when the
+     * module is started
+     *
+     * @throws Exception
+     */
+    public void registerReports() throws Exception {
+        //Register Missed Appointments Report
+        SetupMissedAppointmentsReport mal = new SetupMissedAppointmentsReport();
+        mal.setup();
     }
 
     /**
