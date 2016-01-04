@@ -58,13 +58,21 @@ public class SetupMissedAppointmentsReport {
         reportDefinition.addParameter(new Parameter("location", "Health Center", Location.class));
 
         SqlCohortDefinition location = new SqlCohortDefinition();
-        location.setQuery("select p.patient_id from patient p, person_attribute pa, person_attribute_type pat where p.patient_id = pa.person_id and pat.name ='Health Center' and pa.voided = 0 and pat.person_attribute_type_id = pa.person_attribute_type_id and pa.value = :location");
+        location.setQuery("SELECT * FROM (SELECT A.person_id, B.nextAppointmentDate , gender as sex, birthdate, family_name, given_name, middle_name, identifier FROM obs A INNER JOIN " +
+                "  (SELECT obs_id, person_id, max(value_datetime) nextAppointmentDate FROM obs WHERE  concept_id = 5096 AND Voided = 0 GROUP BY person_id) B ON A.obs_id = B.obs_id AND A.person_id = B.person_id " +
+                "  INNER JOIN person c ON A.person_id = c.person_id INNER JOIN person_name d ON A.person_id = d.person_id INNER JOIN patient_identifier e ON A.person_id = e.patient_id AND identifier_type =  4) A " +
+                "  WHERE  A.nextAppointmentDate BETWEEN :startDate AND :endDate" +
+                "    AND A.person_id NOT IN (SELECT person_Id FROM (SELECT person_Id, max(obs_datetime) DeathDate FROM obs WHERE concept_id IN( 99112, 90306) AND value_numeric = 1  and voided = 0 GROUP BY person_Id)AA)");
         location.setName("At location");
         location.addParameter(new Parameter("location", "location", Location.class));
+        location.addParameter(new Parameter("startDate", "Start Date", Date.class));
+        location.addParameter(new Parameter("endDate", "End Date", Date.class));
 
-        reportDefinition.setBaseCohortDefinition(location, ParameterizableUtil.createParameterMappings("location=${location}"));
+        reportDefinition.setBaseCohortDefinition(location, ParameterizableUtil.createParameterMappings("startDate=${startDate},endDate=${endDate}"));
         reportDefinition.addParameter(new Parameter("startDate", "Start Date", Date.class));
         reportDefinition.addParameter(new Parameter("endDate", "End Date", Date.class));
+        createDataSetDefinition(reportDefinition);
+
         createDataSetDefinition(reportDefinition);
 
         Helper.saveReportDefinition(reportDefinition);
@@ -78,7 +86,6 @@ public class SetupMissedAppointmentsReport {
         PatientDataSetDefinition dataSetDefinition = new PatientDataSetDefinition();
         dataSetDefinition.setName("Missed Appointments Report Data Set");
 
-        dataSetDefinition.addParameter(new Parameter("location", "Location", Location.class));
         dataSetDefinition.addParameter(new Parameter("startDate", "Start Date", Date.class));
         dataSetDefinition.addParameter(new Parameter("endDate", "End Date", Date.class));
 
@@ -93,14 +100,12 @@ public class SetupMissedAppointmentsReport {
         dataSetDefinition.addColumn("givenName", new PreferredNameDataDefinition(), new HashMap<String, Object>(), new PropertyConverter(PersonName.class, "givenName"));
         dataSetDefinition.addColumn("familyName", new PreferredNameDataDefinition(), new HashMap<String, Object>(), new PropertyConverter(PersonName.class, "familyName"));
         dataSetDefinition.addColumn("Sex", new GenderDataDefinition(), (String) null);
-        dataSetDefinition.addColumn("Birthdate", new BirthdateDataDefinition(), (String) null, new BirthdateConverter("dd/MMM/yyyy"));
+        dataSetDefinition.addColumn("Birthdate", new BirthdateDataDefinition(), (String) null, new BirthdateConverter("dd/mm/yyyy"));
 
 
         Map<String, Object> mappings = new HashMap<String, Object>();
-        mappings.put("location", "${location}");
         mappings.put("startDate", "${startDate}");
         mappings.put("endDate", "${endDate}");
-
 
         reportDefinition.addDataSetDefinition("dataSet", dataSetDefinition, mappings);
     }
