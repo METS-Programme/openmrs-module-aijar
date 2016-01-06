@@ -16,16 +16,22 @@ package org.openmrs.module.aijar;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.ConceptName;
 import org.openmrs.api.FormService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.Module;
 import org.openmrs.module.ModuleActivator;
 import org.openmrs.module.ModuleFactory;
+import org.openmrs.module.aijar.api.deploy.bundle.EncounterTypeBundle;
 import org.openmrs.module.aijar.api.reporting.builder.common.SetupMissedAppointmentsReport;
+import org.openmrs.module.dataexchange.DataImporter;
 import org.openmrs.module.htmlformentry.HtmlFormEntryService;
 import org.openmrs.module.htmlformentryui.HtmlFormUtil;
+import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
 import org.openmrs.ui.framework.resource.ResourceFactory;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
 
@@ -68,17 +74,60 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         } catch (Exception e) {
             Module mod = ModuleFactory.getModuleById("aijar");
             ModuleFactory.stopModule(mod);
-            throw new RuntimeException("failed to setup the required modules", e);
+            throw new RuntimeException("failed to setup the required HTML forms ", e);
         }
+
+        try {
+            log.info("Installing metadata");
+            MetadataDeployService deployService = Context.getService(MetadataDeployService.class);
+            log.info("Installing Encounter Types");
+            deployService.installBundle(Context.getRegisteredComponents(EncounterTypeBundle.class).get(0));
+            log.info("Encounter Types installed");
+            log.info("Metadata installed");
+
+        } catch (Exception e) {
+            Module mod = ModuleFactory.getModuleById("aijar");
+            ModuleFactory.stopModule(mod);
+            throw new RuntimeException("failed to setup the module metadata ", e);
+        }
+
+        /*try {
+            installConcepts();
+
+        } catch (Exception e) {
+            Module mod = ModuleFactory.getModuleById("aijar");
+            ModuleFactory.stopModule(mod);
+            throw new RuntimeException("failed to import concepts modules", e);
+        }*/
 
         //Register Reports
         try {
-            registerReports();
+            // registerReports();
         } catch (Exception e) {
             throw new RuntimeException("failed to register reports", e);
         }
 
         log.info("aijar Module started");
+    }
+
+    private void installConcepts() {
+        DataImporter dataImporter = Context.getRegisteredComponent("dataImporter", DataImporter.class);
+        dataImporter.importData("metadata/concepts.xml");
+
+        //1.11 requires building the index for the newly added concepts.
+        //Without doing so, cs.getConceptByClassName() will return an empty list.
+        //We use reflection such that we do not blow up versions before 1.11
+        try {
+            Method method = Context.class.getMethod("updateSearchIndexForType", new Class[]{Class.class});
+            method.invoke(null, new Object[]{ConceptName.class});
+        } catch (NoSuchMethodException ex) {
+            //this must be a version before 1.11
+        } catch (InvocationTargetException ex) {
+            log.error("Failed to update search index", ex);
+        } catch (IllegalAccessException ex) {
+            log.error("Failed to update search index", ex);
+        }
+
     }
 
     private void setupHtmlForms() throws Exception {
