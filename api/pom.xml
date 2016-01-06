@@ -80,6 +80,11 @@
 
         <dependency>
             <groupId>org.openmrs.module</groupId>
+            <artifactId>idgen-omod</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
             <artifactId>metadatadeploy-api</artifactId>
         </dependency>
 
