@@ -56,6 +56,9 @@
 	<!-- Required Modules -->
 	<require_modules>
         <require_module>
+            org.openmrs.module.dataexchange
+        </require_module>
+        <require_module>
             org.openmrs.module.htmlformentry
         </require_module>
         <require_module>
@@ -63,6 +66,9 @@
         </require_module>
         <require_module>
             org.openmrs.module.reporting
+        </require_module>
+        <require_module>
+            org.openmrs.module.metadatadeploy
         </require_module>
         <require_module>
             org.openmrs.module.uiframework
