@@ -27,7 +27,7 @@
 	<context:component-scan base-package="org.openmrs.module.aijar.web.controller" />
 
 	<bean class="org.openmrs.ui.framework.StandardModuleUiConfiguration">
-		<property name="moduleId" value="aijar" />
+		<property name="moduleId" value="${project.parent.artifactId}" />
 	</bean>
 	
 	<bean class="org.openmrs.ui.framework.page.GlobalResourceIncluder">
