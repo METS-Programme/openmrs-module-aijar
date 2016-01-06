@@ -65,10 +65,13 @@
             org.openmrs.module.htmlformentryui
         </require_module>
         <require_module>
-            org.openmrs.module.reporting
+            org.openmrs.module.idgen
         </require_module>
         <require_module>
             org.openmrs.module.metadatadeploy
+        </require_module>
+        <require_module>
+            org.openmrs.module.reporting
         </require_module>
         <require_module>
             org.openmrs.module.uiframework
