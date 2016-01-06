@@ -65,6 +65,11 @@
 
         <dependency>
             <groupId>org.openmrs.module</groupId>
+            <artifactId>dataexchange-omod</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
             <artifactId>htmlformentry-api</artifactId>
         </dependency>
 
