@@ -46,6 +46,7 @@
 
         <!-- module version defeinitions -->
         <calculationVersion>1.1</calculationVersion>
+        <dataexchangeVersion>1.3.1</dataexchangeVersion>
         <htmlformentryuiVersion>1.3</htmlformentryuiVersion>
         <htmlformentryVersion>2.6</htmlformentryVersion>
         <reportingVersion>0.9.8.1</reportingVersion>
@@ -131,6 +132,12 @@
             </dependency>
             <dependency>
                 <groupId>org.openmrs.module</groupId>
+                <artifactId>dataexchange-omod</artifactId>
+                <version>${dataexchangeVersion}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.openmrs.module</groupId>
                 <artifactId>htmlformentryui-api</artifactId>
                 <version>${htmlformentryuiVersion}</version>
                 <scope>provided</scope>
@@ -191,7 +198,7 @@
             </resource>
             <resource>
                 <directory>src/main/webapp</directory>
-                <filtering>false</filtering>
+                <filtering>true</filtering>
                 <excludes>
                     <exclude>resources</exclude>
                 </excludes>
@@ -259,6 +266,19 @@
             </plugins>
         </pluginManagement>
     </build>
+
+	<distributionManagement>
+		<repository>
+			<id>openmrs-repo-modules</id>
+			<name>OpenMRS Modules</name>
+			<url>http://mavenrepo.openmrs.org/nexus/content/repositories/modules</url>
+		</repository>
+		<snapshotRepository>
+			<id>openmrs-repo-snapshots</id>
+			<name>OpenMRS Snapshots</name>
+			<url>http://mavenrepo.openmrs.org/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
 
     <repositories>
         <repository>
