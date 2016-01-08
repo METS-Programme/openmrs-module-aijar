@@ -16,7 +16,7 @@ import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.globalPr
  * Created by ssmusoke on 06/01/2016.
  */
 @Component
-public class CommonMetadata extends AbstractMetadataBundle {
+public class CommonMetadataBundle extends AbstractMetadataBundle {
 
     /**
      * @see org.openmrs.module.metadatadeploy.bundle.AbstractMetadataBundle#install()

@@ -22,7 +22,7 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.Module;
 import org.openmrs.module.ModuleActivator;
 import org.openmrs.module.ModuleFactory;
-import org.openmrs.module.aijar.api.deploy.bundle.CommonMetadata;
+import org.openmrs.module.aijar.api.deploy.bundle.CommonMetadataBundle;
 import org.openmrs.module.aijar.api.deploy.bundle.EncounterTypeMetadataBundle;
 import org.openmrs.module.aijar.api.reporting.builder.common.SetupMissedAppointmentsReport;
 import org.openmrs.module.dataexchange.DataImporter;
@@ -82,7 +82,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             log.info("Installing metadata");
             MetadataDeployService deployService = Context.getService(MetadataDeployService.class);
             log.info("Installing commonly used metadata");
-            deployService.installBundle(Context.getRegisteredComponents(CommonMetadata.class).get(0));
+            deployService.installBundle(Context.getRegisteredComponents(CommonMetadataBundle.class).get(0));
             log.info("Finished installing commonly used metadata");
             log.info("Installing encounter types");
             deployService.installBundle(Context.getRegisteredComponents(EncounterTypeMetadataBundle.class).get(0));
