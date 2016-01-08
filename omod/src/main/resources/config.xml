@@ -7,7 +7,7 @@
 	<name>${project.parent.name}</name>
 	<version>${project.parent.version}</version>
 	<package>${project.parent.groupId}.${project.parent.artifactId}</package>
-	<author>simon</author>
+    <author>METS Program</author>
 	<description>
 		${project.parent.description}
 	</description>
@@ -72,6 +72,12 @@
         </require_module>
         <require_module>
             org.openmrs.module.reporting
+        </require_module>
+        <require_module>
+            org.openmrs.module.registrationapp
+        </require_module>
+        <require_module>
+            org.openmrs.module.registrationcore
         </require_module>
         <require_module>
             org.openmrs.module.uiframework
