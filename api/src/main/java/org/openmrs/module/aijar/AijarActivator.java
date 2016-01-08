@@ -25,6 +25,7 @@ import org.openmrs.module.ModuleFactory;
 import org.openmrs.module.aijar.api.deploy.bundle.CommonMetadataBundle;
 import org.openmrs.module.aijar.api.deploy.bundle.EncounterTypeMetadataBundle;
 import org.openmrs.module.aijar.api.reporting.builder.common.SetupMissedAppointmentsReport;
+import org.openmrs.module.appframework.service.AppFrameworkService;
 import org.openmrs.module.dataexchange.DataImporter;
 import org.openmrs.module.htmlformentry.HtmlFormEntryService;
 import org.openmrs.module.htmlformentryui.HtmlFormUtil;
@@ -69,6 +70,10 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
      */
     public void started() {
         try {
+            AppFrameworkService appFrameworkService = Context.getService(AppFrameworkService.class);
+
+            // disable the reference app registration page
+            appFrameworkService.disableApp("referenceapplication.registrationapp.registerPatient");
 
             setupHtmlForms();
 
@@ -87,14 +92,22 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             log.info("Installing encounter types");
             deployService.installBundle(Context.getRegisteredComponents(EncounterTypeMetadataBundle.class).get(0));
             log.info("Finished installing encounter types");
-            log.info("Installing locations");
-            // deployService.installBundle(Context.getRegisteredComponents(LocationMetadataBundle.class).get(0));
-            log.info("Finished installing locations");
+            log.info("Installing address hierarchy");
+            // deployService.installBundle(Context.getRegisteredComponents(AddressMetadataBundle.class).get(0));
+            log.info("Finished installing addresshierarchy");
 
         } catch (Exception e) {
             Module mod = ModuleFactory.getModuleById("aijar");
             ModuleFactory.stopModule(mod);
             throw new RuntimeException("failed to install the common metadata ", e);
+        }
+
+        try {
+
+        } catch (Exception e) {
+            Module mod = ModuleFactory.getModuleById("aijar");
+            ModuleFactory.stopModule(mod);
+            throw new RuntimeException("failed to install apps ", e);
         }
 
         /*try {

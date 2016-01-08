@@ -1,0 +1,20 @@
+[
+  {
+    "id": "aijar.registrationapp.registerPatient",
+    "instanceOf": "registrationapp.registerPatient",
+    "label": "Register Patient",
+    "description": "Create a new Patient Record",
+    "extensions": [
+      {
+        "id": "aijar.registrationapp.registerPatient.homepageLink",
+        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+        "type": "link",
+        "label": "aijar.app.registerPatient.label",
+        "url": "aijar/aijarRegisterPatient.page?appId=aijar.registrationapp.registerPatient",
+        "icon": "icon-user",
+        "order": 1,
+        "requiredPrivilege": "App: registrationapp.registerPatient"
+      }
+    ]
+  }
+]
