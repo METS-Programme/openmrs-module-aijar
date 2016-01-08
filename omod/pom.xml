@@ -65,6 +65,11 @@
 		<!-- End OpenMRS core -->
         <dependency>
             <groupId>org.openmrs.module</groupId>
+            <artifactId>registrationapp-omod</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
             <artifactId>uiframework-api</artifactId>
         </dependency>
 
