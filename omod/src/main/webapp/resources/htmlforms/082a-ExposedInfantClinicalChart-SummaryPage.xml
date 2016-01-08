@@ -2,7 +2,7 @@
           formDescription="Captures demographic details for infants born to HIV positive mothers"
           formEncounterType="8d5b2be0-c2cc-11de-8d13-0010c6dffd0f"
           formUuid="860c5f2f-cf3c-4c3f-b0c4-9958b6a5a938"
-          formVersion="1.2">
+          formVersion="1.0">
   <macros>
 		headerColor =#8fabc7
 		fontOnHeaderColor = white
@@ -1298,7 +1298,7 @@
 	<br />
 	<small>
 		<i>
-			Version 1.2 Last revised on
+            Version 1.0 Last revised on
 			01/December/2015 - METS programme
 		</i>
 	</small>
