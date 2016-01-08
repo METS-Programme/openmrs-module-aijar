@@ -1,18 +1,10 @@
-<<<<<<< HEAD
-<htmlform formName="Exposed Infant Card |2. Encounter Page"
-		  formDescription="Captures information for each visit encounter for infants born to HIV positive mothers"
-		  formEncounterType="8d5b27bc-c2cc-11de-8d13-0010c6dffd0f"
-		  formUuid="860c5f2f-cf3c-4c3f-b0c4-0058b6a5a937"
-		  formVersion="1.2">
-	<macros>
-=======
+
 <htmlform formName="Exposed Infant Card |1. Summary Page"
           formDescription="Captures demographic details for infants born to HIV positive mothers"
           formEncounterType="8d5b2be0-c2cc-11de-8d13-0010c6dffd0f"
           formUuid="860c5f2f-cf3c-4c3f-b0c4-9958b6a5a938"
           formVersion="1.0">
   <macros>
->>>>>>> 1a228ebc1ef8d2c55deb2ad83dcf751bb714cb3b
 		headerColor =#8fabc7
 		fontOnHeaderColor = white
 	</macros>
