@@ -1,14 +1,11 @@
 package org.openmrs.module.aijar.api.deploy.bundle;
 
-import org.openmrs.module.aijar.AijarConstants;
-import org.openmrs.module.aijar.datatype.LocationDatatype;
 import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
+import org.openmrs.module.aijar.metadata.core.PersonAttributeTypes;
 import org.openmrs.module.metadatadeploy.bundle.AbstractMetadataBundle;
 import org.openmrs.module.metadatadeploy.bundle.CoreConstructors;
 import org.openmrs.module.metadatadeploy.descriptor.PatientIdentifierTypeDescriptor;
 import org.springframework.stereotype.Component;
-
-import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.globalProperty;
 
 /**
  * Installs the most common metadata
@@ -30,9 +27,14 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(PatientIdentifierTypes.OPENMRS_IDENTIFICATION_NUMBER);
         log.info("Patient IdentifierTypes installed");
 
+        // install person attribute types
+        log.info("Installing PatientAttributeTypes");
+        install(PersonAttributeTypes.MARITAL_STATUS);
+        install(PersonAttributeTypes.HEALTH_CENTER);
+        install(PersonAttributeTypes.HEALTH_FACILITY_DISTRICT);
+        log.info("Person AttributeTypes installed");
 
-        install(globalProperty(AijarConstants.GP_DEFAULT_LOCATION, "The facility for which this installation is configured",
-                LocationDatatype.class, null, null));
+        // install(globalProperty(AijarConstants.GP_DEFAULT_LOCATION, "The facility for which this installation is configured", LocationDatatype.class, null, null));
 
     }
 
