@@ -26,6 +26,7 @@ import org.openmrs.module.ModuleActivator;
 import org.openmrs.module.ModuleFactory;
 import org.openmrs.module.aijar.api.deploy.bundle.CommonMetadataBundle;
 import org.openmrs.module.aijar.api.deploy.bundle.EncounterTypeMetadataBundle;
+import org.openmrs.module.aijar.api.deploy.bundle.UgandaAddressMetadataBundle;
 import org.openmrs.module.aijar.api.reporting.builder.common.SetupMissedAppointmentsReport;
 import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
 import org.openmrs.module.appframework.service.AppFrameworkService;
@@ -111,7 +112,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             deployService.installBundle(Context.getRegisteredComponents(EncounterTypeMetadataBundle.class).get(0));
             log.info("Finished installing encounter types");
             log.info("Installing address hierarchy");
-            // deployService.installBundle(Context.getRegisteredComponents(AddressMetadataBundle.class).get(0));
+            deployService.installBundle(Context.getRegisteredComponents(UgandaAddressMetadataBundle.class).get(0));
             log.info("Finished installing addresshierarchy");
 
         } catch (Exception e) {
