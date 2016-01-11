@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:p="http://www.springframework.org/schema/p"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:jee="http://www.springframework.org/schema/jee"
-       xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:aop="http://www.springframework.org/schema/aop"
-       xmlns:util="http://www.springframework.org/schema/util"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
   		    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
   		    http://www.springframework.org/schema/context
   		    http://www.springframework.org/schema/context/spring-context-3.0.xsd
@@ -22,11 +19,34 @@
 
 	<!-- Add here beans related to the web context -->
 
-	 
+
 	<!-- Annotation based controllers -->
-	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
-	
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
+
 	<context:component-scan base-package="org.openmrs.module.aijar.web.controller" />
- 
-		
+
+	<bean class="org.openmrs.ui.framework.StandardModuleUiConfiguration">
+		<property name="moduleId" value="${project.parent.artifactId}" />
+	</bean>
+	
+	<bean class="org.openmrs.ui.framework.page.GlobalResourceIncluder">
+		<property name="resources">
+			<list>
+				<bean class="org.openmrs.ui.framework.resource.Resource">
+					<property name="category" value="css" />
+					<property name="providerName" value="${project.parent.artifactId}" />
+					<property name="resourcePath" value="styles/aijar.css" />
+					<property name="priority" value="-200" />
+				</bean>
+				<bean class="org.openmrs.ui.framework.resource.Resource">
+					<property name="category" value="js" />
+					<property name="providerName" value="${project.parent.artifactId}" />
+					<property name="resourcePath" value="js/aijar.js" />
+					<property name="priority" value="-200" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
 </beans>

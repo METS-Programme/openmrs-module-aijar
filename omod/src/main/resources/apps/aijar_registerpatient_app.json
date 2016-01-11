@@ -1,0 +1,26 @@
+[
+  {
+    "id": "aijar.registrationapp.registerPatient",
+    "instanceOf": "registrationapp.registerPatient",
+    "label": "aijar.registrationapp.registerpatient.label",
+    "description": "aijar.registrationapp.registerpatient.description",
+    "extensions": [
+      {
+        "id": "aijar.registrationapp.registerPatient.homepageLink",
+        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+        "type": "link",
+        "label": "aijar.registrationapp.registerpatient.label",
+        "url": "aijar/aijarRegisterPatient.page?appId=aijar.registrationapp.registerPatient",
+        "icon": "icon-user",
+        "order": 1,
+        "requiredPrivilege": "App: registrationapp.registerPatient"
+      }
+    ],
+    "config": {
+      "allowUnknownPatients": false,
+      "allowRetrospectiveEntry": true,
+      "allowManualIdentifier": true,
+      "afterCreatedUrl": "/coreapps/clinicianfacing/patient.page?patientId={{patientId}}"
+    }
+  }
+]

@@ -7,7 +7,7 @@
 	<name>${project.parent.name}</name>
 	<version>${project.parent.version}</version>
 	<package>${project.parent.groupId}.${project.parent.artifactId}</package>
-	<author>simon</author>
+    <author>METS Program</author>
 	<description>
 		${project.parent.description}
 	</description>
@@ -17,8 +17,7 @@
 
 	
 	<!-- Module Activator -->
-	<activator>${project.parent.groupId}.${project.parent.artifactId}.aijarActivator</activator>
-	
+	<activator>${project.parent.groupId}.${project.parent.artifactId}.AijarActivator</activator>
 	
 	<!-- Adds link to admin page -->
 	<extension>
@@ -48,6 +47,44 @@
 		<file>messages_es.properties</file>
 	</messages>
 	<!-- /Internationalization -->
+
+	<!-- Required Modules -->
+
+	<require_modules>
+        <require_module>
+            org.openmrs.module.appframework
+        </require_module>
+        <require_module>
+            org.openmrs.module.dataexchange
+        </require_module>
+        <require_module>
+            org.openmrs.module.emrapi
+        </require_module>
+        <require_module>
+            org.openmrs.module.htmlformentry
+        </require_module>
+        <require_module>
+            org.openmrs.module.htmlformentryui
+        </require_module>
+        <require_module>
+            org.openmrs.module.idgen
+        </require_module>
+        <require_module>
+            org.openmrs.module.metadatadeploy
+        </require_module>
+        <require_module>
+            org.openmrs.module.reporting
+        </require_module>
+        <require_module>
+            org.openmrs.module.registrationapp
+        </require_module>
+        <require_module>
+            org.openmrs.module.registrationcore
+        </require_module>
+        <require_module>
+            org.openmrs.module.uiframework
+        </require_module>
+	</require_modules>
 
 </module>
 
