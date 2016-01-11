@@ -11,7 +11,7 @@
 
 		function enable_disable_fm(selected_option) {
 
-			var class_name = $j(selected_option).attr("class");
+			var class_name = jq(selected_option).attr("class");
 
 			var length = class_name.length;
 
@@ -28,7 +28,7 @@
 			var row_5 = '[class^="FamilyMember"][class*="Children5"]';
 
 			var xx = row_1;
-			var selected_value = $j(selected_option).find(":selected").text()
+			var selected_value = jq(selected_option).find(":selected").text()
 
 
 			switch (selected_value) {
@@ -59,8 +59,8 @@
 			}
 
 
-			$j(xx).each(function () {
-				var group = $j(this);
+			jq(xx).each(function () {
+				var group = jq(this);
 
 				if (class_name.indexOf('Children') == -1) {
 
@@ -77,7 +77,7 @@
 
 		function enable_disable_ei(selected_option) {
 
-			var class_name = $j(selected_option).attr("class");
+			var class_name = jq(selected_option).attr("class");
 
 			var length = class_name.length;
 
@@ -94,7 +94,7 @@
 			var row_5 = '[class^="ExposedInfant"][class*="Children5"]';
 
 			var xx = row_1;
-			var selected_value = $j(selected_option).find(":selected").text()
+			var selected_value = jq(selected_option).find(":selected").text()
 
 			if (selected_value == "P")
 				disable = false;
@@ -118,8 +118,8 @@
 			}
 
 
-			$j(xx).each(function () {
-				var group = $j(this);
+			jq(xx).each(function () {
+				var group = jq(this);
 
 				if (class_name.indexOf('Children') == -1) {
 					group.find("input").attr("disabled", disable);
@@ -132,7 +132,7 @@
 
 		function enable_disable_ac(selected_option) {
 
-			var class_name = $j(selected_option).attr("class");
+			var class_name = jq(selected_option).attr("class");
 
 			var length = class_name.length;
 
@@ -155,7 +155,7 @@
 			var row_9 = '[class^="ArtCare"][class*="Child9"]';
 
 			var xx = row_1;
-			var selected_value = $j(selected_option).find(":selected").text()
+			var selected_value = jq(selected_option).find(":selected").text()
 
 			selected_value = selected_value.trim().toUpperCase();
 
@@ -196,8 +196,8 @@
 			}
 
 
-			$j(xx).each(function () {
-				var group = $j(this);
+			jq(xx).each(function () {
+				var group = jq(this);
 
 				if (class_name.indexOf('Child') == -1) {
 					group.find("input").attr("disabled", disable);
@@ -207,263 +207,263 @@
 
 		}
 
-		$j('#w200_0').click(function () {
-			if ($j('#w200_0').is(':checked')) {
+		jq('#w200_0').click(function () {
+			if (jq('#w200_0').is(':checked')) {
 				alert("it's checked");
 			}
 		});
 
 
 		if (jQuery) {
-			$j(document).ready(function () {
-				if ($j.browser.msie) {
-					$j(":checkbox").click(function () {
-						$j(this).change();
+			jq(document).ready(function () {
+				if (jq.browser.msie) {
+					jq(":checkbox").click(function () {
+						jq(this).change();
 					});
 				}
 
 
-				var gender = $j("span.gender").html();
-				var age = $j("span.age").html();
+				var gender = jq("span.gender").html();
+				var age = jq("span.age").html();
 
-				$j('input[type=radio][name=w200]').change(function () {
+				jq('input[name=w196]').change(function () {
 					if (this.value == '90004') {
-						$j("#w202").prop("checked", false);
-						$j("#w210").prop("checked", false);
-						$j("#w218").prop("checked", false);
-						$j("#w226").prop("checked", false);
+						jq("#w202").prop("checked", false);
+						jq("#w210").prop("checked", false);
+						jq("#w218").prop("checked", false);
+						jq("#w226").prop("checked", false);
 
-						$j("input#w202").attr("disabled", true);
-						$j("input#w210").attr("disabled", true);
-						$j("input#w218").attr("disabled", true);
-						$j("input#w226").attr("disabled", true);
+						jq("input#w202").attr("disabled", true);
+						jq("input#w210").attr("disabled", true);
+						jq("input#w218").attr("disabled", true);
+						jq("input#w226").attr("disabled", true);
 
 					}
 					else if (this.value == '90003') {
-						$j("input#w202").removeAttr("disabled");
-						$j("input#w210").removeAttr("disabled");
-						$j("input#w218").removeAttr("disabled");
-						$j("input#w226").removeAttr("disabled");
+						jq("input#w198").removeAttr("disabled");
+						jq("input#w206").removeAttr("disabled");
+						jq("input#w218").removeAttr("disabled");
+						jq("input#w226").removeAttr("disabled");
 					}
 				});
 
 
 				//Enable First Column  of ART treatment interruptions--STOP or missed drug pick up When Lost or stopped is selected activated
-				$j('input[type=radio][name=w358]').click(function () {
+				jq('input[type=radio][name=w358]').click(function () {
 					if (this.value == '1363' || this.value == '99133') {
-						$j("#w360-display").removeAttr("disabled");
-						$j("#w362").removeAttr("disabled");
-						$j("#w364-display").removeAttr("disabled");
+						jq("#w360-display").removeAttr("disabled");
+						jq("#w362").removeAttr("disabled");
+						jq("#w364-display").removeAttr("disabled");
 					}
 					else {
-						$j("#w360-display").attr("disabled", true);
-						$j("#w362").attr("disabled", true);
-						$j("#364-display").attr("disabled", true);
+						jq("#w360-display").attr("disabled", true);
+						jq("#w362").attr("disabled", true);
+						jq("#364-display").attr("disabled", true);
 					}
 				});
 
-				if ($j('input[type=radio][name=w358]') != '1363' || $j('input[type=radio][name=w358]') != '99133') {
-					$j("#w360-display").attr("disabled", true);
-					$j("#w362").attr("disabled", true);
-					$j("#w364-display").attr("disabled", true);
+				if (jq('input[type=radio][name=w358]') != '1363' || jq('input[type=radio][name=w358]') != '99133') {
+					jq("#w360-display").attr("disabled", true);
+					jq("#w362").attr("disabled", true);
+					jq("#w364-display").attr("disabled", true);
 				}
 
 
-				$j('input[type=radio][name=w366]').click(function () {
+				jq('input[type=radio][name=w366]').click(function () {
 					if (this.value == '1363' || this.value == '99133') {
-						$j("#w368-display").removeAttr("disabled");
-						$j("#w370").removeAttr("disabled");
-						$j("#w372-display").removeAttr("disabled");
+						jq("#w368-display").removeAttr("disabled");
+						jq("#w370").removeAttr("disabled");
+						jq("#w372-display").removeAttr("disabled");
 					}
 					else {
-						$j("#w368-display").attr("disabled", true);
-						$j("#w370").attr("disabled", true);
-						$j("#364-display").attr("disabled", true);
+						jq("#w368-display").attr("disabled", true);
+						jq("#w370").attr("disabled", true);
+						jq("#364-display").attr("disabled", true);
 					}
 				});
 
-				if ($j('input[type=radio][name=w366]') != '1363' || $j('input[type=radio][name=w366]') != '99133') {
-					$j("#w368-display").attr("disabled", true);
-					$j("#w370").attr("disabled", true);
-					$j("#w372-display").attr("disabled", true);
+				if (jq('input[type=radio][name=w366]') != '1363' || jq('input[type=radio][name=w366]') != '99133') {
+					jq("#w368-display").attr("disabled", true);
+					jq("#w370").attr("disabled", true);
+					jq("#w372-display").attr("disabled", true);
 				}
 
-				$j('input[type=radio][name=w374]').click(function () {
+				jq('input[type=radio][name=w374]').click(function () {
 					if (this.value == '1363' || this.value == '99133') {
 						//UnCheck The Checked Boxes
-						$j("#w376-display").removeAttr("disabled");
-						$j("#w378").removeAttr("disabled");
-						$j("#w380-display").removeAttr("disabled");
+						jq("#w376-display").removeAttr("disabled");
+						jq("#w378").removeAttr("disabled");
+						jq("#w380-display").removeAttr("disabled");
 					}
 					else {
-						$j("#w376-display").attr("disabled", true);
-						$j("#w378").attr("disabled", true);
-						$j("#364-display").attr("disabled", true);
+						jq("#w376-display").attr("disabled", true);
+						jq("#w378").attr("disabled", true);
+						jq("#364-display").attr("disabled", true);
 					}
 				});
 
 				//disable Third column of ART treatment interruptions--STOP or missed drug pick up
-				if ($j('input[type=radio][name=w374]') != '1363' || $j('input[type=radio][name=w374]') != '99133') {
-					$j("#w376-display").attr("disabled", true);
-					$j("#w378").attr("disabled", true);
-					$j("#w380-display").attr("disabled", true);
+				if (jq('input[type=radio][name=w374]') != '1363' || jq('input[type=radio][name=w374]') != '99133') {
+					jq("#w376-display").attr("disabled", true);
+					jq("#w378").attr("disabled", true);
+					jq("#w380-display").attr("disabled", true);
 				}
 
-				$j('input[type=radio][name=w382]').click(function () {
+				jq('input[type=radio][name=w382]').click(function () {
 					if (this.value == '1363' || this.value == '99133') {
-						$j("#w384-display").removeAttr("disabled");
-						$j("#w386").removeAttr("disabled");
-						$j("#w388-display").removeAttr("disabled");
+						jq("#w384-display").removeAttr("disabled");
+						jq("#w386").removeAttr("disabled");
+						jq("#w388-display").removeAttr("disabled");
 					}
 					else {
-						$j("#w384-display").attr("disabled", true);
-						$j("#w386").attr("disabled", true);
-						$j("#364-display").attr("disabled", true);
+						jq("#w384-display").attr("disabled", true);
+						jq("#w386").attr("disabled", true);
+						jq("#364-display").attr("disabled", true);
 					}
 				});
 
 				//disable Fourth column of ART treatment interruptions--STOP or missed drug pick up
-				if ($j('input[type=radio][name=w382]') != '1363' || $j('input[type=radio][name=w382]') != '99133') {
-					$j("#w384-display").attr("disabled", true);
-					$j("#w386").attr("disabled", true);
-					$j("#w388-display").attr("disabled", true);
+				if (jq('input[type=radio][name=w382]') != '1363' || jq('input[type=radio][name=w382]') != '99133') {
+					jq("#w384-display").attr("disabled", true);
+					jq("#w386").attr("disabled", true);
+					jq("#w388-display").attr("disabled", true);
 				}
 
 
 				//Enable Fifth Column  of ART treatment interruptions--STOP or missed drug pick up When Lost or stopped is selected activated
-				$j('input[type=radio][name=w390]').click(function () {
+				jq('input[type=radio][name=w390]').click(function () {
 					if (this.value == '1363' || this.value == '99133') {
 						//UnCheck The Checked Boxes
-						$j("#w392-display").removeAttr("disabled");
-						$j("#w394").removeAttr("disabled");
-						$j("#w396-display").removeAttr("disabled");
+						jq("#w392-display").removeAttr("disabled");
+						jq("#w394").removeAttr("disabled");
+						jq("#w396-display").removeAttr("disabled");
 					}
 					else {
-						$j("#w392-display").attr("disabled", true);
-						$j("#w394").attr("disabled", true);
-						$j("#w396-display").attr("disabled", true);
+						jq("#w392-display").attr("disabled", true);
+						jq("#w394").attr("disabled", true);
+						jq("#w396-display").attr("disabled", true);
 					}
 				});
 
 				//disable Fifth column of ART treatment interruptions--STOP or missed drug pick up
-				if ($j('input[type=radio][name=w390]') != '1363' || $j('input[type=radio][name=w390]') != '99133') {
-					$j("#w392-display").attr("disabled", true);
-					$j("#w394").attr("disabled", true);
-					$j("#w396-display").attr("disabled", true);
+				if (jq('input[type=radio][name=w390]') != '1363' || jq('input[type=radio][name=w390]') != '99133') {
+					jq("#w392-display").attr("disabled", true);
+					jq("#w394").attr("disabled", true);
+					jq("#w396-display").attr("disabled", true);
 				}
 
 
 				//Enable Sixth Column  of ART treatment interruptions--STOP or missed drug pick up When Lost or stopped is selected activated
-				$j('input[type=radio][name=w398]').click(function () {
+				jq('input[type=radio][name=w398]').click(function () {
 					if (this.value == '1363' || this.value == '99133') {
-						$j("#w400-display").removeAttr("disabled");
-						$j("#w402").removeAttr("disabled");
-						$j("#w404-display").removeAttr("disabled");
+						jq("#w400-display").removeAttr("disabled");
+						jq("#w402").removeAttr("disabled");
+						jq("#w404-display").removeAttr("disabled");
 					}
 					else {
-						$j("#w400-display").attr("disabled", true);
-						$j("#w402").attr("disabled", true);
-						$j("#w404-display").attr("disabled", true);
+						jq("#w400-display").attr("disabled", true);
+						jq("#w402").attr("disabled", true);
+						jq("#w404-display").attr("disabled", true);
 					}
 				});
 
 				//disable Sixth column of ART treatment interruptions--STOP or missed drug pick up
-				if ($j('input[type=radio][name=w398]') != '1363' || $j('input[type=radio][name=w398]') != '99133') {
-					$j("#w400-display").attr("disabled", true);
-					$j("#w402").attr("disabled", true);
-					$j("#w404-display").attr("disabled", true);
+				if (jq('input[type=radio][name=w398]') != '1363' || jq('input[type=radio][name=w398]') != '99133') {
+					jq("#w400-display").attr("disabled", true);
+					jq("#w402").attr("disabled", true);
+					jq("#w404-display").attr("disabled", true);
 				}
 
 
 				//If Male disable all options that only apply to females
 				if (gender == "M") {
-					$j("input#w246").attr("disabled", true);
-					$j("input#w248").attr("disabled", true);
+					jq("input#w246").attr("disabled", true);
+					jq("input#w248").attr("disabled", true);
 				}
 
 				// If above five years disable options that only apply to below 5 year olds
 				if (age &gt; 5) {
-					$j("input#w250").attr("disabled", true);
-					$j("input#w252").attr("disabled", true);
+					jq("input#w250").attr("disabled", true);
+					jq("input#w252").attr("disabled", true);
 				}
 
 
-				$j('input[type=hidden][name=w233][id=w233]').change(function () {
-					if (new Date($j("#w233").val()) &lt;= new Date($j("#w6").val())) {
+				jq('input[type=hidden][name=w233][id=w233]').change(function () {
+					if (new Date(jq("#w233").val()) &lt;= new Date(jq("#w6").val())) {
 						alert("Enrolled Date is Earlier than the date Comfirmed Positive");
 					}
 				});
 
 				// disable the HIV enrolled date input
-				$j('#w233-display').attr("disabled", "disabled");
+				jq('#w233-display').attr("disabled", "disabled");
 
 				// When the HIV date confirmed field is selected, then set the minimum value of the HIV enrolled date
-				$j('#w6-display').change(function () {
+				jq('#w6-display').change(function () {
 					// enable the HIV enrolled date picker
-					$j('#w233-display').removeAttr("disabled", "");
+					jq('#w233-display').removeAttr("disabled", "");
 
 					// clear the HIV enrolled date so that a new one can be selected
-					$j('#w233-display').val("");
-					$j('#w233').val("");
+					jq('#w233-display').val("");
+					jq('#w233').val("");
 
 					// set the minimum date using the HIV confirmed date
-					$j('#w233-display').datepicker("option", "minDate", $j('#w6-display').val());
+					jq('#w233-display').datepicker("option", "minDate", jq('#w6-display').val());
 				});
 
 				// when there is a value in the HIV date confirmed field
-				if ($j('#w6-display').val().length > 0) {
+				if (jq('#w6-display').length > 0) {
 					// set the minimum date using the HIV confirmed date
-					$j('#w233-display').datepicker("option", "minDate", $j('#w6-display').val());
+					jq('#w233-display').datepicker("option", "minDate", jq('#w6-display').val());
 				}
 
 
 				// disable the Transfer date input
-				$j('#w278-display').attr("disabled", "disabled");
+				jq('#w278-display').attr("disabled", "disabled");
 
 				// When the ART start Date field is selected, then set the minimum value of the Transer date
-				$j('#w286-display').change(function () {
+				jq('#w286-display').change(function () {
 					// enable the HIV enrolled date picker
-					$j('#w278-display').removeAttr("disabled", "");
+					jq('#w278-display').removeAttr("disabled", "");
 
 					// clear the Transfer Date so that a new one can be selected
-					$j('#w278-display').val("");
-					$j('#w233').val("");
+					jq('#w278-display').val("");
+					jq('#w233').val("");
 
 					// set the minimum date using the ART start date
-					$j('#w278-display').datepicker("option", "minDate", $j('#w286-display').val());
+					jq('#w278-display').datepicker("option", "minDate", jq('#w286-display').val());
 				});
 
 				// when there is a value in the Transfer field
-				if ($j('#w286-display').val().length > 0) {
+				if (jq('#w286-display').length > 0) {
 					// set the minimum date using the ART Start date
-					$j('#w278-display').datepicker("option", "minDate", $j('#w286-display').val());
+					jq('#w278-display').datepicker("option", "minDate", jq('#w286-display').val());
 				}
 
-				$j('[class^="FamilyMemberEnableDisable"]').change(function () {
-					enable_disable_fm($j(this));
+				jq('[class^="FamilyMemberEnableDisable"]').change(function () {
+					enable_disable_fm(jq(this));
 				});
 
-				$j('[class^="FamilyMemberEnableDisable"]').each(function () {
-					enable_disable_fm($j(this));
-				});
-
-
-				$j('[class^="ExposedInfantEnableDisable"]').change(function () {
-					enable_disable_ei($j(this));
+				jq('[class^="FamilyMemberEnableDisable"]').each(function () {
+					enable_disable_fm(jq(this));
 				});
 
 
-				$j('[class^="ArtCareEnableDisable"]').change(function () {
-					enable_disable_ac($j(this));
+				jq('[class^="ExposedInfantEnableDisable"]').change(function () {
+					enable_disable_ei(jq(this));
 				});
 
 
-				$j('[class^="ArtCareEnableDisable"]').each(function () {
-					enable_disable_ac($j(this))
+				jq('[class^="ArtCareEnableDisable"]').change(function () {
+					enable_disable_ac(jq(this));
 				});
 
-				$j(".enableDisable").each(function () {
-					var group = $j(this);
+
+				jq('[class^="ArtCareEnableDisable"]').each(function () {
+					enable_disable_ac(jq(this))
+				});
+
+				jq(".enableDisable").each(function () {
+					var group = jq(this);
 
 					function disableFn() {
 						group.children("#disabled").fadeTo(250, 1);
@@ -481,8 +481,8 @@
 					}
 
 					disableFn();
-					$j(this).children("#trigger").find(":checkbox:first").change(function () {
-						var checked = $j(this).attr("checked");
+					jq(this).children("#trigger").find(":checkbox:first").change(function () {
+						var checked = jq(this).attr("checked");
 						if (checked == "checked") {
 							enableFn();
 						} else {
@@ -492,8 +492,8 @@
 				});
 
 
-				$j(".checkboxGroup").each(function () {
-					var group = $j(this);
+				jq(".checkboxGroup").each(function () {
+					var group = jq(this);
 					var uncheckAll = function () {
 						group.find("input[type$='checkbox']").attr("checked", false);
 						group.find("input[type$='checkbox']").change();
@@ -507,26 +507,26 @@
 					group.find("#checkboxAll").find("input").click(
 							function () {
 								var flip;
-								var checked = $j(this).siblings(":checkbox:first").attr("checked");
-								if ($j(this).attr("name") == $j(this).parents("#checkboxAll:first").find(":checkbox:first").attr("name")) {
-									checked = $j(this).attr("checked");
+								var checked = jq(this).siblings(":checkbox:first").attr("checked");
+								if (jq(this).attr("name") == jq(this).parents("#checkboxAll:first").find(":checkbox:first").attr("name")) {
+									checked = jq(this).attr("checked");
 									flip = checked;
 								} else {
 									flip = !checked;
 								}
-								if ($j.attr("type") == "text") if (flip == false) flip = !filp; // this is so the user doesn't go to check the checkbox, then uncheck it when they hit the input.
+								if (jq.attr("type") == "text") if (flip == false) flip = !filp; // this is so the user doesn't go to check the checkbox, then uncheck it when they hit the input.
 								uncheckAll();
-								$j(this).parents("#checkboxAll:first").find(":checkbox").attr("checked", flip);
-								$j(this).parents("#checkboxAll:first").find(":checkbox").change();
+								jq(this).parents("#checkboxAll:first").find(":checkbox").attr("checked", flip);
+								jq(this).parents("#checkboxAll:first").find(":checkbox").change();
 							}
 					);
 
 
 					group.find("#checkboxRadio").find("input[type$='checkbox']").click(function () {
 						uncheckAll();
-						$j(this).siblings("input[type$='checkbox']").attr("checked", false);
-						$j(this).attr("checked", true);
-						$j(this).change();
+						jq(this).siblings("input[type$='checkbox']").attr("checked", false);
+						jq(this).attr("checked", true);
+						jq(this).change();
 					});
 
 					group.find("#checkboxCheckbox").click(
