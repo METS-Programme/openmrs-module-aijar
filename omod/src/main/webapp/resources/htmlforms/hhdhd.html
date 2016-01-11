@@ -1,0 +1,1750 @@
+<htmlform formName="ART Summary"
+          formDescription="Summary information for a client to an ART clinic"
+          formEncounterType="e9d150fa-37fe-49ec-b144-3267e92f1a36"
+          formUuid="edeac3a2-a96c-11e5-bf7f-feff819cdc9f"
+          formVersion="1.2">
+    <macros>
+        headerColor =#8fabc7
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+        #inner {
+            width: 2000px;
+            padding: 0;
+        }
+
+        .custom-table {
+            margin-bottom: 0;
+        }
+
+        .custom-panel {
+            padding: 0;
+        }
+    </style>
+    <!-- jquery loaded for nonessential purposes. -->
+
+    <script type="text/javascript">
+
+        function enable_disable_fm(selected_option) {
+
+            var class_name = $(selected_option).attr("class");
+
+            var length = class_name.length;
+
+            var class_id = parseInt(class_name.substring(length - 1, length))
+
+            var row_id = class_id;
+
+            var disable = true;
+
+            var row_1 = '[class^="FamilyMember"][class*="Children1"]';
+            var row_2 = '[class^="FamilyMember"][class*="Children2"]';
+            var row_3 = '[class^="FamilyMember"][class*="Children3"]';
+            var row_4 = '[class^="FamilyMember"][class*="Children4"]';
+            var row_5 = '[class^="FamilyMember"][class*="Children5"]';
+
+            var xx = row_1;
+            var selected_value = $(selected_option).find(":selected").text()
+
+
+            switch (selected_value) {
+                case "P":
+                case "Y":
+                    disable = false;
+                    break;
+
+            }
+
+
+            switch (row_id) {
+                case 1:
+                    xx = row_1;
+                    break;
+                case 2:
+                    xx = row_2;
+                    break;
+                case 3:
+                    xx = row_3;
+                    break;
+                case 4:
+                    xx = row_4;
+                    break;
+                case 5:
+                    xx = row_5;
+                    break;
+            }
+
+
+            $(xx).each(function () {
+                var group = $(this);
+
+                if (class_name.indexOf('Children') == -1) {
+
+                    group.find("input").attr("disabled", disable);
+                    group.find('select').attr("disabled", disable);
+
+                    //if (disable )
+                    //group.find("input[type$='text']").val("");
+
+
+                }
+                else if (class_name.indexOf('GrandChildren') == -1) {
+                    // if (disable )
+                    // group.find("input[type$='text']").val("");
+
+                    group.find("input").attr("disabled", disable);
+                }
+
+            });
+
+        }
+
+        function enable_disable_ei(selected_option) {
+
+            var class_name = $(selected_option).attr("class");
+
+            var length = class_name.length;
+
+            var class_id = parseInt(class_name.substring(length - 1, length))
+
+            var row_id = class_id;
+
+            var disable = true;
+
+            var row_1 = '[class^="ExposedInfant"][class*="Children1"]';
+            var row_2 = '[class^="ExposedInfant"][class*="Children2"]';
+            var row_3 = '[class^="ExposedInfant"][class*="Children3"]';
+            var row_4 = '[class^="ExposedInfant"][class*="Children4"]';
+            var row_5 = '[class^="ExposedInfant"][class*="Children5"]';
+
+            var xx = row_1;
+            var selected_value = $(selected_option).find(":selected").text()
+
+            if (selected_value == "P")
+                disable = false;
+
+            switch (row_id) {
+                case 1:
+                    xx = row_1;
+                    break;
+                case 2:
+                    xx = row_2;
+                    break;
+                case 3:
+                    xx = row_3;
+                    break;
+                case 4:
+                    xx = row_4;
+                    break;
+                case 5:
+                    xx = row_5;
+                    break;
+            }
+
+
+            $(xx).each(function () {
+                var group = $(this);
+
+                if (class_name.indexOf('Children') == -1) {
+                    group.find("input").attr("disabled", disable);
+
+                    //if (disable )
+                    //group.find("input[type$='text']").val("");
+
+                }
+
+            });
+
+        }
+
+
+        function enable_disable_ac(selected_option) {
+
+            var class_name = $(selected_option).attr("class");
+
+            var length = class_name.length;
+
+            var class_id = parseInt(class_name.substring(length - 1, length))
+
+            var row_id = class_id;
+
+            var disable = true;
+
+            var row_1 = '[class^="ArtCare"][class*="Child1"]';
+            var row_2 = '[class^="ArtCare"][class*="Child2"]';
+            var row_3 = '[class^="ArtCare"][class*="Child3"]';
+            var row_4 = '[class^="ArtCare"][class*="Child4"]';
+
+            var row_5 = '[class^="ArtCare"][class*="Child5"]';
+            var row_6 = '[class^="ArtCare"][class*="Child6"]';
+            var row_7 = '[class^="ArtCare"][class*="Child7"]';
+            var row_8 = '[class^="ArtCare"][class*="Child8"]';
+
+            var row_9 = '[class^="ArtCare"][class*="Child9"]';
+
+            var xx = row_1;
+            var selected_value = $(selected_option).find(":selected").text()
+
+            selected_value = selected_value.trim().toUpperCase();
+
+            if (selected_value == "OTHER")
+                disable = false;
+
+            switch (row_id) {
+                case 1:
+                    xx = row_1;
+                    break;
+                case 2:
+                    xx = row_2;
+                    break;
+                case 3:
+                    xx = row_3;
+                    break;
+                case 4:
+                    xx = row_4;
+                    break;
+
+                case 5:
+                    xx = row_5;
+                    break;
+                case 6:
+                    xx = row_6;
+                    break;
+                case 7:
+                    xx = row_7;
+                    break;
+                case 8:
+                    xx = row_8;
+                    break;
+                case 9:
+                    xx = row_9;
+                    break;
+
+
+            }
+
+
+            $(xx).each(function () {
+                var group = $(this);
+
+                if (class_name.indexOf('Child') == -1) {
+                    group.find("input").attr("disabled", disable);
+
+                    //if (disable )
+                    //group.find("input[type$='text']").val("");
+
+                }
+
+            });
+
+        }
+
+        $('#w200_0').click(function () {
+            if ($('#w200_0').is(':checked')) {
+                alert("it's checked");
+            }
+        });
+
+
+        if (jQuery) {
+            $(document).ready(function () {
+                if ($.browser.msie) {
+                    $(":checkbox").click(function () {
+                        $(this).change();
+                    });
+                }
+
+
+                var gender = $("span.gender").html();
+                var age = $("span.age").html();
+
+                $('input[type=radio][name=w200]').change(function () {
+                    if (this.value == '90004') {
+                        //UnCheck The Checked Boxes
+                        $("#w202").prop("checked", false);
+                        $("#w210").prop("checked", false);
+                        $("#w218").prop("checked", false);
+                        $("#w226").prop("checked", false);
+
+                        $("input#w202").attr("disabled", true);
+                        $("input#w210").attr("disabled", true);
+                        $("input#w218").attr("disabled", true);
+                        $("input#w226").attr("disabled", true);
+
+                    }
+                    else if (this.value == '90003') {
+                        $("input#w202").removeAttr("disabled");
+                        $("input#w210").removeAttr("disabled");
+                        $("input#w218").removeAttr("disabled");
+                        $("input#w226").removeAttr("disabled");
+                    }
+                });
+
+
+                //Enable First Column  of ART treatment interruptions--STOP or missed drug pick up When Lost or stopped is selected activated
+                $('input[type=radio][name=w358]').click(function () {
+                    if (this.value == '1363' || this.value == '99133') {
+                        //UnCheck The Checked Boxes
+                        $("#w360-display").removeAttr("disabled");
+                        $("#w362").removeAttr("disabled");
+                        $("#w364-display").removeAttr("disabled");
+                    }
+                    else {
+                        $("#w360-display").attr("disabled", true);
+                        $("#w362").attr("disabled", true);
+                        $("#364-display").attr("disabled", true);
+                    }
+                });
+
+                //disable first column of ART treatment interruptions--STOP or missed drug pick up
+                if ($('input[type=radio][name=w358]') != '1363' || $('input[type=radio][name=w358]') != '99133') {
+                    $("#w360-display").attr("disabled", true);
+                    $("#w362").attr("disabled", true);
+                    $("#w364-display").attr("disabled", true);
+                }
+
+
+                //Enable Second Column  of ART treatment interruptions--STOP or missed drug pick up When Lost or stopped is selected activated
+                $('input[type=radio][name=w366]').click(function () {
+                    if (this.value == '1363' || this.value == '99133') {
+                        //UnCheck The Checked Boxes
+                        $("#w368-display").removeAttr("disabled");
+                        $("#w370").removeAttr("disabled");
+                        $("#w372-display").removeAttr("disabled");
+                    }
+                    else {
+                        $("#w368-display").attr("disabled", true);
+                        $("#w370").attr("disabled", true);
+                        $("#364-display").attr("disabled", true);
+                    }
+                });
+
+                //disable Second column of ART treatment interruptions--STOP or missed drug pick up
+                if ($('input[type=radio][name=w366]') != '1363' || $('input[type=radio][name=w366]') != '99133') {
+                    $("#w368-display").attr("disabled", true);
+                    $("#w370").attr("disabled", true);
+                    $("#w372-display").attr("disabled", true);
+                }
+
+
+                //Enable Third Column  of ART treatment interruptions--STOP or missed drug pick up When Lost or stopped is selected activated
+                $('input[type=radio][name=w374]').click(function () {
+                    if (this.value == '1363' || this.value == '99133') {
+                        //UnCheck The Checked Boxes
+                        $("#w376-display").removeAttr("disabled");
+                        $("#w378").removeAttr("disabled");
+                        $("#w380-display").removeAttr("disabled");
+                    }
+                    else {
+                        $("#w376-display").attr("disabled", true);
+                        $("#w378").attr("disabled", true);
+                        $("#364-display").attr("disabled", true);
+                    }
+                });
+
+                //disable Third column of ART treatment interruptions--STOP or missed drug pick up
+                if ($('input[type=radio][name=w374]') != '1363' || $('input[type=radio][name=w374]') != '99133') {
+                    $("#w376-display").attr("disabled", true);
+                    $("#w378").attr("disabled", true);
+                    $("#w380-display").attr("disabled", true);
+                }
+
+
+                //Enable Fourth Column  of ART treatment interruptions--STOP or missed drug pick up When Lost or stopped is selected activated
+                $('input[type=radio][name=w382]').click(function () {
+                    if (this.value == '1363' || this.value == '99133') {
+                        //UnCheck The Checked Boxes
+                        $("#w384-display").removeAttr("disabled");
+                        $("#w386").removeAttr("disabled");
+                        $("#w388-display").removeAttr("disabled");
+                    }
+                    else {
+                        $("#w384-display").attr("disabled", true);
+                        $("#w386").attr("disabled", true);
+                        $("#364-display").attr("disabled", true);
+                    }
+                });
+
+                //disable Fourth column of ART treatment interruptions--STOP or missed drug pick up
+                if ($('input[type=radio][name=w382]') != '1363' || $('input[type=radio][name=w382]') != '99133') {
+                    $("#w384-display").attr("disabled", true);
+                    $("#w386").attr("disabled", true);
+                    $("#w388-display").attr("disabled", true);
+                }
+
+
+                //Enable Fifth Column  of ART treatment interruptions--STOP or missed drug pick up When Lost or stopped is selected activated
+                $('input[type=radio][name=w390]').click(function () {
+                    if (this.value == '1363' || this.value == '99133') {
+                        //UnCheck The Checked Boxes
+                        $("#w392-display").removeAttr("disabled");
+                        $("#w394").removeAttr("disabled");
+                        $("#w396-display").removeAttr("disabled");
+                    }
+                    else {
+                        $("#w392-display").attr("disabled", true);
+                        $("#w394").attr("disabled", true);
+                        $("#w396-display").attr("disabled", true);
+                    }
+                });
+
+                //disable Fifth column of ART treatment interruptions--STOP or missed drug pick up
+                if ($('input[type=radio][name=w390]') != '1363' || $('input[type=radio][name=w390]') != '99133') {
+                    $("#w392-display").attr("disabled", true);
+                    $("#w394").attr("disabled", true);
+                    $("#w396-display").attr("disabled", true);
+                }
+
+
+                //Enable Sixth Column  of ART treatment interruptions--STOP or missed drug pick up When Lost or stopped is selected activated
+                $('input[type=radio][name=w398]').click(function () {
+                    if (this.value == '1363' || this.value == '99133') {
+                        //UnCheck The Checked Boxes
+                        $("#w400-display").removeAttr("disabled");
+                        $("#w402").removeAttr("disabled");
+                        $("#w404-display").removeAttr("disabled");
+                    }
+                    else {
+                        $("#w400-display").attr("disabled", true);
+                        $("#w402").attr("disabled", true);
+                        $("#w404-display").attr("disabled", true);
+                    }
+                });
+
+                //disable Sixth column of ART treatment interruptions--STOP or missed drug pick up
+                if ($('input[type=radio][name=w398]') != '1363' || $('input[type=radio][name=w398]') != '99133') {
+                    $("#w400-display").attr("disabled", true);
+                    $("#w402").attr("disabled", true);
+                    $("#w404-display").attr("disabled", true);
+                }
+
+
+                //If Male disable all options that only apply to females
+                if (gender == "M") {
+                    $("input#w246").attr("disabled", true);
+                    $("input#w248").attr("disabled", true);
+                }
+
+                // If above five years disable options that only apply to below 5 year olds
+                if (age &gt; 5) {
+                    $("input#w250").attr("disabled", true);
+                    $("input#w252").attr("disabled", true);
+                }
+
+
+                $('input[type=hidden][name=w233][id=w233]').change(function () {
+                    /*         var startDate = new Date($("#w6").val());
+                     var endDate = new Date($("#w233").val());*/
+                    if (new Date($("#w233").val()) &lt;= new Date($("#w6").val())) {
+                        alert("Enrolled Date is Earlier than the date Comfirmed Positive");
+                    }
+                });
+
+                // disable the HIV enrolled date input
+                $('#w233-display').attr("disabled", "disabled");
+
+                // When the HIV date confirmed field is selected, then set the minimum value of the HIV enrolled date
+                $('#w6-display').change(function () {
+                    // enable the HIV enrolled date picker
+                    $('#w233-display').removeAttr("disabled", "");
+
+                    // clear the HIV enrolled date so that a new one can be selected
+                    $('#w233-display').val("");
+                    $('#w233').val("");
+
+                    // set the minimum date using the HIV confirmed date
+                    $('#w233-display').datepicker("option", "minDate", $('#w6-display').val());
+                });
+
+                // when there is a value in the HIV date confirmed field
+                if ($('#w6-display').val().length > 0) {
+                    // set the minimum date using the HIV confirmed date
+                    $('#w233-display').datepicker("option", "minDate", $('#w6-display').val());
+                }
+
+
+                // disable the Transfer date input
+                $('#w278-display').attr("disabled", "disabled");
+
+                // When the ART start Date field is selected, then set the minimum value of the Transer date
+                $('#w286-display').change(function () {
+                    // enable the HIV enrolled date picker
+                    $('#w278-display').removeAttr("disabled", "");
+
+                    // clear the Transfer Date so that a new one can be selected
+                    $('#w278-display').val("");
+                    $('#w233').val("");
+
+                    // set the minimum date using the ART start date
+                    $('#w278-display').datepicker("option", "minDate", $('#w286-display').val());
+                });
+
+                // when there is a value in the Transfer field
+                if ($('#w286-display').val().length > 0) {
+                    // set the minimum date using the ART Start date
+                    $('#w278-display').datepicker("option", "minDate", $('#w286-display').val());
+                }
+
+                /* $("#comfirmedDate").change(function () {
+
+                 alert($(this).find("input[type$='text']").val());
+
+                 });*/
+
+                $('[class^="FamilyMemberEnableDisable"]').change(function () {
+                    enable_disable_fm($(this));
+                });
+
+                $('[class^="FamilyMemberEnableDisable"]').each(function () {
+                    enable_disable_fm($(this));
+                });
+
+
+                $('[class^="ExposedInfantEnableDisable"]').change(function () {
+                    enable_disable_ei($(this));
+                });
+
+
+                $('[class^="ArtCareEnableDisable"]').change(function () {
+                    enable_disable_ac($(this));
+                });
+
+
+                $('[class^="ArtCareEnableDisable"]').each(function () {
+                    enable_disable_ac($(this))
+                });
+
+                $(".enableDisable").each(function () {
+                    var group = $(this);
+
+                    function disableFn() {
+                        group.children("#disabled").fadeTo(250, 1);
+                        group.children("#disabled").find(":checkbox").attr("checked", false); //uncheck
+                        // group.children("#disabled").find("input[type$='text']").val("");
+                        group.children("#disabled").find("input").attr("disabled", true); //disable
+                        group.children("#disabled").find("select").attr("disabled", true);
+                    }
+
+                    function enableFn() {
+                        group.children("#disabled").fadeTo(250, 1);
+                        group.children("#disabled").find("input").attr("disabled", false);
+                        group.children("#disabled").find("select").attr("disabled", false);
+
+                    }
+
+                    disableFn();
+                    $(this).children("#trigger").find(":checkbox:first").change(function () {
+                        var checked = $(this).attr("checked");
+                        if (checked == "checked") {
+                            enableFn();
+                        } else {
+                            disableFn();
+                        }
+                    });
+                });
+
+
+                $(".checkboxGroup").each(function () {
+                    var group = $(this);
+                    var uncheckAll = function () {
+                        group.find("input[type$='checkbox']").attr("checked", false);
+                        group.find("input[type$='checkbox']").change();
+                    }
+                    var uncheckRadioAndAll = function () {
+                        group.find("#checkboxAll,#checkboxRadio").find("input[type$='checkbox']").attr("checked", false);
+                        group.find("#checkboxAll,#checkboxRadio").find("input[type$='checkbox']").change();
+                    }
+
+
+                    group.find("#checkboxAll").find("input").click(
+                            /* This was tricky... A number of things needed to happen
+                             Basically, This is supposed to treat a group of inputs as if
+                             were all one big checkbox. It is designed so that a checkbox
+                             can be next to an input, and the user clicks the input, the
+                             checkbox checks as well. But, when the user clicks the checkbox,
+                             the browser marks the checkbox as checked. Therefore, when we check
+                             if the checkbox is already checked, it always respondes true...
+                             We needed to have 2 cases: when the clicking action is on the first checkbox
+                             and when the action is on any other. */
+                            function () {
+                                var flip;
+                                var checked = $(this).siblings(":checkbox:first").attr("checked");
+                                if ($(this).attr("name") == $(this).parents("#checkboxAll:first").find(":checkbox:first").attr("name")) {
+                                    checked = $(this).attr("checked");
+                                    flip = checked;
+                                } else {
+                                    flip = !checked;
+                                }
+                                if ($.attr("type") == "text") if (flip == false) flip = !filp; // this is so the user doesn't go to check the checkbox, then uncheck it when they hit the input.
+                                uncheckAll();
+                                $(this).parents("#checkboxAll:first").find(":checkbox").attr("checked", flip);
+                                $(this).parents("#checkboxAll:first").find(":checkbox").change();
+                            }
+                    );
+
+
+                    group.find("#checkboxRadio").find("input[type$='checkbox']").click(function () {
+                        uncheckAll();
+                        $(this).siblings("input[type$='checkbox']").attr("checked", false);
+                        $(this).attr("checked", true);
+                        $(this).change();
+                    });
+
+                    group.find("#checkboxCheckbox").click(
+                            function () {
+                                uncheckRadioAndAll();
+                            }
+                    );
+                });
+            });
+        }
+    </script>
+
+    <script type="text/javascript">
+        function val() {
+            document.getElementById("fgh").disabled = "true";
+        }
+    </script>
+    <center>
+        <h1>ART CARD - Summary Page</h1>
+    </center>
+
+    <!--Outer table-->
+    <div class="container container-form-border" id="inner">
+        <div class="row">
+            <!--left column-->
+            <div class="col-lg-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        FACILITY/CLIENT INFORMATION
+                    </div>
+                    <div class="panel-body custom-panel">
+                        <table class="table table-bordered custom-table">
+                            <tr>
+                                <td colspan="2">Health Unit:
+                                    <encounterLocation default="1"/>
+
+                                </td>
+                                <td>
+                                    Clinic Team Leader:
+                                    <encounterProvider role="Provider"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td id="comfirmedDate">
+                                    <obs conceptId="90267" labelText="Date Confirmed HIV +Ve:"/>
+                                </td>
+                                <td>Type:
+                                    <obs conceptId="99080" answerConceptIds="99079,99080" answerLabels="Ab,PCR"
+                                         style="radio"/>
+                                </td>
+                                <td>
+                                    <obs conceptId="99081" size="20" labelText="Where"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td colspan="2">Name:
+                                    <lookup class="value" expression="patient.personName"/>
+                                </td>
+                                <td>Identifier:
+                                    <lookup class="value"
+                                            complexExpression="#foreach( $patId in $patientIdentifiers.get('1. Chronic HIVCare/HIVCare Number') ) $patId #end "/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Gender:
+                                    <lookup class="value gender" expression="patient.gender"/>
+                                </td>
+                                <td>DOB:
+                                    <lookup class="value" expression="patient.birthdate"/>
+                                </td>
+                                <td>Age:
+                                    <lookup class="value age" expression="patient.age"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>District:
+                                    <lookup class="value" expression="patient.personAddress.countyDistrict"/>
+                                </td>
+                                <td>County:
+                                    <lookup class="value" expression="patient.personAddress.stateProvince"/>
+                                </td>
+                                <td>Sub County:
+                                    <lookup class="value" expression="patient.personAddress.address5"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Parish:
+                                    <lookup class="value" expression="patient.personAddress.address4"/>
+                                </td>
+                                <td>Village:
+                                    <lookup class="value" expression="patient.personAddress.address3"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Telephone:
+                                    <lookup class="value" expression="patient.personAddress.postalCode"/>
+                                </td>
+                                <td colspan="2">
+                                    <obs conceptId="99117" size="20" labelText="Whose:"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <!--Care entry table starts-->
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        Care entry point
+                    </div>
+                    <div class="panel-body">
+                        <obsgroup groupingConceptId="99116">
+                                <span class="checkboxGroup">
+                                    <span id="checkboxRadio">
+                                        <obs conceptId="90200" answerConceptId="90012" answerLabel="eMTCT"/>
+                                        <obs conceptId="90200" answerConceptId="90016" answerLabel="TB"/>
+                                        <obs conceptId="90200" answerConceptId="99593" answerLabel="YCC"/>
+                                        <obs conceptId="90200" answerConceptId="99610" answerLabel="SMC"/>
+
+                                        <obs conceptId="90200" answerConceptId="90019" answerLabel="Outreach"/>
+                                        <obs conceptId="90200" answerConceptId="90013" answerLabel="Out patient"/>
+
+                                        <obs conceptId="90200" answerConceptId="90015" answerLabel="STI"/>
+                                        <obs conceptId="90200" answerConceptId="90018" answerLabel="Inpatient"/>
+                                    </span>
+                                    <span id="checkboxAll" class="enableDisable">
+                                        <span id="trigger">
+                                            <obs conceptId="90200" answerConceptId="90002" answerLabel="Other specify"/>
+                                        </span>
+                                        <span id="disabled">
+                                            <obs size="10" conceptId="99115" labelText=""/>
+                                        </span>
+                                    </span>
+                                </span>
+
+
+                        </obsgroup>
+                    </div>
+                </div>
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        Treatment supporter
+                    </div>
+
+                    <div class="panel-body custom-panel">
+                        <table class="table table-bordered custom-table">
+                            <tr>
+                                <td colspan="3">
+                                    <obs size="15" conceptId="99142" labelText="Medicine pick-up if ill:"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Address</th>
+                                <td>
+                                    <obs conceptId="99138" size="12" labelText="District:"/>
+                                </td>
+                                <td>
+                                    <obs conceptId="99139" size="12" labelText="SubCounty:"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <obs conceptId="99140" size="12" labelText="Parish:"/>
+                                </td>
+                                <td>
+                                    <obs conceptId="99141" size="12" labelText="Village:"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <obs conceptId="90278" size="12" labelText="Telephone:"/>
+                                </td>
+                                <td>
+                                    <obs conceptId="99118" size="12" labelText="Whose:"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Home based care provided by:
+                                </td>
+                                <td colspan="2">
+                                    <obs conceptId="99124" size="20" labelText=""/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <!--Family members sub table starts-->
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-10 custom-table custom-panel">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">Family members and partners</div>
+                                <div class="panel-body custom-panel">
+                                    <table class="table table-bordered custom-table">
+                                        <thead>
+                                        <tr>
+                                            <th>Names of family members and partners</th>
+                                            <th>Age (if &lt;=2yrs, write in mths)</th>
+                                            <th>HIV P/N/U</th>
+                                            <th>HIV Care Y/N</th>
+                                            <th>Unique No</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <obsgroup groupingConceptId="99075">
+
+                                                <td>
+                                                    <obs conceptId="99073" size="10"/>
+                                                </td>
+
+                                                <td>
+                                                    <obs conceptId="99074"/>
+                                                    <obs conceptId="99725" answerConceptIds="1074,99726"
+                                                         answerLabels="Yrs,Mths"/>
+                                                </td>
+
+
+                                                <td class="FamilyMemberEnableDisable1">
+                                                    <obs conceptId="90253" answerConceptIds="90166,90167,90001"
+                                                         answerLabels="P,N,U"/>
+                                                </td>
+
+
+                                                <td class="FamilyMemberEnableDisableChildren1">
+                                                    <obs conceptId="90270" answerConceptIds="90003,90004"
+                                                         answerLabels="Y,N"
+                                                         onchange="return val()"/>
+                                                </td>
+                                                <td class="FamilyMemberEnableDisableGrandChildren1">
+                                                    <obs conceptId="90263" size="10"/>
+                                                </td>
+                                            </obsgroup>
+
+                                        </tr>
+
+
+                                        <tr>
+
+                                            <obsgroup groupingConceptId="99075">
+                                                <td>
+                                                    <obs conceptId="99073" size="10"/>
+                                                </td>
+                                                <td>
+                                                    <obs conceptId="99074"/>
+                                                    <obs conceptId="99725" answerConceptIds="1074,99726"
+                                                         answerLabels="Yrs,Mths"/>
+                                                </td>
+
+                                                <td class="FamilyMemberEnableDisable2">
+                                                    <obs conceptId="90253" answerConceptIds="90166,90167,90001"
+                                                         answerLabels="P,N,U"/>
+                                                </td>
+                                                <td class="FamilyMemberEnableDisableChildren2">
+                                                    <obs conceptId="90270" answerConceptIds="90003,90004"
+                                                         answerLabels="Y,N"/>
+                                                </td>
+                                                <td class="FamilyMemberEnableDisableGrandChildren2">
+                                                    <obs conceptId="90263" size="10"/>
+                                                </td>
+                                            </obsgroup>
+                                        </tr>
+
+                                        <tr>
+                                            <obsgroup groupingConceptId="99075">
+                                                <td>
+                                                    <obs conceptId="99073" size="10"/>
+                                                </td>
+                                                <td>
+                                                    <obs conceptId="99074"/>
+                                                    <obs conceptId="99725" answerConceptIds="1074,99726"
+                                                         answerLabels="Yrs,Mths"/>
+                                                </td>
+
+                                                <td class="FamilyMemberEnableDisable3">
+                                                    <obs conceptId="90253" answerConceptIds="90166,90167,90001"
+                                                         answerLabels="P,N,U"/>
+                                                </td>
+                                                <td class="FamilyMemberEnableDisableChildren3">
+                                                    <obs conceptId="90270" answerConceptIds="90003,90004"
+                                                         answerLabels="Y,N"/>
+                                                </td>
+                                                <td class="FamilyMemberEnableDisableGrandChildren3">
+                                                    <obs conceptId="90263" size="10"/>
+                                                </td>
+                                            </obsgroup>
+                                        </tr>
+
+                                        <tr>
+                                            <obsgroup groupingConceptId="99075">
+                                                <td>
+                                                    <obs conceptId="99073" size="10"/>
+                                                </td>
+                                                <td>
+                                                    <obs conceptId="99074"/>
+                                                    <obs conceptId="99725" answerConceptIds="1074,99726"
+                                                         answerLabels="Yrs,Mths"/>
+                                                </td>
+
+                                                <td class="FamilyMemberEnableDisable4">
+                                                    <obs conceptId="90253" answerConceptIds="90166,90167,90001"
+                                                         answerLabels="P,N,U"/>
+                                                </td>
+                                                <td class="FamilyMemberEnableDisableChildren4">
+                                                    <obs conceptId="90270" answerConceptIds="90003,90004"
+                                                         answerLabels="Y,N"/>
+                                                </td>
+                                                <td class="FamilyMemberEnableDisableGrandChildren4">
+                                                    <obs conceptId="90263" size="10"/>
+                                                </td>
+                                            </obsgroup>
+                                        </tr>
+
+                                        <tr>
+                                            <obsgroup groupingConceptId="99075">
+                                                <td>
+                                                    <obs conceptId="99073" size="10"/>
+                                                </td>
+                                                <td>
+                                                    <obs conceptId="99074"/>
+                                                    <obs conceptId="99725" answerConceptIds="1074,99726"
+                                                         answerLabels="Yrs,Mths"/>
+                                                </td>
+
+                                                <td class="FamilyMemberEnableDisable5">
+                                                    <obs conceptId="90253" answerConceptIds="90166,90167,90001"
+                                                         answerLabels="P,N,U"/>
+                                                </td>
+                                                <td class="FamilyMemberEnableDisableChildren5">
+                                                    <obs conceptId="90270" answerConceptIds="90003,90004"
+                                                         answerLabels="Y,N"/>
+                                                </td>
+                                                <td class="FamilyMemberEnableDisableGrandChildren5">
+                                                    <obs conceptId="90263" size="10"/>
+                                                </td>
+                                            </obsgroup>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">Exposed Infant</div>
+                                <div class="panel-body custom-panel">
+                                    <table class="table table-bordered custom-table table-responsive">
+                                        <thead>
+                                        <tr>
+                                            <th rowspan="2">Name/#</th>
+                                            <th rowspan="2">DOB</th>
+                                            <th colspan="2">Infant feeding</th>
+                                            <th rowspan="2">CTX started at 2 mths</th>
+                                            <th rowspan="2" size="15">Date of 1st PCR/Result</th>
+                                            <th rowspan="2">Final status</th>
+                                            <th rowspan="2">If Confirm + Unique ID</th>
+                                        </tr>
+
+                                        <tr>
+                                            <th>&lt;6 mths</th>
+                                            <th>&gt;=6 mths</th>
+                                        </tr>
+                                        </thead>
+
+                                        <tr>
+                                            <obsgroup groupingConceptId="99078">
+                                                <td>
+                                                    <obs conceptId="99077" size="10"/>
+                                                </td>
+                                                <td>
+                                                    <obs conceptId="90261"/>
+                                                </td>
+                                                <td>
+                                                    <obs conceptId="99607" labelText=""
+                                                         answerConceptIds="5526,99089,6046"
+                                                         answerLabels="EBF,RF,MF"/>
+                                                </td>
+                                                <td>
+                                                    <obs conceptId="99608" labelText=""
+                                                         answerConceptIds="5526,99089,6046"
+                                                         answerLabels="EBF,RF,MF"/>
+                                                </td>
+                                                <td>
+                                                    <obs conceptId="99076" answerConceptIds="90003,90004"
+                                                         answerLabels="Y,N"/>
+                                                </td>
+                                                <td>
+                                                    <obs conceptId="99606" size="5"/>
+                                                    <obs conceptId="99153" answerConceptIds="90166,90167,90001"
+                                                         answerLabels="P,N,U"/>
+                                                </td>
+                                                <td class="ExposedInfantEnableDisable1">
+                                                    <obs conceptId="99121"
+                                                         answerConceptIds="90166,90167,99122,99112,1067"
+                                                         answerLabels="P,N,N/BF,Dead,U"/>
+                                                </td>
+                                                <td class="ExposedInfantEnableDisableChildren1">
+                                                    <obs conceptId="90263" size="10"/>
+                                                </td>
+                                            </obsgroup>
+                                        </tr>
+
+                                        <tr>
+                                            <obsgroup groupingConceptId="99078">
+                                                <td>
+                                                    <obs conceptId="99077" size="10"/>
+                                                </td>
+                                                <td>
+                                                    <obs conceptId="90261"/>
+                                                </td>
+                                                <td>
+                                                    <obs conceptId="99607" labelText=""
+                                                         answerConceptIds="5526,99089,6046"
+                                                         answerLabels="EBF,RF,MF"/>
+                                                </td>
+                                                <td>
+                                                    <obs conceptId="99608" labelText=""
+                                                         answerConceptIds="5526,99089,6046"
+                                                         answerLabels="EBF,RF,MF"/>
+                                                </td>
+                                                <td>
+                                                    <obs conceptId="99076" answerConceptIds="90003,90004"
+                                                         answerLabels="Y,N"/>
+                                                </td>
+                                                <td>
+                                                    <obs conceptId="99606" size="5"/>
+                                                    <obs conceptId="99153" answerConceptIds="90166,90167,90001"
+                                                         answerLabels="P,N,U"/>
+                                                </td>
+                                                <td class="ExposedInfantEnableDisable2">
+                                                    <obs conceptId="99121"
+                                                         answerConceptIds="90166,90167,99122,99112,1067"
+                                                         answerLabels="P,N,N/BF,Dead,U"/>
+                                                </td>
+                                                <td class="ExposedInfantEnableDisableChildren2">
+                                                    <obs conceptId="90263" size="10"/>
+                                                </td>
+                                            </obsgroup>
+                                        </tr>
+
+                                        <tr>
+                                            <obsgroup groupingConceptId="99078">
+                                                <td>
+                                                    <obs conceptId="99077" size="10"/>
+                                                </td>
+                                                <td>
+                                                    <obs conceptId="90261"/>
+                                                </td>
+                                                <td>
+                                                    <obs conceptId="99607" labelText=""
+                                                         answerConceptIds="5526,99089,6046"
+                                                         answerLabels="EBF,RF,MF"/>
+                                                </td>
+                                                <td>
+                                                    <obs conceptId="99608" labelText=""
+                                                         answerConceptIds="5526,99089,6046"
+                                                         answerLabels="EBF,RF,MF"/>
+                                                </td>
+                                                <td>
+                                                    <obs conceptId="99076" answerConceptIds="90003,90004"
+                                                         answerLabels="Y,N"/>
+                                                </td>
+                                                <td>
+                                                    <obs conceptId="99606" size="5"/>
+                                                    <obs conceptId="99153" answerConceptIds="90166,90167,90001"
+                                                         answerLabels="P,N,U"/>
+                                                </td>
+                                                <td class="ExposedInfantEnableDisable3">
+                                                    <obs conceptId="99121"
+                                                         answerConceptIds="90166,90167,99122,99112,1067"
+                                                         answerLabels="P,N,N/BF,Dead,U"/>
+                                                </td>
+                                                <td class="ExposedInfantEnableDisableChildren3">
+                                                    <obs conceptId="90263" size="10"/>
+                                                </td>
+                                            </obsgroup>
+                                        </tr>
+
+                                        <tr>
+                                            <obsgroup groupingConceptId="99078">
+                                                <td>
+                                                    <obs conceptId="99077" size="10"/>
+                                                </td>
+                                                <td>
+                                                    <obs conceptId="90261"/>
+                                                </td>
+                                                <td>
+                                                    <obs conceptId="99607" labelText=""
+                                                         answerConceptIds="5526,99089,6046"
+                                                         answerLabels="EBF,RF,MF"/>
+                                                </td>
+                                                <td>
+                                                    <obs conceptId="99608" labelText=""
+                                                         answerConceptIds="5526,99089,6046"
+                                                         answerLabels="EBF,RF,MF"/>
+                                                </td>
+                                                <td>
+                                                    <obs conceptId="99076" answerConceptIds="90003,90004"
+                                                         answerLabels="Y,N"/>
+                                                </td>
+                                                <td>
+                                                    <obs conceptId="99606" size="5"/>
+                                                    <obs conceptId="99153" answerConceptIds="90166,90167,90001"
+                                                         answerLabels="P,N,U"/>
+                                                </td>
+                                                <td class="ExposedInfantEnableDisable4">
+                                                    <obs conceptId="99121"
+                                                         answerConceptIds="90166,90167,99122,99112,1067"
+                                                         answerLabels="P,N,N/BF,Dead,U"/>
+                                                </td>
+                                                <td class="ExposedInfantEnableDisableChildren4">
+                                                    <obs conceptId="90263" size="10"/>
+                                                </td>
+                                            </obsgroup>
+                                        </tr>
+
+                                        <tr>
+                                            <obsgroup groupingConceptId="99078">
+                                                <td>
+                                                    <obs conceptId="99077" size="10"/>
+                                                </td>
+                                                <td>
+                                                    <obs conceptId="90261"/>
+                                                </td>
+                                                <td>
+                                                    <obs conceptId="99607" labelText=""
+                                                         answerConceptIds="5526,99089,6046"
+                                                         answerLabels="EBF,RF,MF"/>
+                                                </td>
+                                                <td>
+                                                    <obs conceptId="99608" labelText=""
+                                                         answerConceptIds="5526,99089,6046"
+                                                         answerLabels="EBF,RF,MF"/>
+                                                </td>
+                                                <td>
+                                                    <obs conceptId="99076" answerConceptIds="90003,90004"
+                                                         answerLabels="Y,N"/>
+                                                </td>
+                                                <td>
+                                                    <obs conceptId="99606" size="5"/>
+                                                    <obs conceptId="99153" answerConceptIds="90166,90167,90001"
+                                                         answerLabels="P,N,U"/>
+                                                </td>
+                                                <td class="ExposedInfantEnableDisable5">
+                                                    <obs conceptId="99121"
+                                                         answerConceptIds="90166,90167,99122,99112,1067"
+                                                         answerLabels="P,N,N/BF,Dead,U"/>
+                                                </td>
+                                                <td class="ExposedInfantEnableDisableChildren5">
+                                                    <obs conceptId="90263" size="10"/>
+                                                </td>
+                                            </obsgroup>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Prior ART Section-->
+
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        Prior ART
+                    </div>
+                    <div class="panel-body custom-panel">
+                        <table class="table table-bordered custom-table table-responsive">
+                            <tr>
+                                <td colspan="4">Prior ART:
+                                    <obs conceptId="99055" answerConceptIds="90003,90004" answerLabels="Yes,None"
+                                         style="radio"/>
+                                </td>
+                            </tr>
+
+                            <tr class="hideShowPriorOptions">
+                                <td colspan="2">
+                                    <b>Prior ART/Date</b>
+                                </td>
+                            </tr>
+
+                            <tr class="checkboxGroup hideShowPriorOptions">
+                                <td>
+                                    <obsgroup groupingConceptId="99066">
+
+                                <span class="enableDisable">
+
+                                    <span id="trigger">
+                                        <obs conceptId="99056" answerConceptId="90003" answerLabel="PEP:"
+                                             id="hideShowPriorOptions"/>
+                                    </span>
+
+                                    <span id="disabled">
+                                        <obs id="second" conceptId="99154"
+                                             labelText=""/>
+                                        <obs id="third" conceptId="99057" size="12" labelText="Where:"/>
+                                        <obs id="fourth" conceptId="99130" labelText="ARVs:"
+                                             answerConceptIds="630,99276,99275,99277,99278,99279,99006,99016,99046,99280,99281,90002"
+                                             answerLabels="AZT-3TC, AZT-FTC, TDF-3TC, TDF-FTC, d4T-3TC, d4T-FTC,AZT-3TC-EFV,D4T-3TC-EFV,AZT-3TC-LPV/r,AZT-3TC-NFV,d4T-3TC-LPV/r, Other"/>
+                                    </span>
+                                </span>
+                                    </obsgroup>
+                                </td>
+                            </tr>
+
+                            <tr class="hideShowPriorOptions">
+                                <td>
+                                    <obsgroup groupingConceptId="99598">
+                                <span class="enableDisable">
+                                    <span id="trigger">
+                                        <obs conceptId="99594" answerConceptId="90003" answerLabel="Hep-B:"/>
+                                    </span>
+                                    <span id="disabled">
+                                        <obs id="second" conceptId="99595" labelText=""/>
+                                        <obs id="third" conceptId="99596" size="12" labelText="Where:"/>
+
+                                        <obs id="fourth" conceptId="99597" labelText="ARVs:"
+                                             answerConceptIds="630,99276,99275,99277,99278,99279,99006,99016,99046,99280,99281,90002"
+                                             answerLabels="AZT-3TC, AZT-FTC, TDF-3TC, TDF-FTC, d4T-3TC, d4T-FTC,AZT-3TC-EFV,D4T-3TC-EFV,AZT-3TC-LPV/r,AZT-3TC-NFV,d4T-3TC-LPV/r, Other"/>
+                                    </span>
+                                </span>
+                                    </obsgroup>
+                                </td>
+                            </tr>
+
+
+                            <tr class="hideShowPriorOptions">
+                                <td>
+                                    <excludeIf velocityTest="$patient.gender =='M' ">
+                                        <obsgroup groupingConceptId="99067">
+                                    <span class="enableDisable">
+                                        <span id="trigger">
+                                            <obs conceptId="90012" answerConceptId="90003" answerLabel="PMTCT Only:"/>
+                                        </span>
+                                        <span id="disabled">
+                                            <obs id="second" conceptId="99155" labelText=""/>
+                                            <obs id="third" conceptId="99058" size="12" labelText="Where:"/>
+
+                                            <obs id="fourth" conceptId="99131" labelText="ARVs:"
+                                                 answerConceptIds="631,97,628,630,99005,99006,99039,99040,99041,99042,90002"
+                                                 answerLabels="NVP, AZT,3TC, AZT-3TC, AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP, TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,Other"/>
+                                        </span>
+                                    </span>
+                                        </obsgroup>
+                                    </excludeIf>
+                                </td>
+                            </tr>
+
+                            <tr class="hideShowPriorOptions">
+                                <td>
+                                    <obsgroup groupingConceptId="99068">
+                                <span class="enableDisable">
+                                    <span id="trigger">
+                                        <obs conceptId="99059" answerConceptId="90003"
+                                             answerLabel="Earlier ARV not transfer:"/>
+                                    </span>
+                                    <span id="disabled">
+                                        <obs id="second" conceptId="99156" labelText=""/>
+                                        <obs id="third" conceptId="99060" size="12" labelText="Where:"/>
+                                        <obs id="fourth" conceptId="99129" labelText="ARVs:"
+                                             answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99007,99008,99044,99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,90002"
+                                             answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,ZDV-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,ZDV-ABC-LPV/r,ABC-ddI-ATV/r,ZDV-3TC-ATV/r,Other"/>
+                                    </span>
+                                </span>
+                                    </obsgroup>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+
+
+                <!--HIV Care Section starts -->
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        HIV Care
+                    </div>
+                    <div class="panel-body custom-panel">
+                        <table class="table table-bordered custom-table table-responsive">
+                            <tr>
+                                <td colspan="3">
+                                    <b>HIV Care/Date</b>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>HIV enrolled:
+                                    <encounterDate id="hivEnrolledDate"/>
+                                </td>
+                                <td class="checkboxGroup">
+                            <span class="enableDisable">
+                                <span id="trigger">
+                                    <obs conceptId="99110" answerConceptId="90003" id="trigger"
+                                         answerLabel="HIV care transfer in from"/>
+                                </span>
+                                <span id="disabled">
+                                    <obs conceptId="99109" labelText=""/>
+                                </span>
+                            </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <obs conceptId="90297" labelText="Eligible for ART:"/>
+                                </td>
+                                <td>Clinical Stage:
+                                    <obs conceptId="99083" answerConceptIds="1204,1205,1206,1207"
+                                         answerLabels="1, 2, 3, 4"
+                                         style="dropdown"/>
+                                    <obs conceptId="99082" labelText="Cd4:"/>
+                                    <obs conceptId="99600" style="checkbox" labelText="TB"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <obs conceptId="90299" labelText="Eligible and Ready:"/>
+                                </td>
+                                <td>
+                                    <obs conceptId="99123" style="checkbox"
+                                         labelText="Presumptive HIV Diagnosis of severe HIV infection in infants"/>
+                                    <obs conceptId="99149" style="checkbox" labelText="PCR-Infant"/>
+                                    <obs conceptId="99601" style="checkbox" labelText="Breast feeding"/>
+                                    <obs conceptId="99602" style="checkbox" labelText="Pregnancy"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!--right column-->
+            <div class="col-lg-6">
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        Drug Allergies/Relevant Medical conditions
+                    </div>
+                    <div class="panel-body custom-panel">
+                        <table valign="top" class="table table-bordered custom-table table-responsive">
+                            <thead>
+                            <tr>
+                                <th>Drug Allergies</th>
+                                <th>Relevant Medical conditions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <obsgroup groupingConceptId="90230">
+                                        <obs conceptId="142" size="30" labelText="1."/>
+                                        <obs conceptId="142" size="30" labelText="2."/>
+                                        <obs conceptId="142" size="30" labelText="3."/>
+                                        <obs conceptId="142" size="30" labelText="4."/>
+                                        <obs conceptId="142" size="30" labelText="5."/>
+                                    </obsgroup>
+                                </td>
+                                <td>
+                                    <obsgroup groupingConceptId="99104">
+                                        <obs conceptId="99111" size="30" labelText="1."/>
+                                        <obs conceptId="99111" size="30" labelText="2."/>
+                                        <obs conceptId="99111" size="30" labelText="3."/>
+                                        <obs conceptId="99111" size="30" labelText="4."/>
+                                        <obs conceptId="99111" size="30" labelText="5."/>
+                                    </obsgroup>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+                <!--ART CARE-->
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        ART CARE
+                    </div>
+                    <div class="panel-body custom-panel">
+                        <table class="table table-bordered custom-table table-responsive">
+                            <tr>
+                                <obsgroup groupingConceptId="99065">
+                                    <td>
+                                        <obs conceptId="99160"/>
+                                        <obs conceptId="90206" size="10" labelText="Transfer 	from:"/>
+                                    </td>
+                                    <td class="ArtCareEnableDisable1">
+                                        <small>
+                                            <obs conceptId="99064" labelText="ARVs:"
+                                                 answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99007,99008,99044,99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99046,90002"
+                                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,ZDV-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,ZDV-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,AZT-3TC-LPV/r,Other"/>
+                                        </small>
+                                    </td>
+                                    <td class="ArtCareEnableDisableChild1">
+                                        <obs conceptId="99269" size="12" labelText="Specify:"/>
+                                    </td>
+                                </obsgroup>
+                            </tr>
+                            <tr>
+                                <obsgroup groupingConceptId="99162">
+                                    <td>
+                                        <obs conceptId="99161"/>
+                                        Start ART 1st initial regimen
+                                    </td>
+                                    <td class="ArtCareEnableDisable2">
+                                        <obs conceptId="99061"
+                                             answerConceptIds="99005,99006,99015,99016,99039,99040,99041,99042,99884,99885,99143"
+                                             answerLabels="AZT-3TC-NVP, AZT-3TC-EFV, D4T-3TC-NVP, D4T-3TC-EFV, TDF-3TC-NVP, TDF-3TC-EFV, TDF-FTC-NVP, TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,OTHER"
+                                             labelText=""/>
+                                    </td>
+                                    <td class="ArtCareEnableDisableChild2">
+                                        <obs size="12" conceptId="99268" labelText="Specify:"/>
+                                    </td>
+                                </obsgroup>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+
+
+                <!--AT Start ART section-->
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">At start ART</div>
+                    <div class="panel-body custom-panel">
+                        <table class="table table-bordered custom-table table-responsive">
+                            <tr>
+                                <td colspan="3">At start ART:
+                                    <obs conceptId="99069" labelText="Wt"/>
+                                    <obs conceptId="99070" labelText="Stage:" answerConceptIds="1204,1205,1206,1207"
+                                         answerLabels="1,2,3,4" style="dropdown"/>
+                                    <obs conceptId="99071" labelText="Cd4:"/>
+                                    <excludeIf velocityTest="$patient.gender ='M' ">Preg:
+                                        <obs conceptId="99072" answerConceptIds="1065,1066" answerLabels="Y, N"/>
+                                        Lactating:
+                                        <obs conceptId="99603" answerConceptIds="1065,1066" answerLabels="Y, N"/>
+                                    </excludeIf>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <!--Substitute within 1st line section-->
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Substitute within 1st line</div>
+                    <div class="panel-body custom-panel">
+                        <table class="table table-bordered custom-table table-responsive">
+
+                            <tr>
+                                <obsgroup groupingConceptId="99062">
+                                    <td class="ArtCareEnableDisable3">
+                                        <obs conceptId="99163"/>
+                                        <obs conceptId="90315" labelText="New Reg:"
+                                             answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99884,99885,99143"
+                                             answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,Other"/>
+                                    </td>
+                                    <td class="ArtCareEnableDisableChild3">
+                                        <obs size="10" conceptId="99146" labelText="Specify other:"/>
+                                    </td>
+                                    <td>
+                                        <obs conceptId="90246" labelText="Why"
+                                             answerConceptIds="90040,90043,90044,90045,90002"
+                                             answerLabels="1.Toxi,2.NewTB,3.NewDrug,4.Drug Stock,5.Other"/>
+                                    </td>
+                                </obsgroup>
+                            </tr>
+                            <tr>
+                                <obsgroup groupingConceptId="99062">
+                                    <td class="ArtCareEnableDisable4">
+                                        <obs conceptId="99163"/>
+                                        <obs conceptId="90315" labelText="New Reg:"
+                                             answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99884,99885,99143"
+                                             answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,Other"/>
+                                    </td>
+                                    <td class="ArtCareEnableDisableChild3">
+                                        <obs size="10" conceptId="99146" labelText="Specify other:"/>
+                                    </td>
+                                    <td>
+                                        <obs conceptId="90246" labelText="Why"
+                                             answerConceptIds="90040,90043,90044,90045,90002"
+                                             answerLabels="1.Toxi,2.NewTB,3.NewDrug,4.Drug Stock,5.Other"/>
+                                    </td>
+                                </obsgroup>
+                            </tr>
+                            <tr>
+                                <obsgroup groupingConceptId="99062">
+                                    <td class="ArtCareEnableDisable5">
+                                        <obs conceptId="99163"/>
+                                        <obs conceptId="90315" labelText="New Reg:"
+                                             answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99884,99885,99143"
+                                             answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,Other"/>
+                                    </td>
+                                    <td class="ArtCareEnableDisableChild3">
+                                        <obs size="10" conceptId="99146" labelText="Specify other:"/>
+                                    </td>
+                                    <td>
+                                        <obs conceptId="90246" labelText="Why"
+                                             answerConceptIds="90040,90043,90044,90045,90002"
+                                             answerLabels="1.Toxi,2.NewTB,3.NewDrug,4.Drug Stock,5.Other"/>
+                                    </td>
+                                </obsgroup>
+                            </tr>
+                            <tr>
+                                <obsgroup groupingConceptId="99062">
+                                    <td class="ArtCareEnableDisable6">
+                                        <obs conceptId="99163"/>
+                                        <obs id="br" conceptId="90315" labelText="New Reg:"
+                                             answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99884,99885,99143"
+                                             answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,Other"/>
+                                    </td>
+                                    <td class="ArtCareEnableDisableChild3">
+                                        <obs size="10" conceptId="99146" labelText="Specify other:"/>
+                                    </td>
+                                    <td>
+                                        <obs conceptId="90246" labelText="Why"
+                                             answerConceptIds="90040,90043,90044,90045,90002"
+                                             answerLabels="1.Toxi,2.NewTB,3.NewDrug,4.Drug Stock,5.Other"/>
+                                    </td>
+                                </obsgroup>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Switch to 2nd-line(or substitute within 2nd- line)</div>
+                    <div class="panel-body custom-panel">
+                        <table class="table table-bordered custom-table table-responsive">
+                            <!--Switch to second line-->
+
+                            <tr>
+                                <obsgroup groupingConceptId="99063">
+                                    <td class="ArtCareEnableDisable7">
+                                        <obs conceptId="99164"/>
+                                        <small>
+                                            <obs conceptId="90315" labelText="New Reg:"
+                                                 answerConceptIds="99007,99008,99044,99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99046,99046,99887,99888,99144"
+                                                 answerLabels="ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,ZDV-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,ZDV-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,AZT-3TC-LPV/r,TDF-3TC-ATV/r,ABC-3TC-ATV/r,Other"/>
+                                        </small>
+                                    </td>
+                                    <td class="ArtCareEnableDisableChild7">
+                                        <obs size="10" conceptId="99147" labelText="Specify other:"/>
+                                    </td>
+                                    <td>
+                                        <obs conceptId="90247" labelText="Why" answerConceptIds="90046,90047,99889"
+                                             answerLabels="6.Clinical, 7.Immuno, 8. Virological"/>
+                                    </td>
+                                </obsgroup>
+                            </tr>
+                            <tr>
+                                <obsgroup groupingConceptId="99063">
+                                    <td class="ArtCareEnableDisable8">
+                                        <obs conceptId="99164"/>
+                                        <small>
+                                            <obs conceptId="90315" labelText="New Reg:"
+                                                 answerConceptIds="99007,99008,99044,99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99046,99887,99888,99144"
+                                                 answerLabels="ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,ZDV-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,ZDV-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,AZT-3TC-LPV/r,TDF-3TC-ATV/r,ABC-3TC-ATV/r,Other"/>
+                                        </small>
+                                    </td>
+                                    <td class="ArtCareEnableDisableChild7">
+                                        <obs size="10" conceptId="99147" labelText="Specify other:"/>
+                                    </td>
+                                    <td>
+                                        <obs conceptId="90247" labelText="Why" answerConceptIds="90046,90047,99889"
+                                             answerLabels="6.Clinical, 7.Immuno, 8. Virological"/>
+                                    </td>
+                                </obsgroup>
+                            </tr>
+                            <tr>
+                                <obsgroup groupingConceptId="99063">
+                                    <td class="ArtCareEnableDisable9">
+                                        <obs conceptId="99164"/>
+                                        <small>
+                                            <obs conceptId="90315" labelText="New Reg:"
+                                                 answerConceptIds="99007,99008,99044,99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99046,99887,99888,99144"
+                                                 answerLabels="ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,ZDV-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,ZDV-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,AZT-3TC-LPV/r,TDF-3TC-ATV/r,ABC-3TC-ATV/r,Other"/>
+                                        </small>
+                                    </td>
+                                    <td class="ArtCareEnableDisableChild7">
+                                        <obs size="10" conceptId="99147" labelText="Specify other:"/>
+                                    </td>
+                                    <td>
+                                        <obs conceptId="90247" labelText="Why" answerConceptIds="90046,90047,99889"
+                                             answerLabels="6.Clinical, 7.Immuno, 8. Virological"/>
+                                    </td>
+                                </obsgroup>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+
+                <!--ART Treatment interruptions table-->
+
+                <div class="panel panel-primary" style="width: 115%;">
+                    <div class="panel-heading">ART treatment interruptions--STOP or missed drug pick up</div>
+                    <div class="panel-body custom-panel">
+                        <table class="table table-bordered custom-table table-responsive">
+                            <tr>
+
+                                <td><b><br/>Date<br/> <br/>Reason<br/> Why <br/><br/>Restart<br/>Date</b>
+                                </td>
+                                <td>
+                                    <obsgroup groupingConceptId="99086">
+                                        <obs conceptId="99132" answerConceptIds="1363,99133"
+                                             answerLabels="  Stopped,  Lost"
+                                             style="radio"/>
+                                        <obs conceptId="99084"/>
+                                        <obs conceptId="1252" labelText=""
+                                             answerConceptIds="90040,90046,90049,90050,99890,99891,99892,90066,99289,90002"
+                                             answerLabels="1.Toxi,2.Tx Failure,3.Adhe, 4.Ill, 5.Stock, 6.Finan, 7. Px Decn, 8.Tx intpn, 9.Ex HIV, 10.Other,"/>
+                                        <obs conceptId="99085"/>
+                                    </obsgroup>
+                                </td>
+                                <td>
+                                    <obsgroup groupingConceptId="99086">
+                                        <obs conceptId="99132" answerConceptIds="1363,99133"
+                                             answerLabels="  Stopped,  Lost"
+                                             style="radio"/>
+                                        <obs conceptId="99084"/>
+                                        <obs conceptId="1252" labelText=""
+                                             answerConceptIds="90040,90046,90049,90050,99890,99891,99892,90066,99289,90002"
+                                             answerLabels="1.Toxi,2.Tx Failure,3.Adhe, 4.Ill, 5.Stock, 6.Finan, 7. Px Decn, 8.Tx intpn, 9.Ex HIV, 10.Other,"/>
+                                        <obs conceptId="99085"/>
+                                    </obsgroup>
+                                </td>
+                                <td>
+                                    <obsgroup groupingConceptId="99086">
+                                        <obs conceptId="99132" answerConceptIds="1363,99133"
+                                             answerLabels="  Stopped,  Lost"
+                                             style="radio"/>
+                                        <obs conceptId="99084"/>
+                                        <obs conceptId="1252" labelText=""
+                                             answerConceptIds="90040,90046,90049,90050,99890,99891,99892,90066,99289,90002"
+                                             answerLabels="1.Toxi,2.Tx Failure,3.Adhe, 4.Ill, 5.Stock, 6.Finan, 7. Px Decn, 8.Tx intpn, 9.Ex HIV, 10.Other,"/>
+                                        <obs conceptId="99085"/>
+                                    </obsgroup>
+                                </td>
+                                <td>
+                                    <obsgroup groupingConceptId="99086">
+                                        <obs conceptId="99132" answerConceptIds="1363,99133"
+                                             answerLabels="  Stopped,  Lost"
+                                             style="radio"/>
+                                        <obs conceptId="99084"/>
+                                        <obs conceptId="1252" labelText=""
+                                             answerConceptIds="90040,90046,90049,90050,99890,99891,99892,90066,99289,90002"
+                                             answerLabels="1.Toxi,2.Tx Failure,3.Adhe, 4.Ill, 5.Stock, 6.Finan, 7. Px Decn, 8.Tx intpn, 9.Ex HIV, 10.Other,"/>
+                                        <obs conceptId="99085"/>
+                                    </obsgroup>
+                                </td>
+                                <td>
+                                    <obsgroup groupingConceptId="99086">
+                                        <obs conceptId="99132" answerConceptIds="1363,99133"
+                                             answerLabels="  Stopped,  Lost"
+                                             style="radio"/>
+                                        <obs conceptId="99084"/>
+                                        <obs conceptId="1252" labelText=""
+                                             answerConceptIds="90040,90046,90049,90050,99890,99891,99892,90066,99289,90002"
+                                             answerLabels="1.Toxi,2.Tx Failure,3.Adhe, 4.Ill, 5.Stock, 6.Finan, 7. Px Decn, 8.Tx intpn, 9.Ex HIV, 10.Other,"/>
+                                        <obs conceptId="99085"/>
+                                    </obsgroup>
+                                </td>
+                                <td>
+                                    <obsgroup groupingConceptId="99086">
+                                        <obs conceptId="99132" answerConceptIds="1363,99133"
+                                             answerLabels="  Stopped,  Lost"
+                                             style="radio"/>
+                                        <obs conceptId="99084"/>
+                                        <obs conceptId="1252" labelText=""
+                                             answerConceptIds="90040,90046,90049,90050,99890,99891,99892,90066,99289,90002"
+                                             answerLabels="1.Toxi,2.Tx Failure,3.Adhe, 4.Ill, 5.Stock, 6.Finan, 7. Px Decn, 8.Tx intpn, 9.Ex HIV, 10.Other,"/>
+                                        <obs conceptId="99085"/>
+                                    </obsgroup>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Status and Date</div>
+                    <div class="panel-body custom-panel">
+                        <table class="table table-bordered custom-table table-responsive" width="100%">
+                            <tr>
+                                <td>
+                                    <obsgroup groupingConceptId="99166">
+                                <span class="enableDisable">
+                                    <span id="trigger">
+                                        <obs conceptId="90306" answerConceptId="90003" answerLabel="Transfer out:"/>
+                                    </span>
+                                    <span id="disabled">
+                                        <obs conceptId="99165"/>
+                                        <obs conceptId="90211" labelText="Where"/>
+                                    </span>
+                                </span>
+                                    </obsgroup>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <obsgroup groupingConceptId="99167">
+                                <span class="enableDisable">
+                                    <span id="trigger">
+                                        <obs conceptId="5240" answerConceptId="90003"
+                                             answerLabel="Lost to follow-up (drop):"/>
+                                    </span>
+                                    <span id="disabled">
+                                        <obs conceptId="90209"/>
+                                    </span>
+                                </span>
+                                    </obsgroup>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <obsgroup groupingConceptId="99168">
+                                <span class="enableDisable">
+                                    <span id="trigger">
+                                        <obs conceptId="99112" answerConceptId="90003" answerLabel="Dead:"/>
+                                    </span>
+                                    <span id="disabled">
+                                        <obs conceptId="90272"/>
+                                    </span>
+                                </span>
+                                    </obsgroup>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <submit></submit>
+    <br/>
+    <small>
+        <i>Version 1.1 Last revised on 02/November/2015
+            <br/>
+            modal@upmb.co.ug
+        </i>
+        <br/> <i>Version 1.2 Last revised on 01/December/2015
+        <br/>
+        By Lubwama Samuel slubwama@musph.ac.ug
+    </i>
+    </small>
+</htmlform>
