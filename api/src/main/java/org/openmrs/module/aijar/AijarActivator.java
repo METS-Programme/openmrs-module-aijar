@@ -17,6 +17,8 @@ package org.openmrs.module.aijar;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.ConceptName;
+import org.openmrs.GlobalProperty;
+import org.openmrs.api.AdministrationService;
 import org.openmrs.api.FormService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.Module;
@@ -24,9 +26,12 @@ import org.openmrs.module.ModuleActivator;
 import org.openmrs.module.ModuleFactory;
 import org.openmrs.module.aijar.api.deploy.bundle.CommonMetadataBundle;
 import org.openmrs.module.aijar.api.deploy.bundle.EncounterTypeMetadataBundle;
+import org.openmrs.module.aijar.api.deploy.bundle.UgandaAddressMetadataBundle;
 import org.openmrs.module.aijar.api.reporting.builder.common.SetupMissedAppointmentsReport;
+import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
 import org.openmrs.module.appframework.service.AppFrameworkService;
 import org.openmrs.module.dataexchange.DataImporter;
+import org.openmrs.module.emrapi.EmrApiConstants;
 import org.openmrs.module.htmlformentry.HtmlFormEntryService;
 import org.openmrs.module.htmlformentryui.HtmlFormUtil;
 import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
@@ -69,13 +74,24 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
      * @see ModuleActivator#started()
      */
     public void started() {
+        AdministrationService administrationService = Context.getAdministrationService();
+        AppFrameworkService appFrameworkService = Context.getService(AppFrameworkService.class);
+        MetadataDeployService deployService = Context.getService(MetadataDeployService.class);
+
         try {
-            AppFrameworkService appFrameworkService = Context.getService(AppFrameworkService.class);
+
 
             // disable the reference app registration page
             appFrameworkService.disableApp("referenceapplication.registrationapp.registerPatient");
 
+            // install HTML Forms
             setupHtmlForms();
+
+            // install commonly used metadata
+            installCommonMetadata(deployService);
+
+            // set the HIV care number as an additional identifier that needs to be displayed
+            administrationService.setGlobalProperty(new GlobalProperty(EmrApiConstants.GP_EXTRA_PATIENT_IDENTIFIER_TYPES, PatientIdentifierTypes.HIV_CARE_NUMBER.uuid()));
 
         } catch (Exception e) {
             Module mod = ModuleFactory.getModuleById("aijar");
@@ -83,9 +99,12 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             throw new RuntimeException("failed to setup the required HTML forms ", e);
         }
 
+        log.info("aijar Module started");
+    }
+
+    private void installCommonMetadata(MetadataDeployService deployService) {
         try {
             log.info("Installing metadata");
-            MetadataDeployService deployService = Context.getService(MetadataDeployService.class);
             log.info("Installing commonly used metadata");
             deployService.installBundle(Context.getRegisteredComponents(CommonMetadataBundle.class).get(0));
             log.info("Finished installing commonly used metadata");
@@ -93,7 +112,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             deployService.installBundle(Context.getRegisteredComponents(EncounterTypeMetadataBundle.class).get(0));
             log.info("Finished installing encounter types");
             log.info("Installing address hierarchy");
-            // deployService.installBundle(Context.getRegisteredComponents(AddressMetadataBundle.class).get(0));
+            deployService.installBundle(Context.getRegisteredComponents(UgandaAddressMetadataBundle.class).get(0));
             log.info("Finished installing addresshierarchy");
 
         } catch (Exception e) {
@@ -101,32 +120,6 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             ModuleFactory.stopModule(mod);
             throw new RuntimeException("failed to install the common metadata ", e);
         }
-
-        try {
-
-        } catch (Exception e) {
-            Module mod = ModuleFactory.getModuleById("aijar");
-            ModuleFactory.stopModule(mod);
-            throw new RuntimeException("failed to install apps ", e);
-        }
-
-        /*try {
-            installConcepts();
-
-        } catch (Exception e) {
-            Module mod = ModuleFactory.getModuleById("aijar");
-            ModuleFactory.stopModule(mod);
-            throw new RuntimeException("failed to import concepts modules", e);
-        }*/
-
-        //Register Reports
-        try {
-            // registerReports();
-        } catch (Exception e) {
-            throw new RuntimeException("failed to register reports", e);
-        }
-
-        log.info("aijar Module started");
     }
 
     private void installConcepts() {

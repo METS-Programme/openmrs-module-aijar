@@ -80,6 +80,11 @@
 
         <dependency>
             <groupId>org.openmrs.module</groupId>
+            <artifactId>emrapi-omod</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
             <artifactId>htmlformentry-api</artifactId>
         </dependency>
 

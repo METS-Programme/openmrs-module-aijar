@@ -49,6 +49,7 @@
         <appframeworkVersion>2.4</appframeworkVersion>
         <calculationVersion>1.1</calculationVersion>
         <dataexchangeVersion>1.3.1</dataexchangeVersion>
+        <emrapiVersion>1.12</emrapiVersion>
         <htmlformentryuiVersion>1.3</htmlformentryuiVersion>
         <htmlformentryVersion>2.6</htmlformentryVersion>
         <idgenVersion>3.2</idgenVersion>
@@ -151,6 +152,12 @@
                 <groupId>org.openmrs.module</groupId>
                 <artifactId>dataexchange-omod</artifactId>
                 <version>${dataexchangeVersion}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.openmrs.module</groupId>
+                <artifactId>emrapi-omod</artifactId>
+                <version>${emrapiVersion}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>

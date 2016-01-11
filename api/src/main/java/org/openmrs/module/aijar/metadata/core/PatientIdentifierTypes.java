@@ -36,7 +36,7 @@ public class PatientIdentifierTypes {
         }
 
         public String formatDescription() {
-            return "Replace XXX with the first three letters of the facility or the letters used on the patient clinic number";
+            return format() + " Replace XXX with the first three letters of the facility or the letters used on the patient clinic number, followed by 5 numbers";
         }
     };
 
