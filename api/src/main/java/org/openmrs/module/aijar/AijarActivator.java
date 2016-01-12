@@ -79,8 +79,6 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         MetadataDeployService deployService = Context.getService(MetadataDeployService.class);
 
         try {
-
-
             // disable the reference app registration page
             appFrameworkService.disableApp("referenceapplication.registrationapp.registerPatient");
 
@@ -90,13 +88,17 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             // install commonly used metadata
             installCommonMetadata(deployService);
 
-            // set the HIV care number as an additional identifier that needs to be displayed
-            administrationService.setGlobalProperty(new GlobalProperty(EmrApiConstants.GP_EXTRA_PATIENT_IDENTIFIER_TYPES, PatientIdentifierTypes.HIV_CARE_NUMBER.uuid()));
+            // set the HIV care number as the primary identifier that needs to be displayed and no extra patient identifier types
+            administrationService.setGlobalProperty(new GlobalProperty(EmrApiConstants.GP_EXTRA_PATIENT_IDENTIFIER_TYPES, PatientIdentifierTypes.HIV_CARE_NUMBER + "," + PatientIdentifierTypes.EXPOSED_INFANT_NUMBER));
+            administrationService.setGlobalProperty(new GlobalProperty(EmrApiConstants.PRIMARY_IDENTIFIER_TYPE, PatientIdentifierTypes.OPENMRS_ID.uuid()));
+
+            // set the name of the application
+            administrationService.setGlobalProperty(new GlobalProperty("application.name", "AIJAR - Uganda eHealth Solution"));
 
         } catch (Exception e) {
             Module mod = ModuleFactory.getModuleById("aijar");
             ModuleFactory.stopModule(mod);
-            throw new RuntimeException("failed to setup the required HTML forms ", e);
+            throw new RuntimeException("failed to setup the module ", e);
         }
 
         log.info("aijar Module started");
