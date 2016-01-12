@@ -15,7 +15,7 @@ public class PatientIdentifierTypes {
     public static PatientIdentifierTypeDescriptor HIV_CARE_NUMBER = new PatientIdentifierTypeDescriptor() {
         @Override
         public String name() {
-            return "Chronic HIVCare/HIVCare Number";
+            return "Clinic Number";
         }
 
         @Override
@@ -39,6 +39,36 @@ public class PatientIdentifierTypes {
             return format() + " Replace XXX with the first three letters of the facility or the letters used on the patient clinic number, followed by 5 numbers";
         }
     };
+
+
+    public static PatientIdentifierTypeDescriptor EXPOSED_INFANT_NUMBER = new PatientIdentifierTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Exposed Infant Number";
+        }
+
+        @Override
+        public String description() {
+            return "This is the exposed infant clinic number used at the treating facility";
+        }
+
+        public String uuid() {
+            return "2c5b695d-4bf3-452f-8a7c-fe3ee3432ffe";
+        }
+
+        public boolean required() {
+            return true;
+        }
+
+        public String format() {
+            return "[E][X][P]/[0-9][0-9][0-9][0-9]";
+        }
+
+        public String formatDescription() {
+            return " EXP followed by 4 numbers";
+        }
+    };
+
 
     public static PatientIdentifierTypeDescriptor OPENMRS_ID = new PatientIdentifierTypeDescriptor() {
         @Override
