@@ -96,7 +96,7 @@
             var xx = row_1;
             var selected_value = jq(selected_option).find(":selected").text()
 
-            if (selected_value == "P")
+            if (selected_value == "P" &amp;&amp; selected_value!="")
                 disable = false;
 
             switch (row_id) {
@@ -159,7 +159,7 @@
 
             selected_value = selected_value.trim().toUpperCase();
 
-            if (selected_value == "OTHER")
+            if (selected_value.toLowerCase() == "other")
                 disable = false;
 
             switch (row_id) {
@@ -1650,7 +1650,7 @@
                                                      answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99884,99885,99143"
                                                      answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,Other"/>
                                             </td>
-                                            <td class="ArtCareEnableDisableChild3">
+                                            <td class="ArtCareEnableDisableChild4">
                                                 <obs size="10" conceptId="99146" labelText="Specify"/>
                                             </td>
                                             <td>
@@ -1669,7 +1669,7 @@
                                                      answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99884,99885,99143"
                                                      answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,Other"/>
                                             </td>
-                                            <td class="ArtCareEnableDisableChild3">
+                                            <td class="ArtCareEnableDisableChild4">
                                                 <obs size="10" conceptId="99146" labelText="Specify"/>
                                             </td>
                                             <td>
@@ -1688,7 +1688,7 @@
                                                      answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99884,99885,99143"
                                                      answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,Other"/>
                                             </td>
-                                            <td class="ArtCareEnableDisableChild3">
+                                            <td class="ArtCareEnableDisableChild6">
                                                 <obs size="10" conceptId="99146" labelText="Specify"/>
                                             </td>
                                             <td>
@@ -1759,7 +1759,7 @@
                                                          answerLabels="ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,ZDV-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,ZDV-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,AZT-3TC-LPV/r,TDF-3TC-ATV/r,ABC-3TC-ATV/r,Other"/>
                                                 </small>
                                             </td>
-                                            <td class="ArtCareEnableDisableChild7">
+                                            <td class="ArtCareEnableDisableChild8">
                                                 <obs size="10" conceptId="99147" labelText="Specify"/>
                                             </td>
                                             <td>
@@ -1780,7 +1780,7 @@
                                                          answerLabels="ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,ZDV-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,ZDV-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,AZT-3TC-LPV/r,TDF-3TC-ATV/r,ABC-3TC-ATV/r,Other"/>
                                                 </small>
                                             </td>
-                                            <td class="ArtCareEnableDisableChild7">
+                                            <td class="ArtCareEnableDisableChild9">
                                                 <obs size="10" conceptId="99147" labelText="Specify"/>
                                             </td>
                                             <td>
