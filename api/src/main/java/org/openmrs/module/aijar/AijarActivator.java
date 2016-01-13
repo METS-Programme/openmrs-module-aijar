@@ -88,9 +88,11 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             // install commonly used metadata
             installCommonMetadata(deployService);
 
-            // set the HIV care number as the primary identifier that needs to be displayed and no extra patient identifier types
-            administrationService.setGlobalProperty(new GlobalProperty(EmrApiConstants.GP_EXTRA_PATIENT_IDENTIFIER_TYPES, PatientIdentifierTypes.HIV_CARE_NUMBER + "," + PatientIdentifierTypes.EXPOSED_INFANT_NUMBER));
+            // Set the auto generated OpenMRS Identifier as the primary identifier that needs to be displayed
             administrationService.setGlobalProperty(new GlobalProperty(EmrApiConstants.PRIMARY_IDENTIFIER_TYPE, PatientIdentifierTypes.OPENMRS_ID.uuid()));
+
+            // set the HIV care number and EID number as additional identifiers that can be searced for
+            administrationService.setGlobalProperty(new GlobalProperty(EmrApiConstants.GP_EXTRA_PATIENT_IDENTIFIER_TYPES, PatientIdentifierTypes.HIV_CARE_NUMBER.uuid() + "," + PatientIdentifierTypes.EXPOSED_INFANT_NUMBER.uuid()));
 
             // set the name of the application
             administrationService.setGlobalProperty(new GlobalProperty("application.name", "AIJAR - Uganda eHealth Solution"));
