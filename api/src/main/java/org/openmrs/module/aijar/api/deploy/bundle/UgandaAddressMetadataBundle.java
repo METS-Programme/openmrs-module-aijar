@@ -20,9 +20,9 @@ public class UgandaAddressMetadataBundle extends AddressMetadataBundle {
         l.add(new AddressComponent(AddressField.COUNTRY, "aijar.address.country", 40, "Uganda", true));
         l.add(new AddressComponent(AddressField.COUNTY_DISTRICT, "aijar.address.district", 40, null, true));
         l.add(new AddressComponent(AddressField.STATE_PROVINCE, "aijar.address.county", 40, null, true));
-        l.add(new AddressComponent(AddressField.ADDRESS_5, "aijar.address.subcounty", 60, null, true));
+        l.add(new AddressComponent(AddressField.ADDRESS_3, "aijar.address.subcounty", 60, null, true));
         l.add(new AddressComponent(AddressField.ADDRESS_4, "aijar.address.parish", 60, null, true));
-        l.add(new AddressComponent(AddressField.ADDRESS_3, "aijar.address.village", 60, null, false));
+        l.add(new AddressComponent(AddressField.ADDRESS_5, "aijar.address.village", 60, null, false));
 
         return l;
     }
@@ -35,7 +35,11 @@ public class UgandaAddressMetadataBundle extends AddressMetadataBundle {
         List<String> l = new ArrayList<String>();
         l.add("address1");
         l.add("address2");
-        l.add("stateProvince, country");
+        l.add("address3");
+        l.add("address4, address5");
+        l.add("stateProvince");
+        l.add("countyDistrict");
+        l.add("country");
         return l;
     }
 
