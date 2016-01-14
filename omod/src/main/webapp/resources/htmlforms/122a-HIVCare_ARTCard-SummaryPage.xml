@@ -96,7 +96,7 @@
             var xx = row_1;
             var selected_value = jq(selected_option).find(":selected").text()
 
-            if (selected_value == "P")
+            if (selected_value == "P" &amp;&amp; selected_value!="")
                 disable = false;
 
             switch (row_id) {
@@ -159,7 +159,7 @@
 
             selected_value = selected_value.trim().toUpperCase();
 
-            if (selected_value == "OTHER")
+            if (selected_value.toLowerCase() == "other")
                 disable = false;
 
             switch (row_id) {
@@ -201,6 +201,70 @@
 
                 if (class_name.indexOf('Child') == -1) {
                     group.find("input").attr("disabled", disable);
+                }
+
+            });
+
+        }
+
+
+        function enable_disable_ati(selected_option) {
+
+            var class_name = jq(selected_option).attr("class");
+
+            var length = class_name.length;
+
+            var class_id = parseInt(class_name.substring(length - 1, length))
+
+            var row_id = class_id;
+
+            var disable = true;
+
+            var row_1 = '[class^="ARTTreatmentInterruption"][class*="Child1"]';
+            var row_2 = '[class^="ARTTreatmentInterruption"][class*="Child2"]';
+            var row_3 = '[class^="ARTTreatmentInterruption"][class*="Child3"]';
+            var row_4 = '[class^="ARTTreatmentInterruption"][class*="Child4"]';
+            var row_5 = '[class^="ARTTreatmentInterruption"][class*="Child5"]';
+            var row_6 = '[class^="ARTTreatmentInterruption"][class*="Child6"]';
+
+            var xx = row_1;
+            var selected_value = jq(selected_option).find(":selected").text()
+
+            selected_value = selected_value.trim().toUpperCase();
+
+            if (selected_value.toLowerCase() == "stopped" || selected_value.toLowerCase() == "lost")
+                disable = false;
+
+            switch (row_id) {
+                case 1:
+                    xx = row_1;
+                    break;
+                case 2:
+                    xx = row_2;
+                    break;
+                case 3:
+                    xx = row_3;
+                    break;
+                case 4:
+                    xx = row_4;
+                    break;
+
+                case 5:
+                    xx = row_5;
+                    break;
+                case 6:
+                    xx = row_6;
+                    break;
+
+            }
+
+
+            jq(xx).each(function () {
+                var group = jq(this);
+
+                if (class_name.indexOf('Child') == -1) {
+                    group.find("input").attr("disabled", disable);
+                    group.find('select').attr("disabled", disable);
                 }
 
             });
@@ -249,130 +313,130 @@
 
 
                 //Enable First Column  of ART treatment interruptions--STOP or missed drug pick up When Lost or stopped is selected activated
-                jq('input[type=radio][name=w342]').click(function () {
-                    if (this.value == '1363' || this.value == '99133') {
-                        jq("#w344-display").removeAttr("disabled");
-                        jq("#w346").removeAttr("disabled");
-                        jq("#w348-display").removeAttr("disabled");
-                    }
-                    else {
-                        jq("#w344-display").attr("disabled", true);
-                        jq("#w346").attr("disabled", true);
-                        jq("#348-display").attr("disabled", true);
-                    }
-                });
+                /*jq('input[type=radio][name=w342]').click(function () {
+                 if (this.value == '1363' || this.value == '99133') {
+                 jq("#w344-display").removeAttr("disabled");
+                 jq("#w346").removeAttr("disabled");
+                 jq("#w348-display").removeAttr("disabled");
+                 }
+                 else {
+                 jq("#w344-display").attr("disabled", true);
+                 jq("#w346").attr("disabled", true);
+                 jq("#348-display").attr("disabled", true);
+                 }
+                 });
 
-                if (jq('input[type=radio][name=w342]') != '1363' || jq('input[type=radio][name=w358]') != '99133') {
-                    jq("#w344-display").attr("disabled", true);
-                    jq("#w346").attr("disabled", true);
-                    jq("#w348-display").attr("disabled", true);
-                }
-
-
-                jq('input[type=radio][name=w350]').click(function () {
-                    if (this.value == '1363' || this.value == '99133') {
-                        jq("#w352-display").removeAttr("disabled");
-                        jq("#w354").removeAttr("disabled");
-                        jq("#w356-display").removeAttr("disabled");
-                    }
-                    else {
-                        jq("#w352-display").attr("disabled", true);
-                        jq("#w356").attr("disabled", true);
-                        jq("#358-display").attr("disabled", true);
-                    }
-                });
-
-                if (jq('input[type=radio][name=w350]') != '1363' || jq('input[type=radio][name=w366]') != '99133') {
-                    jq("#w352-display").attr("disabled", true);
-                    jq("#w354").attr("disabled", true);
-                    jq("#w356-display").attr("disabled", true);
-                }
-
-                jq('input[type=radio][name=w358]').click(function () {
-                    if (this.value == '1363' || this.value == '99133') {
-                        //UnCheck The Checked Boxes
-                        jq("#w360-display").removeAttr("disabled");
-                        jq("#w362").removeAttr("disabled");
-                        jq("#w364-display").removeAttr("disabled");
-                    }
-                    else {
-                        jq("#w360-display").attr("disabled", true);
-                        jq("#w362").attr("disabled", true);
-                        jq("#364-display").attr("disabled", true);
-                    }
-                });
-
-                //disable Third column of ART treatment interruptions--STOP or missed drug pick up
-                if (jq('input[type=radio][name=w358]') != '1363' || jq('input[type=radio][name=w374]') != '99133') {
-                    jq("#w360-display").attr("disabled", true);
-                    jq("#w362").attr("disabled", true);
-                    jq("#w364-display").attr("disabled", true);
-                }
-
-                jq('input[type=radio][name=w366]').click(function () {
-                    if (this.value == '1363' || this.value == '99133') {
-                        jq("#w368-display").removeAttr("disabled");
-                        jq("#w370").removeAttr("disabled");
-                        jq("#w372-display").removeAttr("disabled");
-                    }
-                    else {
-                        jq("#w368-display").attr("disabled", true);
-                        jq("#w370").attr("disabled", true);
-                        jq("#w372-dsplay").attr("disabled", true);
-                    }
-                });
-
-                //disable Fourth column of ART treatment interruptions--STOP or missed drug pick up
-                if (jq('input[type=radio][name=w368]') != '1363' || jq('input[type=radio][name=w382]') != '99133') {
-                    jq("#w368-display").attr("disabled", true);
-                    jq("#w370").attr("disabled", true);
-                    jq("#w372-display").attr("disabled", true);
-                }
+                 if (jq('input[type=radio][name=w342]') != '1363' || jq('input[type=radio][name=w358]') != '99133') {
+                 jq("#w344-display").attr("disabled", true);
+                 jq("#w346").attr("disabled", true);
+                 jq("#w348-display").attr("disabled", true);
+                 }
 
 
-                //Enable Fifth Column  of ART treatment interruptions--STOP or missed drug pick up When Lost or stopped is selected activated
-                jq('input[type=radio][name=w374]').click(function () {
-                    if (this.value == '1363' || this.value == '99133') {
-                        //UnCheck The Checked Boxes
-                        jq("#w376-display").removeAttr("disabled");
-                        jq("#w378").removeAttr("disabled");
-                        jq("#w380-display").removeAttr("disabled");
-                    }
-                    else {
-                        jq("#w376-display").attr("disabled", true);
-                        jq("#w378").attr("disabled", true);
-                        jq("#w380-display").attr("disabled", true);
-                    }
-                });
+                 jq('input[type=radio][name=w350]').click(function () {
+                 if (this.value == '1363' || this.value == '99133') {
+                 jq("#w352-display").removeAttr("disabled");
+                 jq("#w354").removeAttr("disabled");
+                 jq("#w356-display").removeAttr("disabled");
+                 }
+                 else {
+                 jq("#w352-display").attr("disabled", true);
+                 jq("#w356").attr("disabled", true);
+                 jq("#358-display").attr("disabled", true);
+                 }
+                 });
 
-                //disable Fifth column of ART treatment interruptions--STOP or missed drug pick up
-                if (jq('input[type=radio][name=w376]') != '1363' || jq('input[type=radio][name=w390]') != '99133') {
-                    jq("#w376-display").attr("disabled", true);
-                    jq("#w378").attr("disabled", true);
-                    jq("#w380-display").attr("disabled", true);
-                }
+                 if (jq('input[type=radio][name=w350]') != '1363' || jq('input[type=radio][name=w366]') != '99133') {
+                 jq("#w352-display").attr("disabled", true);
+                 jq("#w354").attr("disabled", true);
+                 jq("#w356-display").attr("disabled", true);
+                 }
+
+                 jq('input[type=radio][name=w358]').click(function () {
+                 if (this.value == '1363' || this.value == '99133') {
+                 //UnCheck The Checked Boxes
+                 jq("#w360-display").removeAttr("disabled");
+                 jq("#w362").removeAttr("disabled");
+                 jq("#w364-display").removeAttr("disabled");
+                 }
+                 else {
+                 jq("#w360-display").attr("disabled", true);
+                 jq("#w362").attr("disabled", true);
+                 jq("#364-display").attr("disabled", true);
+                 }
+                 });
+
+                 //disable Third column of ART treatment interruptions--STOP or missed drug pick up
+                 if (jq('input[type=radio][name=w358]') != '1363' || jq('input[type=radio][name=w374]') != '99133') {
+                 jq("#w360-display").attr("disabled", true);
+                 jq("#w362").attr("disabled", true);
+                 jq("#w364-display").attr("disabled", true);
+                 }
+
+                 jq('input[type=radio][name=w366]').click(function () {
+                 if (this.value == '1363' || this.value == '99133') {
+                 jq("#w368-display").removeAttr("disabled");
+                 jq("#w370").removeAttr("disabled");
+                 jq("#w372-display").removeAttr("disabled");
+                 }
+                 else {
+                 jq("#w368-display").attr("disabled", true);
+                 jq("#w370").attr("disabled", true);
+                 jq("#w372-dsplay").attr("disabled", true);
+                 }
+                 });
+
+                 //disable Fourth column of ART treatment interruptions--STOP or missed drug pick up
+                 if (jq('input[type=radio][name=w368]') != '1363' || jq('input[type=radio][name=w382]') != '99133') {
+                 jq("#w368-display").attr("disabled", true);
+                 jq("#w370").attr("disabled", true);
+                 jq("#w372-display").attr("disabled", true);
+                 }
 
 
-                //Enable Sixth Column  of ART treatment interruptions--STOP or missed drug pick up When Lost or stopped is selected activated
-                jq('input[type=radio][name=w382]').click(function () {
-                    if (this.value == '1363' || this.value == '99133') {
-                        jq("#w384-display").removeAttr("disabled");
-                        jq("#w386").removeAttr("disabled");
-                        jq("#w388-display").removeAttr("disabled");
-                    }
-                    else {
-                        jq("#w384-display").attr("disabled", true);
-                        jq("#w386").attr("disabled", true);
-                        jq("#w388-display").attr("disabled", true);
-                    }
-                });
+                 //Enable Fifth Column  of ART treatment interruptions--STOP or missed drug pick up When Lost or stopped is selected activated
+                 jq('input[type=radio][name=w374]').click(function () {
+                 if (this.value == '1363' || this.value == '99133') {
+                 //UnCheck The Checked Boxes
+                 jq("#w376-display").removeAttr("disabled");
+                 jq("#w378").removeAttr("disabled");
+                 jq("#w380-display").removeAttr("disabled");
+                 }
+                 else {
+                 jq("#w376-display").attr("disabled", true);
+                 jq("#w378").attr("disabled", true);
+                 jq("#w380-display").attr("disabled", true);
+                 }
+                 });
 
-                //disable Sixth column of ART treatment interruptions--STOP or missed drug pick up
-                if (jq('input[type=radio][name=w348]') != '1363' || jq('input[type=radio][name=w398]') != '99133') {
-                    jq("#w384-display").attr("disabled", true);
-                    jq("#w386").attr("disabled", true);
-                    jq("#w388-display").attr("disabled", true);
-                }
+                 //disable Fifth column of ART treatment interruptions--STOP or missed drug pick up
+                 if (jq('input[type=radio][name=w376]') != '1363' || jq('input[type=radio][name=w390]') != '99133') {
+                 jq("#w376-display").attr("disabled", true);
+                 jq("#w378").attr("disabled", true);
+                 jq("#w380-display").attr("disabled", true);
+                 }
+
+
+                 //Enable Sixth Column  of ART treatment interruptions--STOP or missed drug pick up When Lost or stopped is selected activated
+                 jq('input[type=radio][name=w382]').click(function () {
+                 if (this.value == '1363' || this.value == '99133') {
+                 jq("#w384-display").removeAttr("disabled");
+                 jq("#w386").removeAttr("disabled");
+                 jq("#w388-display").removeAttr("disabled");
+                 }
+                 else {
+                 jq("#w384-display").attr("disabled", true);
+                 jq("#w386").attr("disabled", true);
+                 jq("#w388-display").attr("disabled", true);
+                 }
+                 });
+
+                 //disable Sixth column of ART treatment interruptions--STOP or missed drug pick up
+                 if (jq('input[type=radio][name=w348]') != '1363' || jq('input[type=radio][name=w398]') != '99133') {
+                 jq("#w384-display").attr("disabled", true);
+                 jq("#w386").attr("disabled", true);
+                 jq("#w388-display").attr("disabled", true);
+                 }*/
 
 
                 //If Male disable all options that only apply to females
@@ -460,6 +524,15 @@
 
                 jq('[class^="ArtCareEnableDisable"]').each(function () {
                     enable_disable_ac(jq(this))
+                });
+
+                jq('[class^="ARTTreatmentInterruptionEnableDisable"]').change(function () {
+                    enable_disable_ati(jq(this));
+                });
+
+
+                jq('[class^="ARTTreatmentInterruptionEnableDisable"]').each(function () {
+                    enable_disable_ati(jq(this))
                 });
 
                 jq(".enableDisable").each(function () {
@@ -1442,7 +1515,7 @@
                                     </tr>
                                     <tr>
                                         <td style="color: #333;">Date started:</td>
-                                        <td style="color: #333;" >
+                                        <td style="color: #333;">
                                             <obs conceptId="99161"/>
                                         </td>
                                         <td style="color: #333;" class="ArtCareEnableDisable2">1st line Regiment:
@@ -1577,7 +1650,7 @@
                                                      answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99884,99885,99143"
                                                      answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,Other"/>
                                             </td>
-                                            <td class="ArtCareEnableDisableChild3">
+                                            <td class="ArtCareEnableDisableChild4">
                                                 <obs size="10" conceptId="99146" labelText="Specify"/>
                                             </td>
                                             <td>
@@ -1596,7 +1669,7 @@
                                                      answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99884,99885,99143"
                                                      answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,Other"/>
                                             </td>
-                                            <td class="ArtCareEnableDisableChild3">
+                                            <td class="ArtCareEnableDisableChild4">
                                                 <obs size="10" conceptId="99146" labelText="Specify"/>
                                             </td>
                                             <td>
@@ -1615,7 +1688,7 @@
                                                      answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99884,99885,99143"
                                                      answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,Other"/>
                                             </td>
-                                            <td class="ArtCareEnableDisableChild3">
+                                            <td class="ArtCareEnableDisableChild6">
                                                 <obs size="10" conceptId="99146" labelText="Specify"/>
                                             </td>
                                             <td>
@@ -1686,7 +1759,7 @@
                                                          answerLabels="ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,ZDV-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,ZDV-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,AZT-3TC-LPV/r,TDF-3TC-ATV/r,ABC-3TC-ATV/r,Other"/>
                                                 </small>
                                             </td>
-                                            <td class="ArtCareEnableDisableChild7">
+                                            <td class="ArtCareEnableDisableChild8">
                                                 <obs size="10" conceptId="99147" labelText="Specify"/>
                                             </td>
                                             <td>
@@ -1707,7 +1780,7 @@
                                                          answerLabels="ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,ZDV-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,ZDV-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,AZT-3TC-LPV/r,TDF-3TC-ATV/r,ABC-3TC-ATV/r,Other"/>
                                                 </small>
                                             </td>
-                                            <td class="ArtCareEnableDisableChild7">
+                                            <td class="ArtCareEnableDisableChild9">
                                                 <obs size="10" conceptId="99147" labelText="Specify"/>
                                             </td>
                                             <td>
@@ -1733,8 +1806,12 @@
                                         <td>
                                             <obsgroup groupingConceptId="99086">
                                                 <label><b>Stop/Lost</b></label>
+                                                <span class="ARTTreatmentInterruptionEnableDisable1">
                                                 <obs conceptId="99132" answerConceptIds="1363,99133"
-                                                     answerLabels="Stopped,  Lost"/>
+                                                     answerLabels="Stopped,Lost"/>
+                                                    </span>
+
+                                                <span class="ARTTreatmentInterruptionEnableDisableChild1">
                                                 <br/>
                                                 <br/>
                                                 <b>Date</b>
@@ -1752,13 +1829,19 @@
                                                 <b> Restart Date</b>
                                                 <br/>
                                                 <obs conceptId="99085"/>
+                                                </span>
                                             </obsgroup>
                                         </td>
                                         <td>
                                             <obsgroup groupingConceptId="99086">
                                                 <label><b>Stop/Lost</b></label>
+                                                    <span class="ARTTreatmentInterruptionEnableDisable2">
                                                 <obs conceptId="99132" answerConceptIds="1363,99133"
                                                      answerLabels="Stopped,  Lost"/>
+                                                    </span>
+
+                                                <span class="ARTTreatmentInterruptionEnableDisableChild2">
+
                                                 <br/>
                                                 <br/>
                                                 <b>Date</b>
@@ -1776,13 +1859,18 @@
                                                 <b> Restart Date</b>
                                                 <br/>
                                                 <obs conceptId="99085"/>
+                                                    </span>
                                             </obsgroup>
                                         </td>
                                         <td>
                                             <obsgroup groupingConceptId="99086">
                                                 <label><b>Stop/Lost</b></label>
+                                                <span class="ARTTreatmentInterruptionEnableDisable3">
                                                 <obs conceptId="99132" answerConceptIds="1363,99133"
                                                      answerLabels="Stopped,  Lost"/>
+                                                    </span>
+
+                                                <span class="ARTTreatmentInterruptionEnableDisableChild3">
                                                 <br/>
                                                 <br/>
                                                 <b>Date</b>
@@ -1800,13 +1888,17 @@
                                                 <b> Restart Date</b>
                                                 <br/>
                                                 <obs conceptId="99085"/>
+                                                    </span>
                                             </obsgroup>
                                         </td>
                                         <td>
                                             <obsgroup groupingConceptId="99086">
                                                 <label><b>Stop/Lost</b></label>
+                                               <span class="ARTTreatmentInterruptionEnableDisable4">
                                                 <obs conceptId="99132" answerConceptIds="1363,99133"
                                                      answerLabels=" Stopped,  Lost"/>
+                                                   </span>
+                                                <span class="ARTTreatmentInterruptionEnableDisableChild4">
                                                 <br/>
                                                 <br/>
                                                 <b>Date</b>
@@ -1824,13 +1916,17 @@
                                                 <b> Restart Date</b>
                                                 <br/>
                                                 <obs conceptId="99085"/>
+                                                    </span>
                                             </obsgroup>
                                         </td>
                                         <td>
                                             <obsgroup groupingConceptId="99086">
                                                 <label><b>Stop/Lost</b></label>
+                                                <span class="ARTTreatmentInterruptionEnableDisable5">
                                                 <obs conceptId="99132" answerConceptIds="1363,99133"
                                                      answerLabels=" Stopped,  Lost"/>
+                                                    </span>
+                                                <span class="ARTTreatmentInterruptionEnableDisableChild5">
                                                 <br/>
                                                 <br/>
                                                 <b>Date</b>
@@ -1848,13 +1944,17 @@
                                                 <b> Restart Date</b>
                                                 <br/>
                                                 <obs conceptId="99085"/>
+                                                    </span>
                                             </obsgroup>
                                         </td>
                                         <td>
                                             <obsgroup groupingConceptId="99086">
                                                 <label><b>Stop/Lost</b></label>
+                                                <span class="ARTTreatmentInterruptionEnableDisable6">
                                                 <obs conceptId="99132" answerConceptIds="1363,99133"
                                                      answerLabels="Stopped,  Lost"/>
+                                                    </span>
+                                                <span class="ARTTreatmentInterruptionEnableDisableChild6">
                                                 <br/>
                                                 <br/>
                                                 <b>Date</b>
@@ -1872,6 +1972,7 @@
                                                 <b> Restart Date</b>
                                                 <br/>
                                                 <obs conceptId="99085"/>
+                                                    </span>
                                             </obsgroup>
                                         </td>
 
