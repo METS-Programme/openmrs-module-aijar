@@ -19,8 +19,73 @@
     "config": {
       "allowUnknownPatients": false,
       "allowRetrospectiveEntry": true,
-      "allowManualIdentifier": true,
-      "afterCreatedUrl": "/coreapps/clinicianfacing/patient.page?patientId={{patientId}}"
+      "afterCreatedUrl": "/coreapps/clinicianfacing/patient.page?patientId={{patientId}}",
+      "sections": [
+        {
+          "id": "contactInfo",
+          "label": "aijar.registrationapp.contacts",
+          "questions": [
+            {
+              "legend": "aijar.registrationapp.birthlocation",
+              "fields": [
+                {
+                  "type": "personAddress",
+                  "label": "aijar.registrationapp.patient.address.question",
+                  "widget": {
+                    "providerName": "registrationapp",
+                    "fragmentId": "field/personAddressWithHierarchy",
+                    "config": {
+                      "shortcutFor": "address4",
+                      "manualFields": [
+                        "address5"
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "legend": "aijar.registrationapp.nextofkin",
+              "id": "nofLabel",
+              "fields": [
+                {
+                  "type": "personAttribute",
+                  "label": "aijar.registrationapp.nextofkin.names",
+                  "formFieldName": "nextOfKinName",
+                  "uuid": "8d871d18-c2cc-11de-8d13-0010c6dffd0f",
+                  "widget": {
+                    "providerName": "uicommons",
+                    "fragmentId": "field/text"
+                  }
+                },
+                {
+                  "type": "personAttribute",
+                  "label": "aijar.registrationapp.nextofkin.contactnumber",
+                  "formFieldName": "nextOfKinPhone",
+                  "uuid": "8d871386-c2cc-11de-8d13-0010c6dffd0f",
+                  "widget": {
+                    "providerName": "uicommons",
+                    "fragmentId": "field/text"
+                  },
+                  "cssClasses": [
+                    "number"
+                  ]
+                },
+                {
+                  "type": "personAttribute",
+                  "label": "aijar.registrationapp.nextofkin.relationship",
+                  "formFieldName": "nextOfKinRelationship",
+                  "uuid": "8d871386-c2cc-11de-8d13-0010c6dffd0f",
+                  "widget": {
+                    "providerName": "uicommons",
+                    "fragmentId": "field/text"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   }
 ]
