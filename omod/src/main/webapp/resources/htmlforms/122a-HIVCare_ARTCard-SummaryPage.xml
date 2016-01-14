@@ -1,4 +1,4 @@
-<htmlform formName="HIV ARD CARD |1. Summary Page"
+<htmlform formName="HIV ART CARD |1. Summary Page"
           formDescription="Summary information for a client to an ART clinic"
           formEncounterType="8d5b27bc-c2cc-11de-8d13-0010c6dffd0f"
           formUuid="52653a60-8300-4c13-be4d-4b746da06fee"
@@ -312,133 +312,6 @@
                 });
 
 
-                //Enable First Column  of ART treatment interruptions--STOP or missed drug pick up When Lost or stopped is selected activated
-                /*jq('input[type=radio][name=w342]').click(function () {
-                 if (this.value == '1363' || this.value == '99133') {
-                 jq("#w344-display").removeAttr("disabled");
-                 jq("#w346").removeAttr("disabled");
-                 jq("#w348-display").removeAttr("disabled");
-                 }
-                 else {
-                 jq("#w344-display").attr("disabled", true);
-                 jq("#w346").attr("disabled", true);
-                 jq("#348-display").attr("disabled", true);
-                 }
-                 });
-
-                 if (jq('input[type=radio][name=w342]') != '1363' || jq('input[type=radio][name=w358]') != '99133') {
-                 jq("#w344-display").attr("disabled", true);
-                 jq("#w346").attr("disabled", true);
-                 jq("#w348-display").attr("disabled", true);
-                 }
-
-
-                 jq('input[type=radio][name=w350]').click(function () {
-                 if (this.value == '1363' || this.value == '99133') {
-                 jq("#w352-display").removeAttr("disabled");
-                 jq("#w354").removeAttr("disabled");
-                 jq("#w356-display").removeAttr("disabled");
-                 }
-                 else {
-                 jq("#w352-display").attr("disabled", true);
-                 jq("#w356").attr("disabled", true);
-                 jq("#358-display").attr("disabled", true);
-                 }
-                 });
-
-                 if (jq('input[type=radio][name=w350]') != '1363' || jq('input[type=radio][name=w366]') != '99133') {
-                 jq("#w352-display").attr("disabled", true);
-                 jq("#w354").attr("disabled", true);
-                 jq("#w356-display").attr("disabled", true);
-                 }
-
-                 jq('input[type=radio][name=w358]').click(function () {
-                 if (this.value == '1363' || this.value == '99133') {
-                 //UnCheck The Checked Boxes
-                 jq("#w360-display").removeAttr("disabled");
-                 jq("#w362").removeAttr("disabled");
-                 jq("#w364-display").removeAttr("disabled");
-                 }
-                 else {
-                 jq("#w360-display").attr("disabled", true);
-                 jq("#w362").attr("disabled", true);
-                 jq("#364-display").attr("disabled", true);
-                 }
-                 });
-
-                 //disable Third column of ART treatment interruptions--STOP or missed drug pick up
-                 if (jq('input[type=radio][name=w358]') != '1363' || jq('input[type=radio][name=w374]') != '99133') {
-                 jq("#w360-display").attr("disabled", true);
-                 jq("#w362").attr("disabled", true);
-                 jq("#w364-display").attr("disabled", true);
-                 }
-
-                 jq('input[type=radio][name=w366]').click(function () {
-                 if (this.value == '1363' || this.value == '99133') {
-                 jq("#w368-display").removeAttr("disabled");
-                 jq("#w370").removeAttr("disabled");
-                 jq("#w372-display").removeAttr("disabled");
-                 }
-                 else {
-                 jq("#w368-display").attr("disabled", true);
-                 jq("#w370").attr("disabled", true);
-                 jq("#w372-dsplay").attr("disabled", true);
-                 }
-                 });
-
-                 //disable Fourth column of ART treatment interruptions--STOP or missed drug pick up
-                 if (jq('input[type=radio][name=w368]') != '1363' || jq('input[type=radio][name=w382]') != '99133') {
-                 jq("#w368-display").attr("disabled", true);
-                 jq("#w370").attr("disabled", true);
-                 jq("#w372-display").attr("disabled", true);
-                 }
-
-
-                 //Enable Fifth Column  of ART treatment interruptions--STOP or missed drug pick up When Lost or stopped is selected activated
-                 jq('input[type=radio][name=w374]').click(function () {
-                 if (this.value == '1363' || this.value == '99133') {
-                 //UnCheck The Checked Boxes
-                 jq("#w376-display").removeAttr("disabled");
-                 jq("#w378").removeAttr("disabled");
-                 jq("#w380-display").removeAttr("disabled");
-                 }
-                 else {
-                 jq("#w376-display").attr("disabled", true);
-                 jq("#w378").attr("disabled", true);
-                 jq("#w380-display").attr("disabled", true);
-                 }
-                 });
-
-                 //disable Fifth column of ART treatment interruptions--STOP or missed drug pick up
-                 if (jq('input[type=radio][name=w376]') != '1363' || jq('input[type=radio][name=w390]') != '99133') {
-                 jq("#w376-display").attr("disabled", true);
-                 jq("#w378").attr("disabled", true);
-                 jq("#w380-display").attr("disabled", true);
-                 }
-
-
-                 //Enable Sixth Column  of ART treatment interruptions--STOP or missed drug pick up When Lost or stopped is selected activated
-                 jq('input[type=radio][name=w382]').click(function () {
-                 if (this.value == '1363' || this.value == '99133') {
-                 jq("#w384-display").removeAttr("disabled");
-                 jq("#w386").removeAttr("disabled");
-                 jq("#w388-display").removeAttr("disabled");
-                 }
-                 else {
-                 jq("#w384-display").attr("disabled", true);
-                 jq("#w386").attr("disabled", true);
-                 jq("#w388-display").attr("disabled", true);
-                 }
-                 });
-
-                 //disable Sixth column of ART treatment interruptions--STOP or missed drug pick up
-                 if (jq('input[type=radio][name=w348]') != '1363' || jq('input[type=radio][name=w398]') != '99133') {
-                 jq("#w384-display").attr("disabled", true);
-                 jq("#w386").attr("disabled", true);
-                 jq("#w388-display").attr("disabled", true);
-                 }*/
-
-
                 //If Male disable all options that only apply to females
                 if (gender == "M") {
                     jq("input#w246").attr("disabled", true);
@@ -726,7 +599,7 @@
                 <tbody>
                 <tr>
                     <td>
-                        <label>Enrolled by:</label>
+                        <label>Clinic Team Leader:</label>
                         <encounterProvider role="Provider" style="autocomplete"/>
                     </td>
                     <td>
