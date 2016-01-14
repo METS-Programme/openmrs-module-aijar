@@ -27,10 +27,6 @@ public class PatientIdentifierTypes {
             return "e1731641-30ab-102d-86b0-7a5022ba4115";
         }
 
-        public boolean required() {
-            return true;
-        }
-
         public String format() {
             return "[X][X][X]/[0-9][0-9][0-9][0-9][0-9]";
         }
@@ -56,10 +52,6 @@ public class PatientIdentifierTypes {
             return "2c5b695d-4bf3-452f-8a7c-fe3ee3432ffe";
         }
 
-        public boolean required() {
-            return true;
-        }
-
         public String format() {
             return "[E][X][P]/[0-9][0-9][0-9][0-9]";
         }
@@ -74,6 +66,11 @@ public class PatientIdentifierTypes {
         @Override
         public String name() {
             return "OpenMRS ID";
+        }
+
+        @Override
+        public boolean required() {
+            return true;
         }
 
         @Override
