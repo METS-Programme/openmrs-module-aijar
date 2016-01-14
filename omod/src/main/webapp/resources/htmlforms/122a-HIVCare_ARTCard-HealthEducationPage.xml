@@ -1,53 +1,16 @@
 <htmlform formName="HIV ART CARD |2. Health Education Page"
-          formDescription="Captures health eduction and counseling encounters"
-          formEncounterType="6d88e370-f2ba-476b-bf1b-d8eaf3b1b67e"
-          formUuid="b8224534-7df0-4c00-ba8e-6b1f291087eb"
-          formVersion="1.2">
+		  formDescription="Captures health eduction and counseling encounters"
+		  formEncounterType="6d88e370-f2ba-476b-bf1b-d8eaf3b1b67e"
+		  formUuid="b8224534-7df0-4c00-ba8e-6b1f291087eb"
+		  formVersion="1.2">
 	<macros>
 		headerColor =#8fabc7
 		fontOnHeaderColor = white
 	</macros>
 	<style>
-
-.error{color: red;
-		padding: 10px;}
-		#inner tbody tr:nth-child(odd) {
-		background-color: #FBFBFB;
+		table{
+		width:100%;
 		}
-
-		#br {
-		display: table-row
-		}
-
-		#inner th {
-		font-size: 12px;
-		text-align: center;
-		background-color: #8fabc7;
-		color: #ffffff;
-		border-collapse: collapse;
-		border: 2px solid grey;
-		border-style: solid;
-		border-width: 1px;
-		text-align: center;
-		padding: 10px;
-		}
-
-		#inner,
-		#inner
-		td {
-		border-collapse:
-		collapse;
-		border: 2px solid
-		grey;
-		border-style:
-		solid;
-		border-width: 1px;
-		margin:
-		1px;
-		padding: 10px;
-		}
-
-		#inner
 		td.vertical-text {
 		transform:
 		rotate(90deg);
@@ -55,248 +18,46 @@
 		pre-wrap;
 		width: 100px;
 		}
-
-		.ai-page-frame {
-		padding: 5px;
-		background-color:
-		white;
-		font-family: 'Lucida Grande',
-		'Lucida Sans', Arial, sans-serif;
-		float:
-		left;
-		width: 100%;
-		clear: both;
-		display: block;
-		font-size: 12px;
-		}
-		.section{
-		width: 99%;
-		margin-bottom:
-		10px;
-		}
-		.section fieldset{
-		width: 95%;
-		}
-
-		.entry-point th, .entry-point td {
-		padding: 5px 10px;
-		border: 1px solid
-		#FFF;
-		}
-
-		form input, form select, form
-		textarea, form ul.select, .form
-		input, .form
-		select, .form textarea,
-		.form ul.select {
-		min-width: 70%;
-		margin-left: 10px;
-		padding: 5px 0px;
-		}
-		form select, .form
-		select {
-		min-width: auto;
-		}
-
-		table th, table td {
-		padding:0px;
-
-		}
-
-		select
-		{
-		height: 26px;
-		padding: 0 0 0
-		8px;
-		overflow: hidden;
-		position:
-		relative;
-		border: 1px
-		solid
-		#aaa;
-		white-space:
-		nowrap;
-		line-height: 26px;
-		color:
-		#444;
-		text-decoration:
-		none;
-		border-radius: 4px;
-		background-clip:
-		padding-box;
-		-webkit-touch-callout:
-		none;
-		-webkit-user-select: none;
-		-moz-user-select: none;
-		-ms-user-select:
-		none;
-		user-select: none;
-		background-color: #fff;
-		background-image:
-		-webkit-gradient(linear, left
-		bottom, left top,
-		color-stop(0, #eee),
-		color-stop(0.5, #fff));
-		background-image:
-		-webkit-linear-gradient(center bottom, #eee 0%, #fff
-		50%);
-		background-image: -moz-linear-gradient(center bottom, #eee 0%,
-		#fff
-		50%);
-		filter:
-		progid:DXImageTransform.Microsoft.gradient(startColorstr =
-		'#ffffff',
-		endColorstr = '#eeeeee', GradientType = 0);
-		background-image:
-		linear-gradient(top, #fff 0%, #eee 50%);
-		}
-
-		.ai-html-row{
-		width: 100%;
-		float:left;
-		}
-
-		.ai-html-row-col2{
-		width: 49%;
-		float:left;
-		}
-
-		.ai-html-row-col2 fieldset{
-		width: 90%;
-		}
-
-		form input, form
-		select, form
-		textarea, form ul.select, .form input, .form
-		select, .form
-		textarea,
-		.form ul.select {
-		min-width: 30%;
-		padding: 10px;
-		}
-
-		form label, .form label {
-		margin-left: 10px;}
 	</style>
 
 	<script type="text/javascript">
-		function doEnableDisable() {
-		$j(".enableDisable").each(function () {
-		var group = $j(this);
+		if (jQuery) {
+		jq(document).ready(function () {
+		if (jq.browser.msie) {
+		jq(":checkbox").click(function () {
+		jq(this).change();
+		});
+		}
 
-		function
-		disableFn() {
-		group.children("#disabled").fadeTo(250, 0.33);
-		group.children("#disabled").find(":checkbox").attr("checked", false);
-		//uncheck
+		jq(".enableDisable").each(function () {
+		var group = jq(this);
 
-		group.children("#disabled").find("input").attr("disabled",
-		true);
-		//disable
+		function disableFn() {
+		group.children("#disabled").fadeTo(250, 1);
+		group.children("#disabled").find(":checkbox").attr("checked", false); //uncheck
+		// group.children("#disabled").find("input[type$='text']").val("");
+		group.children("#disabled").find("input").attr("disabled", true); //disable
+		group.children("#disabled").find("select").attr("disabled", true);
+		group.children("#disabled").find("textarea").attr("disabled", true);
 		}
 
 		function enableFn() {
 		group.children("#disabled").fadeTo(250, 1);
 		group.children("#disabled").find("input").attr("disabled", false);
+		group.children("#disabled").find("select").attr("disabled", false);
+		group.children("#disabled").find("textarea").attr("disabled", false);
+
 		}
 
 		disableFn();
-
-		$j(this).children("#trigger").find(":checkbox:first").change(function
-		() {
-		var checked = $j(this).attr("checked");
+		jq(this).children("#trigger").find(":checkbox:first").change(function () {
+		var checked = jq(this).attr("checked");
 		if (checked == "checked") {
 		enableFn();
 		} else {
 		disableFn();
 		}
 		});
-		});
-		}
-
-		if (jQuery) {
-		$j(document).ready(function () {
-		if ($j.browser.msie) {
-		$j(":checkbox").click(function () {
-		$j(this).change();
-		});
-		}
-
-		setTimeout("doEnableDisable()", 500);
-
-		$j(".checkboxGroup").each(function () {
-		var group = $j(this);
-		var
-		uncheckAll = function () {
-		group.find("input[type$='checkbox']").attr("checked", false);
-		group.find("input[type$='checkbox']").change();
-		}
-		var uncheckRadioAndAll
-		= function () {
-		group.find("#checkboxAll,#checkboxRadio").find("input[type$='checkbox']").attr("checked",
-		false);
-		group.find("#checkboxAll,#checkboxRadio").find("input[type$='checkbox']").change();
-		}
-
-
-		group.find("#checkboxAll").find("input").click(
-		/* This was tricky...
-		A number of things needed to happen
-		Basically, This is supposed to
-		treat a group of inputs as if
-		were all one big checkbox. It is designed
-		so that a checkbox
-		can be next to an input, and the user clicks the
-		input, the
-		checkbox checks as well. But, when the user clicks the
-		checkbox,
-		the browser marks the checkbox as checked. Therefore, when we
-		check
-		if the checkbox is already checked, it always respondes true...
-		We needed to have 2 cases: when the clicking action is on the first
-		checkbox
-		and when the action is on any other. */
-		function () {
-		var flip;
-		var checked = $j(this).siblings(":checkbox:first").attr("checked");
-		if
-		($j(this).attr("name") ==
-		$j(this).parents("#checkboxAll:first").find(":checkbox:first").attr("name"))
-		{
-		checked = $j(this).attr("checked");
-		flip = checked;
-		} else {
-		flip =
-		!checked;
-		}
-		if ($j(this).attr("type") == "text") if (flip == false) flip
-		= !filp; //
-		this is so the user doesn't go to check the checkbox, then
-		uncheck it
-		when they hit the input.
-		uncheckAll();
-		$j(this).parents("#checkboxAll:first").find(":checkbox").attr("checked",
-		flip);
-		$j(this).parents("#checkboxAll:first").find(":checkbox").change();
-		}
-		);
-
-
-		group.find("#checkboxRadio").find("input[type$='checkbox']").click(function
-		() {
-		uncheckAll();
-		$j(this).siblings("input[type$ =
-		'checkbox']").attr("checked", false);
-		$j(this).attr("checked", true);
-		$j(this).change();
-		});
-
-		group.find("#checkboxCheckbox").click(
-		function ()
-		{
-		uncheckRadioAndAll();
-		}
-		);
 		});
 		});
 		}
@@ -314,15 +75,15 @@
 					<tr>
 						<td colspan="2">
 							<label>Encounter Date:</label>
-							<encounterDate default="today" />
+							<encounterDate default="today"/>
 						</td>
 						<td>
 							<label>Clinical Team Leader:</label>
-							<encounterProvider role="Provider" style="autocomplete" />
+							<encounterProvider role="Provider" style="autocomplete"/>
 						</td>
 						<td>
 							<label>Encounter Location:</label>
-							<encounterLocation default="1" />
+							<encounterLocation default="1"/>
 						</td>
 					</tr>
 				</tbody>
@@ -335,2037 +96,415 @@
 					<tbody>
 						<tr>
 							<td colspan="2"></td>
-							<td>Date/Comments</td>
-							<td>Date/Comments</td>
-							<td>Date/Comments</td>
+							<td></td>
+							<td>Date</td>
+							<td>Comments</td>
 						</tr>
-						<tr>
+						<tr class="enableDisable">
 							<td rowspan="11" class="vertical-text">
 								Educate on basics, prevention,
 								disclosure
 							</td>
-							<td>Basic HIV education, transmission:</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99169" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99200" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99201" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td style="width:20%;">Basic HIV education, transmission:</td>
+							<td id="trigger">
+								<obs conceptId="99169" answerConceptId="90003"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99169" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99200" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99201" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99200"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99169" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99200" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99201" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99201" rows="2" cols="15"/>
 							</td>
 						</tr>
 
-						<tr>
+						<tr class="enableDisable">
 							<td>Prevention: abstinence, safer sex, condoms:</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99170" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99202" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99203" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="trigger">
+								<obs conceptId="99170" answerConceptId="90003"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99170" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99202" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99203" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99202"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99170" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99202" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99203" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99203" rows="2" cols="15"/>
 							</td>
 						</tr>
 
-						<tr>
+						<tr class="enableDisable">
 							<td>Prevention: household precautions, what is safe:</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99171" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99204" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99205" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="trigger">
+								<obs conceptId="99171" answerConceptId="90003"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99171" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99204" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99205" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99204"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99171" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99204" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99205" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99205" rows="2" cols="15"/>
 							</td>
 						</tr>
 
-						<tr>
+						<tr class="enableDisable">
 							<td>Post test counselling: implications of results:</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99172" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99206" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99207" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="trigger">
+								<obs conceptId="99172" answerConceptId="90003"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99172" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99206" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99207" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99206"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99172" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99206" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99207" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99207" rows="2" cols="15"/>
 							</td>
 						</tr>
 
-						<tr>
+						<tr class="enableDisable">
 							<td>Positive living:</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99173" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99208" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99209" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="trigger">
+								<obs conceptId="99173" answerConceptId="90003"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99173" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99208" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99209" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99208"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99173" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99208" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99209" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99209" rows="2" cols="15"/>
 							</td>
 						</tr>
 
-						<tr>
+						<tr class="enableDisable">
 							<td>Testing partners:</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99174" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99210" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99211" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="trigger">
+								<obs conceptId="99174" answerConceptId="90003"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99174" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99210" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99211" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99210"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99174" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99210" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99211" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99211" rows="2" cols="15"/>
 							</td>
 						</tr>
 
-						<tr>
+						<tr class="enableDisable">
 							<td>DIsclosure, to whom disclosed(list):</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99175" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99212" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99213" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="trigger">
+								<obs conceptId="99175" answerConceptId="90003"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99175" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99212" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99213" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99212"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99175" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99212" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99213" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99213" rows="2" cols="15"/>
 							</td>
 						</tr>
 
-						<tr>
+						<tr class="enableDisable">
 							<td>Family living situation:</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99176" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99214" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99215" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="trigger">
+								<obs conceptId="99176" answerConceptId="90003"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99176" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99214" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99215" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99214"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99176" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99214" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99215" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99215" rows="2" cols="15"/>
 							</td>
 						</tr>
 
-						<tr>
+						<tr class="enableDisable">
 							<td>Shared confidentiality:</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99177" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99216" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99217" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="trigger">
+								<obs conceptId="99177" answerConceptId="90003"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99177" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99216" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99217" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99216"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99177" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99216" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99217" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99217" rows="2" cols="15"/>
 							</td>
 						</tr>
 
-						<tr>
+						<tr class="enableDisable">
 							<td>Reproductive choices, prevention MTCT:</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99178" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99218" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99219" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="trigger">
+								<obs conceptId="99178" answerConceptId="90003"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99178" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99218" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99219" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99218"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99178" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99218" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99219" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99219" rows="2" cols="15"/>
 							</td>
 						</tr>
 
-						<tr>
+						<tr class="enableDisable">
 							<td>Child's blood test:</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99179" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99220" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99221" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="trigger">
+								<obs conceptId="99179" answerConceptId="90003"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99179" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99220" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99221" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99220"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99179" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99220" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99221" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99221" rows="2" cols="15"/>
 							</td>
 						</tr>
 
-						<tr>
+						<tr class="enableDisable">
 							<td rowspan="4" class="vertical-text">
 								Progressio on RX
 							</td>
 							<td>Progression of disease:</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99180" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99222" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99223" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="trigger">
+								<obs conceptId="99180" answerConceptId="90003"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99180" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99222" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99223" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99222"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99180" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99222" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99223" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99223" rows="2" cols="15"/>
 							</td>
 						</tr>
 
-						<tr>
+						<tr class="enableDisable">
 							<td>Malaria prevention, IPT, ITN:</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99181" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99224" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99225" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="trigger">
+								<obs conceptId="99181" answerConceptId="90003"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99181" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99224" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99225" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99224"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99181" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99224" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99225" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99225" rows="2" cols="15"/>
 							</td>
 						</tr>
 
-						<tr>
+						<tr class="enableDisable">
 							<td>Available treatment/prophylaxis:</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99182" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99226" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99227" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="trigger">
+								<obs conceptId="99182" answerConceptId="90003"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99182" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99226" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99227" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99226"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99182" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99226" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99227" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99227" rows="2" cols="15"/>
 							</td>
 						</tr>
 
-						<tr>
+						<tr class="enableDisable">
 							<td>Follow-up appointments, clinical team:</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99183" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99228" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99229" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="trigger">
+								<obs conceptId="99183" answerConceptId="90003"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99183" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99228" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99229" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99228"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99183" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99228" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99229" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99229" rows="2" cols="15"/>
 							</td>
 						</tr>
 
-						<tr>
+						<tr class="enableDisable">
 							<td rowspan="10" class="vertical-text">
 								ART Preparation, initiation, support,
 								monitor, Rx
 							</td>
 							<td>ART--educate on essentials(locally adapted):</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99184" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99230" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99231" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="trigger">
+								<obs conceptId="99184" answerConceptId="90003"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99184" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99230" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99231" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99230"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99184" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99230" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99231" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99231" rows="2" cols="15"/>
 							</td>
 						</tr>
 
 
-						<tr>
+						<tr class="enableDisable">
 							<td>Why complete adherence needed:</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99185" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99233" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99232" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="trigger">
+								<obs conceptId="99185" answerConceptId="90003"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99185" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99233" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99232" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99233"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99185" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99233" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99232" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99232" rows="2" cols="15"/>
 							</td>
 						</tr>
 
-						<tr>
+						<tr class="enableDisable">
 							<td>Adherence preparation, indicate visits:</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99191" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99234" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99235" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="trigger">
+								<obs conceptId="99191" answerConceptId="90003"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99191" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99234" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99235" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99234"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99191" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99234" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99235" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99235" rows="2" cols="15"/>
 							</td>
 						</tr>
 
-						<tr>
+						<tr class="enableDisable">
 							<td>Indicate when READY for ART:DATE or result Clinical team
 								discussion:
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99186" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99236" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99237" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="trigger">
+								<obs conceptId="99186" answerConceptId="90003"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99186" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99236" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99237" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99236"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99186" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99236" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99237" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99237" rows="2" cols="15"/>
 							</td>
 						</tr>
 
-						<tr>
+						<tr class="enableDisable">
 							<td>Explain dose, when to take:</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99187" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99238" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99239" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="trigger">
+								<obs conceptId="99187" answerConceptId="90003"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99187" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99238" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99239" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99238"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99187" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99238" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99239" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99239" rows="2" cols="15"/>
 							</td>
 						</tr>
 
-						<tr>
+						<tr class="enableDisable">
 							<td>What can occur, how to manage side effects:</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99188" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99240" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99241" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="trigger">
+								<obs conceptId="99188" answerConceptId="90003"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99188" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99240" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99241" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99240"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99188" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99240" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99241" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99241" rows="2" cols="15"/>
 							</td>
 						</tr>
 
-						<tr>
+						<tr class="enableDisable">
 							<td>What to do if one forgets dose:</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99189" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99242" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99243" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="trigger">
+								<obs conceptId="99189" answerConceptId="90003"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99189" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99242" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99243" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99242"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99189" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99242" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99243" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99243" rows="2" cols="15"/>
 							</td>
 						</tr>
 
-						<tr>
+						<tr class="enableDisable">
 							<td>What to do when traveling:</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99190" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99244" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99245" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="trigger">
+								<obs conceptId="99190" answerConceptId="90003"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99190" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99244" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99245" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99244"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99190" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99244" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99245" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99245" rows="2" cols="15"/>
 							</td>
 						</tr>
 
-						<tr>
+						<tr class="enableDisable">
 							<td>Adherence plan(schedule, acids explain diary):</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99246" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99248" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99247" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="trigger">
+								<obs conceptId="99246" answerConceptId="90003"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99246" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99248" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99247" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99248"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99246" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99248" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99247" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99247" rows="2" cols="15"/>
 							</td>
 						</tr>
 
-						<tr>
+						<tr class="enableDisable">
 							<td>Treatment supporter preparation:</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99192" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99249" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99250" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="trigger">
+								<obs conceptId="99192" answerConceptId="90003"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99192" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99249" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99250" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99249"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99192" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99249" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99250" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99250" rows="2" cols="15"/>
 							</td>
 						</tr>
 
-						<tr>
+						<tr class="enableDisable">
 							<td rowspan="5" class="vertical-text">
 								Home-based Care
 							</td>
 							<td>ARV support group:</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99194" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99253" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99254" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="trigger">
+								<obs conceptId="99194" answerConceptId="90003"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99194" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99253" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99254" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99253"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99194" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99253" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99254" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99254" rows="2" cols="15"/>
 							</td>
 						</tr>
 
-						<tr>
+						<tr class="enableDisable">
 							<td>How to contact clinic:</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99195" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99255" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99256" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="trigger">
+								<obs conceptId="99195" answerConceptId="90003"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99195" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99255" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99256" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99255"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99195" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99255" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99256" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99256" rows="2" cols="15"/>
 							</td>
 						</tr>
 
-						<tr>
+						<tr class="enableDisable">
 							<td>Symptom management or palliatve care at home:</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99196" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99257" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99258" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="trigger">
+								<obs conceptId="99196" answerConceptId="90003"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99196" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99257" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99258" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99257"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99196" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99257" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99258" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99258" rows="2" cols="15"/>
 							</td>
 						</tr>
 
-						<tr>
+						<tr class="enableDisable">
 							<td>Caregive booklet:</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99197" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99259" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99260" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="trigger">
+								<obs conceptId="99197" answerConceptId="90003"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99197" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99259" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99260" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99259"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99197" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-											<obs conceptId="99259" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99260" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99260" rows="2" cols="15"/>
 							</td>
 						</tr>
 
-						<tr>
+						<tr class="enableDisable">
 							<td>Support groups including community support group:</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99199" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-
-											<obs conceptId="99263" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99264" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="trigger">
+								<obs conceptId="99199" answerConceptId="90003"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99199" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
+							<td id="disabled">
 
-											<obs conceptId="99263" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99264" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+								<obs conceptId="99263"/>
 							</td>
-							<td>
-								<span class="enableDisable">
-									<span id="trigger">
-										<obs conceptId="99199" answerConceptId="90003" />
-									</span>
-									<span id="disabled">
-										<p>
-											<label>
-												<b>Date</b>
-											</label>
-
-											<obs conceptId="99263" />
-										</p>
-										<p>
-											<label>
-												<b>Comment</b>
-											</label>
-											<obs conceptId="99264" rows="2" cols="15" />
-										</p>
-									</span>
-								</span>
+							<td id="disabled">
+								<obs conceptId="99264" rows="2" cols="15"/>
 							</td>
 						</tr>
 					</tbody>
@@ -2374,12 +513,12 @@
 		</section>
 	</div>
 	<section>
-		<submit />
+		<submit/>
 	</section>
-	<br />
+	<br/>
 	<small>
 		<i>
-		 Version 1.2 Last revised on 20/Dec/2015 - Ministry of Health
+			Version 1.2 Last revised on 20/Dec/2015 - Ministry of Health
 		</i>
 	</small>
 </htmlform>
