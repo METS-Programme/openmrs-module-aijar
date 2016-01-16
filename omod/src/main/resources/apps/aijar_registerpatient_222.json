@@ -1,0 +1,256 @@
+[
+  {
+    "id": "aijar.registrationapp.registerPatient",
+    "instanceOf": "registrationapp.registerPatient",
+    "label": "aijar.registrationapp.registerpatient.label",
+    "description": "aijar.registrationapp.registerpatient.description",
+    "extensions": [
+      {
+        "id": "aijar.registrationapp.registerPatient.homepageLink",
+        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+        "type": "link",
+        "label": "aijar.registrationapp.registerpatient.label",
+        "url": "aijar/aijarRegisterPatient.page?appId=aijar.registrationapp.registerPatient",
+        "icon": "icon-user",
+        "order": 1,
+        "requiredPrivilege": "App: registrationapp.registerPatient"
+      }
+    ],
+    "config": {
+      "allowUnknownPatients": false,
+      "allowRetrospectiveEntry": true,
+      "afterCreatedUrl": "/coreapps/clinicianfacing/patient.page?patientId={{patientId}}",
+      "sections": [
+        [
+          {
+            "id": "aijar.registrationapp.registerPatient",
+            "instanceOf": "registrationapp.registerPatient",
+            "label": "aijar.registrationapp.registerpatient.label",
+            "description": "aijar.registrationapp.registerpatient.description",
+            "extensions": [
+              {
+                "id": "aijar.registrationapp.registerPatient.homepageLink",
+                "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+                "type": "link",
+                "label": "aijar.registrationapp.registerpatient.label",
+                "url": "aijar/aijarRegisterPatient.page?appId=aijar.registrationapp.registerPatient",
+                "icon": "icon-user",
+                "order": 1,
+                "requiredPrivilege": "App: registrationapp.registerPatient"
+              }
+            ],
+            "config": {
+              "allowUnknownPatients": false,
+              "allowRetrospectiveEntry": true,
+              "afterCreatedUrl": "/coreapps/clinicianfacing/patient.page?patientId={{patientId}}",
+              "sections": [
+                {
+                  "id": "contactInfo",
+                  "label": "aijar.registrationapp.contacts",
+                  "questions": [
+                    {
+                      "legend": "aijar.registrationapp.birthlocation",
+                      "fields": [
+                        {
+                          "type": "personAddress",
+                          "label": "aijar.registrationapp.patient.address.question",
+                          "widget": {
+                            "providerName": "registrationapp",
+                            "fragmentId": "field/personAddressWithHierarchy",
+                            "config": {
+                              "shortcutFor": "address4",
+                              "manualFields": [
+                                "address5"
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "legend": "aijar.registrationapp.registerpatient.phonenumber",
+                      "fields": [
+                        {
+                          "type": "personAttribute",
+                          "label": "aijar.registrationapp.registerpatient.phonenumber.question",
+                          "uuid":  "14d4f066-15f5-102d-96e4-000c29c2a5d7",
+                          "widget": {
+                            "providerName": "uicommons",
+                            "fragmentId": "field/text"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "legend": "aijar.registrationapp.registerpatient.maritalstatus",
+                      "fields": [
+                        {
+                          "type": "obs",
+                          "label": "aijar.registrationapp.registerpatient.maritalstatus.question",
+                          "formFieldName": "obs.dce0c134-30ab-102d-86b0-7a5022ba4115",
+                          "widget": {
+                            "providerName": "uicommons",
+                            "fragmentId": "field/maritalStatus"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "legend": "aijar.registrationapp.nextofkin",
+                      "id": "nofLabel",
+                      "fields": [
+                        {
+                          "type": "personAttribute",
+                          "label": "aijar.registrationapp.nextofkin.names",
+                          "formFieldName": "nextOfKinName",
+                          "uuid": "976bcb95-1858-4aa4-8d1a-16fd211a1200",
+                          "widget": {
+                            "providerName": "uicommons",
+                            "fragmentId": "field/text"
+                          }
+                        },
+                        {
+                          "type": "personAttribute",
+                          "label": "aijar.registrationapp.nextofkin.phonenumber",
+                          "formFieldName": "nextOfKinPhone",
+                          "uuid": "02daa466-e951-41ca-a7ad-c94cbee1fde6",
+                          "widget": {
+                            "providerName": "uicommons",
+                            "fragmentId": "field/text"
+                          },
+                          "cssClasses": [
+                            "number"
+                          ]
+                        },
+                        {
+                          "type": "personAttribute",
+                          "label": "aijar.registrationapp.nextofkin.relationship",
+                          "formFieldName": "nextOfKinRelationship",
+                          "uuid": "0d87f22c-daa4-4fdb-a0b5-b31f232cb29a",
+                          "widget": {
+                            "providerName": "uicommons",
+                            "fragmentId": "field/text"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+
+
+
+
+
+
+
+
+        {
+          "id": "contactInfo",
+          "label": "aijar.registrationapp.contacts",
+          "questions": [
+            {
+              "legend": "aijar.registrationapp.address",
+              "fields": [
+                {
+                  "type": "personAddress",
+                  "label": "aijar.registrationapp.patient.address.question",
+                  "widget": {
+                    "providerName": "registrationapp",
+                    "fragmentId": "field/personAddressWithHierarchy",
+                    "config": {
+                      "shortcutFor": "address4",
+                      "manualFields": [
+                        "address5"
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "legend": "aijar.registrationapp.registerpatient.phonenumber",
+              "fields": [
+                {
+                  "type": "personAttribute",
+                  "label": "aijar.registrationapp.registerpatient.phonenumber.question",
+                  "uuid":  "14d4f066-15f5-102d-96e4-000c29c2a5d7",
+                  "widget": {
+                    "providerName": "uicommons",
+                    "fragmentId": "field/text"
+                  }
+                }
+              ]
+            },
+
+            {
+              "legend": "aijar.registrationapp.nextofkin",
+              "id": "nofLabel",
+              "fields": [
+                {
+                  "type": "personAttribute",
+                  "label": "aijar.registrationapp.nextofkin.names",
+                  "formFieldName": "nextOfKinName",
+                  "uuid": "8d871d18-c2cc-11de-8d13-0010c6dffd0f",
+                  "widget": {
+                    "providerName": "uicommons",
+                    "fragmentId": "field/text"
+                  }
+                },
+                {
+                  "type": "personAttribute",
+                  "label": "aijar.registrationapp.nextofkin.contactnumber",
+                  "formFieldName": "nextOfKinPhone",
+                  "uuid": "8d871386-c2cc-11de-8d13-0010c6dffd0f",
+                  "widget": {
+                    "providerName": "uicommons",
+                    "fragmentId": "field/text"
+                  },
+                  "cssClasses": [
+                    "number"
+                  ]
+                },
+                {
+                  "type": "personAttribute",
+                  "label": "aijar.registrationapp.nextofkin.relationship",
+                  "formFieldName": "nextOfKinRelationship",
+                  "uuid": "8d871386-c2cc-11de-8d13-0010c6dffd0f",
+                  "widget": {
+                    "providerName": "uicommons",
+                    "fragmentId": "field/text"
+                  }
+                },
+                {
+                  "legend": "aijar.registrationapp.registerpatient.maritalstatus",
+                  "fields": [
+                    {
+                      "type": "obs",
+                      "label": "aijar.registrationapp.registerpatient.maritalstatus.question",
+                      "formFieldName": "obs.90244AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                      "widget": {
+                        "providerName": "aijar",
+                        "fragmentId": "field/maritalStatus"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "obs",
+                  "label": "aijar.registrationapp.nextofkin.relationship",
+                  "formFieldName": "obs.90269AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "widget": {
+                    "providerName": "aijar",
+                    "fragmentId": "field/nextofkinrelationship"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

@@ -23,14 +23,57 @@
       "sections": [
         {
           "id": "contactInfo",
-          "label": "aijar.registrationapp.contacts",
+          "label": "aijar.registrationapp.otherdetails",
           "questions": [
             {
-              "legend": "aijar.registrationapp.birthlocation",
+              "legend": "aijar.registrationapp.registerpatient.maritalstatus",
+              "fields": [
+                {
+                  "type": "obs",
+                  "label": "aijar.registrationapp.registerpatient.maritalstatus.question",
+                  "formFieldName": "obs.dce0c134-30ab-102d-86b0-7a5022ba4115",
+                  "widget": {
+                    "providerName": "aijar",
+                    "fragmentId": "field/maritalStatus"
+                  }
+                },
+                {
+                  "type": "personAttribute",
+                  "label": "aijar.registrationapp.patient.birth.location.question",
+                  "uuid":  "8d8718c2-c2cc-11de-8d13-0010c6dffd0f",
+                  "formFieldName": "birthLocation",
+                  "widget": {
+                    "providerName": "uicommons",
+                    "fragmentId": "field/text"
+                  }
+                }
+              ]
+            },
+            {
+              "legend": "aijar.registrationapp.registerpatient.phonenumber",
+              "fields": [
+                {
+                  "type": "personAttribute",
+                  "label": "aijar.registrationapp.registerpatient.phonenumber.question",
+                  "formFieldName": "phoneNumber",
+                  "uuid":  "14d4f066-15f5-102d-96e4-000c29c2a5d7",
+                  "widget": {
+                    "providerName": "uicommons",
+                    "fragmentId": "field/text"
+                  },
+                  "cssClasses": [
+                    "number"
+                  ]
+                }
+              ]
+            },
+            {
+              "legend": "aijar.registrationapp.address",
               "fields": [
                 {
                   "type": "personAddress",
-                  "label": "aijar.registrationapp.patient.address.question",
+                  "label": "aijar.registrationapp.address.question",
+                  "formFieldName": "patientAddress",
                   "widget": {
                     "providerName": "registrationapp",
                     "fragmentId": "field/personAddressWithHierarchy",
@@ -46,13 +89,13 @@
             },
             {
               "legend": "aijar.registrationapp.nextofkin",
-              "id": "nofLabel",
+              "id": "nofKinLabel",
               "fields": [
                 {
                   "type": "personAttribute",
                   "label": "aijar.registrationapp.nextofkin.names",
                   "formFieldName": "nextOfKinName",
-                  "uuid": "8d871d18-c2cc-11de-8d13-0010c6dffd0f",
+                  "uuid": "976bcb95-1858-4aa4-8d1a-16fd211a1200",
                   "widget": {
                     "providerName": "uicommons",
                     "fragmentId": "field/text"
@@ -60,9 +103,9 @@
                 },
                 {
                   "type": "personAttribute",
-                  "label": "aijar.registrationapp.nextofkin.contactnumber",
+                  "label": "aijar.registrationapp.nextofkin.phonenumber",
                   "formFieldName": "nextOfKinPhone",
-                  "uuid": "8d871386-c2cc-11de-8d13-0010c6dffd0f",
+                  "uuid": "02daa466-e951-41ca-a7ad-c94cbee1fde6",
                   "widget": {
                     "providerName": "uicommons",
                     "fragmentId": "field/text"
@@ -75,10 +118,38 @@
                   "type": "personAttribute",
                   "label": "aijar.registrationapp.nextofkin.relationship",
                   "formFieldName": "nextOfKinRelationship",
-                  "uuid": "8d871386-c2cc-11de-8d13-0010c6dffd0f",
+                  "uuid": "dce138f8-30ab-102d-86b0-7a5022ba4115",
+                  "widget": {
+                    "providerName": "aijar",
+                    "fragmentId": "field/patientRelationship"
+                  }
+                }
+              ]
+            },
+            {
+              "legend": "aijar.registrationapp.deceased",
+              "fields": [
+                {
+                  "type": "personAttribute",
+                  "label": "aijar.registrationapp.deceased.dateofdeath.question",
+                  "uuid":  "dce14bd7-30ab-102d-86b0-7a5022ba4115",
+                  "formFieldName": "dateOfDeath",
                   "widget": {
                     "providerName": "uicommons",
-                    "fragmentId": "field/text"
+                    "fragmentId": "field/multipleInputDate",
+                    "config":{
+                      "minYear": "minAgeYear",
+                      "maxYear": "maxAgeYear"
+                    }
+                  }
+                },
+                {
+                  "type": "obs",
+                  "label": "aijar.registrationapp.deceased.reasonofdeath.question",
+                  "formFieldName": "obs.dca2c3f2-30ab-102d-86b0-7a5022ba4115",
+                  "widget": {
+                    "providerName": "aijar",
+                    "fragmentId": "field/causeOfDeath"
                   }
                 }
               ]
