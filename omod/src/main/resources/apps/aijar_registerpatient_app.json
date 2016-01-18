@@ -36,11 +36,16 @@
                     "providerName": "aijar",
                     "fragmentId": "field/maritalStatus"
                   }
-                },
+                }
+              ]
+            },
+            {
+              "legend": "aijar.registrationapp.patient.birth.location.question",
+              "fields": [
                 {
                   "type": "personAttribute",
                   "label": "aijar.registrationapp.patient.birth.location.question",
-                  "uuid":  "8d8718c2-c2cc-11de-8d13-0010c6dffd0f",
+                  "uuid": "8d8718c2-c2cc-11de-8d13-0010c6dffd0f",
                   "formFieldName": "birthLocation",
                   "widget": {
                     "providerName": "uicommons",
@@ -56,7 +61,7 @@
                   "type": "personAttribute",
                   "label": "aijar.registrationapp.registerpatient.phonenumber.question",
                   "formFieldName": "phoneNumber",
-                  "uuid":  "14d4f066-15f5-102d-96e4-000c29c2a5d7",
+                  "uuid": "14d4f066-15f5-102d-96e4-000c29c2a5d7",
                   "widget": {
                     "providerName": "uicommons",
                     "fragmentId": "field/text"
@@ -132,12 +137,12 @@
                 {
                   "type": "personAttribute",
                   "label": "aijar.registrationapp.deceased.dateofdeath.question",
-                  "uuid":  "dce14bd7-30ab-102d-86b0-7a5022ba4115",
+                  "uuid": "dce14bd7-30ab-102d-86b0-7a5022ba4115",
                   "formFieldName": "dateOfDeath",
                   "widget": {
                     "providerName": "uicommons",
                     "fragmentId": "field/multipleInputDate",
-                    "config":{
+                    "config": {
                       "minYear": "minAgeYear",
                       "maxYear": "maxAgeYear"
                     }
