@@ -3,8 +3,7 @@
         ${config.label}
         <span>(${ ui.message("emr.formValidation.messages.requiredField.label") })</span>
     </label>
-    <select name="${config.formFieldName}" size="4">
-        <option value=""></option>
+    <select name="${config.formFieldName}">
         <option value ="dce17a7d-30ab-102d-86b0-7a5022ba4115">Parent</option>
         <option value ="dce180a8-30ab-102d-86b0-7a5022ba4115">Child</option>
         <option value ="dce186ca-30ab-102d-86b0-7a5022ba4115">Aunt/Uncle</option>
