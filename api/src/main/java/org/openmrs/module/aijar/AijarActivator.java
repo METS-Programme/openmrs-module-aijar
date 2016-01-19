@@ -39,8 +39,7 @@ import org.openmrs.ui.framework.resource.ResourceFactory;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * This class contains the logic that is run every time this module is either started or stopped.
@@ -88,14 +87,8 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             // install commonly used metadata
             installCommonMetadata(deployService);
 
-            // Set the auto generated OpenMRS Identifier as the primary identifier that needs to be displayed
-            administrationService.setGlobalProperty(new GlobalProperty(EmrApiConstants.PRIMARY_IDENTIFIER_TYPE, PatientIdentifierTypes.OPENMRS_ID.uuid()));
-
-            // set the HIV care number and EID number as additional identifiers that can be searced for
-            administrationService.setGlobalProperty(new GlobalProperty(EmrApiConstants.GP_EXTRA_PATIENT_IDENTIFIER_TYPES, PatientIdentifierTypes.HIV_CARE_NUMBER.uuid() + "," + PatientIdentifierTypes.EXPOSED_INFANT_NUMBER.uuid()));
-
-            // set the name of the application
-            administrationService.setGlobalProperty(new GlobalProperty("application.name", "AIJAR - Uganda eHealth Solution"));
+            // save defined global properties
+            administrationService.saveGlobalProperties(configureGlobalProperties());
 
         } catch (Exception e) {
             Module mod = ModuleFactory.getModuleById("aijar");
@@ -104,6 +97,37 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         }
 
         log.info("aijar Module started");
+    }
+
+    /**
+     * Configure the global properties for the expected functionality
+     *
+     * @return
+     */
+    private List<GlobalProperty> configureGlobalProperties() {
+        List<GlobalProperty> properties = new ArrayList<GlobalProperty>();
+        // The auto generated OpenMRS Identifier as the primary identifier that needs to be displayed
+        properties.add(new GlobalProperty(EmrApiConstants.PRIMARY_IDENTIFIER_TYPE, PatientIdentifierTypes.OPENMRS_ID.uuid()));
+
+        // set the HIV care number and EID number as additional identifiers that can be searced for
+        properties.add(new GlobalProperty(EmrApiConstants.GP_EXTRA_PATIENT_IDENTIFIER_TYPES, PatientIdentifierTypes.HIV_CARE_NUMBER.uuid() + "," + PatientIdentifierTypes.EXPOSED_INFANT_NUMBER.uuid()));
+
+        // set the name of the application
+        properties.add(new GlobalProperty("application.name", "AIJAR - Uganda eHealth Solution"));
+
+        // the search mode for patients to enable searching any part of names rather than the beginning
+        properties.add(new GlobalProperty("patientSearch.matchMode", "ANYWHERE"));
+
+        // enable searching on parts of the patient identifier
+        // the prefix and suffix provide a % round the entered search term with a like
+        properties.add(new GlobalProperty("patient.identifierPrefix", "%"));
+        properties.add(new GlobalProperty("patient.identifierSuffix", "%"));
+
+        // the RegeX and Search patterns should be empty so that the prefix and suffix matching above can work
+        properties.add(new GlobalProperty("patient.identifierRegex", ""));
+        properties.add(new GlobalProperty("patient.identifierSearchPattern", ""));
+
+        return properties;
     }
 
     private void installCommonMetadata(MetadataDeployService deployService) {
