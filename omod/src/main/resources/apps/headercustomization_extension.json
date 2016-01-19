@@ -1,0 +1,10 @@
+[
+  {
+    "id": "aijar.configureStandardHeader",
+    "extensionPointId": "org.openmrs.module.appui.header.config",
+    "type": "config",
+    "extensionParams": {
+      "logo-icon-url": "/ms/uiframework/resource/aijar/images/moh_logo_large.png"
+    }
+  }
+]
