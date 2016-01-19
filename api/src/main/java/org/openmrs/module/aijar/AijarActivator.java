@@ -170,6 +170,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 
     }
 
+    // Method responsible for HTMLForms insertation
     private void setupHtmlForms() throws Exception {
         try {
             ResourceFactory resourceFactory = ResourceFactory.getInstance();
@@ -180,7 +181,9 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
                     "aijar:htmlforms/122a-HIVCare_ARTCard-HealthEducationPage.xml",
                     "aijar:htmlforms/122a-HIVCare_ARTCard-EncounterPage.xml",
                     "aijar:htmlforms/082a-ExposedInfantClinicalChart-SummaryPage.xml",
-                    "aijar:htmlforms/082a-ExposedInfantClinicalChart-EncounterPage.xml");
+                    "aijar:htmlforms/082a-ExposedInfantClinicalChart-EncounterPage.xml",
+                    "aijar:htmlforms/055b-HCTClientCard.xml",
+                    "aijar:htmlforms/035a-SafeMaleCircumcisionClientCard.xml");
 
             if (htmlforms != null) {
                 for (String htmlform : htmlforms) {
