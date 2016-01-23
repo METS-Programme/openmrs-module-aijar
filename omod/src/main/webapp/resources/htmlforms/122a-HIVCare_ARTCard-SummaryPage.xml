@@ -504,7 +504,7 @@
 
         .ai-page-content {
             width: auto;
-            overflow-x: scroll;
+            overflow-x: visible;
         }
 
         .section {
@@ -513,6 +513,10 @@
 
         .section fieldset {
             width: 90%;
+        }
+
+        .exposed-infant {
+            width: auto;
         }
 
         .entry-point th, .entry-point td {
@@ -606,6 +610,11 @@
                         <label>Enrolled at:</label>
                         <encounterLocation default="1"/>
                     </td>
+                    <td>
+                        <label>Clinic Number:</label>
+                        <patient field="identifier" identifierTypeId="e1731641-30ab-102d-86b0-7a5022ba4115"
+                                 required="true"/>
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -619,7 +628,7 @@
                                 <tbody>
                                 <tr>
                                     <td id="comfirmedDate">
-                                        <lable>Date Confirmed HIV +Ve:</lable>
+                                        <label>Date Confirmed HIV +Ve:</label>
                                         <obs conceptId="90267"/>
                                     </td>
                                     <td>

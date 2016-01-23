@@ -1,9 +1,9 @@
 
 <htmlform formName="Exposed Infant Card |1. Summary Page"
-          formDescription="Captures demographic details for infants born to HIV positive mothers"
-          formEncounterType="8d5b2be0-c2cc-11de-8d13-0010c6dffd0f"
-          formUuid="860c5f2f-cf3c-4c3f-b0c4-9958b6a5a938"
-          formVersion="1.0">
+		  formDescription="Captures demographic details for infants born to HIV positive mothers"
+		  formEncounterType="8d5b27bc-c2cc-11de-8d13-0010c6dffd0f"
+		  formUuid="860c5f2f-cf3c-4c3f-b0c4-9958b6a5a938"
+		  formVersion="1.0">
   <macros>
 		headerColor =#8fabc7
 		fontOnHeaderColor = white
@@ -700,7 +700,10 @@
 
 					<table class="table table-bordered custom-table">
 						<tr>
-							<td colspan="2">Exposed Infant No.</td>
+							<td colspan="2">Exposed Infant No.
+								<patient field="identifier" identifierTypeId="2c5b695d-4bf3-452f-8a7c-fe3ee3432ffe"
+										 required="true"/>
+							</td>
 							<td colspan="2">Date Chart Openned:
 								<encounterDate default="today"></encounterDate>
 							</td>
