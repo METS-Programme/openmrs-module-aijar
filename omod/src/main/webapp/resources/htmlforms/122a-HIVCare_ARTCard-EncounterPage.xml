@@ -170,7 +170,7 @@
 
 		.ai-page-content{
 		width: auto;
-		overflow-x: scroll;
+		overflow-x: visible;
 		}
 
 		form select, .form select {
