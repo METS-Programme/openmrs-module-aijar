@@ -61,6 +61,9 @@
             org.openmrs.module.emrapi
         </require_module>
         <require_module>
+            org.openmrs.module.formentryapp
+        </require_module>
+        <require_module>
             org.openmrs.module.htmlformentry
         </require_module>
         <require_module>

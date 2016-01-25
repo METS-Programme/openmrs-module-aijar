@@ -2,7 +2,13 @@
           formDescription="Card for Capturing Patients undergoing circumcision"
           formEncounterType="8d5b27bc-c2cc-11de-8d13-0010c6dffd0f"
           formUuid="9d9193e7-b038-4c44-a7a3-830baa288565"
-          formVersion="1.2">
+          formVersion="1.2"
+          formAddMetadata="yes"
+          formUILocation="patientDashboard.visitActions"
+          formOrder="1"
+          formIcon="icon-medkit"
+          formShowIf=""
+          formDisplayStyle="Standard">
     <macros>
         headerColor =#8fabc7
         fontOnHeaderColor = white

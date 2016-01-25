@@ -2,7 +2,13 @@
           formDescription="Client Testing Card"
           formEncounterType="8d5b27bc-c2cc-11de-8d13-0010c6dffd0f"
           formUuid="b5c62a98-84d3-43e8-a9be-972185070dd4"
-          formVersion="1.2">
+          formVersion="1.2"
+          formAddMetadata="yes"
+          formUILocation="patientDashboard.visitActions"
+          formOrder="1"
+          formIcon="icon-medkit"
+          formShowIf=""
+          formDisplayStyle="Standard">
     <macros>
         headerColor =#8fabc7
         fontOnHeaderColor = white

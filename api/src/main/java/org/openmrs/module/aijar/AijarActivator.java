@@ -19,11 +19,11 @@ import org.apache.commons.logging.LogFactory;
 import org.openmrs.ConceptName;
 import org.openmrs.GlobalProperty;
 import org.openmrs.api.AdministrationService;
-import org.openmrs.api.FormService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.Module;
 import org.openmrs.module.ModuleActivator;
 import org.openmrs.module.ModuleFactory;
+import org.openmrs.module.aijar.activator.HtmlFormsInitializer;
 import org.openmrs.module.aijar.api.deploy.bundle.CommonMetadataBundle;
 import org.openmrs.module.aijar.api.deploy.bundle.EncounterTypeMetadataBundle;
 import org.openmrs.module.aijar.api.deploy.bundle.UgandaAddressMetadataBundle;
@@ -32,17 +32,18 @@ import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
 import org.openmrs.module.appframework.service.AppFrameworkService;
 import org.openmrs.module.dataexchange.DataImporter;
 import org.openmrs.module.emrapi.EmrApiConstants;
-import org.openmrs.module.htmlformentry.HtmlFormEntryService;
-import org.openmrs.module.htmlformentryui.HtmlFormUtil;
 import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
 import org.openmrs.ui.framework.resource.ResourceFactory;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class contains the logic that is run every time this module is either started or stopped.
+ *
+ * TODO: Refactor the whole class to use initializers like
  */
 public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 
@@ -127,6 +128,10 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         properties.add(new GlobalProperty("patient.identifierRegex", ""));
         properties.add(new GlobalProperty("patient.identifierSearchPattern", ""));
 
+        // Form Entry Settings
+        properties.add(new GlobalProperty("FormEntry.enableDashboardTab", "true"));     // show as a tab on the patient dashboard
+        properties.add(new GlobalProperty("FormEntry.FormEntry.enableOnEncounterTab", "true"));
+
         return properties;
     }
 
@@ -173,24 +178,8 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
     // Method responsible for HTMLForms insertation
     private void setupHtmlForms() throws Exception {
         try {
-            ResourceFactory resourceFactory = ResourceFactory.getInstance();
-            FormService formService = Context.getFormService();
-            HtmlFormEntryService htmlFormEntryService = Context.getService(HtmlFormEntryService.class);
-
-            List<String> htmlforms = Arrays.asList("aijar:htmlforms/122a-HIVCare_ARTCard-SummaryPage.xml",
-                    "aijar:htmlforms/122a-HIVCare_ARTCard-HealthEducationPage.xml",
-                    "aijar:htmlforms/122a-HIVCare_ARTCard-EncounterPage.xml",
-                    "aijar:htmlforms/082a-ExposedInfantClinicalChart-SummaryPage.xml",
-                    "aijar:htmlforms/082a-ExposedInfantClinicalChart-EncounterPage.xml",
-                    "aijar:htmlforms/055b-HCTClientCard.xml",
-                    "aijar:htmlforms/035a-SafeMaleCircumcisionClientCard.xml");
-
-            if (htmlforms != null) {
-                for (String htmlform : htmlforms) {
-                    HtmlFormUtil.getHtmlFormFromUiResource(resourceFactory, formService, htmlFormEntryService, htmlform);
-                }
-            }
-
+            HtmlFormsInitializer hfi = new HtmlFormsInitializer();
+            hfi.started();
 
         } catch (Exception e) {
             log.error("Error loading the HTML forms " + e.toString());

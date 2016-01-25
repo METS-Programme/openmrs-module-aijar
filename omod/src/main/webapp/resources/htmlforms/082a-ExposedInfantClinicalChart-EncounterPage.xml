@@ -1,7 +1,13 @@
 <htmlform formName="Early Infant Exposed Clinical Card"
           formEncounterType="8d5b2be0-c2cc-11de-8d13-0010c6dffd0f"
           formUuid="6f6b4802-7642-4226-84dc-ea7db01924b6"
-          formVersion="1.0">
+          formVersion="1.0"
+          formAddMetadata="yes"
+          formUILocation="patientDashboard.visitActions"
+          formOrder="1"
+          formIcon="icon-medkit"
+          formShowIf=""
+          formDisplayStyle="Standard">
     <style>
         .value {
         font-size: 12px;
