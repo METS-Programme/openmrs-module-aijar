@@ -4,7 +4,7 @@
           formVersion="1.2"
           formAddMetadata="yes"
           formUILocation="patientDashboard.visitActions"
-          formOrder="4"
+          formOrder="5"
           formIcon="icon-medkit"
           formShowIf="visit.active &amp;&amp; patient.person.dead==false &amp;&amp; patient.person.age < 3"
           formDisplayStyle="Standard"
