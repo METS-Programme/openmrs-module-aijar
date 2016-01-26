@@ -46,8 +46,7 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         log.info("Location tags");
 
         log.info("Installing service locations");
-        install(Locations.ART_CLINIC);
-        install(Locations.ANC_CLINIC);
+        install(Locations.HEALTH_FACILITY);
         log.info("Service locations installed");
 
         // install(globalProperty(AijarConstants.GP_DEFAULT_LOCATION, "The facility for which this installation is configured", LocationDatatype.class, null, null));

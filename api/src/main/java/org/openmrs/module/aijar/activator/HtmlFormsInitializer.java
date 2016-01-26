@@ -77,6 +77,7 @@ public class HtmlFormsInitializer implements Initializer {
                 log.error("The form was created but its extension point could not be created in Manage Forms \\ Configure Metadata: " + formPath, e);
                 continue;
             }
+            log.info("The form at " + formPath + " has been successfully loaded with its metadata");
         }
     }
 

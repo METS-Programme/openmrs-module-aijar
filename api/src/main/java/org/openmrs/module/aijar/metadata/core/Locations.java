@@ -13,15 +13,15 @@ import java.util.List;
  */
 public class Locations {
 
-    public static LocationDescriptor ART_CLINIC = new LocationDescriptor() {
+    public static LocationDescriptor HEALTH_FACILITY = new LocationDescriptor() {
         @Override
         public String name() {
-            return "ART Clinic";
+            return "Health Center Name";
         }
 
         @Override
         public String description() {
-            return "The clinic where ART services are provided";
+            return "The health center where services are provided";
         }
 
         public String uuid() {
@@ -32,26 +32,4 @@ public class Locations {
             return Arrays.asList(LocationTags.VISIT_LOCATION, LocationTags.ADMISSION_LOCATION, LocationTags.LOGIN_LOCATION, LocationTags.TRANSFER_LOCATION);
         }
     };
-
-    public static LocationDescriptor ANC_CLINIC = new LocationDescriptor() {
-        @Override
-        public String name() {
-            return "ANC Clinic";
-        }
-
-        @Override
-        public String description() {
-            return "The clinic where ante-natal services are provided";
-        }
-
-        public String uuid() {
-            return "86863db4-6101-4ecf-9a86-5e716d6504e4";
-        }
-
-        public List<LocationTagDescriptor> tags() {
-            return Arrays.asList(LocationTags.VISIT_LOCATION, LocationTags.ADMISSION_LOCATION, LocationTags.LOGIN_LOCATION, LocationTags.TRANSFER_LOCATION);
-        }
-    };
-
-
 }
