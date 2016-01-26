@@ -1,13 +1,18 @@
-<htmlform formName="Exposed Infant Card |2. Encounter Page"
-          formEncounterType="8d5b2be0-c2cc-11de-8d13-0010c6dffd0f"
+<htmlform formName="HMIS 082a - Early Infant Exposed Card Encounter"
+          formEncounterType="2588faef-d5cb-404f-85e1-fab34cc339b4"
           formUuid="6f6b4802-7642-4226-84dc-ea7db01924b6"
-          formVersion="1.0"
+          formVersion="1.2"
           formAddMetadata="yes"
           formUILocation="patientDashboard.visitActions"
-          formOrder="1"
+          formOrder="4"
           formIcon="icon-medkit"
-          formShowIf=""
-          formDisplayStyle="Standard">
+          formShowIf="visit.active &amp;&amp; patient.person.dead==false &amp;&amp; patient.person.age < 3"
+          formDisplayStyle="Standard"
+          formLabel="EID Card - Encounter form">
+    <macros>
+        headerColor =#8fabc7
+        fontOnHeaderColor = white
+    </macros>
     <style>
         .value {
         font-size: 12px;
@@ -897,7 +902,7 @@
     <small>
         <i>
             Version 1.2 Last revised on
-            01/December/2015 - METS programme
+            01/December/2015 - Ministry of Health
         </i>
     </small>
 

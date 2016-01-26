@@ -1,5 +1,121 @@
 /** Custom css for AIJAR*/
 
-body {
-    max-width: 90%;
+/*body {
+   /** max-width: 80%;
 }
+
+select {
+    height: 26px;
+    padding: 0 0 0 8px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #aaa;
+    white-space: nowrap;
+    line-height: 26px;
+    color: #444;
+    text-decoration: none;
+    border-radius: 4px;
+    background-clip: padding-box;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #fff;
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #eee),
+    color-stop(0.5, #fff));
+    background-image: -webkit-linear-gradient(center bottom, #eee 0%, #fff 50%);
+    background-image: -moz-linear-gradient(center bottom, #eee 0%, #fff 50%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',
+    endColorstr='#eeeeee', GradientType=0);
+    background-image: linear-gradient(top, #fff 0%, #eee 50%);
+}
+
+.error {
+    color: red;
+    padding: 10px;
+}
+
+.ai-page-frame {
+    padding: 5px;
+    background-color: white;
+    font-family: 'Lucida Grande',
+    'Lucida Sans ', Arial, sans-serif;
+    float: left;
+    width: 100%;
+    clear: both;
+    display: block;
+    font-size: 12px;
+}
+
+.section {
+    width: 99%;
+    margin-bottom: 10px;
+}
+
+.section
+fieldset {
+    width: 95%;
+}
+
+.entry-point th,
+.entry-point td {
+    padding: 5px 10px;
+    border: 1px solid #FFF;
+}
+
+form input,
+form select, form
+textarea, form
+ul.select, .form
+input, .form
+select,
+.form textarea,
+.form ul.select {
+    min-width: 30%;
+    margin-left: 10px;
+    padding: 10px;
+}
+
+form select, .form
+select {
+    min-width: auto;
+}
+
+.ai-html-row {
+    width: 100%;
+    float: left;
+}
+
+.ai-html-row-col2 {
+    width: 49%;
+    float: left;
+}
+
+.ai-html-row-col2 fieldset {
+    width: 90%;
+}
+
+.ai-page-content {
+    width: auto;
+    overflow-x: scroll;
+}
+
+form select, .form select {
+    min-width: auto;
+}
+
+form label, .form label {
+    float: left;
+    padding: 0px 10px 0 0;
+}
+
+.section-b label {
+    float: left;
+    min-width: 30%;
+}
+
+.label-right {
+    text-align: right;
+    font-style: italic;
+}*/

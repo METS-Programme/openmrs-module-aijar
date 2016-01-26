@@ -1,18 +1,21 @@
-<htmlform formName="HIV ART CARD |3. Encounter Page"
+<htmlform formName="HIV Care ART Card - Encounter"
 		  formDescription="A visit for a client to an ART clinic"
 		  formEncounterType="8d5b2be0-c2cc-11de-8d13-0010c6dffd0f"
 		  formUuid="12de5bc5-352e-4faf-9961-a2125085a75c"
 		  formVersion="1.2"
 		  formAddMetadata="yes"
 		  formUILocation="patientDashboard.visitActions"
-		  formOrder="1"
+		  formOrder="3"
 		  formIcon="icon-medkit"
-		  formShowIf=""
-		  formDisplayStyle="Standard">
+		  formShowIf="visit.active &amp;&amp; patient.person.dead==false"
+		  formDisplayStyle="Standard"
+		  formLabel="ART Card - Encounter Form">
 	<macros>
 		headerColor =#8fabc7
 		fontOnHeaderColor = white
 	</macros>
+
+	<!--
 
 	<style>
 
@@ -188,7 +191,7 @@
 		label, .form label {
 		width: 130px;
 		}
-	</style>
+	</style>-->
 	<!-- jquery loaded for nonessential purposes. -->
 	<script type="text/javascript">
 
@@ -284,10 +287,7 @@
 		});
 		}
 
-		var
-		patientGender = "
-		<lookup expression='patient.gender' />
-		";
+		var patientGender = "<lookup expression='patient.gender' />";
 		$j("#w22-display").removeAttr("disabled");
 		$j("#w22").removeAttr("disabled");
 		$j("#isPregant").prop("disabled",true);

@@ -1,14 +1,15 @@
-<htmlform formName="HCT Client Card"
+<htmlform formName="HMIS 055B - HIV Counseling and Testing Client Card"
           formDescription="Client Testing Card"
           formEncounterType="8d5b27bc-c2cc-11de-8d13-0010c6dffd0f"
           formUuid="b5c62a98-84d3-43e8-a9be-972185070dd4"
           formVersion="1.2"
           formAddMetadata="yes"
           formUILocation="patientDashboard.visitActions"
-          formOrder="1"
+          formOrder="4"
           formIcon="icon-medkit"
-          formShowIf=""
-          formDisplayStyle="Standard">
+          formShowIf="visit.active &amp;&amp; patient.person.dead==false"
+          formDisplayStyle="Standard"
+          formLabel="HCT Client Card">
     <macros>
         headerColor =#8fabc7
         fontOnHeaderColor = white

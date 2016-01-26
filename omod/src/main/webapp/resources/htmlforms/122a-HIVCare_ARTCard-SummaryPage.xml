@@ -1,5 +1,5 @@
-<htmlform formName="HIV ART CARD |1. Summary Page"
-          formDescription="Summary information for a client to an ART clinic"
+<htmlform formName="HIV Care ART Card - Summary Form"
+          formDescription="Summary entry form for patients enrolled for ART"
           formEncounterType="8d5b27bc-c2cc-11de-8d13-0010c6dffd0f"
           formUuid="52653a60-8300-4c13-be4d-4b746da06fee"
           formVersion="1.2"
@@ -7,8 +7,9 @@
           formUILocation="patientDashboard.visitActions"
           formOrder="1"
           formIcon="icon-medkit"
-          formShowIf=""
-          formDisplayStyle="Standard">
+          formShowIf="visit.active &amp;&amp; patient.person.dead==false"
+          formDisplayStyle="Standard"
+          formLabel="ART Card - Summary Form">
     <macros>
         headerColor =#8fabc7
         fontOnHeaderColor = white
@@ -540,34 +541,6 @@
             min-width: auto;
         }
 
-        select {
-            height: 26px;
-            padding: 0 0 0 8px;
-            overflow: hidden;
-            position: relative;
-            border: 1px solid #aaa;
-            white-space: nowrap;
-            line-height: 26px;
-            color: #444;
-            text-decoration: none;
-            border-radius: 4px;
-            background-clip: padding-box;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            background-color: #fff;
-            background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #eee),
-            color-stop(0.5, #fff));
-            background-image: -webkit-linear-gradient(center bottom, #eee 0%, #fff 50%);
-            background-image: -moz-linear-gradient(center bottom, #eee 0%,
-            #fff 50%);
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',
-            endColorstr='#eeeeee', GradientType=0);
-            background-image: linear-gradient(top, #fff 0%, #eee 50%);
-        }
-
         .ai-html-row {
             width: 100%;
             float: left;
@@ -581,10 +554,7 @@
             width: 92%;
         }
 
-        .error {
-            color: red;
-            padding: 10px;
-        }
+
 
         .row {
             width: 100%;

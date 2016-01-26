@@ -1,14 +1,15 @@
-<htmlform formName="HIV ART CARD |2. Health Education Page"
+<htmlform formName="HIV Care ART Card - Health Education"
 		  formDescription="Captures health eduction and counseling encounters"
 		  formEncounterType="6d88e370-f2ba-476b-bf1b-d8eaf3b1b67e"
 		  formUuid="b8224534-7df0-4c00-ba8e-6b1f291087eb"
 		  formVersion="1.2"
 		  formAddMetadata="yes"
 		  formUILocation="patientDashboard.visitActions"
-		  formOrder="1"
+		  formOrder="2"
 		  formIcon="icon-medkit"
-		  formShowIf=""
-		  formDisplayStyle="Standard">
+		  formShowIf="visit.active &amp;&amp; patient.person.dead==false"
+		  formDisplayStyle="Standard"
+		  formLabel="ART Card - Education Form">
 	<macros>
 		headerColor =#8fabc7
 		fontOnHeaderColor = white

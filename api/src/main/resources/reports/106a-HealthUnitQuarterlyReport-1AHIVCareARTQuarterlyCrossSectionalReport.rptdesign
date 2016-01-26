@@ -84,6 +84,10 @@
                     <property name="displayName">q1Total</property>
                 </structure>
                 <structure>
+                    <property name="columnName">indicator_id_12</property>
+                    <property name="displayName">indicator_id</property>
+                </structure>
+                <structure>
                     <property name="columnName">q2indicator</property>
                     <property name="displayName">q2indicator</property>
                 </structure>
@@ -124,6 +128,10 @@
                     <property name="displayName">Total</property>
                 </structure>
                 <structure>
+                    <property name="columnName">indicator_id_23</property>
+                    <property name="displayName">indicator_id</property>
+                </structure>
+                <structure>
                     <property name="columnName">q3indicator</property>
                     <property name="displayName">q3indicator</property>
                 </structure>
@@ -140,12 +148,20 @@
                     <property name="displayName">q3Total</property>
                 </structure>
                 <structure>
+                    <property name="columnName">indicator_id_28</property>
+                    <property name="displayName">indicator_id</property>
+                </structure>
+                <structure>
                     <property name="columnName">q4indicator</property>
                     <property name="displayName">q4indicator</property>
                 </structure>
                 <structure>
                     <property name="columnName">q4Total</property>
                     <property name="displayName">q4Total</property>
+                </structure>
+                <structure>
+                    <property name="columnName">indicator_id_31</property>
+                    <property name="displayName">indicator_id</property>
                 </structure>
                 <structure>
                     <property name="columnName">q5indicator</property>
@@ -188,6 +204,10 @@
                     <property name="displayName">q5Total</property>
                 </structure>
                 <structure>
+                    <property name="columnName">indicator_id_42</property>
+                    <property name="displayName">indicator_id</property>
+                </structure>
+                <structure>
                     <property name="columnName">q6indicator</property>
                     <property name="displayName">q6indicator</property>
                 </structure>
@@ -196,52 +216,48 @@
                     <property name="displayName">q6Total</property>
                 </structure>
                 <structure>
+                    <property name="columnName">indicator_id_45</property>
+                    <property name="displayName">indicator_id</property>
+                </structure>
+                <structure>
                     <property name="columnName">q7indicator</property>
                     <property name="displayName">q7indicator</property>
                 </structure>
                 <structure>
-                    <property name="columnName">q7MBabies</property>
-                    <property name="displayName">q7MBabies</property>
+                    <property name="columnName">q71</property>
+                    <property name="displayName">q71</property>
                 </structure>
                 <structure>
-                    <property name="columnName">q7FBabies</property>
-                    <property name="displayName">q7FBabies</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q7MToddlers</property>
-                    <property name="displayName">q7MToddlers</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q7FToddlers</property>
-                    <property name="displayName">q7FToddlers</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q7MTeens</property>
-                    <property name="displayName">q7MTeens</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q7FTeens</property>
-                    <property name="displayName">q7FTeens</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q7MSeniors</property>
-                    <property name="displayName">q7MSeniors</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q7FSeniors</property>
-                    <property name="displayName">q7FSeniors</property>
+                    <property name="columnName">q72</property>
+                    <property name="displayName">q72</property>
                 </structure>
                 <structure>
                     <property name="columnName">q7Total</property>
                     <property name="displayName">q7Total</property>
                 </structure>
                 <structure>
+                    <property name="columnName">indicator_id_50</property>
+                    <property name="displayName">indicator_id</property>
+                </structure>
+                <structure>
                     <property name="columnName">q8indicator</property>
                     <property name="displayName">q8indicator</property>
                 </structure>
                 <structure>
+                    <property name="columnName">q81</property>
+                    <property name="displayName">q81</property>
+                </structure>
+                <structure>
+                    <property name="columnName">q82</property>
+                    <property name="displayName">q82</property>
+                </structure>
+                <structure>
                     <property name="columnName">q8Total</property>
                     <property name="displayName">q8Total</property>
+                </structure>
+                <structure>
+                    <property name="columnName">indicator_id_55</property>
+                    <property name="displayName">indicator_id</property>
                 </structure>
                 <structure>
                     <property name="columnName">q9indicator</property>
@@ -252,12 +268,20 @@
                     <property name="displayName">q9Total</property>
                 </structure>
                 <structure>
+                    <property name="columnName">indicator_id_58</property>
+                    <property name="displayName">indicator_id</property>
+                </structure>
+                <structure>
                     <property name="columnName">q10indicator</property>
                     <property name="displayName">q10indicator</property>
                 </structure>
                 <structure>
                     <property name="columnName">q10Total</property>
                     <property name="displayName">q10Total</property>
+                </structure>
+                <structure>
+                    <property name="columnName">indicator_id_61</property>
+                    <property name="displayName">indicator_id</property>
                 </structure>
                 <structure>
                     <property name="columnName">q11indicator</property>
@@ -268,12 +292,20 @@
                     <property name="displayName">q11Total</property>
                 </structure>
                 <structure>
+                    <property name="columnName">indicator_id_64</property>
+                    <property name="displayName">indicator_id</property>
+                </structure>
+                <structure>
                     <property name="columnName">q12indicator</property>
                     <property name="displayName">q12indicator</property>
                 </structure>
                 <structure>
                     <property name="columnName">q12Total</property>
                     <property name="displayName">q12Total</property>
+                </structure>
+                <structure>
+                    <property name="columnName">indicator_id_67</property>
+                    <property name="displayName">indicator_id</property>
                 </structure>
                 <structure>
                     <property name="columnName">q13indicator</property>
@@ -284,12 +316,20 @@
                     <property name="displayName">q13Total</property>
                 </structure>
                 <structure>
+                    <property name="columnName">indicator_id_70</property>
+                    <property name="displayName">indicator_id</property>
+                </structure>
+                <structure>
                     <property name="columnName">q14indicator</property>
                     <property name="displayName">q14indicator</property>
                 </structure>
                 <structure>
                     <property name="columnName">q14Total</property>
                     <property name="displayName">q14Total</property>
+                </structure>
+                <structure>
+                    <property name="columnName">indicator_id_73</property>
+                    <property name="displayName">indicator_id</property>
                 </structure>
                 <structure>
                     <property name="columnName">q15indicator</property>
@@ -332,6 +372,10 @@
                     <property name="displayName">q15Total</property>
                 </structure>
                 <structure>
+                    <property name="columnName">indicator_id_84</property>
+                    <property name="displayName">indicator_id</property>
+                </structure>
+                <structure>
                     <property name="columnName">q16indicator</property>
                     <property name="displayName">q16indicator</property>
                 </structure>
@@ -372,12 +416,20 @@
                     <property name="displayName">q16Total</property>
                 </structure>
                 <structure>
+                    <property name="columnName">indicator_id_95</property>
+                    <property name="displayName">indicator_id</property>
+                </structure>
+                <structure>
                     <property name="columnName">q17indicator</property>
                     <property name="displayName">q17indicator</property>
                 </structure>
                 <structure>
                     <property name="columnName">q17Total</property>
                     <property name="displayName">q17Total</property>
+                </structure>
+                <structure>
+                    <property name="columnName">indicator_id_98</property>
+                    <property name="displayName">indicator_id</property>
                 </structure>
                 <structure>
                     <property name="columnName">q18indicator</property>
@@ -394,6 +446,10 @@
                 <structure>
                     <property name="columnName">q18Total</property>
                     <property name="displayName">q18Total</property>
+                </structure>
+                <structure>
+                    <property name="columnName">indicator_id_103</property>
+                    <property name="displayName">indicator_id</property>
                 </structure>
                 <structure>
                     <property name="columnName">q19indicator</property>
@@ -436,6 +492,10 @@
                     <property name="displayName">q19Total</property>
                 </structure>
                 <structure>
+                    <property name="columnName">indicator_id_114</property>
+                    <property name="displayName">indicator_id</property>
+                </structure>
+                <structure>
                     <property name="columnName">q20indicator</property>
                     <property name="displayName">q20indicator</property>
                 </structure>
@@ -474,6 +534,10 @@
                 <structure>
                     <property name="columnName">q20Total</property>
                     <property name="displayName">q20Total</property>
+                </structure>
+                <structure>
+                    <property name="columnName">indicator_id_125</property>
+                    <property name="displayName">indicator_id</property>
                 </structure>
                 <structure>
                     <property name="columnName">q21indicator</property>
@@ -516,6 +580,10 @@
                     <property name="displayName">q21Total</property>
                 </structure>
                 <structure>
+                    <property name="columnName">indicator_id_136</property>
+                    <property name="displayName">indicator_id</property>
+                </structure>
+                <structure>
                     <property name="columnName">q22indicator</property>
                     <property name="displayName">q22indicator</property>
                 </structure>
@@ -554,6 +622,10 @@
                 <structure>
                     <property name="columnName">q22Total</property>
                     <property name="displayName">q22Total</property>
+                </structure>
+                <structure>
+                    <property name="columnName">indicator_id_147</property>
+                    <property name="displayName">indicator_id</property>
                 </structure>
                 <structure>
                     <property name="columnName">q23indicator</property>
@@ -596,12 +668,20 @@
                     <property name="displayName">q23Total</property>
                 </structure>
                 <structure>
+                    <property name="columnName">indicator_id_158</property>
+                    <property name="displayName">indicator_id</property>
+                </structure>
+                <structure>
                     <property name="columnName">q24indicator</property>
                     <property name="displayName">q24indicator</property>
                 </structure>
                 <structure>
                     <property name="columnName">q24Total</property>
                     <property name="displayName">q24Total</property>
+                </structure>
+                <structure>
+                    <property name="columnName">indicator_id_161</property>
+                    <property name="displayName">indicator_id</property>
                 </structure>
                 <structure>
                     <property name="columnName">q25indicator</property>
@@ -612,12 +692,20 @@
                     <property name="displayName">q25Total</property>
                 </structure>
                 <structure>
+                    <property name="columnName">indicator_id_164</property>
+                    <property name="displayName">indicator_id</property>
+                </structure>
+                <structure>
                     <property name="columnName">q26indicator</property>
                     <property name="displayName">q26indicator</property>
                 </structure>
                 <structure>
                     <property name="columnName">q26Total</property>
                     <property name="displayName">q26Total</property>
+                </structure>
+                <structure>
+                    <property name="columnName">indicator_id_167</property>
+                    <property name="displayName">indicator_id</property>
                 </structure>
                 <structure>
                     <property name="columnName">q27indicator</property>
@@ -628,6 +716,10 @@
                     <property name="displayName">q27Total</property>
                 </structure>
                 <structure>
+                    <property name="columnName">indicator_id_170</property>
+                    <property name="displayName">indicator_id</property>
+                </structure>
+                <structure>
                     <property name="columnName">q28indicator</property>
                     <property name="displayName">q28indicator</property>
                 </structure>
@@ -636,12 +728,20 @@
                     <property name="displayName">q28Total</property>
                 </structure>
                 <structure>
+                    <property name="columnName">indicator_id_173</property>
+                    <property name="displayName">indicator_id</property>
+                </structure>
+                <structure>
                     <property name="columnName">q29indicator</property>
                     <property name="displayName">q29indicator</property>
                 </structure>
                 <structure>
                     <property name="columnName">q29Total</property>
                     <property name="displayName">q29Total</property>
+                </structure>
+                <structure>
+                    <property name="columnName">indicator_id_176</property>
+                    <property name="displayName">indicator_id</property>
                 </structure>
                 <structure>
                     <property name="columnName">q30indicator</property>
@@ -886,681 +986,661 @@
                     </structure>
                     <structure>
                         <property name="position">47</property>
-                        <property name="name">q7MBabies</property>
+                        <property name="name">q71</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">48</property>
-                        <property name="name">q7FBabies</property>
+                        <property name="name">q72</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">49</property>
-                        <property name="name">q7MToddlers</property>
-                        <property name="dataType">decimal</property>
-                    </structure>
-                    <structure>
-                        <property name="position">50</property>
-                        <property name="name">q7FToddlers</property>
-                        <property name="dataType">decimal</property>
-                    </structure>
-                    <structure>
-                        <property name="position">51</property>
-                        <property name="name">q7MTeens</property>
-                        <property name="dataType">decimal</property>
-                    </structure>
-                    <structure>
-                        <property name="position">52</property>
-                        <property name="name">q7FTeens</property>
-                        <property name="dataType">decimal</property>
-                    </structure>
-                    <structure>
-                        <property name="position">53</property>
-                        <property name="name">q7MSeniors</property>
-                        <property name="dataType">decimal</property>
-                    </structure>
-                    <structure>
-                        <property name="position">54</property>
-                        <property name="name">q7FSeniors</property>
-                        <property name="dataType">decimal</property>
-                    </structure>
-                    <structure>
-                        <property name="position">55</property>
                         <property name="name">q7Total</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">56</property>
-                        <property name="name">indicator_id_56</property>
+                        <property name="position">50</property>
+                        <property name="name">indicator_id_50</property>
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                        <property name="position">57</property>
+                        <property name="position">51</property>
                         <property name="name">q8indicator</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">58</property>
+                        <property name="position">52</property>
+                        <property name="name">q81</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">53</property>
+                        <property name="name">q82</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">54</property>
                         <property name="name">q8Total</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">59</property>
-                        <property name="name">indicator_id_59</property>
+                        <property name="position">55</property>
+                        <property name="name">indicator_id_55</property>
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                        <property name="position">60</property>
+                        <property name="position">56</property>
                         <property name="name">q9indicator</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">61</property>
+                        <property name="position">57</property>
                         <property name="name">q9Total</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">62</property>
-                        <property name="name">indicator_id_62</property>
+                        <property name="position">58</property>
+                        <property name="name">indicator_id_58</property>
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                        <property name="position">63</property>
+                        <property name="position">59</property>
                         <property name="name">q10indicator</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">64</property>
+                        <property name="position">60</property>
                         <property name="name">q10Total</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">65</property>
-                        <property name="name">indicator_id_65</property>
+                        <property name="position">61</property>
+                        <property name="name">indicator_id_61</property>
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                        <property name="position">66</property>
+                        <property name="position">62</property>
                         <property name="name">q11indicator</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">67</property>
+                        <property name="position">63</property>
                         <property name="name">q11Total</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">68</property>
-                        <property name="name">indicator_id_68</property>
+                        <property name="position">64</property>
+                        <property name="name">indicator_id_64</property>
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                        <property name="position">69</property>
+                        <property name="position">65</property>
                         <property name="name">q12indicator</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">70</property>
+                        <property name="position">66</property>
                         <property name="name">q12Total</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">71</property>
-                        <property name="name">indicator_id_71</property>
+                        <property name="position">67</property>
+                        <property name="name">indicator_id_67</property>
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                        <property name="position">72</property>
+                        <property name="position">68</property>
                         <property name="name">q13indicator</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">73</property>
+                        <property name="position">69</property>
                         <property name="name">q13Total</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">74</property>
-                        <property name="name">indicator_id_74</property>
+                        <property name="position">70</property>
+                        <property name="name">indicator_id_70</property>
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                        <property name="position">75</property>
+                        <property name="position">71</property>
                         <property name="name">q14indicator</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">76</property>
+                        <property name="position">72</property>
                         <property name="name">q14Total</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">77</property>
-                        <property name="name">indicator_id_77</property>
+                        <property name="position">73</property>
+                        <property name="name">indicator_id_73</property>
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                        <property name="position">78</property>
+                        <property name="position">74</property>
                         <property name="name">q15indicator</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">79</property>
+                        <property name="position">75</property>
                         <property name="name">q15MBabies</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">80</property>
+                        <property name="position">76</property>
                         <property name="name">q15FBabies</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">81</property>
+                        <property name="position">77</property>
                         <property name="name">q15MToddlers</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">82</property>
+                        <property name="position">78</property>
                         <property name="name">q15FToddlers</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">83</property>
+                        <property name="position">79</property>
                         <property name="name">q15MTeens</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">84</property>
+                        <property name="position">80</property>
                         <property name="name">q15FTeens</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">85</property>
+                        <property name="position">81</property>
                         <property name="name">q15MSeniors</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">86</property>
+                        <property name="position">82</property>
                         <property name="name">q15FSeniors</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">87</property>
+                        <property name="position">83</property>
                         <property name="name">q15Total</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">88</property>
-                        <property name="name">indicator_id_88</property>
+                        <property name="position">84</property>
+                        <property name="name">indicator_id_84</property>
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                        <property name="position">89</property>
+                        <property name="position">85</property>
                         <property name="name">q16indicator</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">90</property>
+                        <property name="position">86</property>
                         <property name="name">q16MBabies</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">91</property>
+                        <property name="position">87</property>
                         <property name="name">q16FBabies</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">92</property>
+                        <property name="position">88</property>
                         <property name="name">q16MToddlers</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">93</property>
+                        <property name="position">89</property>
                         <property name="name">q16FToddlers</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">94</property>
+                        <property name="position">90</property>
                         <property name="name">q16MTeens</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">95</property>
+                        <property name="position">91</property>
                         <property name="name">q16FTeens</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">96</property>
+                        <property name="position">92</property>
                         <property name="name">q16MSeniors</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">97</property>
+                        <property name="position">93</property>
                         <property name="name">q16FSeniors</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">98</property>
+                        <property name="position">94</property>
                         <property name="name">q16Total</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">99</property>
-                        <property name="name">indicator_id_99</property>
+                        <property name="position">95</property>
+                        <property name="name">indicator_id_95</property>
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                        <property name="position">100</property>
+                        <property name="position">96</property>
                         <property name="name">q17indicator</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">101</property>
+                        <property name="position">97</property>
                         <property name="name">q17Total</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">102</property>
-                        <property name="name">indicator_id_102</property>
+                        <property name="position">98</property>
+                        <property name="name">indicator_id_98</property>
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                        <property name="position">103</property>
+                        <property name="position">99</property>
                         <property name="name">q18indicator</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">104</property>
+                        <property name="position">100</property>
                         <property name="name">q18FTeens</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">105</property>
+                        <property name="position">101</property>
                         <property name="name">q18FSeniors</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">106</property>
+                        <property name="position">102</property>
                         <property name="name">q18Total</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">107</property>
-                        <property name="name">indicator_id_107</property>
+                        <property name="position">103</property>
+                        <property name="name">indicator_id_103</property>
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                        <property name="position">108</property>
+                        <property name="position">104</property>
                         <property name="name">q19indicator</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">109</property>
+                        <property name="position">105</property>
                         <property name="name">q19MBabies</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">110</property>
+                        <property name="position">106</property>
                         <property name="name">q19FBabies</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">111</property>
+                        <property name="position">107</property>
                         <property name="name">q19MToddlers</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">112</property>
+                        <property name="position">108</property>
                         <property name="name">q19FToddlers</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">113</property>
+                        <property name="position">109</property>
                         <property name="name">q19MTeens</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">114</property>
+                        <property name="position">110</property>
                         <property name="name">q19FTeens</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">115</property>
+                        <property name="position">111</property>
                         <property name="name">q19MSeniors</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">116</property>
+                        <property name="position">112</property>
                         <property name="name">q19FSeniors</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">117</property>
+                        <property name="position">113</property>
                         <property name="name">q19Total</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">118</property>
-                        <property name="name">indicator_id_118</property>
+                        <property name="position">114</property>
+                        <property name="name">indicator_id_114</property>
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                        <property name="position">119</property>
+                        <property name="position">115</property>
                         <property name="name">q20indicator</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">120</property>
+                        <property name="position">116</property>
                         <property name="name">q20MBabies</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">121</property>
+                        <property name="position">117</property>
                         <property name="name">q20FBabies</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">122</property>
+                        <property name="position">118</property>
                         <property name="name">q20MToddlers</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">123</property>
+                        <property name="position">119</property>
                         <property name="name">q20FToddlers</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">124</property>
+                        <property name="position">120</property>
                         <property name="name">q20MTeens</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">125</property>
+                        <property name="position">121</property>
                         <property name="name">q20FTeens</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">126</property>
+                        <property name="position">122</property>
                         <property name="name">q20MSeniors</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">127</property>
+                        <property name="position">123</property>
                         <property name="name">q20FSeniors</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">128</property>
+                        <property name="position">124</property>
                         <property name="name">q20Total</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">129</property>
-                        <property name="name">indicator_id_129</property>
+                        <property name="position">125</property>
+                        <property name="name">indicator_id_125</property>
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                        <property name="position">130</property>
+                        <property name="position">126</property>
                         <property name="name">q21indicator</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">131</property>
+                        <property name="position">127</property>
                         <property name="name">q21MBabies</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">132</property>
+                        <property name="position">128</property>
                         <property name="name">q21FBabies</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">133</property>
+                        <property name="position">129</property>
                         <property name="name">q21MToddlers</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">134</property>
+                        <property name="position">130</property>
                         <property name="name">q21FToddlers</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">135</property>
+                        <property name="position">131</property>
                         <property name="name">q21MTeens</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">136</property>
+                        <property name="position">132</property>
                         <property name="name">q21FTeens</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">137</property>
+                        <property name="position">133</property>
                         <property name="name">q21MSeniors</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">138</property>
+                        <property name="position">134</property>
                         <property name="name">q21FSeniors</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">139</property>
+                        <property name="position">135</property>
                         <property name="name">q21Total</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">140</property>
-                        <property name="name">indicator_id_140</property>
+                        <property name="position">136</property>
+                        <property name="name">indicator_id_136</property>
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                        <property name="position">141</property>
+                        <property name="position">137</property>
                         <property name="name">q22indicator</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">142</property>
+                        <property name="position">138</property>
                         <property name="name">q22MBabies</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">143</property>
+                        <property name="position">139</property>
                         <property name="name">q22FBabies</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">144</property>
+                        <property name="position">140</property>
                         <property name="name">q22MToddlers</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">145</property>
+                        <property name="position">141</property>
                         <property name="name">q22FToddlers</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">146</property>
+                        <property name="position">142</property>
                         <property name="name">q22MTeens</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">147</property>
+                        <property name="position">143</property>
                         <property name="name">q22FTeens</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">148</property>
+                        <property name="position">144</property>
                         <property name="name">q22MSeniors</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">149</property>
+                        <property name="position">145</property>
                         <property name="name">q22FSeniors</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">150</property>
+                        <property name="position">146</property>
                         <property name="name">q22Total</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">151</property>
-                        <property name="name">indicator_id_151</property>
+                        <property name="position">147</property>
+                        <property name="name">indicator_id_147</property>
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                        <property name="position">152</property>
+                        <property name="position">148</property>
                         <property name="name">q23indicator</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">153</property>
+                        <property name="position">149</property>
                         <property name="name">q23MBabies</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">154</property>
+                        <property name="position">150</property>
                         <property name="name">q23FBabies</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">155</property>
+                        <property name="position">151</property>
                         <property name="name">q23MToddlers</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">156</property>
+                        <property name="position">152</property>
                         <property name="name">q23FToddlers</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">157</property>
+                        <property name="position">153</property>
                         <property name="name">q23MTeens</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">158</property>
+                        <property name="position">154</property>
                         <property name="name">q23FTeens</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">159</property>
+                        <property name="position">155</property>
                         <property name="name">q23MSeniors</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">160</property>
+                        <property name="position">156</property>
                         <property name="name">q23FSeniors</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">161</property>
+                        <property name="position">157</property>
                         <property name="name">q23Total</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">162</property>
-                        <property name="name">indicator_id_162</property>
+                        <property name="position">158</property>
+                        <property name="name">indicator_id_158</property>
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                        <property name="position">163</property>
+                        <property name="position">159</property>
                         <property name="name">q24indicator</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">164</property>
+                        <property name="position">160</property>
                         <property name="name">q24Total</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">165</property>
-                        <property name="name">indicator_id_165</property>
+                        <property name="position">161</property>
+                        <property name="name">indicator_id_161</property>
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                        <property name="position">166</property>
+                        <property name="position">162</property>
                         <property name="name">q25indicator</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">167</property>
+                        <property name="position">163</property>
                         <property name="name">q25Total</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">168</property>
-                        <property name="name">indicator_id_168</property>
+                        <property name="position">164</property>
+                        <property name="name">indicator_id_164</property>
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                        <property name="position">169</property>
+                        <property name="position">165</property>
                         <property name="name">q26indicator</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">170</property>
+                        <property name="position">166</property>
                         <property name="name">q26Total</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">171</property>
-                        <property name="name">indicator_id_171</property>
+                        <property name="position">167</property>
+                        <property name="name">indicator_id_167</property>
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                        <property name="position">172</property>
+                        <property name="position">168</property>
                         <property name="name">q27indicator</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">173</property>
+                        <property name="position">169</property>
                         <property name="name">q27Total</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">174</property>
-                        <property name="name">indicator_id_174</property>
+                        <property name="position">170</property>
+                        <property name="name">indicator_id_170</property>
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                        <property name="position">175</property>
+                        <property name="position">171</property>
                         <property name="name">q28indicator</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">176</property>
+                        <property name="position">172</property>
                         <property name="name">q28Total</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">177</property>
-                        <property name="name">indicator_id_177</property>
+                        <property name="position">173</property>
+                        <property name="name">indicator_id_173</property>
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                        <property name="position">178</property>
+                        <property name="position">174</property>
                         <property name="name">q29indicator</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">179</property>
+                        <property name="position">175</property>
                         <property name="name">q29Total</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">180</property>
-                        <property name="name">indicator_id_180</property>
+                        <property name="position">176</property>
+                        <property name="name">indicator_id_176</property>
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                        <property name="position">181</property>
+                        <property name="position">177</property>
                         <property name="name">q30indicator</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">182</property>
+                        <property name="position">178</property>
                         <property name="name">q30Total</property>
                         <property name="dataType">decimal</property>
                     </structure>
@@ -1575,1274 +1655,1068 @@ this.queryText = this.queryText.replaceAll(":q", params["quarter"]);]]></method>
                     <property name="name">indicator_id</property>
                     <property name="nativeName">indicator_id</property>
                     <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
                     <property name="position">2</property>
                     <property name="name">q1indicator</property>
                     <property name="nativeName">q1indicator</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">3</property>
                     <property name="name">q1MBabies</property>
                     <property name="nativeName">q1MBabies</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
                     <property name="name">q1FBabies</property>
                     <property name="nativeName">q1FBabies</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">5</property>
                     <property name="name">q1MToddlers</property>
                     <property name="nativeName">q1MToddlers</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">6</property>
                     <property name="name">q1FToddlers</property>
                     <property name="nativeName">q1FToddlers</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">7</property>
                     <property name="name">q1MTeens</property>
                     <property name="nativeName">q1MTeens</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">8</property>
                     <property name="name">q1FTeens</property>
                     <property name="nativeName">q1FTeens</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">9</property>
                     <property name="name">q1MSeniors</property>
                     <property name="nativeName">q1MSeniors</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">10</property>
                     <property name="name">q1FSeniors</property>
                     <property name="nativeName">q1FSeniors</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">11</property>
                     <property name="name">q1Total</property>
                     <property name="nativeName">q1Total</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">12</property>
                     <property name="name">indicator_id_12</property>
                     <property name="nativeName">indicator_id</property>
                     <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
                     <property name="position">13</property>
                     <property name="name">q2indicator</property>
                     <property name="nativeName">q2indicator</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">14</property>
                     <property name="name">q2MBabies</property>
                     <property name="nativeName">q2MBabies</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">15</property>
                     <property name="name">q2FBabies</property>
                     <property name="nativeName">q2FBabies</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">16</property>
                     <property name="name">q2MToddlers</property>
                     <property name="nativeName">q2MToddlers</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">17</property>
                     <property name="name">q2FToddlers</property>
                     <property name="nativeName">q2FToddlers</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">18</property>
                     <property name="name">q2MTeens</property>
                     <property name="nativeName">q2MTeens</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">19</property>
                     <property name="name">q2FTeens</property>
                     <property name="nativeName">q2FTeens</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">20</property>
                     <property name="name">q2MSeniors</property>
                     <property name="nativeName">q2MSeniors</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">21</property>
                     <property name="name">q2FSeniors</property>
                     <property name="nativeName">q2FSeniors</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">22</property>
                     <property name="name">Total</property>
                     <property name="nativeName">Total</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">23</property>
                     <property name="name">indicator_id_23</property>
                     <property name="nativeName">indicator_id</property>
                     <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
                     <property name="position">24</property>
                     <property name="name">q3indicator</property>
                     <property name="nativeName">q3indicator</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">25</property>
                     <property name="name">q3FTeens</property>
                     <property name="nativeName">q3FTeens</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">26</property>
                     <property name="name">q3FSeniors</property>
                     <property name="nativeName">q3FSeniors</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">27</property>
                     <property name="name">q3Total</property>
                     <property name="nativeName">q3Total</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">28</property>
                     <property name="name">indicator_id_28</property>
                     <property name="nativeName">indicator_id</property>
                     <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
                     <property name="position">29</property>
                     <property name="name">q4indicator</property>
                     <property name="nativeName">q4indicator</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">30</property>
                     <property name="name">q4Total</property>
                     <property name="nativeName">q4Total</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">31</property>
                     <property name="name">indicator_id_31</property>
                     <property name="nativeName">indicator_id</property>
                     <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
                     <property name="position">32</property>
                     <property name="name">q5indicator</property>
                     <property name="nativeName">q5indicator</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">33</property>
                     <property name="name">q5MBabies</property>
                     <property name="nativeName">q5MBabies</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">34</property>
                     <property name="name">q5FBabies</property>
                     <property name="nativeName">q5FBabies</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">35</property>
                     <property name="name">q5MToddlers</property>
                     <property name="nativeName">q5MToddlers</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">36</property>
                     <property name="name">q5FToddlers</property>
                     <property name="nativeName">q5FToddlers</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">37</property>
                     <property name="name">q5MTeens</property>
                     <property name="nativeName">q5MTeens</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">38</property>
                     <property name="name">q5FTeens</property>
                     <property name="nativeName">q5FTeens</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">39</property>
                     <property name="name">q5MSeniors</property>
                     <property name="nativeName">q5MSeniors</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">40</property>
                     <property name="name">q5FSeniors</property>
                     <property name="nativeName">q5FSeniors</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">41</property>
                     <property name="name">q5Total</property>
                     <property name="nativeName">q5Total</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">42</property>
                     <property name="name">indicator_id_42</property>
                     <property name="nativeName">indicator_id</property>
                     <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
                     <property name="position">43</property>
                     <property name="name">q6indicator</property>
                     <property name="nativeName">q6indicator</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">44</property>
                     <property name="name">q6Total</property>
                     <property name="nativeName">q6Total</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">45</property>
                     <property name="name">indicator_id_45</property>
                     <property name="nativeName">indicator_id</property>
                     <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
                     <property name="position">46</property>
                     <property name="name">q7indicator</property>
                     <property name="nativeName">q7indicator</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">47</property>
-                    <property name="name">q7MBabies</property>
-                    <property name="nativeName">q7MBabies</property>
+                    <property name="name">q71</property>
+                    <property name="nativeName">q71</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">48</property>
-                    <property name="name">q7FBabies</property>
-                    <property name="nativeName">q7FBabies</property>
+                    <property name="name">q72</property>
+                    <property name="nativeName">q72</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">49</property>
-                    <property name="name">q7MToddlers</property>
-                    <property name="nativeName">q7MToddlers</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
-                </structure>
-                <structure>
-                    <property name="position">50</property>
-                    <property name="name">q7FToddlers</property>
-                    <property name="nativeName">q7FToddlers</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
-                </structure>
-                <structure>
-                    <property name="position">51</property>
-                    <property name="name">q7MTeens</property>
-                    <property name="nativeName">q7MTeens</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
-                </structure>
-                <structure>
-                    <property name="position">52</property>
-                    <property name="name">q7FTeens</property>
-                    <property name="nativeName">q7FTeens</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
-                </structure>
-                <structure>
-                    <property name="position">53</property>
-                    <property name="name">q7MSeniors</property>
-                    <property name="nativeName">q7MSeniors</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
-                </structure>
-                <structure>
-                    <property name="position">54</property>
-                    <property name="name">q7FSeniors</property>
-                    <property name="nativeName">q7FSeniors</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
-                </structure>
-                <structure>
-                    <property name="position">55</property>
                     <property name="name">q7Total</property>
                     <property name="nativeName">q7Total</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">56</property>
-                    <property name="name">indicator_id_56</property>
+                    <property name="position">50</property>
+                    <property name="name">indicator_id_50</property>
                     <property name="nativeName">indicator_id</property>
                     <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
-                    <property name="position">57</property>
+                    <property name="position">51</property>
                     <property name="name">q8indicator</property>
                     <property name="nativeName">q8indicator</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">58</property>
+                    <property name="position">52</property>
+                    <property name="name">q81</property>
+                    <property name="nativeName">q81</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">53</property>
+                    <property name="name">q82</property>
+                    <property name="nativeName">q82</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">54</property>
                     <property name="name">q8Total</property>
                     <property name="nativeName">q8Total</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">59</property>
-                    <property name="name">indicator_id_59</property>
+                    <property name="position">55</property>
+                    <property name="name">indicator_id_55</property>
                     <property name="nativeName">indicator_id</property>
                     <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
-                    <property name="position">60</property>
+                    <property name="position">56</property>
                     <property name="name">q9indicator</property>
                     <property name="nativeName">q9indicator</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">61</property>
+                    <property name="position">57</property>
                     <property name="name">q9Total</property>
                     <property name="nativeName">q9Total</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">62</property>
-                    <property name="name">indicator_id_62</property>
+                    <property name="position">58</property>
+                    <property name="name">indicator_id_58</property>
                     <property name="nativeName">indicator_id</property>
                     <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
-                    <property name="position">63</property>
+                    <property name="position">59</property>
                     <property name="name">q10indicator</property>
                     <property name="nativeName">q10indicator</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">64</property>
+                    <property name="position">60</property>
                     <property name="name">q10Total</property>
                     <property name="nativeName">q10Total</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">65</property>
-                    <property name="name">indicator_id_65</property>
+                    <property name="position">61</property>
+                    <property name="name">indicator_id_61</property>
                     <property name="nativeName">indicator_id</property>
                     <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
-                    <property name="position">66</property>
+                    <property name="position">62</property>
                     <property name="name">q11indicator</property>
                     <property name="nativeName">q11indicator</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">67</property>
+                    <property name="position">63</property>
                     <property name="name">q11Total</property>
                     <property name="nativeName">q11Total</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">68</property>
-                    <property name="name">indicator_id_68</property>
+                    <property name="position">64</property>
+                    <property name="name">indicator_id_64</property>
                     <property name="nativeName">indicator_id</property>
                     <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
-                    <property name="position">69</property>
+                    <property name="position">65</property>
                     <property name="name">q12indicator</property>
                     <property name="nativeName">q12indicator</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">70</property>
+                    <property name="position">66</property>
                     <property name="name">q12Total</property>
                     <property name="nativeName">q12Total</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">71</property>
-                    <property name="name">indicator_id_71</property>
+                    <property name="position">67</property>
+                    <property name="name">indicator_id_67</property>
                     <property name="nativeName">indicator_id</property>
                     <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
-                    <property name="position">72</property>
+                    <property name="position">68</property>
                     <property name="name">q13indicator</property>
                     <property name="nativeName">q13indicator</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">73</property>
+                    <property name="position">69</property>
                     <property name="name">q13Total</property>
                     <property name="nativeName">q13Total</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">74</property>
-                    <property name="name">indicator_id_74</property>
+                    <property name="position">70</property>
+                    <property name="name">indicator_id_70</property>
                     <property name="nativeName">indicator_id</property>
                     <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
-                    <property name="position">75</property>
+                    <property name="position">71</property>
                     <property name="name">q14indicator</property>
                     <property name="nativeName">q14indicator</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">76</property>
+                    <property name="position">72</property>
                     <property name="name">q14Total</property>
                     <property name="nativeName">q14Total</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">77</property>
-                    <property name="name">indicator_id_77</property>
+                    <property name="position">73</property>
+                    <property name="name">indicator_id_73</property>
                     <property name="nativeName">indicator_id</property>
                     <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
-                    <property name="position">78</property>
+                    <property name="position">74</property>
                     <property name="name">q15indicator</property>
                     <property name="nativeName">q15indicator</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">79</property>
+                    <property name="position">75</property>
                     <property name="name">q15MBabies</property>
                     <property name="nativeName">q15MBabies</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">80</property>
+                    <property name="position">76</property>
                     <property name="name">q15FBabies</property>
                     <property name="nativeName">q15FBabies</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">81</property>
+                    <property name="position">77</property>
                     <property name="name">q15MToddlers</property>
                     <property name="nativeName">q15MToddlers</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">82</property>
+                    <property name="position">78</property>
                     <property name="name">q15FToddlers</property>
                     <property name="nativeName">q15FToddlers</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">83</property>
+                    <property name="position">79</property>
                     <property name="name">q15MTeens</property>
                     <property name="nativeName">q15MTeens</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">84</property>
+                    <property name="position">80</property>
                     <property name="name">q15FTeens</property>
                     <property name="nativeName">q15FTeens</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">85</property>
+                    <property name="position">81</property>
                     <property name="name">q15MSeniors</property>
                     <property name="nativeName">q15MSeniors</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">86</property>
+                    <property name="position">82</property>
                     <property name="name">q15FSeniors</property>
                     <property name="nativeName">q15FSeniors</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">87</property>
+                    <property name="position">83</property>
                     <property name="name">q15Total</property>
                     <property name="nativeName">q15Total</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">88</property>
-                    <property name="name">indicator_id_88</property>
+                    <property name="position">84</property>
+                    <property name="name">indicator_id_84</property>
                     <property name="nativeName">indicator_id</property>
                     <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
-                    <property name="position">89</property>
+                    <property name="position">85</property>
                     <property name="name">q16indicator</property>
                     <property name="nativeName">q16indicator</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">90</property>
+                    <property name="position">86</property>
                     <property name="name">q16MBabies</property>
                     <property name="nativeName">q16MBabies</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">91</property>
+                    <property name="position">87</property>
                     <property name="name">q16FBabies</property>
                     <property name="nativeName">q16FBabies</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">92</property>
+                    <property name="position">88</property>
                     <property name="name">q16MToddlers</property>
                     <property name="nativeName">q16MToddlers</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">93</property>
+                    <property name="position">89</property>
                     <property name="name">q16FToddlers</property>
                     <property name="nativeName">q16FToddlers</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">94</property>
+                    <property name="position">90</property>
                     <property name="name">q16MTeens</property>
                     <property name="nativeName">q16MTeens</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">95</property>
+                    <property name="position">91</property>
                     <property name="name">q16FTeens</property>
                     <property name="nativeName">q16FTeens</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">96</property>
+                    <property name="position">92</property>
                     <property name="name">q16MSeniors</property>
                     <property name="nativeName">q16MSeniors</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">97</property>
+                    <property name="position">93</property>
                     <property name="name">q16FSeniors</property>
                     <property name="nativeName">q16FSeniors</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">98</property>
+                    <property name="position">94</property>
                     <property name="name">q16Total</property>
                     <property name="nativeName">q16Total</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">99</property>
-                    <property name="name">indicator_id_99</property>
+                    <property name="position">95</property>
+                    <property name="name">indicator_id_95</property>
                     <property name="nativeName">indicator_id</property>
                     <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
-                    <property name="position">100</property>
+                    <property name="position">96</property>
                     <property name="name">q17indicator</property>
                     <property name="nativeName">q17indicator</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">101</property>
+                    <property name="position">97</property>
                     <property name="name">q17Total</property>
                     <property name="nativeName">q17Total</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">102</property>
-                    <property name="name">indicator_id_102</property>
+                    <property name="position">98</property>
+                    <property name="name">indicator_id_98</property>
                     <property name="nativeName">indicator_id</property>
                     <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
-                    <property name="position">103</property>
+                    <property name="position">99</property>
                     <property name="name">q18indicator</property>
                     <property name="nativeName">q18indicator</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">104</property>
+                    <property name="position">100</property>
                     <property name="name">q18FTeens</property>
                     <property name="nativeName">q18FTeens</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">105</property>
+                    <property name="position">101</property>
                     <property name="name">q18FSeniors</property>
                     <property name="nativeName">q18FSeniors</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">106</property>
+                    <property name="position">102</property>
                     <property name="name">q18Total</property>
                     <property name="nativeName">q18Total</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">107</property>
-                    <property name="name">indicator_id_107</property>
+                    <property name="position">103</property>
+                    <property name="name">indicator_id_103</property>
                     <property name="nativeName">indicator_id</property>
                     <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
-                    <property name="position">108</property>
+                    <property name="position">104</property>
                     <property name="name">q19indicator</property>
                     <property name="nativeName">q19indicator</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">109</property>
+                    <property name="position">105</property>
                     <property name="name">q19MBabies</property>
                     <property name="nativeName">q19MBabies</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">110</property>
+                    <property name="position">106</property>
                     <property name="name">q19FBabies</property>
                     <property name="nativeName">q19FBabies</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">111</property>
+                    <property name="position">107</property>
                     <property name="name">q19MToddlers</property>
                     <property name="nativeName">q19MToddlers</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">112</property>
+                    <property name="position">108</property>
                     <property name="name">q19FToddlers</property>
                     <property name="nativeName">q19FToddlers</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">113</property>
+                    <property name="position">109</property>
                     <property name="name">q19MTeens</property>
                     <property name="nativeName">q19MTeens</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">114</property>
+                    <property name="position">110</property>
                     <property name="name">q19FTeens</property>
                     <property name="nativeName">q19FTeens</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">115</property>
+                    <property name="position">111</property>
                     <property name="name">q19MSeniors</property>
                     <property name="nativeName">q19MSeniors</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">116</property>
+                    <property name="position">112</property>
                     <property name="name">q19FSeniors</property>
                     <property name="nativeName">q19FSeniors</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">117</property>
+                    <property name="position">113</property>
                     <property name="name">q19Total</property>
                     <property name="nativeName">q19Total</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">118</property>
-                    <property name="name">indicator_id_118</property>
+                    <property name="position">114</property>
+                    <property name="name">indicator_id_114</property>
                     <property name="nativeName">indicator_id</property>
                     <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
-                    <property name="position">119</property>
+                    <property name="position">115</property>
                     <property name="name">q20indicator</property>
                     <property name="nativeName">q20indicator</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">120</property>
+                    <property name="position">116</property>
                     <property name="name">q20MBabies</property>
                     <property name="nativeName">q20MBabies</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">121</property>
+                    <property name="position">117</property>
                     <property name="name">q20FBabies</property>
                     <property name="nativeName">q20FBabies</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">122</property>
+                    <property name="position">118</property>
                     <property name="name">q20MToddlers</property>
                     <property name="nativeName">q20MToddlers</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">123</property>
+                    <property name="position">119</property>
                     <property name="name">q20FToddlers</property>
                     <property name="nativeName">q20FToddlers</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">124</property>
+                    <property name="position">120</property>
                     <property name="name">q20MTeens</property>
                     <property name="nativeName">q20MTeens</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">125</property>
+                    <property name="position">121</property>
                     <property name="name">q20FTeens</property>
                     <property name="nativeName">q20FTeens</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">126</property>
+                    <property name="position">122</property>
                     <property name="name">q20MSeniors</property>
                     <property name="nativeName">q20MSeniors</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">127</property>
+                    <property name="position">123</property>
                     <property name="name">q20FSeniors</property>
                     <property name="nativeName">q20FSeniors</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">128</property>
+                    <property name="position">124</property>
                     <property name="name">q20Total</property>
                     <property name="nativeName">q20Total</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">129</property>
-                    <property name="name">indicator_id_129</property>
+                    <property name="position">125</property>
+                    <property name="name">indicator_id_125</property>
                     <property name="nativeName">indicator_id</property>
                     <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
-                    <property name="position">130</property>
+                    <property name="position">126</property>
                     <property name="name">q21indicator</property>
                     <property name="nativeName">q21indicator</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">131</property>
+                    <property name="position">127</property>
                     <property name="name">q21MBabies</property>
                     <property name="nativeName">q21MBabies</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">132</property>
+                    <property name="position">128</property>
                     <property name="name">q21FBabies</property>
                     <property name="nativeName">q21FBabies</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">133</property>
+                    <property name="position">129</property>
                     <property name="name">q21MToddlers</property>
                     <property name="nativeName">q21MToddlers</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">134</property>
+                    <property name="position">130</property>
                     <property name="name">q21FToddlers</property>
                     <property name="nativeName">q21FToddlers</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">135</property>
+                    <property name="position">131</property>
                     <property name="name">q21MTeens</property>
                     <property name="nativeName">q21MTeens</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">136</property>
+                    <property name="position">132</property>
                     <property name="name">q21FTeens</property>
                     <property name="nativeName">q21FTeens</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">137</property>
+                    <property name="position">133</property>
                     <property name="name">q21MSeniors</property>
                     <property name="nativeName">q21MSeniors</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">138</property>
+                    <property name="position">134</property>
                     <property name="name">q21FSeniors</property>
                     <property name="nativeName">q21FSeniors</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">139</property>
+                    <property name="position">135</property>
                     <property name="name">q21Total</property>
                     <property name="nativeName">q21Total</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">140</property>
-                    <property name="name">indicator_id_140</property>
+                    <property name="position">136</property>
+                    <property name="name">indicator_id_136</property>
                     <property name="nativeName">indicator_id</property>
                     <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
-                    <property name="position">141</property>
+                    <property name="position">137</property>
                     <property name="name">q22indicator</property>
                     <property name="nativeName">q22indicator</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">142</property>
+                    <property name="position">138</property>
                     <property name="name">q22MBabies</property>
                     <property name="nativeName">q22MBabies</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">143</property>
+                    <property name="position">139</property>
                     <property name="name">q22FBabies</property>
                     <property name="nativeName">q22FBabies</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">144</property>
+                    <property name="position">140</property>
                     <property name="name">q22MToddlers</property>
                     <property name="nativeName">q22MToddlers</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">145</property>
+                    <property name="position">141</property>
                     <property name="name">q22FToddlers</property>
                     <property name="nativeName">q22FToddlers</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">146</property>
+                    <property name="position">142</property>
                     <property name="name">q22MTeens</property>
                     <property name="nativeName">q22MTeens</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">147</property>
+                    <property name="position">143</property>
                     <property name="name">q22FTeens</property>
                     <property name="nativeName">q22FTeens</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">148</property>
+                    <property name="position">144</property>
                     <property name="name">q22MSeniors</property>
                     <property name="nativeName">q22MSeniors</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">149</property>
+                    <property name="position">145</property>
                     <property name="name">q22FSeniors</property>
                     <property name="nativeName">q22FSeniors</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">150</property>
+                    <property name="position">146</property>
                     <property name="name">q22Total</property>
                     <property name="nativeName">q22Total</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">151</property>
-                    <property name="name">indicator_id_151</property>
+                    <property name="position">147</property>
+                    <property name="name">indicator_id_147</property>
                     <property name="nativeName">indicator_id</property>
                     <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
-                    <property name="position">152</property>
+                    <property name="position">148</property>
                     <property name="name">q23indicator</property>
                     <property name="nativeName">q23indicator</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">153</property>
+                    <property name="position">149</property>
                     <property name="name">q23MBabies</property>
                     <property name="nativeName">q23MBabies</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">154</property>
+                    <property name="position">150</property>
                     <property name="name">q23FBabies</property>
                     <property name="nativeName">q23FBabies</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">155</property>
+                    <property name="position">151</property>
                     <property name="name">q23MToddlers</property>
                     <property name="nativeName">q23MToddlers</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">156</property>
+                    <property name="position">152</property>
                     <property name="name">q23FToddlers</property>
                     <property name="nativeName">q23FToddlers</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">157</property>
+                    <property name="position">153</property>
                     <property name="name">q23MTeens</property>
                     <property name="nativeName">q23MTeens</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">158</property>
+                    <property name="position">154</property>
                     <property name="name">q23FTeens</property>
                     <property name="nativeName">q23FTeens</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">159</property>
+                    <property name="position">155</property>
                     <property name="name">q23MSeniors</property>
                     <property name="nativeName">q23MSeniors</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">160</property>
+                    <property name="position">156</property>
                     <property name="name">q23FSeniors</property>
                     <property name="nativeName">q23FSeniors</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">161</property>
+                    <property name="position">157</property>
                     <property name="name">q23Total</property>
                     <property name="nativeName">q23Total</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">162</property>
-                    <property name="name">indicator_id_162</property>
+                    <property name="position">158</property>
+                    <property name="name">indicator_id_158</property>
                     <property name="nativeName">indicator_id</property>
                     <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
-                    <property name="position">163</property>
+                    <property name="position">159</property>
                     <property name="name">q24indicator</property>
                     <property name="nativeName">q24indicator</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">164</property>
+                    <property name="position">160</property>
                     <property name="name">q24Total</property>
                     <property name="nativeName">q24Total</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">165</property>
-                    <property name="name">indicator_id_165</property>
+                    <property name="position">161</property>
+                    <property name="name">indicator_id_161</property>
                     <property name="nativeName">indicator_id</property>
                     <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
-                    <property name="position">166</property>
+                    <property name="position">162</property>
                     <property name="name">q25indicator</property>
                     <property name="nativeName">q25indicator</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">167</property>
+                    <property name="position">163</property>
                     <property name="name">q25Total</property>
                     <property name="nativeName">q25Total</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">168</property>
-                    <property name="name">indicator_id_168</property>
+                    <property name="position">164</property>
+                    <property name="name">indicator_id_164</property>
                     <property name="nativeName">indicator_id</property>
                     <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
-                    <property name="position">169</property>
+                    <property name="position">165</property>
                     <property name="name">q26indicator</property>
                     <property name="nativeName">q26indicator</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">170</property>
+                    <property name="position">166</property>
                     <property name="name">q26Total</property>
                     <property name="nativeName">q26Total</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">171</property>
-                    <property name="name">indicator_id_171</property>
+                    <property name="position">167</property>
+                    <property name="name">indicator_id_167</property>
                     <property name="nativeName">indicator_id</property>
                     <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
-                    <property name="position">172</property>
+                    <property name="position">168</property>
                     <property name="name">q27indicator</property>
                     <property name="nativeName">q27indicator</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">173</property>
+                    <property name="position">169</property>
                     <property name="name">q27Total</property>
                     <property name="nativeName">q27Total</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">174</property>
-                    <property name="name">indicator_id_174</property>
+                    <property name="position">170</property>
+                    <property name="name">indicator_id_170</property>
                     <property name="nativeName">indicator_id</property>
                     <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
-                    <property name="position">175</property>
+                    <property name="position">171</property>
                     <property name="name">q28indicator</property>
                     <property name="nativeName">q28indicator</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">176</property>
+                    <property name="position">172</property>
                     <property name="name">q28Total</property>
                     <property name="nativeName">q28Total</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">177</property>
-                    <property name="name">indicator_id_177</property>
+                    <property name="position">173</property>
+                    <property name="name">indicator_id_173</property>
                     <property name="nativeName">indicator_id</property>
                     <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
-                    <property name="position">178</property>
+                    <property name="position">174</property>
                     <property name="name">q29indicator</property>
                     <property name="nativeName">q29indicator</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">179</property>
+                    <property name="position">175</property>
                     <property name="name">q29Total</property>
                     <property name="nativeName">q29Total</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
-                    <property name="position">180</property>
-                    <property name="name">indicator_id_180</property>
+                    <property name="position">176</property>
+                    <property name="name">indicator_id_176</property>
                     <property name="nativeName">indicator_id</property>
                     <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
-                    <property name="position">181</property>
+                    <property name="position">177</property>
                     <property name="name">q30indicator</property>
                     <property name="nativeName">q30indicator</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">182</property>
+                    <property name="position">178</property>
                     <property name="name">q30Total</property>
                     <property name="nativeName">q30Total</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
             </list-property>
             <property name="queryText">SELECT 
@@ -3053,16 +2927,9 @@ FROM
     (SELECT 
         indicator_id,
             q7indicator,
-            SUM(IF(gender = 'M' AND age &lt; 2, 1, 0)) AS q7MBabies,
-            SUM(IF(gender = 'F' AND age &lt; 2, 1, 0)) AS q7FBabies,
-            SUM(IF(gender = 'M' AND age BETWEEN 2 AND 4, 1, 0)) AS q7MToddlers,
-            SUM(IF(gender = 'F' AND age BETWEEN 2 AND 4, 1, 0)) AS q7FToddlers,
-            SUM(IF(gender = 'M' AND age BETWEEN 5 AND 14, 1, 0)) AS q7MTeens,
-            SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q7FTeens,
-            SUM(IF(gender = 'M' AND age > 14, 1, 0)) AS q7MSeniors,
-            SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q7FSeniors,
-            SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 0 AND 100, 1, 0)) AS q7Total
+            SUM(IF(age &lt;= 14, 1, 0)) AS q71,
+            SUM(IF(age > 14, 1, 0)) AS q72,
+            SUM(IF(age BETWEEN 0 AND 100, 1, 0)) AS q7Total
     FROM
         (SELECT 
         1 AS indicator_id,
@@ -3102,8 +2969,9 @@ FROM
     (SELECT 
         indicator_id,
             q8indicator,
-            SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 0 AND 100, 1, 0)) AS q8Total
+            SUM(IF(age &lt;= 14, 1, 0)) AS q81,
+            SUM(IF(age > 14, 1, 0)) AS q82,
+            SUM(IF(age BETWEEN 0 AND 100, 1, 0)) AS q8Total
     FROM
         (SELECT 
         1 AS indicator_id,
@@ -4292,8 +4160,8 @@ limit 1</property>
                             <property name="textAlign">center</property>
                             <property name="verticalAlign">top</property>
                             <image id="10476">
-                                <property name="height">50px</property>
-                                <property name="width">50px</property>
+                                <property name="height">100px</property>
+                                <property name="width">100px</property>
                                 <property name="source">embed</property>
                                 <property name="imageName">Coat_of_arms_of_uganda.gif</property>
                             </image>
@@ -4343,37 +4211,63 @@ limit 1</property>
                         <cell id="10481">
                             <property name="textAlign">left</property>
                             <property name="verticalAlign">top</property>
-                            <data id="10489">
-                                <property name="dataSet">location</property>
-                                <list-property name="boundDataColumns">
-                                    <structure>
-                                        <property name="name">facility</property>
-                                        <property name="displayName">facility</property>
-                                        <expression name="expression">dataSetRow["facility"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                </list-property>
-                                <property name="resultSetColumn">facility</property>
-                            </data>
                         </cell>
                         <cell id="10482">
                             <property name="textAlign">center</property>
                             <property name="verticalAlign">top</property>
                             <text id="10494">
                                 <property name="contentType">auto</property>
-                                <text-property name="content"><![CDATA[HEALTH UNIT QUARTERLY REPORT]]></text-property>
+                                <text-property name="content"><![CDATA[HMIS FORM 106a:HEALTH UNIT QUARTERLY REPORT]]></text-property>
                             </text>
                         </cell>
                         <cell id="10483">
                             <property name="textAlign">right</property>
                             <property name="verticalAlign">top</property>
-                            <data id="10491">
+                        </cell>
+                    </row>
+                    <row id="10484">
+                        <cell id="10485">
+                            <property name="textAlign">center</property>
+                            <property name="verticalAlign">top</property>
+                            <data id="10508">
+                                <property name="dataSet">location</property>
+                                <list-property name="boundDataColumns">
+                                    <structure>
+                                        <property name="name">facility</property>
+                                        <property name="displayName">facility</property>
+                                        <expression name="expression">"Health Unit: " + dataSetRow["facility"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                </list-property>
+                                <property name="resultSetColumn">facility</property>
+                            </data>
+                        </cell>
+                        <cell id="10486">
+                            <property name="textAlign">center</property>
+                            <property name="verticalAlign">top</property>
+                            <data id="10516">
+                                <property name="dataSet">location</property>
+                                <list-property name="boundDataColumns">
+                                    <structure>
+                                        <property name="name">hsd</property>
+                                        <property name="displayName">Level</property>
+                                        <expression name="expression">"Level : _______ Code:__________"</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                </list-property>
+                                <property name="resultSetColumn">hsd</property>
+                            </data>
+                        </cell>
+                        <cell id="10487">
+                            <property name="textAlign">center</property>
+                            <property name="verticalAlign">top</property>
+                            <data id="10509">
                                 <property name="dataSet">location</property>
                                 <list-property name="boundDataColumns">
                                     <structure>
                                         <property name="name">hsd</property>
                                         <property name="displayName">hsd</property>
-                                        <expression name="expression">dataSetRow["hsd"]</expression>
+                                        <expression name="expression">"District :" + dataSetRow["hsd"]</expression>
                                         <property name="dataType">string</property>
                                     </structure>
                                 </list-property>
@@ -4381,20 +4275,86 @@ limit 1</property>
                             </data>
                         </cell>
                     </row>
-                    <row id="10484">
-                        <cell id="10485">
+                    <row id="10498">
+                        <cell id="10499">
+                            <property name="textAlign">center</property>
+                            <property name="verticalAlign">top</property>
+                            <data id="10510">
+                                <property name="dataSet">location</property>
+                                <list-property name="boundDataColumns">
+                                    <structure>
+                                        <property name="name">hsd</property>
+                                        <property name="displayName">hsd</property>
+                                        <expression name="expression">"Health Sub-District :" + dataSetRow["hsd"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                </list-property>
+                                <property name="resultSetColumn">hsd</property>
+                            </data>
+                        </cell>
+                        <cell id="10500">
+                            <property name="textAlign">center</property>
+                            <property name="verticalAlign">top</property>
+                            <data id="10511">
+                                <property name="dataSet">location</property>
+                                <list-property name="boundDataColumns">
+                                    <structure>
+                                        <property name="name">hsd</property>
+                                        <property name="displayName">Subcoutny</property>
+                                        <expression name="expression">"Sub County: __________"</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                </list-property>
+                                <property name="resultSetColumn">hsd</property>
+                            </data>
+                        </cell>
+                        <cell id="10501">
+                            <property name="textAlign">center</property>
+                            <property name="verticalAlign">top</property>
+                            <data id="10512">
+                                <property name="dataSet">location</property>
+                                <list-property name="boundDataColumns">
+                                    <structure>
+                                        <property name="name">hsd</property>
+                                        <property name="displayName">Parish</property>
+                                        <expression name="expression">"Parish : "</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                </list-property>
+                                <property name="resultSetColumn">hsd</property>
+                            </data>
+                        </cell>
+                    </row>
+                    <row id="10502">
+                        <cell id="10503">
                             <property name="textAlign">center</property>
                             <property name="verticalAlign">top</property>
                         </cell>
-                        <cell id="10486">
+                        <cell id="10504">
                             <property name="textAlign">center</property>
                             <property name="verticalAlign">top</property>
-                            <text-data id="10497">
-                                <expression name="valueExpr">"Quarter " + params["quarter"].value + "  " + params["year"].value</expression>
-                                <property name="contentType">html</property>
-                            </text-data>
+                            <data id="10513">
+                                <property name="dataSet">location</property>
+                                <list-property name="boundDataColumns">
+                                    <structure>
+                                        <property name="name">hsd</property>
+                                        <property name="displayName">Period</property>
+                                        <expression name="expression">if (params["quarter"].value == 1){
+"Reporting Period: From January To March (months) Year : " + params["year"].value;
+}else if(params["quarter"].value == 2){
+"Reporting Period: From April To June (months) Year : " + params["year"].value;
+}else if(params["quarter"].value == 3){
+"Reporting Period: From July To September (months) Year : " + params["year"].value;
+}else if(params["quarter"].value == 4){
+"Reporting Period: From October To December (months) Year : " + params["year"].value;
+}</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                </list-property>
+                                <property name="resultSetColumn">hsd</property>
+                            </data>
                         </cell>
-                        <cell id="10487">
+                        <cell id="10505">
                             <property name="textAlign">center</property>
                             <property name="verticalAlign">top</property>
                         </cell>
@@ -4633,24 +4593,6 @@ limit 1</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="name">q7MBabies</property>
-                    <property name="displayName">q7MBabies</property>
-                    <expression name="expression">dataSetRow["q7MBabies"]</expression>
-                    <property name="dataType">decimal</property>
-                </structure>
-                <structure>
-                    <property name="name">q7MToddlers</property>
-                    <property name="displayName">q7MToddlers</property>
-                    <expression name="expression">dataSetRow["q7MToddlers"]</expression>
-                    <property name="dataType">decimal</property>
-                </structure>
-                <structure>
-                    <property name="name">q7FToddlers</property>
-                    <property name="displayName">q7FToddlers</property>
-                    <expression name="expression">dataSetRow["q7FToddlers"]</expression>
-                    <property name="dataType">decimal</property>
-                </structure>
-                <structure>
                     <property name="name">q6Total</property>
                     <property name="displayName">q6Total</property>
                     <expression name="expression">dataSetRow["q6Total"]</expression>
@@ -4663,39 +4605,9 @@ limit 1</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="name">q7FBabies</property>
-                    <property name="displayName">q7FBabies</property>
-                    <expression name="expression">dataSetRow["q7FBabies"]</expression>
-                    <property name="dataType">decimal</property>
-                </structure>
-                <structure>
-                    <property name="name">q7MTeens</property>
-                    <property name="displayName">q7MTeens</property>
-                    <expression name="expression">dataSetRow["q7MTeens"]</expression>
-                    <property name="dataType">decimal</property>
-                </structure>
-                <structure>
-                    <property name="name">q7FTeens</property>
-                    <property name="displayName">q7FTeens</property>
-                    <expression name="expression">dataSetRow["q7FTeens"]</expression>
-                    <property name="dataType">decimal</property>
-                </structure>
-                <structure>
                     <property name="name">q5FTeens</property>
                     <property name="displayName">q5FTeens</property>
                     <expression name="expression">dataSetRow["q5FTeens"]</expression>
-                    <property name="dataType">decimal</property>
-                </structure>
-                <structure>
-                    <property name="name">q7MSeniors</property>
-                    <property name="displayName">q7MSeniors</property>
-                    <expression name="expression">dataSetRow["q7MSeniors"]</expression>
-                    <property name="dataType">decimal</property>
-                </structure>
-                <structure>
-                    <property name="name">q7FSeniors</property>
-                    <property name="displayName">q7FSeniors</property>
-                    <expression name="expression">dataSetRow["q7FSeniors"]</expression>
                     <property name="dataType">decimal</property>
                 </structure>
                 <structure>
@@ -5328,6 +5240,30 @@ limit 1</property>
                     <expression name="expression">dataSetRow["q30Total"]</expression>
                     <property name="dataType">decimal</property>
                 </structure>
+                <structure>
+                    <property name="name">q71</property>
+                    <property name="displayName">q71</property>
+                    <expression name="expression">dataSetRow["q71"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">q72</property>
+                    <property name="displayName">q72</property>
+                    <expression name="expression">dataSetRow["q72"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">q81</property>
+                    <property name="displayName">q81</property>
+                    <expression name="expression">dataSetRow["q81"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">q82</property>
+                    <property name="displayName">q82</property>
+                    <expression name="expression">dataSetRow["q82"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
             </list-property>
             <column id="10386">
                 <property name="width">2.5%</property>
@@ -5395,6 +5331,19 @@ limit 1</property>
                 <property name="verticalAlign">middle</property>
             </column>
             <detail>
+                <row id="10517">
+                    <cell id="10518">
+                        <property name="colSpan">12</property>
+                        <property name="rowSpan">1</property>
+                        <property name="fontFamily">"Times New Roman"</property>
+                        <property name="textAlign">center</property>
+                        <property name="verticalAlign">middle</property>
+                        <text id="10530">
+                            <property name="contentType">auto</property>
+                            <text-property name="content"><![CDATA[<H3>1A - HIV CARE/ART QUARTERLY CROSS SECTIONAL REPORT</H3>]]></text-property>
+                        </text>
+                    </cell>
+                </row>
                 <row id="9690">
                     <cell id="10352">
                         <property name="colSpan">1</property>
@@ -5992,51 +5941,19 @@ limit 1</property>
                         </data>
                     </cell>
                     <cell id="9824">
+                        <property name="colSpan">6</property>
+                        <property name="rowSpan">1</property>
                         <property name="fontFamily">"Times New Roman"</property>
-                        <data id="10229">
-                            <property name="resultSetColumn">q7MBabies</property>
-                        </data>
-                    </cell>
-                    <cell id="9825">
-                        <property name="fontFamily">"Times New Roman"</property>
-                        <data id="10230">
-                            <property name="resultSetColumn">q7FBabies</property>
-                        </data>
-                    </cell>
-                    <cell id="9826">
-                        <property name="fontFamily">"Times New Roman"</property>
-                        <data id="10231">
-                            <property name="resultSetColumn">q7MToddlers</property>
-                        </data>
-                    </cell>
-                    <cell id="9827">
-                        <property name="fontFamily">"Times New Roman"</property>
-                        <data id="10232">
-                            <property name="resultSetColumn">q7FToddlers</property>
-                        </data>
-                    </cell>
-                    <cell id="9828">
-                        <property name="fontFamily">"Times New Roman"</property>
-                        <data id="10233">
-                            <property name="resultSetColumn">q7MTeens</property>
-                        </data>
-                    </cell>
-                    <cell id="9829">
-                        <property name="fontFamily">"Times New Roman"</property>
-                        <data id="10234">
-                            <property name="resultSetColumn">q7FTeens</property>
+                        <data id="10531">
+                            <property name="resultSetColumn">q71</property>
                         </data>
                     </cell>
                     <cell id="9830">
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                         <property name="fontFamily">"Times New Roman"</property>
-                        <data id="10236">
-                            <property name="resultSetColumn">q7MSeniors</property>
-                        </data>
-                    </cell>
-                    <cell id="9831">
-                        <property name="fontFamily">"Times New Roman"</property>
-                        <data id="10237">
-                            <property name="resultSetColumn">q7FSeniors</property>
+                        <data id="10532">
+                            <property name="resultSetColumn">q72</property>
                         </data>
                     </cell>
                     <cell id="9832">
@@ -6061,36 +5978,20 @@ limit 1</property>
                         </data>
                     </cell>
                     <cell id="9837">
-                        <property name="backgroundColor">#808080</property>
+                        <property name="colSpan">6</property>
+                        <property name="rowSpan">1</property>
                         <property name="fontFamily">"Times New Roman"</property>
-                    </cell>
-                    <cell id="9838">
-                        <property name="backgroundColor">#808080</property>
-                        <property name="fontFamily">"Times New Roman"</property>
-                    </cell>
-                    <cell id="9839">
-                        <property name="backgroundColor">#808080</property>
-                        <property name="fontFamily">"Times New Roman"</property>
-                    </cell>
-                    <cell id="9840">
-                        <property name="backgroundColor">#808080</property>
-                        <property name="fontFamily">"Times New Roman"</property>
-                    </cell>
-                    <cell id="9841">
-                        <property name="backgroundColor">#808080</property>
-                        <property name="fontFamily">"Times New Roman"</property>
-                    </cell>
-                    <cell id="9842">
-                        <property name="backgroundColor">#808080</property>
-                        <property name="fontFamily">"Times New Roman"</property>
+                        <data id="10533">
+                            <property name="resultSetColumn">q81</property>
+                        </data>
                     </cell>
                     <cell id="9843">
-                        <property name="backgroundColor">#808080</property>
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                         <property name="fontFamily">"Times New Roman"</property>
-                    </cell>
-                    <cell id="9844">
-                        <property name="backgroundColor">#808080</property>
-                        <property name="fontFamily">"Times New Roman"</property>
+                        <data id="10534">
+                            <property name="resultSetColumn">q82</property>
+                        </data>
                     </cell>
                     <cell id="9845">
                         <property name="fontFamily">"Times New Roman"</property>
