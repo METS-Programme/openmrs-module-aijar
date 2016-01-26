@@ -28,11 +28,11 @@ public class PatientIdentifierTypes {
         }
 
         public String format() {
-            return "[X][X][X]/[0-9][0-9][0-9][0-9][0-9]";
+            return "[X][X][X][\\/][0-9][0-9][0-9][0-9][0-9]";
         }
 
         public String formatDescription() {
-            return format() + " Replace XXX with the first three letters of the facility or the letters used on the patient clinic number, followed by 5 numbers";
+            return " The first three letters of the facility, followed by / then 5 numbers with no spaces";
         }
     };
 
@@ -53,11 +53,11 @@ public class PatientIdentifierTypes {
         }
 
         public String format() {
-            return "[E][X][P]/[0-9][0-9][0-9][0-9]";
+            return "[E][X][P][\\/][0-9][0-9][0-9][0-9]";
         }
 
         public String formatDescription() {
-            return " EXP followed by 4 numbers";
+            return " EXP/ followed by 4 numbers with no spaces";
         }
     };
 
