@@ -706,17 +706,27 @@
 
                     <table class="table table-bordered custom-table">
                         <tr>
+                            <td colspan="2">Exposed Infant No.
+                                <patient field="identifier" identifierTypeId="2c5b695d-4bf3-452f-8a7c-fe3ee3432ffe"
+                                         required="true"/>
+                            </td>
                             <td colspan="2">Date Chart Openned:
                                 <encounterDate default="today"></encounterDate>
                             </td>
                             <td>Entry Point (Clinic/Ward):
                                 <encounterLocation default="1"/>
                             </td>
-                            <td>Date of NVP Start:
+                        </tr>
+                        <tr>
+                            <td colspan="2">Date of NVP Start:
                                 <obs conceptId="99771"/>
                             </td>
-                            <td>Date of CTX Start:
+                            <td colspan="2">Date of CTX Start:
                                 <obs conceptId="99773"/>
+                            </td>
+                            <td>
+                                Clinical Team Leader:
+                                <encounterProvider role="Provider" style="autocomplete"/>
                             </td>
                         </tr>
                     </table>
@@ -781,7 +791,7 @@
                         <tr>
                             <td></td>
                             <td colspan="2">How should outreach workers introduce themselves
-                           <obs conceptId="162867" style="textarea"/>
+                                <obs conceptId="162867" style="textarea"/>
                             </td>
                         </tr>
                         <tr>
@@ -857,10 +867,14 @@
                         </tr>
                         <tr>
                             <td>Mother in care at an ART Clinic?:</td>
-                            <td><obs conceptId="162873"/> </td>
-                            <td><obs conceptId="162875" labelText="ART Clinic" /></td>
+                            <td>
+                                <obs conceptId="162873"/>
+                            </td>
+                            <td>
+                                <obs conceptId="162875" labelText="ART Clinic"/>
+                            </td>
                             <td colspan="3">
-                               <obs conceptId="162874" labelText="Mother's ART No"/>
+                                <obs conceptId="162874" labelText="Mother's ART No"/>
                             </td>
                         </tr>
                     </table>
@@ -916,17 +930,33 @@
                                 <br/>
                                 (if necessary)
                             </td>
-                            <td><obs conceptId="162876"/> </td>
-                            <td><obs conceptId="162877"/> </td>
-                            <td><obs conceptId="162881"/> </td>
-                            <td><obs conceptId="162882"/> </td>
+                            <td>
+                                <obs conceptId="162876"/>
+                            </td>
+                            <td>
+                                <obs conceptId="162877"/>
+                            </td>
+                            <td>
+                                <obs conceptId="162881"/>
+                            </td>
+                            <td>
+                                <obs conceptId="162882"/>
+                            </td>
                         </tr>
                         <tr>
                             <td>18 Month Raid Test</td>
-                            <td><obs conceptId="162879"/> </td>
-                            <td><obs conceptId="162878"/> </td>
-                            <td><obs conceptId="162880"/> </td>
-                            <td><obs conceptId="162883"/> </td>
+                            <td>
+                                <obs conceptId="162879"/>
+                            </td>
+                            <td>
+                                <obs conceptId="162878"/>
+                            </td>
+                            <td>
+                                <obs conceptId="162880"/>
+                            </td>
+                            <td>
+                                <obs conceptId="162883"/>
+                            </td>
                         </tr>
                         <tr>
                             <td colspan="2">Final Status</td>
