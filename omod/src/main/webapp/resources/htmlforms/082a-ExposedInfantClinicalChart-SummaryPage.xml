@@ -7,7 +7,7 @@
           formUILocation="patientDashboard.visitActions"
           formOrder="4"
           formIcon="icon-medkit"
-          formShowIf="visit.active &amp;&amp; patient.person.dead==false &amp;&amp; patient.person.age 	&lt; 3"
+          formShowIf="visit.active &amp;&amp; patient.person.dead==false &amp;&amp; patient.person.age &lt; 3"
           formDisplayStyle="Standard"
           formLabel="EID Card - Summary form">
     <macros>
@@ -706,31 +706,27 @@
 
                     <table class="table table-bordered custom-table">
                         <tr>
-                            <td colspan="2">Exposed Infant No.</td>
+                            <td colspan="2">Exposed Infant No.
+                                <patient field="identifier" identifierTypeId="2c5b695d-4bf3-452f-8a7c-fe3ee3432ffe"
+                                         required="true"/>
+                            </td>
                             <td colspan="2">Date Chart Openned:
                                 <encounterDate default="today"></encounterDate>
                             </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">Infant's Name:
-                                <lookup class="value" expression="patient.personName"/>
-                            </td>
                             <td>Entry Point (Clinic/Ward):
-                                <encounterLocation default="1" />
-                            </td>
-                            <td>Sex:
-                                <lookup class="value" expression="patient.gender"/>
+                                <encounterLocation default="1"/>
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2">Date of Birth (Age):
-                                <lookup class="value" expression="patient.birthdate"/>
-                            </td>
-                            <td>Date of NVP Start:
+                            <td colspan="2">Date of NVP Start:
                                 <obs conceptId="99771"/>
                             </td>
-                            <td>Date of CTX Start:
+                            <td colspan="2">Date of CTX Start:
                                 <obs conceptId="99773"/>
+                            </td>
+                            <td>
+                                Clinical Team Leader:
+                                <encounterProvider role="Provider" style="autocomplete"/>
                             </td>
                         </tr>
                     </table>
@@ -755,26 +751,26 @@
 
                         <tr>
                             <td>District:
-                                <lookup class="value" expression="patient.personAddress.countyDistrict"/>
+                                <obs conceptId="162884"/>
                             </td>
                             <td>County:
-                                <lookup class="value" expression="patient.personAddress.stateProvince"/>
+                                <obs conceptId="162885"/>
                             </td>
                             <td>Sub County:
-                                <lookup class="value" expression="patient.personAddress.address5"/>
+                                <obs conceptId="162886"/>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2">Parish:
-                                <lookup class="value" expression="patient.personAddress.address4"/>
+                                <obs conceptId="162888"/>
                             </td>
                             <td>Village:
-                                <lookup class="value" expression="patient.personAddress.address3"/>
+                                <obs conceptId="162887"/>
                             </td>
                         </tr>
                         <tr>
                             <td>Telephone:
-                                <lookup class="value" expression="patient.personAddress.postalCode"/>
+                                <obs conceptId="162889"/>
                             </td>
                             <td colspan="2">
                                 <obs conceptId="99117" size="20" labelText="Whose:"/>
@@ -782,27 +778,32 @@
                         </tr>
                         <tr>
                             <td>LCI Zone</td>
-                            <td colspan="2"><obs conceptId="99137"/></td>
+                            <td colspan="2">
+                                <obs conceptId="99137"/>
+                            </td>
                         </tr>
                         <tr>
-                            <td> LC1 Chairman</td>
+                            <td>LC1 Chairman</td>
                             <td colspan="2">
-
+                                <obs conceptId="162866"/>
                             </td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td colspan="2">How should outreach workers introduce  themselves
+                            <td colspan="2">How should outreach workers introduce themselves
+                                <obs conceptId="162867" style="textarea"/>
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2">Directions to caregiver's home address:
+                            <td colspan="3">Directions to caregiver's home address:
+                                <obs conceptId="162868" style="textarea"/>
                             </td>
 
                         </tr>
 
                         <tr>
                             <td colspan="2">Alternative Contact Person:
+                                <obs conceptId="162869"/>
                             </td>
                             <td>
                                 <obs conceptId="90269" labelText="Relationship:"/>
@@ -810,10 +811,11 @@
                         </tr>
                         <tr>
                             <td>Telephone No:
-                                <lookup class="value" expression="patient.personAddress.postalCode"/>
+                                <obs conceptId="162870"/>
                             </td>
                             <td colspan="2">
                                 Has This Person been disclosed to?
+                                <obs conceptId="162871"/>
                             </td>
                         </tr>
 
@@ -865,10 +867,14 @@
                         </tr>
                         <tr>
                             <td>Mother in care at an ART Clinic?:</td>
-                            <td> </td>
-                            <td>ART Clinic</td>
+                            <td>
+                                <obs conceptId="162873"/>
+                            </td>
+                            <td>
+                                <obs conceptId="162875" labelText="ART Clinic"/>
+                            </td>
                             <td colspan="3">
-                                Mother's ART No
+                                <obs conceptId="162874" labelText="Mother's ART No"/>
                             </td>
                         </tr>
                     </table>
@@ -891,36 +897,75 @@
                         </tr>
                         <tr>
                             <td>1st PCR</td>
-                            <td><obs conceptId="99606"></obs> </td>
-                            <td><obs conceptId="99434"></obs> </td>
-                            <td><obs conceptId="99435"></obs> </td>
-                            <td><obs conceptId="99438"></obs> </td>
+                            <td>
+                                <obs conceptId="99606"></obs>
+                            </td>
+                            <td>
+                                <obs conceptId="99434"></obs>
+                            </td>
+                            <td>
+                                <obs conceptId="99435"></obs>
+                            </td>
+                            <td>
+                                <obs conceptId="99438"></obs>
+                            </td>
                         </tr>
                         <tr>
                             <td>2nd PCR</td>
-                            <td><obs conceptId="99436"></obs> </td>
-                            <td><obs conceptId="99794"></obs> </td>
-                            <td><obs conceptId="99440"></obs> </td>
-                            <td><obs conceptId="99442"></obs> </td>
+                            <td>
+                                <obs conceptId="99436"></obs>
+                            </td>
+                            <td>
+                                <obs conceptId="99794"></obs>
+                            </td>
+                            <td>
+                                <obs conceptId="99440"></obs>
+                            </td>
+                            <td>
+                                <obs conceptId="99442"></obs>
+                            </td>
                         </tr>
                         <tr>
-                            <td>Repeat PCR <br/> (if necessary)</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>Repeat PCR
+                                <br/>
+                                (if necessary)
+                            </td>
+                            <td>
+                                <obs conceptId="162876"/>
+                            </td>
+                            <td>
+                                <obs conceptId="162877"/>
+                            </td>
+                            <td>
+                                <obs conceptId="162881"/>
+                            </td>
+                            <td>
+                                <obs conceptId="162882"/>
+                            </td>
                         </tr>
                         <tr>
                             <td>18 Month Raid Test</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                                <obs conceptId="162879"/>
+                            </td>
+                            <td>
+                                <obs conceptId="162878"/>
+                            </td>
+                            <td>
+                                <obs conceptId="162880"/>
+                            </td>
+                            <td>
+                                <obs conceptId="162883"/>
+                            </td>
                         </tr>
                         <tr>
                             <td colspan="2">Final Status</td>
-                            <td colspan="2"><obs conceptId="99797"/></td>
-                            <td colspan="1">Date<obs conceptId="99795"/></td>
+                            <td colspan="2">
+                                <obs conceptId="99797"/>
+                            </td>
+                            <td colspan="1">Date
+                                <obs conceptId="99795"/>
+                            </td>
                         </tr>
                     </table>
                 </fieldset>
@@ -935,22 +980,34 @@
                     <table class="table table-bordered custom-table">
                         <tr>
                             <td>Referred to ART Clinic</td>
-                            <td><obs conceptId="99430"></obs> </td>
-                            <td><obs conceptId="99434"></obs> </td>
+                            <td>
+                                <obs conceptId="99430"></obs>
+                            </td>
+                            <td>
+                                <obs conceptId="99434"></obs>
+                            </td>
                         </tr>
                         <tr>
                             <td>Enrolled at ART Clinic</td>
-                            <td><obs conceptId="99430"></obs> </td>
-                            <td><encounterDate id="hivEnrolledDate" /> </td>
+                            <td>
+                                <obs conceptId="99430"></obs>
+                            </td>
+                            <td>
+                                <encounterDate id="hivEnrolledDate"/>
+                            </td>
                         </tr>
                         <tr>
                             <td>Pre-ART No</td>
-                            <td><obs conceptId="99751"></obs> </td>
+                            <td>
+                                <obs conceptId="99751"></obs>
+                            </td>
                             <td>Presumptive Referral?</td>
                         </tr>
                         <tr>
                             <td>Final Outcome</td>
-                            <td><obs conceptId="99428"></obs> </td>
+                            <td>
+                                <obs conceptId="99428"></obs>
+                            </td>
                             <td>Date</td>
                         </tr>
                     </table>
