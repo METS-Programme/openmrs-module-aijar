@@ -36,6 +36,7 @@ public class PatientSummaryFragmentController {
             model.addAttribute("lastcd4date", cd4Counts.get(0).getObsDatetime());
         } else {
             model.addAttribute("lastcd4", "None Available");
+            model.addAttribute("lastcd4date", "");
         }
 
         List<Obs> currentRegimens = obsService.getLastNObservations(1, person, conceptService.getConcept("90315"), false);

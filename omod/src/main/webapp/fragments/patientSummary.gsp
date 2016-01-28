@@ -9,9 +9,12 @@
     <div class="info-body">
         <div>
             <strong>${ui.message("aijar.patientdashboard.person.lastcd4")}:</strong>
-            ${lastcd4} on ${ui.formatDatePretty(lastcd4Date)}
-        </div>
 
+            ${lastcd4}
+            <g:if test="${lastcd4date}">
+                on ${ui.formatDatePretty(lastcd4date)}
+            </g:if>
+        </div>
         <div>
             <strong>${ui.message("aijar.patientdashboard.person.currentregimen")}:</strong>
             ${currentregimen}
