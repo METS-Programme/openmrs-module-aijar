@@ -305,9 +305,13 @@
         width: 90%;
         }
 
-        .ai-page-content{
+        .ai-page-content {
         width: auto;
-        overflow-x: scroll;
+        overflow-x: visible;
+        }
+
+        .exposed-infant {
+        width: auto;
         }
 
         form
