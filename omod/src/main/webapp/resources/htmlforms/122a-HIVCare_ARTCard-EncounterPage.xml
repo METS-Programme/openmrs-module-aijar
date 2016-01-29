@@ -14,9 +14,6 @@
 		headerColor =#8fabc7
 		fontOnHeaderColor = white
 	</macros>
-
-	<!--
-
 	<style>
 
 		#br
@@ -179,7 +176,7 @@
 
 		.ai-page-content{
 		width: auto;
-		overflow-x: visible;
+		overflow-x: scroll;
 		}
 
 		form select, .form select {
@@ -191,7 +188,7 @@
 		label, .form label {
 		width: 130px;
 		}
-	</style>-->
+	</style>
 	<!-- jquery loaded for nonessential purposes. -->
 	<script type="text/javascript">
 
