@@ -1,7 +1,5 @@
 package org.openmrs.module.aijar.api.deploy.bundle;
 
-import org.openmrs.module.aijar.metadata.core.LocationTags;
-import org.openmrs.module.aijar.metadata.core.Locations;
 import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
 import org.openmrs.module.aijar.metadata.core.PersonAttributeTypes;
 import org.openmrs.module.metadatadeploy.bundle.AbstractMetadataBundle;
@@ -37,7 +35,7 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(PersonAttributeTypes.HEALTH_FACILITY_DISTRICT);
         log.info("Person AttributeTypes installed");
 
-        log.info("Installing location tags");
+        /*log.info("Installing location tags");
         install(LocationTags.ADMISSION_LOCATION);
         install(LocationTags.LOGIN_LOCATION);
         install(LocationTags.TRANSFER_LOCATION);
@@ -47,7 +45,7 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
 
         log.info("Installing service locations");
         install(Locations.HEALTH_FACILITY);
-        log.info("Service locations installed");
+        log.info("Service locations installed");*/
 
         // install(globalProperty(AijarConstants.GP_DEFAULT_LOCATION, "The facility for which this installation is configured", LocationDatatype.class, null, null));
 
