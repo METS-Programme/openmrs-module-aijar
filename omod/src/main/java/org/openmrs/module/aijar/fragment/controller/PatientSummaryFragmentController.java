@@ -13,6 +13,8 @@ import org.openmrs.ui.framework.annotation.SpringBean;
 import org.openmrs.ui.framework.fragment.FragmentConfiguration;
 import org.openmrs.ui.framework.fragment.FragmentModel;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -27,17 +29,21 @@ public class PatientSummaryFragmentController {
                            @SpringBean("obsService") ObsService obsService,
                            @SpringBean("conceptService") ConceptService conceptService,
                            @SpringBean("personService") PersonService personService,
-                           @FragmentParam("patientId") Patient patient) {
+                           @FragmentParam("patientId") Patient patient) throws ParseException {
 
         Person person = personService.getPerson(patient.getPersonId());
         List<Obs> cd4Counts = obsService.getLastNObservations(1, person, conceptService.getConcept("5497"), false);
         if (cd4Counts.size() > 0) {
+            SimpleDateFormat sdfSource = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
             model.addAttribute("lastcd4", cd4Counts.get(0).getValueNumeric());
-            model.addAttribute("lastcd4date", cd4Counts.get(0).getObsDatetime());
+            model.addAttribute("lastcd4date", sdfSource.parse(cd4Counts.get(0).getObsDatetime().toString()));
+            model.addAttribute("lastcd4joiner", "on");
         } else {
             model.addAttribute("lastcd4", "None Available");
             model.addAttribute("lastcd4date", "");
+            model.addAttribute("lastcd4joiner", "");
         }
+
 
         List<Obs> currentRegimens = obsService.getLastNObservations(1, person, conceptService.getConcept("90315"), false);
         if (currentRegimens.size() > 0) {
