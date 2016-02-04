@@ -199,6 +199,16 @@
         display:
         block;
         font-size: 12px;
+        background:#5BB3CE;
+        color:#fff !important;
+        }
+
+        #h3white{
+        color:#fff;
+        }
+        td {
+        background: #5BB3CE !important;
+        color:#fff !important;
         }
         .section{
         width: 99%;
@@ -328,364 +338,40 @@
         }
     </style>
     <script type="text/javascript">
-
-        function enable_disable_fm(selected_option){
-
-        var
-        class_name = $(selected_option).attr("class") ;
-
-        var length =
-        class_name.length;
-
-        var class_id =
-        parseInt(class_name.substring(length-1, length))
-
-        var row_id = class_id;
-
-        var disable = true;
-
-        var row_1 =
-        '[class^="FamilyMember"][class*="Children1"]';
-        var row_2 =
-        '[class^="FamilyMember"][class*="Children2"]';
-        var row_3 =
-        '[class^="FamilyMember"][class*="Children3"]';
-        var row_4 =
-        '[class^="FamilyMember"][class*="Children4"]';
-
-
-        var xx = row_1;
-        var selected_value = $(selected_option).find(":selected").text()
-
-
-        switch(selected_value){
-        case "P":
-        case "Y":
-        disable = false;
-        break;
-
-        }
-
-
-        switch(row_id){
-        case 1:
-        xx = row_1;
-        break;
-        case 2:
-        xx = row_2;
-        break;
-        case 3:
-        xx = row_3;
-        break;
-        case 4:
-        xx = row_4;
-        break;
-
-        }
-
-
-        $(xx).each(function(){
-        var group = $(this);
-
-        if( class_name.indexOf('Children') == -1)
-        {
-
-        group.find("input").attr("disabled",disable );
-        group.find('select').attr("disabled",disable );
-
-        }
-        else
-        if(class_name.indexOf('GrandChildren') == -1) {
-        group.find("input[type$='text']").val("");
-
-        group.find("input").attr("disabled",disable );
-        }
-
-        });
-
-        }
-
-        function
-        enable_disable_ei(selected_option){
-
-        var class_name =
-        $(selected_option).attr("class") ;
-
-        var length = class_name.length;
-
-        var
-        class_id = parseInt(class_name.substring(length-1, length))
-
-        var row_id
-        = class_id;
-
-        var disable = true;
-
-        var row_1 =
-        '[class^="ExposedInfant"][class*="Children1"]';
-        var row_2 =
-        '[class^="ExposedInfant"][class*="Children2"]';
-        var row_3 =
-        '[class^="ExposedInfant"][class*="Children3"]';
-        var row_4 =
-        '[class^="ExposedInfant"][class*="Children4"]';
-
-        var xx = row_1;
-        var
-        selected_value = $(selected_option).find(":selected").text()
-
-        if
-        (selected_value == "P")
-        disable = false;
-
-        switch(row_id){
-        case 1:
-        xx =
-        row_1;
-        break;
-        case 2:
-        xx = row_2;
-        break;
-        case 3:
-        xx = row_3;
-        break;
-        case 4:
-        xx
-        = row_4;
-        break;
-
-        }
-
-
-        $(xx).each(function(){
-        var group = $(this);
-
-        if(
-        class_name.indexOf('Children') == -1)
-        {
-        group.find("input").attr("disabled",disable );
-
-        }
-
-        });
-
-        }
-
-
-        function
-        enable_disable_ac(selected_option){
-
-        var class_name =
-        $(selected_option).attr("class") ;
-
-        var length = class_name.length;
-
-        var
-        class_id = parseInt(class_name.substring(length-1, length))
-
-        var row_id
-        = class_id;
-
-        var disable = true;
-
-        var row_1 =
-        '[class^="ArtCare"][class*="Child1"]';
-        var row_2 =
-        '[class^="ArtCare"][class*="Child2"]';
-        var row_3 =
-        '[class^="ArtCare"][class*="Child3"]';
-        var row_4 =
-        '[class^="ArtCare"][class*="Child4"]';
-
-        var row_5 =
-        '[class^="ArtCare"][class*="Child5"]';
-        var row_6 =
-        '[class^="ArtCare"][class*="Child6"]';
-        var row_7 =
-        '[class^="ArtCare"][class*="Child7"]';
-        var row_8 =
-        '[class^="ArtCare"][class*="Child8"]';
-
-        var row_9 =
-        '[class^="ArtCare"][class*="Child9"]';
-
-        var xx = row_1;
-        var
-        selected_value = $(selected_option).find(":selected").text()
-
-        selected_value = selected_value.trim().toUpperCase();
-
-        if
-        (selected_value == "OTHER")
-        disable = false;
-
-        switch(row_id){
-        case 1:
-        xx =
-        row_1;
-        break;
-        case 2:
-        xx = row_2;
-        break;
-        case 3:
-        xx = row_3;
-        break;
-        case 4:
-        xx
-        = row_4;
-        break;
-
-        case 5:
-        xx = row_5;
-        break;
-        case 6:
-        xx = row_6;
-        break;
-        case 7:
-        xx = row_7;
-        break;
-        case 8:
-        xx = row_8;
-        break;
-        case 9:
-        xx = row_9;
-        break;
-
-
-        }
-
-
-        $(xx).each(function(){
-        var group = $(this);
-
-        if(
-        class_name.indexOf('Child') == -1)
-        {
-        group.find("input").attr("disabled",disable );
-
-        }
-
-        });
-
-        }
-
-
-        if(jQuery){
-        $(document).ready(function(){
-        if ( $.browser.msie ) {
-        $(":checkbox").click(function(){
-        $(this).change();
+        if (jQuery) {
+        jq(document).ready(function () {
+        if (jq.browser.msie) {
+        jq(":checkbox").click(function () {
+        jq(this).change();
         });
         }
 
-        $("#comfirmedDate").change(function() {
+        var gender = jq("span.gender").html();
+        var age = jq("span.age").html();
+        var gender = jq("span.gender").html();
+        var age = jq("span.age").html();
+        var ageInDays = jq("span.patientAgeInDays").html();
+        var ctxDays=42; //This is equal to six weeks
+        var nvpDays=1;  //This is one day
+        var pcr1stDays=42;  //This is one day
 
-        alert($(this).find("input[type$='text']").val() );
+        jq('span.patientAgeInDays')[0].style.visibility='hidden';
 
-        });
-
-        $('[class^="FamilyMemberEnableDisable"]').change(function() {
-        enable_disable_fm($(this));
-        });
-
-        $('[class^="FamilyMemberEnableDisable"]').each(function(){
-        enable_disable_fm( $(this));
-        });
-
-
-        $('[class^="ExposedInfantEnableDisable"]').change(function() {
-        enable_disable_ei($(this));
-        });
-
-
-        $('[class^="ExposedInfantEnableDisable"]').each(function(){
-        enable_disable_ei( $(this))
-        });
-
-        $('[class^="ArtCareEnableDisable"]').change(function() {
-        enable_disable_ac($(this));
-        });
-
-
-        $('[class^="ArtCareEnableDisable"]').each(function(){
-        enable_disable_ac( $(this))
-        });
-
-        $(".enableDisable").each(function(){
-        var group = $(this);
-        function disableFn(){
-        group.children("#disabled").fadeTo(250,1);
-        group.children("#disabled").find(":checkbox").attr("checked",false);
-        group.children("#disabled").find("input[type$='text']").val("");
-        group.children("#disabled").find("input").attr("disabled",true);
-        //disable
-        group.children("#disabled").find("select").attr("disabled",true);
-        }
-        function enableFn(){
-        group.children("#disabled").fadeTo(250,1);
-        group.children("#disabled").find("input").attr("disabled",false);
-        group.children("#disabled").find("select").attr("disabled",false);
-
-        }
-        disableFn();
-        $(this).children("#trigger").find(":checkbox:first").change(function(){
-        var checked = $(this).attr("checked");
-        if(checked == true){
-        enableFn();
-        }else{
-        disableFn();
-        }
-        });
-        });
-
-
-        $(".checkboxGroup").each(function(){
-        var group = $(this);
-        var uncheckAll = function(){
-        group.find("input[type$='checkbox']").attr("checked",false);
-        group.find("input[type$='checkbox']").change();
-        }
-        var uncheckRadioAndAll
-        = function(){
-        group.find("#checkboxAll,#checkboxRadio").find("input[type$='checkbox']").attr("checked",false);
-        group.find("#checkboxAll,#checkboxRadio").find("input[type$='checkbox']").change();
+        //enable nvp if child is atleast nvpDays days old
+        if(ageInDays &lt; nvpDays){
+        jq("span#nvpDate :input").attr("disabled", true);
         }
 
-
-        group.find("#checkboxAll").find("input").click(
-        function(){
-        var flip;
-        var checked = $(this).siblings(":checkbox:first").attr("checked");
-        if($(this).attr("name") ==
-        $(this).parents("#checkboxAll:first").find(":checkbox:first").attr("name")){
-        checked = $(this).attr("checked");
-        flip = checked;
-        }else{
-        flip =
-        !checked;
+        //enable nvp if child is atleast ctxDays days old
+        if(ageInDays &lt; ctxDays){
+        jq("span#ctxDate :input").attr("disabled", true);
         }
-        if($(this).attr("type") == "text") if(flip == false) flip =
-        !filp;
-        uncheckAll();
-        $(this).parents("#checkboxAll:first").find(":checkbox").attr("checked",flip);
-        $(this).parents("#checkboxAll:first").find(":checkbox").change();
+
+        //enable pcr1st if child is atleast pcr1stDays days old
+        if(ageInDays &lt; pcr1stDays){
+        jq("span#pcr1stDate :input").attr("disabled", true);
         }
-        );
 
-
-        group.find("#checkboxRadio").find("input[type$='checkbox']").click(function(){
-        uncheckAll();
-        $(this).siblings("input[type$='checkbox']").attr("checked",false);
-        $(this).attr("checked",true);
-        $(this).change();
-        });
-
-        group.find("#checkboxCheckbox").click(
-        function(){
-        uncheckRadioAndAll();
-        }
-        );
-        });
         });
         }
     </script>
@@ -699,7 +385,7 @@
 
     <div class="ai-page-frame">
         <div class="headers" style="text-align: center;">
-            <h3>HIV Exposed Infant Form</h3>
+            <h3 id="h3white">HIV Exposed Infant Form</h3>
         </div>
         <div class="ai-page-content">
             <section>
@@ -722,11 +408,14 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2">Date of NVP Start:
-                                <obs conceptId="99771"/>
+
+                            <td colspan="2">
+                                <lookup expression="fn.patientAgeInDays()" class="patientAgeInDays"/>
+                                Date of NVP Start:
+                                <obs conceptId="99771" id="nvpDate"/>
                             </td>
                             <td colspan="2">Date of CTX Start:
-                                <obs conceptId="99773"/>
+                                <obs conceptId="99773" id="ctxDate"/>
                             </td>
                             <td>
                                 Clinical Team Leader:
@@ -902,16 +591,16 @@
                         <tr>
                             <td>1st PCR</td>
                             <td>
-                                <obs conceptId="99606"></obs>
+                                <obs conceptId="99606" required="true" id="pcr1stDate"></obs>
                             </td>
                             <td>
-                                <obs conceptId="99434"></obs>
+                                <obs conceptId="99434" required="true"></obs>
                             </td>
                             <td>
-                                <obs conceptId="99435"></obs>
+                                <obs conceptId="99435" required="true"></obs>
                             </td>
                             <td>
-                                <obs conceptId="99438"></obs>
+                                <obs conceptId="99438" required="true"></obs>
                             </td>
                         </tr>
                         <tr>
