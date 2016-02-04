@@ -37,6 +37,7 @@ public class PatientSummaryFragmentController {
         Person person = personService.getPerson(patient.getPersonId());
         List<Obs> cd4Counts = obsService.getLastNObservations(1, person, conceptService.getConcept("5497"), false);
         if (cd4Counts.size() > 0) {
+            //TODO:use pretty print for date formatting.
             DateFormat formatter = new SimpleDateFormat("dd.MMM.yyyy");
             model.addAttribute("lastcd4", cd4Counts.get(0).getValueNumeric());
             model.addAttribute("lastcd4date", formatter.format(cd4Counts.get(0).getObsDatetime()));
