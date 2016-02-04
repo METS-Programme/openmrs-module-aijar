@@ -13,9 +13,12 @@ import org.openmrs.ui.framework.annotation.SpringBean;
 import org.openmrs.ui.framework.fragment.FragmentConfiguration;
 import org.openmrs.ui.framework.fragment.FragmentModel;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by ssmusoke on 26/01/2016.
@@ -34,9 +37,9 @@ public class PatientSummaryFragmentController {
         Person person = personService.getPerson(patient.getPersonId());
         List<Obs> cd4Counts = obsService.getLastNObservations(1, person, conceptService.getConcept("5497"), false);
         if (cd4Counts.size() > 0) {
-            SimpleDateFormat sdfSource = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+            DateFormat formatter = new SimpleDateFormat("dd.MMM.yyyy");
             model.addAttribute("lastcd4", cd4Counts.get(0).getValueNumeric());
-            model.addAttribute("lastcd4date", sdfSource.parse(cd4Counts.get(0).getObsDatetime().toString()));
+            model.addAttribute("lastcd4date", formatter.format(cd4Counts.get(0).getObsDatetime()));
             model.addAttribute("lastcd4joiner", "on");
         } else {
             model.addAttribute("lastcd4", "None Available");
