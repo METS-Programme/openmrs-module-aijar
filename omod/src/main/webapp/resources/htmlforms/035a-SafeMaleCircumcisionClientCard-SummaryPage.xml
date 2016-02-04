@@ -1,0 +1,381 @@
+<htmlform formName="HMIS 035a - Safe Male Circumcision Client Card Summary Page"
+          formDescription="Card for Capturing Patients undergoing circumcision"
+          formEncounterType="244da86d-f80e-48fe-aba9-067f241905ee"
+          formUuid="9d9193e7-b038-4c44-a7a3-830baa288565"
+          formVersion="1.2"
+          formAddMetadata="yes"
+          formUILocation="patientDashboard.visitActions"
+          formOrder="7"
+          formIcon="icon-medkit"
+          formShowIf="visit.active &amp;&amp; patient.person.gender=='M' &amp;&amp; patient.person.dead==false"
+          formDisplayStyle="Standard">
+    <macros>
+        headerColor =#8fabc7
+        fontOnHeaderColor = white
+    </macros>
+
+    <style>
+
+        form label, .form label {
+        float: left;
+        padding: 0px 10px 0 0;
+        }
+
+        form input[type="checkbox"], form input[type="radio"], .form input[type="checkbox"], .form input[type="radio"] {
+        margin: 10px 15px;
+        }
+
+        .error{
+            color: red;
+        }
+    </style>
+
+    <div class="ai-page-frame">
+        <div class="headers" style="text-align: center;">
+            <h3>Safe Male Circumcision Client Card - Summary Page</h3>
+        </div>
+        <section>
+            <h3>Facility Information</h3>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <label>Date:</label>
+                            <encounterDate default="today"/>
+                        </td>
+                        <td>
+                            <label>Facility Name:</label>
+                            <encounterLocation default="1"/>
+                        </td>
+                        <td>
+                            <label>Site Type:</label>
+                            <obs conceptId="162893" answerConceptIds="162894,162895,162896" answerLabels="Static/Fixed,Outreach,Camp" required="true"/>
+                        </td>
+                        <td>
+                            <label>Clinic Team Leader:</label>
+                            <encounterProvider role="Provider" style="autocomplete"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+             <h3>B: Client Information</h3>
+             <table class="section-b">
+                 <tbody>
+                     <tr>
+                         <obsgroup groupingConceptId="99611"><!-- ConvSet {99612,99613}-->
+                            <td>
+
+                                <label>How did you hear about SMC</label>
+                            </td>
+                            <td><obs conceptId="99612" answerConceptIds="99614,99615,99616,99617,162897,162898,90002 "
+                                     answerLabels="Friend/Family, Radio, TV, HCW Referral,VHT,Megaphones/Community radio, Other"/>
+                            <br/>
+                                <obs conceptId="99613" labelText="Other Specify"/>
+                            </td>
+                        </obsgroup>
+                    </tr>
+                    <tr>
+                        <obsgroup groupingConceptId="99618">
+                            <td>
+                                <label>Care Entry Point</label>
+                            </td>
+                            <td>
+                                <obs conceptId="99619" answerConceptIds="162899,99620,90002"
+                                     answerLabels="SMC, HCT, Other"/>
+                                <br/>
+                                <obs conceptId="99622" labelText="Other Specify"/>
+                            </td>
+                        </obsgroup>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+           <h3>
+               <b>C: Client Medical History</b>
+           </h3>
+           <h4>C1: Knowledge of HIV Status</h4>
+           <table class="section-b">
+               <tbody>
+                   <obsgroup groupingConceptId="99623">
+
+                       <tr>
+                           <td>
+                               <label>Sexually Active?</label>
+                               <obs conceptId="99624" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
+                           </td>
+                           <td colspan="2">
+                               <label>Client tested for HIV in the past 4 weeks?</label>
+                               <obs conceptId="99625" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
+                           </td>
+                       </tr>
+
+                       <tr>
+                           <td>
+                               <label>HCT offered to the Client?</label>
+                               <obs conceptId="99627" answerConceptIds="90003,90004"
+                                    answerLabels="Yes,No"/>
+                           </td>
+                           <td colspan="2">
+                               <label>Client tested for HIV during this appointment?</label>
+                               <obs conceptId="99631" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
+                           </td>
+                       </tr>
+
+                       <tr>
+                           <td>
+                               <label>Client HIV test results:</label>
+                               <obs conceptId="99628" answerConceptIds="703,664" answerLabels="Positive,Negative"/>
+                           </td>
+                           <td>
+                               <label>If HIV+ In care?</label>
+                               <obs conceptId="162900" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
+                               </td>
+                           <td>
+                               <label>Reffered?</label>
+                               <obs conceptId="162901" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
+                           </td>
+                       </tr>
+
+                       <tr>
+                           <td><label>Tetanus vaccination</label></td>
+                           <td>
+                               <label>Date of TT1</label>
+                               <obs conceptId="162902" size="5"/>
+                           </td>
+                           <td>
+                               <label>Date of TT2</label>
+                               <obs conceptId="162903" size="5"/>
+                           </td>
+                       </tr>
+                   </obsgroup>
+
+               </tbody>
+           </table>
+       </section>
+        <section>
+             <h4>C2: Medical History</h4>
+             <table class="section-b">
+                 <tbody>
+                     <obsgroup groupingConceptId="99632">
+
+                         <tr>
+                             <td>
+                                 <label>Bleeding disorder?</label>
+                                 <obs conceptId="99633" answerConceptIds="90003, 90004" answerLabels="Yes, No"/>
+                             </td>
+                             <td>
+                                 <label>Genital ulcers?</label>
+                                 <obs conceptId="99634" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                             </td>
+                         </tr>
+
+                         <tr>
+                             <td>
+                                 <label>Urethral discharge?</label>
+                                 <obs conceptId="99635" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                             </td>
+                             <td>
+                                 <label>Penile warts?</label>
+                                 <obs conceptId="99636" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                             </td>
+                         </tr>
+
+                         <tr>
+                             <td>
+                                 <label>Pain on Urination?</label>
+                                 <obs conceptId="99637" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                             </td>
+                             <td>
+                                 <label>Difficult in retracting foreskin?</label>
+                                 <obs conceptId="99638" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                             </td>
+                         </tr>
+
+                         <tr>
+                             <td>
+                                 <label>Swelling on scrotum?</label>
+                                 <obs conceptId="99639" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                             </td>
+                             <td>
+                                 <label>Electile dysfunction?</label>
+                                 <obs conceptId="99640" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                             </td>
+                         </tr>
+
+                         <tr>
+                             <td colspan="2">
+                                 <obs conceptId="99642" labelText="Other Specify:"/>
+                             </td>
+                         </tr>
+
+                     </obsgroup>
+                 </tbody>
+             </table>
+         </section>
+         <section>
+             <h4>C3: Client Undergoing Treatment</h4>
+             <table class="section-b">
+                 <tbody>
+                     <obsgroup groupingConceptId="99643">
+
+                         <tr>
+                             <td>
+                                 <label>Hypertension?</label>
+                                 <obs conceptId="99644" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                             </td>
+                             <td>
+                                 <label>Anaemia?</label>
+                                 <obs conceptId="99645" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                             </td>
+                         </tr>
+
+                         <tr>
+                             <td>
+                                 <label>Diabetes?</label>
+                                 <obs conceptId="99646" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                             </td>
+                             <td>
+                                 <label>HIV/AIDS?</label>
+                                 <obs conceptId="99647" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                             </td>
+                         </tr>
+
+                         <tr>
+                             <td colspan="2">
+                                 <obs conceptId="99648" labelText="Other (Specify):"/>
+                             </td>
+                         </tr>
+
+                     </obsgroup>
+                 </tbody>
+             </table>
+         </section>
+        <section>
+            <h4>C4: Known Allegies</h4>
+            <table class="section-b">
+                <tbody>
+                    <obsgroup groupingConceptId="99649">
+
+                        <tr>
+                            <td>
+                                <label>Local Anesthetics?</label>
+                                <obs conceptId="99650" answerConceptIds="90003, 90004" answerLabels="Yes, No"/>
+                            </td>
+                            <td>
+                                <label>Antiseptics?</label>
+                                <obs conceptId="99651" answerConceptIds="90003, 90004" answerLabels="Yes, No"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <obs conceptId="99652" labelText="Any other medication (Specify):"/>
+                            </td>
+                        </tr>
+                    </obsgroup>
+                </tbody>
+            </table>
+        </section>
+         <section>
+             <h4>C5: Physical Exam</h4>
+             <table class="section-b">
+                 <tbody>
+                     <obsgroup groupingConceptId="99653">
+                         <tr>
+                             <td>
+                                 <obs conceptId="99654" labelText="BP:"/>
+                             </td>
+                             <td>
+                                 <obs conceptId="5087" size="10" labelText="Pulse(rate/min):"/>
+                             </td>
+                             <td>
+                                 <obs conceptId="5088" size="10" labelText="Temp(&#176;C):"/>
+                             </td>
+                             <td>
+                                 <obs conceptId="162904" size="10" labelText="RR:"/>
+                             </td>
+                             <td>
+                                 <obs conceptId="5089" size="10" labelText="Weight(Kgs):"/>
+                             </td>
+                         </tr>
+                         <tr>
+                             <td>
+                                 <label>Urethra Discharge?</label>
+                                 <obs conceptId="99656" answerConceptIds="90003,90004" answerLabel="Yes, No"/>
+                             </td>
+                             <td colspan="4">
+                                 <label>Adhesions?</label>
+                                 <obs conceptId="99657" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                             </td>
+                         </tr>
+
+                         <tr>
+                             <td>
+                                 <label>Anatomical abnormalities?</label>
+                                 <obs conceptId="99658" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                             </td>
+
+                             <td colspan="4">
+                                 <label>GUD?</label>
+                                 <obs conceptId="99659" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                             </td>
+                         </tr>
+
+                         <tr>
+                             <td>
+                                 <label>Balanitis?</label>
+                                 <obs conceptId="99660" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                             </td>
+                             <td colspan="4">
+                                 <label>Genital warts</label>
+                                 <obs conceptId="99661" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                             </td>
+                         </tr>
+
+                         <tr>
+                             <td>
+                                 <label>Surgical disorders?</label>
+                                 <obs conceptId="99662" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                             </td>
+                             <td colspan="4">
+                                 <label>Other STI/abnormality?</label>
+                                 <obs conceptId="99663" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                             </td>
+                         </tr>
+                         <tr>
+                             <td>
+                                 <label>Open Wounds/recent healed scars?</label>
+                                 <obs conceptId="162905" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                             </td>
+                             <td>
+                                 <label>Jiggers</label>
+                                 <obs conceptId="162906" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                             </td>
+                             <td colspan="3">
+                                 <obs conceptId="99664" labelText="Other Specify:"/>
+                             </td>
+                         </tr>
+                         <tr>
+                             <td colspan="5">
+                                 <label>TT given during this appointment</label>
+                                 <obs conceptId="162907" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                             </td>
+
+                         </tr>
+                     </obsgroup>
+                 </tbody>
+             </table>
+         </section>
+        <section>
+            <submit/>
+        </section>
+    </div>
+    <small>
+        <i>
+            Version 1.2 Last revised on
+            01/December/2015 - Ministry of Health
+        </i>
+    </small>
+</htmlform>

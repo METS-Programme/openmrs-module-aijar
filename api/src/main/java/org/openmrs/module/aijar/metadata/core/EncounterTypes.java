@@ -12,7 +12,7 @@ public class EncounterTypes {
     public static EncounterTypeDescriptor SUMMARY_PAGE = new EncounterTypeDescriptor() {
         @Override
         public String name() {
-            return "SUMMARY PAGE";
+            return "ART Card - Summary";
         }
 
         @Override
@@ -28,7 +28,7 @@ public class EncounterTypes {
     public static EncounterTypeDescriptor ENCOUNTER_PAGE = new EncounterTypeDescriptor() {
         @Override
         public String name() {
-            return "ENCOUNTER PAGE";
+            return "ART Card - Encounter";
         }
 
         @Override
@@ -49,7 +49,7 @@ public class EncounterTypes {
 
         @Override
         public String description() {
-            return "Lab encounter";
+            return "Lab Encounter";
         }
 
         public String uuid() {
@@ -60,7 +60,7 @@ public class EncounterTypes {
     public static EncounterTypeDescriptor HEALTH_EDUCATION = new EncounterTypeDescriptor() {
         @Override
         public String name() {
-            return "HEALTH EDUCATION";
+            return "ART Card - Health Education";
         }
 
         @Override
@@ -72,4 +72,37 @@ public class EncounterTypes {
             return "6d88e370-f2ba-476b-bf1b-d8eaf3b1b67e";
         }
     };
+
+    public static EncounterTypeDescriptor SMC_SUMMARY = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "SMC - Summary";
+        }
+
+        @Override
+        public String description() {
+            return "An encounter when a patient gets SMC services";
+        }
+
+        public String uuid() {
+            return "244da86d-f80e-48fe-aba9-067f241905ee";
+        }
+    };
+
+    public static EncounterTypeDescriptor SMC_FOLLOW_UP = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "SMC - Follow up";
+        }
+
+        @Override
+        public String description() {
+            return "An encounter when a patient comes back for SMC follow up";
+        }
+
+        public String uuid() {
+            return "fee3a830-76cd-4298-b11a-1b0a5b0f3323";
+        }
+    };
+
 }

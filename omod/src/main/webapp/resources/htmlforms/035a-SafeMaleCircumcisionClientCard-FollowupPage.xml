@@ -1,0 +1,125 @@
+<htmlform formName="HMIS 035a - Safe Male Circumcision Client Card Followup Page"
+          formDescription="Follow up Card for Capturing Patients who underwent circumcision"
+          formEncounterType="fee3a830-76cd-4298-b11a-1b0a5b0f3323"
+          formUuid="0914a8d5-411f-47b5-a2f2-7c46b550b9af"
+          formVersion="1.2"
+          formAddMetadata="yes"
+          formUILocation="patientDashboard.visitActions"
+          formOrder="9"
+          formIcon="icon-medkit"
+          formShowIf="visit.active &amp;&amp; patient.person.gender=='M' &amp;&amp; patient.person.dead==false"
+          formDisplayStyle="Standard">
+
+    <macros>
+        headerColor =#8fabc7
+        fontOnHeaderColor = white
+    </macros>
+
+    <style>
+
+        form label, .form label {
+        float: left;
+        padding: 0px 10px 0 0;
+        }
+
+        form input[type="checkbox"], form input[type="radio"], .form input[type="checkbox"], .form input[type="radio"] {
+        margin: 10px 15px;
+        }
+
+        .error{
+        color: red;
+        }
+    </style>
+
+    <div class="ai-page-frame">
+        <div class="headers" style="text-align: center;">
+            <h3>Safe Male Circumcision Client Card - Follow Up Visits</h3>
+        </div>
+        <section>
+            <h3>Facility Information</h3>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <label>Date:</label>
+                            <encounterDate default="today"/>
+                        </td>
+                        <td>
+                            <label>Facility Name:</label>
+                            <encounterLocation default="1"/>
+                        </td>
+                        <td>
+                            <label>Site Type:</label>
+                            <obs conceptId="162893" answerConceptIds="162894,162895,162896"
+                                 answerLabels="Static/Fixed,Outreach,Camp" required="true"/>
+                        </td>
+                        <td>
+                            <label>Clinic Team Leader:</label>
+                            <encounterProvider role="Provider" style="autocomplete"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <h3>F: Circumcision Follow Up Visits</h3>
+            <h4>F1: First Follow up Visit</h4>
+            <table class="section-b">
+                <obsgroup groupingConceptId="99700">
+                    <tr>
+                        <td>
+                            <obs id="br" conceptId="90069" labelText=" Misssed Apt?" style="checkbox" />
+                        </td>
+                        <td>
+                            <label>Wound status</label>
+                            <obs conceptId="162912" labelText=""/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            <label>Type of Visit:</label>
+                            <obs conceptId="99702" answerConceptIds="99703,99704,99705"
+                                 answerLabels="Routine, Client initiated/unscheduled,recommended by physician"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label>Presence of AE:</label>
+                            <obs conceptId="99706" answerConceptIds="99687,99688,99707,99708,99709,162913,162914,162915,90002"
+                                 answerLabels="Damage to penis/Urethra,Excessive bleeding,Pus discharge,Excessive Swelling,Infection,Smell,Device displacement,Failure to pass urine, Other Specify "/>
+
+                        </td>
+                        <td>
+                            <obs conceptId="99710" labelText="Specify"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            <label>Severity:</label>
+                            <obs conceptId="99711" answerConceptIds="99562,99561" answerLabels="Moderate, Severe"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label>Treatment given:</label>
+                            <obs conceptId="99712"/>
+                        </td>
+                    </tr>
+
+                </obsgroup>
+            </table>
+        </section>
+        <section>
+            <submit/>
+        </section>
+    </div>
+    <small>
+        <i>
+            Version 1.2 Last revised on
+            01/December/2015 - Ministry of Health
+        </i>
+    </small>
+</htmlform>
