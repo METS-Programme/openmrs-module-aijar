@@ -89,20 +89,4 @@ public class EncounterTypes {
         }
     };
 
-    public static EncounterTypeDescriptor SMC_FOLLOW_UP = new EncounterTypeDescriptor() {
-        @Override
-        public String name() {
-            return "SMC - Follow up";
-        }
-
-        @Override
-        public String description() {
-            return "An encounter when a patient comes back for SMC follow up";
-        }
-
-        public String uuid() {
-            return "fee3a830-76cd-4298-b11a-1b0a5b0f3323";
-        }
-    };
-
 }

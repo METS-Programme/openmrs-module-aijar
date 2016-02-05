@@ -1,4 +1,4 @@
-<htmlform formName="HMIS 122a HIV Care ART Card - Health Education"
+<htmlform formName="HMIS 122a HIV Care ART Card - Health Education Form"
 		  formDescription="Captures health eduction and counseling encounters"
 		  formEncounterType="6d88e370-f2ba-476b-bf1b-d8eaf3b1b67e"
 		  formUuid="b8224534-7df0-4c00-ba8e-6b1f291087eb"
@@ -8,24 +8,11 @@
 		  formOrder="2"
 		  formIcon="icon-medkit"
 		  formShowIf="visit.active &amp;&amp; patient.person.dead==false"
-		  formDisplayStyle="Standard"
-		  formLabel="ART Card - Education Form">
+		  formDisplayStyle="Standard">
 	<macros>
 		headerColor =#8fabc7
 		fontOnHeaderColor = white
 	</macros>
-	<style>
-		table{
-		width:100%;
-		}
-		td.vertical-text {
-		transform:
-		rotate(90deg);
-		white-space:
-		pre-wrap;
-		width: 100px;
-		}
-	</style>
 
 	<script type="text/javascript">
 		if (jQuery) {
@@ -69,10 +56,61 @@
 		});
 		}
 	</script>
+	<style>
+		table{
+		width:100%;
+		}
+		td.vertical-text {
+		/* transform:
+		rotate(90deg);
+		white-space:
+		pre-wrap;
+		width: 100px;*/
+
+		white-space: pre-wrap;
+		width: 100px;
+		z-index: 28;
+		font-weight: bold;
+		color: #E6E6E6;
+		}
+		.error{
+		color: red;
+		}
+
+		table td{
+		background: #7BB3D0;
+		color: #404040;
+		}
+
+		table th, table td {
+		border: 1px solid #BDBDBD;
+		}
+
+		form select, .form select {
+		min-width: 0px;
+		}
+
+		form input, form select, form textarea, form ul.select, .form input, .form select, .form textarea, .form
+		ul.select {
+		background-color: #FBFBFB;
+		border: 1px solid #404040;
+		border-radius: 5px;
+		margin-bottom: 10px;
+		padding: 10px;
+		}
+
+		table tr:nth-child(even) {
+		background: #7BB3D0;
+		}
+
+		table tr:nth-child(odd) {
+		background: #7BB3D0;
+		}
+	</style>
 
 	<div class="ai-page-frame">
 		<div class="headers" style="text-align: center;">
-			<h3>ART - Follow-up education, Support and Preparation for ARV
+			<h3>HIV ART CARD - Follow-up education, Support and Preparation for ARV
 				therapy
 			</h3>
 		</div>
@@ -97,8 +135,6 @@
 			</table>
 		</section>
 		<section>
-			<fieldset>
-				<legend></legend>
 				<table id="inner">
 					<tbody>
 						<tr>
@@ -516,7 +552,6 @@
 						</tr>
 					</tbody>
 				</table>
-			</fieldset>
 		</section>
 	</div>
 	<section>

@@ -1,4 +1,4 @@
-<htmlform formName="HMIS 035a - Safe Male Circumcision Client Card Summary Page"
+<htmlform formName="HMIS 035a Safe Male Circumcision Client Card Form"
           formDescription="Card for Capturing Patients undergoing circumcision"
           formEncounterType="244da86d-f80e-48fe-aba9-067f241905ee"
           formUuid="9d9193e7-b038-4c44-a7a3-830baa288565"
@@ -16,7 +16,7 @@
 
     <style>
 
-        form label, .form label {
+       form label, .form label {
         float: left;
         padding: 0px 10px 0 0;
         }
@@ -25,14 +25,44 @@
         margin: 10px 15px;
         }
 
-        .error{
-            color: red;
+        table td{
+        background: #FFFFFF;
+        color: #404040;
+        }
+
+        form select, .form select {
+        min-width: 0px;
+        }
+
+        form input, form select, form textarea, form ul.select, .form input, .form select, .form textarea, .form
+        ul.select {
+        background-color: #FBFBFB;
+        border: 1px solid #CEC9C9;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        padding: 10px;
+        min-width: 50%;
+        }
+        .row {
+        width: 100%;
+        float: left;
+        display: inline-flex;
+        clear: both;
+        }
+
+        .row .row-col2 {
+        float: left;
+        width: 50%;
+        }
+
+        table th, table td {
+        border: 1px solid #F7F7F7;
         }
     </style>
 
     <div class="ai-page-frame">
         <div class="headers" style="text-align: center;">
-            <h3>Safe Male Circumcision Client Card - Summary Page</h3>
+            <h3 style="background: beige; padding: 10px;">Safe Male Circumcision Client Card</h3>
         </div>
         <section>
             <h3>Facility Information</h3>
@@ -368,6 +398,320 @@
                  </tbody>
              </table>
          </section>
+        <section>
+            <h3>Consent</h3>
+            <h4>D: Eligibility for Circumcision</h4>
+            <table class="section-b">
+                <tbody>
+                    <obsgroup groupingConceptId="99665">
+                        <tr>
+                            <td>
+                                <label>Client in good general health?</label>
+                                <obs conceptId="99669" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Client counseled about SMC?</label>
+                                <obs conceptId="99666" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>Informed consent/assent for SMC given?</label>
+                                <obs conceptId="99667" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>Client eligible for circumcision after history/physical exam?</label>
+                                <obs conceptId="99668" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
+                            </td>
+                        </tr>
+                    </obsgroup>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <h4>E: Circumcision Procedure</h4>
+            <table class="section-b">
+                <tbody>
+                    <obsgroup groupingConceptId="99670">
+                        <tr>
+                            <td colspan="3">
+                                <label>Date of circumcision:</label>
+                                <encounterDate default="today"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Time started:</label>
+                                <obs conceptId="99542" labelText=""/>
+                            </td>
+                            <td colspan="2">
+                                <label>End Time:</label>
+                                <obs conceptId="99543" labelText=""/>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>Type of Anesthesia
+                                    <br/>
+                                    <i>Local:</i>
+                                </label>
+                            </td>
+                            <td colspan="2">
+                                <obs conceptId="99671" labelText="Lignocaine 1&#37;"/>
+                                (mls)
+                                <br/>
+                                <obs conceptId="99672" labelText="Bupivicaine 0.25&#37;"/>
+                                (mls)
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>Type of circumcision Procedure</label>
+
+                            </td>
+
+                            <td>
+                                <obs conceptId="99674" answerConceptIds="99676,99675,99677, 90002"
+                                     answerLabels="Dorsal slit,Forceps guided,Sleeve, Others "/> <br/>
+                                <label>Specify</label>
+                                <obs conceptId="99678" labelText=""/>
+                            </td>
+                            <td>
+                                <label>PrePex</label>
+                                <obs conceptId="162908" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
+                                <obs conceptId="162909" labelText="size"/>
+                                <br/>
+                                <label>Shang Ring</label>
+                                <obs conceptId="162911" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
+                                <obs conceptId="162910" labelText="size"/>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <obs conceptId="99679" labelText="Name of Circumciser:"/>
+                            </td>
+                            <td colspan="2">
+                                <obs conceptId="99680" labelText="Cadre:"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <obs conceptId="99681" labelText="Name of Assistant:"/>
+                            </td>
+                            <td colspan="2">
+                                <obs conceptId="99682" labelText="Cadre:"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <label>Adverse events during procedure?</label>
+                                <obs conceptId="99684" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <label>
+                                    <i>If yes refer the SMC Adverse Event form</i>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <label>Severity:</label>
+                                <obs conceptId="99691" answerConceptIds="99562,99561" answerLabels="Moderate, Severe"/>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="3">
+                                <obs conceptId="99692" size="50" labelText="Treatment given:"/>
+                            </td>
+                        </tr>
+                    </obsgroup>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <h4>Post Operation Mangement (After 30 minutes)</h4>
+            <table class="section-b">
+                <tbody>
+                    <obsgroup groupingConceptId="99693">
+                        <tr>
+                            <td>
+                                <obs conceptId="99694" labelText="BP:"/>
+                            </td>
+                            <td>
+                                <obs conceptId="99695" labelText="Pulse:"/>
+                            </td>
+                            <td>
+                                <obs conceptId="99696" labelText="RR:"/>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="3">
+                                <obs conceptId="99697" labelText="List Post Operative medication given:"/>
+                            </td>
+                        </tr>
+                    </obsgroup>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <h3>F: Circumcision Follow Up Visits</h3>
+            <h4>F1: First Follow up Visit</h4>
+            <table class="section-b">
+                <obsgroup groupingConceptId="99700">
+                    <tr>
+                        <td>
+                            <obs id="br" conceptId="90069" labelText=" Misssed Apt?" style="checkbox" />
+                        </td>
+                        <td>
+                            <label>Wound status</label>
+                            <obs conceptId="162912" labelText=""/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            <label>Type of Visit:</label>
+                            <obs conceptId="99702" answerConceptIds="99703,99704,99705"
+                                 answerLabels="Routine, Client initiated/unscheduled,recommended by physician"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label>Presence of AE:</label>
+                            <obs conceptId="99706" answerConceptIds="99687,99688,99707,99708,99709,162913,162914,162915,90002"
+                                 answerLabels="Damage to penis/Urethra,Excessive bleeding,Pus discharge,Excessive Swelling,Infection,Smell,Device displacement,Failure to pass urine, Other Specify "/>
+
+                        </td>
+                        <td>
+                            <obs conceptId="99710" labelText="Specify"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            <label>Severity:</label>
+                            <obs conceptId="99711" answerConceptIds="99562,99561" answerLabels="Moderate, Severe"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label>Treatment given:</label>
+                            <obs conceptId="99712"/>
+                        </td>
+                    </tr>
+
+                </obsgroup>
+            </table>
+        </section>
+        <section>
+            <h4>F2: Second Follow up Visit</h4>
+            <table class="section-b">
+                <obsgroup groupingConceptId="99700">
+                    <tr>
+                        <td colspan="2">
+                            <label>Date:</label>
+                            <obs conceptId="99713"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            <label>Type of Visit:</label>
+                            <obs conceptId="99714" answerConceptIds="99703,99704,99705"
+                                 answerLabels="Routine, Client initiated/unscheduled,recommended by physician"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label>Presence of AE:</label>
+                            <obs conceptId="99715" answerConceptIds="99687,99688,99707,99708,99709,90002"
+                                 answerLabels="Damage to penis/Urethra,Excessive bleeding,Pus discharge,Excessive Swelling,Infection, Other Specify "/>
+
+                        </td>
+                        <td>
+                            <obs conceptId="99716" labelText="Specify"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            <label>Severity:</label>
+                            <obs conceptId="99717" answerConceptIds="99562,99561" answerLabels="Moderate, Severe"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label>Treatment given:</label>
+                            <obs conceptId="99718"/>
+                        </td>
+                    </tr>
+
+                </obsgroup>
+            </table>
+        </section>
+        <section>
+            <h4>F3: Third Follow up Visit</h4>
+            <table class="section-b">
+                <obsgroup groupingConceptId="99700">
+                    <tr>
+                        <td colspan="2">
+                            <label>Date:</label>
+                            <obs conceptId="99719"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            <label>Type of Visit:</label>
+                            <obs conceptId="99720" answerConceptIds="99703,99704,99705"
+                                 answerLabels="Routine, Client initiated/unscheduled,recommended by physician"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label>Presence of AE:</label>
+                            <obs conceptId="99721" answerConceptIds="99687,99688,99707,99708,99709,90002"
+                                 answerLabels="Damage to penis/Urethra,Excessive bleeding,Pus discharge,Excessive Swelling,Infection, Other Specify "/>
+
+                        </td>
+                        <td>
+                            <obs conceptId="99722" labelText="Specify"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            <label>Severity:</label>
+                            <obs conceptId="99723" answerConceptIds="99562,99561" answerLabels="Moderate, Severe"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label>Treatment given:</label>
+                            <obs conceptId="99724"/>
+                        </td>
+                    </tr>
+
+                </obsgroup>
+            </table>
+        </section>
         <section>
             <submit/>
         </section>
