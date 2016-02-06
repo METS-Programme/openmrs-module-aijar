@@ -12,7 +12,7 @@ public class EncounterTypes {
     public static EncounterTypeDescriptor SUMMARY_PAGE = new EncounterTypeDescriptor() {
         @Override
         public String name() {
-            return "SUMMARY PAGE";
+            return "ART Card - Summary";
         }
 
         @Override
@@ -28,7 +28,7 @@ public class EncounterTypes {
     public static EncounterTypeDescriptor ENCOUNTER_PAGE = new EncounterTypeDescriptor() {
         @Override
         public String name() {
-            return "ENCOUNTER PAGE";
+            return "ART Card - Encounter";
         }
 
         @Override
@@ -49,7 +49,7 @@ public class EncounterTypes {
 
         @Override
         public String description() {
-            return "Lab encounter";
+            return "Lab Encounter";
         }
 
         public String uuid() {
@@ -60,7 +60,7 @@ public class EncounterTypes {
     public static EncounterTypeDescriptor HEALTH_EDUCATION = new EncounterTypeDescriptor() {
         @Override
         public String name() {
-            return "HEALTH EDUCATION";
+            return "ART Card - Health Education";
         }
 
         @Override
@@ -86,6 +86,41 @@ public class EncounterTypes {
 
         public String uuid() {
             return "a9f11592-22e7-45fc-904d-dfe24cb1fc67";
+        }
+    };
+
+    public static EncounterTypeDescriptor SMC_SUMMARY = new EncounterTypeDescriptor() {
+
+        @Override
+        public String name() {
+            return "SMC - Summary";
+        }
+
+        @Override
+        public String description() {
+            return "An encounter when a patient gets SMC services";
+        }
+
+        public String uuid() {
+            return "244da86d-f80e-48fe-aba9-067f241905ee";
+        }
+    };
+
+    public static EncounterTypeDescriptor ANC_ENCOUNTER = new EncounterTypeDescriptor() {
+
+        @Override
+        public String name() {
+            return "ANC - Encounter";
+        }
+
+        @Override
+        public String description() {
+            return "An encounter when a patient gets ANC services";
+        }
+
+        @Override
+        public String uuid() {
+            return "044daI6d-f80e-48fe-aba9-037f241905Pe";
         }
     };
 }
