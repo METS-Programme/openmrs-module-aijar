@@ -218,6 +218,33 @@ UPDATE obs
 SET value_coded = 90001
 WHERE value_coded = 1067; # Unknown
 
+UPDATE obs SET value_coded = 5136 WHERE value_coded = 90128;  # DEMENTIA
+UPDATE obs SET value_coded = 90109 WHERE value_coded = 5245; # PALLOR
+UPDATE obs SET value_coded = 90087 WHERE value_coded = 5275; #  INTRAUTERINE DEVICE
+UPDATE obs SET value_coded = 90106 WHERE value_coded = 5313; # MUSCLE TENDERNESS
+UPDATE obs SET value_coded = 90006 WHERE value_coded = 5555; # MARRIED
+UPDATE obs SET value_coded = 5829 WHERE value_coded = 90187 ; # PYRAZINAMIDE
+UPDATE obs SET value_coded = WHERE value_coded = ; #
+UPDATE obs SET value_coded = WHERE value_coded = ; #
+UPDATE obs SET value_coded = WHERE value_coded = ; #
+UPDATE obs SET value_coded = WHERE value_coded = ; #
+UPDATE obs SET value_coded = WHERE value_coded = ; #
+UPDATE obs SET value_coded = WHERE value_coded = ; #
+UPDATE obs SET value_coded = WHERE value_coded = ; #
+UPDATE obs SET value_coded = WHERE value_coded = ; #
+UPDATE obs SET value_coded = WHERE value_coded = ; #
+UPDATE obs SET value_coded = WHERE value_coded = ; #
+UPDATE obs SET value_coded = WHERE value_coded = ; #
+UPDATE obs SET value_coded = WHERE value_coded = ; #
+UPDATE obs SET value_coded = WHERE value_coded = ; #
+UPDATE obs SET value_coded = WHERE value_coded = ; #
+UPDATE obs SET value_coded = WHERE value_coded = ; #
+UPDATE obs SET value_coded = WHERE value_coded = ; #
+UPDATE obs SET value_coded = WHERE value_coded = ; #
+UPDATE obs SET value_coded = WHERE value_coded = ; #
+UPDATE obs SET value_coded = WHERE value_coded = ; #
+UPDATE obs SET value_coded = WHERE value_coded = ; #
+
 /*!40101 SET SQL_MODE = @OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS = @OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS = @OLD_UNIQUE_CHECKS */;
