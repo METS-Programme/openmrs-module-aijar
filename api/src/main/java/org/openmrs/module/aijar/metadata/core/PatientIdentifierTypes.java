@@ -122,4 +122,52 @@ public class PatientIdentifierTypes {
             return LuhnModNIdentifierValidator.class;
         }
     };
+
+    public static PatientIdentifierTypeDescriptor IPD_NUMBER = new PatientIdentifierTypeDescriptor() {
+        @Override
+        public String name() {
+            return "InPatient Department (IPD) Number";
+        }
+
+        @Override
+        public String description() {
+            return "This is the unique serial number given to the mother during her stay in the maternity ward";
+        }
+
+        public String uuid() {
+            return "a6217c17-5012-4514-b9f2-5d02d3d04c44";
+        }
+
+        public String format() {
+            return "^\\d+$";
+        }
+
+        public String formatDescription() {
+            return "Begins with 1 at the beginning of the financial year (July)";
+        }
+    };
+
+    public static PatientIdentifierTypeDescriptor ANC_NUMBER = new PatientIdentifierTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Antenatal Care (ANC) Number";
+        }
+
+        @Override
+        public String description() {
+            return "This is the unique serial number given to the mother during antenatal visits";
+        }
+
+        public String uuid() {
+            return "b0cc255e-ef57-4266-839e-0df7f5099eb9";
+        }
+
+        public String format() {
+            return "^\\d+$";
+        }
+
+        public String formatDescription() {
+            return "Begins with 1 at the beginning of the financial year (July)";
+        }
+    };
 }
