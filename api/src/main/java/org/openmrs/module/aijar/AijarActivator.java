@@ -111,10 +111,10 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         properties.add(new GlobalProperty(EmrApiConstants.PRIMARY_IDENTIFIER_TYPE, PatientIdentifierTypes.OPENMRS_ID.uuid()));
 
         // set the HIV care number and EID number as additional identifiers that can be searced for
-        properties.add(new GlobalProperty(EmrApiConstants.GP_EXTRA_PATIENT_IDENTIFIER_TYPES, PatientIdentifierTypes.HIV_CARE_NUMBER.uuid() + "," + PatientIdentifierTypes.EXPOSED_INFANT_NUMBER.uuid()));
+        properties.add(new GlobalProperty(EmrApiConstants.GP_EXTRA_PATIENT_IDENTIFIER_TYPES, PatientIdentifierTypes.HIV_CARE_NUMBER.uuid() + "," + PatientIdentifierTypes.EXPOSED_INFANT_NUMBER.uuid() + PatientIdentifierTypes.ANC_NUMBER.uuid()));
 
         // set the name of the application
-        properties.add(new GlobalProperty("application.name", "AIJAR - Uganda eHealth Solution"));
+        properties.add(new GlobalProperty("application.name", "UgandaEMR - Uganda eHealth Solution"));
 
         // the search mode for patients to enable searching any part of names rather than the beginning
         properties.add(new GlobalProperty("patientSearch.matchMode", "ANYWHERE"));

@@ -89,4 +89,14 @@ public class EncounterTypes {
         }
     };
 
+    public static EncounterTypeDescriptor ANC_ENCOUNTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() { return "ANC - Encounter"; }
+
+        @Override
+        public String description() { return "An encounter when a patient gets ANC services"; }
+
+        @Override
+        public String uuid() { return "044daI6d-f80e-48fe-aba9-037f241905Pe"; }
+    };
 }

@@ -19,6 +19,7 @@ public class EncounterTypeMetadataBundle extends AbstractMetadataBundle {
         install(EncounterTypes.LAB_ENCOUNTER);
         install(EncounterTypes.HEALTH_EDUCATION);
         install(EncounterTypes.SMC_SUMMARY);
+        install(EncounterTypes.ANC_ENCOUNTER);
     }
 
     protected void install(EncounterTypeDescriptor d) {

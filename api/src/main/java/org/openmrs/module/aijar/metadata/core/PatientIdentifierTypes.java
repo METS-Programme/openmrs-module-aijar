@@ -122,4 +122,23 @@ public class PatientIdentifierTypes {
             return LuhnModNIdentifierValidator.class;
         }
     };
+
+    public static PatientIdentifierTypeDescriptor ANC_NUMBER = new PatientIdentifierTypeDescriptor() {
+        @Override
+        public String name() { return "ANC Number"; }
+
+        @Override
+        public String description() { return "Number given to patient for ANC Services"; }
+
+        public String uuid() {
+            return "d435f50c-3af1-4b2b-adfa-96f27f8a041f";
+        }
+
+        public String format() {
+            return "[A][N][C][\\/][0-9][0-9][0-9][0-9][0-9]";
+        }
+
+        public String formatDescription() {return " ANC/ followed by 4 numbers with no spaces";}
+
+    };
 }
