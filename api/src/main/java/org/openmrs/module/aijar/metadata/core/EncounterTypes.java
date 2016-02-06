@@ -72,4 +72,20 @@ public class EncounterTypes {
             return "6d88e370-f2ba-476b-bf1b-d8eaf3b1b67e";
         }
     };
+
+    public static EncounterTypeDescriptor MATERNITY = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Maternity";
+        }
+
+        @Override
+        public String description() {
+            return "When a mother comes to a health facility to deliver";
+        }
+
+        public String uuid() {
+            return "a9f11592-22e7-45fc-904d-dfe24cb1fc67";
+        }
+    };
 }
