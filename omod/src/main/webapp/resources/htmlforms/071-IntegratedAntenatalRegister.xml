@@ -1,0 +1,682 @@
+<htmlform formName="HMIS 071 Integrated Anatenatal Form"
+          formDescription="Entry form for patients enrolled for ANC services"
+          formEncounterType="044daI6d-f80e-48fe-aba9-037f241905Pe"
+          formUuid="362e296b-1315-48a9-8de6-5f4cc3cad314"
+          formVersion="1.2"
+          formAddMetadata="yes"
+          formUILocation="patientDashboard.visitActions"
+          formOrder="8"
+          formIcon="icon-medkit"
+          formShowIf="visit.active &amp;&amp; patient.person.dead==false"
+          formDisplayStyle="Standard"
+          formLabel="ANC Register Form">
+    <macros>
+        headerColor =#8fabc7
+        fontOnHeaderColor = white
+    </macros>
+    <script type="text/javascript">
+        function enable_disable_fm(selected_option){
+
+        var class_name = $(selected_option).attr("class") ;
+
+        var length = class_name.length;
+
+        var class_id = parseInt(class_name.substring(length-1, length))
+
+        var row_id = class_id;
+
+        var disable = true;
+
+        var row_1 = '[class^="FamilyMember"][class*="Children1"]';
+        var row_2 = '[class^="FamilyMember"][class*="Children2"]';
+        var row_3 = '[class^="FamilyMember"][class*="Children3"]';
+        var row_4 = '[class^="FamilyMember"][class*="Children4"]';
+
+
+        var xx = row_1;
+        var selected_value = $(selected_option).find(":selected").text()
+
+
+        switch(selected_value){
+        case "P":
+        case "Y":
+        disable = false;
+        break;
+
+        }
+
+
+        switch(row_id){
+        case 1:
+        xx = row_1;
+        break;
+        case 2:
+        xx = row_2;
+        break;
+        case 3:
+        xx = row_3;
+        break;
+        case 4:
+        xx = row_4;
+        break;
+
+        }
+
+
+        $(xx).each(function(){
+        var group = $(this);
+
+        if( class_name.indexOf('Children') == -1)
+        {
+
+        group.find("input").attr("disabled",disable );
+        group.find('select').attr("disabled",disable );
+
+        //if (disable )
+        //group.find("input[type$='text']").val("");
+
+
+        }
+        else if(class_name.indexOf('GrandChildren') == -1) {
+        // if (disable )
+        // group.find("input[type$='text']").val("");
+
+        group.find("input").attr("disabled",disable );
+        }
+
+        });
+
+        }
+
+        function enable_disable_ei(selected_option){
+
+        var class_name = $(selected_option).attr("class") ;
+
+        var length = class_name.length;
+
+        var class_id = parseInt(class_name.substring(length-1, length))
+
+        var row_id = class_id;
+
+        var disable = true;
+
+        var row_1 = '[class^="ExposedInfant"][class*="Children1"]';
+        var row_2 = '[class^="ExposedInfant"][class*="Children2"]';
+        var row_3 = '[class^="ExposedInfant"][class*="Children3"]';
+        var row_4 = '[class^="ExposedInfant"][class*="Children4"]';
+
+        var xx = row_1;
+        var selected_value = $(selected_option).find(":selected").text()
+
+        if (selected_value == "P")
+        disable = false;
+
+        switch(row_id){
+        case 1:
+        xx = row_1;
+        break;
+        case 2:
+        xx = row_2;
+        break;
+        case 3:
+        xx = row_3;
+        break;
+        case 4:
+        xx = row_4;
+        break;
+
+        }
+
+
+        $(xx).each(function(){
+        var group = $(this);
+
+        if( class_name.indexOf('Children') == -1)
+        {
+        group.find("input").attr("disabled",disable );
+
+        //if (disable )
+        //group.find("input[type$='text']").val("");
+
+        }
+
+        });
+
+        }
+
+
+        function enable_disable_ac(selected_option){
+
+        var class_name = $(selected_option).attr("class") ;
+
+        var length = class_name.length;
+
+        var class_id = parseInt(class_name.substring(length-1, length))
+
+        var row_id = class_id;
+
+        var disable = true;
+
+        var row_1 = '[class^="ArtCare"][class*="Child1"]';
+        var row_2 = '[class^="ArtCare"][class*="Child2"]';
+        var row_3 = '[class^="ArtCare"][class*="Child3"]';
+        var row_4 = '[class^="ArtCare"][class*="Child4"]';
+
+        var row_5 = '[class^="ArtCare"][class*="Child5"]';
+        var row_6 = '[class^="ArtCare"][class*="Child6"]';
+        var row_7 = '[class^="ArtCare"][class*="Child7"]';
+        var row_8 = '[class^="ArtCare"][class*="Child8"]';
+
+        var row_9 = '[class^="ArtCare"][class*="Child9"]';
+
+        var xx = row_1;
+        var selected_value = $(selected_option).find(":selected").text()
+
+        selected_value = selected_value.trim().toUpperCase();
+
+        if (selected_value == "OTHER")
+        disable = false;
+
+        switch(row_id){
+        case 1:
+        xx = row_1;
+        break;
+        case 2:
+        xx = row_2;
+        break;
+        case 3:
+        xx = row_3;
+        break;
+        case 4:
+        xx = row_4;
+        break;
+
+        case 5:
+        xx = row_5;
+        break;
+        case 6:
+        xx = row_6;
+        break;
+        case 7:
+        xx = row_7;
+        break;
+        case 8:
+        xx = row_8;
+        break;
+        case 9:
+        xx = row_9;
+        break;
+
+
+        }
+
+
+        $(xx).each(function(){
+        var group = $(this);
+
+        if( class_name.indexOf('Child') == -1)
+        {
+        group.find("input").attr("disabled",disable );
+
+        //if (disable )
+        //group.find("input[type$='text']").val("");
+
+        }
+
+        });
+
+        }
+
+
+        if(jQuery){
+        $(document).ready(function(){
+        if ( $.browser.msie ) {
+        $(":checkbox").click(function(){
+        $(this).change();
+        });
+        }
+
+        $("#comfirmedDate").change(function() {
+
+        alert($(this).find("input[type$='text']").val() );
+
+        });
+
+        $('[class^="FamilyMemberEnableDisable"]').change(function() {
+        enable_disable_fm($(this));
+        });
+
+        $('[class^="FamilyMemberEnableDisable"]').each(function(){
+        enable_disable_fm( $(this));
+        });
+
+
+        $('[class^="ExposedInfantEnableDisable"]').change(function() {
+        enable_disable_ei($(this));
+        });
+
+
+        $('[class^="ExposedInfantEnableDisable"]').each(function(){
+        enable_disable_ei( $(this))
+        });
+
+        $('[class^="ArtCareEnableDisable"]').change(function() {
+        enable_disable_ac($(this));
+        });
+
+
+        $('[class^="ArtCareEnableDisable"]').each(function(){
+        enable_disable_ac( $(this))
+        });
+
+        $(".enableDisable").each(function(){
+        var group = $(this);
+        function disableFn(){
+        group.children("#disabled").fadeTo(250,1);
+        group.children("#disabled").find(":checkbox").attr("checked",false); //uncheck
+        // group.children("#disabled").find("input[type$='text']").val("");
+        group.children("#disabled").find("input").attr("disabled",true); //disable
+        group.children("#disabled").find("select").attr("disabled",true);
+        }
+        function enableFn(){
+        group.children("#disabled").fadeTo(250,1);
+        group.children("#disabled").find("input").attr("disabled",false);
+        group.children("#disabled").find("select").attr("disabled",false);
+
+        }
+        disableFn();
+        $(this).children("#trigger").find(":checkbox:first").change(function(){
+        var checked = $(this).attr("checked");
+        if(checked == true){
+        enableFn();
+        }else{
+        disableFn();
+        }
+        });
+        });
+
+
+        $(".checkboxGroup").each(function(){
+        var group = $(this);
+        var uncheckAll = function(){
+        group.find("input[type$='checkbox']").attr("checked",false);
+        group.find("input[type$='checkbox']").change();
+        }
+        var uncheckRadioAndAll = function(){
+        group.find("#checkboxAll,#checkboxRadio").find("input[type$='checkbox']").attr("checked",false);
+        group.find("#checkboxAll,#checkboxRadio").find("input[type$='checkbox']").change();
+        }
+
+
+        group.find("#checkboxAll").find("input").click(
+        /* This was tricky... A number of things needed to happen
+        Basically, This is supposed to treat a group of inputs as if
+        were all one big checkbox. It is designed so that a checkbox
+        can be next to an input, and the user clicks the input, the
+        checkbox checks as well. But, when the user clicks the checkbox,
+        the browser marks the checkbox as checked. Therefore, when we check
+        if the checkbox is already checked, it always respondes true...
+        We needed to have 2 cases: when the clicking action is on the first checkbox
+        and when the action is on any other. */
+        function(){
+        var flip;
+        var checked = $(this).siblings(":checkbox:first").attr("checked");
+        if($(this).attr("name") == $(this).parents("#checkboxAll:first").find(":checkbox:first").attr("name")){
+        checked = $(this).attr("checked");
+        flip = checked;
+        }else{
+        flip = !checked;
+        }
+        if($(this).attr("type") == "text") if(flip == false) flip = !filp; // this is so the user doesn't go to check
+        the checkbox, then uncheck it when they hit the input.
+        uncheckAll();
+        $(this).parents("#checkboxAll:first").find(":checkbox").attr("checked",flip);
+        $(this).parents("#checkboxAll:first").find(":checkbox").change();
+        }
+        );
+
+
+        group.find("#checkboxRadio").find("input[type$='checkbox']").click(function(){
+        uncheckAll();
+        $(this).siblings("input[type$='checkbox']").attr("checked",false);
+        $(this).attr("checked",true);
+        $(this).change();
+        });
+
+        group.find("#checkboxCheckbox").click(
+        function(){
+        uncheckRadioAndAll();
+        }
+        );
+        });
+        });
+        }
+    </script>
+
+    <script type="text/javascript">
+        function val() {
+        document.getElementById("fgh").disabled = "true";
+        }
+    </script>
+
+    <style type="text/css">
+        .error{
+        color: red;
+        }
+
+        table td{
+        background: #FFFFFF;
+        color: #404040;
+        }
+
+        form select, .form select {
+        min-width: 0px;
+        }
+
+        form input, form select, form textarea, form ul.select, .form input, .form select, .form textarea, .form
+        ul.select {
+        background-color: #FBFBFB;
+        border: 1px solid #404040;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        padding: 10px;
+        min-width: 50%;
+        }
+        .row {
+        width: 100%;
+        float: left;
+        display: inline-flex;
+        clear: both;
+        }
+
+        .row .row-col2 {
+        float: left;
+        width: 50%;
+        }
+
+        table th, table td {
+        border: 1px solid #F5F5F5;
+        text-align: center;
+        }
+
+        table{margin: 20px 0px;}
+    </style>
+
+    <!-- Beging of HTML Form -->
+    <div class="ai-page-frame">
+        <div class="headers" style="text-align: center;">
+            <h3 style="background: #E09E9E; padding: 10px;">Integrated Antenatal Register</h3>
+        </div>
+        <section>
+            <table class="enrollment">
+                <tbody>
+                    <tr>
+                        <td>
+                            <label>Encounter Date</label>
+                            <encounterDate default="today" required="true"/>
+                        </td>
+                        <td>
+                            <label>Service Provider:</label>
+                            <encounterProvider role="Provider" style="autocomplete"/>
+                        </td>
+                        <td>
+                            <label>Enrolled at:</label>
+                            <encounterLocation default="1"/>
+                        </td>
+                        <td>
+                            <label>ANC Number:</label>
+                            <patient field="identifier" identifierTypeId="f4731641-t0ab-102d-86b0-7a502Oba4119"
+                                     required="true"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <table>
+                <tr>
+                    <th rowspan="3" style="background: #FBFBFB;text-align: center;font-weight: bold;">ANC Visit</th>
+                    <th rowspan="3" style="background: #FBFBFB;text-align: center;font-weight: bold;">Gravida</th>
+                    <th rowspan="3" style="background: #FBFBFB;text-align: center;font-weight: bold;">Parity</th>
+                    <th rowspan="3" style="background: #FBFBFB;text-align: center;font-weight: bold;">Gestation Age</th>
+                    <th rowspan="3" style="background: #FBFBFB;text-align: center;font-weight: bold;">ANC1 Trimming</th>
+                    <th rowspan="3" style="background: #FBFBFB;text-align: center;font-weight: bold;">Expected Date of
+                        Delivery (EDD)
+                    </th>
+                    <th style="background: #FBFBFB;text-align: center;font-weight: bold;;">Weight</th>
+                </tr>
+                <tr>
+                    <td style="background: #FBFBFB;text-align: center;font-weight: bold;">MUAC</td>
+                </tr>
+                <tr>
+                    <td style="background: #FBFBFB;text-align: center;font-weight: bold;">INR No</td>
+                </tr>
+                <tr>
+                    <td rowspan="3">
+                        <obs conceptId="99324"/>
+                    </td>
+                    <td rowspan="3">
+                        <obs conceptId="5624"/>
+                    </td>
+                    <td rowspan="3">
+                        <obs conceptId="1053"/>
+                    </td>
+                    <td rowspan="3">
+                        <obs conceptId="1279"/>
+                    </td>
+                    <td rowspan="3">
+                        <obs conceptId="99732" labelText="" answerConceptIds="90003,90004,1175"
+                             answerLabels="&#8730;,X,N/A"/>
+                    </td>
+                    <td rowspan="3">
+                        <obs conceptId="99731"/>
+                    </td>
+                    <td>
+                        <obs conceptId="90236"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <obs conceptId="99030"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <obs conceptId="99733"/>
+                    </td>
+                </tr>
+            </table>
+        </section>
+        <section>
+            <table>
+                <tr>
+                    <th style="background: #FBFBFB;text-align: center;font-weight: bold;" rowspan="4">Blood Pressure
+                    </th>
+                    <th style="background: #FBFBFB;text-align: center;font-weight: bold;" colspan="2" rowspan="3">EMTCT
+                        Codes
+                    </th>
+                    <th style="background: #FBFBFB;text-align: center;font-weight: bold;" rowspan="4">Diagnosis</th>
+                    <th style="background: #FBFBFB;text-align: center;font-weight: bold;" rowspan="2">WHO Clinical
+                        Stage
+                    </th>
+                    <th style="background: #FBFBFB;text-align: center;font-weight: bold;" rowspan="3">ARV drugs</th>
+                    <th style="background: #FBFBFB;text-align: center;font-weight: bold;" rowspan="3">Infant Young Child
+                        feeding Counseling (IYCF)
+                    </th>
+                </tr>
+                <tr>
+                </tr>
+                <tr>
+                    <td style="background: #FBFBFB;text-align: center;font-weight: bold;">CD4</td>
+                </tr>
+                <tr>
+                    <td style="background: #FBFBFB;text-align: center;font-weight: bold;">W</td>
+                    <td style="background: #FBFBFB;text-align: center;font-weight: bold;">P</td>
+                    <td style="background: #FBFBFB;text-align: center;font-weight: bold;">Viral Load</td>
+                    <td style="background: #FBFBFB;text-align: center;font-weight: bold;">Pre-ART No of Client</td>
+                    <td style="background: #FBFBFB;text-align: center;font-weight: bold;">Maternal Nutrition
+                        Counseling
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="3"><obs conceptId="5085"/>/
+                        <obs conceptId="5086"/>
+                    </td>
+                    <obsgroup groupingConceptId="99743">
+                        <td rowspan="3">
+                            <obs conceptId="99317" labelText=""
+                                 answerConceptIds="99313,99734,99314,99315,99735,99736,99737,99738,99739,99741"
+                                 answerLabels="C,T,TR,TRR,TR&#8730;,TRR&#8730;,TRK,TRRK,TR+,TRR+"/>
+                        </td>
+                        <td rowspan="3">
+                            <obs conceptId="99342" labelText=""
+                                 answerConceptIds="99313,99734,99314,99315,99735,99736,99737,99738,99739,99741"
+                                 answerLabels="C,T,TR,TRR,TR&#8730;,TRR&#8730;,TRK,TRRK,TR+,TRR+"/>
+                        </td>
+                    </obsgroup>
+                    <td rowspan="3">
+                        <obs conceptId="99321"/>
+                    </td>
+                    <td>
+                        <obs conceptId="90203" labelText=""
+                             answerConceptIds="90033,90034,90035,90036,90293,90294,90295,90296"
+                             answerLabels="Stage1,Stage2,Stage3,Stage4,StageT1,StageT2,StageT3,StageT4"/>
+                    </td>
+                    <td rowspan="2">
+                        <obs conceptId="99744" labelText="" answerConceptIds="99745,99746,99747,99748,1175"
+                             answerLabels="ART,ARTK,ART&#8730;,ARTK&#8730;,N/A"/>
+                    </td>
+                    <td rowspan="2">
+                        <obs conceptId="99749" labelText="" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <obs conceptId="5497" labelText=""/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <obs conceptId="856" labelText=""/>
+                    </td>
+                    <td>
+                        <obs conceptId="99751" labelText=""/>
+                    </td>
+                    <td>
+                        <obs conceptId="99750" labelText="" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
+                    </td>
+                </tr>
+            </table>
+        </section>
+        <section>
+            <table>
+                <tr>
+                    <th style="background: #FBFBFB;text-align: center;font-weight: bold;" rowspan="2">TB Status</th>
+                    <th style="background: #FBFBFB;text-align: center;font-weight: bold;" rowspan="2">Haemoglobin</th>
+                    <th style="background: #FBFBFB;text-align: center;font-weight: bold;" colspan="2">Syphilis Test
+                        Results
+                    </th>
+                    <th style="background: #FBFBFB;text-align: center;font-weight: bold;" rowspan="2">Family Planning
+                        Counseling
+                    </th>
+                    <th style="background: #FBFBFB;text-align: center;font-weight: bold;" rowspan="2">TT</th>
+                </tr>
+                <tr>
+                    <td style="background: #FBFBFB;text-align: center;font-weight: bold; background:#F3F3F3;">W</td>
+                    <td style="background: #FBFBFB;text-align: center;font-weight: bold; background:#F3F3F3;">P</td>
+                </tr>
+                <tr>
+                    <td>
+                        <obs conceptId="90216" labelText="" answerConceptIds="90079,90073,90078,90071"
+                             answerLabels="1:No signs,2:Suspect,3:Diagnosed,4:TB Rx"/>
+                    </td>
+                    <td>
+                        <obs conceptId="21"/>
+                    </td>
+                    <td>
+                        <obs conceptId="99752" labelText="" answerConceptIds="99754,99755,99756,99757"
+                             answerLabels="Rx,+ve,NR,NT"/>
+                    </td>
+                    <td>
+                        <obs conceptId="99753" labelText="" answerConceptIds="99754,99755,99756,99757"
+                             answerLabels="Rx,+ve,NR,NT"/>
+                    </td>
+                    <obsgroup groupingConceptId="99297">
+                        <td>
+                            <obs conceptId="99296" labelText="" answerConceptIds="99294,99295" answerLabels="C,C/D"/>
+                        </td>
+                    </obsgroup>
+                    <obsgroup groupingConceptId="99304">
+                        <td>
+                            <obs conceptId="99303" labelText="" answerConceptIds="99298,99299,99300,99301,99302,1267"
+                                 answerLabels="1st,2nd,3rd,4th,5th,C"/>
+                        </td>
+                    </obsgroup>
+                </tr>
+            </table>
+        </section>
+        <section>
+            <table>
+                <tr>
+                    <th style="background: #FBFBFB;text-align: center;font-weight: bold;" rowspan="2">IPX/CTX</th>
+                    <th style="background: #FBFBFB;text-align: center;font-weight: bold;" rowspan="2">Free LLIN</th>
+                    <th style="background: #FBFBFB;text-align: center;font-weight: bold;" rowspan="2">Mebendazole</th>
+                    <th style="background: #FBFBFB;text-align: center;font-weight: bold;" colspan="2">Iron/Folic Acid
+                    </th>
+                    <th style="background: #FBFBFB;text-align: center;font-weight: bold;" rowspan="2">Other Treatments
+                    </th>
+                </tr>
+                <tr>
+                    <td style="background: #FBFBFB;text-align: center;font-weight: bold;background:#F3F3F3;">FE</td>
+                    <td style="background: #FBFBFB;text-align: center;font-weight: bold;background:#F3F3F3;">Folic</td>
+                </tr>
+                <tr>
+                    <obsgroup groupingConceptId="99307">
+                        <td>
+                            <obs conceptId="99306" labelText="" answerConceptIds="99298,99299,99305,1267,99758,99759"
+                                 answerLabels="1st,2nd,ND,C,CTX,CTX&#8730;"/>
+                        </td>
+                        <td>
+                            <obs conceptId="99760" labelText="" answerConceptIds="90003,90004"/>
+                        </td>
+                        <td>
+                            <obs conceptId="99312" labelText="" answerConceptIds="99309,99310,99311,1267"
+                                 answerLabels="&#8730;,X,N/A,C"/>
+                        </td>
+                    </obsgroup>
+                    <obsgroup groupingConceptId="99307">
+                        <td><obs conceptId="99318" labelText="" answerConceptIds="90003,90004" answerLabels="&#8730;,X"/> <obs conceptId="99761"/></td>
+                        <td><obs conceptId="99319" labelText="" answerConceptIds="90003,90004" answerLabels="&#8730;,X"/> <obs conceptId="99762"/></td>
+                        <td><obs conceptId="99320" /></td>
+                    </obsgroup>
+                </tr>
+            </table>
+        </section>
+        <section>
+            <table>
+                <tr>
+                    <th style="background: #FBFBFB;text-align: center;font-weight: bold;">Referral In/Out
+                    </th>
+                    <th style="background: #FBFBFB;text-align: center;font-weight: bold;">Risk
+                        Factors/Complications
+                    </th>
+                </tr>
+                <tr>
+                    <td><obs conceptId="99322" labelText="" answerConceptIds="99763,99764,99765,99766" answerLabels="Ref out,Ref IN,C/Ref IN,FSG"/> <obs conceptId="99767"/></td>
+                    <td><obs conceptId="99768"/></td>
+                </tr>
+            </table>
+        </section>
+    </div>
+    <section>
+        <submit/>
+    </section>
+    <br/>
+    <small>
+        <i>
+            Version 1.2 Last revised on
+            01/December/2015 - Ministry of Health
+        </i>
+    </small>
+    <!-- End of HTML Form -->
+</htmlform>
