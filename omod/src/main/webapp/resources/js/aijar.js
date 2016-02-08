@@ -17,7 +17,10 @@ jq(".editPatientIdentifier").each(function () {
         // parent span containing the link
         jq(this).hide(); // hide this link
     } else {
-        // remove the link to editing the patient identifier
-        jq(this).removeAttr("href");
+        jq(this).attr('href', '').css({'cursor': 'pointer', 'pointer-events': 'none'}); // remove the href attribute so
+        // that the link is not clickable
+        jq(this).unbind("click"); // remove the click event enabling the editing of the patient identifier
+        jq(this).removeClass('editPatientIdentifier'); // also remove the class in case this script is loaded before the
+        // onclick is added
     }
 });
