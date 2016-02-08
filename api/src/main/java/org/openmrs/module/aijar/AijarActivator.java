@@ -13,6 +13,10 @@
  */
 package org.openmrs.module.aijar;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -27,18 +31,13 @@ import org.openmrs.module.aijar.activator.HtmlFormsInitializer;
 import org.openmrs.module.aijar.api.deploy.bundle.CommonMetadataBundle;
 import org.openmrs.module.aijar.api.deploy.bundle.EncounterTypeMetadataBundle;
 import org.openmrs.module.aijar.api.deploy.bundle.UgandaAddressMetadataBundle;
-import org.openmrs.module.aijar.api.reporting.builder.common.SetupMissedAppointmentsReport;
 import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
 import org.openmrs.module.appframework.service.AppFrameworkService;
 import org.openmrs.module.dataexchange.DataImporter;
 import org.openmrs.module.emrapi.EmrApiConstants;
+import org.openmrs.module.emrapi.utils.MetadataUtil;
 import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
 import org.openmrs.ui.framework.resource.ResourceFactory;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * This class contains the logic that is run every time this module is either started or stopped.
@@ -148,6 +147,11 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             deployService.installBundle(Context.getRegisteredComponents(UgandaAddressMetadataBundle.class).get(0));
             log.info("Finished installing addresshierarchy");
 
+            // install concepts
+            log.info("Installing concepts");
+            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "Uganda_Concepts");
+            log.info("Concepts installed");
+
         } catch (Exception e) {
             Module mod = ModuleFactory.getModuleById("aijar");
             ModuleFactory.stopModule(mod);
@@ -191,18 +195,6 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             }
         }
 
-    }
-
-    /**
-     * Allows to automatically register report definitions at when the
-     * module is started
-     *
-     * @throws Exception
-     */
-    public void registerReports() throws Exception {
-        //Register Missed Appointments Report
-        SetupMissedAppointmentsReport mal = new SetupMissedAppointmentsReport();
-        mal.setup();
     }
 
     /**
