@@ -1,0 +1,32 @@
+[
+  {
+    "id": "aijar.referenceapplication.legacyAdmin",
+    "extensions": [
+      {
+        "id": "aijar.referenceapplication.legacyAdmin.homepageLink",
+        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+        "type": "link",
+        "label": "aijar.app.legacy.admin.label",
+        "url": "admin/index.htm",
+        "icon": "icon-cogs",
+        "order": 99,
+        "requiredPrivilege": "App: referenceapplication.legacyAdmin"
+      }
+    ]
+  },
+  {
+    "id": "aijar.referenceapplication.birtReports",
+    "extensions": [
+      {
+        "id": "aijar.referenceapplication.birtReports.homepageLink",
+        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+        "type": "link",
+        "label": "aijar.app.birtreport.list.label",
+        "url": "module/birt/report.list",
+        "icon": "icon-book",
+        "order": 105,
+        "requiredPrivilege": "Manage Reports"
+      }
+    ]
+  }
+]
