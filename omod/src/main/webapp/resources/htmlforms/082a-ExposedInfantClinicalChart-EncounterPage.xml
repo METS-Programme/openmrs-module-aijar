@@ -1,0 +1,722 @@
+<htmlform formName="HMIS 082a - Early Infant Exposed Card Encounter"
+          formEncounterType="8d5b2be0-c2cc-11de-8d13-0010c6dffd0f"
+          formUuid="6f6b4802-7642-4226-84dc-ea7db01924b6"
+          formVersion="1.2"
+          formAddMetadata="yes"
+          formUILocation="patientDashboard.visitActions"
+          formOrder="5"
+          formIcon="icon-medkit"
+          formShowIf="visit.active &amp;&amp; patient.person.dead==false &amp;&amp; patient.person.age &lt; 3"
+          formDisplayStyle="Standard"
+          formLabel="EID Card - Encounter form">
+    <macros>
+        headerColor =#8fabc7
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+        .error{
+        color: red;
+        }
+
+        table td{
+        background: #7BB3D0;
+        color: #404040;
+        }
+
+        form select, .form select {
+        min-width: 0px;
+        }
+
+        form input, form select, form textarea, form ul.select, .form input, .form select, .form textarea, .form
+        ul.select {
+        background-color: #FBFBFB;
+        border: 1px solid #404040;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        padding: 10px;
+        min-width: 50%;
+        }
+        .row {
+        width: 100%;
+        float: left;
+        display: inline-flex;
+        clear: both;
+        }
+
+        .row .row-col2 {
+        float: left;
+        width: 50%;
+        }
+
+        table th, table td {
+        border: 1px solid #BDBDBD;
+        }
+
+        #td-20-width{
+        width: 19.3%;
+        }
+    </style>
+    <script type="text/javascript">
+        function enable_disable_fm(selected_option) {
+
+        var class_name = jq(selected_option).attr("class");
+
+        var length = class_name.length;
+
+        var class_id = parseInt(class_name.substring(length - 1, length))
+
+        var row_id = class_id;
+
+        var disable = true;
+
+        var row_1 = '[class^="FamilyMember"][class*="Children1"]';
+        var row_2 = '[class^="FamilyMember"][class*="Children2"]';
+        var row_3 = '[class^="FamilyMember"][class*="Children3"]';
+        var row_4 = '[class^="FamilyMember"][class*="Children4"]';
+        var row_5 = '[class^="FamilyMember"][class*="Children5"]';
+
+        var xx = row_1;
+        var selected_value = jq(selected_option).find(":selected").text()
+
+
+        switch (selected_value) {
+        case "P":
+        case "Y":
+        disable = false;
+        break;
+
+        }
+
+
+        switch (row_id) {
+        case 1:
+        xx = row_1;
+        break;
+        case 2:
+        xx = row_2;
+        break;
+        case 3:
+        xx = row_3;
+        break;
+        case 4:
+        xx = row_4;
+        break;
+        case 5:
+        xx = row_5;
+        break;
+        }
+
+
+        jq(xx).each(function () {
+        var group = jq(this);
+
+        if (class_name.indexOf('Children') == -1) {
+
+        group.find("input").attr("disabled", disable);
+        group.find('select').attr("disabled", disable);
+        }
+        else if (class_name.indexOf('GrandChildren') == -1) {
+        group.find("input").attr("disabled", disable);
+        }
+
+        });
+
+        }
+
+        function enable_disable_ei(selected_option) {
+
+        var class_name = jq(selected_option).attr("class");
+
+        var length = class_name.length;
+
+        var class_id = parseInt(class_name.substring(length - 1, length))
+
+        var row_id = class_id;
+
+        var disable = true;
+
+        var row_1 = '[class^="ExposedInfant"][class*="Children1"]';
+        var row_2 = '[class^="ExposedInfant"][class*="Children2"]';
+        var row_3 = '[class^="ExposedInfant"][class*="Children3"]';
+        var row_4 = '[class^="ExposedInfant"][class*="Children4"]';
+        var row_5 = '[class^="ExposedInfant"][class*="Children5"]';
+
+        var xx = row_1;
+        var selected_value = jq(selected_option).find(":selected").text()
+
+        if (selected_value == "P" &amp;&amp; selected_value!="")
+        disable = false;
+
+        switch (row_id) {
+        case 1:
+        xx = row_1;
+        break;
+        case 2:
+        xx = row_2;
+        break;
+        case 3:
+        xx = row_3;
+        break;
+        case 4:
+        xx = row_4;
+        break;
+        case 5:
+        xx = row_5;
+        break;
+        }
+
+
+        jq(xx).each(function () {
+        var group = jq(this);
+
+        if (class_name.indexOf('Children') == -1) {
+        group.find("input").attr("disabled", disable);
+        }
+
+        });
+
+        }
+
+
+        function enable_disable_imm(selected_option) {
+
+        var class_name = jq(selected_option).attr("class");
+
+        var length = class_name.length;
+
+        var class_id = parseInt(class_name.substring(length - 1, length))
+
+        var row_id = class_id;
+
+        var disable = true;
+
+        var row_1 = '[class^="ImmCode"][class*="Child1"]';
+
+        var xx = row_1;
+        var selected_value = jq(selected_option).find(":selected").text()
+
+        selected_value = selected_value.trim().toUpperCase();
+
+        if (selected_value.toLowerCase() == "other specify")
+        disable = false;
+
+        switch (row_id) {
+        case 1:
+        xx = row_1;
+        break;
+        }
+
+
+        jq(xx).each(function () {
+        var group = jq(this);
+
+        if (class_name.indexOf('Child') == -1) {
+        group.find("input").attr("disabled", disable);
+        }
+
+        });
+
+        }
+
+
+        function enable_disable_ati(selected_option) {
+
+        var class_name = jq(selected_option).attr("class");
+
+        var length = class_name.length;
+
+        var class_id = parseInt(class_name.substring(length - 1, length))
+
+        var row_id = class_id;
+
+        var disable = true;
+
+        var row_1 = '[class^="ARTTreatmentInterruption"][class*="Child1"]';
+        var row_2 = '[class^="ARTTreatmentInterruption"][class*="Child2"]';
+        var row_3 = '[class^="ARTTreatmentInterruption"][class*="Child3"]';
+        var row_4 = '[class^="ARTTreatmentInterruption"][class*="Child4"]';
+        var row_5 = '[class^="ARTTreatmentInterruption"][class*="Child5"]';
+        var row_6 = '[class^="ARTTreatmentInterruption"][class*="Child6"]';
+
+        var xx = row_1;
+        var selected_value = jq(selected_option).find(":selected").text()
+
+        selected_value = selected_value.trim().toUpperCase();
+
+        if (selected_value.toLowerCase() == "stopped" || selected_value.toLowerCase() == "lost")
+        disable = false;
+
+        switch (row_id) {
+        case 1:
+        xx = row_1;
+        break;
+        case 2:
+        xx = row_2;
+        break;
+        case 3:
+        xx = row_3;
+        break;
+        case 4:
+        xx = row_4;
+        break;
+
+        case 5:
+        xx = row_5;
+        break;
+        case 6:
+        xx = row_6;
+        break;
+
+        }
+
+
+        jq(xx).each(function () {
+        var group = jq(this);
+
+        if (class_name.indexOf('Child') == -1) {
+        group.find("input").attr("disabled", disable);
+        group.find('select').attr("disabled", disable);
+        }
+
+        });
+
+        }
+
+        jq('#w200_0').click(function () {
+        if (jq('#w200_0').is(':checked')) {
+        alert("it's checked");
+        }
+        });
+
+
+        if (jQuery) {
+        jq(document).ready(function () {
+        if (jq.browser.msie) {
+        jq(":checkbox").click(function () {
+        jq(this).change();
+        });
+        }
+
+
+        var gender = jq("span.gender").html();
+        var age = jq("span.age").html();
+
+        jq('#w196').change(function () {
+        if (this.value == '90004') {
+        jq("#w198").prop("checked", false);
+        jq("#w206").prop("checked", false);
+        jq("#w214").prop("checked", false);
+        jq("#w222").prop("checked", false);
+
+        jq("input#w198").attr("disabled", true);
+        jq("input#w206").attr("disabled", true);
+        jq("input#w214").attr("disabled", true);
+        jq("input#w222").attr("disabled", true);
+
+        }
+        else if (this.value == '90003') {
+        jq("input#w198").removeAttr("disabled");
+        jq("input#w206").removeAttr("disabled");
+        jq("input#w214").removeAttr("disabled");
+        jq("input#w222").removeAttr("disabled");
+        }
+        });
+
+
+        //If Male disable all options that only apply to females
+        if (gender == "M") {
+        jq("input#w246").attr("disabled", true);
+        jq("input#w248").attr("disabled", true);
+        }
+
+        // If above five years disable options that only apply to below 5 year olds
+        if (age &gt; 5) {
+        jq("input#w250").attr("disabled", true);
+        jq("input#w252").attr("disabled", true);
+        }
+
+
+        jq('input[type=hidden][name=w233][id=w233]').change(function () {
+        if (new Date(jq("#w233").val()) &lt;= new Date(jq("#w6").val())) {
+        alert("Enrolled Date is Earlier than the date Comfirmed Positive");
+        }
+        });
+
+        // disable the HIV enrolled date input
+        jq('#w233-display').attr("disabled", "disabled");
+
+        // When the HIV date confirmed field is selected, then set the minimum value of the HIV enrolled date
+        jq('#w6-display').change(function () {
+        // enable the HIV enrolled date picker
+        jq('#w233-display').removeAttr("disabled", "");
+
+        // clear the HIV enrolled date so that a new one can be selected
+        jq('#w233-display').val("");
+        jq('#w233').val("");
+
+        // set the minimum date using the HIV confirmed date
+        jq('#w233-display').datepicker("option", "minDate", jq('#w6-display').val());
+        });
+
+        // when there is a value in the HIV date confirmed field
+        if (jq('#w6-display').length > 0) {
+        // set the minimum date using the HIV confirmed date
+        jq('#w233-display').datepicker("option", "minDate", jq('#w6-display').val());
+        }
+
+
+        // disable the Transfer date input
+        jq('#w278-display').attr("disabled", "disabled");
+
+        // When the ART start Date field is selected, then set the minimum value of the Transer date
+        jq('#w286-display').change(function () {
+        // enable the HIV enrolled date picker
+        jq('#w278-display').removeAttr("disabled", "");
+
+        // clear the Transfer Date so that a new one can be selected
+        jq('#w278-display').val("");
+        jq('#w233').val("");
+
+        // set the minimum date using the ART start date
+        jq('#w278-display').datepicker("option", "minDate", jq('#w286-display').val());
+        });
+
+        // when there is a value in the Transfer field
+        if (jq('#w286-display').length > 0) {
+        // set the minimum date using the ART Start date
+        jq('#w278-display').datepicker("option", "minDate", jq('#w286-display').val());
+        }
+
+        jq('[class^="FamilyMemberEnableDisable"]').change(function () {
+        enable_disable_fm(jq(this));
+        });
+
+        jq('[class^="FamilyMemberEnableDisable"]').each(function () {
+        enable_disable_fm(jq(this));
+        });
+
+
+        jq('[class^="ExposedInfantEnableDisable"]').change(function () {
+        enable_disable_ei(jq(this));
+        });
+
+
+        jq('[class^="ImmCodeEnableDisable"]').change(function () {
+        enable_disable_imm(jq(this));
+        });
+
+
+        jq('[class^="ImmCodeEnableDisable"]').each(function () {
+        enable_disable_imm(jq(this))
+        });
+
+        jq('[class^="ARTTreatmentInterruptionEnableDisable"]').change(function () {
+        enable_disable_ati(jq(this));
+        });
+
+
+        jq('[class^="ARTTreatmentInterruptionEnableDisable"]').each(function () {
+        enable_disable_ati(jq(this))
+        });
+
+        jq(".enableDisable").each(function () {
+        var group = jq(this);
+
+        function disableFn() {
+        group.children("#disabled").fadeTo(250, 1);
+        group.children("#disabled").find(":checkbox").attr("checked", false); //uncheck
+        // group.children("#disabled").find("input[type$='text']").val("");
+        group.children("#disabled").find("input").attr("disabled", true); //disable
+        group.children("#disabled").find("select").attr("disabled", true);
+        }
+
+        function enableFn() {
+        group.children("#disabled").fadeTo(250, 1);
+        group.children("#disabled").find("input").attr("disabled", false);
+        group.children("#disabled").find("select").attr("disabled", false);
+
+        }
+
+        disableFn();
+        jq(this).children("#trigger").find(":checkbox:first").change(function () {
+        var checked = jq(this).attr("checked");
+        if (checked == "checked") {
+        enableFn();
+        } else {
+        disableFn();
+        }
+        });
+        });
+
+
+        jq(".checkboxGroup").each(function () {
+        var group = jq(this);
+        var uncheckAll = function () {
+        group.find("input[type$='checkbox']").attr("checked", false);
+        group.find("input[type$='checkbox']").change();
+        }
+        var uncheckRadioAndAll = function () {
+        group.find("#checkboxAll,#checkboxRadio").find("input[type$='checkbox']").attr("checked", false);
+        group.find("#checkboxAll,#checkboxRadio").find("input[type$='checkbox']").change();
+        }
+
+
+        group.find("#checkboxAll").find("input").click(
+        function () {
+        var flip;
+        var checked = jq(this).siblings(":checkbox:first").attr("checked");
+        if (jq(this).attr("name") == jq(this).parents("#checkboxAll:first").find(":checkbox:first").attr("name")) {
+        checked = jq(this).attr("checked");
+        flip = checked;
+        } else {
+        flip = !checked;
+        }
+        if (jq.attr("type") == "text") if (flip == false) flip = !filp; // this is so the user doesn't go to check the checkbox, then uncheck it when they hit the input.
+        uncheckAll();
+        jq(this).parents("#checkboxAll:first").find(":checkbox").attr("checked", flip);
+        jq(this).parents("#checkboxAll:first").find(":checkbox").change();
+        }
+        );
+
+
+        group.find("#checkboxRadio").find("input[type$='checkbox']").click(function () {
+        uncheckAll();
+        jq(this).siblings("input[type$='checkbox']").attr("checked", false);
+        jq(this).attr("checked", true);
+        jq(this).change();
+        });
+
+        group.find("#checkboxCheckbox").click(
+        function () {
+        uncheckRadioAndAll();
+        }
+        );
+        });
+        });
+        }
+    </script>
+
+    <script type="text/javascript">
+        function val()
+        {
+        document.getElementById("fgh").disabled="true";
+        }
+    </script>
+
+    <div class="ai-page-frame">
+        <div class="headers" style="text-align: center;">
+            <h3>HIV Exposed Infant Form</h3>
+        </div>
+        <section>
+            <table>
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            Encounter Date:
+                            <encounterDate default="today"/>
+                        </td>
+                        <td>
+                            Service Provider:
+                            <encounterProvider role="Provider" style="autocomplete"/>
+                        </td>
+                        <td>
+                            Encounter Location:
+                            <encounterLocation default="1"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <div class="ai-page-content">
+            <section>
+                <table id="inner" border="0">
+                    <tbody>
+                        <tr>
+                            <td colspan="2" id="td-20-width"></td>
+                            <td>Visit Details</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Date of Appointment</td>
+                            <td>
+                                <obs conceptId="99443"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Date of Visit</td>
+                            <td>
+                                <obs conceptId="99446"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Age(Months)</td>
+                            <td>
+                                <obs conceptId="99449"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">HIV test (PRC or anti-bodies)</td>
+                            <td>
+                                <obs conceptId="99080"></obs>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Infant feeding Code</td>
+                            <td>
+                                <obs conceptId="99451" answerConceptIds="5526,99089,6046,99791,99792,99793"
+                                     answerLabels="EBF,RF,MF,CF,W,NLB"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Immunization Code</td>
+                            <td>
+                                <span class="ImmCodeEnableDisable1">
+                                    <obs conceptId="162839"
+                                         answerConceptIds="886,162831,162832,162833,162834,781,162835,162836,162837,63,162838,90002"
+                                         answerLabels="BCG,OPV-0,OPV-1,OPV-2,OPV-3,DPT"/>
+                                </span>
+                                <span class="ImmCodeEnableDisableChild1">
+                                    <obs conceptId="162890"/>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3">Growth Measures</td>
+                            <td>Height</td>
+                            <td>
+                                <obs conceptId="5090"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Weight</td>
+                            <td>
+                                <obs conceptId="5089"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Z-Scores</td>
+                            <td>
+                                <obs conceptId="99800" answerConceptIds="99803,99804,99805,99806,99807"
+                                     answerLabels="&#60;-3,-3_&#60;-1,-1_1,&#62;1_3,&#62;3"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>MUAC (cm)</td>
+                            <td>
+                                <obs conceptId="99801" answerConceptIds="99027,99029,99028" answerLabels="G,Y,R"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Clinical Assessment for Signs &amp;
+                                <br/>
+                                Symptoms of HIV
+                            </td>
+                            <td>
+                                <obs conceptId="162853"
+                                     answerConceptIds="162848,162847,832,90103,90130,162849,162850,107,162851,162852,42,512,5018"
+                                     answerLabels="WELL,LN,WL,F,OT,EI,G,C,ADR,RDR,PNEU,RUSH,PDR,Others"/>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td rowspan="2">Developmental Assesment for Evidance of Delay</td>
+                            <td>Development Milestones</td>
+                            <td>
+                                <obs conceptId="162864"/>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>Head Circumference</td>
+                            <td>
+                                <obs conceptId="5314"/>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td rowspan="2">Prophylaxis</td>
+                            <td>Cotrim</td>
+                            <td>
+                                <obs conceptId="99798"/>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>NVP</td>
+                            <td>
+                                <obs conceptId="99799"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Refill of ART for Mother</td>
+                            <td>
+                                <obs conceptId="162854"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Other Medication/Care Items</td>
+                            <td class="checkboxGroup" rowspan="1">
+
+                                <obs id="br" conceptId="1193" answerConceptId="931" answerLabel="Amitriptilline"/>
+                                <obs id="br" conceptId="1193" answerConceptId="265" answerLabel="Amoxicillin"/>
+                                <obs id="br" conceptId="1193" answerConceptId="779" answerLabel="Cetrizine"/>
+                                <obs id="br" conceptId="1193" answerConceptId="740" answerLabel="Ciprofloxacine"/>
+                                <obs id="br" conceptId="1193" answerConceptId="922" answerLabel="Cloxacillin"/>
+                                <obs id="br" conceptId="1193" answerConceptId="99266" answerLabel="Coartem"/>
+                                <obs id="br" conceptId="1193" answerConceptId="90171" answerLabel="Dapsone"/>
+                                <obs id="br" conceptId="1193" answerConceptId="95" answerLabel="Doxycycline"/>
+                                <obs conceptId="1193" answerConceptId="1108" answerLabel="EH"/>
+                                <obs id="br" conceptId="1193" answerConceptId="272" answerLabel="Erythromicin"/>
+                                <obs id="br" conceptId="1193" answerConceptId="747" answerLabel="Fluconazole"/>
+                                <obs id="br" conceptId="1193" answerConceptId="912" answerLabel="Ibuprofen"/>
+                                <obs id="br" conceptId="1193" answerConceptId="926" answerLabel="Ketoconazole"/>
+                                <obs id="br" conceptId="1193" answerConceptId="244" answerLabel="Mebendazole"/>
+                                <obs id="br" conceptId="1193" answerConceptId="237" answerLabel="Metronidazole"/>
+                                <obs id="br" conceptId="1193" answerConceptId="461" answerLabel="Mutivitamins"/>
+                                <obs id="br" conceptId="1193" answerConceptId="99054" answerLabel="Nutrition Support"/>
+                                <obs id="br" conceptId="1193" answerConceptId="919" answerLabel="Nystatin"/>
+                                <obs id="br" conceptId="1193" answerConceptId="89" answerLabel="Paracetamol"/>
+                                <obs conceptId="1193" answerConceptId="1194" answerLabel="RH"/>
+                                <obs conceptId="1193" answerConceptId="99127" answerLabel="RHE"/>
+                                <obs conceptId="1193" answerConceptId="768" answerLabel="RHZ"/>
+                                <obs id="br" conceptId="1193" answerConceptId="1131" answerLabel="RHZE"/>
+                                <obs conceptId="1193" answerConceptId="99128" answerLabel="RHZES"/>
+                                <obs id="br" conceptId="1193" answerConceptId="916" answerLabel="Septrin"/>
+                                <obs id="br" conceptId="1193" answerConceptId="329" answerLabel="Vit B Complex"/>
+                                <span class="enableDisable">
+                                    <span id="trigger">
+                                        <obs id="othermed" conceptId="1193" answerConceptId="90002"
+                                             answerLabel="Other specify:"/>
+                                    </span>
+                                    <span id="disabled">
+                                        <obs id="othermedtxt" conceptId="99035" answerClasses="Drug"
+                                             style="autocomplete"/>
+                                    </span>
+                                </span>
+
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td colspan="2">ACTION(S) TAKEN if any care indicator are a concern</td>
+                            <td>
+                                <obs conceptId="162865" style="textarea"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+        <section>
+            <submit/>
+        </section>
+    </div>
+    <br/>
+    <small>
+        <i>
+            Version 1.2 Last revised on
+            01/December/2015 - Ministry of Health
+        </i>
+    </small>
+
+</htmlform>
