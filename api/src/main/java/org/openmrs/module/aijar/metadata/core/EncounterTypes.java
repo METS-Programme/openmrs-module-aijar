@@ -123,4 +123,15 @@ public class EncounterTypes {
             return "044daI6d-f80e-48fe-aba9-037f241905Pe";
         }
     };
+
+    public static EncounterTypeDescriptor HCT_ENCOUNTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() { return "HTC - Encounter";  }
+
+        @Override
+        public String description() {  return "An encounter when a patient gets HCT services";  }
+
+        @Override
+        public String uuid() { return "264daIZd-f80e-48fe-nba9-P37f2W1905Pv"; }
+    };
 }

@@ -170,4 +170,28 @@ public class PatientIdentifierTypes {
             return "Begins with 1 at the beginning of the financial year (July)";
         }
     };
+
+    public static PatientIdentifierTypeDescriptor HCT_NUMBER = new PatientIdentifierTypeDescriptor() {
+        @Override
+        public String name() {
+            return "HCT Number";
+        }
+
+        @Override
+        public String description() {
+            return "This is the unique serial number given to a client during HCT visits";
+        }
+
+        public String uuid() { return "c9e42035-7112-45b3-bfcf-4b37e1091dd4"; }
+
+        public String format() {
+            return "^\\d+$";
+        }
+
+        public String formatDescription() {
+            return "Begins with 1 at the beginning of the financial year (July)";
+        }
+    };
+
+
 }

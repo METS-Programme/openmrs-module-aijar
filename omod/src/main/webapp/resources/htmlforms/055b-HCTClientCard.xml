@@ -1,6 +1,6 @@
-<htmlform formName="HMIS 055B - HIV Counseling and Testing Client Card"
-          formDescription="Client Testing Card"
-          formEncounterType="8d5b27bc-c2cc-11de-8d13-0010c6dffd0f"
+<htmlform formName="HMIS 055B HIV Counseling and Testing Client Card"
+          formDescription="Client HIV Testing Card"
+          formEncounterType="264daIZd-f80e-48fe-nba9-P37f2W1905Pv"
           formUuid="b5c62a98-84d3-43e8-a9be-972185070dd4"
           formVersion="1.2"
           formAddMetadata="yes"
@@ -17,148 +17,50 @@
 
     <style>
 
-        .ai-page-frame {
-        padding:
-        5px;
-        background-color: white;
-        font-family:
-        'Lucida Grande',
-        'Lucida
-        Sans',
-        Arial, sans-serif;
-        float:
-        left;
-        width:
-        100%;
-        clear: both;
-        display:
-        block;
-        font-size: 12px;
-        }
-        .section{
-        width: 99%;
-        margin-bottom:
-        10px;
-        }
-        .section
-        fieldset{
-        width: 95%;
-        }
-
-        .entry-point th,
-        .entry-point td {
-        padding: 5px
-        10px;
-        border: 1px solid
-        #FFF;
-        }
-
-        form input,
-        form select, form
-        textarea, form
-        ul.select, .form
-        input, .form
-        select,
-        .form textarea,
-        .form ul.select {
-        min-width: 30%;
-        margin-left: 10px;
-        padding: 10px;
-        }
-        form select, .form
-        select {
-        min-width: auto;
-        }
-
-        select
-        {
-        height: 26px;
-        padding: 0 0 0
-        8px;
-        overflow:
-        hidden;
-        position:
-        relative;
-        border: 1px
-        solid
-        #aaa;
-        white-space:
-        nowrap;
-        line-height: 26px;
-        color:
-        #444;
-        text-decoration:
-        none;
-        border-radius: 4px;
-        background-clip:
-        padding-box;
-        -webkit-touch-callout:
-        none;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select:
-        none;
-        user-select: none;
-        background-color: #fff;
-        background-image:
-        -webkit-gradient(linear, left
-        bottom, left top,
-        color-stop(0, #eee),
-        color-stop(0.5, #fff));
-        background-image:
-        -webkit-linear-gradient(center bottom, #eee 0%, #fff
-        50%);
-        background-image: -moz-linear-gradient(center bottom, #eee 0%,
-        #fff
-        50%);
-        filter:
-        progid:DXImageTransform.Microsoft.gradient(startColorstr =
-        '#ffffff',
-        endColorstr = '#eeeeee', GradientType = 0);
-        background-image:
-        linear-gradient(top, #fff 0%, #eee 50%);
-        }
-
-        .ai-html-row{
-        width: 100%;
-        float:left;
-        }
-
-        .ai-html-row-col2{
-        width: 49%;
-        float:left;
-        }
-
-        .ai-html-row-col2 fieldset{
-        width: 90%;
-        }
-
-        .ai-page-content{
-        width: auto;
-        overflow-x: scroll;
-        }
-
-        form select, .form select {
-        min-width:
-        auto;
-        }
-
         form label, .form label {
         float: left;
         padding: 0px 10px 0 0;
         }
 
-        .section-b label {
+        form input[type="checkbox"], form input[type="radio"], .form input[type="checkbox"], .form input[type="radio"] {
+        margin: 10px 15px;
+        }
+
+        table td{
+        background: #FFFFFF;
+        color: #404040;
+        }
+
+        form select, .form select {
+        min-width: 0px;
+        }
+
+        form input, form select, form textarea, form ul.select, .form input, .form select, .form textarea, .form
+        ul.select {
+        background-color: #FBFBFB;
+        border: 1px solid #CEC9C9;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        padding: 10px;
+        min-width: 20%;
+        }
+        .row {
+        width: 100%;
         float: left;
-        min-width: 30%;
+        display: inline-flex;
+        clear: both;
         }
 
-        .label-right{
-        text-align: right;
-        font-style: italic;
+        .row .row-col2 {
+        float: left;
+        width: 50%;
         }
 
+        table th, table td {
+        border: 1px solid #C7C7C7;
+        }
     </style>
+
 
     <script type="text/javascript">
 
@@ -367,9 +269,10 @@
     </script>
     <div class="ai-page-frame">
         <div class="headers" style="text-align: center;">
-            <h3>HCT Client Card</h3>
+            <h3 style="background: #FFFF7D; padding: 10px;">HCT Client Card</h3>
         </div>
         <section>
+            <h3>Section A:</h3>
             <table>
                 <tbody>
                     <tr>
@@ -385,17 +288,22 @@
                             <label>Center Type:</label>
                             <obs conceptId="99457" answerConceptIds="99455,99456" answerLabels="1. Static,2. Outreach"/>
                         </td>
+                        <td>
+                            <label>Reg Number:</label>
+                            <patient field="identifier" identifierTypeId="c9e42035-7112-45b3-bfcf-4b37e1091dd4"
+                                     required="true"/>
+                        </td>
                     </tr>
+
                     <includeIf velocityTest="$patient.age &lt; 12">
-                        <tr>
-                            <td colspan="3">
+                        <tr>   <td colspan="4">
 
                                 <label>Accompanied by:</label>
                                 <obs conceptId="99457" answerConceptIds="90012,90016,99363"
                                      answerLabels="Mother,Father, Guardian"/>
-                            </td>
-                        </tr>
+                            </td></tr>
                     </includeIf>
+
                 </tbody>
             </table>
         </section>
@@ -408,7 +316,7 @@
                             <label>Pre -Test Counseling done/information given:</label>
                         </td>
                         <td colspan="3">
-                            <obs conceptId="162830" answerConceptIds="1065, 1066" answerLabels="Yes, No"/>
+                            <obs conceptId="162918" answerConceptIds="90003, 90004" answerLabels="Yes, No"/>
                         </td>
                     </tr>
                     <tr>
@@ -426,7 +334,25 @@
 
                         </td>
                         <td colspan="3">
-                            <obs conceptId="99462" answerConceptIds="162831,162832" answerLabels="CICT, PITC"/>
+                            <obs conceptId="99462" answerConceptIds="162919,99459" answerLabels="CICT, PITC"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>HCT Entry Point:</label>
+
+                        </td>
+                        <td colspan="3">
+                            <span id="checkboxRadio">
+                                <obs conceptId="162925" answerConceptId="99416" answerLabel="Facility based"/>
+                                <obs conceptId="162925" answerConceptId="162920" answerLabel="Work place"/>
+                                <obs conceptId="162925" answerConceptId="162921" answerLabel="Comm/Out reach"/>
+                                <obs conceptId="162925" answerConceptId="162922" answerLabel="HBHCT"/>
+                                <obs conceptId="162925" answerConceptId="162923" answerLabel="Circumcision (SMC)"/>
+                                <obs conceptId="162925" answerConceptId="99056" answerLabel="PEP"/>
+                                <obs conceptId="162925" answerConceptId="90012" answerLabel="PMTCT"/>
+                                <obs conceptId="162925" answerConceptId="162924" answerLabel="MARPS"/>
+                            </span>
                         </td>
                     </tr>
                     <tr>
@@ -459,8 +385,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <label>
-                                Previously tested for HIV in last:
+                            <label style="float: right">
+                               <i>Previously tested for HIV in last:</i>
                             </label>
                         </td>
                         <td>
@@ -475,8 +401,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <label>
-                                Test results in the last:
+                            <label style="float: right">
+                                <i>Test results in the last:</i>
                             </label>
                         </td>
                         <td>
@@ -508,7 +434,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <label class="label-right">Category</label>
+                            <label style="float:right;"><i>Category</i></label>
                         </td>
                         <td style="background: #DADADA;">
                             <label>
@@ -534,7 +460,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <label class="label-right">Test results</label>
+                            <label style="float:right"><i>Test results</i></label>
                         </td>
                         <td>
                             <obs conceptId="99477" answerConceptIds="90166,90167,90001"
@@ -647,10 +573,20 @@
             <table class="section-b">
                 <tbody>
                     <tr>
-                        <td><label>HIV Results:</label>
-                            <obs conceptId="99493" answerConceptIds="90167,90166" answerLabels="HIV Negative,HIV Positive"/>
+                        <td><label>HIV final test results:</label>
+                            <obs conceptId="99493" answerConceptIds="90167,90166,162926,162927" answerLabels="Negative,Positive,INC,NT"/>
+                        </td>
+                        <td>
+                            <label>Sent to EQA or Confirmatory Laboratory</label>
+                            <obs conceptId="162928" answerConceptIds="90004,90003" answerLabels="Yes,No"/>
                         </td>
                     </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <table>
+                <tbody>
                     <tr>
                         <td><label>Results Recieved:</label>
                             <obs conceptId="99411" answerConceptIds="1065,1066" answerLabels="Yes,No"/>
@@ -667,7 +603,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><label>Is there suspision for TB<br/>(Currentcough,fever,weightlossandnightsweats):</label>
+                        <td><label>Is there suspision for TB<br/>(Currentcough,fever,weightloss and nightsweats):</label>
                             <obs conceptId="99498" answerConceptIds="1065,1066" answerLabels="Yes,No"/>
                         </td>
                     </tr>
@@ -682,8 +618,13 @@
                         </td>
                     </tr>
                     <tr>
+                        <td><label>CD4 count results if applicable:</label>
+                            <obs conceptId="5497"/>
+                        </td>
+                    </tr>
+                    <tr>
                         <td><label>Counsellor</label>
-                            <encounterProvider role="Counselor"  />
+                            <encounterProvider role="Counselor" required="true"  />
                         </td>
                     </tr>
                 </tbody>

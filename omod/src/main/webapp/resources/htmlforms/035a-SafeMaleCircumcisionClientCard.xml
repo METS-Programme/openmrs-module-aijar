@@ -1,4 +1,4 @@
-<htmlform formName="HMIS 035a - Safe Male Circumcision Client Card"
+<htmlform formName="HMIS 035a Safe Male Circumcision Client Card"
           formDescription="Card for Capturing Patients undergoing circumcision"
           formEncounterType="244da86d-f80e-48fe-aba9-067f241905ee"
           formUuid="9d9193e7-b038-4c44-a7a3-830baa288565"
@@ -57,7 +57,7 @@
         }
 
         table th, table td {
-        border: 1px solid #F7F7F7;
+        border: 1px solid #C7C7C7;
         }
     </style>
 
