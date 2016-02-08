@@ -57,22 +57,19 @@
         }
 
         table th, table td {
-        border: 1px solid #C7C7C7;
+        border: 1px solid #F3F2F2;
         }
     </style>
 
 
     <script type="text/javascript">
-
-
         function enable_disable_fpm(enableDisable_fpmethod){
 
         var fp_combo = $(enableDisable_fpmethod).find('select');
 
         var selected_value = jQuery.trim(fp_combo.find(":selected").text());
 
-        var disable = selected_value.toUpperCase()
-        !="YES"
+        var disable = selected_value.toUpperCase()!="YES"
         $(".EnableDisablefpmethodchild").find("input").attr("disabled",disable );
 
         }
@@ -89,18 +86,67 @@
 
         }
 
-        function enable_disable_GurdianConsent(enableDisable_GurdianConsent){
+        function enable_disable_ati(selected_option) {
 
-        var fp_combo = $(enableDisable_GurdianConsent).find('select');
+        var class_name = jq(selected_option).attr("class");
 
-        var selected_value = jQuery.trim(fp_combo.find(":selected").text());
+        var length = class_name.length;
 
-        var disable = selected_value.toUpperCase()
-        !="NO"
-        $(".EnableDisableGurdianConsentchild").find("input").attr("disabled",disable );
+        var class_id = parseInt(class_name.substring(length - 1, length))
+
+        var row_id = class_id;
+
+        var disable = true;
+
+        var row_1 = '[class^="HCT"][class*="Child1"]';
+        var row_2 = '[class^="HCT"][class*="Child2"]';
+        var row_3 = '[class^="HCT"][class*="Child3"]';
+        var row_4 = '[class^="HCT"][class*="Child4"]';
+        var row_5 = '[class^="HCT"][class*="Child5"]';
+        var row_6 = '[class^="HCT"][class*="Child6"]';
+
+        var xx = row_1;
+        var selected_value = jq(selected_option).find(":selected").text()
+
+        selected_value = selected_value.trim().toUpperCase();
+
+        if (selected_value.toLowerCase() == "yes")
+        disable = false;
+
+        switch (row_id) {
+        case 1:
+        xx = row_1;
+        break;
+        case 2:
+        xx = row_2;
+        break;
+        case 3:
+        xx = row_3;
+        break;
+        case 4:
+        xx = row_4;
+        break;
+
+        case 5:
+        xx = row_5;
+        break;
+        case 6:
+        xx = row_6;
+        break;
 
         }
 
+        jq(xx).each(function () {
+        var group = jq(this);
+
+        if (class_name.indexOf('Child') == -1) {
+        group.find("input").attr("disabled", disable);
+        group.find('select').attr("disabled", disable);
+        }
+
+        });
+
+        }
 
         if(jQuery){
         $(document).ready(function(){
@@ -110,162 +156,15 @@
         });
         }
 
-        $("#comfirmedDate").change(function() {
-
-        alert($(this).find("input[type$='text']").val() );
-
+        jq('[class^="HCTEnableDisable"]').change(function () {
+        enable_disable_ati(jq(this));
         });
 
-        $('[class^="FamilyMemberEnableDisable"]').change(function() {
-        enable_disable_fm($(this));
-        });
-
-        $('[class^="FamilyMemberEnableDisable"]').each(function(){
-        enable_disable_fm( $(this));
-        });
-
-
-        $('[class^="ExposedInfantEnableDisable"]').change(function() {
-        enable_disable_ei($(this));
-        });
-
-
-        $('[class^="ExposedInfantEnableDisable"]').each(function(){
-        enable_disable_ei( $(this))
-        });
-
-        $('[class^="ArtCareEnableDisable"]').change(function() {
-        enable_disable_ac($(this));
-        });
-
-
-        $('[class^="ArtCareEnableDisable"]').each(function(){
-        enable_disable_ac( $(this))
-        });
-
-        $(".EnableDisablefpmethod").change(function() {
-
-        enable_disable_fpm(this);
-
-        });
-
-
-        $(".EnableDisablefpmethod").each(function() {
-
-        enable_disable_fpm(this);
-        });
-
-
-        $(".EnableDisablePatner").change(function() {
-
-        enable_disable_Patner(this);
-
-        });
-
-
-        $(".EnableDisablePatner").each(function() {
-
-        enable_disable_Patner(this);
-        });
-
-
-        $(".EnableDisableGurdianConsent").change(function() {
-
-        enable_disable_GurdianConsent(this);
-
-        });
-
-
-        $(".EnableDisableGurdianConsent").each(function() {
-
-        enable_disable_GurdianConsent(this);
-        });
-
-
-        $(".enableDisable").each(function(){
-        var group = $(this);
-        function disableFn(){
-        group.children("#disabled").fadeTo(250,1);
-        group.children("#disabled").find(":checkbox").attr("checked",false); //uncheck
-        // group.children("#disabled").find("input[type$='text']").val("");
-        group.children("#disabled").find("input").attr("disabled",true); //disable
-        group.children("#disabled").find("select").attr("disabled",true);
-        }
-        function enableFn(){
-        group.children("#disabled").fadeTo(250,1);
-        group.children("#disabled").find("input").attr("disabled",false);
-        group.children("#disabled").find("select").attr("disabled",false);
-
-        }
-        disableFn();
-        $(this).children("#trigger").find(":checkbox:first").change(function(){
-        var checked = $(this).attr("checked");
-        if(checked == true){
-        enableFn();
-        }else{
-        disableFn();
-        }
-        });
-        });
-
-
-        $(".checkboxGroup").each(function(){
-        var group = $(this);
-        var uncheckAll = function(){
-        group.find("input[type$='checkbox']").attr("checked",false);
-        group.find("input[type$='checkbox']").change();
-        }
-        var uncheckRadioAndAll = function(){
-        group.find("#checkboxAll,#checkboxRadio").find("input[type$='checkbox']").attr("checked",false);
-        group.find("#checkboxAll,#checkboxRadio").find("input[type$='checkbox']").change();
-        }
-
-
-        group.find("#checkboxAll").find("input").click(
-        /* This was tricky... A number of things needed to happen
-        Basically, This is supposed to treat a group of inputs as if
-        were all one big checkbox. It is designed so that a checkbox
-        can be next to an input, and the user clicks the input, the
-        checkbox checks as well. But, when the user clicks the checkbox,
-        the browser marks the checkbox as checked. Therefore, when we check
-        if the checkbox is already checked, it always respondes true...
-        We needed to have 2 cases: when the clicking action is on the first checkbox
-        and when the action is on any other. */
-        function(){
-        var flip;
-        var checked = $(this).siblings(":checkbox:first").attr("checked");
-        if($(this).attr("name") == $(this).parents("#checkboxAll:first").find(":checkbox:first").attr("name")){
-        checked = $(this).attr("checked");
-        flip = checked;
-        }else{
-        flip = !checked;
-        }
-        if($(this).attr("type") == "text") if(flip == false) flip = !filp; // this is so the user doesn't go to check
-        the checkbox, then uncheck it when they hit the input.
-        uncheckAll();
-        $(this).parents("#checkboxAll:first").find(":checkbox").attr("checked",flip);
-        $(this).parents("#checkboxAll:first").find(":checkbox").change();
-        }
-        );
-
-
-        group.find("#checkboxRadio").find("input[type$='checkbox']").click(function(){
-        uncheckAll();
-        $(this).siblings("input[type$='checkbox']").attr("checked",false);
-        $(this).attr("checked",true);
-        $(this).change();
-        });
-
-        group.find("#checkboxCheckbox").click(
-        function(){
-        uncheckRadioAndAll();
-        }
-        );
+        jq('[class^="HCTEnableDisable"]').each(function () {
+        enable_disable_ati(jq(this))
         });
         });
         }
-
-
     </script>
     <div class="ai-page-frame">
         <div class="headers" style="text-align: center;">
@@ -298,10 +197,10 @@
                     <includeIf velocityTest="$patient.age &lt; 12">
                         <tr>   <td colspan="4">
 
-                                <label>Accompanied by:</label>
-                                <obs conceptId="99457" answerConceptIds="90012,90016,99363"
-                                     answerLabels="Mother,Father, Guardian"/>
-                            </td></tr>
+                            <label>Accompanied by:</label>
+                            <obs conceptId="99457" answerConceptIds="90012,90016,99363"
+                                 answerLabels="Mother,Father, Guardian"/>
+                        </td></tr>
                     </includeIf>
 
                 </tbody>
@@ -315,7 +214,7 @@
                         <td>
                             <label>Pre -Test Counseling done/information given:</label>
                         </td>
-                        <td colspan="3">
+                        <td colspan="3" class="HCTEnableDisable1">
                             <obs conceptId="162918" answerConceptIds="90003, 90004" answerLabels="Yes, No"/>
                         </td>
                     </tr>
@@ -323,7 +222,7 @@
                         <td>
                             <label>Counseled as:</label>
                         </td>
-                        <td colspan="3">
+                        <td colspan="3" class="HCTEnableDisableChild1">
                             <obs conceptId="99368" answerConceptIds="99365,99367,99366"
                                  answerLabels="Individual, Couple, Group"/>
                         </td>
@@ -360,14 +259,14 @@
                             <label>Have you ever tested for HIV before?:</label>
 
                         </td>
-                        <td colspan="3">
+                        <td colspan="3" class="HCTEnableDisable2">
                             <obs id="br" conceptId="99464" answerConceptIds="1065,1066" answerLabels="Yes,No"/>
                         </td>
                     </tr>
                     <tr>
                         <td>
                         </td>
-                        <td style="background: #DADADA;">
+                        <td style="background: #DADADA;" class="HCTEnableDisableChild2">
                             <label>
                                 <b>3 months</b>
                             </label>
@@ -386,16 +285,16 @@
                     <tr>
                         <td>
                             <label style="float: right">
-                               <i>Previously tested for HIV in last:</i>
+                                <i>Previously tested for HIV in last:</i>
                             </label>
                         </td>
-                        <td>
+                        <td class="HCTEnableDisableChild2">
                             <obs id="br" conceptId="99468" answerConceptId="99465" answerLabel=""/>
                         </td>
-                        <td>
+                        <td class="HCTEnableDisableChild2">
                             <obs id="br" conceptId="99468" answerConceptId="99466" answerLabel=""/>
                         </td>
-                        <td>
+                        <td class="HCTEnableDisableChild2">
                             <obs id="br" conceptId="99468" answerConceptId="99467" answerLabel=""/>
                         </td>
                     </tr>
@@ -405,13 +304,13 @@
                                 <i>Test results in the last:</i>
                             </label>
                         </td>
-                        <td>
+                        <td class="HCTEnableDisableChild2">
                             <obs conceptId="99469" answerConceptIds="90167,90166" answerLabels="Negative,Positive"/>
                         </td>
-                        <td>
+                        <td class="HCTEnableDisableChild2">
                             <obs conceptId="99470" answerConceptIds="90167,90166" answerLabels="Negative,Positive"/>
                         </td>
-                        <td>
+                        <td class="HCTEnableDisableChild2">
                             <obs conceptId="99471" answerConceptIds="90167,90166" answerLabels="Negative,Positive"/>
                         </td>
                     </tr>
@@ -427,7 +326,7 @@
                         <td>
                             <label>Has your spouse /partner been tested for HIV before? :</label>
                         </td>
-                        <td colspan="3">
+                        <td colspan="3" class="HCTEnableDisable3">
                             <obs id="br" conceptId="99472" answerConceptIds="1065,1066,99480"
                                  answerLabels="Yes,No,Don't Know"/>
                         </td>
@@ -436,21 +335,21 @@
                         <td>
                             <label style="float:right;"><i>Category</i></label>
                         </td>
-                        <td style="background: #DADADA;">
+                        <td style="background: #DADADA;" class="HCTEnableDisableChild3">
                             <label>
                                 <b>
                                     <obs conceptId="99472" answerConceptId="90003" answerLabel="Spouse:"/>
                                 </b>
                             </label>
                         </td>
-                        <td style="background: #DADADA;">
+                        <td style="background: #DADADA;" class="HCTEnableDisableChild3">
                             <label>
                                 <b>
                                     <obs conceptId="99473" answerConceptId="90003" answerLabel="Steady/Regular:"/>
                                 </b>
                             </label>
                         </td>
-                        <td style="background: #DADADA;">
+                        <td style="background: #DADADA;" class="HCTEnableDisableChild3">
                             <label>
                                 <b>
                                     <obs conceptId="99474" answerConceptId="90003" answerLabel="Casual:"/>
@@ -462,15 +361,15 @@
                         <td>
                             <label style="float:right"><i>Test results</i></label>
                         </td>
-                        <td>
+                        <td class="HCTEnableDisableChild3">
                             <obs conceptId="99477" answerConceptIds="90166,90167,90001"
                                  answerLabels="HIV +ve,HIV -ve,Unknown"/>
                         </td>
-                        <td>
+                        <td class="HCTEnableDisableChild3">
                             <obs conceptId="99478" answerConceptIds="90166,90167,90001"
                                  answerLabels="HIV +ve,HIV -ve,Unknown"/>
                         </td>
-                        <td>
+                        <td class="HCTEnableDisableChild3">
                             <obs conceptId="99479" answerConceptIds="90166,90167,90001"
                                  answerLabels="HIV +ve,HIV -ve,Unknown"/>
                         </td>
