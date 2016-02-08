@@ -16,172 +16,172 @@
     </macros>
     <style>
         .value {
-        font-size: 12px;
+            font-size: 12px;
         }
 
         #inner {
-        width: 130%;
-        border-collapse: collapse;
+            width: 130%;
+            border-collapse: collapse;
         / / background-color : #EDF2F7 border : solid 1 px #85b1de;
-        font-size: 16px;
-        padding: 1px;
+            font-size: 16px;
+            padding: 1px;
         / / border : 2 px solid gray;
-        bord er: solid 2px #85b1de;
-        margin: 2px;
+            bord er: solid 2px #85b1de;
+            margin: 2px;
         }
 
         #second {
-        position: absolute;
-        left: 230px;
-        overflow: auto;
+            position: absolute;
+            left: 230px;
+            overflow: auto;
         }
 
         #third {
-        position: absolute;
-        left: 333px;
-        overflow: auto;
+            position: absolute;
+            left: 333px;
+            overflow: auto;
         }
 
         #fourth {
-        position: absolute;
-        left: 510px;
-        overflow: auto;
+            position: absolute;
+            left: 510px;
+            overflow: auto;
         }
 
         #fifth {
-        position: absolute;
-        left: 740px;
-        overflow: auto;
+            position: absolute;
+            left: 740px;
+            overflow: auto;
         }
 
         #inner tr {
-        padding: 1px;
-        border: 2px solid gray;
-        margin: 2px;
+            padding: 1px;
+            border: 2px solid gray;
+            margin: 2px;
         }
 
         #inner th {
-        font-size: 12px;
-        text-align: center;
-        padding-top: 4px;
-        padding-bottom: 4px;
-        background-color: #8fabc7;
-        color: #ffffff;
+            font-size: 12px;
+            text-align: center;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            background-color: #8fabc7;
+            color: #ffffff;
         }
 
         #inner td, span {
-        background-color: #EDF2F7 border : solid 1 px #85b1de;
-        font-size: 12px;
-        text-align: center;
-        color: solid black;
+            background-color: #EDF2F7 border : solid 1 px #85b1de;
+            font-size: 12px;
+            text-align: center;
+            color: solid black;
         }
 
         #inner add {
-        font-size: 12px;
-        text-align: left;
-        color: solid blue;
+            font-size: 12px;
+            text-align: left;
+            color: solid blue;
         }
 
         #inner_most {
 
-        margin: 0px;
-        font-size: 12px;
-        padding-top: 1px;
-        padding-bottom: 1px;
+            margin: 0px;
+            font-size: 12px;
+            padding-top: 1px;
+            padding-bottom: 1px;
 
         }
 
         #inner_most tr {
-        border: 1px solid gray;
-        margin: 0px;
+            border: 1px solid gray;
+            margin: 0px;
         }
 
         #inner_most th {
 
-        font-size: 12px;
-        text-align: center;
-        padding-top: 1px;
-        padding-bottom: 1px;
-        background-color: #8fabc7;
-        color: #ffffff;
+            font-size: 12px;
+            text-align: center;
+            padding-top: 1px;
+            padding-bottom: 1px;
+            background-color: #8fabc7;
+            color: #ffffff;
         }
 
         #inner1 {
-        width: 60%;
-        border-collapse: collapse;
+            width: 60%;
+            border-collapse: collapse;
         / / background-color : #EDF2F7 border : solid 1 px #85b1de;
-        font-size: 16px;
-        padding: 1px;
+            font-size: 16px;
+            padding: 1px;
         / / border : 2 px solid gray;
-        border: solid 2px #85b1de;
-        margin: 2px;
+            border: solid 2px #85b1de;
+            margin: 2px;
         }
 
         #inner1 tr {
-        padding: 1px;
-        border: 2px solid gray;
-        margin: 2px;
+            padding: 1px;
+            border: 2px solid gray;
+            margin: 2px;
         }
 
         #inner1 th {
-        font-size: 12px;
-        text-align: center;
-        padding-top: 4px;
-        padding-bottom: 4px;
-        background-color: #8fabc7;
-        color: #ffffff;
+            font-size: 12px;
+            text-align: center;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            background-color: #8fabc7;
+            color: #ffffff;
         }
 
         #inner1 td, span {
-        background-color: #EDF2F7 border : solid 1 px #85b1de;
-        font-size: 15px;
-        text-align: center;
-        color: solid black;
+            background-color: #EDF2F7 border : solid 1 px #85b1de;
+            font-size: 15px;
+            text-align: center;
+            color: solid black;
         }
 
         #inner1 add {
-        font-size: 12px;
-        text-align: left;
-        color: solid blue;
+            font-size: 12px;
+            text-align: left;
+            color: solid blue;
         }
 
         .ai-page-frame {
-        padding: 5px;
-        background-color: white;
-        font-family: 'Lucida Grande',
-        'Lucida Sans ', Arial, sans-serif;
-        float: left;
-        width: 100%;
-        clear: both;
-        display: block;
-        font-size: 12px;
-        background: #5BB3CE;
-        color: #fff !important;
+            padding: 5px;
+            background-color: white;
+            font-family: 'Lucida Grande',
+            'Lucida Sans ', Arial, sans-serif;
+            float: left;
+            width: 100%;
+            clear: both;
+            display: block;
+            font-size: 12px;
+            background: #5BB3CE;
+            color: #fff !important;
         }
 
         #h3white {
-        color: #fff;
+            color: #fff;
         }
 
         td {
-        background: #5BB3CE !important;
-        color: #fff !important;
+            background: #5BB3CE !important;
+            color: #fff !important;
         }
 
         .section {
-        width: 99%;
-        margin-bottom: 10px;
+            width: 99%;
+            margin-bottom: 10px;
         }
 
         .section
         fieldset {
-        width: 95%;
+            width: 95%;
         }
 
         .entry-point th,
         .entry-point td {
-        padding: 5px 10px;
-        border: 1px solid #FFF;
+            padding: 5px 10px;
+            border: 1px solid #FFF;
         }
 
         form input,
@@ -193,207 +193,204 @@
         .form textarea,
         .form
         ul.select {
-        min-width: 30%;
-        margin-left: 10px;
+            min-width: 30%;
+            margin-left: 10px;
         }
 
         form select, .form
         select {
-        min-width: auto;
+            min-width: auto;
         }
 
         select {
-        height: 26px;
-        padding: 0 0 0 8px;
-        overflow: hidden;
-        position: relative;
-        border: 1px solid #aaa;
-        white-space: nowrap;
-        line-height: 26px;
-        color: #444;
-        text-decoration: none;
-        border-radius: 4px;
-        background-clip: padding-box;
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        background-color: #fff;
-        background-image: -webkit-gradient(linear, left bottom, left top,
-        color-stop(0, #eee),
-        color-stop(0.5, #fff));
-        background-image: -webkit-linear-gradient(center bottom, #eee 0%, #fff 50%);
-        background-image: -moz-linear-gradient(center bottom, #eee 0%,
-        #fff 50%);
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',
-        endColorstr='#eeeeee', GradientType=0);
-        background-image: linear-gradient(top, #fff 0%, #eee 50%);
+            height: 26px;
+            padding: 0 0 0 8px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #aaa;
+            white-space: nowrap;
+            line-height: 26px;
+            color: #444;
+            text-decoration: none;
+            border-radius: 4px;
+            background-clip: padding-box;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-color: #fff;
+            background-image: -webkit-gradient(linear, left bottom, left top,
+            color-stop(0, #eee),
+            color-stop(0.5, #fff));
+            background-image: -webkit-linear-gradient(center bottom, #eee 0%, #fff 50%);
+            background-image: -moz-linear-gradient(center bottom, #eee 0%,
+            #fff 50%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',
+            endColorstr='#eeeeee', GradientType=0);
+            background-image: linear-gradient(top, #fff 0%, #eee 50%);
         }
 
         .error {
-        color: red;
-        padding: 10px;
+            color: red;
+            padding: 10px;
         }
 
         .ai-html-row {
-        width: 100%;
-        float: left;
+            width: 100%;
+            float: left;
         }
 
         .ai-html-row-col2 {
-        width: 49%;
-        float: left;
+            width: 49%;
+            float: left;
         }
 
         .ai-html-row-col2 fieldset {
-        width: 90%;
+            width: 90%;
         }
 
         .ai-page-content {
-        width: auto;
-        overflow-x: visible;
+            width: auto;
+            overflow-x: visible;
         }
 
         .exposed-infant {
-        width: auto;
+            width: auto;
         }
 
         form
         select, .form
         select {
-        min-width: auto;
+            min-width: auto;
         }
 
         form
         label, .form label {
-        width: 130px;
+            width: 130px;
         }
     </style>
     <script type="text/javascript">
-
-
         function enable_disable_pcr_test_result(selected_option) {
 
-        var class_name = jq(selected_option).attr("class");
+            var class_name = jq(selected_option).attr("class");
 
-        var length = class_name.length;
+            var length = class_name.length;
 
-        var class_id = parseInt(class_name.substring(length - 1, length))
+            var class_id = parseInt(class_name.substring(length - 1, length))
 
-        var row_id = class_id;
+            var row_id = class_id;
 
-        var disable = true;
+            var disable = true;
 
-        var row_1 = '[class^="PCRTestResult"][class*="Child1"]';
-        var row_2 = '[class^="PCRTestResult"][class*="Child2"]';
-        var row_3 = '[class^="PCRTestResult"][class*="Child3"]';
-        var row_4 = '[class^="PCRTestResult"][class*="Child4"]';
+            var row_1 = '[class^="PCRTestResult"][class*="Child1"]';
+            var row_2 = '[class^="PCRTestResult"][class*="Child2"]';
+            var row_3 = '[class^="PCRTestResult"][class*="Child3"]';
+            var row_4 = '[class^="PCRTestResult"][class*="Child4"]';
 
-        var xx = row_1;
-        var selected_value = jq(selected_option).find(":selected").text()
+            var xx = row_1;
+            var selected_value = jq(selected_option).find(":selected").text()
 
-        selected_value = selected_value.trim().toUpperCase();
+            selected_value = selected_value.trim().toUpperCase();
 
-        if (selected_value=""){
-        disable = false;
-        }
+            if (selected_value = "") {
+                disable = false;
+            }
 
-        switch (selected_value) {
-        case "positive":
-        case "negative":
-        disable = false;
-        break;
-        }
+            switch (selected_value) {
+                case "positive":
+                case "negative":
+                    disable = false;
+                    break;
+            }
 
-        switch (row_id) {
-        case 1:
-        xx = row_1;
-        break;
-        case 2:
-        xx = row_2;
-        break;
-        case 3:
-        xx = row_3;
-        break;
-        case 4:
-        xx = row_4;
-        break;
-        }
+            switch (row_id) {
+                case 1:
+                    xx = row_1;
+                    break;
+                case 2:
+                    xx = row_2;
+                    break;
+                case 3:
+                    xx = row_3;
+                    break;
+                case 4:
+                    xx = row_4;
+                    break;
+            }
 
-        jq(xx).each(function () {
-        var group = jq(this);
+            jq(xx).each(function () {
+                var group = jq(this);
 
-        if (class_name.indexOf('Child') == -1) {
+                if (class_name.indexOf('Child') == -1) {
 
-        group.find("input").attr("disabled", disable);
-        group.find('select').attr("disabled", disable);
-        }
-        else if (class_name.indexOf('GrandChild') == -1) {
-        group.find("input").attr("disabled", disable);
-        }
+                    group.find("input").attr("disabled", disable);
+                    group.find('select').attr("disabled", disable);
+                }
+                else if (class_name.indexOf('GrandChild') == -1) {
+                    group.find("input").attr("disabled", disable);
+                }
 
-        });
+            });
 
         }
 
         if (jQuery) {
-        jq(document).ready(function () {
-        if (jq.browser.msie) {
-        jq(":checkbox").click(function () {
-        jq(this).change();
-        });
-        }
+            jq(document).ready(function () {
+                if (jq.browser.msie) {
+                    jq(":checkbox").click(function () {
+                        jq(this).change();
+                    });
+                }
 
-        var gender = jq("span.gender").html();
-        var age = jq("span.age").html();
-        var gender = jq("span.gender").html();
-        var age = jq("span.age").html();
-        var ageInDays = jq("span.patientAgeInDays").html();
-        var ctxDays = 42; //This is equal to six weeks
-        var nvpDays = 1;  //This is one day
-        var pcr1stDays = 42;  //This is one day
+                var gender = jq("span.gender").html();
+                var age = jq("span.age").html();
+                var gender = jq("span.gender").html();
+                var age = jq("span.age").html();
+                var ageInDays = jq("span.patientAgeInDays").html();
+                var ctxDays = 42; //This is equal to six weeks
+                var nvpDays = 1;  //This is one day
+                var pcr1stDays = 42;  //This is one day
 
-        jq('span.patientAgeInDays')[0].style.visibility = 'hidden';
+                jq('span.patientAgeInDays')[0].style.visibility = 'hidden';
 
-        //enable nvp if child is atleast nvpDays days old
-        if (ageInDays &lt; nvpDays) {
-        jq("span#nvpDate :input").attr("disabled", true);
-        }
+                //enable nvp if child is atleast nvpDays days old
+                if (ageInDays &lt; nvpDays) {
+                    jq("span#nvpDate :input").attr("disabled", true);
+                }
 
-        //enable nvp if child is atleast ctxDays days old
-        if (ageInDays &lt; ctxDays) {
-        jq("span#ctxDate :input").attr("disabled", true);
-        }
+                //enable nvp if child is atleast ctxDays days old
+                if (ageInDays &lt; ctxDays) {
+                    jq("span#ctxDate :input").attr("disabled", true);
+                }
 
-        //enable pcr1st if child is atleast pcr1stDays days old
-        if (ageInDays &lt; pcr1stDays) {
-        jq("span#pcr1stDate :input").attr("disabled", true);
-        }
+                //enable pcr1st if child is atleast pcr1stDays days old
+                if (ageInDays &lt; pcr1stDays) {
+                    jq("span#pcr1stDate :input").attr("disabled", true);
+                }
 
 
-        jq('[class^="PCR1EnableDisable"]').change(function () {
-        enable_disable_pcr1(jq(this));
-        });
+                jq('[class^="PCR1EnableDisable"]').change(function () {
+                    enable_disable_pcr1(jq(this));
+                });
 
-        jq('[class^="PCR1EnableDisable"]').each(function () {
-        enable_disable_pcr1(jq(this));
-        });
+                jq('[class^="PCR1EnableDisable"]').each(function () {
+                    enable_disable_pcr1(jq(this));
+                });
 
-        jq('[class^="PCRTestResultEnableDisable"]').change(function () {
-        enable_disable_pcr_test_result(jq(this));
-        });
+                jq('[class^="PCRTestResultEnableDisable"]').change(function () {
+                    enable_disable_pcr_test_result(jq(this));
+                });
 
-        jq('[class^="PCRTestResultEnableDisable"]').each(function () {
-        enable_disable_pcr_test_result(jq(this));
-        });
-        });
+                jq('[class^="PCRTestResultEnableDisable"]').each(function () {
+                    enable_disable_pcr_test_result(jq(this));
+                });
+            });
         }
     </script>
-
     <script type="text/javascript">
         function val() {
-        document.getElementById("fgh").disabled = "true";
+            document.getElementById("fgh").disabled = "true";
         }
     </script>
 
