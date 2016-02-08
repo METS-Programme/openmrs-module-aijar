@@ -1,4 +1,4 @@
-<htmlform formName="HMIS 071 Integrated Anatenatal Form"
+<htmlform formName="HMIS 071 Integrated Antenatal Form"
           formDescription="Entry form for patients enrolled for ANC services"
           formEncounterType="044daI6d-f80e-48fe-aba9-037f241905Pe"
           formUuid="362e296b-1315-48a9-8de6-5f4cc3cad314"
@@ -7,7 +7,7 @@
           formUILocation="patientDashboard.visitActions"
           formOrder="8"
           formIcon="icon-medkit"
-          formShowIf="visit.active &amp;&amp; patient.person.dead==false"
+          formShowIf="visit.active &amp;&amp; patient.person.gender=='F' &amp;&amp; patient.person.age &gt; 12 &amp;&amp; patient.person.dead==false"
           formDisplayStyle="Standard"
           formLabel="ANC Register Form">
     <macros>
@@ -395,7 +395,7 @@
         }
 
         table th, table td {
-        border: 1px solid #F5F5F5;
+        border: 1px solid #756F6F;
         text-align: center;
         }
 
@@ -425,7 +425,7 @@
                         </td>
                         <td>
                             <label>ANC Number:</label>
-                            <patient field="identifier" identifierTypeId="f4731641-t0ab-102d-86b0-7a502Oba4119"
+                            <patient field="identifier" identifierTypeId="b0cc255e-ef57-4266-839e-0df7f5099eb9"
                                      required="true"/>
                         </td>
                     </tr>

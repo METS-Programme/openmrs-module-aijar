@@ -1,6 +1,6 @@
 <htmlform formName="HMIS 082a - Exposed Infant Card Summary Page"
           formDescription="Captures demographic details for infants born to HIV positive mothers"
-          formEncounterType="8d5b2be0-c2cc-11de-8d13-0010c6dffd0f"
+          formEncounterType="8d5b27bc-c2cc-11de-8d13-0010c6dffd0f"
           formUuid="860c5f2f-cf3c-4c3f-b0c4-9958b6a5a938"
           formVersion="1.2"
           formAddMetadata="yes"
@@ -410,7 +410,8 @@
 
                     <table class="table table-bordered custom-table">
                         <tr>
-                            <td colspan="2">Exposed Infant No.
+                            <td>
+                                <label>EID Number:</label>
                                 <patient field="identifier" identifierTypeId="2c5b695d-4bf3-452f-8a7c-fe3ee3432ffe"
                                          required="true"/>
                             </td>

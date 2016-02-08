@@ -7,7 +7,7 @@
 		  formUILocation="patientDashboard.visitActions"
 		  formOrder="10"
 		  formIcon="icon-user"
-		  formShowIf="visit.active &amp;&amp; patient.person.gender=='F' &amp;&amp; patient.person.age &gt; 12"
+		  formShowIf="visit.active &amp;&amp; patient.person.gender=='F' &amp;&amp; patient.person.age &gt; 12 &amp;&amp; patient.person.dead==false"
 		  formDisplayStyle="Standard"
 		  formLabel="Maternity">
 	<div class="ai-page-frame">
