@@ -1,0 +1,98 @@
+<htmlform formName="HMIS 072 - Maternity"
+		  formDescription="Admission into a clinic for a pregnant woman to give birth"
+		  formEncounterType="a9f11592-22e7-45fc-904d-dfe24cb1fc67"
+		  formUuid="bf56b96c-7aa2-4a3f-aca3-57f43aca4cd6"
+		  formVersion="1.0"
+		  formAddMetadata="yes"
+		  formUILocation="patientDashboard.visitActions"
+		  formOrder="10"
+		  formIcon="icon-user"
+		  formShowIf="visit.active &amp;&amp; patient.person.gender=='F' &amp;&amp; patient.person.age &gt; 12"
+		  formDisplayStyle="Standard"
+		  formLabel="Maternity">
+	<div class="ai-page-frame">
+		<div class="headers" style="text-align: center;">
+			<h3>Maternity Register - Admission Information</h3>
+		</div>
+		<section>
+			<table>
+				<tr>
+					<td>
+						<label>Name of Health Unit:</label>
+						<encounterLocation default="1" />
+					</td>
+					<td>
+						<label>Clinic Team Leader:</label>
+						<encounterProvider role="Provider" style="autocomplete" />
+					</td>
+				</tr>
+			</table>
+
+		</section>
+		<section>
+
+			<table>
+				<tbody>
+					<tr>
+						<td>(1)</td>
+						<td>(2)</td>
+						<td>(3)</td>
+						<td>(8)</td>
+						<td colspan="2">(9)</td>
+						<td>(10a)</td>
+						<td>(10b)</td>
+					</tr>
+					<tr>
+						<td>
+							<label>DOA</label>
+						</td>
+						<td>
+							<label>IPD No.</label>
+						</td>
+						<td>
+							<label>ANC and Ref. No</label>
+						</td>
+						<td>Gravida/Parity</td>
+						<td>Weeks of Gestation</td>
+						<td>T/P</td>
+						<td>Final Diagnosis</td>
+						<td>WHO Clinical Stage<br />CD4 Count<br />Viral Load
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<encounterDate default="today" />
+						</td>
+						<td>
+							<patient field="identifier" identifierTypeId="a6217c17-5012-4514-b9f2-5d02d3d04c44"
+									 required="true" />
+						</td>
+						<td>
+							<patient field="identifier" identifierTypeId="b0cc255e-ef57-4266-839e-0df7f5099eb9"
+									 required="false" />
+						</td>
+						<td>
+							<obs conceptId="5624" size="2" required="true" />
+						</td>
+						<td>
+							<obs conceptId="1279" size="3" required="true" />
+						</td>
+						<td></td>
+						<td>FD</td>
+						<td>
+							<obs conceptId="5356" style="radio" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+		<section>
+			<submit />
+		</section>
+	</div>
+	<small>
+		<i>
+			Version 1.0 Last revised on 4 February 2016 - Ministry of Health
+		</i>
+	</small>
+</htmlform>

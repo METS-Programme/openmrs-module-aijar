@@ -14,319 +14,46 @@
         fontOnHeaderColor = white
     </macros>
     <style>
-        .value {
-        font-size: 12px;
+        .error{
+        color: red;
         }
 
-        #inner
-        {
-        width:100%;
-        border-collapse:collapse;
-        //background-color:
-        #EDF2F7
-        border: solid 1px
-        #85b1de;
-        font-size:16px;
-        padding:1px;
-        //border:2px
-        solid gray;
-        bord
-        er:solid 2px #85b1de ;
-        margin:2px;
+        table td{
+        background: #7BB3D0;
+        color: #404040;
         }
 
-        #second
-        {
-        position:
-        absolute;
-        left:
-        230px;
-        overflow:auto;
+        form select, .form select {
+        min-width: 0px;
         }
 
-        #third
-        {
-        position:
-        absolute;
-        left:
-        333px;
-        overflow:auto;
-        }
-
-        #fourth
-        {
-        position: absolute;
-        left:
-        510px;
-        overflow:auto;
-        }
-
-        #fifth
-        {
-        position: absolute;
-        left: 740px;
-        overflow:auto;
-        }
-        #inner tr
-        {
-        padding:1px;
-        border:2px solid gray;
-        margin:2px;
-        }
-
-
-        #inner th
-        {
-        font-size:12px;
-        text-align:center;
-        padding-top:4px;
-        padding-bottom:4px;
-        background-color:#8fabc7;
-        color:#ffffff;
-        }
-
-
-        #inner td, span
-        {
-        background-color: #EDF2F7
-        border: solid
-        1px #85b1de;
-        font-size:12px;
-        text-align:center;
-        color: solid black;
-        }
-
-        #inner add
-        {
-        font-size:12px;
-        text-align:left;
-        color: solid blue;
-        }
-
-        #inner_most
-        {
-
-        margin:0px;
-        font-size:12px;
-        padding-top:1px;
-        padding-bottom:1px;
-
-        }
-
-        #inner_most tr
-        {
-        border:1px solid gray;
-        margin:0px;
-        }
-
-        #inner_most th
-        {
-
-        font-size:12px;
-        text-align:center;
-        padding-top:1px;
-        padding-bottom:1px;
-        background-color:#8fabc7;
-        color:#ffffff;
-        }
-
-
-        #inner1
-        {
-        width:60%;
-        border-collapse:collapse;
-        //background-color: #EDF2F7
-        border:
-        solid 1px
-        #85b1de;
-        font-size:16px;
-        padding:1px;
-        //border:2px solid gray;
-        border:solid 2px #85b1de ;
-        margin:2px;
-        }
-
-        #inner1 tr
-        {
-        padding:1px;
-        border:2px solid gray;
-        margin:2px;
-        }
-
-
-        #inner1 th
-        {
-        font-size:12px;
-        text-align:center;
-        padding-top:4px;
-        padding-bottom:4px;
-        background-color:#8fabc7;
-        color:#ffffff;
-        }
-
-
-        #inner1 td, span
-        {
-        background-color: #EDF2F7
-        border: solid 1px #85b1de;
-        font-size:15px;
-        text-align:left;
-        color: solid black;
-        }
-
-        #inner1 add
-        {
-        font-size:12px;
-        text-align:left;
-        color: solid blue;
-        }
-
-        .ai-page-frame {
-        padding:
-        5px;
-        background-color: white;
-        font-family:
-        'Lucida Grande',
-        'Lucida
-        Sans',
-        Arial, sans-serif;
-        float:
-        left;
-        width:
-        100%;
-        clear: both;
-        display:
-        block;
-        font-size: 12px;
-        }
-        .section{
-        width: 99%;
-        margin-bottom:
-        10px;
-        }
-        .section
-        fieldset{
-        width: 95%;
-        }
-        #td-20-width{
-        width:20%
-        }
-
-        .entry-point th,
-        .entry-point td {
-        padding: 5px
-        10px;
-        border: 1px solid
-        #FFF;
-        }
-
-        form input,
-        form select, form
-        textarea, form
-        ul.select, .form
-        input, .form
-        select,
-        .form textarea,
-        .form
+        form input, form select, form textarea, form ul.select, .form input, .form select, .form textarea, .form
         ul.select {
-        min-width: 30%;
-        margin-left: 10px;
+        background-color: #FBFBFB;
+        border: 1px solid #404040;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        padding: 10px;
+        min-width: 50%;
         }
-        form select, .form
-        select
-        {
-        min-width:
-        auto;
-        }
-
-        select
-        {
-        height: 26px;
-        padding: 0 0 0
-        8px;
-        overflow:
-        hidden;
-        position:
-        relative;
-        border: 1px
-        solid
-        #aaa;
-        white-space:
-        nowrap;
-        line-height: 26px;
-        color:
-        #444;
-        text-decoration:
-        none;
-        border-radius: 4px;
-        background-clip:
-        padding-box;
-        -webkit-touch-callout:
-        none;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select:
-        none;
-        user-select: none;
-        background-color: #fff;
-        background-image:
-        -webkit-gradient(linear, left
-        bottom, left top,
-        color-stop(0, #eee),
-        color-stop(0.5, #fff));
-        background-image:
-        -webkit-linear-gradient(center bottom, #eee 0%, #fff
-        50%);
-        background-image: -moz-linear-gradient(center bottom, #eee 0%,
-        #fff
-        50%);
-        filter:
-        progid:DXImageTransform.Microsoft.gradient(startColorstr =
-        '#ffffff',
-        endColorstr = '#eeeeee', GradientType = 0);
-        background-image:
-        linear-gradient(top, #fff 0%, #eee 50%);
-        }
-
-        .error{color: red;
-        padding:
-        10px;}
-
-        .ai-html-row{
+        .row {
         width: 100%;
-        float:left;
+        float: left;
+        display: inline-flex;
+        clear: both;
         }
 
-        .ai-html-row-col2{
-        width:
-        49%;
-        float:left;
+        .row .row-col2 {
+        float: left;
+        width: 50%;
         }
 
-        .ai-html-row-col2 fieldset{
-        width: 90%;
+        table th, table td {
+        border: 1px solid #BDBDBD;
         }
 
-        .ai-page-content {
-        width: auto;
-        overflow-x: visible;
-        }
-
-        .exposed-infant {
-        width: auto;
-        }
-
-        form
-        select, .form
-        select {
-        min-width:
-        auto;
-        }
-
-        form
-        label, .form label {
-        width:
-        130px;
+        #td-20-width{
+        width: 19.3%;
         }
     </style>
     <script type="text/javascript">
@@ -805,42 +532,42 @@
                 <table id="inner" border="0">
                     <tbody>
                         <tr>
-                            <th colspan="2" id="td-20-width"></th>
-                            <th>Visit Details</th>
+                            <td colspan="2" id="td-20-width"></td>
+                            <td>Visit Details</td>
                         </tr>
                         <tr>
-                            <th colspan="2">Date of Appointment</th>
+                            <td colspan="2">Date of Appointment</td>
                             <td>
                                 <obs conceptId="99443"/>
                             </td>
                         </tr>
                         <tr>
-                            <th colspan="2">Date of Visit</th>
+                            <td colspan="2">Date of Visit</td>
                             <td>
                                 <obs conceptId="99446"/>
                             </td>
                         </tr>
                         <tr>
-                            <th colspan="2">Age(Months)</th>
+                            <td colspan="2">Age(Months)</td>
                             <td>
                                 <obs conceptId="99449"/>
                             </td>
                         </tr>
                         <tr>
-                            <th colspan="2">HIV test (PRC or anti-bodies)</th>
+                            <td colspan="2">HIV test (PRC or anti-bodies)</td>
                             <td>
                                 <obs conceptId="99080"></obs>
                             </td>
                         </tr>
                         <tr>
-                            <th colspan="2">Infant feeding Code</th>
+                            <td colspan="2">Infant feeding Code</td>
                             <td>
                                 <obs conceptId="99451" answerConceptIds="5526,99089,6046,99791,99792,99793"
                                      answerLabels="EBF,RF,MF,CF,W,NLB"/>
                             </td>
                         </tr>
                         <tr>
-                            <th colspan="2">Immunization Code</th>
+                            <td colspan="2">Immunization Code</td>
                             <td>
                                 <span class="ImmCodeEnableDisable1">
                                     <obs conceptId="162839"
@@ -853,37 +580,37 @@
                             </td>
                         </tr>
                         <tr>
-                            <th rowspan="3">Growth Measures</th>
-                            <th>Height</th>
+                            <td rowspan="3">Growth Measures</td>
+                            <td>Height</td>
                             <td>
                                 <obs conceptId="5090"/>
                             </td>
                         </tr>
                         <tr>
-                            <th>Weight</th>
+                            <td>Weight</td>
                             <td>
                                 <obs conceptId="5089"/>
                             </td>
                         </tr>
                         <tr>
-                            <th>Z-Scores</th>
+                            <td>Z-Scores</td>
                             <td>
                                 <obs conceptId="99800" answerConceptIds="99803,99804,99805,99806,99807"
                                      answerLabels="&#60;-3,-3_&#60;-1,-1_1,&#62;1_3,&#62;3"/>
                             </td>
                         </tr>
                         <tr>
-                            <th></th>
-                            <th>MUAC (cm)</th>
+                            <td></td>
+                            <td>MUAC (cm)</td>
                             <td>
                                 <obs conceptId="99801" answerConceptIds="99027,99029,99028" answerLabels="G,Y,R"/>
                             </td>
                         </tr>
                         <tr>
-                            <th colspan="2">Clinical Assessment for Signs &amp;
+                            <td colspan="2">Clinical Assessment for Signs &amp;
                                 <br/>
                                 Symptoms of HIV
-                            </th>
+                            </td>
                             <td>
                                 <obs conceptId="162853"
                                      answerConceptIds="162848,162847,832,90103,90130,162849,162850,107,162851,162852,42,512,5018"
@@ -892,42 +619,42 @@
 
                         </tr>
                         <tr>
-                            <th rowspan="2">Developmental Assesment for Evidance of Delay</th>
-                            <th>Development Milestones</th>
+                            <td rowspan="2">Developmental Assesment for Evidance of Delay</td>
+                            <td>Development Milestones</td>
                             <td>
                                 <obs conceptId="162864"/>
                             </td>
 
                         </tr>
                         <tr>
-                            <th>Head Circumference</th>
+                            <td>Head Circumference</td>
                             <td>
                                 <obs conceptId="5314"/>
                             </td>
 
                         </tr>
                         <tr>
-                            <th rowspan="2">Prophylaxis</th>
-                            <th>Cotrim</th>
+                            <td rowspan="2">Prophylaxis</td>
+                            <td>Cotrim</td>
                             <td>
                                 <obs conceptId="99798"/>
                             </td>
 
                         </tr>
                         <tr>
-                            <th>NVP</th>
+                            <td>NVP</td>
                             <td>
                                 <obs conceptId="99799"/>
                             </td>
                         </tr>
                         <tr>
-                            <th colspan="2">Refill of ART for Mother</th>
+                            <td colspan="2">Refill of ART for Mother</td>
                             <td>
                                 <obs conceptId="162854"/>
                             </td>
                         </tr>
                         <tr>
-                            <th colspan="2">Other Medication/Care Items</th>
+                            <td colspan="2">Other Medication/Care Items</td>
                             <td class="checkboxGroup" rowspan="1">
 
                                 <obs id="br" conceptId="1193" answerConceptId="931" answerLabel="Amitriptilline"/>
@@ -971,7 +698,7 @@
 
                         </tr>
                         <tr>
-                            <th colspan="2">ACTION(S) TAKEN if any care indicator are a concern</th>
+                            <td colspan="2">ACTION(S) TAKEN if any care indicator are a concern</td>
                             <td>
                                 <obs conceptId="162865" style="textarea"/>
                             </td>
