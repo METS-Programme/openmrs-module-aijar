@@ -20,8 +20,11 @@ UPDATE obs
 SET value_coded = 16
 WHERE value_coded = 142412; # Diarrhea
 UPDATE obs
-SET value_coded = 90127
+SET value_coded = 114100
 WHERE value_coded = 43; # Pneumonia
+UPDATE obs
+SET value_coded = 114100
+WHERE value_coded = 90127; # Pneumonia
 UPDATE obs
 SET value_coded = 230
 WHERE value_coded = 49; # Post partum Hemmorage
@@ -44,8 +47,11 @@ UPDATE obs
 SET value_coded = 90170
 WHERE value_coded = 92; # Dapsone
 UPDATE obs
-SET value_coded = 90132
+SET value_coded = 143264
 WHERE value_coded = 107; # cough
+UPDATE obs
+SET value_coded = 143264
+WHERE value_coded = 90132; # cough
 UPDATE obs
 SET value_coded = 131113
 WHERE value_coded = 114; # Otitis Media
@@ -224,26 +230,63 @@ UPDATE obs SET value_coded = 90087 WHERE value_coded = 5275; #  INTRAUTERINE DEV
 UPDATE obs SET value_coded = 90106 WHERE value_coded = 5313; # MUSCLE TENDERNESS
 UPDATE obs SET value_coded = 90006 WHERE value_coded = 5555; # MARRIED
 UPDATE obs SET value_coded = 5829 WHERE value_coded = 90187 ; # PYRAZINAMIDE
-UPDATE obs SET value_coded = WHERE value_coded = ; #
-UPDATE obs SET value_coded = WHERE value_coded = ; #
-UPDATE obs SET value_coded = WHERE value_coded = ; #
-UPDATE obs SET value_coded = WHERE value_coded = ; #
-UPDATE obs SET value_coded = WHERE value_coded = ; #
-UPDATE obs SET value_coded = WHERE value_coded = ; #
-UPDATE obs SET value_coded = WHERE value_coded = ; #
-UPDATE obs SET value_coded = WHERE value_coded = ; #
-UPDATE obs SET value_coded = WHERE value_coded = ; #
-UPDATE obs SET value_coded = WHERE value_coded = ; #
-UPDATE obs SET value_coded = WHERE value_coded = ; #
-UPDATE obs SET value_coded = WHERE value_coded = ; #
-UPDATE obs SET value_coded = WHERE value_coded = ; #
-UPDATE obs SET value_coded = WHERE value_coded = ; #
-UPDATE obs SET value_coded = WHERE value_coded = ; #
-UPDATE obs SET value_coded = WHERE value_coded = ; #
-UPDATE obs SET value_coded = WHERE value_coded = ; #
-UPDATE obs SET value_coded = WHERE value_coded = ; #
-UPDATE obs SET value_coded = WHERE value_coded = ; #
-UPDATE obs SET value_coded = WHERE value_coded = ; #
+UPDATE obs
+SET value_coded = 141600
+WHERE value_coded = 5960; # SHORTNESS OF BREATH
+UPDATE obs
+SET value_coded = 140238
+WHERE value_coded = 5945; #  FEVER
+UPDATE obs
+SET value_coded = 140238
+WHERE value_coded = 90103; #  FEVER
+UPDATE obs
+SET value_coded = 140238
+WHERE value_coded = 90131; # FEVER
+UPDATE obs
+SET value_coded = 9091
+WHERE value_coded = 5978; # NAUSEA
+UPDATE obs
+SET value_coded = 90136
+WHERE value_coded = 5995; # URETHRAL DISCHARGE
+UPDATE obs
+SET value_coded = 90105
+WHERE value_coded = 6006; # CONFUSION
+UPDATE obs
+SET value_coded = 118771
+WHERE value_coded = 6020; # DYSURIA
+UPDATE obs
+SET value_coded = 90158
+WHERE value_coded = 90049; #  POOR ADHERENCE
+UPDATE obs
+SET value_coded = 136443
+WHERE value_coded = 90115; # JAUNDICE
+UPDATE obs
+SET value_coded = 119537
+WHERE value_coded = 90154; # DEPRESSION
+UPDATE obs
+SET value_coded = 119537
+WHERE value_coded = 90120; # DEPRESSION
+UPDATE obs
+SET value_coded = 374
+WHERE value_coded = 90239; # FAMILY PLANNING STATUS
+UPDATE obs
+SET value_coded = 90258
+WHERE value_coded = 90265; # ADDRESS
+UPDATE obs
+SET value_coded = 99416
+WHERE value_coded = 99549; #  Facility Based
+UPDATE obs
+SET value_coded = 140501
+WHERE value_coded = 5949; # FATIGUE
+UPDATE obs
+SET value_coded = 140501
+WHERE value_coded = 90093; # FATIGUE
+UPDATE obs
+SET value_coded = 99475
+WHERE value_coded = 99473; # Regular partner tested for HIV
+UPDATE obs
+SET value_coded = 99476
+WHERE value_coded = 99474; # Casual partner tested for HIV
 
 /*!40101 SET SQL_MODE = @OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS = @OLD_FOREIGN_KEY_CHECKS */;
