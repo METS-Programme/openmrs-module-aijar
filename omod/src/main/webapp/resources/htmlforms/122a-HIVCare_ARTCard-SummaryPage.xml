@@ -893,7 +893,7 @@
                                  answerLabels="P,N,U"/>
                         </td>
                         <td class="ExposedInfantEnableDisable1">
-                            <obs conceptId="99121" answerConceptIds="90166,90167,99122,99112,1067"
+                            <obs conceptId="99121" answerConceptIds="90166,90167,99122,99112,90001"
                                  answerLabels="P,N,N/BF,Dead,U"/>
                         </td>
                         <td class="ExposedInfantEnableDisableChildren1">
@@ -928,7 +928,7 @@
                                  answerLabels="P,N,U"/>
                         </td>
                         <td class="ExposedInfantEnableDisable2">
-                            <obs conceptId="99121" answerConceptIds="90166,90167,99122,99112,1067"
+                            <obs conceptId="99121" answerConceptIds="90166,90167,99122,99112,90001"
                                  answerLabels="P,N,N/BF,Dead,U"/>
                         </td>
                         <td class="ExposedInfantEnableDisableChildren2">
@@ -963,7 +963,7 @@
                                  answerLabels="P,N,U"/>
                         </td>
                         <td class="ExposedInfantEnableDisable3">
-                            <obs conceptId="99121" answerConceptIds="90166,90167,99122,99112,1067"
+                            <obs conceptId="99121" answerConceptIds="90166,90167,99122,99112,90001"
                                  answerLabels="P,N,N/BF,Dead,U"/>
                         </td>
                         <td class="ExposedInfantEnableDisableChildren3">
@@ -998,7 +998,7 @@
                                  answerLabels="P,N,U"/>
                         </td>
                         <td class="ExposedInfantEnableDisable4">
-                            <obs conceptId="99121" answerConceptIds="90166,90167,99122,99112,1067"
+                            <obs conceptId="99121" answerConceptIds="90166,90167,99122,99112,90001"
                                  answerLabels="P,N,N/BF,Dead,U"/>
                         </td>
                         <td class="ExposedInfantEnableDisableChildren4">
@@ -1033,7 +1033,7 @@
                                  answerLabels="P,N,U"/>
                         </td>
                         <td class="ExposedInfantEnableDisable5">
-                            <obs conceptId="99121" answerConceptIds="90166,90167,99122,99112,1067"
+                            <obs conceptId="99121" answerConceptIds="90166,90167,99122,99112,90001"
                                  answerLabels="P,N,N/BF,Dead,U"/>
                         </td>
                         <td class="ExposedInfantEnableDisableChildren5">
@@ -1343,7 +1343,7 @@
                         <td style="color: #333;">Preg:</td>
                         <td style="color: #333;">
                             <excludeIf velocityTest="$patient.gender ='M' ">
-                                <obs conceptId="99072" answerConceptIds="1065,1066"
+                                <obs conceptId="99072" answerConceptIds="90003,90004"
                                      answerLabels="Y, N"/>
                             </excludeIf>
                         </td>
@@ -1352,7 +1352,7 @@
                         <td style="color: #333;">Lactating:</td>
                         <td style="color: #333;">
                             <excludeIf velocityTest="$patient.gender ='M' ">
-                                <obs conceptId="99603" answerConceptIds="1065,1066"
+                                <obs conceptId="99603" answerConceptIds="90003,90004"
                                      answerLabels="Y, N"/>
                             </excludeIf>
                         </td>
@@ -1611,8 +1611,8 @@
                                     <b>Reason</b>
                                     <br/>
                                     <obs conceptId="1252" labelText=""
-                                         answerConceptIds="90040,90046,90049,90050,99890,99891,99892,90066,99289,90002"
-                                         answerLabels="1.Toxi,2.Tx Failure,3.Adhe, 4.Ill, 5.Stock, 6.Finan, 7. Px Decn, 8.Tx intpn, 9.Ex HIV, 10.Other,"/>
+                                         answerConceptIds="90040,90046,90158,90050,90066,99289,90002"
+                                         answerLabels="1.Toxi,2.Tx Failure,3.Adhe, 4.Ill, 8.Tx intpn, 9.Ex HIV, 10.Other," />
                                     <br/>
                                     <br/>
                                     <b>Restart Date</b>
@@ -1643,8 +1643,8 @@
                                     <b>Reason</b>
                                     <br/>
                                     <obs conceptId="1252" labelText=""
-                                         answerConceptIds="90040,90046,90049,90050,99890,99891,99892,90066,99289,90002"
-                                         answerLabels="1.Toxi,2.Tx Failure,3.Adhe, 4.Ill, 5.Stock, 6.Finan, 7. Px Decn, 8.Tx intpn, 9.Ex HIV, 10.Other,"/>
+                                         answerConceptIds="90040,90046,90158,90050,90066,99289,90002"
+                                         answerLabels="1.Toxi,2.Tx Failure,3.Adhe, 4.Ill, 8.Tx intpn, 9.Ex HIV, 10.Other," />
                                     <br/>
                                     <br/>
                                     <b>Restart Date</b>
@@ -1674,8 +1674,8 @@
                                     <b>Reason</b>
                                     <br/>
                                     <obs conceptId="1252" labelText=""
-                                         answerConceptIds="90040,90046,90049,90050,99890,99891,99892,90066,99289,90002"
-                                         answerLabels="1.Toxi,2.Tx Failure,3.Adhe, 4.Ill, 5.Stock, 6.Finan, 7. Px Decn, 8.Tx intpn, 9.Ex HIV, 10.Other,"/>
+                                         answerConceptIds="90040,90046,90158,90050,90066,99289,90002"
+                                         answerLabels="1.Toxi,2.Tx Failure,3.Adhe, 4.Ill, 8.Tx intpn, 9.Ex HIV, 10.Other," />
                                     <br/>
                                     <br/>
                                     <b>Restart Date</b>
@@ -1704,8 +1704,8 @@
                                     <b>Reason</b>
                                     <br/>
                                     <obs conceptId="1252" labelText=""
-                                         answerConceptIds="90040,90046,90049,90050,99890,99891,99892,90066,99289,90002"
-                                         answerLabels="1.Toxi,2.Tx Failure,3.Adhe, 4.Ill, 5.Stock, 6.Finan, 7. Px Decn, 8.Tx intpn, 9.Ex HIV, 10.Other,"/>
+                                         answerConceptIds="90040,90046,90158,90050,90066,99289,90002"
+                                         answerLabels="1.Toxi,2.Tx Failure,3.Adhe, 4.Ill, 8.Tx intpn, 9.Ex HIV, 10.Other," />
                                     <br/>
                                     <br/>
                                     <b>Restart Date</b>
@@ -1734,8 +1734,8 @@
                                     <b>Reason</b>
                                     <br/>
                                     <obs conceptId="1252" labelText=""
-                                         answerConceptIds="90040,90046,90049,90050,99890,99891,99892,90066,99289,90002"
-                                         answerLabels="1.Toxi,2.Tx Failure,3.Adhe, 4.Ill, 5.Stock, 6.Finan, 7. Px Decn, 8.Tx intpn, 9.Ex HIV, 10.Other,"/>
+                                         answerConceptIds="90040,90046,90158,90050,90066,99289,90002"
+                                         answerLabels="1.Toxi,2.Tx Failure,3.Adhe, 4.Ill, 8.Tx intpn, 9.Ex HIV, 10.Other," />
                                     <br/>
                                     <br/>
                                     <b>Restart Date</b>
@@ -1764,8 +1764,8 @@
                                     <b>Reason</b>
                                     <br/>
                                     <obs conceptId="1252" labelText=""
-                                         answerConceptIds="90040,90046,90049,90050,99890,99891,99892,90066,99289,90002"
-                                         answerLabels="1.Toxi,2.Tx Failure,3.Adhe, 4.Ill, 5.Stock, 6.Finan, 7. Px Decn, 8.Tx intpn, 9.Ex HIV, 10.Other,"/>
+                                         answerConceptIds="90040,90046,90158,90050,90066,99289,90002"
+                                         answerLabels="1.Toxi,2.Tx Failure,3.Adhe, 4.Ill, 8.Tx intpn, 9.Ex HIV, 10.Other," />
                                     <br/>
                                     <br/>
                                     <b>Restart Date</b>
@@ -1834,12 +1834,5 @@
     <section>
         <submit/>
     </section>
-    <br/>
-    <small>
-        <i>
-            Version 1.2 Last revised on
-            01/December/2015 - Ministry of Health
-        </i>
-    </small>
     <!-- End of HTML Form -->
 </htmlform>
