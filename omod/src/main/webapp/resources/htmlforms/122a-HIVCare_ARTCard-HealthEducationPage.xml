@@ -14,18 +14,6 @@
 		headerColor =#8fabc7
 		fontOnHeaderColor = white
 	</macros>
-	<style>
-		table{
-		width:100%;
-		}
-		td.vertical-text {
-		transform:
-		rotate(90deg);
-		white-space:
-		pre-wrap;
-		width: 100px;
-		}
-	</style>
 
 	<script type="text/javascript">
 		if (jQuery) {
@@ -69,10 +57,61 @@
 		});
 		}
 	</script>
+	<style>
+		table{
+		width:100%;
+		}
+		td.vertical-text {
+		/* transform:
+		rotate(90deg);
+		white-space:
+		pre-wrap;
+		width: 100px;*/
+
+		white-space: pre-wrap;
+		width: 100px;
+		z-index: 28;
+		font-weight: bold;
+		color: #E6E6E6;
+		}
+		.error{
+		color: red;
+		}
+
+		table td{
+		background: #7BB3D0;
+		color: #404040;
+		}
+
+		table th, table td {
+		border: 1px solid #BDBDBD;
+		}
+
+		form select, .form select {
+		min-width: 0px;
+		}
+
+		form input, form select, form textarea, form ul.select, .form input, .form select, .form textarea, .form
+		ul.select {
+		background-color: #FBFBFB;
+		border: 1px solid #404040;
+		border-radius: 5px;
+		margin-bottom: 10px;
+		padding: 10px;
+		}
+
+		table tr:nth-child(even) {
+		background: #7BB3D0;
+		}
+
+		table tr:nth-child(odd) {
+		background: #7BB3D0;
+		}
+	</style>
 
 	<div class="ai-page-frame">
 		<div class="headers" style="text-align: center;">
-			<h3>ART - Follow-up education, Support and Preparation for ARV
+			<h3>HIV ART CARD - Follow-up education, Support and Preparation for ARV
 				therapy
 			</h3>
 		</div>
@@ -97,426 +136,423 @@
 			</table>
 		</section>
 		<section>
-			<fieldset>
-				<legend></legend>
-				<table id="inner">
-					<tbody>
-						<tr>
-							<td colspan="2"></td>
-							<td></td>
-							<td>Date</td>
-							<td>Comments</td>
-						</tr>
-						<tr class="enableDisable">
-							<td rowspan="11" class="vertical-text">
-								Educate on basics, prevention,
-								disclosure
-							</td>
-							<td style="width:20%;">Basic HIV education, transmission:</td>
-							<td id="trigger">
-								<obs conceptId="99169" answerConceptId="90003"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99200"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99201" rows="2" cols="15"/>
-							</td>
-						</tr>
+			<table id="inner">
+				<tbody>
+					<tr>
+						<td colspan="2"></td>
+						<td></td>
+						<td>Date</td>
+						<td>Comments</td>
+					</tr>
+					<tr class="enableDisable">
+						<td rowspan="11" class="vertical-text">
+							Educate on basics, prevention,
+							disclosure
+						</td>
+						<td style="width:20%;">Basic HIV education, transmission:</td>
+						<td id="trigger">
+							<obs conceptId="99169" answerConceptId="90003"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99200"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99201" rows="2" cols="15"/>
+						</td>
+					</tr>
 
-						<tr class="enableDisable">
-							<td>Prevention: abstinence, safer sex, condoms:</td>
-							<td id="trigger">
-								<obs conceptId="99170" answerConceptId="90003"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99202"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99203" rows="2" cols="15"/>
-							</td>
-						</tr>
+					<tr class="enableDisable">
+						<td>Prevention: abstinence, safer sex, condoms:</td>
+						<td id="trigger">
+							<obs conceptId="99170" answerConceptId="90003"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99202"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99203" rows="2" cols="15"/>
+						</td>
+					</tr>
 
-						<tr class="enableDisable">
-							<td>Prevention: household precautions, what is safe:</td>
-							<td id="trigger">
-								<obs conceptId="99171" answerConceptId="90003"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99204"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99205" rows="2" cols="15"/>
-							</td>
-						</tr>
+					<tr class="enableDisable">
+						<td>Prevention: household precautions, what is safe:</td>
+						<td id="trigger">
+							<obs conceptId="99171" answerConceptId="90003"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99204"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99205" rows="2" cols="15"/>
+						</td>
+					</tr>
 
-						<tr class="enableDisable">
-							<td>Post test counselling: implications of results:</td>
-							<td id="trigger">
-								<obs conceptId="99172" answerConceptId="90003"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99206"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99207" rows="2" cols="15"/>
-							</td>
-						</tr>
+					<tr class="enableDisable">
+						<td>Post test counselling: implications of results:</td>
+						<td id="trigger">
+							<obs conceptId="99172" answerConceptId="90003"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99206"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99207" rows="2" cols="15"/>
+						</td>
+					</tr>
 
-						<tr class="enableDisable">
-							<td>Positive living:</td>
-							<td id="trigger">
-								<obs conceptId="99173" answerConceptId="90003"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99208"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99209" rows="2" cols="15"/>
-							</td>
-						</tr>
+					<tr class="enableDisable">
+						<td>Positive living:</td>
+						<td id="trigger">
+							<obs conceptId="99173" answerConceptId="90003"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99208"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99209" rows="2" cols="15"/>
+						</td>
+					</tr>
 
-						<tr class="enableDisable">
-							<td>Testing partners:</td>
-							<td id="trigger">
-								<obs conceptId="99174" answerConceptId="90003"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99210"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99211" rows="2" cols="15"/>
-							</td>
-						</tr>
+					<tr class="enableDisable">
+						<td>Testing partners:</td>
+						<td id="trigger">
+							<obs conceptId="99174" answerConceptId="90003"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99210"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99211" rows="2" cols="15"/>
+						</td>
+					</tr>
 
-						<tr class="enableDisable">
-							<td>DIsclosure, to whom disclosed(list):</td>
-							<td id="trigger">
-								<obs conceptId="99175" answerConceptId="90003"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99212"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99213" rows="2" cols="15"/>
-							</td>
-						</tr>
+					<tr class="enableDisable">
+						<td>DIsclosure, to whom disclosed(list):</td>
+						<td id="trigger">
+							<obs conceptId="99175" answerConceptId="90003"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99212"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99213" rows="2" cols="15"/>
+						</td>
+					</tr>
 
-						<tr class="enableDisable">
-							<td>Family living situation:</td>
-							<td id="trigger">
-								<obs conceptId="99176" answerConceptId="90003"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99214"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99215" rows="2" cols="15"/>
-							</td>
-						</tr>
+					<tr class="enableDisable">
+						<td>Family living situation:</td>
+						<td id="trigger">
+							<obs conceptId="99176" answerConceptId="90003"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99214"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99215" rows="2" cols="15"/>
+						</td>
+					</tr>
 
-						<tr class="enableDisable">
-							<td>Shared confidentiality:</td>
-							<td id="trigger">
-								<obs conceptId="99177" answerConceptId="90003"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99216"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99217" rows="2" cols="15"/>
-							</td>
-						</tr>
+					<tr class="enableDisable">
+						<td>Shared confidentiality:</td>
+						<td id="trigger">
+							<obs conceptId="99177" answerConceptId="90003"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99216"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99217" rows="2" cols="15"/>
+						</td>
+					</tr>
 
-						<tr class="enableDisable">
-							<td>Reproductive choices, prevention MTCT:</td>
-							<td id="trigger">
-								<obs conceptId="99178" answerConceptId="90003"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99218"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99219" rows="2" cols="15"/>
-							</td>
-						</tr>
+					<tr class="enableDisable">
+						<td>Reproductive choices, prevention MTCT:</td>
+						<td id="trigger">
+							<obs conceptId="99178" answerConceptId="90003"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99218"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99219" rows="2" cols="15"/>
+						</td>
+					</tr>
 
-						<tr class="enableDisable">
-							<td>Child's blood test:</td>
-							<td id="trigger">
-								<obs conceptId="99179" answerConceptId="90003"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99220"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99221" rows="2" cols="15"/>
-							</td>
-						</tr>
+					<tr class="enableDisable">
+						<td>Child's blood test:</td>
+						<td id="trigger">
+							<obs conceptId="99179" answerConceptId="90003"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99220"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99221" rows="2" cols="15"/>
+						</td>
+					</tr>
 
-						<tr class="enableDisable">
-							<td rowspan="4" class="vertical-text">
-								Progressio on RX
-							</td>
-							<td>Progression of disease:</td>
-							<td id="trigger">
-								<obs conceptId="99180" answerConceptId="90003"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99222"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99223" rows="2" cols="15"/>
-							</td>
-						</tr>
+					<tr class="enableDisable">
+						<td rowspan="4" class="vertical-text">
+							Progressio on RX
+						</td>
+						<td>Progression of disease:</td>
+						<td id="trigger">
+							<obs conceptId="99180" answerConceptId="90003"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99222"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99223" rows="2" cols="15"/>
+						</td>
+					</tr>
 
-						<tr class="enableDisable">
-							<td>Malaria prevention, IPT, ITN:</td>
-							<td id="trigger">
-								<obs conceptId="99181" answerConceptId="90003"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99224"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99225" rows="2" cols="15"/>
-							</td>
-						</tr>
+					<tr class="enableDisable">
+						<td>Malaria prevention, IPT, ITN:</td>
+						<td id="trigger">
+							<obs conceptId="99181" answerConceptId="90003"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99224"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99225" rows="2" cols="15"/>
+						</td>
+					</tr>
 
-						<tr class="enableDisable">
-							<td>Available treatment/prophylaxis:</td>
-							<td id="trigger">
-								<obs conceptId="99182" answerConceptId="90003"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99226"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99227" rows="2" cols="15"/>
-							</td>
-						</tr>
+					<tr class="enableDisable">
+						<td>Available treatment/prophylaxis:</td>
+						<td id="trigger">
+							<obs conceptId="99182" answerConceptId="90003"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99226"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99227" rows="2" cols="15"/>
+						</td>
+					</tr>
 
-						<tr class="enableDisable">
-							<td>Follow-up appointments, clinical team:</td>
-							<td id="trigger">
-								<obs conceptId="99183" answerConceptId="90003"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99228"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99229" rows="2" cols="15"/>
-							</td>
-						</tr>
+					<tr class="enableDisable">
+						<td>Follow-up appointments, clinical team:</td>
+						<td id="trigger">
+							<obs conceptId="99183" answerConceptId="90003"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99228"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99229" rows="2" cols="15"/>
+						</td>
+					</tr>
 
-						<tr class="enableDisable">
-							<td rowspan="10" class="vertical-text">
-								ART Preparation, initiation, support,
-								monitor, Rx
-							</td>
-							<td>ART--educate on essentials(locally adapted):</td>
-							<td id="trigger">
-								<obs conceptId="99184" answerConceptId="90003"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99230"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99231" rows="2" cols="15"/>
-							</td>
-						</tr>
+					<tr class="enableDisable">
+						<td rowspan="10" class="vertical-text">
+							ART Preparation, initiation, support,
+							monitor, Rx
+						</td>
+						<td>ART--educate on essentials(locally adapted):</td>
+						<td id="trigger">
+							<obs conceptId="99184" answerConceptId="90003"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99230"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99231" rows="2" cols="15"/>
+						</td>
+					</tr>
 
 
-						<tr class="enableDisable">
-							<td>Why complete adherence needed:</td>
-							<td id="trigger">
-								<obs conceptId="99185" answerConceptId="90003"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99233"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99232" rows="2" cols="15"/>
-							</td>
-						</tr>
+					<tr class="enableDisable">
+						<td>Why complete adherence needed:</td>
+						<td id="trigger">
+							<obs conceptId="99185" answerConceptId="90003"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99233"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99232" rows="2" cols="15"/>
+						</td>
+					</tr>
 
-						<tr class="enableDisable">
-							<td>Adherence preparation, indicate visits:</td>
-							<td id="trigger">
-								<obs conceptId="99191" answerConceptId="90003"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99234"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99235" rows="2" cols="15"/>
-							</td>
-						</tr>
+					<tr class="enableDisable">
+						<td>Adherence preparation, indicate visits:</td>
+						<td id="trigger">
+							<obs conceptId="99191" answerConceptId="90003"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99234"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99235" rows="2" cols="15"/>
+						</td>
+					</tr>
 
-						<tr class="enableDisable">
-							<td>Indicate when READY for ART:DATE or result Clinical team
-								discussion:
-							</td>
-							<td id="trigger">
-								<obs conceptId="99186" answerConceptId="90003"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99236"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99237" rows="2" cols="15"/>
-							</td>
-						</tr>
+					<tr class="enableDisable">
+						<td>Indicate when READY for ART:DATE or result Clinical team
+							discussion:
+						</td>
+						<td id="trigger">
+							<obs conceptId="99186" answerConceptId="90003"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99236"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99237" rows="2" cols="15"/>
+						</td>
+					</tr>
 
-						<tr class="enableDisable">
-							<td>Explain dose, when to take:</td>
-							<td id="trigger">
-								<obs conceptId="99187" answerConceptId="90003"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99238"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99239" rows="2" cols="15"/>
-							</td>
-						</tr>
+					<tr class="enableDisable">
+						<td>Explain dose, when to take:</td>
+						<td id="trigger">
+							<obs conceptId="99187" answerConceptId="90003"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99238"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99239" rows="2" cols="15"/>
+						</td>
+					</tr>
 
-						<tr class="enableDisable">
-							<td>What can occur, how to manage side effects:</td>
-							<td id="trigger">
-								<obs conceptId="99188" answerConceptId="90003"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99240"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99241" rows="2" cols="15"/>
-							</td>
-						</tr>
+					<tr class="enableDisable">
+						<td>What can occur, how to manage side effects:</td>
+						<td id="trigger">
+							<obs conceptId="99188" answerConceptId="90003"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99240"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99241" rows="2" cols="15"/>
+						</td>
+					</tr>
 
-						<tr class="enableDisable">
-							<td>What to do if one forgets dose:</td>
-							<td id="trigger">
-								<obs conceptId="99189" answerConceptId="90003"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99242"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99243" rows="2" cols="15"/>
-							</td>
-						</tr>
+					<tr class="enableDisable">
+						<td>What to do if one forgets dose:</td>
+						<td id="trigger">
+							<obs conceptId="99189" answerConceptId="90003"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99242"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99243" rows="2" cols="15"/>
+						</td>
+					</tr>
 
-						<tr class="enableDisable">
-							<td>What to do when traveling:</td>
-							<td id="trigger">
-								<obs conceptId="99190" answerConceptId="90003"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99244"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99245" rows="2" cols="15"/>
-							</td>
-						</tr>
+					<tr class="enableDisable">
+						<td>What to do when traveling:</td>
+						<td id="trigger">
+							<obs conceptId="99190" answerConceptId="90003"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99244"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99245" rows="2" cols="15"/>
+						</td>
+					</tr>
 
-						<tr class="enableDisable">
-							<td>Adherence plan(schedule, acids explain diary):</td>
-							<td id="trigger">
-								<obs conceptId="99246" answerConceptId="90003"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99248"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99247" rows="2" cols="15"/>
-							</td>
-						</tr>
+					<tr class="enableDisable">
+						<td>Adherence plan(schedule, acids explain diary):</td>
+						<td id="trigger">
+							<obs conceptId="99246" answerConceptId="90003"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99248"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99247" rows="2" cols="15"/>
+						</td>
+					</tr>
 
-						<tr class="enableDisable">
-							<td>Treatment supporter preparation:</td>
-							<td id="trigger">
-								<obs conceptId="99192" answerConceptId="90003"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99249"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99250" rows="2" cols="15"/>
-							</td>
-						</tr>
+					<tr class="enableDisable">
+						<td>Treatment supporter preparation:</td>
+						<td id="trigger">
+							<obs conceptId="99192" answerConceptId="90003"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99249"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99250" rows="2" cols="15"/>
+						</td>
+					</tr>
 
-						<tr class="enableDisable">
-							<td rowspan="5" class="vertical-text">
-								Home-based Care
-							</td>
-							<td>ARV support group:</td>
-							<td id="trigger">
-								<obs conceptId="99194" answerConceptId="90003"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99253"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99254" rows="2" cols="15"/>
-							</td>
-						</tr>
+					<tr class="enableDisable">
+						<td rowspan="5" class="vertical-text">
+							Home-based Care
+						</td>
+						<td>ARV support group:</td>
+						<td id="trigger">
+							<obs conceptId="99194" answerConceptId="90003"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99253"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99254" rows="2" cols="15"/>
+						</td>
+					</tr>
 
-						<tr class="enableDisable">
-							<td>How to contact clinic:</td>
-							<td id="trigger">
-								<obs conceptId="99195" answerConceptId="90003"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99255"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99256" rows="2" cols="15"/>
-							</td>
-						</tr>
+					<tr class="enableDisable">
+						<td>How to contact clinic:</td>
+						<td id="trigger">
+							<obs conceptId="99195" answerConceptId="90003"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99255"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99256" rows="2" cols="15"/>
+						</td>
+					</tr>
 
-						<tr class="enableDisable">
-							<td>Symptom management or palliatve care at home:</td>
-							<td id="trigger">
-								<obs conceptId="99196" answerConceptId="90003"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99257"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99258" rows="2" cols="15"/>
-							</td>
-						</tr>
+					<tr class="enableDisable">
+						<td>Symptom management or palliatve care at home:</td>
+						<td id="trigger">
+							<obs conceptId="99196" answerConceptId="90003"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99257"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99258" rows="2" cols="15"/>
+						</td>
+					</tr>
 
-						<tr class="enableDisable">
-							<td>Caregive booklet:</td>
-							<td id="trigger">
-								<obs conceptId="99197" answerConceptId="90003"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99259"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99260" rows="2" cols="15"/>
-							</td>
-						</tr>
+					<tr class="enableDisable">
+						<td>Caregive booklet:</td>
+						<td id="trigger">
+							<obs conceptId="99197" answerConceptId="90003"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99259"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99260" rows="2" cols="15"/>
+						</td>
+					</tr>
 
-						<tr class="enableDisable">
-							<td>Support groups including community support group:</td>
-							<td id="trigger">
-								<obs conceptId="99199" answerConceptId="90003"/>
-							</td>
-							<td id="disabled">
+					<tr class="enableDisable">
+						<td>Support groups including community support group:</td>
+						<td id="trigger">
+							<obs conceptId="99199" answerConceptId="90003"/>
+						</td>
+						<td id="disabled">
 
-								<obs conceptId="99263"/>
-							</td>
-							<td id="disabled">
-								<obs conceptId="99264" rows="2" cols="15"/>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</fieldset>
+							<obs conceptId="99263"/>
+						</td>
+						<td id="disabled">
+							<obs conceptId="99264" rows="2" cols="15"/>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</section>
 	</div>
 	<section>
