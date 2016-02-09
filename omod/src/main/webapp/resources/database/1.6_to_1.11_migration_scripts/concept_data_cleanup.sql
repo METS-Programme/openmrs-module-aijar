@@ -287,6 +287,18 @@ WHERE value_coded = 99473; # Regular partner tested for HIV
 UPDATE obs
 SET value_coded = 99476
 WHERE value_coded = 99474; # Casual partner tested for HIV
+UPDATE obs
+SET value_coded = 90045
+WHERE value_coded = 99890; # ARV stop - Drug Stock out
+UPDATE obs
+SET value_coded = 90158
+WHERE value_coded = 90049; # Poor adherence
+UPDATE obs
+SET value_coded = 90051
+WHERE value_coded = 99891; # Patient lacks financial resources
+UPDATE obs
+SET value_coded = 90052
+WHERE value_coded = 99892; # Patient decision
 
 /*!40101 SET SQL_MODE = @OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS = @OLD_FOREIGN_KEY_CHECKS */;
