@@ -8,7 +8,8 @@
 		  formOrder="2"
 		  formIcon="icon-medkit"
 		  formShowIf="visit.active &amp;&amp; patient.person.dead==false"
-		  formDisplayStyle="Standard">
+		  formDisplayStyle="Standard"
+		  formLabel="ART Card - Health Education Form">
 	<macros>
 		headerColor =#8fabc7
 		fontOnHeaderColor = white
