@@ -1,15 +1,14 @@
-<htmlform formName="HIV Care ART Card - Encounter"
+<htmlform formName="HMIS 122a HIV Care ART Card - Encounter Form"
           formDescription="A visit for a client to an ART clinic"
           formEncounterType="8d5b2be0-c2cc-11de-8d13-0010c6dffd0f"
           formUuid="12de5bc5-352e-4faf-9961-a2125085a75c"
-          formVersion="1.2"
+          formVersiongit="1.2"
           formAddMetadata="yes"
           formUILocation="patientDashboard.visitActions"
           formOrder="3"
           formIcon="icon-medkit"
-          formShowIf="visit.active &amp;&amp; patient.person.dead==false &amp;&amp; patient.person.age &lt; 2"
-          formDisplayStyle="Standard"
-          formLabel="ART Card - Encounter Form">
+          formShowIf="visit.active &amp;&amp; patient.person.dead==false"
+          formDisplayStyle="Standard">
     <macros>
         headerColor =#8fabc7
         fontOnHeaderColor = white
@@ -433,8 +432,8 @@
                             <label>ARV drugs</label>
                         </td>
                         <td class="EnableDisableAdherenceReason checkboxGroup" style="width: 30%;">
-                            <obs conceptId="90221" answerConceptIds="90156,90157,90158"
-                                 answerLabels=" Good, Fair, Poor" labelText="Adhererence:"/><br/>
+                                <obs conceptId="90221" answerConceptIds="90156,90157,90158"
+                                     answerLabels=" Good, Fair, Poor" labelText="Adhererence:"/><br/>
                             <span class="enableDisable">
                                 Why Poor/Fair:<br/>
                                 <obs id="br" conceptId="90223" answerConceptId="90040"
@@ -552,24 +551,24 @@
                                 and infantfeeding)</label>
                         </td>
                         <td colspan="2">
-                            <b>Referred for</b><br/>
-                            <obs id="br" conceptId="99054" answerConceptId="99053"
-                                 answerLabel="Thera Feeding"/>
-                            <obs id="br" conceptId="99054" answerConceptId="99051"
-                                 answerLabel="Infant F C"/>
-                            <obs id="br" conceptId="99054" answerConceptId="99052"
-                                 answerLabel="Nutrion C"/>
-                            <obs id="br" conceptId="99054" answerConceptId="99050"
-                                 answerLabel="Food Support"/>
-                            <br/>
-                            <obs id="br" size="15" conceptId="99267" labelText="Other referral:"/>
-                            <br/>
-                            <b>Infant feeding:</b><br/>
-                            <obs id="br" conceptId="1151" answerConceptIds="5526,99089,6046"
-                                 answerLabels="EBF,RF,MF" labelText=""/>
-                            <br/>
-                            <obs id="br" conceptId="90224" labelText="Hospitalized days:">
-                            </obs>
+                               <b>Referred for</b><br/>
+                                <obs id="br" conceptId="99054" answerConceptId="99053"
+                                     answerLabel="Thera Feeding"/>
+                                <obs id="br" conceptId="99054" answerConceptId="99051"
+                                     answerLabel="Infant F C"/>
+                                <obs id="br" conceptId="99054" answerConceptId="99052"
+                                     answerLabel="Nutrion C"/>
+                                <obs id="br" conceptId="99054" answerConceptId="99050"
+                                     answerLabel="Food Support"/>
+                                <br/>
+                                <obs id="br" size="15" conceptId="99267" labelText="Other referral:"/>
+                                <br/>
+                                <b>Infant feeding:</b><br/>
+                                <obs id="br" conceptId="1151" answerConceptIds="5526,99089,6046"
+                                     answerLabels="EBF,RF,MF" labelText=""/>
+                                <br/>
+                                <obs id="br" conceptId="90224" labelText="Hospitalized days:">
+                                </obs>
                         </td>
                     </tr>
                 </tbody>
@@ -579,12 +578,4 @@
     <section>
         <submit/>
     </section>
-    <br/>
-    <small>
-        <i>
-            Version 1.2 revised on 30/November/2015 - Ministry of Health
-            <br/>
-        </i>
-    </small>
 </htmlform>
-        Status
