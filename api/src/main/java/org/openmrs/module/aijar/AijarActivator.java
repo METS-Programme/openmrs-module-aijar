@@ -149,8 +149,11 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 
             // install concepts
             log.info("Installing concepts");
-         //   MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "Uganda_Concepts");
+            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "Uganda_Concepts");
             log.info("Concepts installed");
+            log.info("Installing locations and location tags");
+            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "Location_and_Location_Tags");
+            log.info("Locations and location tags installed");
 
         } catch (Exception e) {
             Module mod = ModuleFactory.getModuleById("aijar");
