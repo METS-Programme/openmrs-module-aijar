@@ -13,14 +13,11 @@
  */
 package org.openmrs.module.aijar;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openmrs.ConceptName;
 import org.openmrs.GlobalProperty;
 import org.openmrs.api.AdministrationService;
 import org.openmrs.api.context.Context;
@@ -33,7 +30,6 @@ import org.openmrs.module.aijar.api.deploy.bundle.EncounterTypeMetadataBundle;
 import org.openmrs.module.aijar.api.deploy.bundle.UgandaAddressMetadataBundle;
 import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
 import org.openmrs.module.appframework.service.AppFrameworkService;
-import org.openmrs.module.dataexchange.DataImporter;
 import org.openmrs.module.emrapi.EmrApiConstants;
 import org.openmrs.module.emrapi.utils.MetadataUtil;
 import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
@@ -149,34 +145,17 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 
             // install concepts
             log.info("Installing concepts");
-         //   MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "Uganda_Concepts");
+            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "Uganda_Concepts");
             log.info("Concepts installed");
+            log.info("Installing locations and location tags");
+            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "Location_and_Location_Tags");
+            log.info("Locations and location tags installed");
 
         } catch (Exception e) {
             Module mod = ModuleFactory.getModuleById("aijar");
             ModuleFactory.stopModule(mod);
             throw new RuntimeException("failed to install the common metadata ", e);
         }
-    }
-
-    private void installConcepts() {
-        DataImporter dataImporter = Context.getRegisteredComponent("dataImporter", DataImporter.class);
-        dataImporter.importData("metadata/concepts.xml");
-
-        //1.11 requires building the index for the newly added concepts.
-        //Without doing so, cs.getConceptByClassName() will return an empty list.
-        //We use reflection such that we do not blow up versions before 1.11
-        try {
-            Method method = Context.class.getMethod("updateSearchIndexForType", new Class[]{Class.class});
-            method.invoke(null, new Object[]{ConceptName.class});
-        } catch (NoSuchMethodException ex) {
-            //this must be a version before 1.11
-        } catch (InvocationTargetException ex) {
-            log.error("Failed to update search index", ex);
-        } catch (IllegalAccessException ex) {
-            log.error("Failed to update search index", ex);
-        }
-
     }
 
     // Method responsible for HTMLForms insertation

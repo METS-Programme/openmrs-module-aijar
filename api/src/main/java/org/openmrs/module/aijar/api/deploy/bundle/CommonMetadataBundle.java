@@ -37,21 +37,6 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(PersonAttributeTypes.HEALTH_CENTER);
         install(PersonAttributeTypes.HEALTH_FACILITY_DISTRICT);
         log.info("Person AttributeTypes installed");
-
-        /*log.info("Installing location tags");
-        install(LocationTags.ADMISSION_LOCATION);
-        install(LocationTags.LOGIN_LOCATION);
-        install(LocationTags.TRANSFER_LOCATION);
-        install(LocationTags.VISIT_LOCATION);
-        install(LocationTags.IDENTIFIER_ASSIGNMENT_LOCATION);
-        log.info("Location tags");
-
-        log.info("Installing service locations");
-        install(Locations.HEALTH_FACILITY);
-        log.info("Service locations installed");*/
-
-        // install(globalProperty(AijarConstants.GP_DEFAULT_LOCATION, "The facility for which this installation is configured", LocationDatatype.class, null, null));
-
     }
 
     // Bundle helper method to install PatientIdentifier descriptor

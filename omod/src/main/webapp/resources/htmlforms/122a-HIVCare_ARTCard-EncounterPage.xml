@@ -7,7 +7,7 @@
           formUILocation="patientDashboard.visitActions"
           formOrder="3"
           formIcon="icon-medkit"
-          formShowIf="visit.active &amp;&amp; patient.person.dead==false"
+          formShowIf="visit.active &amp;&amp; patient.person.dead==false &amp;&amp; patient.person.age &gt; 2 "
           formDisplayStyle="Standard">
     <macros>
         headerColor =#8fabc7
