@@ -162,13 +162,14 @@
                     enable_disable_pcr1(jq(this));
                 });
 
+               /*TODO:fixing enable disable for PCRs
                 jq('[class^="PCRTestResultEnableDisable"]').change(function () {
                     enable_disable_pcr_test_result(jq(this));
                 });
 
                 jq('[class^="PCRTestResultEnableDisable"]').each(function () {
                     enable_disable_pcr_test_result(jq(this));
-                });
+                });*/
             });
         }
     </script>
