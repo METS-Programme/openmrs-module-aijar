@@ -11771,7 +11771,7 @@ limit 1</property>
                             <expression name="text">"Register"</expression>
                             <property name="wrapPoint">0in</property>
                             <property name="fontFamily">"Verdana"</property>
-                            <property name="fontSize">12pt</property>
+                            <property name="fontSize">14pt</property>
                             <property name="fontStyle">normal</property>
                             <property name="fontWeight">bold</property>
                             <property name="color">#000000</property>
@@ -11869,7 +11869,7 @@ limit 1</property>
                             <expression name="text">"No. Of months completed on ART by various quarterly cohorts"</expression>
                             <property name="wrapPoint">200px</property>
                             <property name="fontFamily">"Verdana"</property>
-                            <property name="fontSize">12pt</property>
+                            <property name="fontSize">14pt</property>
                             <property name="fontStyle">normal</property>
                             <property name="fontWeight">bold</property>
                             <property name="color">#000000</property>
@@ -11896,7 +11896,7 @@ limit 1</property>
                             <expression name="text">"Record months / year when cohort started(3 months period)"</expression>
                             <property name="wrapPoint">200px</property>
                             <property name="fontFamily">"Verdana"</property>
-                            <property name="fontSize">12px</property>
+                            <property name="fontSize">14pt</property>
                             <property name="fontStyle">normal</property>
                             <property name="fontWeight">bold</property>
                             <property name="color">#000000</property>
@@ -11922,7 +11922,7 @@ limit 1</property>
                             <expression name="text">"Started on ART in this clinic- original cohort"</expression>
                             <property name="wrapPoint">200px</property>
                             <property name="fontFamily">"Verdana"</property>
-                            <property name="fontSize">12pt</property>
+                            <property name="fontSize">14pt</property>
                             <property name="fontStyle">normal</property>
                             <property name="fontWeight">bold</property>
                             <property name="color">#000000</property>
@@ -11948,7 +11948,7 @@ limit 1</property>
                             <expression name="text">"Fraction of clients 5yrs &amp; above  with CD4 &lt;250"</expression>
                             <property name="wrapPoint">200px</property>
                             <property name="fontFamily">"Verdana"</property>
-                            <property name="fontSize">12pt</property>
+                            <property name="fontSize">14pt</property>
                             <property name="fontStyle">normal</property>
                             <property name="fontWeight">bold</property>
                             <property name="color">#000000</property>
@@ -11974,7 +11974,7 @@ limit 1</property>
                             <expression name="text">"Median CD4 (for 5 years and above with available CD4- optional)"</expression>
                             <property name="wrapPoint">200px</property>
                             <property name="fontFamily">"Verdana"</property>
-                            <property name="fontSize">12pt</property>
+                            <property name="fontSize">14pt</property>
                             <property name="fontStyle">normal</property>
                             <property name="fontWeight">bold</property>
                             <property name="color">#000000</property>
@@ -12000,7 +12000,7 @@ limit 1</property>
                             <expression name="text">"Transfers In  (TI) Add  +"</expression>
                             <property name="wrapPoint">200px</property>
                             <property name="fontFamily">"Verdana"</property>
-                            <property name="fontSize">12pt</property>
+                            <property name="fontSize">14pt</property>
                             <property name="fontStyle">normal</property>
                             <property name="fontWeight">bold</property>
                             <property name="color">#000000</property>
@@ -12026,7 +12026,7 @@ limit 1</property>
                             <expression name="text">"Transfers Out (TO) Subtract   -"</expression>
                             <property name="wrapPoint">200px</property>
                             <property name="fontFamily">"Verdana"</property>
-                            <property name="fontSize">12pt</property>
+                            <property name="fontSize">14pt</property>
                             <property name="fontStyle">normal</property>
                             <property name="fontWeight">bold</property>
                             <property name="color">#000000</property>
@@ -12052,7 +12052,7 @@ limit 1</property>
                             <expression name="text">"Net current cohort (N) (Column 3+TI-TO)"</expression>
                             <property name="wrapPoint">200px</property>
                             <property name="fontFamily">"Verdana"</property>
-                            <property name="fontSize">12pt</property>
+                            <property name="fontSize">14pt</property>
                             <property name="fontStyle">normal</property>
                             <property name="fontWeight">bold</property>
                             <property name="color">#000000</property>
@@ -12078,7 +12078,7 @@ limit 1</property>
                             <expression name="text">"Stopped"</expression>
                             <property name="wrapPoint">0in</property>
                             <property name="fontFamily">"Verdana"</property>
-                            <property name="fontSize">12pt</property>
+                            <property name="fontSize">14pt</property>
                             <property name="fontStyle">normal</property>
                             <property name="fontWeight">bold</property>
                             <property name="color">#000000</property>
@@ -12104,7 +12104,7 @@ limit 1</property>
                             <expression name="text">"Died"</expression>
                             <property name="wrapPoint">0in</property>
                             <property name="fontFamily">"Verdana"</property>
-                            <property name="fontSize">12pt</property>
+                            <property name="fontSize">14pt</property>
                             <property name="fontStyle">normal</property>
                             <property name="fontWeight">bold</property>
                             <property name="color">#000000</property>
@@ -12130,7 +12130,7 @@ limit 1</property>
                             <expression name="text">"Lost (missed appointment)"</expression>
                             <property name="wrapPoint">200px</property>
                             <property name="fontFamily">"Verdana"</property>
-                            <property name="fontSize">12pt</property>
+                            <property name="fontSize">14pt</property>
                             <property name="fontStyle">normal</property>
                             <property name="fontWeight">bold</property>
                             <property name="color">#000000</property>
@@ -12156,7 +12156,7 @@ limit 1</property>
                             <expression name="text">"Lost to Follow-up (DROP)"</expression>
                             <property name="wrapPoint">200px</property>
                             <property name="fontFamily">"Verdana"</property>
-                            <property name="fontSize">12pt</property>
+                            <property name="fontSize">14pt</property>
                             <property name="fontStyle">normal</property>
                             <property name="fontWeight">bold</property>
                             <property name="color">#000000</property>
@@ -12182,7 +12182,7 @@ limit 1</property>
                             <expression name="text">"No. of Cohort Alive and  on ART (On Rx)"</expression>
                             <property name="wrapPoint">200px</property>
                             <property name="fontFamily">"Verdana"</property>
-                            <property name="fontSize">12pt</property>
+                            <property name="fontSize">14pt</property>
                             <property name="fontStyle">normal</property>
                             <property name="fontWeight">bold</property>
                             <property name="color">#000000</property>
@@ -12208,7 +12208,7 @@ limit 1</property>
                             <expression name="text">"Percent of cohort  alive and on ART [ (On Rx) / N  * 100 ]"</expression>
                             <property name="wrapPoint">200px</property>
                             <property name="fontFamily">"Verdana"</property>
-                            <property name="fontSize">12pt</property>
+                            <property name="fontSize">14pt</property>
                             <property name="fontStyle">normal</property>
                             <property name="fontWeight">bold</property>
                             <property name="color">#000000</property>
@@ -12234,7 +12234,7 @@ limit 1</property>
                             <expression name="text">"Fraction of clients 5yrs &amp; above  with CD4 &lt;250"</expression>
                             <property name="wrapPoint">200px</property>
                             <property name="fontFamily">"Verdana"</property>
-                            <property name="fontSize">12pt</property>
+                            <property name="fontSize">14pt</property>
                             <property name="fontStyle">normal</property>
                             <property name="fontWeight">bold</property>
                             <property name="color">#000000</property>
@@ -12260,7 +12260,7 @@ limit 1</property>
                             <expression name="text">"Median CD4 (for 5 yrs and above with available CD4- optional)"</expression>
                             <property name="wrapPoint">200px</property>
                             <property name="fontFamily">"Verdana"</property>
-                            <property name="fontSize">12pt</property>
+                            <property name="fontSize">14pt</property>
                             <property name="fontStyle">normal</property>
                             <property name="fontWeight">bold</property>
                             <property name="color">#000000</property>
