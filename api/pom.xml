@@ -150,17 +150,18 @@
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
                 <excludes>
-                    <exclude>reports/**</exclude>
-                    <!-- exclude XLS binary files from filtering as this causes corruption of the files -->
-                    <exclude>*.xls</exclude>
+					<!-- exclude binary files from filtering as this causes corruption of the files -->
+					<exclude>*.zip</exclude>
+					<exclude>metadata/*.zip</exclude>
                 </excludes>
             </resource>
-            <!-- Add the XLS report files to the omod without filtering -->
+			<!-- Add the binary files to the omod without filtering -->
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>false</filtering>
                 <includes>
-                    <include>*.xls</include>
+					<include>*.zip</include>
+					<include>metadata/*.zip</include>
                 </includes>
             </resource>
         </resources>
