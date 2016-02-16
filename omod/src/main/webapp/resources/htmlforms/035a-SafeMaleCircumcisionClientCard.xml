@@ -60,6 +60,10 @@
         table th, table td {
             border: 1px solid #C7C7C7;
         }
+
+        .error{
+        color: red;
+        }
     </style>
 
     <script type="text/javascript">

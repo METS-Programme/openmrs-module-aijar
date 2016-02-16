@@ -14,262 +14,46 @@
         headerColor =#8fabc7
         fontOnHeaderColor = white
     </macros>
-    <style>
-        .value {
-            font-size: 12px;
+    <style type="text/css">
+        .error{
+        color: red;
         }
 
-        #inner {
-            width: 130%;
-            border-collapse: collapse;
-        / / background-color : #EDF2F7 border : solid 1 px #85b1de;
-            font-size: 16px;
-            padding: 1px;
-        / / border : 2 px solid gray;
-            bord er: solid 2px #85b1de;
-            margin: 2px;
+        table td{
+        background: #7BB3D0;
+        color: #404040;
         }
 
-        #second {
-            position: absolute;
-            left: 230px;
-            overflow: auto;
+        form select, .form select {
+        min-width: 0px;
         }
 
-        #third {
-            position: absolute;
-            left: 333px;
-            overflow: auto;
-        }
-
-        #fourth {
-            position: absolute;
-            left: 510px;
-            overflow: auto;
-        }
-
-        #fifth {
-            position: absolute;
-            left: 740px;
-            overflow: auto;
-        }
-
-        #inner tr {
-            padding: 1px;
-            border: 2px solid gray;
-            margin: 2px;
-        }
-
-        #inner th {
-            font-size: 12px;
-            text-align: center;
-            padding-top: 4px;
-            padding-bottom: 4px;
-            background-color: #8fabc7;
-            color: #ffffff;
-        }
-
-        #inner td, span {
-            background-color: #EDF2F7 border : solid 1 px #85b1de;
-            font-size: 12px;
-            text-align: center;
-            color: solid black;
-        }
-
-        #inner add {
-            font-size: 12px;
-            text-align: left;
-            color: solid blue;
-        }
-
-        #inner_most {
-
-            margin: 0px;
-            font-size: 12px;
-            padding-top: 1px;
-            padding-bottom: 1px;
-
-        }
-
-        #inner_most tr {
-            border: 1px solid gray;
-            margin: 0px;
-        }
-
-        #inner_most th {
-
-            font-size: 12px;
-            text-align: center;
-            padding-top: 1px;
-            padding-bottom: 1px;
-            background-color: #8fabc7;
-            color: #ffffff;
-        }
-
-        #inner1 {
-            width: 60%;
-            border-collapse: collapse;
-        / / background-color : #EDF2F7 border : solid 1 px #85b1de;
-            font-size: 16px;
-            padding: 1px;
-        / / border : 2 px solid gray;
-            border: solid 2px #85b1de;
-            margin: 2px;
-        }
-
-        #inner1 tr {
-            padding: 1px;
-            border: 2px solid gray;
-            margin: 2px;
-        }
-
-        #inner1 th {
-            font-size: 12px;
-            text-align: center;
-            padding-top: 4px;
-            padding-bottom: 4px;
-            background-color: #8fabc7;
-            color: #ffffff;
-        }
-
-        #inner1 td, span {
-            background-color: #EDF2F7 border : solid 1 px #85b1de;
-            font-size: 15px;
-            text-align: center;
-            color: solid black;
-        }
-
-        #inner1 add {
-            font-size: 12px;
-            text-align: left;
-            color: solid blue;
-        }
-
-        .ai-page-frame {
-            padding: 5px;
-            background-color: white;
-            font-family: 'Lucida Grande',
-            'Lucida Sans ', Arial, sans-serif;
-            float: left;
-            width: 100%;
-            clear: both;
-            display: block;
-            font-size: 12px;
-            background: #5BB3CE;
-            color: #fff !important;
-        }
-
-        #h3white {
-            color: #fff;
-        }
-
-        td {
-            background: #5BB3CE !important;
-            color: #fff !important;
-        }
-
-        .section {
-            width: 99%;
-            margin-bottom: 10px;
-        }
-
-        .section
-        fieldset {
-            width: 95%;
-        }
-
-        .entry-point th,
-        .entry-point td {
-            padding: 5px 10px;
-            border: 1px solid #FFF;
-        }
-
-        form input,
-        form select, form
-        textarea, form
-        ul.select, .form
-        input, .form
-        select,
-        .form textarea,
-        .form
+        form input, form select, form textarea, form ul.select, .form input, .form select, .form textarea, .form
         ul.select {
-            min-width: 30%;
-            margin-left: 10px;
+        background-color: #FBFBFB;
+        border: 1px solid #404040;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        padding: 10px;
+        min-width: 50%;
+        }
+        .row {
+        width: 100%;
+        float: left;
+        display: inline-flex;
+        clear: both;
         }
 
-        form select, .form
-        select {
-            min-width: auto;
+        .row .row-col2 {
+        float: left;
+        width: 50%;
         }
 
-        select {
-            height: 26px;
-            padding: 0 0 0 8px;
-            overflow: hidden;
-            position: relative;
-            border: 1px solid #aaa;
-            white-space: nowrap;
-            line-height: 26px;
-            color: #444;
-            text-decoration: none;
-            border-radius: 4px;
-            background-clip: padding-box;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            background-color: #fff;
-            background-image: -webkit-gradient(linear, left bottom, left top,
-            color-stop(0, #eee),
-            color-stop(0.5, #fff));
-            background-image: -webkit-linear-gradient(center bottom, #eee 0%, #fff 50%);
-            background-image: -moz-linear-gradient(center bottom, #eee 0%,
-            #fff 50%);
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',
-            endColorstr='#eeeeee', GradientType=0);
-            background-image: linear-gradient(top, #fff 0%, #eee 50%);
-        }
-
-        .error {
-            color: red;
-            padding: 10px;
-        }
-
-        .ai-html-row {
-            width: 100%;
-            float: left;
-        }
-
-        .ai-html-row-col2 {
-            width: 49%;
-            float: left;
-        }
-
-        .ai-html-row-col2 fieldset {
-            width: 90%;
-        }
-
-        .ai-page-content {
-            width: auto;
-            overflow-x: visible;
-        }
-
-        .exposed-infant {
-            width: auto;
-        }
-
-        form
-        select, .form
-        select {
-            min-width: auto;
-        }
-
-        form
-        label, .form label {
-            width: 130px;
+        table th, table td {
+        border: 1px solid #BDBDBD;
         }
     </style>
+
     <script type="text/javascript">
         function enable_disable_pcr_test_result(selected_option) {
 
@@ -396,14 +180,13 @@
 
     <div class="ai-page-frame">
         <div class="headers" style="text-align: center;">
-            <h3 id="h3white">HIV Exposed Infant Form</h3>
+            <h3 id="h3white">EID Card Summary Form</h3>
         </div>
         <div class="ai-page-content">
             <section>
-                <fieldset>
-                    <legend>
+                    <h3>
                         Care Entry Point
-                    </legend>
+                    </h3>
 
                     <table class="table table-bordered custom-table">
                         <tr>
@@ -412,69 +195,67 @@
                                 <patient field="identifier" identifierTypeId="2c5b695d-4bf3-452f-8a7c-fe3ee3432ffe"
                                          required="true"/>
                             </td>
-                            <td colspan="2">Date Chart Openned:
+                            <td><label>Date Chart Openned:</label>
                                 <encounterDate default="today"></encounterDate>
                             </td>
-                            <td>Entry Point (Clinic/Ward):
+                            <td><label>Entry Point (Clinic/Ward):</label>
                                 <encounterLocation default="1"/>
                             </td>
                         </tr>
                         <tr>
 
-                            <td colspan="2">
+                            <td>
                                 <lookup expression="fn.patientAgeInDays()" class="patientAgeInDays"/>
-                                Date of NVP Start:
+                                <label>Date of NVP Start:</label>
                                 <obs conceptId="99771" id="nvpDate"/>
                             </td>
-                            <td colspan="2">Date of CTX Start:
+                            <td><label>Date of CTX Start:</label>
                                 <obs conceptId="99773" id="ctxDate"/>
                             </td>
                             <td>
-                                Clinical Team Leader:
+                                <label> Clinical Team Leader:</label>
                                 <encounterProvider role="Provider" style="autocomplete"/>
                             </td>
                         </tr>
                     </table>
-                </fieldset>
             </section>
 
             <section>
-                <fieldset>
-                    <legend>
+                    <h3>
                         Mother/Caregiver/Follow-up Information
-                    </legend>
+                    </h3>
 
                     <table class="table table-bordered custom-table">
                         <tr>
-                            <td colspan="2">Mothers's Names
+                            <td><label>Mothers's Names</label>
                                 <obs conceptId="99776"/>
                             </td>
-                            <td colspan="2">Common Name:
+                            <td colspan="2"><label>Common Name:</label>
                                 <obs conceptId="99775"/>
                             </td>
                         </tr>
 
                         <tr>
-                            <td>District:
+                            <td><label>District:</label>
                                 <obs conceptId="162884"/>
                             </td>
-                            <td>County:
+                            <td><label>County:</label>
                                 <obs conceptId="162885"/>
                             </td>
-                            <td>Sub County:
+                            <td><label>Sub County:</label>
                                 <obs conceptId="162886"/>
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2">Parish:
+                            <td><label>Parish:</label>
                                 <obs conceptId="162888"/>
                             </td>
-                            <td>Village:
+                            <td colspan="2"><label>Village:</label>
                                 <obs conceptId="162887"/>
                             </td>
                         </tr>
                         <tr>
-                            <td>Telephone:
+                            <td><label>Telephone:</label>
                                 <obs conceptId="162889"/>
                             </td>
                             <td colspan="2">
@@ -482,78 +263,73 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>LCI Zone</td>
+                            <td><label>LCI Zone</label></td>
                             <td colspan="2">
                                 <obs conceptId="99137"/>
                             </td>
                         </tr>
                         <tr>
-                            <td>LC1 Chairman</td>
+                            <td><label>LC1 Chairman</label></td>
                             <td colspan="2">
                                 <obs conceptId="162866"/>
                             </td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td colspan="2">How should outreach workers introduce themselves
+                            <td colspan="3"><label>How should outreach workers introduce themselves</label>
                                 <obs conceptId="162867" style="textarea"/>
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="3">Directions to caregiver's home address:
+                            <td colspan="3"><label>Directions to caregiver's home address:</label>
                                 <obs conceptId="162868" style="textarea"/>
                             </td>
 
                         </tr>
 
                         <tr>
-                            <td colspan="2">Alternative Contact Person:
+                            <td><label>Alternative Contact Person:</label>
                                 <obs conceptId="162869"/>
                             </td>
-                            <td>
+                            <td colspan="2">
                                 <obs conceptId="90269" labelText="Relationship:"/>
                             </td>
                         </tr>
                         <tr>
-                            <td>Telephone No:
+                            <td><label>Telephone No:</label>
                                 <obs conceptId="162870"/>
                             </td>
                             <td colspan="2">
-                                Has This Person been disclosed to?
+                                <label>Has This Person been disclosed to?</label>
                                 <obs conceptId="162871"/>
                             </td>
                         </tr>
-
-
                     </table>
-                </fieldset>
             </section>
 
             <section>
-                <fieldset>
-                    <legend>
+                    <h3>
                         Mother's History
-                    </legend>
+                    </h3>
 
                     <table class="table table-bordered custom-table">
                         <tr>
-                            <td colspan="2">Place of Delivery:
-                                <obs conceptId="99570" labelText="Place of Delivery:"/>
+                            <td><label>Place of Delivery:</label>
+                                <obs conceptId="99570" labelText=""/>
                             </td>
-                            <td colspan="2">Mode of Delivery:
-                                <obs conceptId="5630" labelText="Mode of Delivery:"/>
+                            <td colspan="3"><label>Mode of Delivery:</label>
+                                <obs conceptId="5630" labelText=""/>
                             </td>
                         </tr>
 
                         <tr>
-                            <td colspan="2">Mother recieved ARVs for PMTCT:
+                            <td><label>Mother recieved ARVs for PMTCT:</label>
                             </td>
-                            <td colspan="2">
+                            <td colspan="3">
                                 <obs conceptId="99777" labelText="Mother's ANC No.:"/>
                             </td>
                         </tr>
                         <tr>
-                            <td>Mother's ARVs:</td>
+                            <td><label>Mother's ARVs:</label></td>
                             <td>
                                 <obs conceptId="99783" labelText="For ANC:"/>
                             </td>
@@ -565,43 +341,41 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Infant's ARVs:</td>
+                            <td><label>Infant's ARVs:</label></td>
                             <td colspan="3">
                                 <obs conceptId="99787" labelText="" size="100" style="radio"/>
                             </td>
                         </tr>
                         <tr>
-                            <td>Mother in care at an ART Clinic?:</td>
+                            <td><label>Mother in care at an ART Clinic?:</label></td>
                             <td>
-                                <obs conceptId="162873"/>
+                                <obs conceptId="162873" labelText="Mother in Care?"/>
                             </td>
                             <td>
                                 <obs conceptId="162875" labelText="ART Clinic"/>
                             </td>
-                            <td colspan="3">
+                            <td>
                                 <obs conceptId="162874" labelText="Mother's ART No"/>
                             </td>
                         </tr>
                     </table>
-                </fieldset>
             </section>
 
             <section>
-                <fieldset>
-                    <legend>
+                    <h3>
                         Testing Information
-                    </legend>
+                    </h3>
 
                     <table class="table table-bordered custom-table">
                         <tr>
-                            <td>Test</td>
-                            <td>Test Date</td>
-                            <td>Feeding Method</td>
-                            <td>Result</td>
-                            <td>Date Results given to caregiver</td>
+                            <td><label>Test</label></td>
+                            <td><label>Date</label></td>
+                            <td><label>Feeding Method</label></td>
+                            <td><label>Result</label></td>
+                            <td><label>Date Results given to caregiver</label></td>
                         </tr>
                         <tr>
-                            <td>1st PCR</td>
+                            <td><label>1st PCR</label></td>
                             <td class="PCRTestResultEnableDisable1">
                                 <obs conceptId="99606" required="true" id="pcr1stDate"></obs>
                             </td>
@@ -616,7 +390,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>2nd PCR</td>
+                            <td><label>2nd PCR</label></td>
                             <td class="PCRTestResultEnableDisable2">
                                 <obs conceptId="99436"></obs>
                             </td>
@@ -631,7 +405,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Repeat PCR
+                            <td><label>Repeat PCR</label>
                                 <br/>
                                 (if necessary)
                             </td>
@@ -649,7 +423,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>18 Month Raid Test</td>
+                            <td><label>18 Month Raid Test</label></td>
                             <td class="PCRTestResultEnableDisable4">
                                 <obs conceptId="162879"/>
                             </td>
@@ -664,59 +438,54 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2">Final Status</td>
-                            <td colspan="2">
+                            <td><label>Final Status</label></td>
+                            <td>
                                 <obs conceptId="99797"/>
                             </td>
-                            <td colspan="1">Date
+                            <td colspan="3"><label>Date</label>
                                 <obs conceptId="99795"/>
                             </td>
                         </tr>
                     </table>
-                </fieldset>
             </section>
 
             <section>
-                <fieldset>
-                    <legend>
-                        Link to Care/Treatment
-                    </legend>
+                    <h3>
+                        Link to CareTreatment
+                    </h3>
 
                     <table class="table table-bordered custom-table">
                         <tr>
-                            <td>Referred to ART Clinic</td>
+                            <td><label>Referred to ART Clinic</label></td>
                             <td>
                                 <obs conceptId="99430"></obs>
                             </td>
                             <td>
-                                <obs conceptId="99434"></obs>
+                                <obs conceptId="99434" labelText="Presumptive Referral"></obs>
                             </td>
                         </tr>
                         <tr>
-                            <td>Enrolled at ART Clinic</td>
+                            <td><label>Enrolled at ART Clinic</label></td>
                             <td>
                                 <obs conceptId="99430"></obs>
                             </td>
                             <td>
-                                <encounterDate id="hivEnrolledDate"/>
+                                <encounterDate id="hivEnrolledDate" labelText="Enrollement Date"/>
                             </td>
                         </tr>
                         <tr>
-                            <td>Pre-ART No</td>
-                            <td>
+                            <td><label>Pre-ART No</label></td>
+                            <td colspan="2">
                                 <obs conceptId="99751"></obs>
                             </td>
-                            <td>Presumptive Referral?</td>
                         </tr>
                         <tr>
-                            <td>Final Outcome</td>
-                            <td>
+                            <td><label>Final Outcome</label></td>
+                            <td colspan="2">
                                 <obs conceptId="99428"></obs>
                             </td>
-                            <td>Date</td>
                         </tr>
                     </table>
-                </fieldset>
             </section>
         </div>
         <section>
