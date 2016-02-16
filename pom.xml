@@ -13,7 +13,13 @@
 
     <developers>
         <developer>
+            <name>Charles Olupot</name>
+        </developer>
+        <developer>
             <name>Jonathan Mpango</name>
+        </developer>
+        <developer>
+            <name>Samuel Lubwama</name>
         </developer>
         <developer>
             <name>Simon Peter Muwanga</name>
@@ -38,6 +44,7 @@
     <modules>
         <module>api</module>
         <module>omod</module>
+        <module>tools</module>
     </modules>
 
     <properties>
