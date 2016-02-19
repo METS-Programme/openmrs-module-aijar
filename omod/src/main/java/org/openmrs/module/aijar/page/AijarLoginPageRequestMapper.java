@@ -7,6 +7,9 @@ import org.openmrs.ui.framework.page.PageRequestMapper;
 import org.springframework.stereotype.Component;
 
 /**
+ *
+ * Overrides the mapping to the login page for the reference application to a custom page
+ *
  * Created by ssmusoke on 18/02/2016.
  */
 @Component
@@ -23,22 +26,15 @@ public class AijarLoginPageRequestMapper implements PageRequestMapper {
 	 * @return true if this page was mapped (by overriding the provider and/or page), false otherwise
 	 */
 	public boolean mapRequest(PageRequest request) {
-
-		System.out.println("The original request is " + request.toString());
-
 		if (request.getProviderName().equals("referenceapplication")) {
-			System.out.println("Reference Application Provider");
 			if (request.getPageName().equals("login")) {
-				System.out.println("Login Page");
-				// change to the provided login
+				// change to the custom login provided by the module
 				request.setProviderNameOverride("aijar");
 				request.setPageNameOverride("aijarLogin");
 
-				System.out.println("Overriding the provider and page name");
 				log.info(request.toString());
 			}
 		}
-		System.out.println(request.toString());
 		return true;
 	}
 }
