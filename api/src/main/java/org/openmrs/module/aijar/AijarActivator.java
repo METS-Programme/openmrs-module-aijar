@@ -106,10 +106,10 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         properties.add(new GlobalProperty(EmrApiConstants.PRIMARY_IDENTIFIER_TYPE, PatientIdentifierTypes.OPENMRS_ID.uuid()));
 
         // set the HIV care number and EID number as additional identifiers that can be searced for
-        properties.add(new GlobalProperty(EmrApiConstants.GP_EXTRA_PATIENT_IDENTIFIER_TYPES, PatientIdentifierTypes.HIV_CARE_NUMBER.uuid() + "," + PatientIdentifierTypes.EXPOSED_INFANT_NUMBER.uuid()));
+        properties.add(new GlobalProperty(EmrApiConstants.GP_EXTRA_PATIENT_IDENTIFIER_TYPES, PatientIdentifierTypes.HIV_CARE_NUMBER.uuid() + "," + PatientIdentifierTypes.EXPOSED_INFANT_NUMBER.uuid()+ "," + PatientIdentifierTypes.IPD_NUMBER+ "," + PatientIdentifierTypes.ANC_NUMBER+ "," + PatientIdentifierTypes.HCT_NUMBER));
 
         // set the name of the application
-        properties.add(new GlobalProperty("application.name", "AIJAR - Uganda eHealth Solution"));
+        properties.add(new GlobalProperty("application.name", "UgandaEMR - Uganda eHealth Solution"));
 
         // the search mode for patients to enable searching any part of names rather than the beginning
         properties.add(new GlobalProperty("patientSearch.matchMode", "ANYWHERE"));
@@ -126,6 +126,25 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         // Form Entry Settings
         properties.add(new GlobalProperty("FormEntry.enableDashboardTab", "true"));     // show as a tab on the patient dashboard
         properties.add(new GlobalProperty("FormEntry.FormEntry.enableOnEncounterTab", "true"));
+
+        //HTML Form Entry Settings
+        properties.add(new GlobalProperty("htmlformentry.showDateFormat", "false"));//Disable date format display on form entry
+
+        //Birt Settings
+       /* properties.add(new GlobalProperty("birt.alwaysUseOpenmrsJdbcProperties", "false"));
+        properties.add(new GlobalProperty("birt.birtHome", "/Users/jmpango/Data/birt/birt-runtime-2_3_2/ReportEngine"));
+        properties.add(new GlobalProperty("birt.datasetDir", "/Users/jmpango/Data/birt/reports/datasets"));
+        properties.add(new GlobalProperty("birt.loggingDir", "/Users/jmpango/Data/birt/logs"));
+        properties.add(new GlobalProperty("birt.defaultReportDesignFile", "default.rptdesign"));
+        properties.add(new GlobalProperty("birt.loggingLevel", "OFF"));
+        properties.add(new GlobalProperty("birt.mandatory", "false"));
+        properties.add(new GlobalProperty("birt.outputDir", "/Users/jmpango/Data/birt/reports/output"));
+        properties.add(new GlobalProperty("birt.reportDir", "/Users/jmpango/Data/birt/reports"));
+        properties.add(new GlobalProperty("birt.reportOutputFile", "/Users/jmpango/Data/birt/reports/output/ReportOutput.pdf"));
+        properties.add(new GlobalProperty("birt.reportOutputFormat", "pdf"));
+        properties.add(new GlobalProperty("birt.reportPreviewFile", "/Users/jmpango/Data/birt/reports/output/ReportPreview.pdf"));
+        properties.add(new GlobalProperty("birt.started", "true"));*/
+
 
         return properties;
     }

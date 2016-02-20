@@ -1,4 +1,5 @@
 <htmlform formName="HMIS 082a - Early Infant Exposed Card Encounter"
+          formDescription="Captures encounter details for infants born to HIV positive mothers"
           formEncounterType="8d5b2be0-c2cc-11de-8d13-0010c6dffd0f"
           formUuid="6f6b4802-7642-4226-84dc-ea7db01924b6"
           formVersion="1.2"
@@ -6,7 +7,7 @@
           formUILocation="patientDashboard.visitActions"
           formOrder="5"
           formIcon="icon-medkit"
-          formShowIf="visit.active &amp;&amp; patient.person.dead==false &amp;&amp; patient.person.age &lt; 2"
+          formShowIf="visit.active &amp;&amp; patient.person.dead==false &amp;&amp; patient.person.age &lt; 3 &amp;&amp; sessionLocation.uuid == 'e9bc61b5-69ff-414b-9cf0-0c22d6dfca2b'"
           formDisplayStyle="Standard"
           formLabel="EID Card - Encounter form">
     <macros>

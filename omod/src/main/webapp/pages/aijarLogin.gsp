@@ -10,15 +10,165 @@
     <link rel="shortcut icon" type="image/ico" href="/${ui.contextPath()}/images/openmrs-favicon.ico"/>
     <link rel="icon" type="image/png\" href="/${ui.contextPath()}/images/openmrs-favicon.png"/>
     ${ui.resourceLinks()}
+
+    <style media="screen" type="text/css">
+    body {
+        font-family: "OpenSans", Arial, sans-serif;
+        -webkit-font-smoothing: subpixel-antialiased;
+        max-width: 1000px;
+        margin: 10px auto;
+        background-color: white;
+    }
+
+    #body-wrapper {
+        margin-top: 10px;
+        padding: 10px;
+        background-color: white;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -o-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -khtml-border-radius: 5px;
+        border-radius: 5px;
+    }
+
+    #body-wrapper #content {
+        margin-top: 20px;
+        padding: 10px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -o-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -khtml-border-radius: 5px;
+        border-radius: 5px;
+    }
+
+    .logo {
+        margin: 0px;
+        text-align: center;
+    }
+
+    #error-message {
+        color: #B53D3D;
+        text-align: center;
+    }
+
+    .footer{
+        float: left;
+        margin: 0px 15px;
+        width: 95%;
+        display: inline-block;
+        font-size: 0.7em;
+        color: #808080;
+    }
+    .footer .left_al {
+        float: left;
+    }
+
+    .footer .right_al{
+        float: right;
+    }
+    .footer a{
+        color: #404040;
+        font-size: 1em;
+        padding: 5px;
+        text-decoration: none;
+    }
+    .footer a:hover{
+        color: #404040;
+        font-size: 1em;
+        padding: 5px;
+        text-decoration: underline;
+    }
+    .footer a:active{
+        color: #404040;
+        font-size: 1em;
+        padding: 5px;
+        text-decoration: none;
+    }
+    .footer a:after{
+        color: #404040;
+        font-size: 1em;
+        padding: 5px;
+        text-decoration: none;
+    }
+    header {
+        line-height: 1em;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -o-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -khtml-border-radius: 5px;
+        border-radius: 5px;
+        position: relative;
+        background-color: white;
+        color: #CCC;
+    }
+
+    header .logo img {
+        width: 200px;
+    }
+
+    header .logo {
+        float: none;
+        margin: 4px;
+    }
+
+    #login-form ul.select {
+        padding: 10px;
+        background: beige;
+    }
+
+    ul.select li.selected {
+        background-color: #94979A;
+        color: white;
+        border-color: transparent;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -o-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -khtml-border-radius: 5px;
+        border-radius: 5px;
+        padding: 5px;
+        text-align: center;
+    }
+
+    ul.select li:hover {
+        background-color: #AB3A15;
+        color: white;
+        cursor: pointer;
+    }
+
+    ul.select li {
+        margin: 0 10px;
+        text-align: left;
+        display: inline-block;
+        width: 20%;
+        padding: 5px;
+        color: #3B6692;
+        background-color: #FFF;
+        /* border-bottom: 1px solid #efefef; */
+        border: dashed 1px #CEC6C6;
+        text-align: center;
+    }
+
+    form fieldset, .form fieldset {
+        border: solid 1px #CECECE;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -o-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -khtml-border-radius: 5px;
+        border-radius: 5px;
+        background: #FFFFFB;
+    }
+    </style>
 </head>
 
 <body>
 <script type="text/javascript">
     var OPENMRS_CONTEXT_PATH = '${ ui.contextPath() }';
 </script>
-
-
-${ui.includeFragment("referenceapplication", "infoAndErrorMessages")}
 
 <script type="text/javascript">
     jQuery(function () {
@@ -61,18 +211,17 @@ ${ui.includeFragment("referenceapplication", "infoAndErrorMessages")}
     });
 </script>
 
-<header>
-    <div class="logo">
-        <a href="${ui.pageLink("referenceapplication", "home")}">
-            <img src="${ui.resourceLink("aijar", "images/moh_logo_large.png")}"/>
-        </a>
-    </div>
-</header>
-
 <div id="body-wrapper">
-    <div id="content">
-        <h1>Aijar Login page</h1>
+    <header>
+        <div class="logo">
+            <a href="${ui.pageLink("referenceapplication", "home")}">
+                <img src="${ui.resourceLink("aijar", "images/moh_logo_large.png")}"/>
+            </a>
+        </div>
+    </header>
 
+    ${ui.includeFragment("referenceapplication", "infoAndErrorMessages")}
+    <div id="content">
         <form id="login-form" method="post" autocomplete="off">
             <fieldset>
 
@@ -90,6 +239,7 @@ ${ui.includeFragment("referenceapplication", "infoAndErrorMessages")}
                 </p>
 
                 <p class="left">
+
                     <label for="password">
                         ${ui.message("referenceapplication.login.password")}:
                     </label>
@@ -131,6 +281,14 @@ ${ui.includeFragment("referenceapplication", "infoAndErrorMessages")}
 
         </form>
 
+    </div>
+    <div class="footer">
+        <div class="left_al">
+            &#169; 2016 All Rights Reserved<a href="http://www.health.go.ug" target="_blank" title="Ministry of Health Uganda">Ministry of Health - Republic of Uganda</a>
+        </div>
+        <div class="right_al">
+            Ver 1.2 powered by<a href="http://www.mets.or.ug" target="_blank" title="Makerere University School of Public Health METS Programme">METS Programme</a> <!--&#38; <a href="http://www.openmrs.org" target="_blank" title="OpenMRS">OpenMRS Inc.</a>-->
+        </div>
     </div>
 </div>
 
