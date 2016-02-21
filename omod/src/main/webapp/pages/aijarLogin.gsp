@@ -1,6 +1,9 @@
 <%
     ui.includeFragment("appui", "standardEmrIncludes")
     ui.includeCss("referenceapplication", "login.css")
+
+    def now = new Date()
+    def year = now.getAt(Calendar.YEAR);
 %>
 
 <!DOCTYPE html>
@@ -284,10 +287,12 @@
     </div>
     <div class="footer">
         <div class="left_al">
-            &#169; 2016 All Rights Reserved<a href="http://www.health.go.ug" target="_blank" title="Ministry of Health Uganda">Ministry of Health - Republic of Uganda</a>
+            &#169; ${year} All Rights Reserved <a href="http://www.health.go.ug" target="_blank"
+                                                  title="Ministry of Health Uganda">Ministry of Health - Republic of Uganda</a>
         </div>
         <div class="right_al">
-            Ver 1.2 powered by<a href="http://www.mets.or.ug" target="_blank" title="Makerere University School of Public Health METS Programme">METS Programme</a> <!--&#38; <a href="http://www.openmrs.org" target="_blank" title="OpenMRS">OpenMRS Inc.</a>-->
+            Ver ${project.parent.version} powered by <a href="http://www.mets.or.ug" target="_blank"
+                                                        title="Makerere University School of Public Health METS Programme">METS Programme</a>
         </div>
     </div>
 </div>
