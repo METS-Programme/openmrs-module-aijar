@@ -1,0 +1,1 @@
+"C:\Program Files\WHO\OpenMRS\mysql-5.0.51a-win32\bin\mysql" openmrs -u root --port=3307 < liquibasechangeloglock_cleanup.sql
