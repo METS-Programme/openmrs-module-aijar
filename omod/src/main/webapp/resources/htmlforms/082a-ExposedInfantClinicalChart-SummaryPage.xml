@@ -378,16 +378,16 @@
                         <tr>
                             <td><label>1st PCR</label></td>
                             <td class="PCRTestResultEnableDisable1">
-                                <obs conceptId="99606" required="true" id="pcr1stDate"></obs>
+                                <obs conceptId="99606"  id="pcr1stDate"></obs>
                             </td>
                             <td>
-                                <obs conceptId="99434" required="true" id="pcr1FeedingMethod"></obs>
+                                <obs conceptId="99434"  id="pcr1FeedingMethod"></obs>
                             </td>
                             <td class="PCRTestResultEnableDisableChild1">
-                                <obs conceptId="99435" required="true" id="pcr1Results"></obs>
+                                <obs conceptId="99435"  id="pcr1Results"></obs>
                             </td>
                             <td class="PCRTestResultEnableDisableChild1">
-                                <obs conceptId="99438" required="true" id="pcr1ResultDate"></obs>
+                                <obs conceptId="99438"  id="pcr1ResultDate"></obs>
                             </td>
                         </tr>
                         <tr>
