@@ -7,7 +7,7 @@
 		  formUILocation="patientDashboard.visitActions"
 		  formOrder="2"
 		  formIcon="icon-medkit"
-		  formShowIf="visit.active &amp;&amp; patient.person.dead==false &amp;&amp; patient.person.age &gt; 2 &amp;&amp; sessionLocation.uuid == '86863db4-6101-4ecf-9a86-5e716d6504e4'"
+		  formShowIf="visit.active &amp;&amp; patient.person.dead==false &amp;&amp; patient.person.age &gt; 2"
 		  formDisplayStyle="Standard"
 		  formLabel="ART Card - Health Education Form">
 	<macros>

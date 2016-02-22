@@ -252,7 +252,8 @@
 
                 <p class="clear">
                     <label for="sessionLocation">
-                        ${ui.message("referenceapplication.login.sessionLocation")}:
+                        Select appropriate area for your session:
+                        <!--${ui.message("referenceapplication.login.sessionLocation")}:-->
                     </label>
                 <ul id="sessionLocation" class="select">
                     <% locations.sort { ui.format(it) }.each { %>
