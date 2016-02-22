@@ -120,6 +120,47 @@
 
         }
 
+
+        function enable_disable_link_to_care(selected_option) {
+
+            var class_name = jq(selected_option).attr("class");
+
+            var length = class_name.length;
+
+            var class_id = parseInt(class_name.substring(length - 1, length))
+
+            var row_id = class_id;
+
+            var disable = true;
+
+            var row_1 = '[class^="LinkToCare"][class*="Child1"]';
+
+            var xx = row_1;
+            var selected_value = jq(selected_option).find(":selected").text();
+
+            selected_value = selected_value.trim().toLowerCase();
+
+            if (selected_value == "positive") {
+                disable = false;
+            }
+
+            switch (row_id) {
+                case 1:
+                    xx = row_1;
+                    break;
+            }
+
+            jq(xx).each(function () {
+                var group = jq(this);
+
+                if (class_name.indexOf('Child') == -1) {
+                    group.find("input").attr("disabled", disable);
+                    group.find('select').attr("disabled", disable);
+                }
+            });
+
+        }
+
         if (jQuery) {
             jq(document).ready(function () {
                 if (jq.browser.msie) {
@@ -147,10 +188,12 @@
                 }
 
                 if (ageInMonths &lt; 18 || ageInMonths == 18) {
-                    document.getElementById("statusAbove18Months").style.display = "none";
+                    document.getElementById("statusAbove18Months").remove();
+                    jq("span#statusAbove18Months :input").attr("disabled", true);
                 }
                 else if (ageInMonths &gt; 18) {
-                    document.getElementById("statusBelow18Months").style.display = "none";
+                    document.getElementById("statusBelow18Months").remove();
+                    jq("span#statusBelow18Months :input").attr("disabled", true);
                 }
 
                 //enable nvp if child is atleast ctxDays days old
@@ -172,6 +215,14 @@
                     enable_disable_pcr1(jq(this));
                 });
 
+                jq('[class^="LinkToCareEnableDisable"]').change(function () {
+                    enable_disable_link_to_care(jq(this));
+                });
+
+                jq('[class^="LinkToCareEnableDisable"]').each(function () {
+                    enable_disable_link_to_care(jq(this));
+                });
+
                 /*TODO:fixing enable disable for PCRs
                  jq('[class^="PCRTestResultEnableDisable"]').change(function () {
                  enable_disable_pcr_test_result(jq(this));
@@ -182,8 +233,7 @@
                  });*/
             });
         }
-    </script>
-    <script type="text/javascript">
+
         function val() {
             document.getElementById("fgh").disabled = "true";
         }
@@ -453,16 +503,16 @@
                         <td><label>Final Status</label></td>
                         <td>
                             <!-- <lookup complexExpression="#set($ageInMonths = fn.patientAgeInMonths())"/>-->
-                            <span id="statusAbove18Months">
+                            <span id="statusAbove18Months" class="LinkToCareEnableDisable1">
                                 <obs conceptId="99797"/>
                             </span>
 
-                           <span id="statusBelow18Months">
+                           <span id="statusBelow18Months" class="LinkToCareEnableDisable1">
                                 <obs conceptId="99797" answerConceptIds="703"
                                      answerLabels="POSITIVE"/>
                             </span>
                         </td>
-                        <td colspan="3"><label>Date</label>
+                        <td colspan="3" class="LinkToCareEnableDisableChild1"><label>Date</label>
                             <obs conceptId="99795"/>
                         </td>
                     </tr>
@@ -477,30 +527,36 @@
                 <table class="table table-bordered custom-table">
                     <tr>
                         <td><label>Referred to ART Clinic</label></td>
-                        <td>
+                        <td class="LinkToCareEnableDisableChild1">
                             <obs conceptId="99430"></obs>
                         </td>
-                        <td>
+                        <td class="LinkToCareEnableDisableChild1">
                             <obs conceptId="99434" labelText="Presumptive Referral"></obs>
                         </td>
                     </tr>
                     <tr>
                         <td><label>Enrolled at ART Clinic</label></td>
-                        <td>
+                        <td class="LinkToCareEnableDisableChild1">
                             <obs conceptId="99430"></obs>
                         </td>
-                        <td>
+                        <td class="LinkToCareEnableDisableChild1">
                             <encounterDate id="hivEnrolledDate" labelText="Enrollement Date"/>
                         </td>
                     </tr>
                     <tr>
-                        <td><label>Pre-ART No</label></td>
-                        <td colspan="2">
+                        <td ><label>Pre-ART No</label></td>
+                        <td colspan="2" class="LinkToCareEnableDisableChild1">
                             <obs conceptId="99751"></obs>
                         </td>
                     </tr>
+                </table>
+            </section>
+            <section>
+                <h3>
+                    Final Outcome
+                </h3>
+                <table>
                     <tr>
-                        <td><label>Final Outcome</label></td>
                         <td colspan="2">
                             <obs conceptId="99428"></obs>
                         </td>
