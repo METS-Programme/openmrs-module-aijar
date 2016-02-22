@@ -7,7 +7,7 @@
           formUILocation="patientDashboard.visitActions"
           formOrder="6"
           formIcon="icon-medkit"
-          formShowIf="visit.active &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid == 'ba158c33-dc43-4306-9a4a-b4075751d36c'"
+          formShowIf="visit.active &amp;&amp; patient.person.dead==false"
           formDisplayStyle="Standard"
           formLabel="HCT Client Card">
     <macros>
