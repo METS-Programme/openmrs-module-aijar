@@ -14,43 +14,58 @@
         headerColor =#8fabc7
         fontOnHeaderColor = white
     </macros>
+
+    <ifMode mode="EDIT" include="false">
+        <lookup complexExpression="
+            #set( $encounter = 0 )
+            #set( $encounter = $fn.latestEncounter('8d5b27bc-c2cc-11de-8d13-0010c6dffd0f'))
+            #if( $encounter != 0 )
+                &lt;script type=&quot;text/javascript&quot;>
+                        // check that the HTML form is not being edited via the edit HTML form admin page
+                        if (window.location.href.indexOf('/module/htmlformentry/htmlForm.form') == -1) {
+                            window.location.href = window.location.protocol + &quot;//&quot; + window.location.host + &quot;/&quot;+ OPENMRS_CONTEXT_PATH + &quot;/htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=$encounter.patientId&amp;visitId=$encounter.visit.visitId&amp;formUuid=860c5f2f-cf3c-4c3f-b0c4-9958b6a5a938&amp;encounterId=$encounter.encounterId&amp;returnUrl=%2F&quot; + OPENMRS_CONTEXT_PATH + &quot;%2Fcoreapps%2Fclinicianfacing%2Fpatient.page%3FpatientId%3D$encounter.patientId&quot;;
+                        }
+                &lt;/script>
+            #end"/>
+    </ifMode>
     <style type="text/css">
-        .error{
-        color: red;
+        .error {
+            color: red;
         }
 
-        table td{
-        background: #7BB3D0;
-        color: #404040;
+        table td {
+            background: #7BB3D0;
+            color: #404040;
         }
 
         form select, .form select {
-        min-width: 0px;
+            min-width: 0px;
         }
 
         form input, form select, form textarea, form ul.select, .form input, .form select, .form textarea, .form
         ul.select {
-        background-color: #FBFBFB;
-        border: 1px solid #404040;
-        border-radius: 5px;
-        margin-bottom: 10px;
-        padding: 10px;
-        min-width: 50%;
+            background-color: #FBFBFB;
+            border: 1px solid #404040;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 10px;
+            min-width: 50%;
         }
+
         .row {
-        width: 100%;
-        float: left;
-        display: inline-flex;
-        clear: both;
+            width: 100%;
+            float: left;
+            display: inline-flex;
+            clear: both;
         }
 
         .row .row-col2 {
-        float: left;
-        width: 50%;
+            float: left;
+            width: 50%;
         }
 
         table th, table td {
-        border: 1px solid #BDBDBD;
+            border: 1px solid #BDBDBD;
         }
     </style>
 
@@ -119,6 +134,47 @@
 
         }
 
+
+        function enable_disable_link_to_care(selected_option) {
+
+            var class_name = jq(selected_option).attr("class");
+
+            var length = class_name.length;
+
+            var class_id = parseInt(class_name.substring(length - 1, length))
+
+            var row_id = class_id;
+
+            var disable = true;
+
+            var row_1 = '[class^="LinkToCare"][class*="Child1"]';
+
+            var xx = row_1;
+            var selected_value = jq(selected_option).find(":selected").text();
+
+            selected_value = selected_value.trim().toLowerCase();
+
+            if (selected_value == "positive") {
+                disable = false;
+            }
+
+            switch (row_id) {
+                case 1:
+                    xx = row_1;
+                    break;
+            }
+
+            jq(xx).each(function () {
+                var group = jq(this);
+
+                if (class_name.indexOf('Child') == -1) {
+                    group.find("input").attr("disabled", disable);
+                    group.find('select').attr("disabled", disable);
+                }
+            });
+
+        }
+
         if (jQuery) {
             jq(document).ready(function () {
                 if (jq.browser.msie) {
@@ -132,15 +188,26 @@
                 var gender = jq("span.gender").html();
                 var age = jq("span.age").html();
                 var ageInDays = jq("span.patientAgeInDays").html();
+                var ageInMonths = jq("span.patientAgeInMonths").html();
                 var ctxDays = 42; //This is equal to six weeks
                 var nvpDays = 1;  //This is one day
                 var pcr1stDays = 42;  //This is one day
 
-                jq('span.patientAgeInDays')[0].style.visibility = 'hidden';
+                jq('.patientAgeInDays').hide();
+                jq('.patientAgeInMonths').hide();
 
                 //enable nvp if child is atleast nvpDays days old
                 if (ageInDays &lt; nvpDays) {
                     jq("span#nvpDate :input").attr("disabled", true);
+                }
+
+                if (ageInMonths &lt; 18 || ageInMonths == 18) {
+                    jq("#statusAbove18Months").remove();
+                    jq("span#statusAbove18Months :input").attr("disabled", true);
+                }
+                else if (ageInMonths &gt; 18) {
+                    jq("#statusBelow18Months").remove();
+                    jq("span#statusBelow18Months :input").attr("disabled", true);
                 }
 
                 //enable nvp if child is atleast ctxDays days old
@@ -162,18 +229,25 @@
                     enable_disable_pcr1(jq(this));
                 });
 
-               /*TODO:fixing enable disable for PCRs
-                jq('[class^="PCRTestResultEnableDisable"]').change(function () {
-                    enable_disable_pcr_test_result(jq(this));
+                jq('[class^="LinkToCareEnableDisable"]').change(function () {
+                    enable_disable_link_to_care(jq(this));
                 });
 
-                jq('[class^="PCRTestResultEnableDisable"]').each(function () {
-                    enable_disable_pcr_test_result(jq(this));
-                });*/
+                jq('[class^="LinkToCareEnableDisable"]').each(function () {
+                    enable_disable_link_to_care(jq(this));
+                });
+
+                /*TODO:fixing enable disable for PCRs
+                 jq('[class^="PCRTestResultEnableDisable"]').change(function () {
+                 enable_disable_pcr_test_result(jq(this));
+                 });
+
+                 jq('[class^="PCRTestResultEnableDisable"]').each(function () {
+                 enable_disable_pcr_test_result(jq(this));
+                 });*/
             });
         }
-    </script>
-    <script type="text/javascript">
+
         function val() {
             document.getElementById("fgh").disabled = "true";
         }
@@ -185,308 +259,323 @@
         </div>
         <div class="ai-page-content">
             <section>
-                    <h3>
-                        Care Entry Point
-                    </h3>
+                <h3>
+                    Care Entry Point
+                </h3>
 
-                    <table class="table table-bordered custom-table">
-                        <tr>
-                            <td>
-                                <label>EID Number:</label>
-                                <patient field="identifier" identifierTypeId="2c5b695d-4bf3-452f-8a7c-fe3ee3432ffe"
-                                         required="true"/>
-                            </td>
-                            <td><label>Date Chart Openned:</label>
-                                <encounterDate default="today"></encounterDate>
-                            </td>
-                            <td><label>Entry Point (Clinic/Ward):</label>
-                                <encounterLocation default="1"/>
-                            </td>
-                        </tr>
-                        <tr>
+                <table class="table table-bordered custom-table">
+                    <tr>
+                        <td>
+                            <label>EID Number:</label>
+                            <patient field="identifier" identifierTypeId="2c5b695d-4bf3-452f-8a7c-fe3ee3432ffe"
+                                     required="true"/>
+                        </td>
+                        <td><label>Date Chart Openned:</label>
+                            <encounterDate default="today"></encounterDate>
+                        </td>
+                        <td><label>Entry Point (Clinic/Ward):</label>
+                            <encounterLocation default="1"/>
+                        </td>
+                    </tr>
+                    <tr>
 
-                            <td>
-                                <lookup expression="fn.patientAgeInDays()" class="patientAgeInDays"/>
-                                <label>Date of NVP Start:</label>
-                                <obs conceptId="99771" id="nvpDate"/>
-                            </td>
-                            <td><label>Date of CTX Start:</label>
-                                <obs conceptId="99773" id="ctxDate"/>
-                            </td>
-                            <td>
-                                <label> Clinical Team Leader:</label>
-                                <encounterProvider role="Provider" style="autocomplete"/>
-                            </td>
-                        </tr>
-                    </table>
+                        <td>
+                            <lookup expression="fn.patientAgeInDays()" class="patientAgeInDays"/>
+                            <lookup expression="fn.patientAgeInMonths()" class="patientAgeInMonths"/>
+                            <label>Date of NVP Start:</label>
+                            <obs conceptId="99771" id="nvpDate"/>
+                        </td>
+                        <td><label>Date of CTX Start:</label>
+                            <obs conceptId="99773" id="ctxDate"/>
+                        </td>
+                        <td>
+                            <label> Clinical Team Leader:</label>
+                            <encounterProvider role="Provider" style="autocomplete"/>
+                        </td>
+                    </tr>
+                </table>
             </section>
 
             <section>
-                    <h3>
-                        Mother/Caregiver/Follow-up Information
-                    </h3>
+                <h3>
+                    Mother/Caregiver/Follow-up Information
+                </h3>
 
-                    <table class="table table-bordered custom-table">
-                        <tr>
-                            <td><label>Mothers's Names</label>
-                                <obs conceptId="99776"/>
-                            </td>
-                            <td colspan="2"><label>Common Name:</label>
-                                <obs conceptId="99775"/>
-                            </td>
-                        </tr>
+                <table class="table table-bordered custom-table">
+                    <tr>
+                        <td><label>Mothers's Names</label>
+                            <obs conceptId="99776"/>
+                        </td>
+                        <td colspan="2"><label>Common Name:</label>
+                            <obs conceptId="99775"/>
+                        </td>
+                    </tr>
 
-                        <tr>
-                            <td><label>District:</label>
-                                <obs conceptId="162884"/>
-                            </td>
-                            <td><label>County:</label>
-                                <obs conceptId="162885"/>
-                            </td>
-                            <td><label>Sub County:</label>
-                                <obs conceptId="162886"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label>Parish:</label>
-                                <obs conceptId="162888"/>
-                            </td>
-                            <td colspan="2"><label>Village:</label>
-                                <obs conceptId="162887"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label>Telephone:</label>
-                                <obs conceptId="162889"/>
-                            </td>
-                            <td colspan="2">
-                                <obs conceptId="99117" size="20" labelText="Whose:"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label>LCI Zone</label></td>
-                            <td colspan="2">
-                                <obs conceptId="99137"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label>LC1 Chairman</label></td>
-                            <td colspan="2">
-                                <obs conceptId="162866"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="3"><label>How should outreach workers introduce themselves</label>
-                                <obs conceptId="162867" style="textarea"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="3"><label>Directions to caregiver's home address:</label>
-                                <obs conceptId="162868" style="textarea"/>
-                            </td>
+                    <tr>
+                        <td><label>District:</label>
+                            <obs conceptId="162884"/>
+                        </td>
+                        <td><label>County:</label>
+                            <obs conceptId="162885"/>
+                        </td>
+                        <td><label>Sub County:</label>
+                            <obs conceptId="162886"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Parish:</label>
+                            <obs conceptId="162888"/>
+                        </td>
+                        <td colspan="2"><label>Village:</label>
+                            <obs conceptId="162887"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Telephone:</label>
+                            <obs conceptId="162889"/>
+                        </td>
+                        <td colspan="2">
+                            <obs conceptId="99117" size="20" labelText="Whose:"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>LCI Zone</label></td>
+                        <td colspan="2">
+                            <obs conceptId="99137"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>LC1 Chairman</label></td>
+                        <td colspan="2">
+                            <obs conceptId="162866"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><label>How should outreach workers introduce themselves</label>
+                            <obs conceptId="162867" style="textarea"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><label>Directions to caregiver's home address:</label>
+                            <obs conceptId="162868" style="textarea"/>
+                        </td>
 
-                        </tr>
+                    </tr>
 
-                        <tr>
-                            <td><label>Alternative Contact Person:</label>
-                                <obs conceptId="162869"/>
-                            </td>
-                            <td colspan="2">
-                                <obs conceptId="90269" labelText="Relationship:"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label>Telephone No:</label>
-                                <obs conceptId="162870"/>
-                            </td>
-                            <td colspan="2">
-                                <label>Has This Person been disclosed to?</label>
-                                <obs conceptId="162871"/>
-                            </td>
-                        </tr>
-                    </table>
+                    <tr>
+                        <td><label>Alternative Contact Person:</label>
+                            <obs conceptId="162869"/>
+                        </td>
+                        <td colspan="2">
+                            <obs conceptId="90269" labelText="Relationship:"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Telephone No:</label>
+                            <obs conceptId="162870"/>
+                        </td>
+                        <td colspan="2">
+                            <label>Has This Person been disclosed to?</label>
+                            <obs conceptId="162871"/>
+                        </td>
+                    </tr>
+                </table>
             </section>
 
             <section>
-                    <h3>
-                        Mother's History
-                    </h3>
+                <h3>
+                    Mother's History
+                </h3>
 
-                    <table class="table table-bordered custom-table">
-                        <tr>
-                            <td><label>Place of Delivery:</label>
-                                <obs conceptId="99570" labelText=""/>
-                            </td>
-                            <td colspan="3"><label>Mode of Delivery:</label>
-                                <obs conceptId="5630" labelText=""/>
-                            </td>
-                        </tr>
+                <table class="table table-bordered custom-table">
+                    <tr>
+                        <td><label>Place of Delivery:</label>
+                            <obs conceptId="99570" labelText=""/>
+                        </td>
+                        <td colspan="3"><label>Mode of Delivery:</label>
+                            <obs conceptId="5630" labelText=""/>
+                        </td>
+                    </tr>
 
-                        <tr>
-                            <td><label>Mother recieved ARVs for PMTCT:</label>
-                            </td>
-                            <td colspan="3">
-                                <obs conceptId="99777" labelText="Mother's ANC No.:"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label>Mother's ARVs:</label></td>
-                            <td>
-                                <obs conceptId="99783" labelText="For ANC:"/>
-                            </td>
-                            <td>
-                                <obs conceptId="99784" labelText="During Labour/Delivery:"/>
-                            </td>
-                            <td>
-                                <obs conceptId="99785" labelText="Postnatal:"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label>Infant's ARVs:</label></td>
-                            <td colspan="3">
-                                <obs conceptId="99787" labelText="" size="100" style="radio"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label>Mother in care at an ART Clinic?:</label></td>
-                            <td>
-                                <obs conceptId="162873" labelText="Mother in Care?"/>
-                            </td>
-                            <td>
-                                <obs conceptId="162875" labelText="ART Clinic"/>
-                            </td>
-                            <td>
-                                <obs conceptId="162874" labelText="Mother's ART No"/>
-                            </td>
-                        </tr>
-                    </table>
+                    <tr>
+                        <td><label>Mother recieved ARVs for PMTCT:</label>
+                        </td>
+                        <td colspan="3">
+                            <obs conceptId="99777" labelText="Mother's ANC No.:"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Mother's ARVs:</label></td>
+                        <td>
+                            <obs conceptId="99783" labelText="For ANC:"/>
+                        </td>
+                        <td>
+                            <obs conceptId="99784" labelText="During Labour/Delivery:"/>
+                        </td>
+                        <td>
+                            <obs conceptId="99785" labelText="Postnatal:"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Infant's ARVs:</label></td>
+                        <td colspan="3">
+                            <obs conceptId="99787" labelText="" size="100" style="radio"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Mother in care at an ART Clinic?:</label></td>
+                        <td>
+                            <obs conceptId="162873" labelText="Mother in Care?"/>
+                        </td>
+                        <td>
+                            <obs conceptId="162875" labelText="ART Clinic"/>
+                        </td>
+                        <td>
+                            <obs conceptId="162874" labelText="Mother's ART No"/>
+                        </td>
+                    </tr>
+                </table>
             </section>
 
             <section>
-                    <h3>
-                        Testing Information
-                    </h3>
+                <h3>
+                    Testing Information
+                </h3>
 
-                    <table class="table table-bordered custom-table">
-                        <tr>
-                            <td><label>Test</label></td>
-                            <td><label>Date</label></td>
-                            <td><label>Feeding Method</label></td>
-                            <td><label>Result</label></td>
-                            <td><label>Date Results given to caregiver</label></td>
-                        </tr>
-                        <tr>
-                            <td><label>1st PCR</label></td>
-                            <td class="PCRTestResultEnableDisable1">
-                                <obs conceptId="99606" required="true" id="pcr1stDate"></obs>
-                            </td>
-                            <td>
-                                <obs conceptId="99434" required="true" id="pcr1FeedingMethod"></obs>
-                            </td>
-                            <td class="PCRTestResultEnableDisableChild1">
-                                <obs conceptId="99435" required="true" id="pcr1Results"></obs>
-                            </td>
-                            <td class="PCRTestResultEnableDisableChild1">
-                                <obs conceptId="99438" required="true" id="pcr1ResultDate"></obs>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label>2nd PCR</label></td>
-                            <td class="PCRTestResultEnableDisable2">
-                                <obs conceptId="99436"></obs>
-                            </td>
-                            <td>
-                                <obs conceptId="99794"></obs>
-                            </td>
-                            <td class="PCRTestResultEnableDisableChild2">
-                                <obs conceptId="99440"></obs>
-                            </td>
-                            <td class="PCRTestResultEnableDisableGrandChild2">
-                                <obs conceptId="99442"></obs>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label>Repeat PCR</label>
-                                <br/>
-                                (if necessary)
-                            </td>
-                            <td class="PCRTestResultEnableDisable3">
-                                <obs conceptId="162876"/>
-                            </td>
-                            <td>
-                                <obs conceptId="162877"/>
-                            </td>
-                            <td class="PCRTestResultEnableDisableChild3">
-                                <obs conceptId="162881"/>
-                            </td>
-                            <td class="PCRTestResultEnableDisableGrandChild3">
-                                <obs conceptId="162882"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label>18 Month Raid Test</label></td>
-                            <td class="PCRTestResultEnableDisable4">
-                                <obs conceptId="162879"/>
-                            </td>
-                            <td>
-                                <obs conceptId="162878"/>
-                            </td>
-                            <td class="PCRTestResultEnableDisableChild4">
-                                <obs conceptId="162880"/>
-                            </td>
-                            <td class="PCRTestResultEnableDisableGrandChild4">
-                                <obs conceptId="162883"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label>Final Status</label></td>
-                            <td>
+                <table class="table table-bordered custom-table">
+                    <tr>
+                        <td><label>Test</label></td>
+                        <td><label>Date</label></td>
+                        <td><label>Feeding Method</label></td>
+                        <td><label>Result</label></td>
+                        <td><label>Date Results given to caregiver</label></td>
+                    </tr>
+                    <tr>
+                        <td><label>1st PCR</label></td>
+                        <td class="PCRTestResultEnableDisable1">
+                            <obs conceptId="99606" id="pcr1stDate"></obs>
+                        </td>
+                        <td>
+                            <obs conceptId="99434" id="pcr1FeedingMethod"></obs>
+                        </td>
+                        <td class="PCRTestResultEnableDisableChild1">
+                            <obs conceptId="99435" id="pcr1Results"></obs>
+                        </td>
+                        <td class="PCRTestResultEnableDisableChild1">
+                            <obs conceptId="99438" id="pcr1ResultDate"></obs>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>2nd PCR</label></td>
+                        <td class="PCRTestResultEnableDisable2">
+                            <obs conceptId="99436"></obs>
+                        </td>
+                        <td>
+                            <obs conceptId="99794"></obs>
+                        </td>
+                        <td class="PCRTestResultEnableDisableChild2">
+                            <obs conceptId="99440"></obs>
+                        </td>
+                        <td class="PCRTestResultEnableDisableGrandChild2">
+                            <obs conceptId="99442"></obs>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Repeat PCR</label>
+                            <br/>
+                            (if necessary)
+                        </td>
+                        <td class="PCRTestResultEnableDisable3">
+                            <obs conceptId="162876"/>
+                        </td>
+                        <td>
+                            <obs conceptId="162877"/>
+                        </td>
+                        <td class="PCRTestResultEnableDisableChild3">
+                            <obs conceptId="162881"/>
+                        </td>
+                        <td class="PCRTestResultEnableDisableGrandChild3">
+                            <obs conceptId="162882"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>18 Month Raid Test</label></td>
+                        <td class="PCRTestResultEnableDisable4">
+                            <obs conceptId="162879"/>
+                        </td>
+                        <td>
+                            <obs conceptId="162878"/>
+                        </td>
+                        <td class="PCRTestResultEnableDisableChild4">
+                            <obs conceptId="162880"/>
+                        </td>
+                        <td class="PCRTestResultEnableDisableGrandChild4">
+                            <obs conceptId="162883"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Final Status</label></td>
+                        <td>
+                            <!-- <lookup complexExpression="#set($ageInMonths = fn.patientAgeInMonths())"/>-->
+                            <span id="statusAbove18Months" class="LinkToCareEnableDisable1">
                                 <obs conceptId="99797"/>
-                            </td>
-                            <td colspan="3"><label>Date</label>
-                                <obs conceptId="99795"/>
-                            </td>
-                        </tr>
-                    </table>
+                            </span>
+
+                           <span id="statusBelow18Months" class="LinkToCareEnableDisable1">
+                                <obs conceptId="99797" answerConceptIds="703"
+                                     answerLabels="POSITIVE"/>
+                            </span>
+                        </td>
+                        <td colspan="3"><label>Date</label>
+                            <obs conceptId="99795"/>
+                        </td>
+                    </tr>
+                </table>
             </section>
 
             <section>
-                    <h3>
-                        Link to CareTreatment
-                    </h3>
+                <h3>
+                    Link to CareTreatment
+                </h3>
 
-                    <table class="table table-bordered custom-table">
-                        <tr>
-                            <td><label>Referred to ART Clinic</label></td>
-                            <td>
-                                <obs conceptId="99430"></obs>
-                            </td>
-                            <td>
-                                <obs conceptId="99434" labelText="Presumptive Referral"></obs>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label>Enrolled at ART Clinic</label></td>
-                            <td>
-                                <obs conceptId="99430"></obs>
-                            </td>
-                            <td>
-                                <encounterDate id="hivEnrolledDate" labelText="Enrollement Date"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label>Pre-ART No</label></td>
-                            <td colspan="2">
-                                <obs conceptId="99751"></obs>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label>Final Outcome</label></td>
-                            <td colspan="2">
-                                <obs conceptId="99428"></obs>
-                            </td>
-                        </tr>
-                    </table>
+                <table class="table table-bordered custom-table">
+                    <tr>
+                        <td><label>Referred to ART Clinic</label></td>
+                        <td class="LinkToCareEnableDisableChild1">
+                            <obs conceptId="99430"></obs>
+                        </td>
+                        <td class="LinkToCareEnableDisableChild1">
+                            <obs conceptId="99434" labelText="Presumptive Referral"></obs>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Enrolled at ART Clinic</label></td>
+                        <td class="LinkToCareEnableDisableChild1">
+                            <obs conceptId="99430"></obs>
+                        </td>
+                        <td class="LinkToCareEnableDisableChild1">
+                            <encounterDate id="hivEnrolledDate" labelText="Enrollement Date"  required="false"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td ><label>Pre-ART No</label></td>
+                        <td colspan="2" class="LinkToCareEnableDisableChild1">
+                            <obs conceptId="99751"></obs>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+            <section>
+                <h3>
+                    Final Outcome
+                </h3>
+                <table>
+                    <tr>
+                        <td colspan="2">
+                            <obs conceptId="99428"></obs>
+                        </td>
+                    </tr>
+                </table>
             </section>
         </div>
         <section>
