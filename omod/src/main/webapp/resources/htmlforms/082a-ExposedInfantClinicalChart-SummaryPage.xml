@@ -14,6 +14,20 @@
         headerColor =#8fabc7
         fontOnHeaderColor = white
     </macros>
+
+    <ifMode mode="EDIT" include="false">
+        <lookup complexExpression="
+            #set( $encounter = 0 )
+            #set( $encounter = $fn.latestEncounter('8d5b27bc-c2cc-11de-8d13-0010c6dffd0f'))
+            #if( $encounter != 0 )
+                &lt;script type=&quot;text/javascript&quot;>
+                        // check that the HTML form is not being edited via the edit HTML form admin page
+                        if (window.location.href.indexOf('/module/htmlformentry/htmlForm.form') == -1) {
+                            window.location.href = window.location.protocol + &quot;//&quot; + window.location.host + &quot;/&quot;+ OPENMRS_CONTEXT_PATH + &quot;/htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=$encounter.patientId&amp;visitId=$encounter.visit.visitId&amp;formUuid=860c5f2f-cf3c-4c3f-b0c4-9958b6a5a938&amp;encounterId=$encounter.encounterId&amp;returnUrl=%2F&quot; + OPENMRS_CONTEXT_PATH + &quot;%2Fcoreapps%2Fclinicianfacing%2Fpatient.page%3FpatientId%3D$encounter.patientId&quot;;
+                        }
+                &lt;/script>
+            #end"/>
+    </ifMode>
     <style type="text/css">
         .error {
             color: red;
@@ -179,8 +193,8 @@
                 var nvpDays = 1;  //This is one day
                 var pcr1stDays = 42;  //This is one day
 
-                jq('span.patientAgeInDays')[0].style.visibility = 'hidden';
-                jq('span.patientAgeInMonths')[0].style.visibility = 'hidden';
+                jq('.patientAgeInDays').hide();
+                jq('.patientAgeInMonths').hide();
 
                 //enable nvp if child is atleast nvpDays days old
                 if (ageInDays &lt; nvpDays) {
@@ -188,11 +202,11 @@
                 }
 
                 if (ageInMonths &lt; 18 || ageInMonths == 18) {
-                    document.getElementById("statusAbove18Months").remove();
+                    jq("#statusAbove18Months").remove();
                     jq("span#statusAbove18Months :input").attr("disabled", true);
                 }
                 else if (ageInMonths &gt; 18) {
-                    document.getElementById("statusBelow18Months").remove();
+                    jq("#statusBelow18Months").remove();
                     jq("span#statusBelow18Months :input").attr("disabled", true);
                 }
 
@@ -540,7 +554,7 @@
                             <obs conceptId="99430"></obs>
                         </td>
                         <td class="LinkToCareEnableDisableChild1">
-                            <encounterDate id="hivEnrolledDate" labelText="Enrollement Date"/>
+                            <encounterDate id="hivEnrolledDate" labelText="Enrollement Date"  required="false"/>
                         </td>
                     </tr>
                     <tr>
