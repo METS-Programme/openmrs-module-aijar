@@ -1,5 +1,6 @@
 package org.openmrs.module.aijar.metadata.core;
 
+import org.openmrs.module.aijar.identifier.EIDIdentifierValidator;
 import org.openmrs.module.idgen.validator.LuhnModNIdentifierValidator;
 import org.openmrs.module.metadatadeploy.descriptor.PatientIdentifierTypeDescriptor;
 import org.openmrs.patient.IdentifierValidator;
@@ -52,12 +53,15 @@ public class PatientIdentifierTypes {
             return "2c5b695d-4bf3-452f-8a7c-fe3ee3432ffe";
         }
 
-        public String format() {
-            return "[E][X][P][\\/][0-9][0-9][0-9][0-9]";
+        public String formatDescription() {
+            return "Either EXP/ followed by 4 numbers with no spaces for the EXP number or 01/16/001 (month/year/ "
+                    + "number) for "
+                    + "the Birth "
+                    + "Cohort number";
         }
 
-        public String formatDescription() {
-            return " EXP/ followed by 4 numbers with no spaces";
+        public Class<? extends IdentifierValidator> validator() {
+            return EIDIdentifierValidator.class;
         }
     };
 
