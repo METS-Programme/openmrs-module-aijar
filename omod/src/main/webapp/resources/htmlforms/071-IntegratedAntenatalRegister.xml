@@ -74,9 +74,7 @@
                 else if (class_name.indexOf('GrandChild') == -1) {
                     group.find("input").attr("disabled", disable);
                 }
-
             });
-
         }
 
 
@@ -155,6 +153,38 @@
             });
         }
 
+
+        function enable_disable_arvs() {
+            var selected_value = jq("#ARVSEnableDisable1").find(":selected").text();
+
+            var disable = false
+            var selector="";
+
+            var group = jq("#ARVSEnableDisableChild1");
+
+            if (selected_value == "TR" || selected_value == "TR√" || selected_value == "TR+") {
+                disable = true;
+                selector = "selected";
+            }
+            else {
+                disable = false;
+                selector = "";
+            }
+
+            group.find('select option[value=99745]').attr("disabled", disable);
+            group.find('select option[value=99746]').attr("disabled", disable);
+            group.find('select option[value=99747]').attr("disabled", disable);
+            group.find('select option[value=99748]').attr("disabled", disable);
+            if (selector == "selected") {
+                group.find('select option[value=1175]').attr("selected", selector);
+            }
+            else{
+                group.find('select option[value=1175]').removeAttribute("selected");
+            }
+
+
+        }
+
         if (jQuery) {
             jq(document).ready(function () {
                 if (jq.browser.msie) {
@@ -178,51 +208,61 @@
                 jq('[class^="EMTCTCodesEnableDisable"]').each(function () {
                     enable_disable_emtct_codes(jq(this));
                 });
+                jq("#ARVSEnableDisable1").change(function () {
+                    enable_disable_arvs();
+                });
+
+                jq("#ARVSEnableDisable1").each(function () {
+                    enable_disable_arvs();
+                });
             });
         }
     </script>
 
     <style type="text/css">
-        .error{
-        color: red;
+        .error {
+            color: red;
         }
 
-        table td{
-        background: #FFFFFF;
-        color: #404040;
+        table td {
+            background: #FFFFFF;
+            color: #404040;
         }
 
         form select, .form select {
-        min-width: 0px;
+            min-width: 0px;
         }
 
         form input, form select, form textarea, form ul.select, .form input, .form select, .form textarea, .form
         ul.select {
-        background-color: #FBFBFB;
-        border: 1px solid #404040;
-        border-radius: 5px;
-        margin-bottom: 10px;
-        padding: 10px;
-        min-width: 50%;
+            background-color: #FBFBFB;
+            border: 1px solid #404040;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 10px;
+            min-width: 50%;
         }
+
         .row {
-        width: 100%;
-        float: left;
-        display: inline-flex;
-        clear: both;
+            width: 100%;
+            float: left;
+            display: inline-flex;
+            clear: both;
         }
 
         .row .row-col2 {
-        float: left;
-        width: 50%;
+            float: left;
+            width: 50%;
         }
 
         table th, table td {
-        border: 1px solid #756F6F;
-        text-align: center;
+            border: 1px solid #756F6F;
+            text-align: center;
         }
 
-        table{margin: 20px 0px;}
+        table {
+            margin: 20px 0px;
+        }
     </style>
 
     <!-- Beging of HTML Form -->
@@ -233,25 +273,25 @@
         <section>
             <table class="enrollment">
                 <tbody>
-                    <tr>
-                        <td>
-                            <label>Encounter Date</label>
-                            <encounterDate default="today" required="true"/>
-                        </td>
-                        <td>
-                            <label>Service Provider:</label>
-                            <encounterProvider role="Provider" style="autocomplete"/>
-                        </td>
-                        <td>
-                            <label>Enrolled at:</label>
-                            <encounterLocation default="1"/>
-                        </td>
-                        <td>
-                            <label>ANC Number:</label>
-                            <patient field="identifier" identifierTypeId="b0cc255e-ef57-4266-839e-0df7f5099eb9"
-                                     required="true"/>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>
+                        <label>Encounter Date</label>
+                        <encounterDate default="today" required="true"/>
+                    </td>
+                    <td>
+                        <label>Service Provider:</label>
+                        <encounterProvider role="Provider" style="autocomplete"/>
+                    </td>
+                    <td>
+                        <label>Enrolled at:</label>
+                        <encounterLocation default="1"/>
+                    </td>
+                    <td>
+                        <label>ANC Number:</label>
+                        <patient field="identifier" identifierTypeId="b0cc255e-ef57-4266-839e-0df7f5099eb9"
+                                 required="true"/>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </section>
@@ -342,14 +382,17 @@
                     </td>
                 </tr>
                 <tr>
-                    <td rowspan="3"><obs conceptId="5085"/>/
+                    <td rowspan="3">
+                        <obs conceptId="5085"/>
+                        /
                         <obs conceptId="5086"/>
                     </td>
                     <obsgroup groupingConceptId="99743">
                         <td rowspan="3" class="EMTCTCodesEnableDisableChild1">
-                            <obs conceptId="99317" labelText=""
+                            <obs conceptId="99317" labelText="" id="ARVSEnableDisable1"
                                  answerConceptIds="99313,99734,99314,99315,99735,99736,99737,99738,99739,99741"
                                  answerLabels="C,T,TR,TRR,TR&#8730;,TRR&#8730;,TRK,TRRK,TR+,TRR+"/>
+
                         </td>
                         <td rowspan="3" class="EMTCTCodesEnableDisableChild1">
                             <obs conceptId="99342" labelText=""
@@ -365,7 +408,7 @@
                              answerConceptIds="90033,90034,90035,90036,90293,90294,90295,90296"
                              answerLabels="Stage1,Stage2,Stage3,Stage4,StageT1,StageT2,StageT3,StageT4"/>
                     </td>
-                    <td rowspan="2">
+                    <td rowspan="2" id="ARVSEnableDisableChild1">
                         <obs conceptId="99744" labelText="" answerConceptIds="99745,99746,99747,99748,1175"
                              answerLabels="ART,ARTK,ART&#8730;,ARTK&#8730;,N/A"/>
                     </td>
@@ -468,9 +511,19 @@
                         </td>
                     </obsgroup>
                     <obsgroup groupingConceptId="99307">
-                        <td><obs conceptId="99318" labelText="" answerConceptIds="90003,90004" answerLabels="&#8730;,X"/> <obs conceptId="99761"/></td>
-                        <td><obs conceptId="99319" labelText="" answerConceptIds="90003,90004" answerLabels="&#8730;,X"/> <obs conceptId="99762"/></td>
-                        <td><obs conceptId="99320" /></td>
+                        <td>
+                            <obs conceptId="99318" labelText="" answerConceptIds="90003,90004"
+                                 answerLabels="&#8730;,X"/>
+                            <obs conceptId="99761"/>
+                        </td>
+                        <td>
+                            <obs conceptId="99319" labelText="" answerConceptIds="90003,90004"
+                                 answerLabels="&#8730;,X"/>
+                            <obs conceptId="99762"/>
+                        </td>
+                        <td>
+                            <obs conceptId="99320"/>
+                        </td>
                     </obsgroup>
                 </tr>
             </table>
@@ -485,8 +538,14 @@
                     </th>
                 </tr>
                 <tr>
-                    <td><obs conceptId="99322" labelText="" answerConceptIds="99763,99764,99765,99766" answerLabels="Ref out,Ref IN,C/Ref IN,FSG"/> <obs conceptId="99767"/></td>
-                    <td><obs conceptId="99768"/></td>
+                    <td>
+                        <obs conceptId="99322" labelText="" answerConceptIds="99763,99764,99765,99766"
+                             answerLabels="Ref out,Ref IN,C/Ref IN,FSG"/>
+                        <obs conceptId="99767"/>
+                    </td>
+                    <td>
+                        <obs conceptId="99768"/>
+                    </td>
                 </tr>
             </table>
         </section>
