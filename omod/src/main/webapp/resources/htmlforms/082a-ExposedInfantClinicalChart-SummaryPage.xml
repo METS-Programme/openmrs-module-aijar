@@ -88,14 +88,16 @@
             var row_4 = '[class^="PCRTestResult"][class*="Child4"]';
 
             var xx = row_1;
-            var selected_value = jq(selected_option).find(":selected").text()
+            var selected_value = jq(selected_option).find("input").val();
 
-            selected_value = selected_value.trim().toUpperCase();
-
-            if (selected_value = "") {
-                disable = false;
+            if(selected_value==""){
+                selected_value = jq(selected_option).find(":selected").text();
+                selected_value=selected_value.trim().toLowerCase();
             }
 
+            if (selected_value != "") {
+                disable = false;
+            }
             switch (selected_value) {
                 case "positive":
                 case "negative":
@@ -237,14 +239,14 @@
                     enable_disable_link_to_care(jq(this));
                 });
 
-                /*TODO:fixing enable disable for PCRs
+
                  jq('[class^="PCRTestResultEnableDisable"]').change(function () {
                  enable_disable_pcr_test_result(jq(this));
                  });
 
                  jq('[class^="PCRTestResultEnableDisable"]').each(function () {
                  enable_disable_pcr_test_result(jq(this));
-                 });*/
+                 });
             });
         }
 
@@ -461,7 +463,7 @@
                         <td class="PCRTestResultEnableDisableChild1">
                             <obs conceptId="99435" id="pcr1Results"></obs>
                         </td>
-                        <td class="PCRTestResultEnableDisableChild1">
+                        <td class="PCRTestResultEnableDisableGrandChild1">
                             <obs conceptId="99438" id="pcr1ResultDate"></obs>
                         </td>
                     </tr>
