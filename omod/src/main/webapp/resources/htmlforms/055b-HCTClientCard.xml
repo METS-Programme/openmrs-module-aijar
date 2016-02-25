@@ -274,57 +274,6 @@
                     </tr>
                     <tr>
                         <td>
-                        </td>
-                        <td style="background: #DADADA;" class="HCTEnableDisableChild2">
-                            <label>
-                                <b>3 months</b>
-                            </label>
-                        </td>
-                        <td style="background: #DADADA;">
-                            <label>
-                                <b>6 months</b>
-                            </label>
-                        </td>
-                        <td style="background: #DADADA;">
-                            <label>
-                                <b>12 months</b>
-                            </label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label style="float: right">
-                                <i>Previously tested for HIV in last:</i>
-                            </label>
-                        </td>
-                        <td class="HCTEnableDisableChild2">
-                            <obs id="br" conceptId="99468" answerConceptId="99465" answerLabel=""/>
-                        </td>
-                        <td class="HCTEnableDisableChild2">
-                            <obs id="br" conceptId="99468" answerConceptId="99466" answerLabel=""/>
-                        </td>
-                        <td class="HCTEnableDisableChild2">
-                            <obs id="br" conceptId="99468" answerConceptId="99467" answerLabel=""/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label style="float: right">
-                                <i>Test results in the last:</i>
-                            </label>
-                        </td>
-                        <td class="HCTEnableDisableChild2">
-                            <obs conceptId="99469" answerConceptIds="90167,90166" answerLabels="Negative,Positive"/>
-                        </td>
-                        <td class="HCTEnableDisableChild2">
-                            <obs conceptId="99470" answerConceptIds="90167,90166" answerLabels="Negative,Positive"/>
-                        </td>
-                        <td class="HCTEnableDisableChild2">
-                            <obs conceptId="99471" answerConceptIds="90167,90166" answerLabels="Negative,Positive"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
                             <label>Number of sexual partners in the last 12 months:</label>
                         </td>
                         <td colspan="3">
@@ -342,44 +291,10 @@
                     </tr>
                     <tr>
                         <td>
-                            <label style="float:right;"><i>Category</i></label>
-                        </td>
-                        <td style="background: #DADADA;" class="HCTEnableDisableChild3">
-                            <label>
-                                <b>
-                                    <obs conceptId="99472" answerConceptId="90003" answerLabel="Spouse:"/>
-                                </b>
-                            </label>
-                        </td>
-                        <td style="background: #DADADA;" class="HCTEnableDisableChild3">
-                            <label>
-                                <b>
-                                    <obs conceptId="99473" answerConceptId="90003" answerLabel="Steady/Regular:"/>
-                                </b>
-                            </label>
-                        </td>
-                        <td style="background: #DADADA;" class="HCTEnableDisableChild3">
-                            <label>
-                                <b>
-                                    <obs conceptId="99474" answerConceptId="90003" answerLabel="Casual:"/>
-                                </b>
-                            </label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label style="float:right"><i>Test results</i></label>
+                            <label style="float:right"><i>If yes What were the Results</i></label>
                         </td>
                         <td class="HCTEnableDisableChild3">
                             <obs conceptId="99477" answerConceptIds="90166,90167,90001"
-                                 answerLabels="HIV +ve,HIV -ve,Unknown"/>
-                        </td>
-                        <td class="HCTEnableDisableChild3">
-                            <obs conceptId="99478" answerConceptIds="90166,90167,90001"
-                                 answerLabels="HIV +ve,HIV -ve,Unknown"/>
-                        </td>
-                        <td class="HCTEnableDisableChild3">
-                            <obs conceptId="99479" answerConceptIds="90166,90167,90001"
                                  answerLabels="HIV +ve,HIV -ve,Unknown"/>
                         </td>
                     </tr>
@@ -395,82 +310,6 @@
                         <td>
                             <label>Do you agree to have his/her blood drawn for testing?</label>
                             <obs id="br" conceptId="99481" answerConceptIds="1065,1066" answerLabels="Yes,No"/>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-        <section>
-            <h3>Reasons given for NOT testing:</h3>
-            <table class="section-b">
-                <tbody>
-                    <tr>
-                        <td>
-                            <label>No Confidentiality</label>
-                        </td>
-                        <td>
-                            <label>No Benefit</label>
-                        </td>
-                        <td>
-                            <label>Pricked many times</label>
-                        </td>
-                        <td>
-                            <label>Will test after improving</label>
-                        </td>
-                        <td>
-                            <label>No reason</label>
-                        </td>
-                        <td>
-                            <label>Fear of HIV Result</label>
-                        </td>
-                        <td>
-                            <label>Consult Spouse/sexual partner</label>
-                        </td>
-                        <td>
-                            <label>Known HIV Status</label>
-                        </td>
-                        <td>
-                            <label>Not ready for a test</label>
-                        </td>
-                        <td>
-                            <label>Other(Specify)</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <obs conceptId="99482" answerConceptId="1065" answerLabel=""/>
-                        </td>
-                        <td>
-                            <obs conceptId="99483" answerConceptId="1065" answerLabel=""/>
-                        </td>
-                        <td>
-                            <obs conceptId="99484" answerConceptId="1065" answerLabel=""/>
-                        </td>
-                        <td>
-                            <obs conceptId="99485" answerConceptId="1065" answerLabel=""/>
-                        </td>
-                        <td>
-                            <obs conceptId="99486" answerConceptId="1065" answerLabel=""/>
-                        </td>
-                        <td>
-                            <obs conceptId="99487" answerConceptId="1065" answerLabel=""/>
-
-                        </td>
-                        <td>
-                            <obs conceptId="99488" answerConceptId="1065" answerLabel=""/>
-                        </td>
-                        <td>
-                            <obs conceptId="99489" answerConceptId="1065" answerLabel=""/>
-                        </td>
-                        <td>
-                            <obs conceptId="99490" answerConceptId="1065" answerLabel=""/>
-
-                        </td>
-                        <td>
-                            <obs conceptId="99491" answerConceptId="1065" answerLabel=""/>
-                            <br/>
-                            <obs conceptId="99492"/>
-
                         </td>
                     </tr>
                 </tbody>
