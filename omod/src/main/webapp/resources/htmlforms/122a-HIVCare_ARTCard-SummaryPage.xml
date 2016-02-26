@@ -82,6 +82,84 @@
 
         }
 
+        function enable_disable_prior_yes_no(selected_option) {
+
+            var class_name = jq(selected_option).attr("class");
+
+            var length = class_name.length;
+
+            var class_id = parseInt(class_name.substring(length - 1, length))
+
+            var row_id = class_id;
+
+            var disable = true;
+
+            var row_1 = '[class^="PriorYesNo"][class*="Child1"]';
+            var row_2 = '[class^="PriorYesNo"][class*="Child2"]';
+            var row_3 = '[class^="PriorYesNo"][class*="Child3"]';
+            var row_4 = '[class^="PriorYesNo"][class*="Child4"]';
+
+            var row_5 = '[class^="PriorYesNo"][class*="Child5"]';
+            var row_6 = '[class^="PriorYesNo"][class*="Child6"]';
+            var row_7 = '[class^="PriorYesNo"][class*="Child7"]';
+            var row_8 = '[class^="PriorYesNo"][class*="Child8"]';
+
+            var row_9 = '[class^="PriorYesNo"][class*="Child9"]';
+
+            var xx = row_1;
+            var selected_value = jq(selected_option).find(":selected").text()
+
+            selected_value = selected_value.trim().toLowerCase();
+
+           if(selected_value=="yes"){
+               disable=false;
+           }
+
+            switch (row_id) {
+                case 1:
+                    xx = row_1;
+                    break;
+                case 2:
+                    xx = row_2;
+                    break;
+                case 3:
+                    xx = row_3;
+                    break;
+                case 4:
+                    xx = row_4;
+                    break;
+
+                case 5:
+                    xx = row_5;
+                    break;
+                case 6:
+                    xx = row_6;
+                    break;
+                case 7:
+                    xx = row_7;
+                    break;
+                case 8:
+                    xx = row_8;
+                    break;
+                case 9:
+                    xx = row_9;
+                    break;
+
+
+            }
+
+
+            jq(xx).each(function () {
+                var group = jq(this);
+
+                if (class_name.indexOf('Child') == -1) {
+
+                    group.find("input").attr("disabled", disable);
+                    group.find('select').attr("disabled", disable);
+                }
+            });
+        }
+
         function enable_disable_ei(selected_option) {
 
             var class_name = jq(selected_option).attr("class");
@@ -411,6 +489,14 @@
                     enable_disable_ati(jq(this))
                 });
 
+                jq('[class^="PriorYesNoEnableDisable"]').change(function () {
+                    enable_disable_prior_yes_no(jq(this));
+                });
+
+                jq('[class^="PriorYesNoEnableDisable"]').each(function () {
+                    enable_disable_prior_yes_no(jq(this));
+                });
+
                 jq(".enableDisable").each(function () {
                     var group = jq(this);
 
@@ -561,7 +647,7 @@
                         <encounterLocation default="1"/>
                     </td>
                     <td>
-                        <label>HIV Clinic #:</label>
+                        <label>Patient Clinic #:</label>
                         <patient field="identifier" identifierTypeId="e1731641-30ab-102d-86b0-7a5022ba4115"
                                  required="true"/>
                     </td>
@@ -1055,7 +1141,7 @@
                     <td>
                         <b>Prior ART</b>
                     </td>
-                    <td colspan="3">
+                    <td colspan="3" class="PriorYesNoEnableDisable1">
                         <obs conceptId="99055" answerConceptIds="90003,90004"
                              answerLabels="Yes,None"/>
                     </td>
@@ -1076,7 +1162,7 @@
                 </tr>
                 <tr class="checkboxGroup hideShowPriorOptions enableDisable">
                     <obsgroup groupingConceptId="99066">
-                        <td id="trigger">
+                        <td id="trigger" class="PriorYesNoEnableDisableChild1">
                             <obs conceptId="99056" answerConceptId="90003" answerLabel="PEP:"
                                  id="hideShowPriorOptions"/>
                         </td>
@@ -1095,7 +1181,7 @@
                 </tr>
                 <tr class="hideShowPriorOptions enableDisable">
                     <obsgroup groupingConceptId="99598">
-                        <td id="trigger">
+                        <td id="trigger" class="PriorYesNoEnableDisableChild1">
                             <obs conceptId="99594" answerConceptId="90003" answerLabel="Hep-B:"/>
                         </td>
                         <td id="disabled">
@@ -1114,7 +1200,7 @@
                 <excludeIf velocityTest="$patient.gender =='M' ">
                     <tr class="hideShowPriorOptions enableDisable">
                         <obsgroup groupingConceptId="99067">
-                            <td id="trigger">
+                            <td id="trigger" class="PriorYesNoEnableDisableChild1">
                                 <obs conceptId="90012" answerConceptId="90003"
                                      answerLabel="PMTCT Only:"/>
                             </td>
@@ -1134,7 +1220,7 @@
                 </excludeIf>
                 <tr class="hideShowPriorOptions enableDisable">
                     <obsgroup groupingConceptId="99068">
-                        <td id="trigger">
+                        <td id="trigger" class="PriorYesNoEnableDisableChild1">
                             <obs conceptId="99059" answerConceptId="90003"
                                  answerLabel="Earlier ARV not transfer:"/>
                         </td>
