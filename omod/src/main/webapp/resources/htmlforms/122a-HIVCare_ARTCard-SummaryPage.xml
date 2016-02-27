@@ -728,7 +728,7 @@
                 <tbody>
                 <tr>
                     <td colspan="2">
-                        <label>Medicine picked by:</label>
+                        <label>Medicine pick-up if ill:</label>
                         <obs size="15" conceptId="99142"/>
                     </td>
                 </tr>
@@ -918,7 +918,7 @@
                 <thead>
                 <tr>
                     <th rowspan="2">
-                        Name
+                        Exporsed Infant <br/>(Name)
                     </th>
                     <th rowspan="2">
                         DOB
@@ -1157,7 +1157,7 @@
                         <b>Where</b>
                     </td>
                     <td>
-                        <b>Drug</b>
+                        <b>ARVs</b>
                     </td>
                 </tr>
                 <tr class="checkboxGroup hideShowPriorOptions enableDisable">
@@ -1287,9 +1287,6 @@
                         <p>
                             <obs conceptId="99082" labelText="Cd4:"/>
                         </p>
-                        <p>
-                            <obs conceptId="99600" style="checkbox" labelText="TB"/>
-                        </p>
                     </td>
                 </tr>
                 <tr>
@@ -1303,6 +1300,9 @@
                         <obs conceptId="90299"/>
                     </td>
                     <td>
+                        <p>
+                            <obs conceptId="99600" style="checkbox" labelText="TB"/>
+                        </p>
                         <p>
                             <obs conceptId="99123" style="checkbox"
                                  labelText="Presumptive HIV Diagnosis of severe HIV infection in infants"/>
@@ -1396,7 +1396,7 @@
                 <tbody>
                 <tr>
                     <td colspan="4" style="background-color: #377F9C; color: white;">
-                        Start ART - 1st Line
+                        Start ART - 1st Line Regimen
                     </td>
                 </tr>
                 <tr>
@@ -1404,7 +1404,7 @@
                     <td style="color: #333;">
                         <obs conceptId="99161"/>
                     </td>
-                    <td style="color: #333;" class="ArtCareEnableDisable2">1st line Regiment:
+                    <td style="color: #333;" class="ArtCareEnableDisable2">Start ART 1st line Regiment:
                         <obs conceptId="99061"
                              answerConceptIds="99005,99006,99015,99016,99039,99040,99041,99042,99884,99885,99143"
                              answerLabels="AZT-3TC-NVP, AZT-3TC-EFV, D4T-3TC-NVP, D4T-3TC-EFV, TDF-3TC-NVP, TDF-3TC-EFV, TDF-FTC-NVP, TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,OTHER"
@@ -1415,22 +1415,22 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="color: #333;">Weight (Wt):</td>
+                    <td style="color: #333;">At Start ART:Wt</td>
                     <td style="color: #333;">
                         <obs conceptId="99069"/>
                     </td>
-                    <td style="color: #333;">CI.Stage:</td>
+                    <td style="color: #333;">At Start ART:CI.Stage:</td>
                     <td style="color: #333;">
                         <obs conceptId="99070" answerConceptIds="1204,1205,1206,1207"
                              answerLabels="1,2,3,4" style="dropdown"/>
                     </td>
                 </tr>
                 <tr>
-                    <td style="color: #333;">CD4:</td>
+                    <td style="color: #333;">At Start ART:CD4:</td>
                     <td style="color: #333;">
                         <obs conceptId="99071"/>
                     </td>
-                    <td style="color: #333;">Preg:</td>
+                    <td style="color: #333;">At Start ART:Preg:</td>
                     <td style="color: #333;">
                         <excludeIf velocityTest="$patient.gender ='M' ">
                             <obs conceptId="99072" answerConceptIds="90003,90004"
@@ -1439,13 +1439,15 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="color: #333;">Lactating:</td>
+                    <td style="color: #333;">At Start ART:Lactating:</td>
                     <td style="color: #333;">
                         <excludeIf velocityTest="$patient.gender ='M' ">
                             <obs conceptId="99603" answerConceptIds="90003,90004"
                                  answerLabels="Y, N"/>
                         </excludeIf>
                     </td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 </tbody>
             </table>
@@ -1494,15 +1496,14 @@
                         <b>Date</b>
                     </td>
                     <td style="color: #404040; background-color: #F3F3F3">
-                        <b>Regimen</b>
+                        <b>New Regimen</b>
                     </td>
                     <td style="color: #404040; background-color: #F3F3F3">
-                        <b>Other
-                            Regimen
+                        <b>Other/Specify
                         </b>
                     </td>
                     <td style="color: #404040; background-color: #F3F3F3">
-                        <b>Reason</b>
+                        <b>Why</b>
                     </td>
                 </tr>
                 <tr>
@@ -1597,15 +1598,14 @@
                         <b>Date</b>
                     </td>
                     <td style="color: #404040; background-color: #F3F3F3">
-                        <b>Regimen</b>
+                        <b>New Regimen</b>
                     </td>
                     <td style="color: #404040; background-color: #F3F3F3">
-                        <b>Other
-                            Regimen
+                        <b>Other/Specify
                         </b>
                     </td>
                     <td style="color: #404040; background-color: #F3F3F3">
-                        <b>Reason</b>
+                        <b>Why</b>
                     </td>
                 </tr>
                 <tr>
@@ -1698,14 +1698,14 @@
                                     <obs conceptId="99084"/>
                                     <br/>
                                     <br/>
-                                    <b>Reason</b>
+                                    <b>Why</b>
                                     <br/>
                                     <obs conceptId="1252" labelText=""
                                          answerConceptIds="90040,90046,90158,90050,90045,90051,90052,90066,99289,90002"
                                          answerLabels="1.Toxi,2.Tx Failure,3.Adhe, 4.Ill, 5.Stock, 6.Finan, 7. Px Decn, 8.Tx intpn, 9.Ex HIV, 10.Other,"/>
                                     <br/>
                                     <br/>
-                                    <b>Restart Date</b>
+                                    <b>Date if Restart/Re-activated</b>
                                     <br/>
                                     <obs conceptId="99085"/>
                                 </span>
@@ -1730,14 +1730,14 @@
                                     <obs conceptId="99084"/>
                                     <br/>
                                     <br/>
-                                    <b>Reason</b>
+                                    <b>Why</b>
                                     <br/>
                                     <obs conceptId="1252" labelText=""
                                          answerConceptIds="90040,90046,90158,90050,90045,90051,90052,90066,99289,90002"
                                          answerLabels="1.Toxi,2.Tx Failure,3.Adhe, 4.Ill, 5.Stock, 6.Finan, 7. Px Decn, 8.Tx intpn, 9.Ex HIV, 10.Other,"/>
                                     <br/>
                                     <br/>
-                                    <b>Restart Date</b>
+                                    <b>Date if Restart/Re-activated</b>
                                     <br/>
                                     <obs conceptId="99085"/>
                                 </span>
@@ -1761,14 +1761,14 @@
                                     <obs conceptId="99084"/>
                                     <br/>
                                     <br/>
-                                    <b>Reason</b>
+                                    <b>Why</b>
                                     <br/>
                                     <obs conceptId="1252" labelText=""
                                          answerConceptIds="90040,90046,90158,90050,90045,90051,90052,90066,99289,90002"
                                          answerLabels="1.Toxi,2.Tx Failure,3.Adhe, 4.Ill, 5.Stock, 6.Finan, 7. Px Decn, 8.Tx intpn, 9.Ex HIV, 10.Other,"/>
                                     <br/>
                                     <br/>
-                                    <b>Restart Date</b>
+                                    <b>Date if Restart/Re-activated</b>
                                     <br/>
                                     <obs conceptId="99085"/>
                                 </span>
@@ -1791,14 +1791,14 @@
                                     <obs conceptId="99084"/>
                                     <br/>
                                     <br/>
-                                    <b>Reason</b>
+                                    <b>Why</b>
                                     <br/>
                                     <obs conceptId="1252" labelText=""
                                          answerConceptIds="90040,90046,90158,90050,90045,90051,90052,90066,99289,90002"
                                          answerLabels="1.Toxi,2.Tx Failure,3.Adhe, 4.Ill, 5.Stock, 6.Finan, 7. Px Decn, 8.Tx intpn, 9.Ex HIV, 10.Other,"/>
                                     <br/>
                                     <br/>
-                                    <b>Restart Date</b>
+                                    <b>Date if Restart/Re-activated</b>
                                     <br/>
                                     <obs conceptId="99085"/>
                                 </span>
@@ -1821,14 +1821,14 @@
                                     <obs conceptId="99084"/>
                                     <br/>
                                     <br/>
-                                    <b>Reason</b>
+                                    <b>Why</b>
                                     <br/>
                                     <obs conceptId="1252" labelText=""
                                          answerConceptIds="90040,90046,90158,90050,90045,90051,90052,90066,99289,90002"
                                          answerLabels="1.Toxi,2.Tx Failure,3.Adhe, 4.Ill, 5.Stock, 6.Finan, 7. Px Decn, 8.Tx intpn, 9.Ex HIV, 10.Other,"/>
                                     <br/>
                                     <br/>
-                                    <b>Restart Date</b>
+                                    <b>Date if Restart/Re-activated</b>
                                     <br/>
                                     <obs conceptId="99085"/>
                                 </span>
@@ -1851,14 +1851,14 @@
                                     <obs conceptId="99084"/>
                                     <br/>
                                     <br/>
-                                    <b>Reason</b>
+                                    <b>Why</b>
                                     <br/>
                                     <obs conceptId="1252" labelText=""
                                          answerConceptIds="90040,90046,90158,90050,90045,90051,90052,90066,99289,90002"
                                          answerLabels="1.Toxi,2.Tx Failure,3.Adhe, 4.Ill, 5.Stock, 6.Finan, 7. Px Decn, 8.Tx intpn, 9.Ex HIV, 10.Other,"/>
                                     <br/>
                                     <br/>
-                                    <b>Restart Date</b>
+                                    <b>Date if Restart/Re-activated</b>
                                     <br/>
                                     <obs conceptId="99085"/>
                                 </span>
@@ -1870,14 +1870,14 @@
             </table>
         </section>
         <section>
-            <h3>Patient Status</h3>
+            <h3>Status</h3>
             <table border="0" id="art-care"
                    style="padding: 10px; margin: 5px; border: solid 1px #D2D2D2;">
                 <tbody>
                 <tr>
                     <td style="color: #404040; background-color: #F3F3F3">Status</td>
                     <td style="color: #404040; background-color: #F3F3F3">Date</td>
-                    <td style="color: #404040; background-color: #F3F3F3">Location</td>
+                    <td style="color: #404040; background-color: #F3F3F3"></td>
                 </tr>
                 <tr class="enableDisable">
                     <obsgroup groupingConceptId="99166">
