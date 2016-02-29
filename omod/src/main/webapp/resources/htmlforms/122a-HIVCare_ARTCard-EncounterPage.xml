@@ -24,7 +24,7 @@
         }
 
         table td{
-        background: #7BB3D0;
+        background: #B6D6E6;
         color: #404040;
         vertical-align: top;
         }
@@ -45,6 +45,8 @@
 
         table th, table td {
         border: 1px solid #BDBDBD;
+        text-align: left;
+        vertical-align: top;
         }
 
     </style>
