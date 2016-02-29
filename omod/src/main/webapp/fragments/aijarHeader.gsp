@@ -7,7 +7,8 @@
         }
         return it
     }
-    def logoIconUrl = addContextPath(configSettings?."logo-icon-url") ?: ui.resourceLink("uicommons", "images/logo/openmrs-with-title-small.png")
+
+    def logoIconUrl = addContextPath(configSettings?."logo-icon-url") ?: ui.resourceLink("aijar", "images/moh_logo_large.png")
     def logoLinkUrl = addContextPath(configSettings?."logo-link-url") ?: "/${org.openmrs.ui.framework.WebConstants.CONTEXT_PATH}"
 
     def multipleLoginLocations = (loginLocations.size > 1);
@@ -86,16 +87,14 @@
     });
 
 </script>
-
-<h1>AIJAR ....</h1>
 <header>
     <div class="logo">
         <a href="${logoLinkUrl}">
-            <img src="${logoIconUrl}"/>
+            <img src="${logoIconUrl}" style="height: 120px;"/>
         </a>
     </div>
     <% if (context.authenticated) { %>
-    <ul class="user-options">
+    <ul class="user-options" style="padding: 20px;">
         <li class="identifier">
             <i class="icon-user small"></i>
             ${context.authenticatedUser.username ?: context.authenticatedUser.systemId}
