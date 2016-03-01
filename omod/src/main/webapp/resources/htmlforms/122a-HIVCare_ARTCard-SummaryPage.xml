@@ -1553,7 +1553,7 @@
                         <obs conceptId="99071" labelText="CD4"/>
                     </td>
                     <td>
-                        <excludeIf velocityTest="$patient.gender ='M' ">
+                        <excludeIf velocityTest="$patient.gender =='M' ">
                             <obs conceptId="99603" answerConceptIds="90003,90004"
                                  answerLabels="Y, N" labelText="Preg"/>
                         </excludeIf>
@@ -1561,7 +1561,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <excludeIf velocityTest="$patient.gender ='M' ">
+                        <excludeIf velocityTest="$patient.gender =='M' ">
                             <obs conceptId="99603" answerConceptIds="90003,90004"
                                  answerLabels="Y, N" labelText="Lactating"/>
                         </excludeIf>
