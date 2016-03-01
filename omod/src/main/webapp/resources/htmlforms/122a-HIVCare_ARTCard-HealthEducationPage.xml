@@ -62,29 +62,25 @@
 		width:100%;
 		}
 		td.vertical-text {
-		/* transform:
-		rotate(90deg);
-		white-space:
-		pre-wrap;
-		width: 100px;*/
-
 		white-space: pre-wrap;
 		width: 100px;
 		z-index: 28;
 		font-weight: bold;
-		color: #E6E6E6;
+		color: #5A5A5A;
 		}
 		.error{
 		color: red;
 		}
 
 		table td{
-		background: #7BB3D0;
+		background: #B6D6E6;
 		color: #404040;
 		}
 
 		table th, table td {
 		border: 1px solid #BDBDBD;
+		text-align: left;
+		vertical-align: top;
 		}
 
 		form select, .form select {
@@ -111,7 +107,7 @@
 
 	<div class="ai-page-frame">
 		<div class="headers" style="text-align: center;">
-			<h3>HIV ART CARD - Follow-up education, Support and Preparation for ARV
+			<h3>HIV Care/ART CARD - Follow-up education, Support and Preparation for ARV
 				therapy
 			</h3>
 		</div>
@@ -124,7 +120,7 @@
 							<encounterDate default="today"/>
 						</td>
 						<td>
-							<label>Clinical Team Leader:</label>
+							<label>Attending Clinician:</label>
 							<encounterProvider role="Provider" style="autocomplete"/>
 						</td>
 						<td>
@@ -201,7 +197,7 @@
 						</tr>
 
 						<tr class="enableDisable">
-							<td>Positive living:</td>
+							<td>Positive living,Nutrition:</td>
 							<td id="trigger">
 								<obs conceptId="99173" answerConceptId="90003"/>
 							</td>
@@ -240,7 +236,7 @@
 						</tr>
 
 						<tr class="enableDisable">
-							<td>Family living situation:</td>
+							<td>Family/living situation:</td>
 							<td id="trigger">
 								<obs conceptId="99176" answerConceptId="90003"/>
 							</td>
@@ -266,7 +262,7 @@
 						</tr>
 
 						<tr class="enableDisable">
-							<td>Reproductive choices, prevention MTCT:</td>
+							<td>Reproductive choices,elimination MTCT, Family Planning:</td>
 							<td id="trigger">
 								<obs conceptId="99178" answerConceptId="90003"/>
 							</td>
@@ -293,7 +289,7 @@
 
 						<tr class="enableDisable">
 							<td rowspan="4" class="vertical-text">
-								Progressio on RX
+								Progression on RX
 							</td>
 							<td>Progression of disease:</td>
 							<td id="trigger">
@@ -321,7 +317,7 @@
 						</tr>
 
 						<tr class="enableDisable">
-							<td>Available treatment/prophylaxis:</td>
+							<td>Available treatment/prophylaxis (CPT,INH):</td>
 							<td id="trigger">
 								<obs conceptId="99182" answerConceptId="90003"/>
 							</td>
@@ -351,7 +347,7 @@
 								ART Preparation, initiation, support,
 								monitor, Rx
 							</td>
-							<td>ART--educate on essentials(locally adapted):</td>
+							<td>ART--educate on essentials:</td>
 							<td id="trigger">
 								<obs conceptId="99184" answerConceptId="90003"/>
 							</td>
@@ -378,7 +374,7 @@
 						</tr>
 
 						<tr class="enableDisable">
-							<td>Adherence preparation, indicate visits:</td>
+							<td>Adherence preparation, indicate visit:</td>
 							<td id="trigger">
 								<obs conceptId="99191" answerConceptId="90003"/>
 							</td>
@@ -391,7 +387,7 @@
 						</tr>
 
 						<tr class="enableDisable">
-							<td>Indicate when READY for ART:DATE or result Clinical team
+							<td>Indicate when READY for ART:DATE/result Clinical team
 								discussion:
 							</td>
 							<td id="trigger">
@@ -458,7 +454,7 @@
 						</tr>
 
 						<tr class="enableDisable">
-							<td>Adherence plan(schedule, acids explain diary):</td>
+							<td>Adherence plan(schedule, aids explain diary):</td>
 							<td id="trigger">
 								<obs conceptId="99246" answerConceptId="90003"/>
 							</td>
@@ -513,7 +509,7 @@
 						</tr>
 
 						<tr class="enableDisable">
-							<td>Symptom management or palliatve care at home:</td>
+							<td>Symptom management or palliative care at home:</td>
 							<td id="trigger">
 								<obs conceptId="99196" answerConceptId="90003"/>
 							</td>

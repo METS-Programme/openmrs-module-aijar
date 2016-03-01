@@ -24,7 +24,7 @@
         }
 
         table td{
-        background: #7BB3D0;
+        background: #B6D6E6;
         color: #404040;
         vertical-align: top;
         }
@@ -35,7 +35,7 @@
 
         form input, form select, form textarea, form ul.select, .form input, .form select, .form textarea, .form
         ul.select {
-        min-width: 50%;
+        min-width: 20%;
         background-color: #FBFBFB;
         border: 1px solid #404040;
         border-radius: 5px;
@@ -45,6 +45,13 @@
 
         table th, table td {
         border: 1px solid #BDBDBD;
+        text-align: left;
+        vertical-align: top;
+        background: #B6D6E6;
+        }
+
+        .section{
+        margin: 20px 0px;
         }
 
     </style>
@@ -91,7 +98,7 @@
 
     <div class="ai-page-frame">
         <div class="headers" style="text-align: center;">
-            <h3>HIV ART CARD - Encounter Page</h3>
+            <h3>HIV Care/ART CARD - Encounter Page</h3>
         </div>
         <section>
             <table id="inner">
@@ -101,15 +108,173 @@
                             Encounter Date:
                             <encounterDate default="today"/>
                         </td>
-                        <td colspan="2">
-                            Clinical Team Leader:
-                            <encounterProvider role="Provider" style="autocomplete"/>
-                            <br/>
+                        <td>
                             Encounter Location:
                             <encounterLocation default="1"/>
                         </td>
                     </tr>
+                 </tbody>
+            </table>
+        </section>
+
+            <section>
+                <table >
+                    <tbody>
                     <tr>
+                        <th  rowspan="3">Date<br/> Tick box if scheduled</th>
+                        <th  rowspan="3">Next appointment Date</th>
+                        <th  rowspan="3" style="width: 20%;">Duration in months since first starting ART/since starting current regimen</th>
+                        <th  rowspan="3">Wt</th>
+                        <th  rowspan="3" style="width: 25%;">If pregenant EDD/EM TCT? Write gestation in weeks and ANC#</th>
+                    </tr>
+                    <tr>
+                    </tr>
+                    <tr>
+                    </tr>
+                    <tr>
+                        <td  rowspan="5" style="width: 15%;">1</td>
+                        <td  rowspan="5">2</td>
+                        <td  rowspan="3">3</td>
+                        <td >5</td>
+                        <td >8 EDD Date, EMTCT (Yes,No), Gestation age, ANC #</td>
+                    </tr>
+                    <tr>
+                        <td >Ht</td>
+                        <td >FP/no FP if FP write method (s)</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 20%;">6</td>
+                        <td >9</td>
+                    </tr>
+                    <tr>
+                        <td  rowspan="2">4</td>
+                        <td >Muac/Oedema write +/-</td>
+                        <td >Age in months if &lt;= 2 yrs</td>
+                    </tr>
+                    <tr>
+                        <td >7</td>
+                        <td >10</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </section>
+        <section>
+            <table >
+                <tbody>
+                <tr>
+                    <th  colspan="2">TB Status</th>
+                    <th >Potential side effects</th>
+                    <th >New OI </th>
+                    <th >Functional Status</th>
+                    <th >WHO Clinical stage</th>
+                    <th >CPT/Dapson</th>
+                </tr>
+                <tr>
+                    <td  colspan="2">1</td>
+                    <td  rowspan="6">5</td>
+                    <td  rowspan="2" style="width:20%;">6</td>
+                    <td  rowspan="6">8</td>
+                    <td  rowspan="6" >9</td>
+                    <td >Adherence</td>
+                </tr>
+                <tr>
+                    <td  colspan="2">If TB Rx, Start</td>
+                    <td >10</td>
+                </tr>
+                <tr>
+                    <td >Start</td>
+                    <td >End</td>
+                    <td >Problems, Include nutritional problems</td>
+                    <td ># of Pills Dispensed</td>
+                </tr>
+                <tr>
+                    <td >2</td>
+                    <td >3</td>
+                    <td  rowspan="3">7</td>
+                    <td >11</td>
+                </tr>
+                <tr>
+                    <td  colspan="2">District TB Reg #</td>
+                    <td ># of days</td>
+                </tr>
+                <tr>
+                    <td  colspan="2">4</td>
+                    <td >12</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <table >
+                <tbody>
+                <tr>
+                    <th  colspan="2">INH</th>
+                    <th >Other Meds dispensed</th>
+                    <th  colspan="3">ARV drugs</th>
+                </tr>
+                <tr>
+                    <td  colspan="2" style="width:25%;"># of Pills dispensed</td>
+                    <td  rowspan="7" style="width:20%;">3</td>
+                    <td  rowspan="2">Adhere</td>
+                    <td  rowspan="2">Why</td>
+                    <td  rowspan="2">Regimen</td>
+                </tr>
+                <tr>
+                    <td  colspan="2" rowspan="2">1</td>
+                </tr>
+                <tr>
+                    <td  rowspan="5">4</td>
+                    <td  rowspan="5">5</td>
+                    <td >6</td>
+                </tr>
+                <tr>
+                    <td  colspan="2"># of days</td>
+                    <td ># of pills</td>
+                </tr>
+                <tr>
+                    <td  colspan="2" rowspan="3">2</td>
+                    <td >7</td>
+                </tr>
+                <tr>
+                    <td ># of days</td>
+                </tr>
+                <tr>
+                    <td >8</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <table class="tg">
+                <tbody>
+                <tr>
+                    <th  colspan="2" rowspan="2">Investigations</th>
+                    <th  rowspan="2">Refer or consult or link/provide (Including nutritional support and Infant feeding)</th>
+                    <th  rowspan="2">Name of attending Clinician</th>
+                </tr>
+                <tr>
+                </tr>
+                <tr>
+                    <td >If CD4 &lt; 15 write minus(-) If CD4 &gt; 15 write plus (+)</td>
+                    <td >Hgb,RPR,CXR,TB,Sputums,Infant Ab/PCR,Other</td>
+                    <td  rowspan="2">3</td>
+                    <td  rowspan="4"><encounterProvider role="Provider" style="autocomplete" required="true"/></td>
+                </tr>
+                <tr>
+                    <td  rowspan="3" style="width:25%;">1 Severe</td>
+                    <td  rowspan="3" style="width:25%;">2</td>
+                </tr>
+                <tr>
+                    <td >If Hospitalized # of days </td>
+                </tr>
+                <tr>
+                    <td style="width:25%;">4</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+                   <!-- <tr>
                         <td>
                             <label>Check if scheduled. Write in alternate pick-up if ill</label>
                         </td>
@@ -123,7 +288,7 @@
                         <td>
                             <label>Follow-up date</label>
                         </td>
-                        <td colspan="3">
+                        <td colspan="2">
                             <obs id="br" conceptId="5096" allowFutureDates="true"
                                  labelText="Return date:"/>
                         </td>
@@ -573,7 +738,7 @@
                     </tr>
                 </tbody>
             </table>
-        </section>
+        </section>-->
     </div>
     <section>
         <submit/>
