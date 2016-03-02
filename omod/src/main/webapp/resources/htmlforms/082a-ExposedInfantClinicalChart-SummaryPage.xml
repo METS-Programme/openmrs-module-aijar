@@ -65,9 +65,9 @@
         }
 
         ttable th, table td {
-        border: 1px solid #BDBDBD;
-        text-align: left;
-        vertical-align: top;
+            border: 1px solid #BDBDBD;
+            text-align: left;
+            vertical-align: top;
         }
     </style>
 
@@ -92,9 +92,9 @@
             var xx = row_1;
             var selected_value = jq(selected_option).find("input").val();
 
-            if(selected_value==""){
+            if (selected_value == "") {
                 selected_value = jq(selected_option).find(":selected").text();
-                selected_value=selected_value.trim().toLowerCase();
+                selected_value = selected_value.trim().toLowerCase();
             }
 
             if (selected_value != "") {
@@ -242,13 +242,13 @@
                 });
 
 
-                 jq('[class^="PCRTestResultEnableDisable"]').change(function () {
-                 enable_disable_pcr_test_result(jq(this));
-                 });
+                jq('[class^="PCRTestResultEnableDisable"]').change(function () {
+                    enable_disable_pcr_test_result(jq(this));
+                });
 
-                 jq('[class^="PCRTestResultEnableDisable"]').each(function () {
-                 enable_disable_pcr_test_result(jq(this));
-                 });
+                jq('[class^="PCRTestResultEnableDisable"]').each(function () {
+                    enable_disable_pcr_test_result(jq(this));
+                });
             });
         }
 
@@ -282,7 +282,6 @@
                         </td>
                     </tr>
                     <tr>
-
                         <td>
                             <lookup expression="fn.patientAgeInDays()" class="patientAgeInDays"/>
                             <lookup expression="fn.patientAgeInMonths()" class="patientAgeInMonths"/>
@@ -316,48 +315,48 @@
                     </tr>
 
                     <tr>
-                        <td><label>District:</label>
+                        <td>
+                            <label>Telephone No:</label>
+                            <obs conceptId="162889"/>
+                        </td>
+                        <td>
+                            <label>District:</label>
                             <obs conceptId="162884"/>
                         </td>
-                        <td><label>County:</label>
+                        <td>
+                            <label>County:</label>
                             <obs conceptId="162885"/>
-                        </td>
-                        <td><label>Sub County:</label>
-                            <obs conceptId="162886"/>
                         </td>
                     </tr>
                     <tr>
+                        <td>
+                            <label>Sub County:</label>
+                            <obs conceptId="162886"/>
+                        </td>
                         <td><label>Parish:</label>
                             <obs conceptId="162888"/>
                         </td>
-                        <td colspan="2"><label>Village:</label>
+                        <td><label>Village:</label>
                             <obs conceptId="162887"/>
                         </td>
                     </tr>
                     <tr>
-                        <td><label>Telephone:</label>
-                            <obs conceptId="162889"/>
-                        </td>
-                        <td colspan="2">
-                            <obs conceptId="99117" size="20" labelText="Whose:"/>
-                        </td>
-                    </tr>
-                    <tr>
                         <td><label>LCI Zone</label></td>
-                        <td colspan="2">
+                        <td>
                             <obs conceptId="99137"/>
+                        </td>
+                        <td rowspan="2"><label>How should outreach workers introduce themselves</label>
+                            <obs conceptId="162867" style="textarea"/>
                         </td>
                     </tr>
                     <tr>
                         <td><label>LC1 Chairman</label></td>
-                        <td colspan="2">
+                        <td>
                             <obs conceptId="162866"/>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3"><label>How should outreach workers introduce themselves</label>
-                            <obs conceptId="162867" style="textarea"/>
-                        </td>
+
                     </tr>
                     <tr>
                         <td colspan="3"><label>Directions to caregiver's home address:</label>
@@ -402,14 +401,21 @@
                     </tr>
 
                     <tr>
-                        <td><label>Mother recieved ARVs for PMTCT:</label>
+                        <td>
+                            <label>Mother recieved ARVs for PMTCT:</label>
                         </td>
-                        <td colspan="3">
-                            <obs conceptId="99777" labelText="Mother's ANC No.:"/>
+                        <td>
+                            <obs conceptId="162872" answerConceptIds="90003,90004,90001" answerLabels="Yes,No,Unknown"/>
+                        </td>
+                        <td>
+                            <label>Mother's ANC No.:</label>
+                        </td>
+                        <td>
+                            <obs conceptId="99777"/>
                         </td>
                     </tr>
                     <tr>
-                        <td><label>Mother's ARVs:</label></td>
+                        <td><label>Mother's PMTCT ARVs:</label></td>
                         <td>
                             <obs conceptId="99783" labelText="For ANC:"/>
                         </td>
@@ -421,9 +427,9 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><label>Infant's ARVs:</label></td>
+                        <td><label>Infant's PMTCT ARVs:</label></td>
                         <td colspan="3">
-                            <obs conceptId="99787" labelText="" size="100" style="radio"/>
+                            <obs conceptId="99787" labelText=""  answerConceptIds="162966,99790,1067" size="100" style="radio"/>
                         </td>
                     </tr>
                     <tr>
@@ -449,7 +455,7 @@
                 <table class="table table-bordered custom-table">
                     <tr>
                         <td><label>Test</label></td>
-                        <td><label>Date</label></td>
+                        <td><label>Test Date</label></td>
                         <td><label>Feeding Method</label></td>
                         <td><label>Result</label></td>
                         <td><label>Date Results given to caregiver</label></td>
@@ -465,7 +471,7 @@
                         <td class="PCRTestResultEnableDisableChild1">
                             <obs conceptId="99435" id="pcr1Results"></obs>
                         </td>
-                        <td class="PCRTestResultEnableDisableGrandChild1">
+                        <td class="PCRTestResultEnableDisableChild1">
                             <obs conceptId="99438" id="pcr1ResultDate"></obs>
                         </td>
                     </tr>
@@ -480,7 +486,7 @@
                         <td class="PCRTestResultEnableDisableChild2">
                             <obs conceptId="99440"></obs>
                         </td>
-                        <td class="PCRTestResultEnableDisableGrandChild2">
+                        <td class="PCRTestResultEnableDisableChild2">
                             <obs conceptId="99442"></obs>
                         </td>
                     </tr>
@@ -498,7 +504,7 @@
                         <td class="PCRTestResultEnableDisableChild3">
                             <obs conceptId="162881"/>
                         </td>
-                        <td class="PCRTestResultEnableDisableGrandChild3">
+                        <td class="PCRTestResultEnableDisableChild3">
                             <obs conceptId="162882"/>
                         </td>
                     </tr>
@@ -513,7 +519,7 @@
                         <td class="PCRTestResultEnableDisableChild4">
                             <obs conceptId="162880"/>
                         </td>
-                        <td class="PCRTestResultEnableDisableGrandChild4">
+                        <td class="PCRTestResultEnableDisableChild4">
                             <obs conceptId="162883"/>
                         </td>
                     </tr>
@@ -548,36 +554,66 @@
                         <td class="LinkToCareEnableDisableChild1">
                             <obs conceptId="99430"></obs>
                         </td>
-                        <td class="LinkToCareEnableDisableChild1">
-                            <obs conceptId="99434" labelText="Presumptive Referral"></obs>
-                        </td>
+                        <td>Date</td>
+                        <td class="LinkToCareEnableDisableChild1"><obs conceptId="162981"/></td>
                     </tr>
                     <tr>
                         <td><label>Enrolled at ART Clinic</label></td>
                         <td class="LinkToCareEnableDisableChild1">
-                            <obs conceptId="99430"></obs>
+                            <obs conceptId="99430"/>
                         </td>
+                        <td>Date</td>
                         <td class="LinkToCareEnableDisableChild1">
-                            <encounterDate id="hivEnrolledDate" labelText="Enrollement Date"  required="false"/>
+                            <obs conceptId="162980"/>
                         </td>
                     </tr>
                     <tr>
-                        <td ><label>Pre-ART No</label></td>
-                        <td colspan="2" class="LinkToCareEnableDisableChild1">
+                        <td><label>Pre-ART No</label></td>
+                        <td class="LinkToCareEnableDisableChild1">
                             <obs conceptId="99751"></obs>
+                        </td>
+                        <td>Presumptive Referral</td>
+                        <td class="LinkToCareEnableDisableChild1">
+                            <obs conceptId="99434"/>
                         </td>
                     </tr>
                 </table>
             </section>
             <section>
                 <h3>
-                    Final Outcome
+Follow-Up Section
                 </h3>
                 <table>
                     <tr>
-                        <td colspan="2">
-                            <obs conceptId="99428"></obs>
+                        <td rowspan="2">First Attempt</td>
+                        <td>Date:<obs conceptId="162967"/></td>
+                        <td>Method:<obs conceptId="162968"/> </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Outcome:<obs conceptId="162969"/></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">Second Attempt</td>
+                        <td>Date:<obs conceptId="162971"/></td>
+                        <td>Method:<obs conceptId="162972"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Outcome:<obs conceptId="162973"/></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">Third Attempt</td>
+                        <td>Date:<obs conceptId="162975"/></td>
+                        <td>Method:<obs conceptId="162976"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Outcome:<obs conceptId="162977"/></td>
+                    </tr>
+                    <tr>
+                        <td> Final Outcome</td>
+                        <td>
+                            <obs conceptId="99428"/>
                         </td>
+                        <td><obs conceptId="162979"/></td>
                     </tr>
                 </table>
             </section>
