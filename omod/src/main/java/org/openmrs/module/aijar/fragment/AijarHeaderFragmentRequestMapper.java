@@ -25,7 +25,6 @@ public class AijarHeaderFragmentRequestMapper implements FragmentRequestMapper {
 	 * @return true if this page was mapped (by overriding the provider and/or page), false otherwise
 	 */
 	public boolean mapRequest(FragmentRequest request) {
-		System.out.println("Original " + request.toString());
 		if (request.getProviderName().equals("appui")) {
 			if (request.getFragmentId().equals("header")) {
 				// change to the custom login provided by the module
