@@ -7,7 +7,7 @@
           formUILocation="patientDashboard.visitActions"
           formOrder="5"
           formIcon="icon-medkit"
-          formShowIf="visit.active &amp;&amp; patient.person.dead==false &amp;&amp; patient.person.age &lt; 3"
+          formShowIf="visit.active &amp;&amp; patient.person.dead==false &amp;&amp; patient.person.age &lt; 3 &amp;&amp; sessionLocation.get('uuid')=='86863db4-6101-4ecf-9a86-5e716d6504e4'"
           formDisplayStyle="Standard"
           formLabel="EID Card - Encounter form">
     <macros>
@@ -630,7 +630,7 @@
                             <td rowspan="2">Developmental Assesment for Evidance of Delay</td>
                             <td>Development Milestones</td>
                             <td>
-                                <obs conceptId="162864"/>
+                                <obs conceptId="162864" answerConceptIds="162855,162857,162856,162858,162859,162860,162861,162862,162863" answerLabels="SMI:Smilling,SIT:Sitting,W:Walking,HEAD:Controlling Head,TOB:Transfering objects from hand to hand,COG:Cognition(point to 3 familiar objects),ROLL:Rolling Over,CRA:Crawl,ST:Stand" />
                             </td>
 
                         </tr>
@@ -643,54 +643,58 @@
                         </tr>
                         <tr>
                             <td rowspan="2">Prophylaxis</td>
-                            <td>Cotrim</td>
+                            <td>Cotrim (Y/N)</td>
                             <td>
                                 <obs conceptId="99798"/>
                             </td>
 
                         </tr>
                         <tr>
-                            <td>NVP</td>
+                            <td>NVP (Y/N)</td>
                             <td>
                                 <obs conceptId="99799"/>
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2">Refill of ART for Mother</td>
+                            <td colspan="2">Refill of ART for Mother? (Y/N)</td>
                             <td>
                                 <obs conceptId="162854"/>
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2">Other Medication/Care Items</td>
+                            <td colspan="2">Other Medication / Care Items</td>
                             <td class="checkboxGroup" rowspan="1">
-
-                                <obs id="br" conceptId="1193" answerConceptId="931" answerLabel="Amitriptilline"/>
-                                <obs id="br" conceptId="1193" answerConceptId="265" answerLabel="Amoxicillin"/>
-                                <obs id="br" conceptId="1193" answerConceptId="779" answerLabel="Cetrizine"/>
-                                <obs id="br" conceptId="1193" answerConceptId="740" answerLabel="Ciprofloxacine"/>
-                                <obs id="br" conceptId="1193" answerConceptId="922" answerLabel="Cloxacillin"/>
-                                <obs id="br" conceptId="1193" answerConceptId="99266" answerLabel="Coartem"/>
-                                <obs id="br" conceptId="1193" answerConceptId="90171" answerLabel="Dapsone"/>
-                                <obs id="br" conceptId="1193" answerConceptId="95" answerLabel="Doxycycline"/>
-                                <obs conceptId="1193" answerConceptId="1108" answerLabel="EH"/>
-                                <obs id="br" conceptId="1193" answerConceptId="272" answerLabel="Erythromicin"/>
-                                <obs id="br" conceptId="1193" answerConceptId="747" answerLabel="Fluconazole"/>
-                                <obs id="br" conceptId="1193" answerConceptId="912" answerLabel="Ibuprofen"/>
-                                <obs id="br" conceptId="1193" answerConceptId="926" answerLabel="Ketoconazole"/>
-                                <obs id="br" conceptId="1193" answerConceptId="244" answerLabel="Mebendazole"/>
-                                <obs id="br" conceptId="1193" answerConceptId="237" answerLabel="Metronidazole"/>
-                                <obs id="br" conceptId="1193" answerConceptId="461" answerLabel="Mutivitamins"/>
-                                <obs id="br" conceptId="1193" answerConceptId="99054" answerLabel="Nutrition Support"/>
-                                <obs id="br" conceptId="1193" answerConceptId="919" answerLabel="Nystatin"/>
-                                <obs id="br" conceptId="1193" answerConceptId="89" answerLabel="Paracetamol"/>
-                                <obs conceptId="1193" answerConceptId="1194" answerLabel="RH"/>
-                                <obs conceptId="1193" answerConceptId="99127" answerLabel="RHE"/>
-                                <obs conceptId="1193" answerConceptId="768" answerLabel="RHZ"/>
-                                <obs id="br" conceptId="1193" answerConceptId="1131" answerLabel="RHZE"/>
-                                <obs conceptId="1193" answerConceptId="99128" answerLabel="RHZES"/>
-                                <obs id="br" conceptId="1193" answerConceptId="916" answerLabel="Septrin"/>
-                                <obs id="br" conceptId="1193" answerConceptId="329" answerLabel="Vit B Complex"/>
+<table style="border:0px">
+    <tr>
+        <td>
+            <obs id="br" conceptId="1193" answerConceptId="931" answerLabel="Amitriptilline"/>
+            <obs id="br" conceptId="1193" answerConceptId="265" answerLabel="Amoxicillin"/>
+            <obs id="br" conceptId="1193" answerConceptId="779" answerLabel="Cetrizine"/>
+            <obs id="br" conceptId="1193" answerConceptId="740" answerLabel="Ciprofloxacine"/>
+            <obs id="br" conceptId="1193" answerConceptId="922" answerLabel="Cloxacillin"/>
+            <obs id="br" conceptId="1193" answerConceptId="99266" answerLabel="Coartem"/>
+            <obs id="br" conceptId="1193" answerConceptId="90171" answerLabel="Dapsone"/>
+            <obs id="br" conceptId="1193" answerConceptId="95" answerLabel="Doxycycline"/>
+            <obs conceptId="1193" answerConceptId="1108" answerLabel="EH"/>
+            <obs id="br" conceptId="1193" answerConceptId="272" answerLabel="Erythromicin"/>
+            <obs id="br" conceptId="1193" answerConceptId="747" answerLabel="Fluconazole"/>
+            <obs id="br" conceptId="1193" answerConceptId="912" answerLabel="Ibuprofen"/>
+            <obs id="br" conceptId="1193" answerConceptId="926" answerLabel="Ketoconazole"/>
+            <obs id="br" conceptId="1193" answerConceptId="244" answerLabel="Mebendazole"/>
+            <obs id="br" conceptId="1193" answerConceptId="237" answerLabel="Metronidazole"/>
+        </td>
+        <td>
+            <obs id="br" conceptId="1193" answerConceptId="461" answerLabel="Multivitamins"/>
+            <obs id="br" conceptId="1193" answerConceptId="99054" answerLabel="Nutrition Support"/>
+            <obs id="br" conceptId="1193" answerConceptId="919" answerLabel="Nystatin"/>
+            <obs id="br" conceptId="1193" answerConceptId="89" answerLabel="Paracetamol"/>
+            <obs conceptId="1193" answerConceptId="1194" answerLabel="RH"/>
+            <obs conceptId="1193" answerConceptId="99127" answerLabel="RHE"/>
+            <obs conceptId="1193" answerConceptId="768" answerLabel="RHZ"/>
+            <obs id="br" conceptId="1193" answerConceptId="1131" answerLabel="RHZE"/>
+            <obs conceptId="1193" answerConceptId="99128" answerLabel="RHZES"/>
+            <obs id="br" conceptId="1193" answerConceptId="916" answerLabel="Septrin"/>
+            <obs id="br" conceptId="1193" answerConceptId="329" answerLabel="Vit B Complex"/>
                                 <span class="enableDisable">
                                     <span id="trigger">
                                         <obs id="othermed" conceptId="1193" answerConceptId="90002"
@@ -701,6 +705,10 @@
                                              style="autocomplete"/>
                                     </span>
                                 </span>
+        </td>
+    </tr>
+</table>
+
 
                             </td>
 
