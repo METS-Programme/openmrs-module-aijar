@@ -14,12 +14,15 @@
 package org.openmrs.module.aijar;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.Concept;
 import org.openmrs.GlobalProperty;
 import org.openmrs.api.AdministrationService;
+import org.openmrs.api.ConceptService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.Module;
 import org.openmrs.module.ModuleActivator;
@@ -72,6 +75,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         AdministrationService administrationService = Context.getAdministrationService();
         AppFrameworkService appFrameworkService = Context.getService(AppFrameworkService.class);
         MetadataDeployService deployService = Context.getService(MetadataDeployService.class);
+	    ConceptService conceptService = Context.getConceptService();
 
         try {
             // disable the reference app registration page
@@ -165,7 +169,34 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             deployService.installBundle(Context.getRegisteredComponents(UgandaAddressMetadataBundle.class).get(0));
             log.info("Finished installing addresshierarchy");
 
-            // install concepts
+	        // retire concepts that are duplicated in the
+	        // concept metadata package
+	        ConceptService conceptService = Context.getConceptService();
+	        List<String> conceptsToRetire = Arrays.asList("8b64f9e1-196a-4802-a287-fd160fb97002", // YES
+			        "b1629d9a-91a5-4895-b6bc-647f3a944534" // NO
+			        , "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" // YES
+			        , "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" // NO
+			        , "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" // UNKNOWN
+			        , "1499AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  // MODERATE
+			        , "1500AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  // SEVERE
+			        , "1734AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  // YEARS
+			        , "111633AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" // URINARY TRACT INFECTION
+			        , "117543AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" // HERPES ZOSTER
+
+	        );
+
+	        for (String uuid : conceptsToRetire) {
+		        Concept concept = conceptService.getConceptByUuid(uuid);
+
+		        if (concept != null) {
+			        // retire the concept
+			        log.info("Retiring concept " + concept.toString());
+			        conceptService.retireConcept(concept, "Duplicated in MDS import");
+			        log.info("Retired concept " + concept.toString());
+		        }
+	        }
+
+	        // install concepts
             log.info("Installing standard metadata using the packages.xml file");
             MetadataUtil.setupStandardMetadata(getClass().getClassLoader());
             log.info("Standard metadata installed");

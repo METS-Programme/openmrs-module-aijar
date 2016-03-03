@@ -7,7 +7,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
 		<org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 			<filenameBase>metadata/Uganda_Concepts</filenameBase>
 			<groupUuid>5e8a2a82-5485-465c-88a4-d9ff80556ac4</groupUuid>
-			<version>1</version>
+			<version>2</version>
 			<importMode>MIRROR</importMode>
 		</org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 		<org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
