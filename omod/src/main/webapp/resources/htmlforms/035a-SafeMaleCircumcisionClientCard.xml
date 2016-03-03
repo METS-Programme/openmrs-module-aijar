@@ -7,7 +7,7 @@
           formUILocation="patientDashboard.visitActions"
           formOrder="7"
           formIcon="icon-medkit"
-          formShowIf="visit.active &amp;&amp; patient.person.gender=='M' &amp;&amp; patient.person.dead==false"
+          formShowIf="visit.active &amp;&amp; patient.person.gender=='M' &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.get('uuid')=='8f96e239-8586-4ec6-9375-04c6e19628ae'"
           formDisplayStyle="Standard"
           formLabel="SMC Client Card">
     <macros>
