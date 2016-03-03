@@ -1,10 +1,7 @@
 package org.openmrs.module.aijar.api.deploy.bundle;
 
-import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.encounterType;
-
 import org.openmrs.module.aijar.metadata.core.EncounterTypes;
 import org.openmrs.module.metadatadeploy.bundle.AbstractMetadataBundle;
-import org.openmrs.module.metadatadeploy.descriptor.EncounterTypeDescriptor;
 import org.springframework.stereotype.Component;
 
 /**
@@ -22,9 +19,5 @@ public class EncounterTypeMetadataBundle extends AbstractMetadataBundle {
         install(EncounterTypes.ANC_ENCOUNTER);
         install(EncounterTypes.MATERNITY);
         install(EncounterTypes.HCT_ENCOUNTER);
-    }
-
-    protected void install(EncounterTypeDescriptor d) {
-        install(encounterType(d.name(), d.description(), d.uuid()));
     }
 }
