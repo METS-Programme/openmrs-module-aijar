@@ -27,6 +27,13 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         if (hivCareNumber == null) {
             install(PatientIdentifierTypes.HIV_CARE_NUMBER);
         }
+
+        // add a check not to overwrite the district TB number if it exists
+        PatientIdentifierType tbNumber = MetadataUtils.possible(PatientIdentifierType.class, PatientIdentifierTypes
+                .DISTRICT_TB_NUMBER.uuid());
+        if (hivCareNumber == null) {
+            install(PatientIdentifierTypes.DISTRICT_TB_NUMBER);
+        }
         install(PatientIdentifierTypes.OLD_OPENMRS_IDENTIFICATION_NUMBER);
         install(PatientIdentifierTypes.OPENMRS_ID);
         install(PatientIdentifierTypes.OPENMRS_IDENTIFICATION_NUMBER);

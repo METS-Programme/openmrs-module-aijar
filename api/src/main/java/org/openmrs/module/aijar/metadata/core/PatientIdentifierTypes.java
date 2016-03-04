@@ -197,5 +197,34 @@ public class PatientIdentifierTypes {
         }
     };
 
+	public static PatientIdentifierTypeDescriptor DISTRICT_TB_NUMBER = new PatientIdentifierTypeDescriptor() {
+
+		@Override
+		public String name() {
+			return "District Tuberculosis Number";
+		}
+
+		@Override
+		public String description() {
+			return "The district tuberculosis number assigned to a case";
+		}
+
+		public String uuid() {
+			return "8110f2d2-1f98-4c38-aef3-11b19bb0a589";
+		}
+
+		// TODO: The current format of the district TB number has been limited to cases from 2010 to 2019, but this can be
+		// rectified
+		// later
+		public String format() {
+			return "[X][X][X][\\/][0-9][0-9][0-9][\\/][1][0-9]";
+		}
+
+		public String formatDescription() {
+			return " The first three letters of the district, followed by / then 3 digits of the case number then / then "
+					+ "two digits for the year";
+		}
+	};
+
 
 }
