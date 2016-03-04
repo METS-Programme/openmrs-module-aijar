@@ -18,152 +18,152 @@
     <style>
 
         form label, .form label {
-        float: left;
-        padding: 0px 10px 0 0;
+            float: left;
+            padding: 0px 10px 0 0;
         }
 
         form input[type="checkbox"], form input[type="radio"], .form input[type="checkbox"], .form input[type="radio"] {
-        margin: 10px 15px;
+            margin: 10px 15px;
         }
 
-        table td{
-        background: #FFFFFF;
-        color: #404040;
+        table td {
+            background: #FFFFFF;
+            color: #404040;
         }
 
         form select, .form select {
-        min-width: 0px;
+            min-width: 0px;
         }
 
         form input, form select, form textarea, form ul.select, .form input, .form select, .form textarea, .form
         ul.select {
-        background-color: #FBFBFB;
-        border: 1px solid #CEC9C9;
-        border-radius: 5px;
-        margin-bottom: 10px;
-        padding: 10px;
-        min-width: 20%;
+            background-color: #FBFBFB;
+            border: 1px solid #CEC9C9;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 10px;
+            min-width: 20%;
         }
+
         .row {
-        width: 100%;
-        float: left;
-        display: inline-flex;
-        clear: both;
+            width: 100%;
+            float: left;
+            display: inline-flex;
+            clear: both;
         }
 
         .row .row-col2 {
-        float: left;
-        width: 50%;
+            float: left;
+            width: 50%;
         }
 
         table th, table td {
-        border: 1px solid #AFAFAF;
+            border: 1px solid #AFAFAF;
         }
     </style>
 
 
     <script type="text/javascript">
-        function enable_disable_fpm(enableDisable_fpmethod){
+        function enable_disable_fpm(enableDisable_fpmethod) {
 
-        var fp_combo = $(enableDisable_fpmethod).find('select');
+            var fp_combo = $(enableDisable_fpmethod).find('select');
 
-        var selected_value = jQuery.trim(fp_combo.find(":selected").text());
+            var selected_value = jQuery.trim(fp_combo.find(":selected").text());
 
-        var disable = selected_value.toUpperCase()!="YES"
-        $(".EnableDisablefpmethodchild").find("input").attr("disabled",disable );
+            var disable = selected_value.toUpperCase() != "YES"
+            $(".EnableDisablefpmethodchild").find("input").attr("disabled", disable);
 
         }
 
-        function enable_disable_partner(enableDisable_partner){
+        function enable_disable_partner(enableDisable_partner) {
 
-        var fp_combo = $(enableDisable_partner).find('select');
+            var fp_combo = $(enableDisable_partner).find('select');
 
-        var selected_value = jQuery.trim(fp_combo.find(":selected").text());
+            var selected_value = jQuery.trim(fp_combo.find(":selected").text());
 
-        var disable = selected_value.toUpperCase()
-        !="YES"
-        $(".EnableDisablepartnerchild").find("input").attr("disabled",disable );
+            var disable = selected_value.toUpperCase()
+                    != "YES"
+            $(".EnableDisablepartnerchild").find("input").attr("disabled", disable);
 
         }
 
         function enable_disable_ati(selected_option) {
 
-        var class_name = jq(selected_option).attr("class");
+            var class_name = jq(selected_option).attr("class");
 
-        var length = class_name.length;
+            var length = class_name.length;
 
-        var class_id = parseInt(class_name.substring(length - 1, length))
+            var class_id = parseInt(class_name.substring(length - 1, length))
 
-        var row_id = class_id;
+            var row_id = class_id;
 
-        var disable = true;
+            var disable = true;
 
-        var row_1 = '[class^="HCT"][class*="Child1"]';
-        var row_2 = '[class^="HCT"][class*="Child2"]';
-        var row_3 = '[class^="HCT"][class*="Child3"]';
-        var row_4 = '[class^="HCT"][class*="Child4"]';
-        var row_5 = '[class^="HCT"][class*="Child5"]';
-        var row_6 = '[class^="HCT"][class*="Child6"]';
+            var row_1 = '[class^="HCT"][class*="Child1"]';
+            var row_2 = '[class^="HCT"][class*="Child2"]';
+            var row_3 = '[class^="HCT"][class*="Child3"]';
+            var row_4 = '[class^="HCT"][class*="Child4"]';
+            var row_5 = '[class^="HCT"][class*="Child5"]';
+            var row_6 = '[class^="HCT"][class*="Child6"]';
 
-        var xx = row_1;
-        var selected_value = jq(selected_option).find(":selected").text()
+            var xx = row_1;
+            var selected_value = jq(selected_option).find(":selected").text()
 
-        selected_value = selected_value.trim().toUpperCase();
+            selected_value = selected_value.trim().toUpperCase();
 
-        if (selected_value.toLowerCase() == "yes")
-        disable = false;
+            if (selected_value.toLowerCase() == "yes")
+                disable = false;
 
-        switch (row_id) {
-        case 1:
-        xx = row_1;
-        break;
-        case 2:
-        xx = row_2;
-        break;
-        case 3:
-        xx = row_3;
-        break;
-        case 4:
-        xx = row_4;
-        break;
+            switch (row_id) {
+                case 1:
+                    xx = row_1;
+                    break;
+                case 2:
+                    xx = row_2;
+                    break;
+                case 3:
+                    xx = row_3;
+                    break;
+                case 4:
+                    xx = row_4;
+                    break;
 
-        case 5:
-        xx = row_5;
-        break;
-        case 6:
-        xx = row_6;
-        break;
+                case 5:
+                    xx = row_5;
+                    break;
+                case 6:
+                    xx = row_6;
+                    break;
 
+            }
+
+            jq(xx).each(function () {
+                var group = jq(this);
+                if (class_name.indexOf('Child') == -1) {
+                    group.find("input").attr("value", "");
+                    group.find("input").attr("disabled", disable);
+                    group.find('select').prop("selectedIndex", 0);
+                    group.find('select').attr("disabled", disable);
+                }
+            });
         }
 
-        jq(xx).each(function () {
-        var group = jq(this);
+        if (jQuery) {
+            $(document).ready(function () {
+                if ($.browser.msie) {
+                    $(":checkbox").click(function () {
+                        $(this).change();
+                    });
+                }
 
-        if (class_name.indexOf('Child') == -1) {
-        group.find("input").attr("disabled", disable);
-        group.find('select').attr("disabled", disable);
-        }
+                jq('[class^="HCTEnableDisable"]').change(function () {
+                    enable_disable_ati(jq(this));
+                });
 
-        });
-
-        }
-
-        if(jQuery){
-        $(document).ready(function(){
-        if ( $.browser.msie ) {
-        $(":checkbox").click(function(){
-        $(this).change();
-        });
-        }
-
-        jq('[class^="HCTEnableDisable"]').change(function () {
-        enable_disable_ati(jq(this));
-        });
-
-        jq('[class^="HCTEnableDisable"]').each(function () {
-        enable_disable_ati(jq(this))
-        });
-        });
+                jq('[class^="HCTEnableDisable"]').each(function () {
+                    enable_disable_ati(jq(this))
+                });
+            });
         }
     </script>
     <div class="ai-page-frame">
@@ -174,34 +174,36 @@
             <h3>Section A:</h3>
             <table>
                 <tbody>
-                    <tr>
-                        <td>
-                            <label>Date:</label>
-                            <encounterDate default="today"/>
-                        </td>
-                        <td>
-                            <label>Point of Testing:</label>
-                            <encounterLocation default="1"/>
-                        </td>
-                        <td>
-                            <label>Center Type:</label>
-                            <obs conceptId="99457" answerConceptIds="99455,99456" answerLabels="1. Static,2. Outreach"/>
-                        </td>
-                        <td>
-                            <label>Reg Number:</label>
-                            <patient field="identifier" identifierTypeId="c9e42035-7112-45b3-bfcf-4b37e1091dd4"
-                                     required="true"/>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>
+                        <label>Date:</label>
+                        <encounterDate default="today"/>
+                    </td>
+                    <td>
+                        <label>Point of Testing:</label>
+                        <encounterLocation default="1"/>
+                    </td>
+                    <td>
+                        <label>Is the Center static or an Outreach?:</label>
+                        <obs conceptId="99457" answerConceptIds="99455,99456" answerLabels="1. Static,2. Outreach"/>
+                    </td>
+                    <td>
+                        <label>Reg Number:</label>
+                        <patient field="identifier" identifierTypeId="c9e42035-7112-45b3-bfcf-4b37e1091dd4"
+                                 required="true"/>
+                    </td>
+                </tr>
 
-                    <includeIf velocityTest="$patient.age &lt; 12">
-                        <tr>   <td colspan="4">
+                <includeIf velocityTest="$patient.age &lt; 12">
+                    <tr>
+                        <td colspan="4">
 
                             <label>Accompanied by:</label>
                             <obs conceptId="99457" answerConceptIds="90012,90016,99363"
                                  answerLabels="Mother,Father, Guardian"/>
-                        </td></tr>
-                    </includeIf>
+                        </td>
+                    </tr>
+                </includeIf>
 
                 </tbody>
             </table>
@@ -210,94 +212,87 @@
             <h3>Section B:</h3>
             <table class="section-b">
                 <tbody>
-                    <tr>
-                        <td>
-                            <label>Pre -Test Counseling done/information given:</label>
-                        </td>
-                        <td colspan="3" class="HCTEnableDisable1">
-                            <obs conceptId="162918" answerConceptIds="90003, 90004" answerLabels="Yes, No"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Counseled as:</label>
-                        </td>
-                        <td colspan="3" class="HCTEnableDisableChild1">
-                            <obs conceptId="99368" answerConceptIds="99365,99367,99366"
-                                 answerLabels="Individual, Couple, Group"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Approach:</label>
+                <tr>
+                    <td style="width: 20%">
+                        <label>Pre -Test Counseling done/information given:</label>
+                    </td>
+                    <td colspan="3" class="HCTEnableDisable1">
+                        <obs conceptId="162918" answerConceptIds="90003, 90004" answerLabels="Yes, No"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Counseled as:</label>
+                    </td>
+                    <td colspan="3" class="HCTEnableDisableChild1">
+                        <obs conceptId="99368" answerConceptIds="99365,99367,99366"
+                             answerLabels="Individual, Couple, Group"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Approach:</label>
 
-                        </td>
-                        <td colspan="3">
-                            <obs conceptId="99462" answerConceptIds="162919,99459" answerLabels="CICT, PITC"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>HCT Entry Point:</label>
+                    </td>
+                    <td colspan="3">
+                        <obs conceptId="99462" answerConceptIds="162919,99459" answerLabels="CICT, PITC"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>HCT Entry Point:</label>
 
-                        </td>
-                        <td colspan="3">
+                    </td>
+                    <td colspan="3">
                             <span id="checkboxRadio">
-                                <obs conceptId="162925" answerConceptId="99416" answerLabel="Facility based"/>
-                                <obs conceptId="162925" answerConceptId="162920" answerLabel="Work place"/>
-                                <obs conceptId="162925" answerConceptId="162921" answerLabel="Comm/Out reach"/>
-                                <obs conceptId="162925" answerConceptId="162922" answerLabel="HBHCT"/>
-                                <obs conceptId="162925" answerConceptId="162923" answerLabel="Circumcision (SMC)"/>
-                                <obs conceptId="162925" answerConceptId="99056" answerLabel="PEP"/>
-                                <obs conceptId="162925" answerConceptId="90012" answerLabel="PMTCT"/>
-                                <obs conceptId="162925" answerConceptId="162924" answerLabel="MARPS"/>
+                                <obs conceptId="162925" answerConceptIds="99416,162920,162921,162922,162923,99056,90012,162924" answerLabels="Facility based,Work place,Comm/Out reach,HBHCT,Circumcision (SMC),PEP,PMTCT,MARPS"/>
                             </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Have you ever tested for HIV before?:</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Have you ever tested for HIV before?:</label>
 
-                        </td>
-                        <td colspan="3" class="HCTEnableDisable2">
-                            <obs id="br" conceptId="99464" answerConceptIds="1065,1066" answerLabels="Yes,No"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>How many times have you tested in the last 12 months?:</label>
+                    </td>
+                    <td colspan="3" class="HCTEnableDisable2">
+                        <obs id="br" conceptId="99464" answerConceptIds="1065,1066" answerLabels="Yes,No"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>How many times have you tested in the last 12 months?:</label>
 
-                        </td>
-                        <td colspan="3">
-                            <obs id="br" conceptId="162965"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Number of sexual partners in the last 12 months:</label>
-                        </td>
-                        <td colspan="3">
-                            <obs conceptId="99463"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Has your spouse /partner been tested for HIV before? :</label>
-                        </td>
-                        <td colspan="3" class="HCTEnableDisable3">
-                            <obs id="br" conceptId="99472" answerConceptIds="1065,1066,99480"
-                                 answerLabels="Yes,No,Don't Know"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label style="float:right"><i>If yes What were the Results</i></label>
-                        </td>
-                        <td class="HCTEnableDisableChild3">
-                            <obs conceptId="99477" answerConceptIds="90166,90167,90001"
-                                 answerLabels="HIV +ve,HIV -ve,Unknown"/>
-                        </td>
-                    </tr>
+                    </td>
+                    <td colspan="3" class="HCTEnableDisableChild2">
+                        <obs id="br" conceptId="162965"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Number of sexual partners in the last 12 months:</label>
+                    </td>
+                    <td colspan="3">
+                        <obs conceptId="99463"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Has your spouse /partner been tested for HIV before? :</label>
+                    </td>
+                    <td colspan="3" class="HCTEnableDisable3">
+                        <obs id="br" conceptId="99472" answerConceptIds="1065,1066,99480"
+                             answerLabels="Yes,No,Don't Know"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label style="float:right"><i>If yes What were the Results</i></label>
+                    </td>
+                    <td class="HCTEnableDisableChild3">
+                        <obs conceptId="99477" answerConceptIds="90166,90167,90001"
+                             answerLabels="HIV +ve,HIV -ve,Unknown"/>
+                    </td>
+                </tr>
 
                 </tbody>
             </table>
@@ -306,12 +301,12 @@
             <h3>Consent for testing (Parent/Guardian if child)</h3>
             <table class="section-b">
                 <tbody>
-                    <tr>
-                        <td>
-                            <label>Do you agree to have his/her blood drawn for testing?</label>
-                            <obs id="br" conceptId="99481" answerConceptIds="1065,1066" answerLabels="Yes,No"/>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>
+                        <label>Do you agree to have his/her blood drawn for testing?</label>
+                        <obs id="br" conceptId="99481" answerConceptIds="1065,1066" answerLabels="Yes,No"/>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </section>
@@ -319,61 +314,65 @@
             <h3>Section C: Test Results</h3>
             <table class="section-b">
                 <tbody>
-                    <tr>
-                        <td><label>HIV final test results:</label>
-                            <obs conceptId="99493" answerConceptIds="90167,90166,162926,162927" answerLabels="Negative,Positive,INC,NT"/>
-                        </td>
-                        <td>
-                            <label>Sent to EQA or Confirmatory Laboratory</label>
-                            <obs conceptId="162928" answerConceptIds="90004,90003" answerLabels="Yes,No"/>
-                        </td>
-                    </tr>
+                <tr>
+                    <td><label>HIV final test results:</label>
+                        <obs conceptId="99493" answerConceptIds="90167,90166,162926,162927"
+                             answerLabels="NEG,POS,INC,NT"/>
+                    </td>
+                    <td>
+                        <label>Sent to EQA or Confirmatory Laboratory</label>
+                        <obs conceptId="162928" answerConceptIds="90004,90003" answerLabels="Yes,No"/>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </section>
         <section>
             <table>
                 <tbody>
-                    <tr>
-                        <td><label>Results Recieved:</label>
-                            <obs conceptId="99411" answerConceptIds="1065,1066" answerLabels="Yes,No"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label>Results received as a couple:</label>
-                            <obs conceptId="99494" answerConceptIds="1065,1066" answerLabels="Yes,No"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label>Couple results:</label>
-                            <obs conceptId="99497" answerConceptIds="6096,99496" answerLabels="Discordant,Cordant"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label>Is there suspision for TB<br/>(Currentcough,fever,weightloss and nightsweats):</label>
-                            <obs conceptId="99498" answerConceptIds="1065,1066" answerLabels="Yes,No"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label>Has client started cotrimoxazole prophylaxis:</label>
-                            <obs conceptId="99413" answerConceptIds="1065,1066" answerLabels="Yes,No"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label>Has client been linked to care:</label>
-                            <obs conceptId="99429" answerConceptIds="1065,1066" answerLabels="Yes,No"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label>CD4 count results if applicable:</label>
-                            <obs conceptId="5497"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label>Counsellor</label>
-                            <encounterProvider role="Counselor" required="true"  />
-                        </td>
-                    </tr>
+                <tr>
+                    <td colspan="2"><label>Results Recieved:</label>
+                        <obs conceptId="99411" answerConceptIds="1065,1066" answerLabels="Yes,No"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="HCTEnableDisable4" colspan="2"><label>Results received as a couple:</label>
+                        <obs conceptId="99494" answerConceptIds="1065,1066" answerLabels="Yes,No"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="HCTEnableDisableChild4" colspan="2"><label>Couple results:</label>
+                        <obs conceptId="99497" answerConceptIds="6096,99496" answerLabels="Discordant,Cordant"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><label>Is there suspision for TB<br/>(Currentcough,fever,weightloss and nightsweats):</label>
+                        <obs conceptId="99498" answerConceptIds="1065,1066" answerLabels="Yes,No"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><label>Has client started cotrimoxazole prophylaxis:</label>
+                        <obs conceptId="99413" answerConceptIds="1065,1066" answerLabels="Yes,No"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="HCTEnableDisable5"><label>Has client been linked to care or any other services?:</label>
+                        <obs conceptId="162982" answerConceptIds="1065,1066" answerLabels="Yes,No"/>
+                    </td>
+                    <td class="HCTEnableDisableChild5"><label>Where?:<obs conceptId="90200"/></label>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><label>CD4 count results if applicable:</label>
+                        <obs conceptId="5497"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><label>Counsellor</label>
+                        <encounterProvider required="true"/>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </section>
