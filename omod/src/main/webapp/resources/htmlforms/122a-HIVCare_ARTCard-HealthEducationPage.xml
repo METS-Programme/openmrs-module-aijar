@@ -10,10 +10,8 @@
 		  formShowIf="visit.active &amp;&amp; patient.person.dead==false &amp;&amp; patient.person.age &gt; 2 &amp;&amp; sessionLocation.get('uuid')=='86863db4-6101-4ecf-9a86-5e716d6504e4'"
 		  formDisplayStyle="Standard"
 		  formLabel="ART Card - Health Education Form">
-	<macros>
-		headerColor =#8fabc7
-		fontOnHeaderColor = white
-	</macros>
+	<redirectOnSave
+			url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits" />
 
 	<script type="text/javascript">
 		if (jQuery) {

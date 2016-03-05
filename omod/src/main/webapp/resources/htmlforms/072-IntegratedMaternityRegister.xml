@@ -10,10 +10,8 @@
           formShowIf="visit.active &amp;&amp; patient.person.gender=='F' &amp;&amp; patient.person.age &gt; 12 &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.get('uuid')=='e9bc61b5-69ff-414b-9cf0-0c22d6dfca2b'"
           formDisplayStyle="Standard"
           formLabel="Maternity">
-    <macros>
-        headerColor =#8fabc7
-        fontOnHeaderColor = white
-    </macros>
+    <redirectOnSave
+            url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits" />
 
     <style>
 
