@@ -1,4 +1,4 @@
-<htmlform formName="HMIS 082a - Early Infant Exposed Card Encounter"
+<htmlform formName="HMIS 082a - Exposed Infant Card Encounter Form"
           formDescription="Captures encounter details for infants born to HIV positive mothers"
           formEncounterType="8d5b2be0-c2cc-11de-8d13-0010c6dffd0f"
           formUuid="6f6b4802-7642-4226-84dc-ea7db01924b6"
@@ -537,9 +537,14 @@
             <section>
                 <table id="inner" border="0">
                     <tbody>
+
                         <tr>
                             <td colspan="2" id="td-20-width"></td>
                             <td>Visit Details</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Type of visit</td>
+                            <td>** </td>
                         </tr>
                         <tr>
                             <td colspan="2">Date of Appointment</td>
@@ -560,7 +565,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2">HIV test (PRC or anti-bodies)</td>
+                            <td colspan="2">HIV test (PCR or anti-body test)</td>
                             <td>
                                 <obs conceptId="99080"></obs>
                             </td>

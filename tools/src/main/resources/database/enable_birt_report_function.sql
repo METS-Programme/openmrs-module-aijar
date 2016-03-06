@@ -1,113 +1,9 @@
-DROP FUNCTION  IF EXISTS `get_adherence_Count`;
-DROP FUNCTION  IF EXISTS `get_adherenceType_Count`;
-DROP FUNCTION  IF EXISTS `getAncNumberTxt`;
-DROP FUNCTION  IF EXISTS `getAppKeepTxt`;
-DROP FUNCTION  IF EXISTS `getArtBaseTransferDate`;
-DROP FUNCTION  IF EXISTS `getArtEligibilityDate`;
-DROP FUNCTION  IF EXISTS `getArtEligibilityReasonTxt`;
-DROP FUNCTION  IF EXISTS `getArtRegCoded`;
-DROP FUNCTION  IF EXISTS `getArtRegCoded2`;
-DROP FUNCTION  IF EXISTS `getArtRegTxt`;
-DROP FUNCTION  IF EXISTS `getArtRegTxt2`;
-DROP FUNCTION  IF EXISTS `getArtRestartDate`;
-DROP FUNCTION  IF EXISTS `getArtStartDate`;
-DROP FUNCTION  IF EXISTS `getArtStartDate2`;
-DROP FUNCTION  IF EXISTS `getArtStartRegTxt`;
-DROP FUNCTION  IF EXISTS `getArtStopDate`;
-DROP FUNCTION  IF EXISTS `getArtStopDate1`;
-DROP FUNCTION  IF EXISTS `getArtStopReasonTxt`;
-DROP FUNCTION  IF EXISTS `getBaseWeightValue`;
-DROP FUNCTION  IF EXISTS `getCareEntryTxt`;
-DROP FUNCTION  IF EXISTS `getCd4BaseValue`;
-DROP FUNCTION  IF EXISTS `get_CD4_count`;
-DROP FUNCTION  IF EXISTS `getCd4SevereBaseValue`;
-DROP FUNCTION  IF EXISTS `getCD4Value`;
-DROP FUNCTION  IF EXISTS `getCodedDeathDate`;
-DROP FUNCTION  IF EXISTS `getCohortAllBefore10`;
-DROP FUNCTION  IF EXISTS `getCohortAllBefore11`;
-DROP FUNCTION  IF EXISTS `getCohortAllBefore12`;
-DROP FUNCTION  IF EXISTS `getCohortAllBefore15a`;
-DROP FUNCTION  IF EXISTS `getCohortAllBefore15b`;
-DROP FUNCTION  IF EXISTS `getCohortAllBefore16`;
-DROP FUNCTION  IF EXISTS `getCohortAllBefore3`;
-DROP FUNCTION  IF EXISTS `getCohortAllBefore4a`;
-DROP FUNCTION  IF EXISTS `getCohortAllBefore4b`;
-DROP FUNCTION  IF EXISTS `getCohortAllBefore5`;
-DROP FUNCTION  IF EXISTS `getCohortAllBefore6`;
-DROP FUNCTION  IF EXISTS `getCohortAllBefore7`;
-DROP FUNCTION  IF EXISTS `getCohortAllBefore9`;
-DROP FUNCTION  IF EXISTS `get_cpt_receipt_status`;
-DROP FUNCTION  IF EXISTS `getCptStartDate`;
-DROP FUNCTION  IF EXISTS `getCptStatusTxt`;
-DROP FUNCTION  IF EXISTS `getDeathDate`;
-DROP FUNCTION  IF EXISTS `get_death_status`;
-DROP FUNCTION  IF EXISTS `getEddDate`;
-DROP FUNCTION  IF EXISTS `getEddEncounterId`;
-DROP FUNCTION  IF EXISTS `getEddEncounterId2`;
-DROP FUNCTION  IF EXISTS `getEddEncounterId3`;
-DROP FUNCTION  IF EXISTS `getEddEncounterId4`;
-DROP FUNCTION  IF EXISTS `getEncounterId`;
-DROP FUNCTION  IF EXISTS `getEncounterId2`;
-DROP FUNCTION  IF EXISTS `getEnrolDate`;
-DROP FUNCTION  IF EXISTS `getFirstArtStopDate`;
-DROP FUNCTION  IF EXISTS `getFlucStartDate`;
-DROP FUNCTION  IF EXISTS `get_followup_status`;
-DROP FUNCTION  IF EXISTS `get_followup_status2`;
-DROP FUNCTION  IF EXISTS `getFunctionalStatusTxt`;
-DROP FUNCTION  IF EXISTS `getFUStatus`;
-DROP FUNCTION  IF EXISTS `getLastCd4SevereValue`;
-DROP FUNCTION  IF EXISTS `getLastCd4Value`;
-DROP FUNCTION  IF EXISTS `getLastEncounterDate`;
-DROP FUNCTION  IF EXISTS `getLastVisitDate`;
-DROP FUNCTION  IF EXISTS `get_lost_status`;
-DROP FUNCTION  IF EXISTS `getMonthCD4Value`;
-DROP FUNCTION  IF EXISTS `getMonthsOnCurrent`;
-DROP FUNCTION  IF EXISTS `getMonthsSinceStart`;
-DROP FUNCTION  IF EXISTS `getNumberDrugEncounter`;
-DROP FUNCTION  IF EXISTS `getNumberDrugSummary`;
-DROP FUNCTION  IF EXISTS `getNutritionalStatus`;
-DROP FUNCTION  IF EXISTS `getPatientIdentifierTxt`;
-DROP FUNCTION  IF EXISTS `getReferralText`;
-DROP FUNCTION  IF EXISTS `getReturnDate`;
-DROP FUNCTION  IF EXISTS `getReturnDate2`;
-DROP FUNCTION  IF EXISTS `get_scheduled_visits`;
-DROP FUNCTION  IF EXISTS `get_seen_status`;
-DROP FUNCTION  IF EXISTS `getStartEncounterId`;
-DROP FUNCTION  IF EXISTS `getSubstituteDate`;
-DROP FUNCTION  IF EXISTS `getSubstituteObsGroupId`;
-DROP FUNCTION  IF EXISTS `getSubstituteObsGroupId2`;
-DROP FUNCTION  IF EXISTS `getSubstituteReasonTxt`;
-DROP FUNCTION  IF EXISTS `getSwitchDate`;
-DROP FUNCTION  IF EXISTS `getSwitchObsGroupId`;
-DROP FUNCTION  IF EXISTS `getSwitchObsGroupId2`;
-DROP FUNCTION  IF EXISTS `getSwitchReasonTxt`;
-DROP FUNCTION  IF EXISTS `getTbRegNoTxt`;
-DROP FUNCTION  IF EXISTS `getTbStartDate`;
-DROP FUNCTION  IF EXISTS `get_tb_status`;
-DROP FUNCTION  IF EXISTS `getTbStatusTxt`;
-DROP FUNCTION  IF EXISTS `getTbStopDate`;
-DROP FUNCTION  IF EXISTS `getTransferInTxt`;
-DROP FUNCTION  IF EXISTS `getTransferOutDate`;
-DROP FUNCTION  IF EXISTS `get_transfer_status`;
-DROP FUNCTION  IF EXISTS `getWeightValue`;
-DROP FUNCTION  IF EXISTS `getWhoStageBaseTxt`;
-DROP FUNCTION  IF EXISTS `getWhoStageTxt`;
-
-DROP PROCEDURE  IF EXISTS `GetARTData`;
-DROP PROCEDURE  IF EXISTS `GetARTFollowupData0_24`;
-DROP PROCEDURE  IF EXISTS `GetARTFollowupData25_48`;
-DROP PROCEDURE  IF EXISTS `GetARTFollowupData49_72`;
-DROP PROCEDURE  IF EXISTS `getPreARTData`;
-DROP PROCEDURE  IF EXISTS `getPreARTFollowup`;
-DROP PROCEDURE  IF EXISTS `hmis106a1b`;
-
-
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `GetARTData`(IN start_year INTEGER, IN start_month INTEGER)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetARTData`(IN start_year INTEGER, IN start_month INT)
 BEGIN
-    DECLARE bDone INT;
+	DECLARE bDone INT;
 
-    DECLARE patient_id INT;
+	DECLARE patient_id INT;
 
     DECLARE art_start_date date;
 
@@ -126,8 +22,8 @@ BEGIN
     DECLARE age INT;
 
     DECLARE district CHAR(30);
-    DECLARE sub_county CHAR(30);
-    DECLARE village_cell CHAR(30);
+	DECLARE sub_county CHAR(30);
+	DECLARE village_cell CHAR(30);
 
     DECLARE function_status CHAR(30);
 
@@ -136,7 +32,7 @@ BEGIN
     DECLARE who_stage int;
 
     DECLARE cd4 int;
-    DECLARE viral_load int;
+	DECLARE viral_load int;
 
     DECLARE cpt_start_date date;
     DECLARE cpt_stop_date date;
@@ -165,25 +61,19 @@ BEGIN
     DECLARE preg4_anc CHAR(15);
     DECLARE preg4_infant CHAR(15);
 
-    DECLARE original_regimen CHAR(15);
+	DECLARE original_regimen CHAR(15);
 
-    DECLARE first_line_first_reason CHAR(15);
-    DECLARE first_line_first_date date;
-    DECLARE first_line_second_reason CHAR(15);
-    DECLARE first_line_second_date date;
+    DECLARE first_line_first CHAR(15);
+    DECLARE first_line_second CHAR(15);
 
 
-    DECLARE second_line_first_reason CHAR(15);
-    DECLARE second_line_first_date date;
-    DECLARE second_line_second_reason CHAR(15);
-    DECLARE second_line_second_date date;
+    DECLARE second_line_first CHAR(15);
+    DECLARE second_line_second CHAR(15);
 
-    DECLARE third_line_first_reason CHAR(15);
-    DECLARE third_line_first_date date;
-    DECLARE third_line_second_reason CHAR(15);
-    DECLARE third_line_second_date date;
+    DECLARE third_line_first CHAR(15);
+    DECLARE third_line_second CHAR(15);
 
-    DECLARE curs CURSOR FOR
+	DECLARE curs CURSOR FOR
     SELECT
     e.patient_id as 'patient_id',
     o.value_datetime as 'art_start_date',
@@ -203,21 +93,16 @@ BEGIN
     getArtStartRegTxt(e.patient_id) as 'original_regimen',
     getEddDate(getEddEncounterId(e.patient_id)) as 'preg1_edd',
     getAncNumberTxt(getEddEncounterId(e.patient_id)) as 'preg1_anc',
-    getEddDate(getEddEncounterId2(e.patient_id)) as 'preg2_edd',
+	getEddDate(getEddEncounterId2(e.patient_id)) as 'preg2_edd',
     getAncNumberTxt(getEddEncounterId2(e.patient_id)) as 'preg2_anc',
-    getEddDate(getEddEncounterId3(e.patient_id)) as 'preg3_edd',
+	getEddDate(getEddEncounterId3(e.patient_id)) as 'preg3_edd',
     getAncNumberTxt(getEddEncounterId3(e.patient_id)) as 'preg3_anc',
-    getEddDate(getEddEncounterId4(e.patient_id)) as 'preg4_edd',
-    getAncNumberTxt(getEddEncounterId4(e.patient_id)) as 'preg4_anc',
-    date_format(getSwitchDate(getSwitchObsGroupId(e.patient_id)),'%e/%m/%y') as 'first_line_first_date',
-    getSwitchReasonTxt(getSwitchObsGroupId(e.patient_id)) as 'first_line_first_reason',
-    date_format(getSwitchDate(getSwitchObsGroupId2(e.patient_id)),'%e/%m/%y') as 'first_line_second_date',
-    getSwitchReasonTxt(getSwitchObsGroupId2(e.patient_id)) as 'first_line_second_reason',
-    date_format(getSubstituteDate(getSubstituteObsGroupId(e.patient_id)),'%e/%m/%y') as 'second_line_first_date',
-    getSubstituteReasonTxt(getSubstituteObsGroupId(e.patient_id)) as 'second_line_first_reason',
-    date_format(getSubstituteDate(getSubstituteObsGroupId2(e.patient_id)),'%e/%m/%y') as 'second_line_second_date',
-    getSubstituteReasonTxt(getSubstituteObsGroupId2(e.patient_id)) as 'second_line_second_reason'
-
+	getEddDate(getEddEncounterId4(e.patient_id)) as 'preg4_edd',
+	getAncNumberTxt(getEddEncounterId4(e.patient_id)) as 'preg4_anc',
+    CONCAT(getSwitchReasonTxt(getSwitchObsGroupId(e.patient_id)),'/',date_format(getSwitchDate(getSwitchObsGroupId(e.patient_id)),'%e/%m/%y')) as 'first_line_first',
+    CONCAT(getSwitchReasonTxt(getSwitchObsGroupId2(e.patient_id)),'/',date_format(getSwitchDate(getSwitchObsGroupId2(e.patient_id)),'%e/%m/%y')) as 'first_line_second',
+    CONCAT(getSubstituteReasonTxt(getSubstituteObsGroupId(e.patient_id)),'/',date_format(getSubstituteDate(getSubstituteObsGroupId(e.patient_id)),'%e/%m/%y')) as 'second_line_first',
+	CONCAT(getSubstituteReasonTxt(getSubstituteObsGroupId2(e.patient_id)),'/',date_format(getSubstituteDate(getSubstituteObsGroupId2(e.patient_id)),'%e/%m/%y')) as 'second_line_second'
 FROM
     person p
         INNER JOIN
@@ -230,12 +115,12 @@ FROM
         AND EXTRACT(YEAR_MONTH FROM o.value_datetime) = EXTRACT(YEAR_MONTH FROM (MAKEDATE(start_year,1) + INTERVAL start_month MONTH - INTERVAL 1 DAY)))
 ORDER BY o.value_datetime ASC;
 
-    DECLARE CONTINUE HANDLER FOR NOT FOUND SET bDone = 1;
+	DECLARE CONTINUE HANDLER FOR NOT FOUND SET bDone = 1;
 
     DROP TEMPORARY TABLE IF EXISTS artData;
 
   CREATE TEMPORARY TABLE IF NOT EXISTS artData
-    (art_start_date date,
+	(art_start_date date,
     unique_id_number CHAR(15),
     ti char(2),
     emtct char(5),
@@ -272,18 +157,12 @@ ORDER BY o.value_datetime ASC;
     preg4_anc CHAR(15),
     preg4_infant CHAR(15),
     original_regimen CHAR(15),
-    first_line_first_date date,
-    first_line_first_reason CHAR(15),
-    first_line_second_date date,
-    first_line_second_reason CHAR(15),
-    second_line_first_date date,
-    second_line_first_reason CHAR(15),
-    second_line_second_date date,
-    second_line_second_reason CHAR(15),
-    third_line_first_date date,
-    third_line_first_reason CHAR(15),
-    third_line_second_date date,
-    third_line_second_reason CHAR(15)
+	first_line_first CHAR(15),
+    first_line_second CHAR(15),
+    second_line_first CHAR(15),
+    second_line_second CHAR(15),
+    third_line_first CHAR(15),
+    third_line_second CHAR(15)
     );
 
   OPEN curs;
@@ -316,104 +195,81 @@ ORDER BY o.value_datetime ASC;
     preg3_anc,
     preg4_edd,
     preg4_anc,
-    first_line_first_date,
-    first_line_first_reason,
-    first_line_second_date,
-    first_line_second_reason,
-    second_line_first_date,
-    second_line_first_reason,
-    second_line_second_date,
-    second_line_second_reason;
-
-        SELECT
-    middle_name, family_name
-INTO given_name , surname FROM
-    person_name
-WHERE
-    person_id = patient_id
-LIMIT 1;
-SELECT
-    county_district, state_province, city_village
-INTO district , sub_county , village_cell FROM
-    person_address
-WHERE
-    person_id = patient_id
-LIMIT 1;
-        INSERT INTO artData(
-        art_start_date,
-        unique_id_number,
-        ti,
-        emtct,
-        given_name,
-        surname,
-        sex,
-        age,
-        district,
-        sub_county,
-        village_cell,
-        function_status,
-        weight_muac,
-        who_stage,
-        cd4,
-        cpt_start_date,
-        tb_reg_no,
-        tb_start_date,
-        tb_stop_date,
-        original_regimen,
-        preg1_edd,
-        preg1_anc,
-        preg2_edd,
-        preg2_anc,
-        preg3_edd,
-        preg3_anc,
-        preg4_edd,
-        preg4_anc,
-        first_line_first_date,
-        first_line_first_reason,
-        first_line_second_date,
-        first_line_second_reason,
-        second_line_first_date,
-        second_line_first_reason,
-        second_line_second_date,
-        second_line_second_reason
-        ) VALUES (
-        art_start_date,
-        unique_id_number,
-        ti,
-        emtct,
-        given_name,
-        surname,
-        sex,
-        age,
-        district,
-        sub_county,
-        village_cell,
-        function_status,
-        weight_muac,
-        who_stage,
-        cd4,
-        cpt_start_date,
-        tb_reg_no,
-        tb_start_date,
-        tb_stop_date,
-        original_regimen,
-        preg1_edd,
-        preg1_anc,
-        preg2_edd,
-        preg2_anc,
-        preg3_edd,
-        preg3_anc,
-        preg4_edd,
-        preg4_anc,
-        first_line_first_date,
-        first_line_first_reason,
-        first_line_second_date,
-        first_line_second_reason,
-        second_line_first_date,
-        second_line_first_reason,
-        second_line_second_date,
-        second_line_second_reason
-        );
+    first_line_first,
+    first_line_second,
+    second_line_first,
+    second_line_second;
+	IF (patient_id > 0) THEN
+		SELECT middle_name, family_name INTO given_name , surname FROM person_name WHERE person_id = patient_id LIMIT 1;
+		SELECT county_district, state_province, city_village INTO district , sub_county , village_cell FROM person_address WHERE person_id = patient_id LIMIT 1;
+		INSERT INTO artData(
+		art_start_date,
+		unique_id_number,
+		ti,
+		emtct,
+		given_name,
+		surname,
+		sex,
+		age,
+		district,
+		sub_county,
+		village_cell,
+		function_status,
+		weight_muac,
+		who_stage,
+		cd4,
+		cpt_start_date,
+		tb_reg_no,
+		tb_start_date,
+		tb_stop_date,
+		original_regimen,
+		preg1_edd,
+		preg1_anc,
+		preg2_edd,
+		preg2_anc,
+		preg3_edd,
+		preg3_anc,
+		preg4_edd,
+		preg4_anc,
+		first_line_first,
+		first_line_second,
+		second_line_first,
+		second_line_second
+		) VALUES (
+		art_start_date,
+		unique_id_number,
+		ti,
+		emtct,
+		given_name,
+		surname,
+		sex,
+		age,
+		district,
+		sub_county,
+		village_cell,
+		function_status,
+		weight_muac,
+		who_stage,
+		cd4,
+		cpt_start_date,
+		tb_reg_no,
+		tb_start_date,
+		tb_stop_date,
+		original_regimen,
+		preg1_edd,
+		preg1_anc,
+		preg2_edd,
+		preg2_anc,
+		preg3_edd,
+		preg3_anc,
+		preg4_edd,
+		preg4_anc,
+		first_line_first,
+		first_line_second,
+		second_line_first,
+		second_line_second
+		);
+    END IF;
   UNTIL bDone END REPEAT;
   CLOSE curs;
 SELECT
@@ -424,82 +280,196 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `GetARTFollowupData0_24`(IN start_year INT, IN start_month INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetARTFollowupData0_24`(IN start_year INT, IN start_month INTEGER)
 BEGIN
-    DECLARE bDone INT;
+	DECLARE bDone INT;
 
-    DECLARE patient INT;
+	DECLARE patient INT;
     DECLARE x INT;
     DECLARE arvs_fu_status TEXT;
     DECLARE tb_status TEXT;
     DECLARE adh TEXT;
     DECLARE cpt TEXT;
+    DECLARE adh_cpt_all TEXT;
+	DECLARE adh_cpt TEXT;
+    DECLARE fu TEXT;
+    DECLARE arvs TEXT;
+    DECLARE full_top TEXT;
     DECLARE enc INT;
     DECLARE real_date INT;
-    DECLARE curs CURSOR FOR
+
+    DECLARE cs_1 INT;
+	DECLARE cs_2 INT;
+	DECLARE cs_3 INT;
+
+    DECLARE w_1 decimal;
+	DECLARE w_2 decimal;
+	DECLARE w_3 decimal;
+
+    DECLARE cd4_1 decimal;
+	DECLARE cd4_2 decimal;
+	DECLARE cd4_3 decimal;
+
+    DECLARE vl_1 decimal;
+	DECLARE vl_2 decimal;
+	DECLARE vl_3 decimal;
+
+	DECLARE curs CURSOR FOR
+
+    SELECT DISTINCT e.patient_id as 'patient_id'
+
+	FROM
+		encounter e
+			INNER JOIN
+		obs o ON (e.encounter_id = o.encounter_id
+			AND o.concept_id IN (99160 , 99161)
+			AND e.voided = 0
+			AND o.voided = 0  AND EXTRACT(YEAR_MONTH FROM o.value_datetime) = EXTRACT(YEAR_MONTH FROM (MAKEDATE(start_year,1) + INTERVAL start_month MONTH - INTERVAL 1 DAY)))
+	ORDER BY o.value_datetime ASC;
+
+	DECLARE CONTINUE HANDLER FOR NOT FOUND SET bDone = 1;
+
+	DROP TEMPORARY TABLE IF EXISTS art_followup_data_0_24;
+
+	CREATE TEMPORARY TABLE IF NOT EXISTS art_followup_data_0_24 (
+		patient_id int,
+		arvs_fu_status TEXT,
+		tb_status TEXT,
+		adh_cpt TEXT,
+		cs_1 INT,
+		cs_2 INT,
+		cs_3 INT,
+		w_1 decimal,
+		w_2 decimal,
+		w_3 decimal,
+		cd4_1 decimal,
+		cd4_2 decimal,
+		cd4_3 decimal,
+		vl_1 decimal,
+		vl_2 decimal,
+		vl_3 decimal
+	);
+
+	OPEN curs;
+
+	SET bDone = 0;
+
+	REPEAT
+		FETCH curs INTO patient;
+			SET x = 0;
+			SET arvs_fu_status = '';
+			SET tb_status  = '';
+			SET adh = '';
+			SET cpt = '';
+            SET arvs = '';
+            SET adh_cpt = '';
+			WHILE x  <= 12 DO
+				SET real_date = (start_month + x);
+				SET enc = getEncounterId(patient,start_year,real_date);
+                SET fu = getFUARTStatus(patient,(MAKEDATE(start_year,1) + INTERVAL real_date - 1 MONTH),(MAKEDATE(start_year,1) + INTERVAL real_date MONTH - INTERVAL 1 DAY));
+				SET arvs = getArtRegTxt(enc);
+                IF(arvs <> '' AND fu <> '') THEN
+					SET full_top = CONCAT(arvs, '/', fu);
+				ELSEIF arvs <> '' THEN
+					SET full_top = arvs;
+				ELSEIF fu <> '' THEN
+					SET full_top = fu;
+                END IF;
+
+                SET arvs_fu_status = CONCAT_WS(',', COALESCE(arvs_fu_status,''),COALESCE(full_top, ''));
+				SET tb_status = CONCAT_WS(',', COALESCE(tb_status,''), COALESCE(getTbStatusTxt(enc), ''));
+                SET adh = getADHStatusTxt(patient,(MAKEDATE(start_year,1) + INTERVAL real_date - 1 MONTH),(MAKEDATE(start_year,1) + INTERVAL real_date MONTH - INTERVAL 1 DAY));
+				SET cpt = getCptStatusTxt(enc);
+                IF(adh <> '' AND cpt <> '') THEN
+					SET adh_cpt_all = CONCAT(adh, '|', cpt);
+				ELSEIF adh <> '' THEN
+					SET adh_cpt_all = adh;
+				ELSEIF cpt <> '' THEN
+					SET adh_cpt_all = cpt;
+                END IF;
+				SET adh_cpt = CONCAT_WS(',', COALESCE(adh_cpt,''),COALESCE(adh_cpt_all, ''));
+				SET  x = x + 1;
+			END WHILE;
+            IF(patient > 0) THEN
+			INSERT INTO art_followup_data_0_24(
+            patient_id,
+            arvs_fu_status,
+            tb_status,
+            adh_cpt,
+            cs_1,
+			cs_2,
+			cs_3,
+			w_1,
+			w_2,
+			w_3,
+			cd4_1,
+			cd4_2,
+			cd4_3,
+			vl_1,
+			vl_2,
+            vl_3
+            )VALUES (
+            patient,
+            SUBSTR(arvs_fu_status,2),
+            SUBSTR(tb_status,2),
+            SUBSTR(adh_cpt,2),
+            cs_1,
+			cs_2,
+			cs_3,
+			w_1,
+			w_2,
+			w_3,
+			cd4_1,
+			cd4_2,
+			cd4_3,
+			vl_1,
+			vl_2,
+			vl_3
+		);
+        END IF;
+	UNTIL bDone END REPEAT;
+
+    CLOSE curs;
+
     SELECT
-    e.patient_id as 'patient_id'
-
-FROM
-    encounter e
-        INNER JOIN
-    obs o ON (e.encounter_id = o.encounter_id
-        AND o.concept_id IN (99160 , 99161)
-        AND e.voided = 0
-        AND o.voided = 0  AND EXTRACT(YEAR_MONTH FROM o.value_datetime) = EXTRACT(YEAR_MONTH FROM (MAKEDATE(start_year,1) + INTERVAL start_month MONTH - INTERVAL 1 DAY)))
-ORDER BY o.value_datetime ASC;
-
-    DECLARE CONTINUE HANDLER FOR NOT FOUND SET bDone = 1;
-
-    DROP TEMPORARY TABLE IF EXISTS art_followup_data;
-
-CREATE TEMPORARY TABLE IF NOT EXISTS art_followup_data_0_24 (patient_id int,arvs_fu_status TEXT,tb_status TEXT,adh TEXT,cpt TEXT);
-
-OPEN curs;
-
-SET bDone = 0;
-
-REPEAT
-FETCH curs INTO patient;
-    SET x = 0;
-    SET arvs_fu_status = '';
-    SET tb_status  = '';
-    SET adh = '';
-    SET cpt = '';
-    WHILE x  <= 12 DO
-        SET real_date = (start_month + x);
-        SET enc = getEncounterId(patient,start_year,real_date);
-        -- SET followup_status = get_followup_status(DATE_FORMAT(MAKEDATE(start_year,1) + INTERVAL real_date MONTH - INTERVAL 1 DAY, '01/%m/%Y'),DATE_FORMAT(MAKEDATE(start_year,1) + INTERVAL real_date MONTH - INTERVAL 1 DAY,'%d/%m/%Y'),patient);
-        SET arvs_fu_status = CONCAT_WS(',', COALESCE(arvs_fu_status,''));
-        SET tb_status = CONCAT_WS(',', COALESCE(tb_status,''), COALESCE(getTbStatusTxt(enc), ''));
-        SET adh = CONCAT_WS(',', COALESCE(adh,''), COALESCE(getArtRegTxt(enc), ''));
-        SET cpt = CONCAT_WS(',', COALESCE(cpt,''));
-        SET  x = x + 1;
-    END WHILE;
-    INSERT INTO art_followup_data_0_24(patient_id,arvs_fu_status,tb_status,adh,cpt) VALUES (patient,arvs_fu_status,tb_status,adh,cpt);
-UNTIL bDone END REPEAT;
-CLOSE curs;
-SELECT
-    *
-FROM
-    art_followup_data_0_24;
+		*
+	FROM
+		art_followup_data_0_24;
 END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `GetARTFollowupData25_48`(IN start_year INT, IN start_month INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetARTFollowupData25_48`(IN start_year INT, IN start_month INTEGER)
 BEGIN
-    DECLARE bDone INT;
+	DECLARE bDone INT;
 
-    DECLARE patient INT;
+	DECLARE patient INT;
     DECLARE x INT;
     DECLARE arvs_fu_status TEXT;
     DECLARE tb_status TEXT;
     DECLARE adh TEXT;
     DECLARE cpt TEXT;
+    DECLARE adh_cpt_all TEXT;
+	DECLARE adh_cpt TEXT;
+    DECLARE fu TEXT;
+    DECLARE arvs TEXT;
+    DECLARE full_top TEXT;
     DECLARE enc INT;
     DECLARE real_date INT;
-    DECLARE curs CURSOR FOR
+
+    DECLARE cs_1 INT;
+	DECLARE cs_2 INT;
+
+    DECLARE w_1 decimal;
+	DECLARE w_2 decimal;
+
+    DECLARE cd4_1 decimal;
+	DECLARE cd4_2 decimal;
+
+    DECLARE vl_1 decimal;
+	DECLARE vl_2 decimal;
+
+	DECLARE curs CURSOR FOR
     SELECT
     e.patient_id as 'patient_id'
 
@@ -512,11 +482,25 @@ FROM
         AND o.voided = 0  AND EXTRACT(YEAR_MONTH FROM o.value_datetime) = EXTRACT(YEAR_MONTH FROM (MAKEDATE(start_year,1) + INTERVAL start_month MONTH - INTERVAL 1 DAY)))
 ORDER BY o.value_datetime ASC;
 
-    DECLARE CONTINUE HANDLER FOR NOT FOUND SET bDone = 1;
+	DECLARE CONTINUE HANDLER FOR NOT FOUND SET bDone = 1;
 
-    DROP TEMPORARY TABLE IF EXISTS art_followup_data;
+    DROP TEMPORARY TABLE IF EXISTS art_followup_data_25_48;
 
-CREATE TEMPORARY TABLE IF NOT EXISTS art_followup_data_25_48 (patient_id int,arvs_fu_status TEXT,tb_status TEXT,adh TEXT,cpt TEXT);
+CREATE TEMPORARY TABLE IF NOT EXISTS art_followup_data_25_48 (
+
+patient_id int,
+		arvs_fu_status TEXT,
+		tb_status TEXT,
+		adh_cpt TEXT,
+		cs_1 INT,
+		cs_2 INT,
+		w_1 decimal,
+		w_2 decimal,
+		cd4_1 decimal,
+		cd4_2 decimal,
+		vl_1 decimal,
+		vl_2 decimal
+);
 
 OPEN curs;
 
@@ -524,22 +508,69 @@ SET bDone = 0;
 
 REPEAT
 FETCH curs INTO patient;
-    SET x = 25;
+	SET x = 25;
     SET arvs_fu_status = '';
-    SET tb_status  = '';
-    SET adh = '';
-    SET cpt = '';
-    WHILE x  <= 48 DO
-        SET real_date = (start_month + x);
-        SET enc = getEncounterId(patient,start_year,real_date);
-        -- SET followup_status = get_followup_status(DATE_FORMAT(MAKEDATE(start_year,1) + INTERVAL real_date MONTH - INTERVAL 1 DAY, '01/%m/%Y'),DATE_FORMAT(MAKEDATE(start_year,1) + INTERVAL real_date MONTH - INTERVAL 1 DAY,'%d/%m/%Y'),patient);
-        SET arvs_fu_status = CONCAT_WS(',', COALESCE(arvs_fu_status,''));
-        SET tb_status = CONCAT_WS(',', COALESCE(tb_status,''), COALESCE(getTbStatusTxt(enc), ''));
-        SET adh = CONCAT_WS(',', COALESCE(adh,''), COALESCE(getArtRegTxt(enc), ''));
-        SET cpt = CONCAT_WS(',', COALESCE(cpt,''));
-        SET  x = x + 1;
-    END WHILE;
-    INSERT INTO art_followup_data_25_48(patient_id,arvs_fu_status,tb_status,adh,cpt) VALUES (patient,arvs_fu_status,tb_status,adh,cpt);
+	SET tb_status  = '';
+	SET adh = '';
+	SET cpt = '';
+	SET arvs = '';
+	SET adh_cpt = '';
+	WHILE x  <= 48 DO
+		SET real_date = (start_month + x);
+		SET enc = getEncounterId(patient,start_year,real_date);
+		SET fu = getFUARTStatus(patient,(MAKEDATE(start_year,1) + INTERVAL real_date - 1 MONTH),(MAKEDATE(start_year,1) + INTERVAL real_date MONTH - INTERVAL 1 DAY));
+		SET arvs = getArtRegTxt(enc);
+		IF(arvs <> '' AND fu <> '') THEN
+			SET full_top = CONCAT(arvs, '/', fu);
+		ELSEIF arvs <> '' THEN
+			SET full_top = arvs;
+		ELSEIF fu <> '' THEN
+			SET full_top = fu;
+		END IF;
+
+		SET arvs_fu_status = CONCAT_WS(',', COALESCE(arvs_fu_status,''),COALESCE(full_top, ''));
+		SET tb_status = CONCAT_WS(',', COALESCE(tb_status,''), COALESCE(getTbStatusTxt(enc), ''));
+		SET adh = getADHStatusTxt(patient,(MAKEDATE(start_year,1) + INTERVAL real_date - 1 MONTH),(MAKEDATE(start_year,1) + INTERVAL real_date MONTH - INTERVAL 1 DAY));
+		SET cpt = getCptStatusTxt(enc);
+		IF(adh <> '' AND cpt <> '') THEN
+			SET adh_cpt_all = CONCAT(adh, '|', cpt);
+		ELSEIF adh <> '' THEN
+			SET adh_cpt_all = adh;
+		ELSEIF cpt <> '' THEN
+			SET adh_cpt_all = cpt;
+		END IF;
+		SET adh_cpt = CONCAT_WS(',', COALESCE(adh_cpt,''),COALESCE(adh_cpt_all, ''));
+		SET  x = x + 1;
+	END WHILE;
+    IF(patient > 0) THEN
+	INSERT INTO art_followup_data_25_48(
+    patient_id,
+            arvs_fu_status,
+            tb_status,
+            adh_cpt,
+            cs_1,
+			cs_2,
+			w_1,
+			w_2,
+			cd4_1,
+			cd4_2,
+			vl_1,
+			vl_2
+    ) VALUES (
+    patient,
+            SUBSTR(arvs_fu_status,2),
+            SUBSTR(tb_status,2),
+            SUBSTR(adh_cpt,2),
+            cs_1,
+			cs_2,
+			w_1,
+			w_2,
+			cd4_1,
+			cd4_2,
+			vl_1,
+			vl_2
+    );
+    END IF;
 UNTIL bDone END REPEAT;
 CLOSE curs;
 SELECT
@@ -550,19 +581,36 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `GetARTFollowupData49_72`(IN start_year INT, IN start_month INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetARTFollowupData49_72`(IN start_year INT, IN start_month INTEGER)
 BEGIN
-    DECLARE bDone INT;
+	DECLARE bDone INT;
 
-    DECLARE patient INT;
+	DECLARE patient INT;
     DECLARE x INT;
     DECLARE arvs_fu_status TEXT;
     DECLARE tb_status TEXT;
     DECLARE adh TEXT;
     DECLARE cpt TEXT;
+    DECLARE adh_cpt_all TEXT;
+	DECLARE adh_cpt TEXT;
+    DECLARE fu TEXT;
+    DECLARE arvs TEXT;
+    DECLARE full_top TEXT;
     DECLARE enc INT;
     DECLARE real_date INT;
-    DECLARE curs CURSOR FOR
+
+    DECLARE cs_1 INT;
+	DECLARE cs_2 INT;
+
+    DECLARE w_1 decimal;
+	DECLARE w_2 decimal;
+
+    DECLARE cd4_1 decimal;
+	DECLARE cd4_2 decimal;
+
+    DECLARE vl_1 decimal;
+	DECLARE vl_2 decimal;
+	DECLARE curs CURSOR FOR
     SELECT
     e.patient_id as 'patient_id'
 
@@ -575,11 +623,24 @@ FROM
         AND o.voided = 0  AND EXTRACT(YEAR_MONTH FROM o.value_datetime) = EXTRACT(YEAR_MONTH FROM (MAKEDATE(start_year,1) + INTERVAL start_month MONTH - INTERVAL 1 DAY)))
 ORDER BY o.value_datetime ASC;
 
-    DECLARE CONTINUE HANDLER FOR NOT FOUND SET bDone = 1;
+	DECLARE CONTINUE HANDLER FOR NOT FOUND SET bDone = 1;
 
-    DROP TEMPORARY TABLE IF EXISTS art_followup_data;
+    DROP TEMPORARY TABLE IF EXISTS art_followup_data_49_72;
 
-CREATE TEMPORARY TABLE IF NOT EXISTS art_followup_data_49_72 (patient_id int,arvs_fu_status TEXT,tb_status TEXT,adh TEXT,cpt TEXT);
+CREATE TEMPORARY TABLE IF NOT EXISTS art_followup_data_49_72 (
+		patient_id int,
+		arvs_fu_status TEXT,
+		tb_status TEXT,
+		adh_cpt TEXT,
+		cs_1 INT,
+		cs_2 INT,
+		w_1 decimal,
+		w_2 decimal,
+		cd4_1 decimal,
+		cd4_2 decimal,
+		vl_1 decimal,
+		vl_2 decimal
+);
 
 OPEN curs;
 
@@ -587,22 +648,70 @@ SET bDone = 0;
 
 REPEAT
 FETCH curs INTO patient;
-    SET x = 49;
+	SET x = 49;
     SET arvs_fu_status = '';
-    SET tb_status  = '';
-    SET adh = '';
-    SET cpt = '';
-    WHILE x  <= 72 DO
-        SET real_date = (start_month + x);
-        SET enc = getEncounterId(patient,start_year,real_date);
-        -- SET followup_status = get_followup_status(DATE_FORMAT(MAKEDATE(start_year,1) + INTERVAL real_date MONTH - INTERVAL 1 DAY, '01/%m/%Y'),DATE_FORMAT(MAKEDATE(start_year,1) + INTERVAL real_date MONTH - INTERVAL 1 DAY,'%d/%m/%Y'),patient);
-        SET arvs_fu_status = CONCAT_WS(',', COALESCE(arvs_fu_status,''));
-        SET tb_status = CONCAT_WS(',', COALESCE(tb_status,''), COALESCE(getTbStatusTxt(enc), ''));
-        SET adh = CONCAT_WS(',', COALESCE(adh,''), COALESCE(getArtRegTxt(enc), ''));
-        SET cpt = CONCAT_WS(',', COALESCE(cpt,''));
-        SET  x = x + 1;
-    END WHILE;
-    INSERT INTO art_followup_data_49_72(patient_id,arvs_fu_status,tb_status,adh,cpt) VALUES (patient,arvs_fu_status,tb_status,adh,cpt);
+	SET tb_status  = '';
+	SET adh = '';
+	SET cpt = '';
+	SET arvs = '';
+	SET adh_cpt = '';
+	WHILE x  <= 72 DO
+		SET real_date = (start_month + x);
+		SET enc = getEncounterId(patient,start_year,real_date);
+		SET fu = getFUARTStatus(patient,(MAKEDATE(start_year,1) + INTERVAL real_date - 1 MONTH),(MAKEDATE(start_year,1) + INTERVAL real_date MONTH - INTERVAL 1 DAY));
+		SET arvs = getArtRegTxt(enc);
+		IF(arvs <> '' AND fu <> '') THEN
+			SET full_top = CONCAT(arvs, '/', fu);
+		ELSEIF arvs <> '' THEN
+			SET full_top = arvs;
+		ELSEIF fu <> '' THEN
+			SET full_top = fu;
+		END IF;
+
+		SET arvs_fu_status = CONCAT_WS(',', COALESCE(arvs_fu_status,''),COALESCE(full_top, ''));
+		SET tb_status = CONCAT_WS(',', COALESCE(tb_status,''), COALESCE(getTbStatusTxt(enc), ''));
+		SET adh = getADHStatusTxt(patient,(MAKEDATE(start_year,1) + INTERVAL real_date - 1 MONTH),(MAKEDATE(start_year,1) + INTERVAL real_date MONTH - INTERVAL 1 DAY));
+		SET cpt = getCptStatusTxt(enc);
+		IF(adh <> '' AND cpt <> '') THEN
+			SET adh_cpt_all = CONCAT(adh, '|', cpt);
+		ELSEIF adh <> '' THEN
+			SET adh_cpt_all = adh;
+		ELSEIF cpt <> '' THEN
+			SET adh_cpt_all = cpt;
+		END IF;
+		SET adh_cpt = CONCAT_WS(',', COALESCE(adh_cpt,''),COALESCE(adh_cpt_all, ''));
+		SET  x = x + 1;
+	END WHILE;
+    IF(patient > 0) THEN
+	INSERT INTO art_followup_data_49_72(
+    patient_id,
+            arvs_fu_status,
+            tb_status,
+            adh_cpt,
+            cs_1,
+			cs_2,
+			w_1,
+			w_2,
+			cd4_1,
+			cd4_2,
+			vl_1,
+			vl_2
+
+    ) VALUES (
+    patient,
+            SUBSTR(arvs_fu_status,2),
+            SUBSTR(tb_status,2),
+            SUBSTR(adh_cpt,2),
+            cs_1,
+			cs_2,
+			w_1,
+			w_2,
+			cd4_1,
+			cd4_2,
+			vl_1,
+			vl_2
+    );
+    END IF;
 UNTIL bDone END REPEAT;
 CLOSE curs;
 SELECT
@@ -613,7 +722,7 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `getPreARTData`(IN start_year INT, IN start_month INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getPreARTData`(IN start_year INT)
 BEGIN
 
 DECLARE bDone INT;
@@ -649,7 +758,11 @@ DECLARE tb_reg_no CHAR(15);
 DECLARE tb_start_date date;
 DECLARE tb_stop_date date;
 
-DECLARE who_stage int;
+DECLARE who_stage_1 DATE;
+DECLARE who_stage_2 DATE;
+DECLARE who_stage_3 DATE;
+DECLARE who_stage_4 DATE;
+
 
 DECLARE date_eligible_for_art date;
 
@@ -659,24 +772,30 @@ DECLARE date_eligible_and_ready_for_art date;
 
 DECLARE date_art_started date;
 
+
 DECLARE curs CURSOR FOR SELECT DISTINCT
-    getEnrolDate(e.patient_id) as 'date_enrolled_in_care',
-    getPatientIdentifierTxt(e.patient_id) as 'unique_id',
-    e.patient_id as 'patient_id',
-    pp.gender as 'sex',
-    TIMESTAMPDIFF(YEAR,pp.birthdate,CURDATE()) AS 'age',
-    getCareEntryTxt(e.patient_id) as 'entry_point',
-    getCptStartDate(e.patient_id) as 'cpt_start_date',
-    getINHStartDate(e.patient_id) as 'inh_start_date',
-    getTbRegNoTxt(e.patient_id) as 'tb_reg_no',
-    getTbStartDate(e.patient_id) as 'tb_start_date',
-    getTbStopDate(e.patient_id) as 'tb_stop_date',
-    getArtEligibilityDate(e.patient_id) as 'date_eligible_for_art',
-    getArtEligibilityReasonTxt(e.patient_id) as 'why_eligible',
-    getArtBaseTransferDate(e.patient_id) as 'date_art_started'
+	getEnrolDate(e.patient_id) as 'date_enrolled_in_care',
+	getPatientIdentifierTxt(e.patient_id) as 'unique_id',
+	e.patient_id as 'patient_id',
+	pp.gender as 'sex',
+	TIMESTAMPDIFF(YEAR,pp.birthdate,CURDATE()) AS 'age',
+	getCareEntryTxt(e.patient_id) as 'entry_point',
+	getCptStartDate(e.patient_id) as 'cpt_start_date',
+	getINHStartDate(e.patient_id) as 'inh_start_date',
+	getTbRegNoTxt(e.patient_id) as 'tb_reg_no',
+	getTbStartDate(e.patient_id) as 'tb_start_date',
+	getTbStopDate(e.patient_id) as 'tb_stop_date',
+	getWHOStageDate(e.patient_id,1) as 'who_stage_1',
+	getWHOStageDate(e.patient_id,2) as 'who_stage_2',
+	getWHOStageDate(e.patient_id,3) as 'who_stage_3',
+	getWHOStageDate(e.patient_id,4) as 'who_stage_4',
+	getArtEligibilityDate(e.patient_id) as 'date_eligible_for_art',
+	getArtEligibilityReasonTxt(e.patient_id) as 'why_eligible',
+    getArtEligibilityAndReadyDate(e.patient_id) as 'date_eligible_and_ready_for_art',
+	getArtBaseTransferDate(e.patient_id) as 'date_art_started'
 FROM
     person pp INNER JOIN patient p ON (pp.person_id = p.patient_id AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id AND form_id = 28 AND e.voided = 0 AND EXTRACT(YEAR_MONTH FROM e.encounter_datetime) = EXTRACT(YEAR_MONTH FROM (MAKEDATE(start_year,1) + INTERVAL start_month MONTH - INTERVAL 1 DAY)));
+  INNER JOIN encounter e ON (e.patient_id = p.patient_id AND e.voided = 0 AND YEAR(e.encounter_datetime) = start_year) INNER JOIN form f ON(e.form_id = f.form_id AND f.uuid = '12de5bc5-352e-4faf-9961-a2125085a75c' ) order by e.encounter_datetime;
 
 DECLARE CONTINUE HANDLER FOR NOT FOUND SET bDone = 1;
 
@@ -702,7 +821,10 @@ inh_stop_date date,
 tb_reg_no CHAR(15),
 tb_start_date date,
 tb_stop_date date,
-who_stage int,
+who_stage_1 DATE,
+who_stage_2 DATE,
+who_stage_3 DATE,
+who_stage_4 DATE,
 date_eligible_for_art date,
 why_eligible CHAR(15),
 date_eligible_and_ready_for_art date,
@@ -710,73 +832,80 @@ date_art_started date);
 
  OPEN curs;
 
-    SET bDone = 0;
+  SET bDone = 0;
 
-    REPEAT
-    FETCH curs INTO date_enrolled_in_care,unique_id,patient_id,sex,age,entry_point,cpt_start_date,inh_start_date,tb_reg_no,tb_start_date,tb_stop_date,date_eligible_for_art,why_eligible,date_art_started;
-        SELECT middle_name, family_name INTO given_name , surname FROM person_name WHERE person_id = patient_id LIMIT 1;
-        SELECT county_district, state_province, city_village INTO district , sub_county , village_cell FROM person_address WHERE person_id = patient_id LIMIT 1;
-
+  REPEAT
+    FETCH curs INTO date_enrolled_in_care,unique_id,patient_id,sex,age,entry_point,cpt_start_date,inh_start_date,tb_reg_no,tb_start_date,tb_stop_date,who_stage_1,who_stage_2,who_stage_3,who_stage_4,date_eligible_for_art,why_eligible,date_eligible_and_ready_for_art,date_art_started;
+    SELECT CONCAT(given_name,COALESCE(middle_name,'')), family_name INTO given_name , surname FROM person_name WHERE person_id = patient_id LIMIT 1;
+    SELECT county_district, state_province, city_village INTO district , sub_county , village_cell FROM person_address WHERE person_id = patient_id LIMIT 1;
+    IF(patient_id > 0 AND patient_id not IN (select DISTINCT patient_id from artPreData)) THEN
         INSERT INTO artPreData(
-            date_enrolled_in_care,
-            unique_id,
-            patient_id,
-            surname ,
-            given_name ,
-            sex,
-            age,
-            district,
-            sub_county,
-            village_cell,
-            entry_point,
-            status_at_enrollment,
-            cpt_start_date,
-            cpt_stop_date,
-            inh_start_date,
-            inh_stop_date,
-            tb_reg_no,
-            tb_start_date,
-            tb_stop_date,
-            who_stage,
-            date_eligible_for_art,
-            why_eligible,
-            date_eligible_and_ready_for_art,
-            date_art_started
+      date_enrolled_in_care,
+      unique_id,
+      patient_id,
+      surname ,
+      given_name ,
+      sex,
+      age,
+      district,
+      sub_county,
+      village_cell,
+      entry_point,
+      status_at_enrollment,
+      cpt_start_date,
+      cpt_stop_date,
+      inh_start_date,
+      inh_stop_date,
+      tb_reg_no,
+      tb_start_date,
+      tb_stop_date,
+      who_stage_1,
+            who_stage_2,
+            who_stage_3,
+            who_stage_4,
+      date_eligible_for_art,
+      why_eligible,
+      date_eligible_and_ready_for_art,
+      date_art_started
             )values(
             date_enrolled_in_care,
-            unique_id,
-            patient_id,
-            surname ,
-            given_name ,
-            sex,
-            age,
-            district,
-            sub_county,
-            village_cell,
-            entry_point,
-            status_at_enrollment,
-            cpt_start_date,
-            cpt_stop_date,
-            inh_start_date,
-            inh_stop_date,
-            tb_reg_no,
-            tb_start_date,
-            tb_stop_date,
-            who_stage,
-            date_eligible_for_art,
-            why_eligible,
-            date_eligible_and_ready_for_art,
-            date_art_started
-        );
+      unique_id,
+      patient_id,
+      surname ,
+      given_name ,
+      sex,
+      age,
+      district,
+      sub_county,
+      village_cell,
+      entry_point,
+      status_at_enrollment,
+      cpt_start_date,
+      cpt_stop_date,
+      inh_start_date,
+      inh_stop_date,
+      tb_reg_no,
+      tb_start_date,
+      tb_stop_date,
+      who_stage_1,
+            who_stage_2,
+            who_stage_3,
+            who_stage_4,
+      date_eligible_for_art,
+      why_eligible,
+      date_eligible_and_ready_for_art,
+      date_art_started
+    );
+        END IF;
     UNTIL bDone
-    END REPEAT;
+  END REPEAT;
 CLOSE curs;
 SELECT * FROM artPreData;
 END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `getPreARTFollowup`(IN start_year INT, IN start_month INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getPreARTFollowup`(IN start_year INTEGER)
 BEGIN
 
 DECLARE bDone INT;
@@ -799,16 +928,16 @@ DECLARE x INT;
 DECLARE real_date INT;
 
 DECLARE curs CURSOR FOR SELECT DISTINCT
-    e.patient_id as 'patient_id'
+	e.patient_id as 'patient_id'
 FROM
     person pp INNER JOIN patient p ON (pp.person_id = p.patient_id AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id AND form_id = 28 AND e.voided = 0 AND EXTRACT(YEAR_MONTH FROM e.encounter_datetime) = EXTRACT(YEAR_MONTH FROM (MAKEDATE(start_year,1) + INTERVAL start_month MONTH - INTERVAL 1 DAY)));
+	INNER JOIN encounter e ON (e.patient_id = p.patient_id AND form_id = 28 AND e.voided = 0 AND YEAR(e.encounter_datetime) = start_year)INNER JOIN form f ON(e.form_id = f.form_id AND f.uuid = '12de5bc5-352e-4faf-9961-a2125085a75c' ) order by e.encounter_datetime;
 
 DECLARE CONTINUE HANDLER FOR NOT FOUND SET bDone = 1;
 
 DROP TEMPORARY TABLE IF EXISTS pre_art_followup_data;
 
-CREATE TEMPORARY TABLE IF NOT EXISTS pre_art_followup_data (patient_id int,fu_status TEXT,tb_status TEXT,cpt TEXT,nutritinal_status TEXT);
+CREATE TEMPORARY TABLE IF NOT EXISTS pre_art_followup_data (patient_id int,fu_status TEXT,tb_status TEXT,cpt TEXT,nutritinal_status TEXT) ENGINE=MyISAM DEFAULT CHARSET=utf8 ;
 
 OPEN curs;
 
@@ -816,15 +945,15 @@ SET bDone = 0;
 
 REPEAT
 FETCH curs INTO patient_id;
-    SET x = 0;
+	SET x = 0;
     SET fu_status = '';
     SET tb_status  = '';
     SET cpt = '';
     SET nutritinal_status = '';
-    WHILE x  < 4 DO
-        SET real_date = (start_year + x);
+	WHILE x  < 4 DO
+		SET real_date = (start_year + x);
         SET tb_status = CONCAT_WS(',',COALESCE(tb_status,'-'), COALESCE(getTbStatusTxt(getEncounterId2(patient_id,real_date,1)), '-'), COALESCE(getTbStatusTxt(getEncounterId2(patient_id,real_date,2)), '-'),COALESCE(getTbStatusTxt(getEncounterId2(patient_id,real_date,3)), '-'),COALESCE(getTbStatusTxt(getEncounterId2(patient_id,real_date,4)), '-'));
-        SET cpt = CONCAT_WS(',',COALESCE(cpt,'-'), COALESCE(getCptStatusTxt(getEncounterId2(patient_id,real_date,1)), '-'), COALESCE(getCptStatusTxt(getEncounterId2(patient_id,real_date,2)), '-'),COALESCE(getCptStatusTxt(getEncounterId2(patient_id,real_date,3)), '-'),COALESCE(getCptStatusTxt(getEncounterId2(patient_id,real_date,4)), '-'));
+		SET cpt = CONCAT_WS(',',COALESCE(cpt,'-'), COALESCE(getCptStatusTxt(getEncounterId2(patient_id,real_date,1)), '-'), COALESCE(getCptStatusTxt(getEncounterId2(patient_id,real_date,2)), '-'),COALESCE(getCptStatusTxt(getEncounterId2(patient_id,real_date,3)), '-'),COALESCE(getCptStatusTxt(getEncounterId2(patient_id,real_date,4)), '-'));
 
         SET fu_status_1 = getFUStatus(patient_id, (MAKEDATE(real_date,1)),(MAKEDATE(start_year,1) + INTERVAL 1 QUARTER - INTERVAL 1 DAY));
         SET fu_status_2 = getFUStatus(patient_id, (MAKEDATE(real_date,1) + INTERVAL 1 QUARTER), (MAKEDATE(real_date,1) + INTERVAL 2 QUARTER - INTERVAL 1 DAY));
@@ -837,10 +966,12 @@ FETCH curs INTO patient_id;
         SET nutritinal_status_4 = getNutritionalStatus(patient_id, (MAKEDATE(real_date,1) + INTERVAL 3 QUARTER), (MAKEDATE(real_date,1) + INTERVAL 4 QUARTER - INTERVAL 1 DAY));
 
         SET fu_status = CONCAT_WS(',',COALESCE(fu_status,'-'),COALESCE(fu_status_1,'-'),COALESCE(fu_status_2,'-'),COALESCE(fu_status_3,'-'),COALESCE(fu_status_4,'-'));
-        SET nutritinal_status = CONCAT_WS(',',COALESCE(nutritinal_status,'-'),COALESCE(nutritinal_status_1,'-'),COALESCE(nutritinal_status_2,'-'),COALESCE(nutritinal_status_3,'-'),COALESCE(nutritinal_status_4,'-'));
+		SET nutritinal_status = CONCAT_WS(',',COALESCE(nutritinal_status,'-'),COALESCE(nutritinal_status_1,'-'),COALESCE(nutritinal_status_2,'-'),COALESCE(nutritinal_status_3,'-'),COALESCE(nutritinal_status_4,'-'));
         SET  x = x + 1;
-    END WHILE;
-    INSERT INTO pre_art_followup_data(patient_id,fu_status,tb_status,cpt,nutritinal_status) VALUES (patient_id,SUBSTR(fu_status,2),SUBSTR(tb_status,2),SUBSTR(cpt,2),SUBSTR(nutritinal_status,2));
+	END WHILE;
+    IF(patient_id > 0) THEN
+		INSERT INTO pre_art_followup_data(patient_id,fu_status,tb_status,cpt,nutritinal_status) VALUES (patient_id,SUBSTR(fu_status,2),SUBSTR(tb_status,2),SUBSTR(cpt,2),SUBSTR(nutritinal_status,2));
+	END IF;
 UNTIL bDone END REPEAT;
 CLOSE curs;
 SELECT
@@ -852,249 +983,249 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `hmis106a1b`(IN start_year INT, IN start_quarter INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `hmis106a1b`(IN start_year INTEGER, IN start_quarter INT)
 BEGIN
-        DECLARE h11a CHAR(255);
-        DECLARE h12a CHAR(100);
-        DECLARE h13a INT DEFAULT getCohortAllBefore3(start_year,start_quarter,6,null);
-        DECLARE h14a CHAR(20) DEFAULT CONCAT(getCohortAllBefore4a(start_year,start_quarter,6,null),'/',getCohortAllBefore4b(start_year,start_quarter,6,null));
-        DECLARE h15a INT DEFAULT getCohortAllBefore5(start_year,start_quarter,6,null);
-        DECLARE h16a INT DEFAULT getCohortAllBefore6(start_year,start_quarter,6,null);
-        DECLARE h17a INT DEFAULT getCohortAllBefore7(start_year,start_quarter,6,null);
-        DECLARE h18a INT DEFAULT h13a + h16a - h17a;
-        DECLARE h19a INT DEFAULT getCohortAllBefore9(start_year,start_quarter,6,null);
-        DECLARE h110a INT DEFAULT getCohortAllBefore10(start_year,start_quarter,6,null);
-        DECLARE h111a INT DEFAULT getCohortAllBefore11(start_year,start_quarter,6,null);
-        DECLARE h112a INT DEFAULT getCohortAllBefore12(start_year,start_quarter,6,null);
-        DECLARE h113a INT;
-        DECLARE h114a DECIMAL;
-        DECLARE h115a CHAR(20) DEFAULT CONCAT(getCohortAllBefore15a(start_year,start_quarter,6,null),'/',getCohortAllBefore15b(start_year,start_quarter,6,null));
-        DECLARE h116a INT DEFAULT getCohortAllBefore16(start_year,start_quarter,6,null);
+	DECLARE h11a CHAR(255) DEFAULT 'All patients 6 months';
+	DECLARE h12a CHAR(100) DEFAULT getCohortMonth(start_year,start_quarter,6);
+	DECLARE h13a INT DEFAULT getCohortAllBefore3(start_year,start_quarter,6,null);
+	DECLARE h14a CHAR(20) DEFAULT CONCAT(getCohortAllBefore4a(start_year,start_quarter,6,null),'/',getCohortAllBefore4b(start_year,start_quarter,6,null));
+	DECLARE h15a INT DEFAULT getCohortAllBefore5(start_year,start_quarter,6,null);
+	DECLARE h16a INT DEFAULT getCohortAllBefore6(start_year,start_quarter,6,null);
+	DECLARE h17a INT DEFAULT getCohortAllBefore7(start_year,start_quarter,6,null);
+	DECLARE h18a INT DEFAULT h13a + h16a - h17a;
+	DECLARE h19a INT DEFAULT getCohortAllBefore9(start_year,start_quarter,6,null);
+	DECLARE h110a INT DEFAULT getCohortAllBefore10(start_year,start_quarter,6,null);
+	DECLARE h111a INT DEFAULT getCohortAllBefore11(start_year,start_quarter,6,null);
+	DECLARE h112a INT DEFAULT getCohortAllBefore12(start_year,start_quarter,6,null);
+	DECLARE h113a INT DEFAULT h18a-h19a-h110a-h111a-h112a;
+	DECLARE h114a DECIMAL DEFAULT (h113a/h18a)*100;
+	DECLARE h115a CHAR(20) DEFAULT CONCAT(getCohortAllBefore15a(start_year,start_quarter,6,null),'/',getCohortAllBefore15b(start_year,start_quarter,6,null));
+	DECLARE h116a INT DEFAULT getCohortAllBefore16(start_year,start_quarter,6,null);
 
-        DECLARE h21a CHAR(255);
-        DECLARE h22a CHAR(100);
-        DECLARE h23a INT DEFAULT getCohortAllBefore3(start_year,start_quarter,12,null);
-        DECLARE h24a CHAR(20) DEFAULT CONCAT(getCohortAllBefore4a(start_year,start_quarter,12,null),'/',getCohortAllBefore4b(start_year,start_quarter,12,null));
-        DECLARE h25a INT DEFAULT getCohortAllBefore5(start_year,start_quarter,12,null);
-        DECLARE h26a INT DEFAULT getCohortAllBefore6(start_year,start_quarter,12,null);
-        DECLARE h27a INT DEFAULT getCohortAllBefore7(start_year,start_quarter,12,null);
-        DECLARE h28a INT DEFAULT h23a + h26a - h27a;
-        DECLARE h29a INT DEFAULT getCohortAllBefore9(start_year,start_quarter,12,null);
-        DECLARE h210a INT DEFAULT getCohortAllBefore10(start_year,start_quarter,12,null);
-        DECLARE h211a INT DEFAULT getCohortAllBefore11(start_year,start_quarter,12,null);
-        DECLARE h212a INT DEFAULT getCohortAllBefore12(start_year,start_quarter,12,null);
-        DECLARE h213a INT;
-        DECLARE h214a DECIMAL;
-        DECLARE h215a CHAR(20) DEFAULT CONCAT(getCohortAllBefore15a(start_year,start_quarter,12,null),'/',getCohortAllBefore15b(start_year,start_quarter,12,null));
-        DECLARE h216a INT DEFAULT getCohortAllBefore16(start_year,start_quarter,12,null);
+	DECLARE h21a CHAR(255) DEFAULT 'All patients 12 months';
+	DECLARE h22a CHAR(100) DEFAULT getCohortMonth(start_year,start_quarter,12);
+	DECLARE h23a INT DEFAULT getCohortAllBefore3(start_year,start_quarter,12,null);
+	DECLARE h24a CHAR(20) DEFAULT CONCAT(getCohortAllBefore4a(start_year,start_quarter,12,null),'/',getCohortAllBefore4b(start_year,start_quarter,12,null));
+	DECLARE h25a INT DEFAULT getCohortAllBefore5(start_year,start_quarter,12,null);
+	DECLARE h26a INT DEFAULT getCohortAllBefore6(start_year,start_quarter,12,null);
+	DECLARE h27a INT DEFAULT getCohortAllBefore7(start_year,start_quarter,12,null);
+	DECLARE h28a INT DEFAULT h23a + h26a - h27a;
+	DECLARE h29a INT DEFAULT getCohortAllBefore9(start_year,start_quarter,12,null);
+	DECLARE h210a INT DEFAULT getCohortAllBefore10(start_year,start_quarter,12,null);
+	DECLARE h211a INT DEFAULT getCohortAllBefore11(start_year,start_quarter,12,null);
+	DECLARE h212a INT DEFAULT getCohortAllBefore12(start_year,start_quarter,12,null);
+	DECLARE h213a INT DEFAULT h28a-h29a-h210a-h211a-h212a;
+	DECLARE h214a DECIMAL DEFAULT (h213a/h28a)*100;
+	DECLARE h215a CHAR(20) DEFAULT CONCAT(getCohortAllBefore15a(start_year,start_quarter,12,null),'/',getCohortAllBefore15b(start_year,start_quarter,12,null));
+	DECLARE h216a INT DEFAULT getCohortAllBefore16(start_year,start_quarter,12,null);
 
-        DECLARE h31a CHAR(255);
-        DECLARE h32a CHAR(100);
-        DECLARE h33a INT DEFAULT getCohortAllBefore3(start_year,start_quarter,24,null);
-        DECLARE h34a CHAR(20) DEFAULT CONCAT(getCohortAllBefore4a(start_year,start_quarter,24,null),'/',getCohortAllBefore4b(start_year,start_quarter,24,null));
-        DECLARE h35a INT DEFAULT getCohortAllBefore5(start_year,start_quarter,24,null);
-        DECLARE h36a INT DEFAULT getCohortAllBefore6(start_year,start_quarter,24,null);
-        DECLARE h37a INT DEFAULT getCohortAllBefore7(start_year,start_quarter,24,null);
-        DECLARE h38a INT DEFAULT h33a + h36a - h37a;
-        DECLARE h39a INT DEFAULT getCohortAllBefore9(start_year,start_quarter,24,null);
-        DECLARE h310a INT DEFAULT getCohortAllBefore10(start_year,start_quarter,24,null);
-        DECLARE h311a INT DEFAULT getCohortAllBefore11(start_year,start_quarter,24,null);
-        DECLARE h312a INT DEFAULT getCohortAllBefore12(start_year,start_quarter,24,null);
-        DECLARE h313a INT;
-        DECLARE h314a DECIMAL;
-        DECLARE h315a CHAR(20) DEFAULT CONCAT(getCohortAllBefore15a(start_year,start_quarter,24,null),'/',getCohortAllBefore15b(start_year,start_quarter,24,null));
-        DECLARE h316a INT DEFAULT getCohortAllBefore16(start_year,start_quarter,24,null);
+	DECLARE h31a CHAR(255) DEFAULT 'All patients 24 months';
+	DECLARE h32a CHAR(100) DEFAULT getCohortMonth(start_year,start_quarter,24);
+	DECLARE h33a INT DEFAULT getCohortAllBefore3(start_year,start_quarter,24,null);
+	DECLARE h34a CHAR(20) DEFAULT CONCAT(getCohortAllBefore4a(start_year,start_quarter,24,null),'/',getCohortAllBefore4b(start_year,start_quarter,24,null));
+	DECLARE h35a INT DEFAULT getCohortAllBefore5(start_year,start_quarter,24,null);
+	DECLARE h36a INT DEFAULT getCohortAllBefore6(start_year,start_quarter,24,null);
+	DECLARE h37a INT DEFAULT getCohortAllBefore7(start_year,start_quarter,24,null);
+	DECLARE h38a INT DEFAULT h33a + h36a - h37a;
+	DECLARE h39a INT DEFAULT getCohortAllBefore9(start_year,start_quarter,24,null);
+	DECLARE h310a INT DEFAULT getCohortAllBefore10(start_year,start_quarter,24,null);
+	DECLARE h311a INT DEFAULT getCohortAllBefore11(start_year,start_quarter,24,null);
+	DECLARE h312a INT DEFAULT getCohortAllBefore12(start_year,start_quarter,24,null);
+	DECLARE h313a INT DEFAULT h38a-h39a-h310a-h311a-h312a;
+	DECLARE h314a DECIMAL DEFAULT (h313a/h38a)*100;
+	DECLARE h315a CHAR(20) DEFAULT CONCAT(getCohortAllBefore15a(start_year,start_quarter,24,null),'/',getCohortAllBefore15b(start_year,start_quarter,24,null));
+	DECLARE h316a INT DEFAULT getCohortAllBefore16(start_year,start_quarter,24,null);
 
-        DECLARE h41a CHAR(255);
-        DECLARE h42a CHAR(100);
-        DECLARE h43a INT DEFAULT getCohortAllBefore3(start_year,start_quarter,36,null);
-        DECLARE h44a CHAR(20) DEFAULT CONCAT(getCohortAllBefore4a(start_year,start_quarter,36,null),'/',getCohortAllBefore4b(start_year,start_quarter,36,null));
-        DECLARE h45a INT DEFAULT getCohortAllBefore5(start_year,start_quarter,36,null);
-        DECLARE h46a INT DEFAULT getCohortAllBefore6(start_year,start_quarter,36,null);
-        DECLARE h47a INT DEFAULT getCohortAllBefore7(start_year,start_quarter,36,null);
-        DECLARE h48a INT DEFAULT h43a + h46a - h47a;
-        DECLARE h49a INT DEFAULT getCohortAllBefore9(start_year,start_quarter,36,null);
-        DECLARE h410a INT DEFAULT getCohortAllBefore10(start_year,start_quarter,36,null);
-        DECLARE h411a INT DEFAULT getCohortAllBefore11(start_year,start_quarter,36,null);
-        DECLARE h412a INT DEFAULT getCohortAllBefore12(start_year,start_quarter,36,null);
-        DECLARE h413a INT;
-        DECLARE h414a DECIMAL;
-        DECLARE h415a CHAR(20) DEFAULT CONCAT(getCohortAllBefore15a(start_year,start_quarter,36,null),'/',getCohortAllBefore15b(start_year,start_quarter,36,null));
-        DECLARE h416a INT DEFAULT getCohortAllBefore16(start_year,start_quarter,36,null);
+	DECLARE h41a CHAR(255) DEFAULT 'All patients 36 months';
+	DECLARE h42a CHAR(100) DEFAULT getCohortMonth(start_year,start_quarter,36);
+	DECLARE h43a INT DEFAULT getCohortAllBefore3(start_year,start_quarter,36,null);
+	DECLARE h44a CHAR(20) DEFAULT CONCAT(getCohortAllBefore4a(start_year,start_quarter,36,null),'/',getCohortAllBefore4b(start_year,start_quarter,36,null));
+	DECLARE h45a INT DEFAULT getCohortAllBefore5(start_year,start_quarter,36,null);
+	DECLARE h46a INT DEFAULT getCohortAllBefore6(start_year,start_quarter,36,null);
+	DECLARE h47a INT DEFAULT getCohortAllBefore7(start_year,start_quarter,36,null);
+	DECLARE h48a INT DEFAULT h43a + h46a - h47a;
+	DECLARE h49a INT DEFAULT getCohortAllBefore9(start_year,start_quarter,36,null);
+	DECLARE h410a INT DEFAULT getCohortAllBefore10(start_year,start_quarter,36,null);
+	DECLARE h411a INT DEFAULT getCohortAllBefore11(start_year,start_quarter,36,null);
+	DECLARE h412a INT DEFAULT getCohortAllBefore12(start_year,start_quarter,36,null);
+	DECLARE h413a INT DEFAULT h48a-h49a-h410a-h411a-h412a;
+	DECLARE h414a DECIMAL DEFAULT (h413a/h48a)*100;
+	DECLARE h415a CHAR(20) DEFAULT CONCAT(getCohortAllBefore15a(start_year,start_quarter,36,null),'/',getCohortAllBefore15b(start_year,start_quarter,36,null));
+	DECLARE h416a INT DEFAULT getCohortAllBefore16(start_year,start_quarter,36,null);
 
-        DECLARE h51a CHAR(255);
-        DECLARE h52a CHAR(100);
-        DECLARE h53a INT DEFAULT getCohortAllBefore3(start_year,start_quarter,48,null);
-        DECLARE h54a CHAR(20) DEFAULT CONCAT(getCohortAllBefore4a(start_year,start_quarter,48,null),'/',getCohortAllBefore4b(start_year,start_quarter,48,null));
-        DECLARE h55a INT DEFAULT getCohortAllBefore5(start_year,start_quarter,48,null);
-        DECLARE h56a INT DEFAULT getCohortAllBefore6(start_year,start_quarter,48,null);
-        DECLARE h57a INT DEFAULT getCohortAllBefore7(start_year,start_quarter,48,null);
-        DECLARE h58a INT DEFAULT h53a + h56a - h57a;
-        DECLARE h59a INT DEFAULT getCohortAllBefore9(start_year,start_quarter,48,null);
-        DECLARE h510a INT DEFAULT getCohortAllBefore10(start_year,start_quarter,48,null);
-        DECLARE h511a INT DEFAULT getCohortAllBefore11(start_year,start_quarter,48,null);
-        DECLARE h512a INT DEFAULT getCohortAllBefore12(start_year,start_quarter,48,null);
-        DECLARE h513a INT;
-        DECLARE h514a DECIMAL;
-        DECLARE h515a CHAR(20) DEFAULT CONCAT(getCohortAllBefore15a(start_year,start_quarter,48,null),'/',getCohortAllBefore15b(start_year,start_quarter,48,null));
-        DECLARE h516a INT DEFAULT getCohortAllBefore16(start_year,start_quarter,48,null);
+	DECLARE h51a CHAR(255) DEFAULT 'All patients 48 months';
+	DECLARE h52a CHAR(100) DEFAULT getCohortMonth(start_year,start_quarter,48);
+	DECLARE h53a INT DEFAULT getCohortAllBefore3(start_year,start_quarter,48,null);
+	DECLARE h54a CHAR(20) DEFAULT CONCAT(getCohortAllBefore4a(start_year,start_quarter,48,null),'/',getCohortAllBefore4b(start_year,start_quarter,48,null));
+	DECLARE h55a INT DEFAULT getCohortAllBefore5(start_year,start_quarter,48,null);
+	DECLARE h56a INT DEFAULT getCohortAllBefore6(start_year,start_quarter,48,null);
+	DECLARE h57a INT DEFAULT getCohortAllBefore7(start_year,start_quarter,48,null);
+	DECLARE h58a INT DEFAULT h53a + h56a - h57a;
+	DECLARE h59a INT DEFAULT getCohortAllBefore9(start_year,start_quarter,48,null);
+	DECLARE h510a INT DEFAULT getCohortAllBefore10(start_year,start_quarter,48,null);
+	DECLARE h511a INT DEFAULT getCohortAllBefore11(start_year,start_quarter,48,null);
+	DECLARE h512a INT DEFAULT getCohortAllBefore12(start_year,start_quarter,48,null);
+	DECLARE h513a INT DEFAULT h58a-h59a-h510a-h511a-h512a;
+	DECLARE h514a DECIMAL DEFAULT (h513a/h58a)*100;
+	DECLARE h515a CHAR(20) DEFAULT CONCAT(getCohortAllBefore15a(start_year,start_quarter,48,null),'/',getCohortAllBefore15b(start_year,start_quarter,48,null));
+	DECLARE h516a INT DEFAULT getCohortAllBefore16(start_year,start_quarter,48,null);
 
-        DECLARE h61a CHAR(255);
-        DECLARE h62a CHAR(100);
-        DECLARE h63a INT DEFAULT getCohortAllBefore3(start_year,start_quarter,60,null);
-        DECLARE h64a CHAR(20) DEFAULT CONCAT(getCohortAllBefore4a(start_year,start_quarter,60,null),'/',getCohortAllBefore4b(start_year,start_quarter,60,null));
-        DECLARE h65a INT DEFAULT getCohortAllBefore5(start_year,start_quarter,60,null);
-        DECLARE h66a INT DEFAULT getCohortAllBefore6(start_year,start_quarter,60,null);
-        DECLARE h67a INT DEFAULT getCohortAllBefore7(start_year,start_quarter,60,null);
-        DECLARE h68a INT DEFAULT h63a + h66a - h67a;
-        DECLARE h69a INT DEFAULT getCohortAllBefore9(start_year,start_quarter,60,null);
-        DECLARE h610a INT DEFAULT getCohortAllBefore10(start_year,start_quarter,60,null);
-        DECLARE h611a INT DEFAULT getCohortAllBefore11(start_year,start_quarter,60,null);
-        DECLARE h612a INT DEFAULT getCohortAllBefore12(start_year,start_quarter,60,null);
-        DECLARE h613a INT;
-        DECLARE h614a DECIMAL;
-        DECLARE h615a CHAR(20) DEFAULT CONCAT(getCohortAllBefore15a(start_year,start_quarter,60,null),'/',getCohortAllBefore15b(start_year,start_quarter,60,null));
-        DECLARE h616a INT DEFAULT getCohortAllBefore16(start_year,start_quarter,60,null);
+	DECLARE h61a CHAR(255) DEFAULT 'All patients 60 months';
+	DECLARE h62a CHAR(100) DEFAULT getCohortMonth(start_year,start_quarter,60);
+	DECLARE h63a INT DEFAULT getCohortAllBefore3(start_year,start_quarter,60,null);
+	DECLARE h64a CHAR(20) DEFAULT CONCAT(getCohortAllBefore4a(start_year,start_quarter,60,null),'/',getCohortAllBefore4b(start_year,start_quarter,60,null));
+	DECLARE h65a INT DEFAULT getCohortAllBefore5(start_year,start_quarter,60,null);
+	DECLARE h66a INT DEFAULT getCohortAllBefore6(start_year,start_quarter,60,null);
+	DECLARE h67a INT DEFAULT getCohortAllBefore7(start_year,start_quarter,60,null);
+	DECLARE h68a INT DEFAULT h63a + h66a - h67a;
+	DECLARE h69a INT DEFAULT getCohortAllBefore9(start_year,start_quarter,60,null);
+	DECLARE h610a INT DEFAULT getCohortAllBefore10(start_year,start_quarter,60,null);
+	DECLARE h611a INT DEFAULT getCohortAllBefore11(start_year,start_quarter,60,null);
+	DECLARE h612a INT DEFAULT getCohortAllBefore12(start_year,start_quarter,60,null);
+	DECLARE h613a INT DEFAULT h68a-h69a-h610a-h611a-h612a;
+	DECLARE h614a DECIMAL DEFAULT (h613a/h68a)*100;
+	DECLARE h615a CHAR(20) DEFAULT CONCAT(getCohortAllBefore15a(start_year,start_quarter,60,null),'/',getCohortAllBefore15b(start_year,start_quarter,60,null));
+	DECLARE h616a INT DEFAULT getCohortAllBefore16(start_year,start_quarter,60,null);
 
-        DECLARE h71a CHAR(255);
-        DECLARE h72a CHAR(100);
-        DECLARE h73a INT DEFAULT getCohortAllBefore3(start_year,start_quarter,72,null);
-        DECLARE h74a CHAR(20) DEFAULT CONCAT(getCohortAllBefore4a(start_year,start_quarter,72,null),'/',getCohortAllBefore4b(start_year,start_quarter,72,null));
-        DECLARE h75a INT DEFAULT getCohortAllBefore5(start_year,start_quarter,72,null);
-        DECLARE h76a INT DEFAULT getCohortAllBefore6(start_year,start_quarter,72,null);
-        DECLARE h77a INT DEFAULT getCohortAllBefore7(start_year,start_quarter,72,null);
-        DECLARE h78a INT DEFAULT h73a + h76a - h77a;
-        DECLARE h79a INT DEFAULT getCohortAllBefore9(start_year,start_quarter,72,null);
-        DECLARE h710a INT DEFAULT getCohortAllBefore10(start_year,start_quarter,72,null);
-        DECLARE h711a INT DEFAULT getCohortAllBefore11(start_year,start_quarter,72,null);
-        DECLARE h712a INT DEFAULT getCohortAllBefore12(start_year,start_quarter,72,null);
-        DECLARE h713a INT;
-        DECLARE h714a DECIMAL;
-        DECLARE h715a CHAR(20) DEFAULT CONCAT(getCohortAllBefore15a(start_year,start_quarter,72,null),'/',getCohortAllBefore15b(start_year,start_quarter,72,null));
-        DECLARE h716a INT DEFAULT getCohortAllBefore16(start_year,start_quarter,72,null);
+	DECLARE h71a CHAR(255) DEFAULT 'All patients 72 months';
+	DECLARE h72a CHAR(100) DEFAULT getCohortMonth(start_year,start_quarter,72);
+	DECLARE h73a INT DEFAULT getCohortAllBefore3(start_year,start_quarter,72,null);
+	DECLARE h74a CHAR(20) DEFAULT CONCAT(getCohortAllBefore4a(start_year,start_quarter,72,null),'/',getCohortAllBefore4b(start_year,start_quarter,72,null));
+	DECLARE h75a INT DEFAULT getCohortAllBefore5(start_year,start_quarter,72,null);
+	DECLARE h76a INT DEFAULT getCohortAllBefore6(start_year,start_quarter,72,null);
+	DECLARE h77a INT DEFAULT getCohortAllBefore7(start_year,start_quarter,72,null);
+	DECLARE h78a INT DEFAULT h73a + h76a - h77a;
+	DECLARE h79a INT DEFAULT getCohortAllBefore9(start_year,start_quarter,72,null);
+	DECLARE h710a INT DEFAULT getCohortAllBefore10(start_year,start_quarter,72,null);
+	DECLARE h711a INT DEFAULT getCohortAllBefore11(start_year,start_quarter,72,null);
+	DECLARE h712a INT DEFAULT getCohortAllBefore12(start_year,start_quarter,72,null);
+	DECLARE h713a INT DEFAULT h18a-h79a-h710a-h171a-h712a;
+	DECLARE h714a DECIMAL DEFAULT (h713a/h78a)*100;
+	DECLARE h715a CHAR(20) DEFAULT CONCAT(getCohortAllBefore15a(start_year,start_quarter,72,null),'/',getCohortAllBefore15b(start_year,start_quarter,72,null));
+	DECLARE h716a INT DEFAULT getCohortAllBefore16(start_year,start_quarter,72,null);
 
-        DECLARE h11b CHAR(255);
-        DECLARE h12b CHAR(100);
-        DECLARE h13b INT;
-        DECLARE h14b CHAR(20);
-        DECLARE h15b INT;
-        DECLARE h16b INT;
-        DECLARE h17b INT;
-        DECLARE h18b INT;
-        DECLARE h19b INT;
-        DECLARE h110b INT;
-        DECLARE h111b INT;
-        DECLARE h112b INT;
-        DECLARE h113b INT;
-        DECLARE h114b DECIMAL;
-        DECLARE h115b CHAR(20);
-        DECLARE h116b INT;
+	DECLARE h11b CHAR(255) DEFAULT 'eMTCT Mothers 6 months';
+	DECLARE h12b CHAR(100) DEFAULT getCohortMonth(start_year,start_quarter,6);
+	DECLARE h13b INT DEFAULT getCohortAllBefore3(start_year,start_quarter,6,true);
+	DECLARE h14b CHAR(20) DEFAULT CONCAT(getCohortAllBefore4b(start_year,start_quarter,6,true),'/',getCohortAllBefore4b(start_year,start_quarter,6,true));
+	DECLARE h15b INT DEFAULT getCohortAllBefore5(start_year,start_quarter,6,true);
+	DECLARE h16b INT DEFAULT getCohortAllBefore6(start_year,start_quarter,6,true);
+	DECLARE h17b INT DEFAULT getCohortAllBefore7(start_year,start_quarter,6,true);
+	DECLARE h18b INT DEFAULT h13b + h16b - h17b;
+	DECLARE h19b INT DEFAULT getCohortAllBefore9(start_year,start_quarter,6,true);
+	DECLARE h110b INT DEFAULT getCohortAllBefore10(start_year,start_quarter,6,true);
+	DECLARE h111b INT DEFAULT getCohortAllBefore11(start_year,start_quarter,6,true);
+	DECLARE h112b INT DEFAULT getCohortAllBefore12(start_year,start_quarter,6,true);
+	DECLARE h113b INT DEFAULT h18b-h19b-h110b-h111b-h112b;
+	DECLARE h114b DECIMAL DEFAULT (h113b/h18b)*100;
+	DECLARE h115b CHAR(20) DEFAULT CONCAT(getCohortAllBefore15b(start_year,start_quarter,6,true),'/',getCohortAllBefore15b(start_year,start_quarter,6,true));
+	DECLARE h116b INT DEFAULT getCohortAllBefore16(start_year,start_quarter,6,true);
 
-        DECLARE h21b CHAR(255);
-        DECLARE h22b CHAR(100);
-        DECLARE h23b INT;
-        DECLARE h24b CHAR(20);
-        DECLARE h25b INT;
-        DECLARE h26b INT;
-        DECLARE h27b INT;
-        DECLARE h28b INT;
-        DECLARE h29b INT;
-        DECLARE h210b INT;
-        DECLARE h211b INT;
-        DECLARE h212b INT;
-        DECLARE h213b INT;
-        DECLARE h214b DECIMAL;
-        DECLARE h215b CHAR(20);
-        DECLARE h216b INT;
+	DECLARE h21b CHAR(255) DEFAULT 'eMTCT Mothers 12 months';
+	DECLARE h22b CHAR(100) DEFAULT getCohortMonth(start_year,start_quarter,12);
+	DECLARE h23b INT DEFAULT getCohortAllBefore3(start_year,start_quarter,12,true);
+	DECLARE h24b CHAR(20) DEFAULT CONCAT(getCohortAllBefore4b(start_year,start_quarter,12,true),'/',getCohortAllBefore4b(start_year,start_quarter,12,true));
+	DECLARE h25b INT DEFAULT getCohortAllBefore5(start_year,start_quarter,12,true);
+	DECLARE h26b INT DEFAULT getCohortAllBefore6(start_year,start_quarter,12,true);
+	DECLARE h27b INT DEFAULT getCohortAllBefore7(start_year,start_quarter,12,true);
+	DECLARE h28b INT DEFAULT h23b + h26b - h27b;
+	DECLARE h29b INT DEFAULT getCohortAllBefore9(start_year,start_quarter,12,true);
+	DECLARE h210b INT DEFAULT getCohortAllBefore10(start_year,start_quarter,12,true);
+	DECLARE h211b INT DEFAULT getCohortAllBefore11(start_year,start_quarter,12,true);
+	DECLARE h212b INT DEFAULT getCohortAllBefore12(start_year,start_quarter,12,true);
+	DECLARE h213b INT DEFAULT h28b-h29b-h210b-h211b-h212b;
+	DECLARE h214b DECIMAL DEFAULT (h213b/h28b)*100;
+	DECLARE h215b CHAR(20) DEFAULT CONCAT(getCohortAllBefore15b(start_year,start_quarter,12,true),'/',getCohortAllBefore15b(start_year,start_quarter,12,true));
+	DECLARE h216b INT DEFAULT getCohortAllBefore16(start_year,start_quarter,12,true);
 
-        DECLARE h31b CHAR(255);
-        DECLARE h32b CHAR(100);
-        DECLARE h33b INT;
-        DECLARE h34b CHAR(20);
-        DECLARE h35b INT;
-        DECLARE h36b INT;
-        DECLARE h37b INT;
-        DECLARE h38b INT;
-        DECLARE h39b INT;
-        DECLARE h310b INT;
-        DECLARE h311b INT;
-        DECLARE h312b INT;
-        DECLARE h313b INT;
-        DECLARE h314b DECIMAL;
-        DECLARE h315b CHAR(20);
-        DECLARE h316b INT;
+	DECLARE h31b CHAR(255) DEFAULT 'eMTCT Mothers 24 months';
+	DECLARE h32b CHAR(100) DEFAULT getCohortMonth(start_year,start_quarter,24);
+	DECLARE h33b INT DEFAULT getCohortAllBefore3(start_year,start_quarter,24,true);
+	DECLARE h34b CHAR(20) DEFAULT CONCAT(getCohortAllBefore4b(start_year,start_quarter,24,true),'/',getCohortAllBefore4b(start_year,start_quarter,24,true));
+	DECLARE h35b INT DEFAULT getCohortAllBefore5(start_year,start_quarter,24,true);
+	DECLARE h36b INT DEFAULT getCohortAllBefore6(start_year,start_quarter,24,true);
+	DECLARE h37b INT DEFAULT getCohortAllBefore7(start_year,start_quarter,24,true);
+	DECLARE h38b INT DEFAULT h33b + h36b - h37b;
+	DECLARE h39b INT DEFAULT getCohortAllBefore9(start_year,start_quarter,24,true);
+	DECLARE h310b INT DEFAULT getCohortAllBefore10(start_year,start_quarter,24,true);
+	DECLARE h311b INT DEFAULT getCohortAllBefore11(start_year,start_quarter,24,true);
+	DECLARE h312b INT DEFAULT getCohortAllBefore12(start_year,start_quarter,24,true);
+	DECLARE h313b INT DEFAULT h38b-h39b-h310b-h311b-h312b;
+	DECLARE h314b DECIMAL DEFAULT (h313b/h38b)*100;
+	DECLARE h315b CHAR(20) DEFAULT CONCAT(getCohortAllBefore15b(start_year,start_quarter,24,true),'/',getCohortAllBefore15b(start_year,start_quarter,24,true));
+	DECLARE h316b INT DEFAULT getCohortAllBefore16(start_year,start_quarter,24,true);
 
-        DECLARE h41b CHAR(255);
-        DECLARE h42b CHAR(100);
-        DECLARE h43b INT;
-        DECLARE h44b CHAR(20);
-        DECLARE h45b INT;
-        DECLARE h46b INT;
-        DECLARE h47b INT;
-        DECLARE h48b INT;
-        DECLARE h49b INT;
-        DECLARE h410b INT;
-        DECLARE h411b INT;
-        DECLARE h412b INT;
-        DECLARE h413b INT;
-        DECLARE h414b DECIMAL;
-        DECLARE h415b CHAR(20);
-        DECLARE h416b INT;
+	DECLARE h41b CHAR(255) DEFAULT 'eMTCT Mothers 36 months';
+	DECLARE h42b CHAR(100) DEFAULT getCohortMonth(start_year,start_quarter,36);
+	DECLARE h43b INT DEFAULT getCohortAllBefore3(start_year,start_quarter,36,true);
+	DECLARE h44b CHAR(20) DEFAULT CONCAT(getCohortAllBefore4b(start_year,start_quarter,36,true),'/',getCohortAllBefore4b(start_year,start_quarter,36,true));
+	DECLARE h45b INT DEFAULT getCohortAllBefore5(start_year,start_quarter,36,true);
+	DECLARE h46b INT DEFAULT getCohortAllBefore6(start_year,start_quarter,36,true);
+	DECLARE h47b INT DEFAULT getCohortAllBefore7(start_year,start_quarter,36,true);
+	DECLARE h48b INT DEFAULT h43b + h46b - h47b;
+	DECLARE h49b INT DEFAULT getCohortAllBefore9(start_year,start_quarter,36,true);
+	DECLARE h410b INT DEFAULT getCohortAllBefore10(start_year,start_quarter,36,true);
+	DECLARE h411b INT DEFAULT getCohortAllBefore11(start_year,start_quarter,36,true);
+	DECLARE h412b INT DEFAULT getCohortAllBefore12(start_year,start_quarter,36,true);
+	DECLARE h413b INT DEFAULT h48b-h49b-h410b-h411b-h412b;
+	DECLARE h414b DECIMAL DEFAULT (h413b/h48b)*100;
+	DECLARE h415b CHAR(20) DEFAULT CONCAT(getCohortAllBefore15b(start_year,start_quarter,36,true),'/',getCohortAllBefore15b(start_year,start_quarter,36,true));
+	DECLARE h416b INT DEFAULT getCohortAllBefore16(start_year,start_quarter,36,true);
 
-        DECLARE h51b CHAR(255);
-        DECLARE h52b CHAR(100);
-        DECLARE h53b INT;
-        DECLARE h54b CHAR(20);
-        DECLARE h55b INT;
-        DECLARE h56b INT;
-        DECLARE h57b INT;
-        DECLARE h58b INT;
-        DECLARE h59b INT;
-        DECLARE h510b INT;
-        DECLARE h511b INT;
-        DECLARE h512b INT;
-        DECLARE h513b INT;
-        DECLARE h514b DECIMAL;
-        DECLARE h515b CHAR(20);
-        DECLARE h516b INT;
+	DECLARE h51b CHAR(255) DEFAULT 'eMTCT Mothers 48 months';
+	DECLARE h52b CHAR(100) DEFAULT getCohortMonth(start_year,start_quarter,48);
+	DECLARE h53b INT DEFAULT getCohortAllBefore3(start_year,start_quarter,48,true);
+	DECLARE h54b CHAR(20) DEFAULT CONCAT(getCohortAllBefore4b(start_year,start_quarter,48,true),'/',getCohortAllBefore4b(start_year,start_quarter,48,true));
+	DECLARE h55b INT DEFAULT getCohortAllBefore5(start_year,start_quarter,48,true);
+	DECLARE h56b INT DEFAULT getCohortAllBefore6(start_year,start_quarter,48,true);
+	DECLARE h57b INT DEFAULT getCohortAllBefore7(start_year,start_quarter,48,true);
+	DECLARE h58b INT DEFAULT h53b + h56b - h57b;
+	DECLARE h59b INT DEFAULT getCohortAllBefore9(start_year,start_quarter,48,true);
+	DECLARE h510b INT DEFAULT getCohortAllBefore10(start_year,start_quarter,48,true);
+	DECLARE h511b INT DEFAULT getCohortAllBefore11(start_year,start_quarter,48,true);
+	DECLARE h512b INT DEFAULT getCohortAllBefore12(start_year,start_quarter,48,true);
+	DECLARE h513b INT DEFAULT h58b-h59b-h510b-h511b-h512b;
+	DECLARE h514b DECIMAL DEFAULT (h513b/h58b)*100;
+	DECLARE h515b CHAR(20) DEFAULT CONCAT(getCohortAllBefore15b(start_year,start_quarter,48,true),'/',getCohortAllBefore15b(start_year,start_quarter,48,true));
+	DECLARE h516b INT DEFAULT getCohortAllBefore16(start_year,start_quarter,48,true);
 
-        DECLARE h61b CHAR(255);
-        DECLARE h62b CHAR(100);
-        DECLARE h63b INT;
-        DECLARE h64b CHAR(20);
-        DECLARE h65b INT;
-        DECLARE h66b INT;
-        DECLARE h67b INT;
-        DECLARE h68b INT;
-        DECLARE h69b INT;
-        DECLARE h610b INT;
-        DECLARE h611b INT;
-        DECLARE h612b INT;
-        DECLARE h613b INT;
-        DECLARE h614b DECIMAL;
-        DECLARE h615b CHAR(20);
-        DECLARE h616b INT;
+	DECLARE h61b CHAR(255) DEFAULT 'eMTCT Mothers 60 months';
+	DECLARE h62b CHAR(100) DEFAULT getCohortMonth(start_year,start_quarter,60);
+	DECLARE h63b INT DEFAULT getCohortAllBefore3(start_year,start_quarter,60,true);
+	DECLARE h64b CHAR(20) DEFAULT CONCAT(getCohortAllBefore4b(start_year,start_quarter,60,true),'/',getCohortAllBefore4b(start_year,start_quarter,60,true));
+	DECLARE h65b INT DEFAULT getCohortAllBefore5(start_year,start_quarter,60,true);
+	DECLARE h66b INT DEFAULT getCohortAllBefore6(start_year,start_quarter,60,true);
+	DECLARE h67b INT DEFAULT getCohortAllBefore7(start_year,start_quarter,60,true);
+	DECLARE h68b INT DEFAULT h63b + h66b - h67b;
+	DECLARE h69b INT DEFAULT getCohortAllBefore9(start_year,start_quarter,60,true);
+	DECLARE h610b INT DEFAULT getCohortAllBefore10(start_year,start_quarter,60,true);
+	DECLARE h611b INT DEFAULT getCohortAllBefore11(start_year,start_quarter,60,true);
+	DECLARE h612b INT DEFAULT getCohortAllBefore12(start_year,start_quarter,60,true);
+	DECLARE h613b INT DEFAULT h68b-h69b-h610b-h611b-h612b;
+	DECLARE h614b DECIMAL DEFAULT (h613b/h68b)*100;
+	DECLARE h615b CHAR(20) DEFAULT CONCAT(getCohortAllBefore15b(start_year,start_quarter,60,true),'/',getCohortAllBefore15b(start_year,start_quarter,60,true));
+	DECLARE h616b INT DEFAULT getCohortAllBefore16(start_year,start_quarter,60,true);
 
-        DECLARE h71b CHAR(255);
-        DECLARE h72b CHAR(100);
-        DECLARE h73b INT;
-        DECLARE h74b CHAR(20);
-        DECLARE h75b INT;
-        DECLARE h76b INT;
-        DECLARE h77b INT;
-        DECLARE h78b INT;
-        DECLARE h79b INT;
-        DECLARE h710b INT;
-        DECLARE h711b INT;
-        DECLARE h712b INT;
-        DECLARE h713b INT;
-        DECLARE h714b DECIMAL;
-        DECLARE h715b CHAR(20);
-        DECLARE h716b INT;
+	DECLARE h71b CHAR(255) DEFAULT 'eMTCT Mothers 72 months';
+	DECLARE h72b CHAR(100) DEFAULT getCohortMonth(start_year,start_quarter,72);
+	DECLARE h73b INT DEFAULT getCohortAllBefore3(start_year,start_quarter,72,true);
+	DECLARE h74b CHAR(20) DEFAULT CONCAT(getCohortAllBefore4b(start_year,start_quarter,72,true),'/',getCohortAllBefore4b(start_year,start_quarter,72,true));
+	DECLARE h75b INT DEFAULT getCohortAllBefore5(start_year,start_quarter,72,true);
+	DECLARE h76b INT DEFAULT getCohortAllBefore6(start_year,start_quarter,72,true);
+	DECLARE h77b INT DEFAULT getCohortAllBefore7(start_year,start_quarter,72,true);
+	DECLARE h78b INT DEFAULT h73b + h76b - h77b;
+	DECLARE h79b INT DEFAULT getCohortAllBefore9(start_year,start_quarter,72,true);
+	DECLARE h710b INT DEFAULT getCohortAllBefore10(start_year,start_quarter,72,true);
+	DECLARE h711b INT DEFAULT getCohortAllBefore11(start_year,start_quarter,72,true);
+	DECLARE h712b INT DEFAULT getCohortAllBefore12(start_year,start_quarter,72,true);
+	DECLARE h713b INT DEFAULT h78b-h79b-h110b-h711b-h712b;
+	DECLARE h714b DECIMAL DEFAULT (h713b/h78b)*100;
+	DECLARE h715b CHAR(20) DEFAULT CONCAT(getCohortAllBefore15b(start_year,start_quarter,72,true),'/',getCohortAllBefore15b(start_year,start_quarter,72,true));
+	DECLARE h716b INT DEFAULT getCohortAllBefore16(start_year,start_quarter,72,true);
 
     SELECT
-        h11a,
-        h12a,
+		h11a,
+		h12a,
         h13a,
         h14a,
         h15a,
@@ -1111,7 +1242,7 @@ BEGIN
         h116a,
 
         h21a,
-        h22a,
+		h22a,
         h23a,
         h24a,
         h25a,
@@ -1128,7 +1259,7 @@ BEGIN
         h216a,
 
         h31a,
-        h32a,
+		h32a,
         h33a,
         h34a,
         h35a,
@@ -1145,7 +1276,7 @@ BEGIN
         h316a,
 
         h41a,
-        h42a,
+		h42a,
         h43a,
         h44a,
         h45a,
@@ -1162,7 +1293,7 @@ BEGIN
         h416a,
 
         h51a,
-        h52a,
+		h52a,
         h53a,
         h54a,
         h55a,
@@ -1179,7 +1310,7 @@ BEGIN
         h516a,
 
         h61a,
-        h62a,
+		h62a,
         h63a,
         h64a,
         h65a,
@@ -1195,8 +1326,8 @@ BEGIN
         h615a,
         h616a,
 
-        h71a,
-        h72a,
+		h71a,
+		h72a,
         h73a,
         h74a,
         h75a,
@@ -1213,7 +1344,7 @@ BEGIN
         h716a,
 
         h11b,
-        h12b,
+		h12b,
         h13b,
         h14b,
         h15b,
@@ -1230,7 +1361,7 @@ BEGIN
         h116b,
 
         h21b,
-        h22b,
+		h22b,
         h23b,
         h24b,
         h25b,
@@ -1247,7 +1378,7 @@ BEGIN
         h216b,
 
         h31b,
-        h32b,
+		h32b,
         h33b,
         h34b,
         h35b,
@@ -1264,7 +1395,7 @@ BEGIN
         h316b,
 
         h41b,
-        h42b,
+		h42b,
         h43b,
         h44b,
         h45b,
@@ -1281,7 +1412,7 @@ BEGIN
         h416b,
 
         h51b,
-        h52b,
+		h52b,
         h53b,
         h54b,
         h55b,
@@ -1298,7 +1429,7 @@ BEGIN
         h516b,
 
         h61b,
-        h62b,
+		h62b,
         h63b,
         h64b,
         h65b,
@@ -1314,8 +1445,8 @@ BEGIN
         h615b,
         h616b,
 
-        h71b,
-        h72b,
+		h71b,
+		h72b,
         h73b,
         h74b,
         h75b,
@@ -1333,25 +1464,24 @@ BEGIN
 END$$
 DELIMITER ;
 
-
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` FUNCTION `get_adherence_Count`(AdherenceType int, StartDate Date, EndDate Date) RETURNS int(11)
     DETERMINISTIC
 begin
-    declare result int DEFAULT -1;
+	declare result int DEFAULT -1;
 
 SELECT Adherence INTO result
 FROM(
-    SELECT count(A.person_id) AS Adherence
-    FROM(
-        SELECT person_id, obs_id, max(obs_datetime)
-        FROM obs
-        WHERE concept_id = 90221  and voided = 0
-        AND obs_datetime BETWEEN StartDate AND EndDate
-        GROUP BY person_id
-        ) A
+	SELECT count(A.person_id) AS Adherence
+	FROM(
+		SELECT person_id, obs_id, max(obs_datetime)
+		FROM obs
+		WHERE concept_id = 90221  and voided = 0
+		AND obs_datetime BETWEEN StartDate AND EndDate
+		GROUP BY person_id
+		) A
 )AA;
-    RETURN result;
+	RETURN result;
 end$$
 DELIMITER ;
 
@@ -1359,23 +1489,37 @@ DELIMITER $$
 CREATE DEFINER=`root`@`localhost` FUNCTION `get_adherenceType_Count`(AdherenceType int, StartDate Date, EndDate Date) RETURNS int(11)
     DETERMINISTIC
 begin
-    declare result int DEFAULT -1;
+	declare result int DEFAULT -1;
 
 SELECT Adherence INTO result
 FROM(
-    SELECT count(A.person_id) AS Adherence
-    FROM(
-        SELECT person_id, obs_id, max(obs_datetime)
-        FROM obs
-        WHERE concept_id = 90221  and voided = 0
-        AND obs_datetime BETWEEN StartDate AND EndDate
-        GROUP BY person_id
-        ) A
-    INNER JOIN obs B ON A.obs_id = B.obs_id
-    WHERE b.value_coded =  AdherenceType
+	SELECT count(A.person_id) AS Adherence
+	FROM(
+		SELECT person_id, obs_id, max(obs_datetime)
+		FROM obs
+		WHERE concept_id = 90221  and voided = 0
+		AND obs_datetime BETWEEN StartDate AND EndDate
+		GROUP BY person_id
+		) A
+	INNER JOIN obs B ON A.obs_id = B.obs_id
+	WHERE b.value_coded =  AdherenceType
 )AA;
-    RETURN result;
+	RETURN result;
 end$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`openmrs`@`localhost` FUNCTION `getADHStatusTxt`(patient_id INT,start_date Date,end_date date) RETURNS char(1) CHARSET latin1
+BEGIN
+
+RETURN (select if(value_coded=90156,'G',
+if(value_coded=90157,'F',
+if(value_coded=90158,'P',null))) as adh_status
+from obs
+where concept_id =90221 and person_id = patient_id and obs_datetime BETWEEN start_date and end_date and voided=0
+limit 1
+);
+END$$
 DELIMITER ;
 
 DELIMITER $$
@@ -1384,7 +1528,7 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `getAncNumberTxt`(`encounterid` integ
 BEGIN
 
 
-    RETURN (select value_text from obs where concept_id=99026
+	RETURN (select value_text from obs where concept_id=99026
 and encounterid=encounter_id
 and voided=0
 limit 1
@@ -1423,6 +1567,22 @@ and person_id=personid
 and voided=0
 limit 1);
 
+
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getArtEligibilityAndReadyDate`(`personid` integer) RETURNS date
+    READS SQL DATA
+BEGIN
+
+
+RETURN (select value_datetime as eligible_and_ready_date from obs
+where concept_id =90299
+and voided=0
+and personid=person_id
+limit 1
+);
 
 END$$
 DELIMITER ;
@@ -1502,7 +1662,7 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `getArtRegTxt`(`encounterid` integer)
 BEGIN
 
 
-    RETURN (select
+	RETURN (select
 min(if(value_coded=99015, '1a',
 if(value_coded=99016, '1b',
 if(value_coded=99005, '1c',
@@ -1538,7 +1698,7 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `getArtRegTxt2`(`personid` integer, `
 BEGIN
 
 
-    RETURN (select
+	RETURN (select
 min(if(value_coded=99015, '1a',
 if(value_coded=99016, '1b',
 if(value_coded=99005, '1c',
@@ -1631,7 +1791,7 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `getArtStartRegTxt`(`personid` intege
 BEGIN
 
 
-    RETURN (select
+	RETURN (select
 min(if(value_coded=99015, '1a',
 if(value_coded=99016, '1b',
 if(value_coded=99005, '1c',
@@ -1756,20 +1916,20 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` FUNCTION `getCareEntryTxt`(`personid` integer) RETURNS char(15) CHARSET latin1
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCareEntryTxt`(`personid` INT) RETURNS char(15) CHARSET latin1
     READS SQL DATA
 BEGIN
 
 
-RETURN (select if(value_coded=90012,"PMTCT",
-if(value_coded=90013,"Medical",
-if(value_coded=90014,"Under 5",
+RETURN (select if(value_coded=90012,"eMTCT",
+if(value_coded=90013,"Outpatient",
+if(value_coded=99593,"YCC",
 if(value_coded=90016,"TB",
 if(value_coded=90015,"STI",
 if(value_coded=90018,"Inpatient",
 if(value_coded=90019,"Outreach",
 if(value_coded=99087,"Exposed Infant",
-if(value_coded=99002,"Other",''))))))))) as care_entry from obs
+if(value_coded=99002,"Other",if(value_coded=99610,"SMC",'')))))))))) as care_entry from obs
 where concept_id =90200
 and voided=0
 and personid=person_id
@@ -1804,19 +1964,19 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `get_CD4_count`(StartDate varchar(12)
     DETERMINISTIC
 RETURN
 (
-    SELECT IFNULL(CD4Count, CD4Percentage) AS CD4_Count
-    FROM(
-        SELECT
-            (SELECT value_numeric FROM obs  WHERE concept_id = 5497 AND person_id = LatestEncounter.patient_id  AND encounter_id = LatestEncounter.encounter_id) AS CD4Count
-            ,(SELECT value_numeric FROM obs  WHERE concept_id = 730 AND person_id = LatestEncounter.patient_id  AND encounter_id = LatestEncounter.encounter_id) AS CD4Percentage
-        FROM(
-            SELECT patient_id, max(encounter_datetime), encounter_id
-            FROM encounter
-            WHERE encounter_datetime BETWEEN str_to_date(StartDate,"%d/%m/%Y")  AND str_to_date(EndDate,"%d/%m/%Y")
-            AND patient_id = Patient_ID AND form_id = 31
-            GROUP BY patient_id
-        )LatestEncounter
-    )CD4
+	SELECT IFNULL(CD4Count, CD4Percentage) AS CD4_Count
+	FROM(
+		SELECT
+			(SELECT value_numeric FROM obs  WHERE concept_id = 5497 AND person_id = LatestEncounter.patient_id	AND encounter_id = LatestEncounter.encounter_id) AS CD4Count
+			,(SELECT value_numeric FROM obs  WHERE concept_id = 730 AND person_id = LatestEncounter.patient_id	AND encounter_id = LatestEncounter.encounter_id) AS CD4Percentage
+		FROM(
+			SELECT patient_id, max(encounter_datetime), encounter_id
+			FROM encounter
+			WHERE encounter_datetime BETWEEN str_to_date(StartDate,"%d/%m/%Y")  AND str_to_date(EndDate,"%d/%m/%Y")
+			AND patient_id = Patient_ID AND form_id = 31
+			GROUP BY patient_id
+		)LatestEncounter
+	)CD4
 )$$
 DELIMITER ;
 
@@ -1877,7 +2037,7 @@ BEGIN
 DECLARE number_on_cohort int;
 
 IF NULLIF(only_preg, '') IS NULL THEN
-    SELECT
+	SELECT
             COUNT(*)
             INTO number_on_cohort
         FROM
@@ -1929,7 +2089,7 @@ DECLARE number_on_cohort int;
 
 
 IF NULLIF(only_preg, '') IS NULL THEN
-    SELECT
+	SELECT
             COUNT(*)
             INTO number_on_cohort
         FROM
@@ -1984,7 +2144,7 @@ IF NULLIF(only_preg, '') IS NULL THEN
                     form_id = 28 AND obs.concept_id = 99161
                         AND obs.voided = 0);
 ELSE
-    SELECT
+	SELECT
             COUNT(*)
             INTO number_on_cohort
         FROM
@@ -2052,7 +2212,7 @@ DECLARE number_on_cohort int;
 
 
 IF NULLIF(only_preg, '') IS NULL THEN
-    SELECT
+	SELECT
             COUNT(*)
             INTO number_on_cohort
         FROM
@@ -2073,7 +2233,7 @@ IF NULLIF(only_preg, '') IS NULL THEN
                 AND e.encounter_datetime BETWEEN MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL months_before MONTH AND MAKEDATE(start_year, 1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY);
 
 ELSE
-    SELECT
+	SELECT
             COUNT(*)
             INTO number_on_cohort
         FROM
@@ -2110,7 +2270,7 @@ DECLARE number_on_cohort int;
 
 
 IF NULLIF(only_preg, '') IS NULL THEN
-    SELECT
+	SELECT
             COUNT(*)
             INTO number_on_cohort
         FROM
@@ -2140,7 +2300,7 @@ IF NULLIF(only_preg, '') IS NULL THEN
                 AND e.encounter_datetime BETWEEN MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL months_before MONTH AND MAKEDATE(start_year, 1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY);
 
 ELSE
-    SELECT
+	SELECT
             COUNT(*)
             INTO number_on_cohort
         FROM
@@ -2185,7 +2345,7 @@ DECLARE number_on_cohort int;
 
 
 IF NULLIF(only_preg, '') IS NULL THEN
-    SELECT
+	SELECT
             COUNT(*)
             INTO number_on_cohort
         FROM
@@ -2214,7 +2374,7 @@ IF NULLIF(only_preg, '') IS NULL THEN
                 AND e.encounter_datetime BETWEEN MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL months_before MONTH AND MAKEDATE(start_year, 1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY);
 
 ELSE
-    SELECT
+	SELECT
             COUNT(*)
             INTO number_on_cohort
         FROM
@@ -2258,7 +2418,7 @@ DECLARE number_on_cohort int;
 
 
 IF NULLIF(only_preg, '') IS NULL THEN
-    SELECT
+	SELECT
             AVG(t1.value_numeric) AS median_val
             INTO number_on_cohort
         FROM
@@ -2298,7 +2458,7 @@ IF NULLIF(only_preg, '') IS NULL THEN
         WHERE
             t1.row_number IN (FLOOR((total_rows + 1) / 2) , FLOOR((total_rows + 2) / 2));
 ELSE
-    SELECT
+	SELECT
             AVG(t1.value_numeric) AS median_val
             INTO number_on_cohort
         FROM
@@ -2317,7 +2477,7 @@ ELSE
                     INNER JOIN obs oi ON (ei.encounter_id = oi.encounter_id
                         AND oi.voided = 0
                         AND oi.concept_id = 99161))
-                    AND FIND_IN_SET (e.patient_id, only_preg)
+					AND FIND_IN_SET (e.patient_id, only_preg)
                     AND e.encounter_datetime BETWEEN MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL months_before MONTH AND MAKEDATE(start_year, 1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY
             ORDER BY d.value_numeric) AS t1,
             (SELECT
@@ -2351,29 +2511,29 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore3`(start_year int,
 BEGIN
 
  DECLARE income_level int;
-    IF NULLIF(only_preg, '') IS NULL THEN
+	IF NULLIF(only_preg, '') IS NULL THEN
 
      SELECT
-            COUNT(o.concept_id)
+			COUNT(o.concept_id)
             INTO income_level
-            FROM
-            encounter e INNER JOIN obs o ON(
+			FROM
+			encounter e INNER JOIN obs o ON(
             e.encounter_id = o.encounter_id AND
-            concept_id = 99161
-                AND o.value_datetime BETWEEN MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL month_before MONTH AND MAKEDATE(start_year, 1) + INTERVAL start_quarter QUARTER - INTERVAL month_before MONTH - INTERVAL 1 DAY
-                AND o.voided = 0);
+			concept_id = 99161
+				AND o.value_datetime BETWEEN MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL month_before MONTH AND MAKEDATE(start_year, 1) + INTERVAL start_quarter QUARTER - INTERVAL month_before MONTH - INTERVAL 1 DAY
+				AND o.voided = 0);
    ELSE
 
 SELECT
-            COUNT(o.concept_id)
+			COUNT(o.concept_id)
             INTO income_level
-            FROM
-            encounter e INNER JOIN obs o ON(
-            e.encounter_id = o.encounter_id
+			FROM
+			encounter e INNER JOIN obs o ON(
+			e.encounter_id = o.encounter_id
             AND o.concept_id = 99161
             AND FIND_IN_SET (e.patient_id, only_preg)
-                AND o.value_datetime BETWEEN MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL month_before MONTH AND MAKEDATE(start_year, 1) + INTERVAL start_quarter QUARTER - INTERVAL month_before MONTH - INTERVAL 1 DAY
-                AND o.voided = 0);
+				AND o.value_datetime BETWEEN MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL month_before MONTH AND MAKEDATE(start_year, 1) + INTERVAL start_quarter QUARTER - INTERVAL month_before MONTH - INTERVAL 1 DAY
+				AND o.voided = 0);
    END IF;
 
    RETURN income_level;
@@ -2386,7 +2546,7 @@ BEGIN
 DECLARE number_on_cohort int;
 
 IF NULLIF(only_preg, '') IS NULL THEN
-    SELECT
+	SELECT
             COUNT(*)
             INTO number_on_cohort
         FROM
@@ -2407,7 +2567,7 @@ IF NULLIF(only_preg, '') IS NULL THEN
                 AND e.encounter_datetime BETWEEN MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL months_before MONTH AND MAKEDATE(start_year, 1) + INTERVAL start_quarter QUARTER - INTERVAL months_before MONTH - INTERVAL 1 DAY);
 
 ELSE
-    SELECT
+	SELECT
             COUNT(*)
             INTO number_on_cohort
         FROM
@@ -2442,7 +2602,7 @@ BEGIN
 DECLARE number_on_cohort int;
 
 IF NULLIF(only_preg, '') IS NULL THEN
-    SELECT
+	SELECT
             COUNT(*)
             INTO number_on_cohort
         FROM
@@ -2462,7 +2622,7 @@ IF NULLIF(only_preg, '') IS NULL THEN
                 AND e.encounter_datetime BETWEEN MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL months_before MONTH AND MAKEDATE(start_year, 1) + INTERVAL start_quarter QUARTER - INTERVAL months_before MONTH - INTERVAL 1 DAY);
 
 ELSE
-    SELECT
+	SELECT
             COUNT(*)
             INTO number_on_cohort
         FROM
@@ -2497,7 +2657,7 @@ DECLARE number_on_cohort int;
 
 
 IF NULLIF(only_preg, '') IS NULL THEN
-    SELECT
+	SELECT
             AVG(t1.value_numeric) AS median_val
             INTO number_on_cohort
         FROM
@@ -2523,7 +2683,7 @@ IF NULLIF(only_preg, '') IS NULL THEN
         WHERE
             t1.row_number IN (FLOOR((total_rows + 1) / 2) , FLOOR((total_rows + 2) / 2));
 ELSE
-    SELECT
+	SELECT
             AVG(t1.value_numeric) AS median_val
             INTO number_on_cohort
         FROM
@@ -2564,7 +2724,7 @@ BEGIN
 DECLARE number_on_cohort int;
 
 IF NULLIF(only_preg, '') IS NULL THEN
-    SELECT
+	SELECT
             COUNT(*)
             INTO number_on_cohort
         FROM
@@ -2577,7 +2737,7 @@ IF NULLIF(only_preg, '') IS NULL THEN
                 AND e.encounter_datetime BETWEEN MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL months_before MONTH AND MAKEDATE(start_year, 1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY);
 
 ELSE
-    SELECT
+	SELECT
             COUNT(*)
             INTO number_on_cohort
         FROM
@@ -2606,7 +2766,7 @@ DECLARE number_on_cohort int;
 
 IF NULLIF(only_preg, '') IS NULL THEN
 
-    SELECT
+	SELECT
             COUNT(*)
             INTO number_on_cohort
         FROM
@@ -2627,7 +2787,7 @@ IF NULLIF(only_preg, '') IS NULL THEN
 
 
 ELSE
-    SELECT
+	SELECT
             COUNT(*)
             INTO number_on_cohort
         FROM
@@ -2644,7 +2804,7 @@ ELSE
                     obs oi ON (ei.encounter_id = oi.encounter_id
                         AND oi.voided = 0
                         AND oi.concept_id = 99161))
-                AND FIND_IN_SET (e.patient_id, only_preg)
+				AND FIND_IN_SET (e.patient_id, only_preg)
                 AND e.encounter_datetime BETWEEN MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL months_before MONTH AND MAKEDATE(start_year, 1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY);
 
 
@@ -2661,7 +2821,7 @@ BEGIN
 DECLARE number_on_cohort int;
 
 IF NULLIF(only_preg, '') IS NULL THEN
-    SELECT
+	SELECT
             COUNT(*)
             INTO number_on_cohort
         FROM
@@ -2682,7 +2842,7 @@ IF NULLIF(only_preg, '') IS NULL THEN
                 AND e.encounter_datetime BETWEEN MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL months_before MONTH AND MAKEDATE(start_year, 1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY);
 
 ELSE
-    SELECT
+	SELECT
             COUNT(*)
             INTO number_on_cohort
         FROM
@@ -2700,7 +2860,7 @@ ELSE
                     obs oi ON (ei.encounter_id = oi.encounter_id
                         AND oi.voided = 0
                         AND oi.concept_id = 99161))
-                AND FIND_IN_SET (e.patient_id, only_preg)
+				AND FIND_IN_SET (e.patient_id, only_preg)
                 AND e.encounter_datetime BETWEEN MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL months_before MONTH AND MAKEDATE(start_year, 1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY);
 
 END IF;
@@ -2711,19 +2871,30 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
+CREATE DEFINER=`openmrs`@`localhost` FUNCTION `getCohortMonth`(start_year INT,start_quarter INT,months_before INT) RETURNS char(30) CHARSET latin1
+BEGIN
+	DECLARE end_date DATE DEFAULT MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL months_before MONTH - INTERVAL 1 DAY;
+	DECLARE start_date DATE DEFAULT MAKEDATE(start_year,1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL months_before MONTH;
+
+
+RETURN CONCAT(MONTHNAME(start_date),'-',MONTHNAME(end_date),' ',YEAR(end_date));
+END$$
+DELIMITER ;
+
+DELIMITER $$
 CREATE DEFINER=`root`@`localhost` FUNCTION `get_cpt_receipt_status`(StartDate varchar(12), EndDate varchar(12), Patient_ID int) RETURNS char(50) CHARSET latin1
     DETERMINISTIC
 RETURN
-    (
-        SELECT IF (NumberOfCPTDrugsRcpt < 1, 'N', 'Y') AS CPTReceiptStatus
-            FROM (
-            SELECT person_id, count(obs_id) NumberOfCPTDrugsRcpt
-            FROM obs
-            WHERE concept_id IN (99037, 99033 ) and voided = 0
-            AND person_id = Patient_ID AND obs_datetime BETWEEN str_to_date(StartDate,"%d/%m/%Y")  AND str_to_date(EndDate,"%d/%m/%Y")
-            GROUP BY person_id
-            )CPTDrugsRcptFrequency
-    )$$
+ 	(
+		SELECT IF (NumberOfCPTDrugsRcpt < 1, 'N', 'Y') AS CPTReceiptStatus
+			FROM (
+			SELECT person_id, count(obs_id) NumberOfCPTDrugsRcpt
+			FROM obs
+			WHERE concept_id IN (99037, 99033 ) and voided = 0
+			AND person_id = Patient_ID AND obs_datetime BETWEEN str_to_date(StartDate,"%d/%m/%Y")  AND str_to_date(EndDate,"%d/%m/%Y")
+			GROUP BY person_id
+			)CPTDrugsRcptFrequency
+	)$$
 DELIMITER ;
 
 DELIMITER $$
@@ -2732,7 +2903,7 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `getCptStartDate`(`personid` integer)
 BEGIN
 
 
-    RETURN (select min(obs_datetime) cpt_start from obs where concept_id in(99033,99037) and personid=person_id and voided=0 group by person_id );
+	RETURN (select min(obs_datetime) cpt_start from obs where concept_id in(99033,99037) and personid=person_id and voided=0 group by person_id );
 END$$
 DELIMITER ;
 
@@ -2780,15 +2951,15 @@ DELIMITER $$
 CREATE DEFINER=`root`@`localhost` FUNCTION `get_death_status`(StartDate varchar(12), EndDate varchar(12), Patient_ID int) RETURNS char(50) CHARSET latin1
     DETERMINISTIC
 RETURN ( SELECT CONCAT('DEAD: ', CAST(date_format(DeathDate, '%d/%m/%Y') AS CHAR(10))) As DeathStatus
-            FROM(
-                SELECT person_Id, max(obs_datetime) DeathDate
-                FROM obs
-                WHERE
-                obs_datetime BETWEEN str_to_date(StartDate,"%d/%m/%Y")  AND str_to_date(EndDate,"%d/%m/%Y")
-                AND concept_id =99112 AND value_numeric = 1  AND person_Id = Patient_ID AND voided = 0
-                GROUP BY person_Id
-            )  RecentDeath
-        )$$
+			FROM(
+				SELECT person_Id, max(obs_datetime) DeathDate
+				FROM obs
+				WHERE
+	 			obs_datetime BETWEEN str_to_date(StartDate,"%d/%m/%Y")  AND str_to_date(EndDate,"%d/%m/%Y")
+				AND concept_id =99112 AND value_numeric = 1  AND person_Id = Patient_ID AND voided = 0
+				GROUP BY person_Id
+			)  RecentDeath
+		)$$
 DELIMITER ;
 
 DELIMITER $$
@@ -2797,7 +2968,7 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `getEddDate`(`encounterid` integer) R
 BEGIN
 
 
-    RETURN (select value_datetime from obs where concept_id=5596
+	RETURN (select value_datetime from obs where concept_id=5596
 and encounterid=encounter_id
 and voided=0
 limit 1
@@ -2812,7 +2983,7 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `getEddEncounterId`(`personid` intege
 BEGIN
 
 
-    RETURN (
+	RETURN (
 select encounter_id from obs  a
 where concept_id =5596
 and personid=person_id
@@ -2830,7 +3001,7 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `getEddEncounterId2`(`personid` integ
 BEGIN
 
 
-    RETURN (
+	RETURN (
 select encounter_id from obs  a
 where concept_id =5596
 and personid=person_id
@@ -2848,7 +3019,7 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `getEddEncounterId3`(`personid` integ
 BEGIN
 
 
-    RETURN (
+	RETURN (
 select encounter_id from obs  a
 where concept_id =5596
 and personid=person_id
@@ -2866,7 +3037,7 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `getEddEncounterId4`(`personid` integ
 BEGIN
 
 
-    RETURN (
+	RETURN (
 select encounter_id from obs  a
 where concept_id =5596
 and personid=person_id
@@ -2893,14 +3064,14 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` FUNCTION `getEnrolDate`(`personid` integer) RETURNS date
+CREATE DEFINER=`root`@`localhost` FUNCTION `getEnrolDate`(`personid` INT) RETURNS date
     READS SQL DATA
 BEGIN
 
 
 RETURN (select encounter_datetime as enroldt
 from encounter
-where encounter_type=1
+where uuid = '8d5b27bc-c2cc-11de-8d13-0010c6dffd0f'
 and voided=0
 and personid=patient_id
 limit 1
@@ -2944,17 +3115,17 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `get_followup_status`(StartDate varch
 RETURN
 (
 SELECT
-    IFNULL((SELECT get_death_status(StartDate, EndDate , Patient_ID)) ,
-        IFNULL((get_transfer_status(StartDate, EndDate , Patient_ID )),
-            IFNULL((get_lost_status(StartDate, EndDate , Patient_ID )),
-                IFNULL((get_seen_status(StartDate, EndDate , Patient_ID )),
-                    IFNULL((get_scheduled_visits(StartDate, EndDate , Patient_ID )) ,
-                        NULL
-                    )
-                )
-            )
-        )
-    ) AS FollowUpStatus
+	IFNULL((SELECT get_death_status(StartDate, EndDate , Patient_ID)) ,
+		IFNULL((get_transfer_status(StartDate, EndDate , Patient_ID )),
+			IFNULL((get_lost_status(StartDate, EndDate , Patient_ID )),
+				IFNULL((get_seen_status(StartDate, EndDate , Patient_ID )),
+					IFNULL((get_scheduled_visits(StartDate, EndDate , Patient_ID )) ,
+						NULL
+					)
+				)
+			)
+		)
+	) AS FollowUpStatus
 )$$
 DELIMITER ;
 
@@ -2963,6 +3134,82 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `get_followup_status2`(StartDate varc
 BEGIN
 
 RETURN CONCAT(get_death_status(StartDate, EndDate , Patient_ID),get_transfer_status(StartDate, EndDate , Patient_ID),get_lost_status(StartDate, EndDate , Patient_ID),get_seen_status(StartDate, EndDate , Patient_ID),get_scheduled_visits(StartDate, EndDate , Patient_ID));
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getFUARTStatus`(Patient_ID INTEGER, start_date DATE,end_date DATE) RETURNS char(1) CHARSET utf8
+BEGIN
+
+	DECLARE times_seen_in_quarter INT DEFAULT 0;
+    DECLARE number_of_visits_in_quarter INT DEFAULT 0;
+    DECLARE stopped INT DEFAULT 0;
+    DECLARE lost INT DEFAULT 0;
+    DECLARE restart INT DEFAULT 0;
+    DECLARE transfer_out_date DATE;
+    DECLARE death_date DATE;
+
+	SELECT max(obs_datetime) INTO death_date
+		FROM obs
+		WHERE obs_datetime BETWEEN start_date AND end_date
+		AND concept_id =99112 AND value_numeric = 1  AND person_Id = Patient_ID AND voided = 0
+		GROUP BY person_Id;
+	IF death_date is not null THEN
+		return '1';
+	ELSE
+		SELECT max(obs_datetime) INTO transfer_out_date
+		FROM obs
+		WHERE obs_datetime BETWEEN start_date AND end_date
+		AND concept_id =  90306 AND value_numeric = 1 AND person_Id = Patient_ID AND voided = 0;
+
+        IF transfer_out_date is not null THEN
+			return '5';
+        ELSE
+			SELECT COUNT(obs_id) INTO stopped
+				FROM obs
+				WHERE obs_datetime BETWEEN start_date AND end_date
+				AND concept_id =  99132 AND value_coded = 1363 AND person_Id = Patient_ID AND voided = 0;
+
+            IF stopped > 0 THEN
+				return '2';
+			ELSE
+				SELECT COUNT(obs_id) INTO lost
+					FROM obs
+					WHERE obs_datetime BETWEEN start_date AND end_date
+					AND concept_id =  99132 AND value_coded = 99133 AND person_Id = Patient_ID AND voided = 0;
+
+                IF lost > 0  THEN
+					return '3';
+				ELSE
+					SELECT max(obs_datetime) INTO restart
+						FROM obs
+						WHERE obs_datetime BETWEEN start_date AND end_date
+						AND concept_id =  99085 AND value_datetime BETWEEN  start_date AND end_date AND person_Id = Patient_ID AND voided = 0;
+
+                        IF restart is not null THEN
+							return '6';
+						ELSE
+							SELECT COUNT(encounter_id) INTO times_seen_in_quarter
+								FROM encounter
+								WHERE encounter_datetime BETWEEN start_date AND end_date
+                                AND encounter_type in(1,2)
+								AND patient_id = Patient_ID AND voided = 0;
+
+                            SELECT COUNT(obs_id ) INTO number_of_visits_in_quarter
+								FROM obs
+								WHERE value_datetime BETWEEN start_date AND end_date
+								AND patient_id = Patient_ID AND concept_id = 5096 AND Voided = 0;
+                            IF times_seen_in_quarter = 0 AND number_of_visits_in_quarter > 0 THEN
+								return '4';
+							ELSE
+								return '';
+							END IF;
+						END IF;
+				END IF;
+            END IF;
+		END IF;
+
+	END IF;
 END$$
 DELIMITER ;
 
@@ -2982,54 +3229,64 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` FUNCTION `getFUStatus`(Patient_ID INT, start_date DATE,end_date DATE) RETURNS char(30) CHARSET utf8
+CREATE DEFINER=`root`@`localhost` FUNCTION `getFUStatus`(Patient_ID INTEGER, start_date DATE,end_date DATE) RETURNS char(30) CHARSET utf8
 BEGIN
 
-    DECLARE times_seen_in_quarter INT DEFAULT 0;
+	DECLARE times_seen_in_quarter INT DEFAULT 0;
     DECLARE number_of_visits_in_quarter INT DEFAULT 0;
     DECLARE transfer_out_date DATE;
     DECLARE death_date DATE;
 
-    SELECT max(obs_datetime) INTO death_date
-        FROM obs
-        WHERE obs_datetime BETWEEN start_date AND end_date
-        AND concept_id =99112 AND value_numeric = 1  AND person_Id = Patient_ID AND voided = 0
-        GROUP BY person_Id;
-    IF death_date is not null THEN
-        return 'DEAD';
-    ELSE
-        SELECT max(obs_datetime) INTO transfer_out_date
-        FROM obs
-        WHERE obs_datetime BETWEEN start_date AND end_date
-        AND concept_id =  90306 AND value_numeric = 1 AND person_Id = Patient_ID AND voided = 0;
+	SELECT max(obs_datetime) INTO death_date
+		FROM obs
+		WHERE obs_datetime BETWEEN start_date AND end_date
+		AND concept_id =99112 AND value_numeric = 1  AND person_Id = Patient_ID AND voided = 0
+		GROUP BY person_Id;
+	IF death_date is not null THEN
+		return 'DEAD';
+	ELSE
+		SELECT max(obs_datetime) INTO transfer_out_date
+		FROM obs
+		WHERE obs_datetime BETWEEN start_date AND end_date
+		AND concept_id =  90306 AND value_numeric = 1 AND person_Id = Patient_ID AND voided = 0;
 
         IF transfer_out_date is not null THEN
-            return 'TO';
+			return 'TO';
         ELSE
-            SELECT COUNT(encounter_id) INTO times_seen_in_quarter
-                FROM encounter
-                WHERE encounter_datetime BETWEEN start_date AND end_date
-                AND form_id = 27
-                AND patient_id = Patient_ID AND voided = 0;
-            IF times_seen_in_quarter > 0 THEN
-                return 'SEEN';
-            ELSE
-                SELECT COUNT(obs_id ) INTO number_of_visits_in_quarter
-                    FROM obs
-                    WHERE value_datetime BETWEEN start_date AND end_date
-                    AND patient_id = Patient_ID AND concept_id = 5096 AND Voided = 0;
+			SELECT COUNT(encounter_id) INTO times_seen_in_quarter
+				FROM encounter
+				WHERE encounter_datetime BETWEEN start_date AND end_date
+				AND form_id = 27
+				AND patient_id = Patient_ID AND voided = 0;
+			IF times_seen_in_quarter > 0 THEN
+				return '10003';
+			ELSE
+				SELECT COUNT(obs_id ) INTO number_of_visits_in_quarter
+					FROM obs
+					WHERE value_datetime BETWEEN start_date AND end_date
+					AND patient_id = Patient_ID AND concept_id = 5096 AND Voided = 0;
 
-                IF number_of_visits_in_quarter = 0  THEN
-                    return 'NO VISIT';
-                ELSEIF times_seen_in_quarter = 0 AND number_of_visits_in_quarter > 0 THEN
-                    return 'LOST';
-                ELSE
-                    return '-';
-                END IF;
+                IF number_of_visits_in_quarter = 0 THEN
+					return '8594';
+				ELSEIF times_seen_in_quarter = 0 AND number_of_visits_in_quarter > 0 THEN
+					return 'LOST';
+				ELSE
+					return '';
+				END IF;
             END IF;
-        END IF;
+		END IF;
 
-    END IF;
+	END IF;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getINHStartDate`(`personid` integer) RETURNS date
+    READS SQL DATA
+BEGIN
+
+
+	RETURN (select min(obs_datetime) cpt_start from obs where concept_id in(99604,99605) and personid=person_id and voided=0 group by person_id );
 END$$
 DELIMITER ;
 
@@ -3074,7 +3331,7 @@ DELIMITER $$
 CREATE DEFINER=`root`@`localhost` FUNCTION `getLastEncounterDate`(`personid` integer) RETURNS date
     READS SQL DATA
 BEGIN
-    RETURN (select encounter_datetime from encounter where encounter_type in (1,2) and patient_id=personid and voided=0 order by encounter_datetime desc limit 1);
+	RETURN (select encounter_datetime from encounter where encounter_type in (1,2) and patient_id=personid and voided=0 order by encounter_datetime desc limit 1);
 END$$
 DELIMITER ;
 
@@ -3098,24 +3355,24 @@ DELIMITER $$
 CREATE DEFINER=`root`@`localhost` FUNCTION `get_lost_status`(StartDate varchar(12), EndDate varchar(12), Patient_ID int) RETURNS char(50) CHARSET latin1
     DETERMINISTIC
 RETURN
-    (
-        SELECT  'LOST' As LostStatus
-        FROM(
-            SELECT person_Id, max(obs_datetime) DeathDate
-            FROM obs
-            WHERE obs_datetime BETWEEN str_to_date(StartDate,"%d/%m/%Y")  AND str_to_date(EndDate,"%d/%m/%Y")
-            AND concept_id =    5240 AND value_numeric = 1  AND person_Id = Patient_ID AND voided = 0
-            AND person_id NOT IN (
-                                SELECT person_Id
-                                FROM (
-                                    SELECT person_Id, max(obs_datetime) DeathDate
-                                    FROM obs
-                                    WHERE concept_id IN( 99112, 90306) AND value_numeric = 1  and voided = 0
-                                    GROUP BY person_Id)AA)
-            GROUP BY person_Id
-        )RecentLostStatus
+	(
+		SELECT  'LOST' As LostStatus
+		FROM(
+			SELECT person_Id, max(obs_datetime) DeathDate
+			FROM obs
+			WHERE obs_datetime BETWEEN str_to_date(StartDate,"%d/%m/%Y")  AND str_to_date(EndDate,"%d/%m/%Y")
+			AND concept_id =	5240 AND value_numeric = 1  AND person_Id = Patient_ID AND voided = 0
+			AND person_id NOT IN (
+								SELECT person_Id
+								FROM (
+									SELECT person_Id, max(obs_datetime) DeathDate
+									FROM obs
+									WHERE concept_id IN( 99112, 90306) AND value_numeric = 1  and voided = 0
+									GROUP BY person_Id)AA)
+			GROUP BY person_Id
+		)RecentLostStatus
 
-    )$$
+	)$$
 DELIMITER ;
 
 DELIMITER $$
@@ -3141,7 +3398,7 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `getMonthsOnCurrent`(`personid`intege
 BEGIN
 
 
-    RETURN(
+	RETURN(
 select period_diff(date_format(now(), '%Y%m'),date_format(obs_datetime, '%Y%m')) from obs
 where concept_id=1255
 and value_coded in(1590,1587)
@@ -3160,7 +3417,7 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `getMonthsSinceStart`(`personid`integ
 BEGIN
 
 
-    RETURN(
+	RETURN(
 select period_diff(date_format(now(), '%Y%m'),date_format(obs_datetime, '%Y%m')) as mnths from obs
 where concept_id=1255
 and value_coded in(1256,1585)
@@ -3230,16 +3487,16 @@ DELIMITER $$
 CREATE DEFINER=`openmrs`@`localhost` FUNCTION `getNutritionalStatus`(Patient_ID int,start_date DATE, end_date DATE) RETURNS char(10) CHARSET latin1
     DETERMINISTIC
 RETURN
-    (
-        SELECT CASE value_coded WHEN  99271 THEN 'MAM' WHEN  99272 THEN 'SAM' WHEN  99273 THEN 'SAMO' WHEN  99274 THEN 'PWG/PA' ELSE NULL END AS TBStatus
-            FROM (
-            SELECT obs.person_id, MAX(obs_datetime) AS firstDate, value_coded
-            FROM obs
-            WHERE concept_id =68 AND value_coded IN (99271, 99272, 99273,99274 ) and voided = 0
-            AND person_id = Patient_ID AND obs_datetime BETWEEN start_date AND end_date
-            GROUP BY person_id
-        )NutritionalOptions
-    )$$
+ 	(
+		SELECT CASE value_coded WHEN  99271 THEN 'MAM' WHEN  99272 THEN 'SAM' WHEN  99273 THEN 'SAMO' WHEN  99274 THEN 'PWG/PA' ELSE NULL END AS TBStatus
+			FROM (
+			SELECT obs.person_id, MAX(obs_datetime) AS firstDate, value_coded
+			FROM obs
+			WHERE concept_id =68 AND value_coded IN (99271, 99272, 99273,99274 ) and voided = 0
+			AND person_id = Patient_ID AND obs_datetime BETWEEN start_date AND end_date
+			GROUP BY person_id
+		)NutritionalOptions
+	)$$
 DELIMITER ;
 
 DELIMITER $$
@@ -3259,7 +3516,7 @@ DELIMITER $$
 CREATE DEFINER=`root`@`localhost` FUNCTION `getReferralText`(`personid` integer) RETURNS char(30) CHARSET latin1
     READS SQL DATA
 BEGIN
-    RETURN (
+	RETURN (
 select
 if(concept_id=99054 and value_coded=99053,"Therapeutic Feeding",
 if(concept_id=99054 and value_coded=99051,"Infant Feeding Counselling",
@@ -3312,41 +3569,41 @@ DELIMITER $$
 CREATE DEFINER=`root`@`localhost` FUNCTION `get_scheduled_visits`(StartDate varchar(12), EndDate varchar(12), Patient_ID int) RETURNS char(50) CHARSET latin1
     DETERMINISTIC
 RETURN
-    (
-        SELECT IF(NumberOfVisitsScheduledInPeriod = 0, 'NO SCHEDULED VISIT', NULL) AS Scheduled_Visits_Status
-        FROM(
-            SELECT COUNT(obs_id ) AS NumberOfVisitsScheduledInPeriod
-            FROM obs
-            WHERE value_datetime BETWEEN str_to_date(StartDate,"%d/%m/%Y")  AND str_to_date(EndDate,"%d/%m/%Y")
-            AND patient_id = Patient_ID AND concept_id = 5096 AND Voided = 0
-            ) Visits
+	(
+		SELECT IF(NumberOfVisitsScheduledInPeriod = 0, 'NO SCHEDULED VISIT', NULL) AS Scheduled_Visits_Status
+		FROM(
+			SELECT COUNT(obs_id ) AS NumberOfVisitsScheduledInPeriod
+			FROM obs
+			WHERE value_datetime BETWEEN str_to_date(StartDate,"%d/%m/%Y")  AND str_to_date(EndDate,"%d/%m/%Y")
+			AND patient_id = Patient_ID AND concept_id = 5096 AND Voided = 0
+			) Visits
 
-    )$$
+	)$$
 DELIMITER ;
 
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` FUNCTION `get_seen_status`(StartDate varchar(12), EndDate varchar(12), Patient_ID int) RETURNS char(50) CHARSET latin1
     DETERMINISTIC
 RETURN
-    (
-        SELECT IF (NumberOfTimesSeenInPeriod>0, 'SEEN', NULL) As SEENStatus
-        FROM(
-            SELECT COUNT(encounter_id ) AS NumberOfTimesSeenInPeriod
-            FROM encounter
-            WHERE encounter_datetime BETWEEN str_to_date(StartDate,"%d/%m/%Y")  AND str_to_date(EndDate,"%d/%m/%Y")
-            AND form_id = 31
-            AND patient_id = Patient_ID
+	(
+		SELECT IF (NumberOfTimesSeenInPeriod>0, 'SEEN', NULL) As SEENStatus
+		FROM(
+			SELECT COUNT(encounter_id ) AS NumberOfTimesSeenInPeriod
+			FROM encounter
+			WHERE encounter_datetime BETWEEN str_to_date(StartDate,"%d/%m/%Y")  AND str_to_date(EndDate,"%d/%m/%Y")
+			AND form_id = 31
+			AND patient_id = Patient_ID
 
-        )RecentSEENStatus
+		)RecentSEENStatus
 
-    )$$
+	)$$
 DELIMITER ;
 
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` FUNCTION `getStartEncounterId`(`personid` integer) RETURNS int(11)
     READS SQL DATA
 BEGIN
-    RETURN (select encounter_id from obs
+	RETURN (select encounter_id from obs
 where concept_id=1255 and value_coded in (1256,1585)
 and person_id=personid
 and voided=0
@@ -3362,7 +3619,7 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `getSubstituteDate`(`obsgroupid`integ
 BEGIN
 
 
-    RETURN(
+	RETURN(
 select value_datetime from
 obs where concept_id=99163
 and voided=0
@@ -3378,7 +3635,7 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `getSubstituteObsGroupId`(`personid` 
 BEGIN
 
 
-    RETURN(
+	RETURN(
 select obs_group_id
 from obs where concept_id=99163 and voided=0
 and personid=person_id
@@ -3395,7 +3652,7 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `getSubstituteObsGroupId2`(`personid`
 BEGIN
 
 
-    RETURN(
+	RETURN(
 select obs_group_id
 from obs where concept_id=99163 and voided=0
 and personid=person_id order by value_datetime asc
@@ -3411,7 +3668,7 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `getSubstituteReasonTxt`(`obsgroupid`
 BEGIN
 
 
-    RETURN(
+	RETURN(
 select
 if(value_coded=90040, "Toxi",
 if(value_coded=90041, "Preg",
@@ -3437,7 +3694,7 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `getSwitchDate`(`obsgroupid`integer) 
 BEGIN
 
 
-    RETURN(
+	RETURN(
 select value_datetime from
 obs where concept_id=99164
 and voided=0
@@ -3454,7 +3711,7 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `getSwitchObsGroupId`(`personid` inte
 BEGIN
 
 
-    RETURN(
+	RETURN(
 select obs_group_id
 from obs where concept_id=99164 and voided=0
 and personid=person_id order by value_datetime asc
@@ -3470,7 +3727,7 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `getSwitchObsGroupId2`(`personid` int
 BEGIN
 
 
-    RETURN(
+	RETURN(
 select obs_group_id
 from obs where concept_id=99164 and voided=0
 and personid=person_id order by value_datetime asc
@@ -3486,7 +3743,7 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `getSwitchReasonTxt`(`obsgroupid`inte
 BEGIN
 
 
-    RETURN(
+	RETURN(
 select
 if(value_coded=90040, 1,
 if(value_coded=90041, 2,
@@ -3528,7 +3785,7 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `getTbStartDate`(`personid` integer) 
 BEGIN
 
 
-    RETURN (select min(value_datetime) as start from obs where concept_id=90217 and  voided=0  and personid=person_id group by person_id );
+	RETURN (select min(value_datetime) as start from obs where concept_id=90217 and  voided=0  and personid=person_id group by person_id );
 END$$
 DELIMITER ;
 
@@ -3536,16 +3793,16 @@ DELIMITER $$
 CREATE DEFINER=`root`@`localhost` FUNCTION `get_tb_status`(StartDate varchar(12), EndDate varchar(12), Patient_ID int) RETURNS char(50) CHARSET latin1
     DETERMINISTIC
 RETURN
-    (
-        SELECT CASE value_coded WHEN  90079 THEN 1 WHEN  90073 THEN 2 WHEN  90217 THEN 3 ELSE NULL END AS TBStatus
-            FROM (
-            SELECT obs.person_id, MAX(obs_datetime) AS firstDate, value_coded
-            FROM obs
-            WHERE concept_id =90216 AND value_coded IN (90079, 90073, 90217 ) and voided = 0
-            AND person_id = Patient_ID AND obs_datetime BETWEEN str_to_date(StartDate,"%d/%m/%Y")  AND str_to_date(EndDate,"%d/%m/%Y")
-            GROUP BY person_id
-            )TBOptions
-    )$$
+ 	(
+		SELECT CASE value_coded WHEN  90079 THEN 1 WHEN  90073 THEN 2 WHEN  90217 THEN 3 ELSE NULL END AS TBStatus
+			FROM (
+			SELECT obs.person_id, MAX(obs_datetime) AS firstDate, value_coded
+			FROM obs
+			WHERE concept_id =90216 AND value_coded IN (90079, 90073, 90217 ) and voided = 0
+			AND person_id = Patient_ID AND obs_datetime BETWEEN str_to_date(StartDate,"%d/%m/%Y")  AND str_to_date(EndDate,"%d/%m/%Y")
+			GROUP BY person_id
+			)TBOptions
+	)$$
 DELIMITER ;
 
 DELIMITER $$
@@ -3572,7 +3829,7 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `getTbStopDate`(`personid` integer) R
 BEGIN
 
 
-    RETURN (select
+	RETURN (select
 min(value_datetime) as stop
 from obs where concept_id=90310
 and  voided=0
@@ -3624,23 +3881,23 @@ DELIMITER $$
 CREATE DEFINER=`root`@`localhost` FUNCTION `get_transfer_status`(StartDate varchar(12), EndDate varchar(12), Patient_ID int) RETURNS char(50) CHARSET latin1
     DETERMINISTIC
 RETURN
-    (
-        SELECT  CONCAT(A.TransferStatus, ' ', B.TransferStatus) AS TransferStatus
-        FROM(
-            SELECT person_Id, max(obs_datetime) TransferDate, 'TO: ' AS TransferStatus
-            FROM obs
-            WHERE obs_datetime BETWEEN str_to_date(StartDate,"%d/%m/%Y")  AND str_to_date(EndDate,"%d/%m/%Y")
-            AND concept_id =  90306 AND value_numeric = 1 AND person_Id = Patient_ID AND voided = 0
-            GROUP BY person_Id
-        ) A LEFT JOIN
-        (
-            SELECT person_Id, max(obs_datetime) TransferDate, value_text   AS TransferStatus
-            FROM obs
-            WHERE obs_datetime BETWEEN str_to_date(StartDate,"%d/%m/%Y")  AND str_to_date(EndDate,"%d/%m/%Y")
-            AND concept_id =  90211 AND person_Id = Patient_ID AND voided = 0
-            GROUP BY person_Id
-        ) B ON A.person_Id = B.person_Id
-    )$$
+	(
+		SELECT  CONCAT(A.TransferStatus, ' ', B.TransferStatus) AS TransferStatus
+		FROM(
+			SELECT person_Id, max(obs_datetime) TransferDate, 'TO: ' AS TransferStatus
+			FROM obs
+			WHERE obs_datetime BETWEEN str_to_date(StartDate,"%d/%m/%Y")  AND str_to_date(EndDate,"%d/%m/%Y")
+			AND concept_id =  90306 AND value_numeric = 1 AND person_Id = Patient_ID AND voided = 0
+			GROUP BY person_Id
+		) A LEFT JOIN
+		(
+			SELECT person_Id, max(obs_datetime) TransferDate, value_text   AS TransferStatus
+			FROM obs
+			WHERE obs_datetime BETWEEN str_to_date(StartDate,"%d/%m/%Y")  AND str_to_date(EndDate,"%d/%m/%Y")
+			AND concept_id =  90211 AND person_Id = Patient_ID AND voided = 0
+			GROUP BY person_Id
+		) B ON A.person_Id = B.person_Id
+	)$$
 DELIMITER ;
 
 DELIMITER $$
@@ -3685,6 +3942,13 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getWHOStageDate`(patient_id INT,stage INT) RETURNS date
+BEGIN
+RETURN (SELECT MAX(obs_datetime) FROM obs where concept_id = 90203 AND (obs_datetime < getArtBaseTransferDate(patient_id) OR getArtBaseTransferDate(patient_id) is null) AND person_id = patient_id AND value_coded = if(stage =1,90033,if(stage = 2,90034,if(stage=3,90035,if(stage=4,90036,null)))) AND concept_id is not null);
+END$$
+DELIMITER ;
+
+DELIMITER $$
 CREATE DEFINER=`root`@`localhost` FUNCTION `getWhoStageTxt`(`personid` integer, `obsdatetime` date) RETURNS int(11)
     READS SQL DATA
 BEGIN
@@ -3705,3 +3969,4 @@ limit 1
 );
 END$$
 DELIMITER ;
+

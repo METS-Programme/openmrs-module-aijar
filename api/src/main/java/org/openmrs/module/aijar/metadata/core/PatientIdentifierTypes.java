@@ -16,7 +16,7 @@ public class PatientIdentifierTypes {
     public static PatientIdentifierTypeDescriptor HIV_CARE_NUMBER = new PatientIdentifierTypeDescriptor() {
         @Override
         public String name() {
-            return "Clinic Number";
+            return "HIV Clinic No.";
         }
 
         @Override
@@ -41,7 +41,7 @@ public class PatientIdentifierTypes {
     public static PatientIdentifierTypeDescriptor EXPOSED_INFANT_NUMBER = new PatientIdentifierTypeDescriptor() {
         @Override
         public String name() {
-            return "Exposed Infant Number";
+            return "Exposed Infant No.";
         }
 
         @Override
@@ -130,7 +130,7 @@ public class PatientIdentifierTypes {
     public static PatientIdentifierTypeDescriptor IPD_NUMBER = new PatientIdentifierTypeDescriptor() {
         @Override
         public String name() {
-            return "InPatient Department (IPD) Number";
+            return "InPatient Department No.";
         }
 
         @Override
@@ -154,7 +154,7 @@ public class PatientIdentifierTypes {
     public static PatientIdentifierTypeDescriptor ANC_NUMBER = new PatientIdentifierTypeDescriptor() {
         @Override
         public String name() {
-            return "Antenatal Care (ANC) Number";
+            return "Antenatal Care No.";
         }
 
         @Override
@@ -178,7 +178,7 @@ public class PatientIdentifierTypes {
     public static PatientIdentifierTypeDescriptor HCT_NUMBER = new PatientIdentifierTypeDescriptor() {
         @Override
         public String name() {
-            return "HCT Number";
+            return "HCT No.";
         }
 
         @Override
@@ -201,7 +201,7 @@ public class PatientIdentifierTypes {
 
 		@Override
 		public String name() {
-			return "District Tuberculosis Number";
+			return "TB No.";
 		}
 
 		@Override

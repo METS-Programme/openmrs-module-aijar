@@ -1,4 +1,4 @@
-<htmlform formName="HMIS 082a - Exposed Infant Card Summary Page"
+<htmlform formName="HMIS 082a - Exposed Infant Card Summary Form"
           formDescription="Captures demographic details for infants born to HIV positive mothers"
           formEncounterType="8d5b27bc-c2cc-11de-8d13-0010c6dffd0f"
           formUuid="860c5f2f-cf3c-4c3f-b0c4-9958b6a5a938"
@@ -257,7 +257,7 @@
 
     <div class="ai-page-frame">
         <div class="headers" style="text-align: center;">
-            <h3 id="h3white">EID Card Summary Form</h3>
+            <h3 id="h3white">Exposed Infant Clinical Chart - Summary Form</h3>
         </div>
         <div class="ai-page-content">
             <section>
@@ -268,9 +268,9 @@
                 <table class="table table-bordered custom-table">
                     <tr>
                         <td>
-                            <label>EID Number:</label>
+                            <label>EI Number:</label>
                             <patient field="identifier" identifierTypeId="2c5b695d-4bf3-452f-8a7c-fe3ee3432ffe"
-                                     required="true"/>
+                                     required="true" placeholder="EXP"/>
                         </td>
                         <td><label>Date Chart Openned:</label>
                             <encounterDate default="today"></encounterDate>
@@ -299,86 +299,59 @@
 
             <section>
                 <h3>
-                    Mother/Caregiver/Follow-up Information
+                    Mother/Caregiver Follow-up Information
                 </h3>
 
                 <table class="table table-bordered custom-table">
                     <tr>
-                        <td><label>Mothers's Names</label>
-                            <obs conceptId="99776"/>
-                        </td>
-                        <td colspan="2"><label>Common Name:</label>
-                            <obs conceptId="99775"/>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <label>Telephone No:</label>
-                            <obs conceptId="162889"/>
-                        </td>
-                        <td>
-                            <label>District:</label>
-                            <obs conceptId="162884"/>
-                        </td>
-                        <td>
-                            <label>County:</label>
-                            <obs conceptId="162885"/>
-                        </td>
+                        <td style="width:15%;">Mother's Name</td>
+                        <td style="width: 15%;"><obs conceptId="99776"/></td>
+                        <td style="width:15%;">Common Name</td>
+                        <td  colspan="3"><obs conceptId="99775"/></td>
                     </tr>
                     <tr>
-                        <td>
-                            <label>Sub County:</label>
-                            <obs conceptId="162886"/>
-                        </td>
-                        <td><label>Parish:</label>
-                            <obs conceptId="162888"/>
-                        </td>
-                        <td><label>Village:</label>
-                            <obs conceptId="162887"/>
-                        </td>
+                        <td >Telephone No</td>
+                        <td><obs conceptId="162889"/></td>
+                        <td >District</td>
+                        <td ><obs conceptId="162884"/></td>
+                        <td >County</td>
+                        <td ><obs conceptId="162885"/></td>
                     </tr>
                     <tr>
-                        <td><label>LCI Zone</label></td>
-                        <td>
-                            <obs conceptId="99137"/>
-                        </td>
-                        <td rowspan="2"><label>How should outreach workers introduce themselves</label>
-                            <obs conceptId="162867" style="textarea"/>
-                        </td>
+                        <td >Sub county</td>
+                        <td ><obs conceptId="162886"/></td>
+                        <td >Village</td>
+                        <td ><obs conceptId="162887"/></td>
+                        <td >Parish</td>
+                        <td ><obs conceptId="162888"/></td>
                     </tr>
                     <tr>
-                        <td><label>LC1 Chairman</label></td>
-                        <td>
-                            <obs conceptId="162866"/>
-                        </td>
+                        <td >LC1 Zone</td>
+                        <td ><obs conceptId="99137"/></td>
+                        <td  rowspan="2">How should outreach workers introduce themselves?</td>
+                        <td  colspan="3" rowspan="2"><obs conceptId="162867" style="textarea"/></td>
                     </tr>
                     <tr>
-
+                        <td >LC1 Chairman</td>
+                        <td ><obs conceptId="162866"/></td>
                     </tr>
                     <tr>
-                        <td colspan="3"><label>Directions to caregiver's home address:</label>
-                            <obs conceptId="162868" style="textarea"/>
-                        </td>
-
-                    </tr>
-
-                    <tr>
-                        <td><label>Alternative Contact Person:</label>
-                            <obs conceptId="162869"/>
-                        </td>
-                        <td colspan="2">
-                            <obs conceptId="90269" labelText="Relationship:"/>
-                        </td>
+                        <td  colspan="6">Directions to caregiver's home address</td>
                     </tr>
                     <tr>
-                        <td><label>Telephone No:</label>
-                            <obs conceptId="162870"/>
-                        </td>
-                        <td colspan="2">
-                            <label>Has This Person been disclosed to?</label>
-                            <obs conceptId="162871"/>
-                        </td>
+                        <td  colspan="6"><obs conceptId="162868" style="textarea"/></td>
+                    </tr>
+                    <tr>
+                        <td >Alternate Contact Person</td>
+                        <td ><obs conceptId="162869"/></td>
+                        <td >Relationship</td>
+                        <td  colspan="3"><obs conceptId="90269" labelText="Relationship:"/></td>
+                    </tr>
+                    <tr>
+                        <td >Telphone No</td>
+                        <td ><obs conceptId="162870"/></td>
+                        <td >Has this person been disclosed to?</td>
+                        <td  colspan="3"><obs conceptId="162871"/></td>
                     </tr>
                 </table>
             </section>
@@ -390,12 +363,10 @@
 
                 <table class="table table-bordered custom-table">
                     <tr>
-                        <td><label>Place of Delivery:</label>
-                            <obs conceptId="99570" labelText=""/>
-                        </td>
-                        <td colspan="3"><label>Mode of Delivery:</label>
-                            <obs conceptId="5630" labelText=""/>
-                        </td>
+                        <td><label>Place of Delivery:</label></td>
+                        <td><obs conceptId="99570" labelText=""/></td>
+                        <td><label>Mode of Delivery:</label></td>
+                        <td><obs conceptId="5630" labelText=""/></td>
                     </tr>
 
                     <tr>
@@ -409,7 +380,8 @@
                             <label>Mother's ANC No.:</label>
                         </td>
                         <td>
-                            <obs conceptId="99777"/>
+                            <patient field="identifier" identifierTypeId="b0cc255e-ef57-4266-839e-0df7f5099eb9"
+                                     required="false"/>
                         </td>
                     </tr>
                     <tr>
@@ -427,19 +399,22 @@
                     <tr>
                         <td><label>Infant's PMTCT ARVs:</label></td>
                         <td colspan="3">
-                            <obs conceptId="99787" labelText=""  answerConceptIds="162966,99790,1067" size="100" style="radio"/>
+                            <obs conceptId="99787" labelText=""  answerConceptIds="162966,99790,1067"/>
                         </td>
                     </tr>
                     <tr>
                         <td><label>Mother in care at an ART Clinic?:</label></td>
                         <td>
-                            <obs conceptId="162873" labelText="Mother in Care?"/>
+                            <obs conceptId="162873" labelText=""/>
                         </td>
                         <td>
                             <obs conceptId="162875" labelText="ART Clinic"/>
                         </td>
                         <td>
-                            <obs conceptId="162874" labelText="Mother's ART No"/>
+                            <label>Mother's ART No</label>
+                            <patient field="identifier" identifierTypeId="e1731641-30ab-102d-86b0-7a5022ba4115"
+                                     required="true"/>
+                            <!--<obs conceptId="162874" labelText=""/>-->
                         </td>
                     </tr>
                 </table>
@@ -543,7 +518,7 @@
 
             <section>
                 <h3>
-                    Link to CareTreatment
+                    Link to Care/Treatment
                 </h3>
 
                 <table class="table table-bordered custom-table">
@@ -579,7 +554,7 @@
             </section>
             <section>
                 <h3>
-Follow-Up Section
+                 Follow-Up Section
                 </h3>
                 <table>
                     <tr>
@@ -611,7 +586,7 @@ Follow-Up Section
                         <td>
                             <obs conceptId="99428"/>
                         </td>
-                        <td><obs conceptId="162979"/></td>
+                        <td><label>Date</label><obs conceptId="162979"/></td>
                     </tr>
                 </table>
             </section>

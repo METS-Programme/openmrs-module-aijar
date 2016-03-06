@@ -346,8 +346,8 @@
                         <obs conceptId="162935" answerConceptIds="1175,162934" answerLabels="NA, NVP Syrup"/>
                     </td>
                     <td rowspan="2">
-                        <obs conceptId="1198" answerConceptId="886" answerLabel="BGG"/>
-                        <br/>
+                        <obs id="br" conceptId="1198" answerConceptId="886" answerLabel="BGG"/>
+
                         <obs id="br" conceptId="1198" answerConceptId="783" answerLabel="Polio"/>
                     </td>
                 </tr>

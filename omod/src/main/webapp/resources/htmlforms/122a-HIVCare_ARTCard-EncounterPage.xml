@@ -57,21 +57,29 @@
             margin: 20px 0px;
         }
 
-        form .lablex label {
-            width: 35%;
-            float: left;
-            margin: 2px;
+        form .lablex{
+            width:93%;
         }
 
-        form .lablex2 label {
-            width: 40%;
-            float: left;
-            margin: 2px;
+        form .lablex span {
+        width: 26%;
+        float: left;
+        margin: 1px 0px;
         }
 
-        form .lablex3 label {
-            float: left;
-            width: 25%;
+        form .lablex2 span {
+        min-width: 50%;
+        float: left;
+        margin: 1px 0px;
+        }
+
+
+        form .lablex3  {
+        }
+        form .lablex3 span {
+        min-width: 50%;
+        float: left;
+        margin: 1px 0px;
         }
 
     </style>
@@ -332,7 +340,8 @@
                             </span>
                         <obs id="br" conceptId="90217" labelText="TB Start Date:"/>
                         <obs id="br" conceptId="90310" labelText="TB Stop Date:" allowFutureDates="true"/>
-                        <span>**District TB Reg #</span>
+                        <span><patient field="identifier" identifierTypeId="8110f2d2-1f98-4c38-aef3-11b19bb0a589"
+                                       required="true"/></span>
                         <br/>
                     </td>
                     <td>
@@ -349,7 +358,7 @@
                             </span>
                     </td>
                     <td class="lablex">
-                        <obs conceptId="90251" answerConceptId="90132" answerLabel="Cough"/>
+                        <obs id="br" conceptId="90251" answerConceptId="90132" answerLabel="Cough"/>
                         <obs id="br" conceptId="90251" answerConceptId="90133"
                              answerLabel="DB"/>
                         <obs id="br" conceptId="90251" answerConceptId="90128"
@@ -454,7 +463,7 @@
                              answerLabel="Dapsone"/>
                         <obs id="br" conceptId="1193" answerConceptId="95"
                              answerLabel="Doxycycline"/>
-                        <obs conceptId="1193" answerConceptId="1108" answerLabel="EH"/>
+                        <obs id="br" conceptId="1193" answerConceptId="1108" answerLabel="EH"/>
                         <obs id="br" conceptId="1193" answerConceptId="272"
                              answerLabel="Erythromicin"/>
                         <obs id="br" conceptId="1193" answerConceptId="747"
@@ -475,12 +484,12 @@
                              answerLabel="Nystatin"/>
                         <obs id="br" conceptId="1193" answerConceptId="89"
                              answerLabel="Paracetamol"/>
-                        <obs conceptId="1193" answerConceptId="1194" answerLabel="RH"/>
-                        <obs conceptId="1193" answerConceptId="99127" answerLabel="RHE"/>
-                        <obs conceptId="1193" answerConceptId="768" answerLabel="RHZ"/>
+                        <obs id="br" conceptId="1193" answerConceptId="1194" answerLabel="RH"/>
+                        <obs id="br" conceptId="1193" answerConceptId="99127" answerLabel="RHE"/>
+                        <obs id="br" conceptId="1193" answerConceptId="768" answerLabel="RHZ"/>
                         <obs id="br" conceptId="1193" answerConceptId="1131"
                              answerLabel="RHZE"/>
-                        <obs conceptId="1193" answerConceptId="99128" answerLabel="RHZES"/>
+                        <obs id="br" conceptId="1193" answerConceptId="99128" answerLabel="RHZES"/>
                         <obs id="br" conceptId="1193" answerConceptId="916"
                              answerLabel="Septrin"/>
                         <obs id="br" conceptId="1193" answerConceptId="329"
@@ -503,36 +512,36 @@
                                 Why Poor/Fair:
                                 <br/>
                                 <obs id="br" conceptId="90223" answerConceptId="90040"
-                                     answerLabel="1.Toxicity"/>
+                                     answerLabel="Toxicity"/>
                                 <obs id="br" conceptId="90223" answerConceptId="90146"
-                                     answerLabel="2.Shared"/>
+                                     answerLabel="Shared"/>
                                 <obs id="br" conceptId="90223" answerConceptId="90147"
-                                     answerLabel="3.Forgot"/>
+                                     answerLabel="Forgot"/>
                                 <obs id="br" conceptId="90223" answerConceptId="90148"
-                                     answerLabel="4.Felt better"/>
+                                     answerLabel="Felt better"/>
                                 <obs id="br" conceptId="90223" answerConceptId="90149"
-                                     answerLabel="5.Too ill"/>
+                                     answerLabel="Too ill"/>
                                 <obs id="br" conceptId="90223" answerConceptId="90150"
-                                     answerLabel="6.Stigma"/>
+                                     answerLabel="Stigma"/>
                                 <obs id="br" conceptId="90223" answerConceptId="90045"
-                                     answerLabel="7.Stock out"/>
+                                     answerLabel="Stock out"/>
                                 <obs id="br" conceptId="90223" answerConceptId="90151"
-                                     answerLabel="8.Lost pills"/>
+                                     answerLabel="Lost pills"/>
                                 <obs id="br" conceptId="90223" answerConceptId="90152"
-                                     answerLabel="9.Travel problems"/>
+                                     answerLabel="Travel problems"/>
                                 <obs id="br" conceptId="90223" answerConceptId="90051"
-                                     answerLabel="10.Inability to pay"/>
+                                     answerLabel="Inability to pay"/>
                                 <obs id="br" conceptId="90223" answerConceptId="90153"
-                                     answerLabel="11.Alcohol"/>
+                                     answerLabel="Alcohol"/>
                                 <obs id="br" conceptId="90223" answerConceptId="90154"
-                                     answerLabel="12.Depression"/>
+                                     answerLabel="Depression"/>
                                 <obs id="br" conceptId="90223" answerConceptId="90155"
-                                     answerLabel="13.Pill burden"/>
+                                     answerLabel="Pill burden"/>
                                 <obs id="br" conceptId="90223" answerConceptId="99049"
-                                     answerLabel="14.Lacked food"/>
+                                     answerLabel="Lacked food"/>
                                 <span id="trigger">
                                     <obs id="br" conceptId="90223" answerConceptId="90002"
-                                         answerLabel="15.Other Specify:"/>
+                                         answerLabel="Other Specify:"/>
                                 </span>
                                 <span id="disabled">
                                     <obs id="br" conceptId="99125" labelText="" size="21"/>
