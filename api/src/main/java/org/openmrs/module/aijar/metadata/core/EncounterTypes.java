@@ -118,7 +118,6 @@ public class EncounterTypes {
             return "An encounter when a patient gets ANC services";
         }
 
-        @Override
         public String uuid() {
             return "044daI6d-f80e-48fe-aba9-037f241905Pe";
         }
@@ -131,7 +130,6 @@ public class EncounterTypes {
         @Override
         public String description() {  return "An encounter when a patient gets HCT services";  }
 
-        @Override
         public String uuid() { return "264daIZd-f80e-48fe-nba9-P37f2W1905Pv"; }
     };
 }
