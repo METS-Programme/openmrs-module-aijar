@@ -8,7 +8,7 @@
         return it
     }
 
-    def logoIconUrl = addContextPath(configSettings?."logo-icon-url") ?: ui.resourceLink("aijar", "images/moh_logo_large.png")
+    def logoIconUrl = addContextPath(configSettings?."logo-icon-url") ?: ui.resourceLink("aijar", "images/moh_logo_without_word.png")
     def logoLinkUrl = addContextPath(configSettings?."logo-link-url") ?: "/${org.openmrs.ui.framework.WebConstants.CONTEXT_PATH}"
 
     def multipleLoginLocations = (loginLocations.size > 1);
@@ -90,9 +90,18 @@
 <header>
     <div class="logo">
         <a href="${logoLinkUrl}">
-            <img src="${logoIconUrl}" style="height: 120px;"/>
+            <img src="${logoIconUrl}" style="height: 70px; width: 70px; background: whitesmoke; padding: 5px;"/>
         </a>
     </div>
+
+    <div style="float: left;margin: 25px 0 10px 20px; color: #EFEFEF;width: 285px;">
+        <div style="padding-bottom: 10px;">
+            <span style="font-size: 1.2em; text-align: left;color: #FFFFFF;">Ministry of Health </span>
+            <span style="color: #F1F1F1;font-size: 1.2em;">- Uganda</span><span style="color: #D2CB92;font-size: 1.2em;">EMR</span>
+        </div>
+        <span style="color: #848484;font-size: 0.9em;float: right;">Electronic Medical Records System</span>
+    </div>
+
     <% if (context.authenticated) { %>
     <ul class="user-options" style="padding: 20px;">
         <li class="identifier">
