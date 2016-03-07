@@ -1,5 +1,115 @@
+DROP PROCEDURE IF EXISTS `getARTData`;
+DROP PROCEDURE IF EXISTS `GetARTFollowupData0_24` ;
+DROP PROCEDURE IF EXISTS `GetARTFollowupData25_48` ;
+DROP PROCEDURE IF EXISTS `GetARTFollowupData49_72` ;
+DROP PROCEDURE IF EXISTS `getPreARTData` ;
+DROP PROCEDURE IF EXISTS `getPreARTFollowup` ;
+DROP PROCEDURE IF EXISTS `hmis106a1b`;
+
+DROP FUNCTION IF EXISTS `get_adherence_Count`;
+DROP FUNCTION IF EXISTS `get_adherenceType_Count`;
+DROP FUNCTION IF EXISTS `getADHStatusTxt`;
+DROP FUNCTION IF EXISTS `getAncNumberTxt`;
+DROP FUNCTION IF EXISTS `getAppKeepTxt`;
+DROP FUNCTION IF EXISTS `getArtBaseTransferDate`;
+DROP FUNCTION IF EXISTS `getArtEligibilityAndReadyDate`;
+DROP FUNCTION IF EXISTS `getArtEligibilityDate`;
+DROP FUNCTION IF EXISTS `getArtEligibilityReasonTxt`;
+DROP FUNCTION IF EXISTS `getArtRegCoded`;
+DROP FUNCTION IF EXISTS `getArtRegCoded2`;
+DROP FUNCTION IF EXISTS `getArtRegTxt`;
+DROP FUNCTION IF EXISTS `getArtRegTxt2`;
+DROP FUNCTION IF EXISTS `getArtRestartDate`;
+DROP FUNCTION IF EXISTS `getArtStartDate`;
+DROP FUNCTION IF EXISTS `getArtStartDate2`;
+DROP FUNCTION IF EXISTS `getArtStartRegTxt`;
+DROP FUNCTION IF EXISTS `getArtStopDate`;
+DROP FUNCTION IF EXISTS `getArtStopDate1`;
+DROP FUNCTION IF EXISTS `getArtStopReasonTxt`;
+DROP FUNCTION IF EXISTS `getBaseWeightValue`;
+DROP FUNCTION IF EXISTS `getCareEntryTxt`;
+DROP FUNCTION IF EXISTS `getCd4BaseValue`;
+DROP FUNCTION IF EXISTS `get_CD4_count`;
+DROP FUNCTION IF EXISTS `getCd4SevereBaseValue`;
+DROP FUNCTION IF EXISTS `getCD4Value`;
+DROP FUNCTION IF EXISTS `getCodedDeathDate`;
+DROP FUNCTION IF EXISTS `getCohortAllBefore10`;
+DROP FUNCTION IF EXISTS `getCohortAllBefore11`;
+DROP FUNCTION IF EXISTS `getCohortAllBefore12`;
+DROP FUNCTION IF EXISTS `getCohortAllBefore15a`;
+DROP FUNCTION IF EXISTS `getCohortAllBefore15b`;
+DROP FUNCTION IF EXISTS `getCohortAllBefore16`;
+DROP FUNCTION IF EXISTS `getCohortAllBefore3`;
+DROP FUNCTION IF EXISTS `getCohortAllBefore4a`;
+DROP FUNCTION IF EXISTS `getCohortAllBefore4b`;
+DROP FUNCTION IF EXISTS `getCohortAllBefore5`;
+DROP FUNCTION IF EXISTS `getCohortAllBefore6`;
+DROP FUNCTION IF EXISTS `getCohortAllBefore7`;
+DROP FUNCTION IF EXISTS `getCohortAllBefore9`;
+DROP FUNCTION IF EXISTS `getCohortMonth`;
+DROP FUNCTION IF EXISTS `get_cpt_receipt_status`;
+DROP FUNCTION IF EXISTS `getCptStartDate`;
+DROP FUNCTION IF EXISTS `getCptStatusTxt`;
+DROP FUNCTION IF EXISTS `getDeathDate`;
+DROP FUNCTION IF EXISTS `get_death_status`;
+DROP FUNCTION IF EXISTS `getEddDate`;
+DROP FUNCTION IF EXISTS `getEddEncounterId`;
+DROP FUNCTION IF EXISTS `getEddEncounterId2`;
+DROP FUNCTION IF EXISTS `getEddEncounterId3`;
+DROP FUNCTION IF EXISTS `getEddEncounterId4`;
+DROP FUNCTION IF EXISTS `getEncounterId`;
+DROP FUNCTION IF EXISTS `getEncounterId2`;
+DROP FUNCTION IF EXISTS `getEnrolDate`;
+DROP FUNCTION IF EXISTS `getFirstArtStopDate`;
+DROP FUNCTION IF EXISTS `getFlucStartDate`;
+DROP FUNCTION IF EXISTS `get_followup_status`;
+DROP FUNCTION IF EXISTS `get_followup_status2`;
+DROP FUNCTION IF EXISTS `getFUARTStatus`;
+DROP FUNCTION IF EXISTS `getFunctionalStatusTxt`;
+DROP FUNCTION IF EXISTS `getFUStatus`;
+DROP FUNCTION IF EXISTS `getINHStartDate`;
+DROP FUNCTION IF EXISTS `getLastCd4SevereValue`;
+DROP FUNCTION IF EXISTS `getLastCd4Value`;
+DROP FUNCTION IF EXISTS `getLastEncounterDate`;
+DROP FUNCTION IF EXISTS `getLastVisitDate`;
+DROP FUNCTION IF EXISTS `get_lost_status`;
+DROP FUNCTION IF EXISTS `getMonthCD4Value`;
+DROP FUNCTION IF EXISTS `getMonthsOnCurrent`;
+DROP FUNCTION IF EXISTS `getMonthsSinceStart`;
+DROP FUNCTION IF EXISTS `getNumberDrugEncounter`;
+DROP FUNCTION IF EXISTS `getNumberDrugSummary`;
+DROP FUNCTION IF EXISTS `getNutritionalStatus`;
+DROP FUNCTION IF EXISTS `getPatientIdentifierTxt`;
+DROP FUNCTION IF EXISTS `getReferralText`;
+DROP FUNCTION IF EXISTS `getReturnDate`;
+DROP FUNCTION IF EXISTS `getReturnDate2`;
+DROP FUNCTION IF EXISTS `get_scheduled_visits`;
+DROP FUNCTION IF EXISTS `get_seen_status`;
+DROP FUNCTION IF EXISTS `getStartEncounterId`;
+DROP FUNCTION IF EXISTS `getSubstituteDate`;
+DROP FUNCTION IF EXISTS `getSubstituteObsGroupId`;
+DROP FUNCTION IF EXISTS `getSubstituteObsGroupId2`;
+DROP FUNCTION IF EXISTS `getSubstituteReasonTxt`;
+DROP FUNCTION IF EXISTS `getSwitchDate`;
+DROP FUNCTION IF EXISTS `getSwitchObsGroupId`;
+DROP FUNCTION IF EXISTS `getSwitchObsGroupId2`;
+DROP FUNCTION IF EXISTS `getSwitchReasonTxt`;
+DROP FUNCTION IF EXISTS `getTbRegNoTxt`;
+DROP FUNCTION IF EXISTS `getTbStartDate`;
+DROP FUNCTION IF EXISTS `get_tb_status`;
+DROP FUNCTION IF EXISTS `getTbStatusTxt`;
+DROP FUNCTION IF EXISTS `getTbStopDate`;
+DROP FUNCTION IF EXISTS `getTransferInTxt`;
+DROP FUNCTION IF EXISTS `getTransferOutDate`;
+DROP FUNCTION IF EXISTS `get_transfer_status`;
+DROP FUNCTION IF EXISTS `getWeightValue`;
+DROP FUNCTION IF EXISTS `getWhoStageBaseTxt`;
+DROP FUNCTION IF EXISTS `getWHOStageDate`;
+DROP FUNCTION IF EXISTS `getWhoStageTxt`;
+
+
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `GetARTData`(IN start_year INTEGER, IN start_month INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getARTData`(IN start_year INT, IN start_month INT)
 BEGIN
 	DECLARE bDone INT;
 
@@ -9,8 +119,7 @@ BEGIN
 
     DECLARE unique_id_number CHAR(15);
 
-    DECLARE ti char(2);
-    DECLARE emtct char(5);
+    DECLARE ti_emtct char(10);
 
     DECLARE patient_clinic_id CHAR(12);
 
@@ -78,8 +187,7 @@ BEGIN
     e.patient_id as 'patient_id',
     o.value_datetime as 'art_start_date',
     getPatientIdentifierTxt(e.patient_id) AS 'unique_id_number',
-    getTransferInTxt(e.patient_id) AS 'ti',
-    IF(getCareEntryTxt(e.patient_id) IN ('PMTCT' , 'eMTCT'),'eMTCT','') AS 'emtct',
+    CONCAT(getTransferInTxt(e.patient_id),IF(getCareEntryTxt(e.patient_id) IN ('PMTCT' , 'eMTCT'),'eMTCT','')) AS 'ti_emtct',
     TIMESTAMPDIFF(YEAR,p.birthdate,CURDATE()) AS 'age',
     p.gender AS 'sex',
     getFunctionalStatusTxt(e.patient_id, o.value_datetime) AS 'function_status',
@@ -110,9 +218,10 @@ FROM
         INNER JOIN
     obs o ON (e.encounter_id = o.encounter_id
         AND o.concept_id IN (99160 , 99161)
-        AND e.voided = 0
-        AND o.voided = 0
-        AND EXTRACT(YEAR_MONTH FROM o.value_datetime) = EXTRACT(YEAR_MONTH FROM (MAKEDATE(start_year,1) + INTERVAL start_month MONTH - INTERVAL 1 DAY)))
+        -- AND e.voided = 0
+        -- AND o.voided = 0
+        AND EXTRACT(YEAR_MONTH FROM o.value_datetime) = EXTRACT(YEAR_MONTH FROM (MAKEDATE(start_year,1) + INTERVAL start_month MONTH - INTERVAL 1 DAY))
+	)
 ORDER BY o.value_datetime ASC;
 
 	DECLARE CONTINUE HANDLER FOR NOT FOUND SET bDone = 1;
@@ -122,8 +231,7 @@ ORDER BY o.value_datetime ASC;
   CREATE TEMPORARY TABLE IF NOT EXISTS artData
 	(art_start_date date,
     unique_id_number CHAR(15),
-    ti char(2),
-    emtct char(5),
+    ti_emtct char(10),
     patient_clinic_id CHAR(12),
     surname char(40),
     given_name char(40),
@@ -174,8 +282,7 @@ ORDER BY o.value_datetime ASC;
     patient_id,
     art_start_date,
     unique_id_number,
-    ti,
-    emtct,
+    ti_emtct,
     age,
     sex,
     function_status,
@@ -199,14 +306,13 @@ ORDER BY o.value_datetime ASC;
     first_line_second,
     second_line_first,
     second_line_second;
-	IF (patient_id > 0) THEN
+	IF(patient_id > 0 AND patient_id not IN (select DISTINCT patient_id from artData)) THEN
 		SELECT middle_name, family_name INTO given_name , surname FROM person_name WHERE person_id = patient_id LIMIT 1;
 		SELECT county_district, state_province, city_village INTO district , sub_county , village_cell FROM person_address WHERE person_id = patient_id LIMIT 1;
 		INSERT INTO artData(
 		art_start_date,
 		unique_id_number,
-		ti,
-		emtct,
+		ti_emtct,
 		given_name,
 		surname,
 		sex,
@@ -238,8 +344,7 @@ ORDER BY o.value_datetime ASC;
 		) VALUES (
 		art_start_date,
 		unique_id_number,
-		ti,
-		emtct,
+		ti_emtct,
 		given_name,
 		surname,
 		sex,
@@ -733,12 +838,12 @@ DECLARE unique_id CHAR(25);
 
 DECLARE patient_id int;
 
-DECLARE surname char(40);
-DECLARE given_name char(40);
+DECLARE surname char(50);
+DECLARE gn char(50);
 
-DECLARE sex char(40);
+DECLARE p_sex char(40);
 
-DECLARE age int;
+DECLARE p_age int;
 
 DECLARE district CHAR(30);
 DECLARE sub_county CHAR(30);
@@ -772,13 +877,10 @@ DECLARE date_eligible_and_ready_for_art date;
 
 DECLARE date_art_started date;
 
-
 DECLARE curs CURSOR FOR SELECT DISTINCT
 	getEnrolDate(e.patient_id) as 'date_enrolled_in_care',
 	getPatientIdentifierTxt(e.patient_id) as 'unique_id',
 	e.patient_id as 'patient_id',
-	pp.gender as 'sex',
-	TIMESTAMPDIFF(YEAR,pp.birthdate,CURDATE()) AS 'age',
 	getCareEntryTxt(e.patient_id) as 'entry_point',
 	getCptStartDate(e.patient_id) as 'cpt_start_date',
 	getINHStartDate(e.patient_id) as 'inh_start_date',
@@ -793,9 +895,7 @@ DECLARE curs CURSOR FOR SELECT DISTINCT
 	getArtEligibilityReasonTxt(e.patient_id) as 'why_eligible',
     getArtEligibilityAndReadyDate(e.patient_id) as 'date_eligible_and_ready_for_art',
 	getArtBaseTransferDate(e.patient_id) as 'date_art_started'
-FROM
-    person pp INNER JOIN patient p ON (pp.person_id = p.patient_id AND p.voided = 0)
-  INNER JOIN encounter e ON (e.patient_id = p.patient_id AND e.voided = 0 AND YEAR(e.encounter_datetime) = start_year) INNER JOIN form f ON(e.form_id = f.form_id AND f.uuid = '12de5bc5-352e-4faf-9961-a2125085a75c' ) order by e.encounter_datetime;
+FROM encounter e WHERE e.voided = 0 AND YEAR(e.encounter_datetime) = start_year AND e.encounter_type = 1 order by e.encounter_datetime;
 
 DECLARE CONTINUE HANDLER FOR NOT FOUND SET bDone = 1;
 
@@ -835,72 +935,73 @@ date_art_started date);
   SET bDone = 0;
 
   REPEAT
-    FETCH curs INTO date_enrolled_in_care,unique_id,patient_id,sex,age,entry_point,cpt_start_date,inh_start_date,tb_reg_no,tb_start_date,tb_stop_date,who_stage_1,who_stage_2,who_stage_3,who_stage_4,date_eligible_for_art,why_eligible,date_eligible_and_ready_for_art,date_art_started;
-    SELECT CONCAT(given_name,COALESCE(middle_name,'')), family_name INTO given_name , surname FROM person_name WHERE person_id = patient_id LIMIT 1;
+    FETCH curs INTO date_enrolled_in_care,unique_id,patient_id,entry_point,cpt_start_date,inh_start_date,tb_reg_no,tb_start_date,tb_stop_date,who_stage_1,who_stage_2,who_stage_3,who_stage_4,date_eligible_for_art,why_eligible,date_eligible_and_ready_for_art,date_art_started;
+    -- IF(patient_id > 0 AND patient_id not IN (select DISTINCT patient_id from artPreData)) THEN
+	SELECT CONCAT(given_name,COALESCE(middle_name,'')),family_name INTO gn ,surname FROM person_name WHERE person_id = patient_id LIMIT 1;
+    SELECT pp.gender,TIMESTAMPDIFF(YEAR,pp.birthdate,CURDATE()) INTO p_sex,p_age FROM person pp WHERE person_id = patient_id LIMIT 1;
     SELECT county_district, state_province, city_village INTO district , sub_county , village_cell FROM person_address WHERE person_id = patient_id LIMIT 1;
-    IF(patient_id > 0 AND patient_id not IN (select DISTINCT patient_id from artPreData)) THEN
-        INSERT INTO artPreData(
-      date_enrolled_in_care,
-      unique_id,
-      patient_id,
-      surname ,
-      given_name ,
-      sex,
-      age,
-      district,
-      sub_county,
-      village_cell,
-      entry_point,
-      status_at_enrollment,
-      cpt_start_date,
-      cpt_stop_date,
-      inh_start_date,
-      inh_stop_date,
-      tb_reg_no,
-      tb_start_date,
-      tb_stop_date,
-      who_stage_1,
-            who_stage_2,
-            who_stage_3,
-            who_stage_4,
-      date_eligible_for_art,
-      why_eligible,
-      date_eligible_and_ready_for_art,
-      date_art_started
-            )values(
-            date_enrolled_in_care,
-      unique_id,
-      patient_id,
-      surname ,
-      given_name ,
-      sex,
-      age,
-      district,
-      sub_county,
-      village_cell,
-      entry_point,
-      status_at_enrollment,
-      cpt_start_date,
-      cpt_stop_date,
-      inh_start_date,
-      inh_stop_date,
-      tb_reg_no,
-      tb_start_date,
-      tb_stop_date,
-      who_stage_1,
-            who_stage_2,
-            who_stage_3,
-            who_stage_4,
-      date_eligible_for_art,
-      why_eligible,
-      date_eligible_and_ready_for_art,
-      date_art_started
+	INSERT INTO artPreData(
+		date_enrolled_in_care,
+		unique_id,
+		patient_id,
+		surname ,
+		given_name ,
+		sex,
+		age,
+		district,
+		sub_county,
+		village_cell,
+		entry_point,
+		status_at_enrollment,
+		cpt_start_date,
+		cpt_stop_date,
+		inh_start_date,
+		inh_stop_date,
+		tb_reg_no,
+		tb_start_date,
+		tb_stop_date,
+		who_stage_1,
+		who_stage_2,
+		who_stage_3,
+		who_stage_4,
+		date_eligible_for_art,
+		why_eligible,
+		date_eligible_and_ready_for_art,
+		date_art_started
+		)values(
+		date_enrolled_in_care,
+		unique_id,
+		patient_id,
+		surname ,
+		gn ,
+		p_sex,
+		p_age,
+		district,
+		sub_county,
+		village_cell,
+		entry_point,
+		status_at_enrollment,
+		cpt_start_date,
+		cpt_stop_date,
+		inh_start_date,
+		inh_stop_date,
+		tb_reg_no,
+		tb_start_date,
+		tb_stop_date,
+		who_stage_1,
+		who_stage_2,
+		who_stage_3,
+		who_stage_4,
+		date_eligible_for_art,
+		why_eligible,
+		date_eligible_and_ready_for_art,
+		date_art_started
     );
-        END IF;
+        -- END IF;
     UNTIL bDone
   END REPEAT;
 CLOSE curs;
-SELECT * FROM artPreData;
+SELECT DISTINCT * FROM artPreData;
 END$$
 DELIMITER ;
 
@@ -929,15 +1030,13 @@ DECLARE real_date INT;
 
 DECLARE curs CURSOR FOR SELECT DISTINCT
 	e.patient_id as 'patient_id'
-FROM
-    person pp INNER JOIN patient p ON (pp.person_id = p.patient_id AND p.voided = 0)
-	INNER JOIN encounter e ON (e.patient_id = p.patient_id AND form_id = 28 AND e.voided = 0 AND YEAR(e.encounter_datetime) = start_year)INNER JOIN form f ON(e.form_id = f.form_id AND f.uuid = '12de5bc5-352e-4faf-9961-a2125085a75c' ) order by e.encounter_datetime;
+FROM encounter e WHERE e.voided = 0 AND YEAR(e.encounter_datetime) = start_year AND e.encounter_type = 1 order by e.encounter_datetime;
 
 DECLARE CONTINUE HANDLER FOR NOT FOUND SET bDone = 1;
 
 DROP TEMPORARY TABLE IF EXISTS pre_art_followup_data;
 
-CREATE TEMPORARY TABLE IF NOT EXISTS pre_art_followup_data (patient_id int,fu_status TEXT,tb_status TEXT,cpt TEXT,nutritinal_status TEXT) ENGINE=MyISAM DEFAULT CHARSET=utf8 ;
+CREATE TEMPORARY TABLE IF NOT EXISTS pre_art_followup_data (patient_id int,fu_status TEXT,tb_status TEXT,cpt TEXT,nutritinal_status TEXT) DEFAULT CHARSET=utf8 ;
 
 OPEN curs;
 
@@ -952,8 +1051,8 @@ FETCH curs INTO patient_id;
     SET nutritinal_status = '';
 	WHILE x  < 4 DO
 		SET real_date = (start_year + x);
-        SET tb_status = CONCAT_WS(',',COALESCE(tb_status,'-'), COALESCE(getTbStatusTxt(getEncounterId2(patient_id,real_date,1)), '-'), COALESCE(getTbStatusTxt(getEncounterId2(patient_id,real_date,2)), '-'),COALESCE(getTbStatusTxt(getEncounterId2(patient_id,real_date,3)), '-'),COALESCE(getTbStatusTxt(getEncounterId2(patient_id,real_date,4)), '-'));
-		SET cpt = CONCAT_WS(',',COALESCE(cpt,'-'), COALESCE(getCptStatusTxt(getEncounterId2(patient_id,real_date,1)), '-'), COALESCE(getCptStatusTxt(getEncounterId2(patient_id,real_date,2)), '-'),COALESCE(getCptStatusTxt(getEncounterId2(patient_id,real_date,3)), '-'),COALESCE(getCptStatusTxt(getEncounterId2(patient_id,real_date,4)), '-'));
+        SET tb_status = CONCAT_WS(',',COALESCE(tb_status,''), COALESCE(getTbStatusTxt(getEncounterId2(patient_id,real_date,1)), ''), COALESCE(getTbStatusTxt(getEncounterId2(patient_id,real_date,2)), ''),COALESCE(getTbStatusTxt(getEncounterId2(patient_id,real_date,3)), ''),COALESCE(getTbStatusTxt(getEncounterId2(patient_id,real_date,4)), ''));
+		SET cpt = CONCAT_WS(',',COALESCE(cpt,''), COALESCE(getCptStatusTxt(getEncounterId2(patient_id,real_date,1)), ''), COALESCE(getCptStatusTxt(getEncounterId2(patient_id,real_date,2)), ''),COALESCE(getCptStatusTxt(getEncounterId2(patient_id,real_date,3)), ''),COALESCE(getCptStatusTxt(getEncounterId2(patient_id,real_date,4)), ''));
 
         SET fu_status_1 = getFUStatus(patient_id, (MAKEDATE(real_date,1)),(MAKEDATE(start_year,1) + INTERVAL 1 QUARTER - INTERVAL 1 DAY));
         SET fu_status_2 = getFUStatus(patient_id, (MAKEDATE(real_date,1) + INTERVAL 1 QUARTER), (MAKEDATE(real_date,1) + INTERVAL 2 QUARTER - INTERVAL 1 DAY));
@@ -965,20 +1064,16 @@ FETCH curs INTO patient_id;
         SET nutritinal_status_3 = getNutritionalStatus(patient_id, (MAKEDATE(real_date,1) + INTERVAL 2 QUARTER), (MAKEDATE(real_date,1) + INTERVAL 3 QUARTER - INTERVAL 1 DAY));
         SET nutritinal_status_4 = getNutritionalStatus(patient_id, (MAKEDATE(real_date,1) + INTERVAL 3 QUARTER), (MAKEDATE(real_date,1) + INTERVAL 4 QUARTER - INTERVAL 1 DAY));
 
-        SET fu_status = CONCAT_WS(',',COALESCE(fu_status,'-'),COALESCE(fu_status_1,'-'),COALESCE(fu_status_2,'-'),COALESCE(fu_status_3,'-'),COALESCE(fu_status_4,'-'));
-		SET nutritinal_status = CONCAT_WS(',',COALESCE(nutritinal_status,'-'),COALESCE(nutritinal_status_1,'-'),COALESCE(nutritinal_status_2,'-'),COALESCE(nutritinal_status_3,'-'),COALESCE(nutritinal_status_4,'-'));
+        SET fu_status = CONCAT_WS(',',COALESCE(fu_status,''),COALESCE(fu_status_1,''),COALESCE(fu_status_2,''),COALESCE(fu_status_3,''),COALESCE(fu_status_4,''));
+		SET nutritinal_status = CONCAT_WS(',',COALESCE(nutritinal_status,''),COALESCE(nutritinal_status_1,''),COALESCE(nutritinal_status_2,''),COALESCE(nutritinal_status_3,''),COALESCE(nutritinal_status_4,''));
         SET  x = x + 1;
 	END WHILE;
-    IF(patient_id > 0) THEN
-		INSERT INTO pre_art_followup_data(patient_id,fu_status,tb_status,cpt,nutritinal_status) VALUES (patient_id,SUBSTR(fu_status,2),SUBSTR(tb_status,2),SUBSTR(cpt,2),SUBSTR(nutritinal_status,2));
-	END IF;
+    -- IF(patient_id > 0 AND patient_id not IN (select DISTINCT patient_id from pre_art_followup_data)) THEN
+	INSERT INTO pre_art_followup_data(patient_id,fu_status,tb_status,cpt,nutritinal_status) VALUES (patient_id,SUBSTR(fu_status,2),SUBSTR(tb_status,2),SUBSTR(cpt,2),SUBSTR(nutritinal_status,2));
+	-- END IF;
 UNTIL bDone END REPEAT;
 CLOSE curs;
-SELECT
-    *
-FROM
-    pre_art_followup_data;
-
+SELECT DISTINCT * FROM pre_art_followup_data;
 END$$
 DELIMITER ;
 
@@ -3069,9 +3164,10 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `getEnrolDate`(`personid` INT) RETURN
 BEGIN
 
 
-RETURN (select encounter_datetime as enroldt
+RETURN (
+select encounter_datetime as enroldt
 from encounter
-where uuid = '8d5b27bc-c2cc-11de-8d13-0010c6dffd0f'
+where encounter_type=1
 and voided=0
 and personid=patient_id
 limit 1
@@ -3259,15 +3355,15 @@ BEGIN
 				AND form_id = 27
 				AND patient_id = Patient_ID AND voided = 0;
 			IF times_seen_in_quarter > 0 THEN
-				return '10003';
+				return 'V';
 			ELSE
 				SELECT COUNT(obs_id ) INTO number_of_visits_in_quarter
 					FROM obs
-					WHERE value_datetime BETWEEN start_date AND end_date
-					AND patient_id = Patient_ID AND concept_id = 5096 AND Voided = 0;
+					WHERE value_datetime BETWEEN start_date AND end_date AND QUARTER(value_datetime) < QUARTER(end_date)
+					AND patient_id = Patient_ID AND concept_id = 5096 AND voided = 0;
 
-                IF number_of_visits_in_quarter = 0 THEN
-					return '8594';
+                IF number_of_visits_in_quarter > 0 THEN
+					return '->';
 				ELSEIF times_seen_in_quarter = 0 AND number_of_visits_in_quarter > 0 THEN
 					return 'LOST';
 				ELSE
