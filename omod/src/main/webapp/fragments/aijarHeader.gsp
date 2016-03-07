@@ -99,7 +99,7 @@
             <span style="font-size: 1.2em; text-align: left;color: #FFFFFF;">Ministry of Health </span>
             <span style="color: #F1F1F1;font-size: 1.2em;">- Uganda</span><span style="color: #D2CB92;font-size: 1.2em;">EMR</span>
         </div>
-        <span style="color: #848484;font-size: 0.9em;float: right;">Electronic Medical Records System</span>
+        <span style="color: #848484;font-size: 0.9em;float: left; width: 100%; text-align: center;">Electronic Medical Records System</span>
     </div>
 
     <% if (context.authenticated) { %>
