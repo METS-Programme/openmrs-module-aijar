@@ -544,7 +544,8 @@
                         </tr>
                         <tr>
                             <td colspan="2">Type of visit</td>
-                            <td>** </td>
+                            <td><obs conceptId="162992" answerConceptIds="162993,162994,162995,162996,162997,162998,162999,163000,163001,163002"
+                                     answerLabels="Visit 1,Visit 2,Visit 3,Visit 4,Visit 5,Visit 6,Visit 7,Visit 8,Visit 9,Visit 10" required="true"/></td>
                         </tr>
                         <tr>
                             <td colspan="2">Date of Appointment</td>
