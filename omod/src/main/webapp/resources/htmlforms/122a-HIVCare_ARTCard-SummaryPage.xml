@@ -12,7 +12,7 @@
           formLabel="ART Card - Summary Form">
     <!-- TODO: Fix the url of all the forms to display their contents once done -->
     <redirectOnSave
-            url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits" />
+            url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits"/>
     <script type="text/javascript">
 
         function enable_disable_fm(selected_option) {
@@ -298,13 +298,14 @@
 
             var row_9 = '[class^="ArtCare"][class*="Child9"]';
             var row_10 = '[class^="ArtCare"][class*="Child10"]';
+            var row_10 = '[class^="ArtCare"][class*="Child11"]';
 
             var xx = row_1;
             var selected_value = jq(selected_option).find(":selected").text()
 
             selected_value = selected_value.trim().toLowerCase();
 
-            if (selected_value == "other"  || selected_value == "other specify")
+            if (selected_value == "other" || selected_value == "other specify" || selected_value == "others")
                 disable = false;
 
             switch (row_id) {
@@ -339,6 +340,9 @@
 
                 case 10:
                     xx = row_10;
+                    break;
+                case 11:
+                    xx = row_11;
                     break;
             }
 
@@ -753,20 +757,16 @@
                 </tr>
                 <tr style="background: #F7F7F7;">
                     <obsgroup groupingConceptId="99116">
-                        <td style="width: 33%;">
+                        <td style="width: 33%;" class="ARTCareEnableDisable11">
                             <label>Care Entry Point</label>
                             <obs conceptId="90200"
                                  answerConceptIds="90012,90016,99593,99610,90019,90013,90015,90018,90002"
                                  answerLabels="eMTCT,TB,YCC,SMC,Outreach,Out Patient,STI,Inpatient,Others"
                                  required="true"/>
                         </td>
-                        <td style="width: 33%;">
-                                <span id="checkboxAll" class="enableDisable">
-                                    <span id="disabled">
-                                        <label>Other</label>
-                                        <obs size="20" conceptId="99115" labelText=""/>
-                                    </span>
-                                </span>
+                        <td style="width: 33%;" class="ARTCareEnableDisableChild11">
+                            <label>Other</label>
+                            <obs size="20" conceptId="99115" labelText=""/>
                         </td>
                         <td>
 
@@ -1046,7 +1046,7 @@
                     <thead>
                     <tr>
                         <th rowspan="2">
-                            Exporsed Infant <br/>(Name#)
+                            Exposed Infant <br/>(Name#)
                         </th>
                         <th rowspan="2">
                             DOB
@@ -1813,7 +1813,7 @@
 
                                     <obs conceptId="1252" labelText=""
                                          answerConceptIds="90040,90046,90158,90050,90045,90051,90052,90066,99289,90002"
-                                         answerLabels="1.Toxi,2.Tx Failure,3.Adhe, 4.Ill, 5.Stock, 6.Finan, 7. Px Decn, 8.Tx intpn, 9.Ex HIV, 10.Other,"/>
+                                         answerLabels="1.Toxicity/side effects,2.Treatment Failure,3. Poor Adherence, 4.Illness/hospitalization, 5.Drug out of stock, 6.Patient lacks Finances, 7. Other patient decision, 8.Patient Rx interruption intpn, 9.Excluded HIV Infection, 10.Other,"/>
                                 </span>
                                 <span class="ARTTreatmentInterruptionEnableDisableChild1">
                                     <br/>
@@ -1846,7 +1846,7 @@
 
                                     <obs conceptId="1252" labelText=""
                                          answerConceptIds="90040,90046,90158,90050,90045,90051,90052,90066,99289,90002"
-                                         answerLabels="1.Toxi,2.Tx Failure,3.Adhe, 4.Ill, 5.Stock, 6.Finan, 7. Px Decn, 8.Tx intpn, 9.Ex HIV, 10.Other,"/>
+                                         answerLabels="1.Toxicity/side effects,2.Treatment Failure,3. Poor Adherence, 4.Illness/hospitalization, 5.Drug out of stock, 6.Patient lacks Finances, 7. Other patient decision, 8.Patient Rx interruption intpn, 9.Excluded HIV Infection, 10.Other,"/>
                                 </span>
                             <span class="ARTTreatmentInterruptionEnableDisableChild2">
                                 <br/>
@@ -1877,7 +1877,7 @@
                                     <br/>
                                     <obs conceptId="1252" labelText=""
                                          answerConceptIds="90040,90046,90158,90050,90045,90051,90052,90066,99289,90002"
-                                         answerLabels="1.Toxi,2.Tx Failure,3.Adhe, 4.Ill, 5.Stock, 6.Finan, 7. Px Decn, 8.Tx intpn, 9.Ex HIV, 10.Other,"/>
+                                         answerLabels="1.Toxicity/side effects,2.Treatment Failure,3. Poor Adherence, 4.Illness/hospitalization, 5.Drug out of stock, 6.Patient lacks Finances, 7. Other patient decision, 8.Patient Rx interruption intpn, 9.Excluded HIV Infection, 10.Other,"/>
                                  </span>
                              <span class="ARTTreatmentInterruptionEnableDisableChild3">
                                  <br/>
@@ -1907,7 +1907,7 @@
                                     <br/>
                                     <obs conceptId="1252" labelText=""
                                          answerConceptIds="90040,90046,90158,90050,90045,90051,90052,90066,99289,90002"
-                                         answerLabels="1.Toxi,2.Tx Failure,3.Adhe, 4.Ill, 5.Stock, 6.Finan, 7. Px Decn, 8.Tx intpn, 9.Ex HIV, 10.Other,"/>
+                                         answerLabels="1.Toxicity/side effects,2.Treatment Failure,3. Poor Adherence, 4.Illness/hospitalization, 5.Drug out of stock, 6.Patient lacks Finances, 7. Other patient decision, 8.Patient Rx interruption intpn, 9.Excluded HIV Infection, 10.Other,"/>
                                    </span>
                              <span class="ARTTreatmentInterruptionEnableDisableChild4">
                                     <br/>
@@ -1937,7 +1937,7 @@
                                     <br/>
                                     <obs conceptId="1252" labelText=""
                                          answerConceptIds="90040,90046,90158,90050,90045,90051,90052,90066,99289,90002"
-                                         answerLabels="1.Toxi,2.Tx Failure,3.Adhe, 4.Ill, 5.Stock, 6.Finan, 7. Px Decn, 8.Tx intpn, 9.Ex HIV, 10.Other,"/>
+                                         answerLabels="1.Toxicity/side effects,2.Treatment Failure,3. Poor Adherence, 4.Illness/hospitalization, 5.Drug out of stock, 6.Patient lacks Finances, 7. Other patient decision, 8.Patient Rx interruption intpn, 9.Excluded HIV Infection, 10.Other,"/>
                                     <br/>
                                 </span>
                             <span class="ARTTreatmentInterruptionEnableDisableChild5">
@@ -1967,7 +1967,7 @@
                                     <br/>
                                     <obs conceptId="1252" labelText=""
                                          answerConceptIds="90040,90046,90158,90050,90045,90051,90052,90066,99289,90002"
-                                         answerLabels="1.Toxi,2.Tx Failure,3.Adhe, 4.Ill, 5.Stock, 6.Finan, 7. Px Decn, 8.Tx intpn, 9.Ex HIV, 10.Other,"/>
+                                         answerLabels="1.Toxicity/side effects,2.Treatment Failure,3. Poor Adherence, 4.Illness/hospitalization, 5.Drug out of stock, 6.Patient lacks Finances, 7. Other patient decision, 8.Patient Rx interruption intpn, 9.Excluded HIV Infection, 10.Other,"/>
                                  </span>
                              <span class="ARTTreatmentInterruptionEnableDisableChild6">
                                  <br/>
