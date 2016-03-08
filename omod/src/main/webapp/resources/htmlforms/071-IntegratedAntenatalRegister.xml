@@ -330,7 +330,7 @@
                              answerLabels="&#8730;,X,N/A"/>
                     </td>
                     <td rowspan="3">
-                        <obs conceptId="99731"/>
+                        <obs conceptId="99731" allowFutureDates="true"/>
                     </td>
                     <td>
                         <obs conceptId="90236"/>
