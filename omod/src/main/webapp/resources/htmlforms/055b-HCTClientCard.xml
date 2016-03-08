@@ -7,7 +7,7 @@
           formUILocation="patientDashboard.visitActions"
           formOrder="6"
           formIcon="icon-medkit"
-          formShowIf="patient.person.dead==false"
+          formShowIf="visit.active &amp;&amp; patient.person.dead==false"
           formDisplayStyle="Standard"
           formLabel="HCT Client Card">
     <redirectOnSave

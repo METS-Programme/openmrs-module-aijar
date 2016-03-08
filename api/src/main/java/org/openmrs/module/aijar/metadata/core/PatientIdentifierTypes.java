@@ -1,10 +1,10 @@
 package org.openmrs.module.aijar.metadata.core;
 
 import org.openmrs.module.aijar.identifier.EIDIdentifierValidator;
+import org.openmrs.module.idgen.validator.LuhnMod30IdentifierValidator;
 import org.openmrs.module.idgen.validator.LuhnModNIdentifierValidator;
 import org.openmrs.module.metadatadeploy.descriptor.PatientIdentifierTypeDescriptor;
 import org.openmrs.patient.IdentifierValidator;
-import org.openmrs.module.idgen.validator.LuhnMod30IdentifierValidator;
 
 /**
  * Constants for defined patient identifier types
@@ -189,11 +189,12 @@ public class PatientIdentifierTypes {
         public String uuid() { return "c9e42035-7112-45b3-bfcf-4b37e1091dd4"; }
 
         public String format() {
-            return "^\\d+$";
+            return "[0-9]{4}[\\/][1][4-9]";
         }
 
         public String formatDescription() {
-            return "Begins with 1 at the beginning of the financial year (July)";
+            return "Begins with 1 at the beginning of the financial year (July), has 4 "
+                    + "digits followed by a / then 2 digits for the year";
         }
     };
 
@@ -226,5 +227,29 @@ public class PatientIdentifierTypes {
 		}
 	};
 
+    public static PatientIdentifierTypeDescriptor NATIONAL_ID = new PatientIdentifierTypeDescriptor() {
+
+        @Override
+        public String name() {
+            return "National ID No.";
+        }
+
+        @Override
+        public String description() {
+            return "The national ID number";
+        }
+
+        public String uuid() {
+            return "f0c16a6d-dc5f-4118-a803-616d0075d282";
+        }
+
+        public String format() {
+            return "[C][M][0-9a-zA-Z]{12}";
+        }
+
+        public String formatDescription() {
+            return "No spaces mix of numbers and letters";
+        }
+    };
 
 }

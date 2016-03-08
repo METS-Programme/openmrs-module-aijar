@@ -7,7 +7,7 @@
           formUILocation="patientDashboard.visitActions"
           formOrder="5"
           formIcon="icon-medkit"
-          formShowIf="patient.person.dead==false &amp;&amp; patient.person.age &lt; 3 &amp;&amp; sessionLocation.get('uuid')=='86863db4-6101-4ecf-9a86-5e716d6504e4'"
+          formShowIf="visit.active &amp;&amp; patient.person.dead==false &amp;&amp; patient.person.age &lt; 3 &amp;&amp; sessionLocation.get('uuid')=='86863db4-6101-4ecf-9a86-5e716d6504e4'"
           formDisplayStyle="Standard"
           formLabel="EID Card - Encounter form">
     <redirectOnSave
@@ -544,7 +544,8 @@
                         </tr>
                         <tr>
                             <td colspan="2">Type of visit</td>
-                            <td>** </td>
+                            <td><obs conceptId="162992" answerConceptIds="162993,162994,162995,162996,162997,162998,162999,163000,163001,163002"
+                                     answerLabels="Visit 1,Visit 2,Visit 3,Visit 4,Visit 5,Visit 6,Visit 7,Visit 8,Visit 9,Visit 10" required="true"/></td>
                         </tr>
                         <tr>
                             <td colspan="2">Date of Appointment</td>

@@ -28,5 +28,33 @@
         "requiredPrivilege": "Manage Reports"
       }
     ]
+  },
+  {
+    "id": "aijar.referenceapplication.backupDatabase",
+    "extensions": [
+      {
+        "id": "aijar.referenceapplication.backupDatabase.homepageLink",
+        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+        "type": "link",
+        "label": "aijar.app.backupdatabase.list.label",
+        "url": "module/databasebackup/backup.form",
+        "icon": "icon-cloud-download",
+        "order": 115
+      }
+    ]
+  },
+  {
+    "id": "aijar.referenceapplication.support",
+    "extensions": [
+      {
+        "id": "aijar.referenceapplication.support.homepageLink",
+        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+        "type": "link",
+        "label": "aijar.app.support.list.label",
+        "url": "aijar/support.page",
+        "icon": "icon-question-sign",
+        "order": 120
+      }
+    ]
   }
 ]
