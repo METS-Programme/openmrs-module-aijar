@@ -333,6 +333,7 @@
                              answerLabels="Oedema +,-" style="dropdown"/>
                     </td>
                     <td>
+                        <excludeIf velocityTest="$patient.gender =='M' || $patient.age &lt; 9">
                             <span class="enableDisable">
                                 <span id="trigger">
                                 <obs conceptId="99602" style="checkbox" labelText="Pregnancy"/>
@@ -350,6 +351,7 @@
                                     <br/>
                                 </span>
                             </span>
+                            </excludeIf>
 
                             <span id="checkboxRadio">
                                 <span class="ARTYesNoEnableDisable1">
