@@ -413,7 +413,7 @@
                         <td>
                             <label>Mother's ART No</label>
                             <patient field="identifier" identifierTypeId="e1731641-30ab-102d-86b0-7a5022ba4115"
-                                     required="true"/>
+                                     required="false"/>
                             <!--<obs conceptId="162874" labelText=""/>-->
                         </td>
                     </tr>
@@ -547,7 +547,7 @@
                         </td>
                         <td>Presumptive Referral</td>
                         <td class="LinkToCareEnableDisableChild1">
-                            <obs conceptId="99434"/>
+                            <obs conceptId="163003"/>
                         </td>
                     </tr>
                 </table>
@@ -584,7 +584,7 @@
                     <tr>
                         <td> Final Outcome</td>
                         <td>
-                            <obs conceptId="99428"/>
+                            <obs conceptId="99428" answerConceptIds="99427,99430,5240,90306,99112" answerLabels="Discharged Negative,Referred to ART Clinic,Lost (>6 Months),Transferred,Died"/>
                         </td>
                         <td><label>Date</label><obs conceptId="162979"/></td>
                     </tr>
