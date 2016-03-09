@@ -1,6 +1,5 @@
 package org.openmrs.module.aijar.metadata.core;
 
-import org.openmrs.module.aijar.identifier.EIDIdentifierValidator;
 import org.openmrs.module.idgen.validator.LuhnMod30IdentifierValidator;
 import org.openmrs.module.idgen.validator.LuhnModNIdentifierValidator;
 import org.openmrs.module.metadatadeploy.descriptor.PatientIdentifierTypeDescriptor;
@@ -28,9 +27,9 @@ public class PatientIdentifierTypes {
             return "e1731641-30ab-102d-86b0-7a5022ba4115";
         }
 
-        public String format() {
+        /*public String format() {
             return "[X][X][X][\\/][0-9][0-9][0-9][0-9][0-9]";
-        }
+        }*/
 
         public String formatDescription() {
             return " The first three letters of the facility, followed by / then 5 numbers with no spaces";
@@ -60,9 +59,9 @@ public class PatientIdentifierTypes {
                     + "Cohort number";
         }
 
-        public Class<? extends IdentifierValidator> validator() {
+        /*public Class<? extends IdentifierValidator> validator() {
             return EIDIdentifierValidator.class;
-        }
+        }*/
     };
 
 
@@ -142,9 +141,9 @@ public class PatientIdentifierTypes {
             return "a6217c17-5012-4514-b9f2-5d02d3d04c44";
         }
 
-        public String format() {
+        /*public String format() {
             return "^\\d+$";
-        }
+        }*/
 
         public String formatDescription() {
             return "Begins with 1 at the beginning of the financial year (July)";
@@ -166,9 +165,9 @@ public class PatientIdentifierTypes {
             return "b0cc255e-ef57-4266-839e-0df7f5099eb9";
         }
 
-        public String format() {
+        /*public String format() {
             return "^\\d+$";
-        }
+        }*/
 
         public String formatDescription() {
             return "Begins with 1 at the beginning of the financial year (July)";
@@ -188,9 +187,9 @@ public class PatientIdentifierTypes {
 
         public String uuid() { return "c9e42035-7112-45b3-bfcf-4b37e1091dd4"; }
 
-        public String format() {
+        /*public String format() {
             return "[0-9]{4}[\\/][1][4-9]";
-        }
+        }*/
 
         public String formatDescription() {
             return "Begins with 1 at the beginning of the financial year (July), has 4 "
@@ -217,9 +216,9 @@ public class PatientIdentifierTypes {
 		// TODO: The current format of the district TB number has been limited to cases from 2010 to 2019, but this can be
 		// rectified
 		// later
-		public String format() {
-			return "[X][X][X][\\/][0-9][0-9][0-9][\\/][1][0-9]";
-		}
+        /*public String format() {
+            return "[X][X][X][\\/][0-9][0-9][0-9][\\/][1][0-9]";
+		}*/
 
 		public String formatDescription() {
 			return " The first three letters of the district, followed by / then 3 digits of the case number then / then "
