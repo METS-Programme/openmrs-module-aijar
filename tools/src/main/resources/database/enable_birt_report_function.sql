@@ -5,6 +5,8 @@ DROP PROCEDURE IF EXISTS `GetARTFollowupData49_72`;
 DROP PROCEDURE IF EXISTS `getPreARTData`;
 DROP PROCEDURE IF EXISTS `getPreARTFollowup`;
 DROP PROCEDURE IF EXISTS `hmis106a1b`;
+DROP PROCEDURE IF EXISTS `hmis106a1a`;
+
 
 DROP FUNCTION IF EXISTS `get_adherence_Count`;
 DROP FUNCTION IF EXISTS `get_adherenceType_Count`;
@@ -106,10 +108,8 @@ DROP FUNCTION IF EXISTS `getWeightValue`;
 DROP FUNCTION IF EXISTS `getWhoStageBaseTxt`;
 DROP FUNCTION IF EXISTS `getWHOStageDate`;
 DROP FUNCTION IF EXISTS `getWhoStageTxt`;
-
-
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` PROCEDURE `getARTData`(IN start_year INT, IN start_month INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getARTData`(IN start_year INT, IN start_month INT)
   BEGIN
     DECLARE bDone INT;
 
@@ -246,8 +246,8 @@ CREATE DEFINER =`root`@`localhost` PROCEDURE `getARTData`(IN start_year INT, IN 
         INNER JOIN
         obs o ON (e.encounter_id = o.encounter_id
                   AND o.concept_id IN (99160, 99161)
-                  -- AND e.voided = 0
-                  -- AND o.voided = 0
+
+
                   AND EXTRACT(YEAR_MONTH FROM o.value_datetime) =
                       EXTRACT(YEAR_MONTH FROM (MAKEDATE(start_year, 1) + INTERVAL start_month MONTH - INTERVAL 1 DAY))
         )
@@ -430,7 +430,7 @@ CREATE DEFINER =`root`@`localhost` PROCEDURE `getARTData`(IN start_year INT, IN 
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` PROCEDURE `GetARTFollowupData0_24`(IN start_year INT, IN start_month INTEGER)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetARTFollowupData0_24`(IN start_year INT, IN start_month INTEGER)
   BEGIN
     DECLARE bDone INT;
 
@@ -599,7 +599,7 @@ CREATE DEFINER =`root`@`localhost` PROCEDURE `GetARTFollowupData0_24`(IN start_y
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` PROCEDURE `GetARTFollowupData25_48`(IN start_year INT, IN start_month INTEGER)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetARTFollowupData25_48`(IN start_year INT, IN start_month INTEGER)
   BEGIN
     DECLARE bDone INT;
 
@@ -750,7 +750,7 @@ CREATE DEFINER =`root`@`localhost` PROCEDURE `GetARTFollowupData25_48`(IN start_
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` PROCEDURE `GetARTFollowupData49_72`(IN start_year INT, IN start_month INTEGER)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetARTFollowupData49_72`(IN start_year INT, IN start_month INTEGER)
   BEGIN
     DECLARE bDone INT;
 
@@ -900,7 +900,7 @@ CREATE DEFINER =`root`@`localhost` PROCEDURE `GetARTFollowupData49_72`(IN start_
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` PROCEDURE `getPreARTData`(IN start_year INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getPreARTData`(IN start_year INT)
   BEGIN
 
     DECLARE bDone INT;
@@ -1013,7 +1013,7 @@ CREATE DEFINER =`root`@`localhost` PROCEDURE `getPreARTData`(IN start_year INT)
     REPEAT
       FETCH curs
       INTO date_enrolled_in_care, unique_id, patient_id, entry_point, cpt_start_date, inh_start_date, tb_reg_no, tb_start_date, tb_stop_date, who_stage_1, who_stage_2, who_stage_3, who_stage_4, date_eligible_for_art, why_eligible, date_eligible_and_ready_for_art, date_art_started;
-      -- IF(patient_id > 0 AND patient_id not IN (select DISTINCT patient_id from artPreData)) THEN
+
       SELECT
         CONCAT(given_name, COALESCE(middle_name, '')),
         family_name
@@ -1093,7 +1093,7 @@ CREATE DEFINER =`root`@`localhost` PROCEDURE `getPreARTData`(IN start_year INT)
         date_eligible_and_ready_for_art,
         date_art_started
       );
-      -- END IF;
+
     UNTIL bDone
     END REPEAT;
     CLOSE curs;
@@ -1103,7 +1103,7 @@ CREATE DEFINER =`root`@`localhost` PROCEDURE `getPreARTData`(IN start_year INT)
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` PROCEDURE `getPreARTFollowup`(IN start_year INTEGER)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getPreARTFollowup`(IN start_year INTEGER)
   BEGIN
 
     DECLARE bDone INT;
@@ -1193,10 +1193,10 @@ CREATE DEFINER =`root`@`localhost` PROCEDURE `getPreARTFollowup`(IN start_year I
                                           COALESCE(nutritinal_status_4, ''));
         SET x = x + 1;
       END WHILE;
-      -- IF(patient_id > 0 AND patient_id not IN (select DISTINCT patient_id from pre_art_followup_data)) THEN
+
       INSERT INTO pre_art_followup_data (patient_id, fu_status, tb_status, cpt, nutritinal_status)
       VALUES (patient_id, SUBSTR(fu_status, 2), SUBSTR(tb_status, 2), SUBSTR(cpt, 2), SUBSTR(nutritinal_status, 2));
-      -- END IF;
+
     UNTIL bDone END REPEAT;
     CLOSE curs;
     SELECT DISTINCT *
@@ -1205,7 +1205,1208 @@ CREATE DEFINER =`root`@`localhost` PROCEDURE `getPreARTFollowup`(IN start_year I
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` PROCEDURE `hmis106a1b`(IN start_year INTEGER, IN start_quarter INT)
+CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `hmis106a1a`(IN start_year INTEGER, IN start_quarter INT)
+  BEGIN
+
+    SELECT
+      *
+    FROM
+      (SELECT
+         indicator_id,
+         q1indicator,
+         SUM(IF(gender = 'M' AND age < 2, 1, 0)) AS q1MBabies,
+         SUM(IF(gender = 'F' AND age < 2, 1, 0)) AS q1FBabies,
+         SUM(IF(gender = 'M' AND age BETWEEN 2 AND 4, 1, 0)) AS q1MToddlers,
+         SUM(IF(gender = 'F' AND age BETWEEN 2 AND 4, 1, 0)) AS q1FToddlers,
+         SUM(IF(gender = 'M' AND age BETWEEN 5 AND 14, 1, 0)) AS q1MTeens,
+         SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q1FTeens,
+         SUM(IF(gender = 'M' AND age > 14, 1, 0)) AS q1MSeniors,
+         SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q1FSeniors,
+         SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q1Total
+       FROM
+         (SELECT
+            1 AS indicator_id,
+            'Cummulative No. of clients ever enrolled in HIV care at this facility at the end of the previous quarter' AS q1indicator
+         ) Indicators
+         LEFT JOIN (SELECT DISTINCT
+                      1 AS indicator_id,
+                      pp.gender,
+                      pp.person_id,
+                      TIMESTAMPDIFF(YEAR, pp.birthdate, CURDATE()) AS age,
+                      YEAR(e.encounter_datetime) AS 'year',
+                      QUARTER(e.encounter_datetime) AS 'quarter'
+                    FROM
+                      person pp
+                      INNER JOIN patient p ON (pp.person_id = p.patient_id
+                                               AND p.voided = 0)
+                      INNER JOIN encounter e ON (e.patient_id = p.patient_id
+                                                 AND form_id = 14
+                                                 AND e.voided = 0
+                                                 AND CASE YEAR(e.encounter_datetime)
+                                                     WHEN start_year THEN QUARTER(e.encounter_datetime) < start_quarter
+                                                     ELSE QUARTER(e.encounter_datetime) <= start_quarter
+                                                          OR QUARTER(e.encounter_datetime) >= start_quarter
+                                                     END
+                                                 AND YEAR(e.encounter_datetime) <= start_year)) Enrollment USING (indicator_id)
+       GROUP BY q1indicator) ind1
+      LEFT JOIN
+      (SELECT
+         indicator_id,
+         q2indicator,
+         SUM(IF(gender = 'M' AND age < 2, 1, 0)) AS q2MBabies,
+         SUM(IF(gender = 'F' AND age < 2, 1, 0)) AS q2FBabies,
+         SUM(IF(gender = 'M' AND age BETWEEN 2 AND 4, 1, 0)) AS q2MToddlers,
+         SUM(IF(gender = 'F' AND age BETWEEN 2 AND 4, 1, 0)) AS q2FToddlers,
+         SUM(IF(gender = 'M' AND age BETWEEN 5 AND 14, 1, 0)) AS q2MTeens,
+         SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q2FTeens,
+         SUM(IF(gender = 'M' AND age > 14, 1, 0)) AS q2MSeniors,
+         SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q2FSeniors,
+         SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS Total
+       FROM
+         (SELECT
+            1 AS indicator_id,
+            'Number of new patients enrolled in HIV care at this  facility during the period' AS q2indicator
+         ) Indicators
+         LEFT JOIN (SELECT DISTINCT
+                      1 AS indicator_id,
+                      pp.gender,
+                      pp.person_id,
+                      TIMESTAMPDIFF(YEAR, pp.birthdate, CURDATE()) AS age
+                    FROM
+                      person pp
+                      INNER JOIN patient p ON (pp.person_id = p.patient_id
+                                               AND p.voided = 0)
+                      INNER JOIN encounter e ON (e.patient_id = p.patient_id
+                                                 AND form_id = 14
+                                                 AND e.voided = 0
+                                                 AND QUARTER(e.encounter_datetime) = 1
+                                                 AND YEAR(e.encounter_datetime) = start_year)) Enrollment USING (indicator_id)
+       GROUP BY q2indicator) ind2 ON (ind1.indicator_id = ind2.indicator_id)
+      LEFT JOIN
+      (SELECT
+         indicator_id,
+         q3indicator,
+         SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q3FTeens,
+         SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q3FSeniors,
+         SUM(IF((gender = 'F') AND age BETWEEN 0 AND 100, 1, 0)) AS q3Total
+       FROM
+         (SELECT
+            1 AS indicator_id,
+            'Number of pregnant and lactating women enrolled into care during the reporting quarter. (subset of row 2 above)' AS q3indicator
+         ) Indicators
+         LEFT JOIN (SELECT DISTINCT
+                      1 AS indicator_id,
+                      pp.gender,
+                      pp.person_id,
+                      TIMESTAMPDIFF(YEAR, pp.birthdate, CURDATE()) AS age
+                    FROM
+                      person pp
+                      INNER JOIN patient p ON (pp.person_id = p.patient_id
+                                               AND p.voided = 0)
+                      INNER JOIN encounter e ON (e.patient_id = p.patient_id
+                                                 AND form_id = 12
+                                                 AND QUARTER(e.encounter_datetime) = 1
+                                                 AND YEAR(e.encounter_datetime) = start_year)
+                      INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+                                           AND o.concept_id = 90041
+                                           AND o.value_coded = 1065)) Enrollment USING (indicator_id)
+       GROUP BY q3indicator) ind3 ON (ind2.indicator_id = ind3.indicator_id)
+      LEFT JOIN
+      (SELECT
+         indicator_id,
+         q4indicator,
+         SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q4Total
+       FROM
+         (SELECT
+            1 AS indicator_id,
+            'Number of clients started on INH Prophylaxis during the reporting quarter (Subset of row 2 above)' AS q4indicator
+         ) Indicators
+         LEFT JOIN (SELECT DISTINCT
+                      1 AS indicator_id,
+                      pp.gender,
+                      pp.person_id,
+                      TIMESTAMPDIFF(YEAR, pp.birthdate, CURDATE()) AS age,
+                      YEAR(e.encounter_datetime) AS 'Year',
+                      QUARTER(e.encounter_datetime) AS 'quarter'
+                    FROM
+                      person pp
+                      INNER JOIN patient p ON (pp.person_id = p.patient_id
+                                               AND p.voided = 0)
+                      INNER JOIN encounter e ON (e.patient_id = p.patient_id
+                                                 AND form_id = 14
+                                                 AND e.voided = 0
+                                                 AND CASE YEAR(e.encounter_datetime)
+                                                     WHEN start_year THEN QUARTER(e.encounter_datetime) <= start_quarter
+                                                     ELSE QUARTER(e.encounter_datetime) <= start_quarter
+                                                          OR QUARTER(e.encounter_datetime) >= start_quarter
+                                                     END
+                                                 AND YEAR(e.encounter_datetime) <= start_year)) Enrollment USING (indicator_id)
+       GROUP BY q4indicator) ind4 ON (ind3.indicator_id = ind4.indicator_id)
+      LEFT JOIN
+      (SELECT
+         indicator_id,
+         q5indicator,
+         SUM(IF(gender = 'M' AND age < 2, 1, 0)) AS q5MBabies,
+         SUM(IF(gender = 'F' AND age < 2, 1, 0)) AS q5FBabies,
+         SUM(IF(gender = 'M' AND age BETWEEN 2 AND 4, 1, 0)) AS q5MToddlers,
+         SUM(IF(gender = 'F' AND age BETWEEN 2 AND 4, 1, 0)) AS q5FToddlers,
+         SUM(IF(gender = 'M' AND age BETWEEN 5 AND 14, 1, 0)) AS q5MTeens,
+         SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q5FTeens,
+         SUM(IF(gender = 'M' AND age > 14, 1, 0)) AS q5MSeniors,
+         SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q5FSeniors,
+         SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q5Total
+       FROM
+         (SELECT
+            1 AS indicator_id,
+            'Cumulative number of clients ever enrolled in HIV care at this facility at the end of the previous quarter (row 1 + row 2)' AS q5indicator
+         ) Indicators
+         LEFT JOIN (SELECT DISTINCT
+                      1 AS indicator_id,
+                      pp.gender,
+                      pp.person_id,
+                      TIMESTAMPDIFF(YEAR, pp.birthdate, CURDATE()) AS age,
+                      YEAR(e.encounter_datetime) AS 'Year',
+                      QUARTER(e.encounter_datetime) AS 'quarter'
+                    FROM
+                      person pp
+                      INNER JOIN patient p ON (pp.person_id = p.patient_id
+                                               AND p.voided = 0)
+                      INNER JOIN encounter e ON (e.patient_id = p.patient_id
+                                                 AND form_id = 14
+                                                 AND e.voided = 0
+                                                 AND CASE YEAR(e.encounter_datetime)
+                                                     WHEN start_year THEN QUARTER(e.encounter_datetime) <= start_quarter
+                                                     ELSE QUARTER(e.encounter_datetime) <= start_quarter
+                                                          OR QUARTER(e.encounter_datetime) >= start_quarter
+                                                     END
+                                                 AND YEAR(e.encounter_datetime) <= start_year)) Enrollment USING (indicator_id)
+       GROUP BY q5indicator) ind5 ON (ind4.indicator_id = ind5.indicator_id)
+      LEFT JOIN
+      (SELECT
+         indicator_id,
+         q6indicator,
+         SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q6Total
+       FROM
+         (SELECT
+            1 AS indicator_id,
+            'No. of persons already enrolled in HIV care who transfered from another facility during the quarter' AS q6indicator
+         ) Indicators
+         LEFT JOIN (SELECT DISTINCT
+                      1 AS indicator_id,
+                      pp.gender,
+                      pp.person_id,
+                      TIMESTAMPDIFF(YEAR, pp.birthdate, CURDATE()) AS age
+                    FROM
+                      person pp
+                      INNER JOIN patient p ON (pp.person_id = p.patient_id
+                                               AND p.voided = 0)
+                      INNER JOIN encounter e ON (e.patient_id = p.patient_id
+                                                 AND form_id = 14
+                                                 AND QUARTER(e.encounter_datetime) = 1
+                                                 AND YEAR(e.encounter_datetime) = start_year)
+                      INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+                                           AND o.concept_id = 99160)) Enrollment USING (indicator_id)
+       GROUP BY q6indicator) ind6 ON (ind5.indicator_id = ind6.indicator_id)
+      LEFT JOIN
+      (SELECT
+         indicator_id,
+         q7indicator,
+         SUM(IF(age <= 14, 1, 0)) AS q71,
+         SUM(IF(age > 14, 1, 0)) AS q72,
+         SUM(IF(age BETWEEN 0 AND 100, 1, 0)) AS q7Total
+       FROM
+         (SELECT
+            1 AS indicator_id,
+            'Number of active clients on pre-ART Care in the quarter' AS q7indicator
+         ) Indicators
+         LEFT JOIN (SELECT DISTINCT
+                      1 AS indicator_id,
+                      pp.gender,
+                      pp.person_id,
+                      MAX(e.encounter_datetime) en_date,
+                      TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                    FROM
+                      person pp
+                      INNER JOIN patient p ON (pp.person_id = p.patient_id
+                                               AND p.voided = 0)
+                      INNER JOIN encounter e ON (e.patient_id = p.patient_id
+                                                 AND form_id = 12
+                                                 AND QUARTER(e.encounter_datetime) = 1
+                                                 AND YEAR(e.encounter_datetime) = start_year
+                                                 AND e.voided = 0
+                                                 AND e.patient_id NOT IN (SELECT DISTINCT
+                                                                            patient_id
+                                                                          FROM
+                                                                            encounter ei
+                                                                            JOIN obs oi ON (ei.encounter_id = oi.encounter_id
+                                                                                            AND form_id = 12
+                                                                                            AND oi.concept_id = 90315
+                                                                                            AND oi.value_coded > 0
+                                                                                            AND oi.voided = 0
+                                                                                            AND QUARTER(ei.encounter_datetime) = start_quarter
+                                                                                            AND YEAR(ei.encounter_datetime) = start_year)))
+                      INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+                                           AND o.voided = 0)
+                    GROUP BY pp.person_id) enrollment USING (indicator_id)
+       GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
+      LEFT JOIN
+      (SELECT
+         indicator_id,
+         q8indicator,
+         SUM(IF(age <= 14, 1, 0)) AS q81,
+         SUM(IF(age > 14, 1, 0)) AS q82,
+         SUM(IF(age BETWEEN 0 AND 100, 1, 0)) AS q8Total
+       FROM
+         (SELECT
+            1 AS indicator_id,
+            'Number active on pre-ART who received CPT/Daspone at last  visit in the quarter' AS q8indicator
+         ) Indicators
+         LEFT JOIN (SELECT DISTINCT
+                      1 AS indicator_id,
+                      pp.gender,
+                      pp.person_id,
+                      MAX(e.encounter_datetime) en_date,
+                      TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                    FROM
+                      person pp
+                      INNER JOIN patient p ON (pp.person_id = p.patient_id
+                                               AND p.voided = 0)
+                      INNER JOIN encounter e ON (e.patient_id = p.patient_id
+                                                 AND form_id = 12
+                                                 AND QUARTER(e.encounter_datetime) = 1
+                                                 AND YEAR(e.encounter_datetime) = start_year
+                                                 AND e.voided = 0
+                                                 AND e.patient_id NOT IN (SELECT DISTINCT
+                                                                            patient_id
+                                                                          FROM
+                                                                            encounter ei
+                                                                            JOIN obs oi ON (ei.encounter_id = oi.encounter_id
+                                                                                            AND form_id = 12
+                                                                                            AND oi.concept_id = 90315
+                                                                                            AND oi.value_coded > 0
+                                                                                            AND oi.voided = 0
+                                                                                            AND QUARTER(ei.encounter_datetime) = start_quarter
+                                                                                            AND YEAR(ei.encounter_datetime) = start_year)))
+                      INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+                                           AND o.voided = 0
+                                           AND o.concept_id = 99037
+                                           AND o.value_numeric > 0)
+                    GROUP BY pp.person_id) enrollment USING (indicator_id)
+       GROUP BY q8indicator) ind8 ON (ind7.indicator_id = ind8.indicator_id)
+      LEFT JOIN
+      (SELECT
+         indicator_id,
+         q9indicator,
+         SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q9Total
+       FROM
+         (SELECT
+            1 AS indicator_id,
+            'No. active on pre-ART Care assessed for TB at last visit in the quarter' AS q9indicator
+         ) Indicators
+         LEFT JOIN (SELECT DISTINCT
+                      1 AS indicator_id,
+                      pp.gender,
+                      pp.person_id,
+                      MAX(e.encounter_datetime) en_date,
+                      TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                    FROM
+                      person pp
+                      INNER JOIN patient p ON (pp.person_id = p.patient_id
+                                               AND p.voided = 0)
+                      INNER JOIN encounter e ON (e.patient_id = p.patient_id
+                                                 AND form_id = 12
+                                                 AND QUARTER(e.encounter_datetime) = 1
+                                                 AND YEAR(e.encounter_datetime) = start_year
+                                                 AND e.voided = 0
+                                                 AND e.patient_id NOT IN (SELECT DISTINCT
+                                                                            patient_id
+                                                                          FROM
+                                                                            encounter ei
+                                                                            JOIN obs oi ON (ei.encounter_id = oi.encounter_id
+                                                                                            AND form_id = 12
+                                                                                            AND oi.concept_id = 90315
+                                                                                            AND oi.value_coded > 0
+                                                                                            AND oi.voided = 0
+                                                                                            AND QUARTER(ei.encounter_datetime) = start_quarter
+                                                                                            AND YEAR(ei.encounter_datetime) = start_year)))
+                      INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+                                           AND o.voided = 0
+                                           AND o.concept_id = 90216
+                                           AND o.value_coded = 90073)
+                    GROUP BY pp.person_id) enrollment USING (indicator_id)
+       GROUP BY q9indicator) ind9 ON (ind8.indicator_id = ind9.indicator_id)
+      LEFT JOIN
+      (SELECT
+         indicator_id,
+         q10indicator,
+         SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q10Total
+       FROM
+         (SELECT
+            1 AS indicator_id,
+            'No. active on pre-ART Care diagnosed with TB in the quarter' AS q10indicator
+         ) Indicators
+         LEFT JOIN (SELECT DISTINCT
+                      1 AS indicator_id,
+                      pp.gender,
+                      pp.person_id,
+                      MAX(e.encounter_datetime) en_date,
+                      TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                    FROM
+                      person pp
+                      INNER JOIN patient p ON (pp.person_id = p.patient_id
+                                               AND p.voided = 0)
+                      INNER JOIN encounter e ON (e.patient_id = p.patient_id
+                                                 AND form_id = 12
+                                                 AND QUARTER(e.encounter_datetime) = 1
+                                                 AND YEAR(e.encounter_datetime) = start_year
+                                                 AND e.voided = 0
+                                                 AND e.patient_id NOT IN (SELECT DISTINCT
+                                                                            patient_id
+                                                                          FROM
+                                                                            encounter ei
+                                                                            JOIN obs oi ON (ei.encounter_id = oi.encounter_id
+                                                                                            AND form_id = 12
+                                                                                            AND oi.concept_id = 90315
+                                                                                            AND oi.value_coded > 0
+                                                                                            AND oi.voided = 0
+                                                                                            AND QUARTER(ei.encounter_datetime) = start_quarter
+                                                                                            AND YEAR(ei.encounter_datetime) = start_year)))
+                      INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+                                           AND o.voided = 0
+                                           AND o.concept_id = 90216
+                                           AND o.value_coded = 90078)
+                    GROUP BY pp.person_id) enrollment USING (indicator_id)
+       GROUP BY q10indicator) ind10 ON (ind9.indicator_id = ind10.indicator_id)
+      LEFT JOIN
+      (SELECT
+         indicator_id,
+         q11indicator,
+         SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q11Total
+       FROM
+         (SELECT
+            1 AS indicator_id,
+            'No. active on pre-ART Care started on anti-TB treatment during the quarter' AS q11indicator
+         ) Indicators
+         LEFT JOIN (SELECT DISTINCT
+                      1 AS indicator_id,
+                      pp.gender,
+                      pp.person_id,
+                      MAX(e.encounter_datetime) en_date,
+                      TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                    FROM
+                      person pp
+                      INNER JOIN patient p ON (pp.person_id = p.patient_id
+                                               AND p.voided = 0)
+                      INNER JOIN encounter e ON (e.patient_id = p.patient_id
+                                                 AND form_id = 12
+                                                 AND QUARTER(e.encounter_datetime) = 1
+                                                 AND YEAR(e.encounter_datetime) = start_year
+                                                 AND e.voided = 0
+                                                 AND e.patient_id NOT IN (SELECT DISTINCT
+                                                                            patient_id
+                                                                          FROM
+                                                                            encounter ei
+                                                                            JOIN obs oi ON (ei.encounter_id = oi.encounter_id
+                                                                                            AND form_id = 12
+                                                                                            AND oi.concept_id = 90315
+                                                                                            AND oi.value_coded > 0
+                                                                                            AND oi.voided = 0
+                                                                                            AND QUARTER(ei.encounter_datetime) = start_quarter
+                                                                                            AND YEAR(ei.encounter_datetime) = start_year)))
+                      INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+                                           AND o.voided = 0
+                                           AND o.concept_id = 90216
+                                           AND o.value_coded = 90071)
+                    GROUP BY pp.person_id) enrollment USING (indicator_id)
+       GROUP BY q11indicator) ind11 ON (ind10.indicator_id = ind11.indicator_id)
+      LEFT JOIN
+      (SELECT
+         indicator_id,
+         q12indicator,
+         SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q12Total
+       FROM
+         (SELECT
+            1 AS indicator_id,
+            'No. active on pre-ART Care assessed for Malnutrition at their visit in the quarter' AS q12indicator
+         ) Indicators
+         LEFT JOIN (SELECT DISTINCT
+                      1 AS indicator_id,
+                      pp.gender,
+                      pp.person_id,
+                      MAX(e.encounter_datetime) en_date,
+                      TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                    FROM
+                      person pp
+                      INNER JOIN patient p ON (pp.person_id = p.patient_id
+                                               AND p.voided = 0)
+                      INNER JOIN encounter e ON (e.patient_id = p.patient_id
+                                                 AND form_id = 12
+                                                 AND QUARTER(e.encounter_datetime) = 1
+                                                 AND YEAR(e.encounter_datetime) = start_year
+                                                 AND e.voided = 0
+                                                 AND e.patient_id NOT IN (SELECT DISTINCT
+                                                                            patient_id
+                                                                          FROM
+                                                                            encounter ei
+                                                                            JOIN obs oi ON (ei.encounter_id = oi.encounter_id
+                                                                                            AND form_id = 12
+                                                                                            AND oi.concept_id = 90315
+                                                                                            AND oi.value_coded > 0
+                                                                                            AND oi.voided = 0
+                                                                                            AND QUARTER(ei.encounter_datetime) = start_quarter
+                                                                                            AND YEAR(ei.encounter_datetime) = start_year)))
+                      INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+                                           AND o.voided = 0
+                                           AND o.concept_id = 68)
+                    GROUP BY pp.person_id) enrollment USING (indicator_id)
+       GROUP BY q12indicator) ind12 ON (ind11.indicator_id = ind12.indicator_id)
+      INNER JOIN
+      (SELECT
+         indicator_id,
+         q13indicator,
+         SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q13Total
+       FROM
+         (SELECT
+            1 AS indicator_id,
+            'No. active on pre-ART Care who are malnourished at their last visit in the quarter' AS q13indicator
+         ) Indicators
+         LEFT JOIN (SELECT DISTINCT
+                      1 AS indicator_id,
+                      pp.gender,
+                      pp.person_id,
+                      MAX(e.encounter_datetime) en_date,
+                      TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                    FROM
+                      person pp
+                      INNER JOIN patient p ON (pp.person_id = p.patient_id
+                                               AND p.voided = 0)
+                      INNER JOIN encounter e ON (e.patient_id = p.patient_id
+                                                 AND form_id = 12
+                                                 AND QUARTER(e.encounter_datetime) = 1
+                                                 AND YEAR(e.encounter_datetime) = start_year
+                                                 AND e.voided = 0
+                                                 AND e.patient_id NOT IN (SELECT DISTINCT
+                                                                            patient_id
+                                                                          FROM
+                                                                            encounter ei
+                                                                            JOIN obs oi ON (ei.encounter_id = oi.encounter_id
+                                                                                            AND form_id = 12
+                                                                                            AND oi.concept_id = 90315
+                                                                                            AND oi.value_coded > 0
+                                                                                            AND oi.voided = 0
+                                                                                            AND QUARTER(ei.encounter_datetime) = start_quarter
+                                                                                            AND YEAR(ei.encounter_datetime) = start_year)))
+                      INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+                                           AND o.voided = 0
+                                           AND o.concept_id = 68
+                                           AND o.value_coded IN (99271 , 99272, 99273))
+                    GROUP BY pp.person_id) enrollment USING (indicator_id)
+       GROUP BY q13indicator) ind13 ON (ind12.indicator_id = ind13.indicator_id)
+      INNER JOIN
+      (SELECT
+         indicator_id,
+         q14indicator,
+         SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q14Total
+       FROM
+         (SELECT
+            1 AS indicator_id,
+            'No. active on pre-ART Care eligible and ready but not started on ART by the end of the quarter' AS q14indicator
+         ) Indicators
+         LEFT JOIN (SELECT DISTINCT
+                      1 AS indicator_id,
+                      pp.gender,
+                      pp.person_id,
+                      TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                    FROM
+                      person pp
+                      INNER JOIN patient p ON (pp.person_id = p.patient_id
+                                               AND p.voided = 0)
+                      INNER JOIN encounter e ON (e.patient_id = p.patient_id
+                                                 AND form_id = 12
+                                                 AND e.voided = 0
+                                                 AND e.patient_id NOT IN (SELECT DISTINCT
+                                                                            patient_id
+                                                                          FROM
+                                                                            encounter ei
+                                                                            JOIN obs oi ON (ei.encounter_id = oi.encounter_id
+                                                                                            AND form_id = 12
+                                                                                            AND oi.concept_id = 90315
+                                                                                            AND oi.value_coded > 0
+                                                                                            AND oi.voided = 0)))
+                      INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+                                           AND o.voided = 0
+                                           AND YEAR(e.encounter_datetime) <= start_year
+                                           AND CASE YEAR(e.encounter_datetime)
+                                               WHEN start_year THEN QUARTER(e.encounter_datetime) <= start_quarter
+                                               ELSE QUARTER(e.encounter_datetime) <= start_quarter
+                                                    OR QUARTER(e.encounter_datetime) >= start_quarter
+                                               END)
+                    GROUP BY pp.person_id) enrollment USING (indicator_id)
+       GROUP BY q14indicator) ind14 ON (ind13.indicator_id = ind14.indicator_id)
+      INNER JOIN
+      (SELECT
+         indicator_id,
+         q15indicator,
+         SUM(IF(gender = 'M' AND age < 2, 1, 0)) AS q15MBabies,
+         SUM(IF(gender = 'F' AND age < 2, 1, 0)) AS q15FBabies,
+         SUM(IF(gender = 'M' AND age BETWEEN 2 AND 4, 1, 0)) AS q15MToddlers,
+         SUM(IF(gender = 'F' AND age BETWEEN 2 AND 4, 1, 0)) AS q15FToddlers,
+         SUM(IF(gender = 'M' AND age BETWEEN 5 AND 14, 1, 0)) AS q15MTeens,
+         SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q15FTeens,
+         SUM(IF(gender = 'M' AND age > 14, 1, 0)) AS q15MSeniors,
+         SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q15FSeniors,
+         SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q15Total
+       FROM
+         (SELECT
+            1 AS indicator_id,
+            'Cumulative No. of clients ever enrolled on ART at this facility at the end of the previous  quarter' AS q15indicator
+         ) Indicators
+         LEFT JOIN (SELECT DISTINCT
+                      1 AS indicator_id,
+                      pp.gender,
+                      pp.person_id,
+                      TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                    FROM
+                      person pp
+                      INNER JOIN patient p ON (pp.person_id = p.patient_id
+                                               AND p.voided = 0)
+                      INNER JOIN encounter e ON (e.patient_id = p.patient_id
+                                                 AND e.voided = 0
+                                                 AND CASE YEAR(e.encounter_datetime)
+                                                     WHEN start_year THEN QUARTER(e.encounter_datetime) < start_quarter
+                                                     ELSE QUARTER(e.encounter_datetime) <= start_quarter
+                                                          OR QUARTER(e.encounter_datetime) >= start_quarter
+                                                     END
+                                                 AND YEAR(e.encounter_datetime) <= start_year)
+                      INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+                                           AND o.voided = 0
+                                           AND o.concept_id = 99161)
+                    GROUP BY pp.person_id) enrollment USING (indicator_id)
+       GROUP BY q15indicator) ind15 ON (ind14.indicator_id = ind15.indicator_id)
+      INNER JOIN
+      (SELECT
+         indicator_id,
+         q16indicator,
+         SUM(IF(gender = 'M' AND age < 2, 1, 0)) AS q16MBabies,
+         SUM(IF(gender = 'F' AND age < 2, 1, 0)) AS q16FBabies,
+         SUM(IF(gender = 'M' AND age BETWEEN 2 AND 4, 1, 0)) AS q16MToddlers,
+         SUM(IF(gender = 'F' AND age BETWEEN 2 AND 4, 1, 0)) AS q16FToddlers,
+         SUM(IF(gender = 'M' AND age BETWEEN 5 AND 14, 1, 0)) AS q16MTeens,
+         SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q16FTeens,
+         SUM(IF(gender = 'M' AND age > 14, 1, 0)) AS q16MSeniors,
+         SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q16FSeniors,
+         SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q16Total
+       FROM
+         (SELECT
+            1 AS indicator_id,
+            'No. of new clients started on ART at this facility during the quarter' AS q16indicator
+         ) Indicators
+         LEFT JOIN (SELECT DISTINCT
+                      1 AS indicator_id,
+                      pp.gender,
+                      pp.person_id,
+                      TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                    FROM
+                      person pp
+                      INNER JOIN patient p ON (pp.person_id = p.patient_id
+                                               AND p.voided = 0)
+                      INNER JOIN encounter e ON (e.patient_id = p.patient_id
+                                                 AND e.voided = 0
+                                                 AND QUARTER(e.encounter_datetime) = 1
+                                                 AND YEAR(e.encounter_datetime) = start_year)
+                      INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+                                           AND o.voided = 0
+                                           AND o.concept_id = 99161)
+                    GROUP BY pp.person_id) enrollment USING (indicator_id)
+       GROUP BY q16indicator) ind16 ON (ind15.indicator_id = ind16.indicator_id)
+      INNER JOIN
+      (SELECT
+         indicator_id,
+         q17indicator,
+         SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q17Total
+       FROM
+         (SELECT
+            1 AS indicator_id,
+            'No. Of new clients started on ART at this facility during the quarter based on CD4 count' AS q17indicator
+         ) Indicators
+         LEFT JOIN (SELECT DISTINCT
+                      1 AS indicator_id,
+                      pp.gender,
+                      pp.person_id,
+                      TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                    FROM
+                      person pp
+                      INNER JOIN patient p ON (pp.person_id = p.patient_id
+                                               AND p.voided = 0)
+                      INNER JOIN encounter e ON (e.patient_id = p.patient_id
+                                                 AND e.voided = 0
+                                                 AND QUARTER(e.encounter_datetime) = 1
+                                                 AND YEAR(e.encounter_datetime) = start_year)
+                                                AND e.patient_id IN (SELECT DISTINCT
+                                                                       ei.patient_id
+                                                                     FROM
+                                                                       encounter ei
+                                                                       INNER JOIN obs oi ON (oi.encounter_id = ei.encounter_id
+                                                                                             AND oi.concept_id = 99082
+                                                                                             AND oi.value_numeric > 0
+                                                                                             AND oi.voided = 0
+                                                                                             AND ei.voided = 0))
+                      INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+                                           AND o.voided = 0
+                                           AND o.concept_id = 99161)
+                    GROUP BY pp.person_id) enrollment USING (indicator_id)
+       GROUP BY q17indicator) ind17 ON (ind16.indicator_id = ind17.indicator_id)
+      INNER JOIN
+      (SELECT
+         indicator_id,
+         q18indicator,
+         SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q18FTeens,
+         SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q18FSeniors,
+         SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q18Total
+       FROM
+         (SELECT
+            1 AS indicator_id,
+            'No. of pregnant women started on ART at this facility during the quarter (Subset of row 16 above)' AS q18indicator
+         ) Indicators
+         LEFT JOIN (SELECT DISTINCT
+                      1 AS indicator_id,
+                      pp.gender,
+                      pp.person_id,
+                      TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                    FROM
+                      person pp
+                      INNER JOIN patient p ON (pp.person_id = p.patient_id
+                                               AND p.voided = 0)
+                      INNER JOIN encounter e ON (e.patient_id = p.patient_id
+                                                 AND e.voided = 0
+                                                 AND QUARTER(e.encounter_datetime) = 1
+                                                 AND YEAR(e.encounter_datetime) = start_year)
+                                                AND e.patient_id IN (SELECT DISTINCT
+                                                                       ei.patient_id
+                                                                     FROM
+                                                                       encounter ei
+                                                                       INNER JOIN obs oi ON (oi.encounter_id = ei.encounter_id
+                                                                                             AND oi.concept_id = 90041
+                                                                                             AND oi.value_coded = 1065
+                                                                                             AND oi.voided = 0))
+                      INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+                                           AND o.voided = 0
+                                           AND o.concept_id = 99161)
+                    GROUP BY pp.person_id) enrollment USING (indicator_id)
+       GROUP BY q18indicator) ind18 ON (ind17.indicator_id = ind18.indicator_id)
+      INNER JOIN
+      (SELECT
+         indicator_id,
+         q19indicator,
+         SUM(IF(gender = 'M' AND age < 2, 1, 0)) AS q19MBabies,
+         SUM(IF(gender = 'F' AND age < 2, 1, 0)) AS q19FBabies,
+         SUM(IF(gender = 'M' AND age BETWEEN 2 AND 4, 1, 0)) AS q19MToddlers,
+         SUM(IF(gender = 'F' AND age BETWEEN 2 AND 4, 1, 0)) AS q19FToddlers,
+         SUM(IF(gender = 'M' AND age BETWEEN 5 AND 14, 1, 0)) AS q19MTeens,
+         SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q19FTeens,
+         SUM(IF(gender = 'M' AND age > 14, 1, 0)) AS q19MSeniors,
+         SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q19FSeniors,
+         SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q19Total
+       FROM
+         (SELECT
+            1 AS indicator_id,
+            'Cumulative No. of individuals ever started on ART (row 15 + row 16)' AS q19indicator
+         ) Indicators
+         LEFT JOIN (SELECT DISTINCT
+                      1 AS indicator_id,
+                      pp.gender,
+                      pp.person_id,
+                      TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                    FROM
+                      person pp
+                      INNER JOIN patient p ON (pp.person_id = p.patient_id
+                                               AND p.voided = 0)
+                      INNER JOIN encounter e ON (e.patient_id = p.patient_id
+                                                 AND e.voided = 0
+                                                 AND CASE YEAR(e.encounter_datetime)
+                                                     WHEN start_year THEN QUARTER(e.encounter_datetime) <= start_quarter
+                                                     ELSE QUARTER(e.encounter_datetime) <= start_quarter
+                                                          OR QUARTER(e.encounter_datetime) >= start_quarter
+                                                     END
+                                                 AND YEAR(e.encounter_datetime) <= start_year)
+                      INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+                                           AND o.voided = 0
+                                           AND o.concept_id = 99161)
+                    GROUP BY pp.person_id) enrollment USING (indicator_id)
+       GROUP BY q19indicator) ind19 ON (ind18.indicator_id = ind19.indicator_id)
+      INNER JOIN
+      (SELECT
+         indicator_id,
+         q20indicator,
+         SUM(IF(gender = 'M' AND age < 2, 1, 0)) AS q20MBabies,
+         SUM(IF(gender = 'F' AND age < 2, 1, 0)) AS q20FBabies,
+         SUM(IF(gender = 'M' AND age BETWEEN 2 AND 4, 1, 0)) AS q20MToddlers,
+         SUM(IF(gender = 'F' AND age BETWEEN 2 AND 4, 1, 0)) AS q20FToddlers,
+         SUM(IF(gender = 'M' AND age BETWEEN 5 AND 14, 1, 0)) AS q20MTeens,
+         SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q20FTeens,
+         SUM(IF(gender = 'M' AND age > 14, 1, 0)) AS q20MSeniors,
+         SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q20FSeniors,
+         SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q20Total
+       FROM
+         (SELECT
+            1 AS indicator_id,
+            'No. active on ART on 1st line ARV regimen' AS q20indicator
+         ) Indicators
+         LEFT JOIN (SELECT DISTINCT
+                      1 AS indicator_id,
+                      pp.gender,
+                      pp.person_id,
+                      TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                    FROM
+                      person pp
+                      INNER JOIN patient p ON (pp.person_id = p.patient_id
+                                               AND p.voided = 0)
+                      INNER JOIN encounter e ON (e.patient_id = p.patient_id
+                                                 AND e.voided = 0)
+                      INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+                                           AND o.voided = 0
+                                           AND YEAR(e.encounter_datetime) = start_year AND QUARTER(e.encounter_datetime) = start_quarter
+                                           AND o.concept_id = 90315 AND o.value_coded IN(99015,99016,99005,99006,99039,99040,99041,99042,99884,99885,99143))
+                    GROUP BY pp.person_id) enrollment USING (indicator_id)
+       GROUP BY q20indicator) ind20 ON (ind19.indicator_id = ind20.indicator_id)
+      INNER JOIN
+      (SELECT
+         indicator_id,
+         q21indicator,
+         SUM(IF(gender = 'M' AND age < 2, 1, 0)) AS q21MBabies,
+         SUM(IF(gender = 'F' AND age < 2, 1, 0)) AS q21FBabies,
+         SUM(IF(gender = 'M' AND age BETWEEN 2 AND 4, 1, 0)) AS q21MToddlers,
+         SUM(IF(gender = 'F' AND age BETWEEN 2 AND 4, 1, 0)) AS q21FToddlers,
+         SUM(IF(gender = 'M' AND age BETWEEN 5 AND 14, 1, 0)) AS q21MTeens,
+         SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q21FTeens,
+         SUM(IF(gender = 'M' AND age > 14, 1, 0)) AS q21MSeniors,
+         SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q21FSeniors,
+         SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q21Total
+       FROM
+         (SELECT
+            1 AS indicator_id,
+            'No. active on ART on 2nd line ARV regimen' AS q21indicator
+         ) Indicators
+         LEFT JOIN (SELECT DISTINCT
+                      1 AS indicator_id,
+                      pp.gender,
+                      pp.person_id,
+                      TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                    FROM
+                      person pp
+                      INNER JOIN patient p ON (pp.person_id = p.patient_id
+                                               AND p.voided = 0)
+                      INNER JOIN encounter e ON (e.patient_id = p.patient_id
+                                                 AND e.voided = 0)
+                      INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+                                           AND o.voided = 0
+                                           AND YEAR(e.encounter_datetime) = start_year AND QUARTER(e.encounter_datetime) = start_quarter
+                                           AND o.concept_id = 90315 AND o.value_coded IN(99015,99016,99005,99006,99039,99040,99041,99042,99884,99885,99143))
+                    GROUP BY pp.person_id) enrollment USING (indicator_id)
+       GROUP BY q21indicator) ind21 ON (ind20.indicator_id = ind21.indicator_id)
+      INNER JOIN
+      (SELECT
+         indicator_id,
+         q22indicator,
+         SUM(IF(gender = 'M' AND age < 2, 1, 0)) AS q22MBabies,
+         SUM(IF(gender = 'F' AND age < 2, 1, 0)) AS q22FBabies,
+         SUM(IF(gender = 'M' AND age BETWEEN 2 AND 4, 1, 0)) AS q22MToddlers,
+         SUM(IF(gender = 'F' AND age BETWEEN 2 AND 4, 1, 0)) AS q22FToddlers,
+         SUM(IF(gender = 'M' AND age BETWEEN 5 AND 14, 1, 0)) AS q22MTeens,
+         SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q22FTeens,
+         SUM(IF(gender = 'M' AND age > 14, 1, 0)) AS q22MSeniors,
+         SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q22FSeniors,
+         SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q22Total
+       FROM
+         (SELECT
+            1 AS indicator_id,
+            'No. active on ART on 3rd line or higher ARV regimen' AS q22indicator
+         ) Indicators
+         LEFT JOIN (SELECT DISTINCT
+                      1 AS indicator_id,
+                      pp.gender,
+                      pp.person_id,
+                      TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                    FROM
+                      person pp
+                      INNER JOIN patient p ON (pp.person_id = p.patient_id
+                                               AND p.voided = 0)
+                      INNER JOIN encounter e ON (e.patient_id = p.patient_id
+                                                 AND e.voided = 0)
+                      INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+                                           AND o.voided = 0
+                                           AND YEAR(e.encounter_datetime) = start_year AND QUARTER(e.encounter_datetime) = start_quarter
+                                           AND o.concept_id = 90315 AND o.value_coded IN(99015,99016,99005,99006,99039,99040,99041,99042,99884,99885,99143))
+                    GROUP BY pp.person_id) enrollment USING (indicator_id)
+       GROUP BY q22indicator) ind22 ON (ind21.indicator_id = ind22.indicator_id)
+      INNER JOIN
+      (SELECT
+         indicator_id,
+         q23indicator,
+         SUM(IF(gender = 'M' AND age < 2, 1, 0)) AS q23MBabies,
+         SUM(IF(gender = 'F' AND age < 2, 1, 0)) AS q23FBabies,
+         SUM(IF(gender = 'M' AND age BETWEEN 2 AND 4, 1, 0)) AS q23MToddlers,
+         SUM(IF(gender = 'F' AND age BETWEEN 2 AND 4, 1, 0)) AS q23FToddlers,
+         SUM(IF(gender = 'M' AND age BETWEEN 5 AND 14, 1, 0)) AS q23MTeens,
+         SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q23FTeens,
+         SUM(IF(gender = 'M' AND age > 14, 1, 0)) AS q23MSeniors,
+         SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q23FSeniors,
+         SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q23Total
+       FROM
+         (SELECT
+            1 AS indicator_id,
+            'No. active on ART who received CPT/Dapsone at the last visit in the quarter' AS q23indicator
+         ) Indicators
+         LEFT JOIN (SELECT DISTINCT
+                      1 AS indicator_id,
+                      pp.gender,
+                      pp.person_id,
+                      MAX(e.encounter_datetime) en_date,
+                      TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                    FROM
+                      person pp
+                      INNER JOIN patient p ON (pp.person_id = p.patient_id
+                                               AND p.voided = 0)
+                      INNER JOIN encounter e ON (e.patient_id = p.patient_id
+                                                 AND form_id = 12
+                                                 AND QUARTER(e.encounter_datetime) = 1
+                                                 AND YEAR(e.encounter_datetime) = start_year
+                                                 AND e.voided = 0)
+                      INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+                                           AND o.concept_id = 99037
+                                           AND o.value_numeric > 0
+                                           AND o.voided = 0
+                                           AND e.patient_id IN (SELECT DISTINCT
+                                                                  patient_id
+                                                                FROM
+                                                                  encounter ei
+                                                                  JOIN obs oi ON (ei.encounter_id = oi.encounter_id
+                                                                                  AND form_id = 12
+                                                                                  AND oi.concept_id = 90315
+                                                                                  AND oi.value_coded > 0
+                                                                                  AND oi.voided = 0
+                                                                                  AND QUARTER(ei.encounter_datetime) = start_quarter
+                                                                                  AND YEAR(ei.encounter_datetime) = start_year)))
+                    GROUP BY pp.person_id) enrollment USING (indicator_id)
+       GROUP BY q23indicator) ind23 ON (ind22.indicator_id = ind23.indicator_id)
+      INNER JOIN
+      (SELECT
+         indicator_id,
+         q24indicator,
+         SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q24Total
+       FROM
+         (SELECT
+            1 AS indicator_id,
+            'No. active on ART assessed for TB at last visit in the  quarter' AS q24indicator
+         ) Indicators
+         LEFT JOIN (SELECT DISTINCT
+                      1 AS indicator_id,
+                      pp.gender,
+                      pp.person_id,
+                      MAX(e.encounter_datetime) en_date,
+                      TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                    FROM
+                      person pp
+                      INNER JOIN patient p ON (pp.person_id = p.patient_id
+                                               AND p.voided = 0)
+                      INNER JOIN encounter e ON (e.patient_id = p.patient_id
+                                                 AND form_id = 12
+                                                 AND QUARTER(e.encounter_datetime) = 1
+                                                 AND YEAR(e.encounter_datetime) = start_year
+                                                 AND e.voided = 0
+                                                 AND e.patient_id IN (SELECT DISTINCT
+                                                                        patient_id
+                                                                      FROM
+                                                                        encounter ei
+                                                                        JOIN obs oi ON (ei.encounter_id = oi.encounter_id
+                                                                                        AND form_id = 12
+                                                                                        AND oi.concept_id = 90315
+                                                                                        AND oi.value_coded > 0
+                                                                                        AND oi.voided = 0
+                                                                                        AND QUARTER(ei.encounter_datetime) = start_quarter
+                                                                                        AND YEAR(ei.encounter_datetime) = start_year)))
+                      INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+                                           AND o.voided = 0
+                                           AND o.concept_id = 90216
+                                           AND o.value_coded = 90073)
+                    GROUP BY pp.person_id) enrollment USING (indicator_id)
+       GROUP BY q24indicator) ind24 ON (ind23.indicator_id = ind24.indicator_id)
+      INNER JOIN
+      (SELECT
+         indicator_id,
+         q25indicator,
+         SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q25Total
+       FROM
+         (SELECT
+            1 AS indicator_id,
+            'No. active on ART diagnosed with TB during the quarter' AS q25indicator
+         ) Indicators
+         LEFT JOIN (SELECT DISTINCT
+                      1 AS indicator_id,
+                      pp.gender,
+                      pp.person_id,
+                      MAX(e.encounter_datetime) en_date,
+                      TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                    FROM
+                      person pp
+                      INNER JOIN patient p ON (pp.person_id = p.patient_id
+                                               AND p.voided = 0)
+                      INNER JOIN encounter e ON (e.patient_id = p.patient_id
+                                                 AND form_id = 12
+                                                 AND QUARTER(e.encounter_datetime) = 1
+                                                 AND YEAR(e.encounter_datetime) = start_year
+                                                 AND e.voided = 0
+                                                 AND e.patient_id IN (SELECT DISTINCT
+                                                                        patient_id
+                                                                      FROM
+                                                                        encounter ei
+                                                                        JOIN obs oi ON (ei.encounter_id = oi.encounter_id
+                                                                                        AND form_id = 12
+                                                                                        AND oi.concept_id = 90315
+                                                                                        AND oi.value_coded > 0
+                                                                                        AND oi.voided = 0
+                                                                                        AND QUARTER(ei.encounter_datetime) = start_quarter
+                                                                                        AND YEAR(ei.encounter_datetime) = start_year)))
+                      INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+                                           AND o.voided = 0
+                                           AND o.concept_id = 90216
+                                           AND o.value_coded = 90078)
+                    GROUP BY pp.person_id) enrollment USING (indicator_id)
+       GROUP BY q25indicator) ind25 ON (ind24.indicator_id = ind25.indicator_id)
+      INNER JOIN
+      (SELECT
+         indicator_id,
+         q26indicator,
+         SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q26Total
+       FROM
+         (SELECT
+            1 AS indicator_id,
+            'No. active on ART started on TB treatment during the quarter(New TB cases)' AS q26indicator
+         ) Indicators
+         LEFT JOIN (SELECT DISTINCT
+                      1 AS indicator_id,
+                      pp.gender,
+                      pp.person_id,
+                      MAX(e.encounter_datetime) en_date,
+                      TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                    FROM
+                      person pp
+                      INNER JOIN patient p ON (pp.person_id = p.patient_id
+                                               AND p.voided = 0)
+                      INNER JOIN encounter e ON (e.patient_id = p.patient_id
+                                                 AND form_id = 12
+                                                 AND QUARTER(e.encounter_datetime) = 1
+                                                 AND YEAR(e.encounter_datetime) = start_year
+                                                 AND e.voided = 0
+                                                 AND e.patient_id IN (SELECT DISTINCT
+                                                                        patient_id
+                                                                      FROM
+                                                                        encounter ei
+                                                                        JOIN obs oi ON (ei.encounter_id = oi.encounter_id
+                                                                                        AND form_id = 12
+                                                                                        AND oi.concept_id = 90315
+                                                                                        AND oi.value_coded > 0
+                                                                                        AND oi.voided = 0
+                                                                                        AND QUARTER(ei.encounter_datetime) = start_quarter
+                                                                                        AND YEAR(ei.encounter_datetime) = start_year)))
+                      INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+                                           AND o.voided = 0
+                                           AND o.concept_id = 90217
+                                           AND QUARTER(o.value_datetime) = 1
+                                           AND YEAR(o.value_datetime) = start_year)
+                    GROUP BY pp.person_id) enrollment USING (indicator_id)
+       GROUP BY q26indicator) ind26 ON (ind25.indicator_id = ind26.indicator_id)
+      INNER JOIN
+      (SELECT
+         indicator_id,
+         q27indicator,
+         SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q27Total
+       FROM
+         (SELECT
+            1 AS indicator_id,
+            'Total No. active on ART  and on TB treatment during the quarter' AS q27indicator
+         ) Indicators
+         LEFT JOIN (SELECT DISTINCT
+                      1 AS indicator_id,
+                      pp.gender,
+                      pp.person_id,
+                      MAX(e.encounter_datetime) en_date,
+                      TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                    FROM
+                      person pp
+                      INNER JOIN patient p ON (pp.person_id = p.patient_id
+                                               AND p.voided = 0)
+                      INNER JOIN encounter e ON (e.patient_id = p.patient_id
+                                                 AND form_id = 12
+                                                 AND QUARTER(e.encounter_datetime) = 1
+                                                 AND YEAR(e.encounter_datetime) = start_year
+                                                 AND e.voided = 0
+                                                 AND e.patient_id IN (SELECT DISTINCT
+                                                                        patient_id
+                                                                      FROM
+                                                                        encounter ei
+                                                                        JOIN obs oi ON (ei.encounter_id = oi.encounter_id
+                                                                                        AND form_id = 12
+                                                                                        AND oi.concept_id = 90315
+                                                                                        AND oi.value_coded > 0
+                                                                                        AND oi.voided = 0
+                                                                                        AND QUARTER(ei.encounter_datetime) = start_quarter
+                                                                                        AND YEAR(ei.encounter_datetime) = start_year)))
+                      INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+                                           AND o.voided = 0
+                                           AND o.concept_id = 90216
+                                           AND o.value_coded = 90071)
+                    GROUP BY pp.person_id) enrollment USING (indicator_id)
+       GROUP BY q27indicator) ind27 ON (ind26.indicator_id = ind27.indicator_id)
+      INNER JOIN
+      (SELECT
+         indicator_id,
+         q28indicator,
+         SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q28Total
+       FROM
+         (SELECT
+            1 AS indicator_id,
+            'No. active on ART with Good adherence(>95%) during the quarter' AS q28indicator
+         ) Indicators
+         LEFT JOIN (SELECT DISTINCT
+                      1 AS indicator_id,
+                      pp.gender,
+                      pp.person_id,
+                      MAX(e.encounter_datetime) en_date,
+                      TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                    FROM
+                      person pp
+                      INNER JOIN patient p ON (pp.person_id = p.patient_id
+                                               AND p.voided = 0)
+                      INNER JOIN encounter e ON (e.patient_id = p.patient_id
+                                                 AND form_id = 12
+                                                 AND QUARTER(e.encounter_datetime) = 1
+                                                 AND YEAR(e.encounter_datetime) = start_year
+                                                 AND e.voided = 0)
+                      INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+                                           AND o.voided = 0
+                                           AND o.concept_id = 90221
+                                           AND o.value_coded = 90156
+                                           AND QUARTER(o.value_datetime) = 1
+                                           AND YEAR(o.value_datetime) = start_year)
+                    GROUP BY pp.person_id) enrollment USING (indicator_id)
+       GROUP BY q28indicator) ind28 ON (ind27.indicator_id = ind28.indicator_id)
+      INNER JOIN
+      (SELECT
+         indicator_id,
+         q29indicator,
+         SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q29Total
+       FROM
+         (SELECT
+            1 AS indicator_id,
+            'No. active on ART Care assessed for malnutrition at their visit in the quarter' AS q29indicator
+         ) Indicators
+         LEFT JOIN (SELECT DISTINCT
+                      1 AS indicator_id,
+                      pp.gender,
+                      pp.person_id,
+                      MAX(e.encounter_datetime) en_date,
+                      TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                    FROM
+                      person pp
+                      INNER JOIN patient p ON (pp.person_id = p.patient_id
+                                               AND p.voided = 0)
+                      INNER JOIN encounter e ON (e.patient_id = p.patient_id
+                                                 AND form_id = 12
+                                                 AND QUARTER(e.encounter_datetime) = 1
+                                                 AND YEAR(e.encounter_datetime) = start_year
+                                                 AND e.voided = 0
+                                                 AND e.patient_id IN (SELECT DISTINCT
+                                                                        patient_id
+                                                                      FROM
+                                                                        encounter ei
+                                                                        JOIN obs oi ON (ei.encounter_id = oi.encounter_id
+                                                                                        AND form_id = 12
+                                                                                        AND oi.concept_id = 90315
+                                                                                        AND oi.value_coded > 0
+                                                                                        AND oi.voided = 0
+                                                                                        AND QUARTER(ei.encounter_datetime) = start_quarter
+                                                                                        AND YEAR(ei.encounter_datetime) = start_year)))
+                      INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+                                           AND o.voided = 0
+                                           AND o.concept_id = 68)
+                    GROUP BY pp.person_id) enrollment USING (indicator_id)
+       GROUP BY q29indicator) ind29 ON (ind28.indicator_id = ind29.indicator_id)
+      INNER JOIN
+      (SELECT
+         indicator_id,
+         q30indicator,
+         SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q30Total
+       FROM
+         (SELECT
+            1 AS indicator_id,
+            'No. active on ART who are malnuourished at their last visit in the quarter' AS q30indicator
+         ) Indicators
+         LEFT JOIN (SELECT DISTINCT
+                      1 AS indicator_id,
+                      pp.gender,
+                      pp.person_id,
+                      MAX(e.encounter_datetime) en_date,
+                      TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                    FROM
+                      person pp
+                      INNER JOIN patient p ON (pp.person_id = p.patient_id
+                                               AND p.voided = 0)
+                      INNER JOIN encounter e ON (e.patient_id = p.patient_id
+                                                 AND form_id = 12
+                                                 AND QUARTER(e.encounter_datetime) = 1
+                                                 AND YEAR(e.encounter_datetime) = start_year
+                                                 AND e.voided = 0
+                                                 AND e.patient_id IN (SELECT DISTINCT
+                                                                        patient_id
+                                                                      FROM
+                                                                        encounter ei
+                                                                        JOIN obs oi ON (ei.encounter_id = oi.encounter_id
+                                                                                        AND form_id = 12
+                                                                                        AND oi.concept_id = 90315
+                                                                                        AND oi.value_coded > 0
+                                                                                        AND oi.voided = 0
+                                                                                        AND QUARTER(ei.encounter_datetime) = start_quarter
+                                                                                        AND YEAR(ei.encounter_datetime) = start_year)))
+                      INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+                                           AND o.voided = 0
+                                           AND o.concept_id = 68
+                                           AND o.value_coded IN (99271 , 99272, 99273))
+                    GROUP BY pp.person_id) enrollment USING (indicator_id)
+       GROUP BY q30indicator) ind30 ON (ind29.indicator_id = ind30.indicator_id);
+
+  END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `hmis106a1b`(IN start_year INTEGER, IN start_quarter INT)
   BEGIN
     DECLARE h11a CHAR(255) DEFAULT 'All patients 6 months';
     DECLARE h12a CHAR(100) DEFAULT getCohortMonth(start_year, start_quarter, 6);
@@ -1715,8 +2916,7 @@ CREATE DEFINER =`root`@`localhost` PROCEDURE `hmis106a1b`(IN start_year INTEGER,
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `get_adherence_Count`(AdherenceType INT, StartDate DATE, EndDate DATE)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `get_adherence_Count`(AdherenceType INT, StartDate DATE, EndDate DATE) RETURNS int(11)
 DETERMINISTIC
   BEGIN
     DECLARE result INT DEFAULT -1;
@@ -1741,8 +2941,7 @@ DETERMINISTIC
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `get_adherenceType_Count`(AdherenceType INT, StartDate DATE, EndDate DATE)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `get_adherenceType_Count`(AdherenceType INT, StartDate DATE, EndDate DATE) RETURNS int(11)
 DETERMINISTIC
   BEGIN
     DECLARE result INT DEFAULT -1;
@@ -1769,9 +2968,7 @@ DETERMINISTIC
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`openmrs`@`localhost` FUNCTION `getADHStatusTxt`(patient_id INT, start_date DATE, end_date DATE)
-  RETURNS CHAR(1)
-  CHARSET latin1
+CREATE DEFINER=`openmrs`@`localhost` FUNCTION `getADHStatusTxt`(patient_id INT, start_date DATE, end_date DATE) RETURNS char(1) CHARSET latin1
   BEGIN
 
     RETURN (SELECT if(value_coded = 90156, 'G',
@@ -1786,9 +2983,7 @@ CREATE DEFINER =`openmrs`@`localhost` FUNCTION `getADHStatusTxt`(patient_id INT,
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getAncNumberTxt`(`encounterid` INTEGER)
-  RETURNS CHAR(15)
-  CHARSET latin1
+CREATE DEFINER=`root`@`localhost` FUNCTION `getAncNumberTxt`(`encounterid` INTEGER) RETURNS char(15) CHARSET latin1
 READS SQL DATA
   BEGIN
 
@@ -1805,9 +3000,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getAppKeepTxt`(`encounterid` INTEGER)
-  RETURNS CHAR(3)
-  CHARSET latin1
+CREATE DEFINER=`root`@`localhost` FUNCTION `getAppKeepTxt`(`encounterid` INTEGER) RETURNS char(3) CHARSET latin1
 READS SQL DATA
   BEGIN
 
@@ -1825,8 +3018,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getArtBaseTransferDate`(`personid` INTEGER)
-  RETURNS DATE
+CREATE DEFINER=`root`@`localhost` FUNCTION `getArtBaseTransferDate`(`personid` INTEGER) RETURNS date
 READS SQL DATA
   BEGIN
 
@@ -1844,8 +3036,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getArtEligibilityAndReadyDate`(`personid` INTEGER)
-  RETURNS DATE
+CREATE DEFINER=`root`@`localhost` FUNCTION `getArtEligibilityAndReadyDate`(`personid` INTEGER) RETURNS date
 READS SQL DATA
   BEGIN
 
@@ -1862,8 +3053,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getArtEligibilityDate`(`personid` INTEGER)
-  RETURNS DATE
+CREATE DEFINER=`root`@`localhost` FUNCTION `getArtEligibilityDate`(`personid` INTEGER) RETURNS date
 READS SQL DATA
   BEGIN
 
@@ -1880,9 +3070,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getArtEligibilityReasonTxt`(`personid` INTEGER)
-  RETURNS CHAR(15)
-  CHARSET latin1
+CREATE DEFINER=`root`@`localhost` FUNCTION `getArtEligibilityReasonTxt`(`personid` INTEGER) RETURNS char(15) CHARSET latin1
 READS SQL DATA
   BEGIN
 
@@ -1903,9 +3091,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getArtRegCoded`(`encounterid` INTEGER)
-  RETURNS CHAR(12)
-  CHARSET latin1
+CREATE DEFINER=`root`@`localhost` FUNCTION `getArtRegCoded`(`encounterid` INTEGER) RETURNS char(12) CHARSET latin1
 READS SQL DATA
   BEGIN
 
@@ -1920,8 +3106,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getArtRegCoded2`(`personid` INTEGER, `obsdatetime` DATE)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getArtRegCoded2`(`personid` INTEGER, `obsdatetime` DATE) RETURNS int(11)
 READS SQL DATA
   BEGIN
 
@@ -1937,9 +3122,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getArtRegTxt`(`encounterid` INTEGER)
-  RETURNS CHAR(6)
-  CHARSET latin1
+CREATE DEFINER=`root`@`localhost` FUNCTION `getArtRegTxt`(`encounterid` INTEGER) RETURNS char(6) CHARSET latin1
 READS SQL DATA
   BEGIN
 
@@ -1975,9 +3158,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getArtRegTxt2`(`personid` INTEGER, `obsdatetime` DATE)
-  RETURNS CHAR(10)
-  CHARSET latin1
+CREATE DEFINER=`root`@`localhost` FUNCTION `getArtRegTxt2`(`personid` INTEGER, `obsdatetime` DATE) RETURNS char(10) CHARSET latin1
 READS SQL DATA
   BEGIN
 
@@ -2014,8 +3195,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getArtRestartDate`(`personid` INTEGER, `encdt` CHAR(6))
-  RETURNS DATE
+CREATE DEFINER=`root`@`localhost` FUNCTION `getArtRestartDate`(`personid` INTEGER, `encdt` CHAR(6)) RETURNS date
 READS SQL DATA
   BEGIN
 
@@ -2034,8 +3214,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getArtStartDate`(`personid` INTEGER)
-  RETURNS DATE
+CREATE DEFINER=`root`@`localhost` FUNCTION `getArtStartDate`(`personid` INTEGER) RETURNS date
 READS SQL DATA
   BEGIN
 
@@ -2054,8 +3233,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getArtStartDate2`(`personid` INTEGER, `reportdt` DATE)
-  RETURNS DATE
+CREATE DEFINER=`root`@`localhost` FUNCTION `getArtStartDate2`(`personid` INTEGER, `reportdt` DATE) RETURNS date
 READS SQL DATA
   BEGIN
 
@@ -2075,9 +3253,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getArtStartRegTxt`(`personid` INTEGER)
-  RETURNS CHAR(10)
-  CHARSET latin1
+CREATE DEFINER=`root`@`localhost` FUNCTION `getArtStartRegTxt`(`personid` INTEGER) RETURNS char(10) CHARSET latin1
 READS SQL DATA
   BEGIN
 
@@ -2113,8 +3289,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getArtStopDate`(`personid` INTEGER, `obsdatetime` DATE)
-  RETURNS DATE
+CREATE DEFINER=`root`@`localhost` FUNCTION `getArtStopDate`(`personid` INTEGER, `obsdatetime` DATE) RETURNS date
 READS SQL DATA
   BEGIN
 
@@ -2134,8 +3309,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getArtStopDate1`(`personid` INTEGER, `encdt` CHAR(6))
-  RETURNS DATE
+CREATE DEFINER=`root`@`localhost` FUNCTION `getArtStopDate1`(`personid` INTEGER, `encdt` CHAR(6)) RETURNS date
 READS SQL DATA
   BEGIN
 
@@ -2155,9 +3329,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getArtStopReasonTxt`(`personid` INTEGER, `encdt` CHAR)
-  RETURNS CHAR(2)
-  CHARSET latin1
+CREATE DEFINER=`root`@`localhost` FUNCTION `getArtStopReasonTxt`(`personid` INTEGER, `encdt` CHAR) RETURNS char(2) CHARSET latin1
 READS SQL DATA
   BEGIN
 
@@ -2192,8 +3364,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getBaseWeightValue`(`personid` INTEGER, `artstartdt` DATE)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getBaseWeightValue`(`personid` INTEGER, `artstartdt` DATE) RETURNS int(11)
 READS SQL DATA
   BEGIN
 
@@ -2212,9 +3383,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getCareEntryTxt`(`personid` INT)
-  RETURNS CHAR(15)
-  CHARSET latin1
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCareEntryTxt`(`personid` INT) RETURNS char(15) CHARSET latin1
 READS SQL DATA
   BEGIN
 
@@ -2240,8 +3409,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getCd4BaseValue`(`personid` INTEGER, `artstartdt` DATE)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCd4BaseValue`(`personid` INTEGER, `artstartdt` DATE) RETURNS int(11)
 READS SQL DATA
   BEGIN
 
@@ -2261,9 +3429,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `get_CD4_count`(StartDate VARCHAR(12), EndDate VARCHAR(12), Patient_ID INT)
-  RETURNS VARCHAR(10)
-  CHARSET latin1
+CREATE DEFINER=`root`@`localhost` FUNCTION `get_CD4_count`(StartDate VARCHAR(12), EndDate VARCHAR(12), Patient_ID INT) RETURNS varchar(10) CHARSET latin1
 DETERMINISTIC
   RETURN
   (
@@ -2294,8 +3460,7 @@ DETERMINISTIC
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getCd4SevereBaseValue`(`personid` INTEGER, `artstartdt` DATE)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCd4SevereBaseValue`(`personid` INTEGER, `artstartdt` DATE) RETURNS int(11)
 READS SQL DATA
   BEGIN
 
@@ -2312,8 +3477,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getCD4Value`(`personid` INTEGER, `obsdatetime` DATE)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCD4Value`(`personid` INTEGER, `obsdatetime` DATE) RETURNS int(11)
 READS SQL DATA
   BEGIN
 
@@ -2331,8 +3495,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getCodedDeathDate`(`personid` INTEGER)
-  RETURNS DATE
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCodedDeathDate`(`personid` INTEGER) RETURNS date
 READS SQL DATA
   BEGIN
 
@@ -2348,9 +3511,8 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getCohortAllBefore10`(start_year INT, start_quarter INT, months_before INT,
-                                                                   only_preg  TEXT)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore10`(start_year INT, start_quarter INT, months_before INT,
+                                                                  only_preg  TEXT) RETURNS int(11)
   BEGIN
     DECLARE number_on_cohort INT;
 
@@ -2402,9 +3564,8 @@ CREATE DEFINER =`root`@`localhost` FUNCTION `getCohortAllBefore10`(start_year IN
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getCohortAllBefore11`(start_year INT, start_quarter INT, months_before INT,
-                                                                   only_preg  TEXT)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore11`(start_year INT, start_quarter INT, months_before INT,
+                                                                  only_preg  TEXT) RETURNS int(11)
   BEGIN
     DECLARE number_on_cohort INT;
 
@@ -2524,9 +3685,8 @@ CREATE DEFINER =`root`@`localhost` FUNCTION `getCohortAllBefore11`(start_year IN
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getCohortAllBefore12`(start_year INT, start_quarter INT, months_before INT,
-                                                                   only_preg  TEXT)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore12`(start_year INT, start_quarter INT, months_before INT,
+                                                                  only_preg  TEXT) RETURNS int(11)
   BEGIN
     DECLARE number_on_cohort INT;
 
@@ -2584,9 +3744,8 @@ CREATE DEFINER =`root`@`localhost` FUNCTION `getCohortAllBefore12`(start_year IN
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getCohortAllBefore15a`(start_year    INT, start_quarter INT,
-                                                                    months_before INT, only_preg TEXT)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore15a`(start_year    INT, start_quarter INT,
+                                                                   months_before INT, only_preg TEXT) RETURNS int(11)
   BEGIN
     DECLARE number_on_cohort INT;
 
@@ -2661,9 +3820,8 @@ CREATE DEFINER =`root`@`localhost` FUNCTION `getCohortAllBefore15a`(start_year  
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getCohortAllBefore15b`(start_year    INT, start_quarter INT,
-                                                                    months_before INT, only_preg TEXT)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore15b`(start_year    INT, start_quarter INT,
+                                                                   months_before INT, only_preg TEXT) RETURNS int(11)
   BEGIN
     DECLARE number_on_cohort INT;
 
@@ -2736,9 +3894,8 @@ CREATE DEFINER =`root`@`localhost` FUNCTION `getCohortAllBefore15b`(start_year  
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getCohortAllBefore16`(start_year INT, start_quarter INT, months_before INT,
-                                                                   only_preg  TEXT)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore16`(start_year INT, start_quarter INT, months_before INT,
+                                                                  only_preg  TEXT) RETURNS int(11)
   BEGIN
     DECLARE number_on_cohort INT;
 
@@ -2838,9 +3995,8 @@ CREATE DEFINER =`root`@`localhost` FUNCTION `getCohortAllBefore16`(start_year IN
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getCohortAllBefore3`(start_year INT, start_quarter INT, month_before INT,
-                                                                  only_preg  TEXT)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore3`(start_year INT, start_quarter INT, month_before INT,
+                                                                 only_preg  TEXT) RETURNS int(11)
   BEGIN
 
     DECLARE income_level INT;
@@ -2877,9 +4033,8 @@ CREATE DEFINER =`root`@`localhost` FUNCTION `getCohortAllBefore3`(start_year INT
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getCohortAllBefore4a`(start_year INT, start_quarter INT, months_before INT,
-                                                                   only_preg  TEXT)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore4a`(start_year INT, start_quarter INT, months_before INT,
+                                                                  only_preg  TEXT) RETURNS int(11)
   BEGIN
     DECLARE number_on_cohort INT;
 
@@ -2940,9 +4095,8 @@ CREATE DEFINER =`root`@`localhost` FUNCTION `getCohortAllBefore4a`(start_year IN
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getCohortAllBefore4b`(start_year INT, start_quarter INT, months_before INT,
-                                                                   only_preg  TEXT)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore4b`(start_year INT, start_quarter INT, months_before INT,
+                                                                  only_preg  TEXT) RETURNS int(11)
   BEGIN
     DECLARE number_on_cohort INT;
 
@@ -3001,9 +4155,8 @@ CREATE DEFINER =`root`@`localhost` FUNCTION `getCohortAllBefore4b`(start_year IN
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getCohortAllBefore5`(start_year INT, start_quarter INT, months_before INT,
-                                                                  only_preg  TEXT)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore5`(start_year INT, start_quarter INT, months_before INT,
+                                                                 only_preg  TEXT) RETURNS int(11)
   BEGIN
     DECLARE number_on_cohort INT;
 
@@ -3082,9 +4235,8 @@ CREATE DEFINER =`root`@`localhost` FUNCTION `getCohortAllBefore5`(start_year INT
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getCohortAllBefore6`(start_year INT, start_quarter INT, months_before INT,
-                                                                  only_preg  TEXT)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore6`(start_year INT, start_quarter INT, months_before INT,
+                                                                 only_preg  TEXT) RETURNS int(11)
   BEGIN
     DECLARE number_on_cohort INT;
 
@@ -3127,9 +4279,8 @@ CREATE DEFINER =`root`@`localhost` FUNCTION `getCohortAllBefore6`(start_year INT
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getCohortAllBefore7`(start_year INT, start_quarter INT, months_before INT,
-                                                                  only_preg  TEXT)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore7`(start_year INT, start_quarter INT, months_before INT,
+                                                                 only_preg  TEXT) RETURNS int(11)
   BEGIN
     DECLARE number_on_cohort INT;
 
@@ -3187,9 +4338,8 @@ CREATE DEFINER =`root`@`localhost` FUNCTION `getCohortAllBefore7`(start_year INT
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getCohortAllBefore9`(start_year INT, start_quarter INT, months_before INT,
-                                                                  only_preg  TEXT)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore9`(start_year INT, start_quarter INT, months_before INT,
+                                                                 only_preg  TEXT) RETURNS int(11)
   BEGIN
     DECLARE number_on_cohort INT;
 
@@ -3245,9 +4395,7 @@ CREATE DEFINER =`root`@`localhost` FUNCTION `getCohortAllBefore9`(start_year INT
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`openmrs`@`localhost` FUNCTION `getCohortMonth`(start_year INT, start_quarter INT, months_before INT)
-  RETURNS CHAR(30)
-  CHARSET latin1
+CREATE DEFINER=`openmrs`@`localhost` FUNCTION `getCohortMonth`(start_year INT, start_quarter INT, months_before INT) RETURNS char(30) CHARSET latin1
   BEGIN
     DECLARE end_date DATE DEFAULT
       MAKEDATE(start_year, 1) + INTERVAL start_quarter QUARTER - INTERVAL months_before MONTH - INTERVAL 1 DAY;
@@ -3260,10 +4408,8 @@ CREATE DEFINER =`openmrs`@`localhost` FUNCTION `getCohortMonth`(start_year INT, 
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `get_cpt_receipt_status`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
-                                                                     Patient_ID INT)
-  RETURNS CHAR(50)
-  CHARSET latin1
+CREATE DEFINER=`root`@`localhost` FUNCTION `get_cpt_receipt_status`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
+                                                                    Patient_ID INT) RETURNS char(50) CHARSET latin1
 DETERMINISTIC
   RETURN
   (
@@ -3282,8 +4428,7 @@ DETERMINISTIC
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getCptStartDate`(`personid` INTEGER)
-  RETURNS DATE
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCptStartDate`(`personid` INTEGER) RETURNS date
 READS SQL DATA
   BEGIN
 
@@ -3296,9 +4441,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getCptStatusTxt`(`encounterid` INTEGER)
-  RETURNS CHAR(3)
-  CHARSET latin1
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCptStatusTxt`(`encounterid` INTEGER) RETURNS char(3) CHARSET latin1
 READS SQL DATA
   BEGIN
 
@@ -3315,8 +4458,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getDeathDate`(`personid` INTEGER)
-  RETURNS DATE
+CREATE DEFINER=`root`@`localhost` FUNCTION `getDeathDate`(`personid` INTEGER) RETURNS date
 READS SQL DATA
   BEGIN
 
@@ -3342,10 +4484,8 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `get_death_status`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
-                                                               Patient_ID INT)
-  RETURNS CHAR(50)
-  CHARSET latin1
+CREATE DEFINER=`root`@`localhost` FUNCTION `get_death_status`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
+                                                              Patient_ID INT) RETURNS char(50) CHARSET latin1
 DETERMINISTIC
   RETURN (SELECT CONCAT('DEAD: ', CAST(date_format(DeathDate, '%d/%m/%Y') AS CHAR(10))) AS DeathStatus
           FROM (
@@ -3362,8 +4502,7 @@ DETERMINISTIC
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getEddDate`(`encounterid` INTEGER)
-  RETURNS DATE
+CREATE DEFINER=`root`@`localhost` FUNCTION `getEddDate`(`encounterid` INTEGER) RETURNS date
 READS SQL DATA
   BEGIN
 
@@ -3380,8 +4519,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getEddEncounterId`(`personid` INTEGER)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getEddEncounterId`(`personid` INTEGER) RETURNS int(11)
 READS SQL DATA
   BEGIN
 
@@ -3400,8 +4538,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getEddEncounterId2`(`personid` INTEGER)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getEddEncounterId2`(`personid` INTEGER) RETURNS int(11)
 READS SQL DATA
   BEGIN
 
@@ -3420,8 +4557,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getEddEncounterId3`(`personid` INTEGER)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getEddEncounterId3`(`personid` INTEGER) RETURNS int(11)
 READS SQL DATA
   BEGIN
 
@@ -3440,8 +4576,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getEddEncounterId4`(`personid` INTEGER)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getEddEncounterId4`(`personid` INTEGER) RETURNS int(11)
 READS SQL DATA
   BEGIN
 
@@ -3460,9 +4595,8 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getEncounterId`(`patientid`       INTEGER, `encounter_year` INTEGER,
-                                                             `encounter_month` INTEGER)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getEncounterId`(`patientid`       INTEGER, `encounter_year` INTEGER,
+                                                            `encounter_month` INTEGER) RETURNS int(11)
   BEGIN
     RETURN (SELECT MAX(encounter_id)
             FROM encounter
@@ -3473,9 +4607,8 @@ CREATE DEFINER =`root`@`localhost` FUNCTION `getEncounterId`(`patientid`       I
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getEncounterId2`(`patientid`         INTEGER, `encounter_year` INTEGER,
-                                                              `encounter_quarter` INTEGER)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getEncounterId2`(`patientid`         INTEGER, `encounter_year` INTEGER,
+                                                             `encounter_quarter` INTEGER) RETURNS int(11)
   BEGIN
     RETURN (SELECT MAX(encounter_id)
             FROM encounter
@@ -3486,8 +4619,7 @@ CREATE DEFINER =`root`@`localhost` FUNCTION `getEncounterId2`(`patientid`       
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getEnrolDate`(`personid` INT)
-  RETURNS DATE
+CREATE DEFINER=`root`@`localhost` FUNCTION `getEnrolDate`(`personid` INT) RETURNS date
 READS SQL DATA
   BEGIN
 
@@ -3505,8 +4637,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getFirstArtStopDate`(`personid` INTEGER)
-  RETURNS DATE
+CREATE DEFINER=`root`@`localhost` FUNCTION `getFirstArtStopDate`(`personid` INTEGER) RETURNS date
 READS SQL DATA
   BEGIN
 
@@ -3525,8 +4656,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getFlucStartDate`(`personid` INTEGER)
-  RETURNS DATE
+CREATE DEFINER=`root`@`localhost` FUNCTION `getFlucStartDate`(`personid` INTEGER) RETURNS date
 READS SQL DATA
   BEGIN
 
@@ -3541,10 +4671,8 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `get_followup_status`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
-                                                                  Patient_ID INT)
-  RETURNS CHAR(50)
-  CHARSET latin1
+CREATE DEFINER=`root`@`localhost` FUNCTION `get_followup_status`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
+                                                                 Patient_ID INT) RETURNS char(50) CHARSET latin1
 DETERMINISTIC
   RETURN
   (
@@ -3563,10 +4691,8 @@ DETERMINISTIC
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `get_followup_status2`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
-                                                                   Patient_ID INT)
-  RETURNS CHAR(50)
-  CHARSET utf8
+CREATE DEFINER=`root`@`localhost` FUNCTION `get_followup_status2`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
+                                                                  Patient_ID INT) RETURNS char(50) CHARSET utf8
   BEGIN
 
     RETURN CONCAT(get_death_status(StartDate, EndDate, Patient_ID), get_transfer_status(StartDate, EndDate, Patient_ID),
@@ -3576,9 +4702,7 @@ CREATE DEFINER =`root`@`localhost` FUNCTION `get_followup_status2`(StartDate  VA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getFUARTStatus`(Patient_ID INTEGER, start_date DATE, end_date DATE)
-  RETURNS CHAR(1)
-  CHARSET utf8
+CREATE DEFINER=`root`@`localhost` FUNCTION `getFUARTStatus`(Patient_ID INTEGER, start_date DATE, end_date DATE) RETURNS char(1) CHARSET utf8
   BEGIN
 
     DECLARE times_seen_in_quarter INT DEFAULT 0;
@@ -3668,9 +4792,7 @@ CREATE DEFINER =`root`@`localhost` FUNCTION `getFUARTStatus`(Patient_ID INTEGER,
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getFunctionalStatusTxt`(`personid` INTEGER, `obsdatetime` DATE)
-  RETURNS CHAR(5)
-  CHARSET latin1
+CREATE DEFINER=`root`@`localhost` FUNCTION `getFunctionalStatusTxt`(`personid` INTEGER, `obsdatetime` DATE) RETURNS char(5) CHARSET latin1
 READS SQL DATA
   BEGIN
 
@@ -3686,9 +4808,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getFUStatus`(Patient_ID INTEGER, start_date DATE, end_date DATE)
-  RETURNS CHAR(30)
-  CHARSET utf8
+CREATE DEFINER=`root`@`localhost` FUNCTION `getFUStatus`(Patient_ID INTEGER, start_date DATE, end_date DATE) RETURNS char(30) CHARSET utf8
   BEGIN
 
     DECLARE times_seen_in_quarter INT DEFAULT 0;
@@ -3749,8 +4869,7 @@ CREATE DEFINER =`root`@`localhost` FUNCTION `getFUStatus`(Patient_ID INTEGER, st
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getINHStartDate`(`personid` INTEGER)
-  RETURNS DATE
+CREATE DEFINER=`root`@`localhost` FUNCTION `getINHStartDate`(`personid` INTEGER) RETURNS date
 READS SQL DATA
   BEGIN
 
@@ -3763,8 +4882,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getLastCd4SevereValue`(`personid` INTEGER, `reportdt` DATE)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getLastCd4SevereValue`(`personid` INTEGER, `reportdt` DATE) RETURNS int(11)
 READS SQL DATA
   BEGIN
 
@@ -3782,8 +4900,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getLastCd4Value`(`personid` INTEGER, `reportdt` DATE)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getLastCd4Value`(`personid` INTEGER, `reportdt` DATE) RETURNS int(11)
 READS SQL DATA
   BEGIN
 
@@ -3801,8 +4918,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getLastEncounterDate`(`personid` INTEGER)
-  RETURNS DATE
+CREATE DEFINER=`root`@`localhost` FUNCTION `getLastEncounterDate`(`personid` INTEGER) RETURNS date
 READS SQL DATA
   BEGIN
     RETURN (SELECT encounter_datetime
@@ -3814,8 +4930,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getLastVisitDate`(`personid` INTEGER, `reportdt` DATE)
-  RETURNS DATE
+CREATE DEFINER=`root`@`localhost` FUNCTION `getLastVisitDate`(`personid` INTEGER, `reportdt` DATE) RETURNS date
 READS SQL DATA
   BEGIN
 
@@ -3832,10 +4947,8 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `get_lost_status`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
-                                                              Patient_ID INT)
-  RETURNS CHAR(50)
-  CHARSET latin1
+CREATE DEFINER=`root`@`localhost` FUNCTION `get_lost_status`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
+                                                             Patient_ID INT) RETURNS char(50) CHARSET latin1
 DETERMINISTIC
   RETURN
   (
@@ -3863,8 +4976,7 @@ DETERMINISTIC
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getMonthCD4Value`(`personid` INTEGER, `monthyr` CHAR(6))
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getMonthCD4Value`(`personid` INTEGER, `monthyr` CHAR(6)) RETURNS int(11)
 READS SQL DATA
   BEGIN
 
@@ -3883,8 +4995,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getMonthsOnCurrent`(`personid` INTEGER)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getMonthsOnCurrent`(`personid` INTEGER) RETURNS int(11)
 READS SQL DATA
   BEGIN
 
@@ -3903,8 +5014,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getMonthsSinceStart`(`personid` INTEGER)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getMonthsSinceStart`(`personid` INTEGER) RETURNS int(11)
 READS SQL DATA
   BEGIN
 
@@ -3922,8 +5032,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getNumberDrugEncounter`(`personid` INTEGER)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getNumberDrugEncounter`(`personid` INTEGER) RETURNS int(11)
 READS SQL DATA
   BEGIN
 
@@ -3952,8 +5061,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getNumberDrugSummary`(`personid` INTEGER)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getNumberDrugSummary`(`personid` INTEGER) RETURNS int(11)
 READS SQL DATA
   BEGIN
 
@@ -3982,9 +5090,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`openmrs`@`localhost` FUNCTION `getNutritionalStatus`(Patient_ID INT, start_date DATE, end_date DATE)
-  RETURNS CHAR(10)
-  CHARSET latin1
+CREATE DEFINER=`openmrs`@`localhost` FUNCTION `getNutritionalStatus`(Patient_ID INT, start_date DATE, end_date DATE) RETURNS char(10) CHARSET latin1
 DETERMINISTIC
   RETURN
   (
@@ -4012,9 +5118,7 @@ DETERMINISTIC
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getPatientIdentifierTxt`(`personid` INTEGER)
-  RETURNS CHAR(15)
-  CHARSET latin1
+CREATE DEFINER=`root`@`localhost` FUNCTION `getPatientIdentifierTxt`(`personid` INTEGER) RETURNS char(15) CHARSET latin1
 READS SQL DATA
   BEGIN
 
@@ -4028,9 +5132,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getReferralText`(`personid` INTEGER)
-  RETURNS CHAR(30)
-  CHARSET latin1
+CREATE DEFINER=`root`@`localhost` FUNCTION `getReferralText`(`personid` INTEGER) RETURNS char(30) CHARSET latin1
 READS SQL DATA
   BEGIN
     RETURN (
@@ -4048,8 +5150,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getReturnDate`(`encounterid` INTEGER)
-  RETURNS DATE
+CREATE DEFINER=`root`@`localhost` FUNCTION `getReturnDate`(`encounterid` INTEGER) RETURNS date
 READS SQL DATA
   BEGIN
 
@@ -4066,8 +5167,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getReturnDate2`(`personid` INTEGER, `obsdatetime` DATE)
-  RETURNS DATE
+CREATE DEFINER=`root`@`localhost` FUNCTION `getReturnDate2`(`personid` INTEGER, `obsdatetime` DATE) RETURNS date
 READS SQL DATA
   BEGIN
 
@@ -4085,10 +5185,8 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `get_scheduled_visits`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
-                                                                   Patient_ID INT)
-  RETURNS CHAR(50)
-  CHARSET latin1
+CREATE DEFINER=`root`@`localhost` FUNCTION `get_scheduled_visits`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
+                                                                  Patient_ID INT) RETURNS char(50) CHARSET latin1
 DETERMINISTIC
   RETURN
   (
@@ -4104,10 +5202,8 @@ DETERMINISTIC
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `get_seen_status`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
-                                                              Patient_ID INT)
-  RETURNS CHAR(50)
-  CHARSET latin1
+CREATE DEFINER=`root`@`localhost` FUNCTION `get_seen_status`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
+                                                             Patient_ID INT) RETURNS char(50) CHARSET latin1
 DETERMINISTIC
   RETURN
   (
@@ -4125,8 +5221,7 @@ DETERMINISTIC
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getStartEncounterId`(`personid` INTEGER)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getStartEncounterId`(`personid` INTEGER) RETURNS int(11)
 READS SQL DATA
   BEGIN
     RETURN (SELECT encounter_id
@@ -4141,8 +5236,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getSubstituteDate`(`obsgroupid` INTEGER)
-  RETURNS DATE
+CREATE DEFINER=`root`@`localhost` FUNCTION `getSubstituteDate`(`obsgroupid` INTEGER) RETURNS date
 READS SQL DATA
   BEGIN
 
@@ -4159,8 +5253,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getSubstituteObsGroupId`(`personid` INTEGER)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getSubstituteObsGroupId`(`personid` INTEGER) RETURNS int(11)
 READS SQL DATA
   BEGIN
 
@@ -4177,8 +5270,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getSubstituteObsGroupId2`(`personid` INTEGER)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getSubstituteObsGroupId2`(`personid` INTEGER) RETURNS int(11)
 READS SQL DATA
   BEGIN
 
@@ -4195,9 +5287,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getSubstituteReasonTxt`(`obsgroupid` INTEGER)
-  RETURNS CHAR(15)
-  CHARSET latin1
+CREATE DEFINER=`root`@`localhost` FUNCTION `getSubstituteReasonTxt`(`obsgroupid` INTEGER) RETURNS char(15) CHARSET latin1
 READS SQL DATA
   BEGIN
 
@@ -4223,8 +5313,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getSwitchDate`(`obsgroupid` INTEGER)
-  RETURNS DATE
+CREATE DEFINER=`root`@`localhost` FUNCTION `getSwitchDate`(`obsgroupid` INTEGER) RETURNS date
 READS SQL DATA
   BEGIN
 
@@ -4242,8 +5331,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getSwitchObsGroupId`(`personid` INTEGER)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getSwitchObsGroupId`(`personid` INTEGER) RETURNS int(11)
 READS SQL DATA
   BEGIN
 
@@ -4260,8 +5348,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getSwitchObsGroupId2`(`personid` INTEGER)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getSwitchObsGroupId2`(`personid` INTEGER) RETURNS int(11)
 READS SQL DATA
   BEGIN
 
@@ -4278,8 +5365,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getSwitchReasonTxt`(`obsgroupid` INTEGER)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getSwitchReasonTxt`(`obsgroupid` INTEGER) RETURNS int(11)
 READS SQL DATA
   BEGIN
 
@@ -4305,9 +5391,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getTbRegNoTxt`(`personid` INTEGER)
-  RETURNS CHAR(15)
-  CHARSET utf8
+CREATE DEFINER=`root`@`localhost` FUNCTION `getTbRegNoTxt`(`personid` INTEGER) RETURNS char(15) CHARSET utf8
 READS SQL DATA
   BEGIN
 
@@ -4323,8 +5407,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getTbStartDate`(`personid` INTEGER)
-  RETURNS DATE
+CREATE DEFINER=`root`@`localhost` FUNCTION `getTbStartDate`(`personid` INTEGER) RETURNS date
 READS SQL DATA
   BEGIN
 
@@ -4337,9 +5420,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `get_tb_status`(StartDate VARCHAR(12), EndDate VARCHAR(12), Patient_ID INT)
-  RETURNS CHAR(50)
-  CHARSET latin1
+CREATE DEFINER=`root`@`localhost` FUNCTION `get_tb_status`(StartDate VARCHAR(12), EndDate VARCHAR(12), Patient_ID INT) RETURNS char(50) CHARSET latin1
 DETERMINISTIC
   RETURN
   (
@@ -4366,8 +5447,7 @@ DETERMINISTIC
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getTbStatusTxt`(`encounterid` INTEGER)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getTbStatusTxt`(`encounterid` INTEGER) RETURNS int(11)
 READS SQL DATA
   BEGIN
 
@@ -4385,8 +5465,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getTbStopDate`(`personid` INTEGER)
-  RETURNS DATE
+CREATE DEFINER=`root`@`localhost` FUNCTION `getTbStopDate`(`personid` INTEGER) RETURNS date
 READS SQL DATA
   BEGIN
 
@@ -4402,9 +5481,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getTransferInTxt`(`personid` INTEGER)
-  RETURNS CHAR(5)
-  CHARSET latin1
+CREATE DEFINER=`root`@`localhost` FUNCTION `getTransferInTxt`(`personid` INTEGER) RETURNS char(5) CHARSET latin1
 READS SQL DATA
   BEGIN
 
@@ -4424,8 +5501,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getTransferOutDate`(`personid` INTEGER)
-  RETURNS DATE
+CREATE DEFINER=`root`@`localhost` FUNCTION `getTransferOutDate`(`personid` INTEGER) RETURNS date
 READS SQL DATA
   BEGIN
 
@@ -4443,10 +5519,8 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `get_transfer_status`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
-                                                                  Patient_ID INT)
-  RETURNS CHAR(50)
-  CHARSET latin1
+CREATE DEFINER=`root`@`localhost` FUNCTION `get_transfer_status`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
+                                                                 Patient_ID INT) RETURNS char(50) CHARSET latin1
 DETERMINISTIC
   RETURN
   (
@@ -4475,8 +5549,7 @@ DETERMINISTIC
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getWeightValue`(`personid` INTEGER, `obsdatetime` DATE)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getWeightValue`(`personid` INTEGER, `obsdatetime` DATE) RETURNS int(11)
 READS SQL DATA
   BEGIN
 
@@ -4493,8 +5566,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getWhoStageBaseTxt`(`personid` INTEGER, `artstartdt` DATE)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getWhoStageBaseTxt`(`personid` INTEGER, `artstartdt` DATE) RETURNS int(11)
 READS SQL DATA
   BEGIN
 
@@ -4523,8 +5595,7 @@ READS SQL DATA
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getWHOStageDate`(patient_id INT, stage INT)
-  RETURNS DATE
+CREATE DEFINER=`root`@`localhost` FUNCTION `getWHOStageDate`(patient_id INT, stage INT) RETURNS date
   BEGIN
     RETURN (SELECT MAX(obs_datetime)
             FROM obs
@@ -4538,8 +5609,7 @@ CREATE DEFINER =`root`@`localhost` FUNCTION `getWHOStageDate`(patient_id INT, st
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER =`root`@`localhost` FUNCTION `getWhoStageTxt`(`personid` INTEGER, `obsdatetime` DATE)
-  RETURNS INT(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getWhoStageTxt`(`personid` INTEGER, `obsdatetime` DATE) RETURNS int(11)
 READS SQL DATA
   BEGIN
 
@@ -4559,4 +5629,3 @@ READS SQL DATA
     );
   END$$
 DELIMITER ;
-
