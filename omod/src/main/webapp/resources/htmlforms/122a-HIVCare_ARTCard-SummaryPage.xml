@@ -298,15 +298,16 @@
 
             var row_9 = '[class^="ArtCare"][class*="Child9"]';
             var row_10 = '[class^="ArtCare"][class*="Child10"]';
-            var row_10 = '[class^="ArtCare"][class*="Child11"]';
+            var row_11 = '[class^="ArtCare"][class*="Child11"]';
 
             var xx = row_1;
             var selected_value = jq(selected_option).find(":selected").text()
 
             selected_value = selected_value.trim().toLowerCase();
 
-            if (selected_value == "other" || selected_value == "other specify" || selected_value == "others")
+            if (selected_value == "other" || selected_value == "other specify" || selected_value == "others"){
                 disable = false;
+            }
 
             switch (row_id) {
                 case 1:
@@ -321,7 +322,6 @@
                 case 4:
                     xx = row_4;
                     break;
-
                 case 5:
                     xx = row_5;
                     break;
@@ -337,7 +337,6 @@
                 case 9:
                     xx = row_9;
                     break;
-
                 case 10:
                     xx = row_10;
                     break;
@@ -354,9 +353,7 @@
                     group.find("input").attr("value", "");
                     group.find("input").attr("disabled", disable);
                 }
-
             });
-
         }
 
 
