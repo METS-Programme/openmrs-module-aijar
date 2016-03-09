@@ -7,7 +7,7 @@
           formUILocation="patientDashboard.visitActions"
           formOrder="3"
           formIcon="icon-medkit"
-          formShowIf="visit.active &amp;&amp; patient.person.dead==false &amp;&amp; patient.person.age &gt; 2 &amp;&amp; sessionLocation.get('uuid')=='86863db4-6101-4ecf-9a86-5e716d6504e4'"
+          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; patient.person.age &gt; 2 &amp;&amp; sessionLocation.get('uuid')=='86863db4-6101-4ecf-9a86-5e716d6504e4'"
           formDisplayStyle="Standard">
     <redirectOnSave
             url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits" />
@@ -242,7 +242,7 @@
                         starting current regimen
                     </td>
                     <td style="width: 15%;background: #F3F3F3;">Wt / Ht / MUAC</td>
-                    <td style="width: 15%;background: #F3F3F3;">If pregenant EDD/EM TCT? Write gestation in weeks
+                    <td style="width: 15%;background: #F3F3F3;">If pregnant EDD/EMTCT? Write gestation in weeks
                         and ANC#
                     </td>
                 </tr>
@@ -305,9 +305,9 @@
                                     <obs id="br" conceptId="374" answerConceptId="780"
                                          answerLabel="Oral Contraceptive pills"/>
                                     <obs id="br" conceptId="374" answerConceptId="5279"
-                                         answerLabel="Injectable/Inplantable hormonies"/>
+                                         answerLabel="Injectable/Implantable hormonies" />
                                     <obs id="br" conceptId="374" answerConceptId="5278"
-                                         answerLabel="Diaphram/Curvical Cap"/>
+                                         answerLabel="Diaphram/Cervical Cap" />
                                     <obs id="br" conceptId="374" answerConceptId="5275"
                                          answerLabel="Intra uterine device (IUD)"/>
                                 </excludeIf>
@@ -340,6 +340,7 @@
                             </span>
                         <obs id="br" conceptId="90217" labelText="TB Start Date:"/>
                         <obs id="br" conceptId="90310" labelText="TB Stop Date:" allowFutureDates="true"/>
+                        <label>District TB No.</label>
                         <span><patient field="identifier" identifierTypeId="8110f2d2-1f98-4c38-aef3-11b19bb0a589"
                                        required="true"/></span>
                         <br/>
@@ -427,7 +428,7 @@
             <table>
                 <tbody>
                 <tr>
-                    <td style="width: 5%;background: #F3F3F3;padding: 20px;">CPT / Dapson</td>
+                    <td style="width: 5%;background: #F3F3F3;padding: 20px;">CPT/Dapsone</td>
                     <td style="width: 5%;background: #F3F3F3;padding: 20px;">INH</td>
                     <td style="width: 15%;background: #F3F3F3;padding: 20px;">Other Meds dispensed</td>
                     <td style="width: 15%;background: #F3F3F3;padding: 20px; text-align: center;" colspan="2">ARV
@@ -465,7 +466,7 @@
                              answerLabel="Doxycycline"/>
                         <obs id="br" conceptId="1193" answerConceptId="1108" answerLabel="EH"/>
                         <obs id="br" conceptId="1193" answerConceptId="272"
-                             answerLabel="Erythromicin"/>
+                             answerLabel="Erythromycin" />
                         <obs id="br" conceptId="1193" answerConceptId="747"
                              answerLabel="Fluconazole"/>
                         <obs id="br" conceptId="1193" answerConceptId="912"
@@ -477,7 +478,7 @@
                         <obs id="br" conceptId="1193" answerConceptId="237"
                              answerLabel="Metronidazole"/>
                         <obs id="br" conceptId="1193" answerConceptId="461"
-                             answerLabel="Mutivitamins"/>
+                             answerLabel="Multivitamins" />
                         <obs id="br" conceptId="1193" answerConceptId="99054"
                              answerLabel="Nutrition Support"/>
                         <obs id="br" conceptId="1193" answerConceptId="919"
@@ -610,11 +611,11 @@
                     <td>
                         <b>Referred for</b><br/>
                         <obs id="br" conceptId="99054" answerConceptId="99053"
-                             answerLabel="Thera Feeding"/>
+                             answerLabel="Theraputic Feeding" />
                         <obs id="br" conceptId="99054" answerConceptId="99051"
                              answerLabel="Infant F C"/>
                         <obs id="br" conceptId="99054" answerConceptId="99052"
-                             answerLabel="Nutrion C"/>
+                             answerLabel="Nutrition C" />
                         <obs id="br" conceptId="99054" answerConceptId="99050"
                              answerLabel="Food Support"/>
                         <br/>
