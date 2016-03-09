@@ -280,7 +280,7 @@
 
             var length = class_name.length;
 
-            var class_id = parseInt(class_name.substring(length - 1, length))
+            var class_id = parseInt(class_name.substring(length - 1, length));
 
             var row_id = class_id;
 
@@ -290,22 +290,22 @@
             var row_2 = '[class^="ArtCare"][class*="Child2"]';
             var row_3 = '[class^="ArtCare"][class*="Child3"]';
             var row_4 = '[class^="ArtCare"][class*="Child4"]';
-
             var row_5 = '[class^="ArtCare"][class*="Child5"]';
             var row_6 = '[class^="ArtCare"][class*="Child6"]';
             var row_7 = '[class^="ArtCare"][class*="Child7"]';
             var row_8 = '[class^="ArtCare"][class*="Child8"]';
-
             var row_9 = '[class^="ArtCare"][class*="Child9"]';
             var row_10 = '[class^="ArtCare"][class*="Child10"]';
             var row_11 = '[class^="ArtCare"][class*="Child11"]';
+            var row_12 = '[class^="ArtCare"][class*="Child12"]';
+            var row_13 = '[class^="ArtCare"][class*="Child13"]';
 
             var xx = row_1;
             var selected_value = jq(selected_option).find(":selected").text()
 
             selected_value = selected_value.trim().toLowerCase();
 
-            if (selected_value == "other" || selected_value == "other specify" || selected_value == "others"){
+            if (selected_value == "other" || selected_value == "other specify") {
                 disable = false;
             }
 
@@ -343,12 +343,73 @@
                 case 11:
                     xx = row_11;
                     break;
+                case 12:
+                    xx = row_12;
+                    break;
+                case 13:
+                    xx = row_13;
+                    break;
             }
 
 
             jq(xx).each(function () {
                 var group = jq(this);
+                if (class_name.indexOf('Child') == -1) {
+                    group.find("input").attr("value", "");
+                    group.find("input").attr("disabled", disable);
+                }
+            });
+        }
 
+
+        function enable_disable_ac_other(selected_option) {
+
+            var class_name = jq(selected_option).attr("class");
+
+            var length = class_name.length;
+
+            var class_id = parseInt(class_name.substring(length - 1, length));
+
+            var row_id = class_id;
+
+            var disable = true;
+
+            var row_1 = '[class^="ArtCareOther"][class*="Child1"]';
+            var row_2 = '[class^="ArtCareOther"][class*="Child2"]';
+            var row_3 = '[class^="ArtCareOther"][class*="Child3"]';
+            var row_4 = '[class^="ArtCareOther"][class*="Child4"]';
+            var row_5 = '[class^="ArtCareOther"][class*="Child5"]';
+
+            var xx = row_1;
+            var selected_value = jq(selected_option).find(":selected").text()
+
+            selected_value = selected_value.trim().toLowerCase();
+
+            if (selected_value == "other" || selected_value == "other specify") {
+                disable = false;
+            }
+
+            switch (row_id) {
+                case 1:
+                    xx = row_1;
+                    break;
+                case 2:
+                    xx = row_2;
+                    break;
+                case 3:
+                    xx = row_3;
+                    break;
+                case 4:
+                    xx = row_4;
+                    break;
+                case 5:
+                    xx = row_5;
+                    break;
+            }
+
+
+            jq(xx).each(function () {
+                var group = jq(this);
                 if (class_name.indexOf('Child') == -1) {
                     group.find("input").attr("value", "");
                     group.find("input").attr("disabled", disable);
@@ -555,7 +616,7 @@
                 });
 
 
-                jq('[class^="ArtCareEnableDisable"]').change(function () {
+                jq('[class^="ArtCareEnableDisable"]').change(function (){
                     enable_disable_ac(jq(this));
                 });
 
@@ -563,6 +624,16 @@
                 jq('[class^="ArtCareEnableDisable"]').each(function () {
                     enable_disable_ac(jq(this))
                 });
+
+                jq('[class^="ArtCareOtherEnableDisable"]').change(function () {
+                    enable_disable_ac_other(jq(this));
+                });
+
+
+                jq('[class^="ArtCareOtherEnableDisable"]').each(function () {
+                    enable_disable_ac_other(jq(this))
+                });
+
 
                 jq('[class^="ARTTreatmentInterruptionEnableDisable"]').change(function () {
                     enable_disable_ati(jq(this));
@@ -754,16 +825,31 @@
                 </tr>
                 <tr style="background: #F7F7F7;">
                     <obsgroup groupingConceptId="99116">
-                        <td style="width: 33%;" class="ARTCareEnableDisable11">
+                        <td style="width: 33%;">
                             <label>Care Entry Point</label>
-                            <obs conceptId="90200"
-                                 answerConceptIds="90012,90016,99593,99610,90019,90013,90015,90018,90002"
-                                 answerLabels="eMTCT,TB,YCC,SMC,Outreach,Out Patient,STI,Inpatient,Others"
-                                 required="true"/>
+                            <excludeIf velocityTest="$patient.gender =='M' ">
+                                <span class="ARTCareEnableDisable11">
+                                <obs conceptId="90200"
+                                     answerConceptIds="90012,90016,99593,90019,90013,90015,90018,90002"
+                                     answerLabels="eMTCT,TB,YCC,Outreach,Out Patient,STI,Inpatient,Other"
+                                     required="true"/>
+                               </span>
+                            </excludeIf>
+
+                            <excludeIf velocityTest="$patient.gender =='F' ">
+                                <span class="ARTCareEnableDisable11">
+                                <obs conceptId="90200"
+                                     answerConceptIds="90016,99593,99610,90019,90013,90015,90018,90002"
+                                     answerLabels="TB,YCC,SMC,Outreach,Out Patient,STI,Inpatient,Other"
+                                     required="true"/>
+                                </span>
+                            </excludeIf>
                         </td>
-                        <td style="width: 33%;" class="ARTCareEnableDisableChild11">
+                        <td style="width: 33%;">
                             <label>Other</label>
-                            <obs size="20" conceptId="99115" labelText=""/>
+                            <span class="ARTCareEnableDisableChild11">
+                                <obs conceptId="99115" labelText=""/>
+                            </span>
                         </td>
                         <td>
 
@@ -1398,7 +1484,7 @@
                 <tr>
                     <td>HIV enrolled</td>
                     <td>
-                        <encounterDate id="hivEnrolledDate"/>
+                        <encounterDate default="today" allowFutureDates="false" id="hivEnrolledDate"/>
                     </td>
                     <td class="checkboxGroup"><span class="enableDisable">
                         <p id="trigger">
@@ -1415,7 +1501,7 @@
                 <tr>
                     <td>Eligible for ART</td>
                     <td>
-                        <obs conceptId="90297"/>
+                        <obs conceptId="90297" allowFutureDates="false"/>
                     </td>
                     <td rowspan="2">
                         <b>Clinical Stage:</b>
@@ -1431,8 +1517,10 @@
                             <obs conceptId="99600" style="checkbox" labelText="TB"/>
                         </p>
                         <p>
-                            <obs conceptId="99123" style="checkbox"
-                                 labelText="Presumptive HIV Diagnosis of severe HIV infection in infants"/>
+                            <excludeIf velocityTest="$patient.age > 9 ">
+                                <obs conceptId="99123" style="checkbox"
+                                     labelText="Presumptive HIV Diagnosis of severe HIV infection in infants"/>
+                            </excludeIf>
                         </p>
                         <excludeIf velocityTest="$patient.age > 9 ">
                             <p>
@@ -1453,7 +1541,7 @@
                 <tr>
                     <td>Eligible and ready</td>
                     <td>
-                        <obs conceptId="90299"/>
+                        <obs conceptId="90299" allowFutureDates="false"/>
                     </td>
                 </tr>
             </table>
@@ -1771,6 +1859,44 @@
                                 <obs conceptId="162990"/>
                             </small>
                             <p class="ArtCareEnableDisableChild7">
+                                <obs size="20" conceptId="162989" labelText="Other"/>
+                            </p>
+                        </td>
+                        <td colspan="2">
+                            <obs conceptId="90247" answerConceptIds="90046,90047,99889"
+                                 answerLabels="6.Clinical, 7.Immuno, 8. Virological"/>
+                        </td>
+                    </obsgroup>
+                </tr>
+                <tr>
+                    <obsgroup groupingConceptId="162988">
+                        <td>
+                            <obs conceptId="162991"/>
+                        </td>
+                        <td>
+                            <small class="ArtCareEnableDisable12">
+                                <obs conceptId="162990"/>
+                            </small>
+                            <p class="ArtCareEnableDisableChild12">
+                                <obs size="20" conceptId="162989" labelText="Other"/>
+                            </p>
+                        </td>
+                        <td colspan="2">
+                            <obs conceptId="90247" answerConceptIds="90046,90047,99889"
+                                 answerLabels="6.Clinical, 7.Immuno, 8. Virological"/>
+                        </td>
+                    </obsgroup>
+                </tr>
+                <tr>
+                    <obsgroup groupingConceptId="162988">
+                        <td>
+                            <obs conceptId="162991"/>
+                        </td>
+                        <td>
+                            <small class="ArtCareEnableDisable13">
+                                <obs conceptId="162990"/>
+                            </small>
+                            <p class="ArtCareEnableDisableChild13">
                                 <obs size="20" conceptId="162989" labelText="Other"/>
                             </p>
                         </td>
