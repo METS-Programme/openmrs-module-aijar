@@ -277,7 +277,7 @@
                                 <obs conceptId="99602" style="checkbox" labelText="Pregnancy"/>
                                 </span>
                                 <span id="disabled">
-                                    <obs conceptId="5596" labelText="EDD"/>
+                                    <obs conceptId="5596" labelText="EDD" allowFutureDates="true"/>
                                     <br/>
                                     <obs conceptId="90012" labelText="EMTCT"/>
                                     <br/>
