@@ -8745,6 +8745,7 @@ limit 1</property>
                     </cell>
                 </row>
                 <row id="10711">
+                    <property name="pageBreakAfter">always</property>
                     <cell id="10714">
                         <property name="backgroundColor">#C0C0C0</property>
                         <property name="fontSize">8pt</property>

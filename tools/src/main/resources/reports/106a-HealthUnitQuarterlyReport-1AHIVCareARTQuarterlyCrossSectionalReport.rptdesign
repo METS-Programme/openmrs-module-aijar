@@ -7,7 +7,7 @@
     <parameters>
         <scalar-parameter name="year" id="10495">
             <property name="valueType">static</property>
-            <property name="dataType">string</property>
+            <property name="dataType">integer</property>
             <property name="paramType">simple</property>
             <text-property name="promptText">Year</text-property>
             <property name="controlType">text-box</property>
@@ -18,14 +18,37 @@
         </scalar-parameter>
         <scalar-parameter name="quarter" id="10496">
             <property name="valueType">static</property>
-            <property name="dataType">string</property>
+            <property name="dataType">integer</property>
             <property name="paramType">simple</property>
             <text-property name="promptText">Quarter</text-property>
-            <property name="controlType">text-box</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">false</property>
+            <property name="fixedOrder">false</property>
+            <property name="defaultValue">1</property>
             <property name="distinct">true</property>
+            <property name="sortBy">value</property>
+            <property name="sortDirection">asc</property>
             <structure name="format">
                 <property name="category">Unformatted</property>
             </structure>
+            <list-property name="selectionList">
+                <structure>
+                    <property name="value">1</property>
+                    <property name="label">January - March</property>
+                </structure>
+                <structure>
+                    <property name="value">2</property>
+                    <property name="label">April- June</property>
+                </structure>
+                <structure>
+                    <property name="value">3</property>
+                    <property name="label">July - September</property>
+                </structure>
+                <structure>
+                    <property name="value">4</property>
+                    <property name="label">October - December</property>
+                </structure>
+            </list-property>
         </scalar-parameter>
     </parameters>
     <data-sources>
@@ -38,720 +61,6 @@
     </data-sources>
     <data-sets>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="106a" id="9604">
-            <list-property name="columnHints">
-                <structure>
-                    <property name="columnName">indicator_id</property>
-                    <property name="displayName">indicator_id</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q1indicator</property>
-                    <property name="displayName">q1indicator</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q1MBabies</property>
-                    <property name="displayName">q1MBabies</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q1FBabies</property>
-                    <property name="displayName">q1FBabies</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q1MToddlers</property>
-                    <property name="displayName">q1MToddlers</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q1FToddlers</property>
-                    <property name="displayName">q1FToddlers</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q1MTeens</property>
-                    <property name="displayName">q1MTeens</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q1FTeens</property>
-                    <property name="displayName">q1FTeens</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q1MSeniors</property>
-                    <property name="displayName">q1MSeniors</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q1FSeniors</property>
-                    <property name="displayName">q1FSeniors</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q1Total</property>
-                    <property name="displayName">q1Total</property>
-                </structure>
-                <structure>
-                    <property name="columnName">indicator_id_12</property>
-                    <property name="displayName">indicator_id</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q2indicator</property>
-                    <property name="displayName">q2indicator</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q2MBabies</property>
-                    <property name="displayName">q2MBabies</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q2FBabies</property>
-                    <property name="displayName">q2FBabies</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q2MToddlers</property>
-                    <property name="displayName">q2MToddlers</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q2FToddlers</property>
-                    <property name="displayName">q2FToddlers</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q2MTeens</property>
-                    <property name="displayName">q2MTeens</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q2FTeens</property>
-                    <property name="displayName">q2FTeens</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q2MSeniors</property>
-                    <property name="displayName">q2MSeniors</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q2FSeniors</property>
-                    <property name="displayName">q2FSeniors</property>
-                </structure>
-                <structure>
-                    <property name="columnName">Total</property>
-                    <property name="displayName">Total</property>
-                </structure>
-                <structure>
-                    <property name="columnName">indicator_id_23</property>
-                    <property name="displayName">indicator_id</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q3indicator</property>
-                    <property name="displayName">q3indicator</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q3FTeens</property>
-                    <property name="displayName">q3FTeens</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q3FSeniors</property>
-                    <property name="displayName">q3FSeniors</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q3Total</property>
-                    <property name="displayName">q3Total</property>
-                </structure>
-                <structure>
-                    <property name="columnName">indicator_id_28</property>
-                    <property name="displayName">indicator_id</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q4indicator</property>
-                    <property name="displayName">q4indicator</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q4Total</property>
-                    <property name="displayName">q4Total</property>
-                </structure>
-                <structure>
-                    <property name="columnName">indicator_id_31</property>
-                    <property name="displayName">indicator_id</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q5indicator</property>
-                    <property name="displayName">q5indicator</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q5MBabies</property>
-                    <property name="displayName">q5MBabies</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q5FBabies</property>
-                    <property name="displayName">q5FBabies</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q5MToddlers</property>
-                    <property name="displayName">q5MToddlers</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q5FToddlers</property>
-                    <property name="displayName">q5FToddlers</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q5MTeens</property>
-                    <property name="displayName">q5MTeens</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q5FTeens</property>
-                    <property name="displayName">q5FTeens</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q5MSeniors</property>
-                    <property name="displayName">q5MSeniors</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q5FSeniors</property>
-                    <property name="displayName">q5FSeniors</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q5Total</property>
-                    <property name="displayName">q5Total</property>
-                </structure>
-                <structure>
-                    <property name="columnName">indicator_id_42</property>
-                    <property name="displayName">indicator_id</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q6indicator</property>
-                    <property name="displayName">q6indicator</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q6Total</property>
-                    <property name="displayName">q6Total</property>
-                </structure>
-                <structure>
-                    <property name="columnName">indicator_id_45</property>
-                    <property name="displayName">indicator_id</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q7indicator</property>
-                    <property name="displayName">q7indicator</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q71</property>
-                    <property name="displayName">q71</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q72</property>
-                    <property name="displayName">q72</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q7Total</property>
-                    <property name="displayName">q7Total</property>
-                </structure>
-                <structure>
-                    <property name="columnName">indicator_id_50</property>
-                    <property name="displayName">indicator_id</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q8indicator</property>
-                    <property name="displayName">q8indicator</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q81</property>
-                    <property name="displayName">q81</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q82</property>
-                    <property name="displayName">q82</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q8Total</property>
-                    <property name="displayName">q8Total</property>
-                </structure>
-                <structure>
-                    <property name="columnName">indicator_id_55</property>
-                    <property name="displayName">indicator_id</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q9indicator</property>
-                    <property name="displayName">q9indicator</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q9Total</property>
-                    <property name="displayName">q9Total</property>
-                </structure>
-                <structure>
-                    <property name="columnName">indicator_id_58</property>
-                    <property name="displayName">indicator_id</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q10indicator</property>
-                    <property name="displayName">q10indicator</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q10Total</property>
-                    <property name="displayName">q10Total</property>
-                </structure>
-                <structure>
-                    <property name="columnName">indicator_id_61</property>
-                    <property name="displayName">indicator_id</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q11indicator</property>
-                    <property name="displayName">q11indicator</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q11Total</property>
-                    <property name="displayName">q11Total</property>
-                </structure>
-                <structure>
-                    <property name="columnName">indicator_id_64</property>
-                    <property name="displayName">indicator_id</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q12indicator</property>
-                    <property name="displayName">q12indicator</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q12Total</property>
-                    <property name="displayName">q12Total</property>
-                </structure>
-                <structure>
-                    <property name="columnName">indicator_id_67</property>
-                    <property name="displayName">indicator_id</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q13indicator</property>
-                    <property name="displayName">q13indicator</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q13Total</property>
-                    <property name="displayName">q13Total</property>
-                </structure>
-                <structure>
-                    <property name="columnName">indicator_id_70</property>
-                    <property name="displayName">indicator_id</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q14indicator</property>
-                    <property name="displayName">q14indicator</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q14Total</property>
-                    <property name="displayName">q14Total</property>
-                </structure>
-                <structure>
-                    <property name="columnName">indicator_id_73</property>
-                    <property name="displayName">indicator_id</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q15indicator</property>
-                    <property name="displayName">q15indicator</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q15MBabies</property>
-                    <property name="displayName">q15MBabies</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q15FBabies</property>
-                    <property name="displayName">q15FBabies</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q15MToddlers</property>
-                    <property name="displayName">q15MToddlers</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q15FToddlers</property>
-                    <property name="displayName">q15FToddlers</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q15MTeens</property>
-                    <property name="displayName">q15MTeens</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q15FTeens</property>
-                    <property name="displayName">q15FTeens</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q15MSeniors</property>
-                    <property name="displayName">q15MSeniors</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q15FSeniors</property>
-                    <property name="displayName">q15FSeniors</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q15Total</property>
-                    <property name="displayName">q15Total</property>
-                </structure>
-                <structure>
-                    <property name="columnName">indicator_id_84</property>
-                    <property name="displayName">indicator_id</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q16indicator</property>
-                    <property name="displayName">q16indicator</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q16MBabies</property>
-                    <property name="displayName">q16MBabies</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q16FBabies</property>
-                    <property name="displayName">q16FBabies</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q16MToddlers</property>
-                    <property name="displayName">q16MToddlers</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q16FToddlers</property>
-                    <property name="displayName">q16FToddlers</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q16MTeens</property>
-                    <property name="displayName">q16MTeens</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q16FTeens</property>
-                    <property name="displayName">q16FTeens</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q16MSeniors</property>
-                    <property name="displayName">q16MSeniors</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q16FSeniors</property>
-                    <property name="displayName">q16FSeniors</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q16Total</property>
-                    <property name="displayName">q16Total</property>
-                </structure>
-                <structure>
-                    <property name="columnName">indicator_id_95</property>
-                    <property name="displayName">indicator_id</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q17indicator</property>
-                    <property name="displayName">q17indicator</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q17Total</property>
-                    <property name="displayName">q17Total</property>
-                </structure>
-                <structure>
-                    <property name="columnName">indicator_id_98</property>
-                    <property name="displayName">indicator_id</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q18indicator</property>
-                    <property name="displayName">q18indicator</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q18FTeens</property>
-                    <property name="displayName">q18FTeens</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q18FSeniors</property>
-                    <property name="displayName">q18FSeniors</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q18Total</property>
-                    <property name="displayName">q18Total</property>
-                </structure>
-                <structure>
-                    <property name="columnName">indicator_id_103</property>
-                    <property name="displayName">indicator_id</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q19indicator</property>
-                    <property name="displayName">q19indicator</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q19MBabies</property>
-                    <property name="displayName">q19MBabies</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q19FBabies</property>
-                    <property name="displayName">q19FBabies</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q19MToddlers</property>
-                    <property name="displayName">q19MToddlers</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q19FToddlers</property>
-                    <property name="displayName">q19FToddlers</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q19MTeens</property>
-                    <property name="displayName">q19MTeens</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q19FTeens</property>
-                    <property name="displayName">q19FTeens</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q19MSeniors</property>
-                    <property name="displayName">q19MSeniors</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q19FSeniors</property>
-                    <property name="displayName">q19FSeniors</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q19Total</property>
-                    <property name="displayName">q19Total</property>
-                </structure>
-                <structure>
-                    <property name="columnName">indicator_id_114</property>
-                    <property name="displayName">indicator_id</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q20indicator</property>
-                    <property name="displayName">q20indicator</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q20MBabies</property>
-                    <property name="displayName">q20MBabies</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q20FBabies</property>
-                    <property name="displayName">q20FBabies</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q20MToddlers</property>
-                    <property name="displayName">q20MToddlers</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q20FToddlers</property>
-                    <property name="displayName">q20FToddlers</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q20MTeens</property>
-                    <property name="displayName">q20MTeens</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q20FTeens</property>
-                    <property name="displayName">q20FTeens</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q20MSeniors</property>
-                    <property name="displayName">q20MSeniors</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q20FSeniors</property>
-                    <property name="displayName">q20FSeniors</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q20Total</property>
-                    <property name="displayName">q20Total</property>
-                </structure>
-                <structure>
-                    <property name="columnName">indicator_id_125</property>
-                    <property name="displayName">indicator_id</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q21indicator</property>
-                    <property name="displayName">q21indicator</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q21MBabies</property>
-                    <property name="displayName">q21MBabies</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q21FBabies</property>
-                    <property name="displayName">q21FBabies</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q21MToddlers</property>
-                    <property name="displayName">q21MToddlers</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q21FToddlers</property>
-                    <property name="displayName">q21FToddlers</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q21MTeens</property>
-                    <property name="displayName">q21MTeens</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q21FTeens</property>
-                    <property name="displayName">q21FTeens</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q21MSeniors</property>
-                    <property name="displayName">q21MSeniors</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q21FSeniors</property>
-                    <property name="displayName">q21FSeniors</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q21Total</property>
-                    <property name="displayName">q21Total</property>
-                </structure>
-                <structure>
-                    <property name="columnName">indicator_id_136</property>
-                    <property name="displayName">indicator_id</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q22indicator</property>
-                    <property name="displayName">q22indicator</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q22MBabies</property>
-                    <property name="displayName">q22MBabies</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q22FBabies</property>
-                    <property name="displayName">q22FBabies</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q22MToddlers</property>
-                    <property name="displayName">q22MToddlers</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q22FToddlers</property>
-                    <property name="displayName">q22FToddlers</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q22MTeens</property>
-                    <property name="displayName">q22MTeens</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q22FTeens</property>
-                    <property name="displayName">q22FTeens</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q22MSeniors</property>
-                    <property name="displayName">q22MSeniors</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q22FSeniors</property>
-                    <property name="displayName">q22FSeniors</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q22Total</property>
-                    <property name="displayName">q22Total</property>
-                </structure>
-                <structure>
-                    <property name="columnName">indicator_id_147</property>
-                    <property name="displayName">indicator_id</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q23indicator</property>
-                    <property name="displayName">q23indicator</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q23MBabies</property>
-                    <property name="displayName">q23MBabies</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q23FBabies</property>
-                    <property name="displayName">q23FBabies</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q23MToddlers</property>
-                    <property name="displayName">q23MToddlers</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q23FToddlers</property>
-                    <property name="displayName">q23FToddlers</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q23MTeens</property>
-                    <property name="displayName">q23MTeens</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q23FTeens</property>
-                    <property name="displayName">q23FTeens</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q23MSeniors</property>
-                    <property name="displayName">q23MSeniors</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q23FSeniors</property>
-                    <property name="displayName">q23FSeniors</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q23Total</property>
-                    <property name="displayName">q23Total</property>
-                </structure>
-                <structure>
-                    <property name="columnName">indicator_id_158</property>
-                    <property name="displayName">indicator_id</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q24indicator</property>
-                    <property name="displayName">q24indicator</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q24Total</property>
-                    <property name="displayName">q24Total</property>
-                </structure>
-                <structure>
-                    <property name="columnName">indicator_id_161</property>
-                    <property name="displayName">indicator_id</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q25indicator</property>
-                    <property name="displayName">q25indicator</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q25Total</property>
-                    <property name="displayName">q25Total</property>
-                </structure>
-                <structure>
-                    <property name="columnName">indicator_id_164</property>
-                    <property name="displayName">indicator_id</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q26indicator</property>
-                    <property name="displayName">q26indicator</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q26Total</property>
-                    <property name="displayName">q26Total</property>
-                </structure>
-                <structure>
-                    <property name="columnName">indicator_id_167</property>
-                    <property name="displayName">indicator_id</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q27indicator</property>
-                    <property name="displayName">q27indicator</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q27Total</property>
-                    <property name="displayName">q27Total</property>
-                </structure>
-                <structure>
-                    <property name="columnName">indicator_id_170</property>
-                    <property name="displayName">indicator_id</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q28indicator</property>
-                    <property name="displayName">q28indicator</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q28Total</property>
-                    <property name="displayName">q28Total</property>
-                </structure>
-                <structure>
-                    <property name="columnName">indicator_id_173</property>
-                    <property name="displayName">indicator_id</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q29indicator</property>
-                    <property name="displayName">q29indicator</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q29Total</property>
-                    <property name="displayName">q29Total</property>
-                </structure>
-                <structure>
-                    <property name="columnName">indicator_id_176</property>
-                    <property name="displayName">indicator_id</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q30indicator</property>
-                    <property name="displayName">q30indicator</property>
-                </structure>
-                <structure>
-                    <property name="columnName">q30Total</property>
-                    <property name="displayName">q30Total</property>
-                </structure>
-            </list-property>
             <structure name="cachedMetaData">
                 <list-property name="resultSet">
                     <structure>
@@ -1647,8 +956,32 @@
                 </list-property>
             </structure>
             <property name="dataSource">Data Source</property>
-            <method name="beforeOpen"><![CDATA[this.queryText = this.queryText.replaceAll(":y", params["year"]);
-this.queryText = this.queryText.replaceAll(":q", params["quarter"]);]]></method>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">param_1</property>
+                    <property name="paramName">year</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">1</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_2</property>
+                    <property name="paramName">quarter</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">2</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
             <list-property name="resultSet">
                 <structure>
                     <property name="position">1</property>
@@ -2719,1196 +2052,45 @@ this.queryText = this.queryText.replaceAll(":q", params["quarter"]);]]></method>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <property name="queryText">SELECT 
-    *
-FROM
-    (SELECT 
-        indicator_id,
-            q1indicator,
-            SUM(IF(gender = 'M' AND age &lt; 2, 1, 0)) AS q1MBabies,
-            SUM(IF(gender = 'F' AND age &lt; 2, 1, 0)) AS q1FBabies,
-            SUM(IF(gender = 'M' AND age BETWEEN 2 AND 4, 1, 0)) AS q1MToddlers,
-            SUM(IF(gender = 'F' AND age BETWEEN 2 AND 4, 1, 0)) AS q1FToddlers,
-            SUM(IF(gender = 'M' AND age BETWEEN 5 AND 14, 1, 0)) AS q1MTeens,
-            SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q1FTeens,
-            SUM(IF(gender = 'M' AND age > 14, 1, 0)) AS q1MSeniors,
-            SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q1FSeniors,
-            SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 0 AND 100, 1, 0)) AS q1Total
-    FROM
-        (SELECT 
-        1 AS indicator_id,
-            'Cummulative No. of clients ever enrolled in HIV care at this facility at the end of the previous quarter' AS q1indicator
-    ) Indicators
-    LEFT JOIN (SELECT DISTINCT
-        1 AS indicator_id,
-            pp.gender,
-            pp.person_id,
-            TIMESTAMPDIFF(YEAR, pp.birthdate, CURDATE()) AS age,
-            YEAR(e.encounter_datetime) AS 'year',
-            QUARTER(e.encounter_datetime) AS 'quarter'
-    FROM
-        person pp
-    INNER JOIN patient p ON (pp.person_id = p.patient_id
-        AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id
-        AND form_id = 28
-        AND e.voided = 0
-        AND CASE YEAR(e.encounter_datetime)
-        WHEN ':y' THEN QUARTER(e.encounter_datetime) &lt; ':q'
-        ELSE QUARTER(e.encounter_datetime) &lt;= ':q'
-            OR QUARTER(e.encounter_datetime) >= ':q'
-    END
-        AND YEAR(e.encounter_datetime) &lt;= ':y')) Enrollment USING (indicator_id)
-    GROUP BY q1indicator) ind1
-        LEFT JOIN
-    (SELECT 
-        indicator_id,
-            q2indicator,
-            SUM(IF(gender = 'M' AND age &lt; 2, 1, 0)) AS q2MBabies,
-            SUM(IF(gender = 'F' AND age &lt; 2, 1, 0)) AS q2FBabies,
-            SUM(IF(gender = 'M' AND age BETWEEN 2 AND 4, 1, 0)) AS q2MToddlers,
-            SUM(IF(gender = 'F' AND age BETWEEN 2 AND 4, 1, 0)) AS q2FToddlers,
-            SUM(IF(gender = 'M' AND age BETWEEN 5 AND 14, 1, 0)) AS q2MTeens,
-            SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q2FTeens,
-            SUM(IF(gender = 'M' AND age > 14, 1, 0)) AS q2MSeniors,
-            SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q2FSeniors,
-            SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 0 AND 100, 1, 0)) AS Total
-    FROM
-        (SELECT 
-        1 AS indicator_id,
-            'Number of new patients enrolled in HIV care at this  facility during the period' AS q2indicator
-    ) Indicators
-    LEFT JOIN (SELECT DISTINCT
-        1 AS indicator_id,
-            pp.gender,
-            pp.person_id,
-            TIMESTAMPDIFF(YEAR, pp.birthdate, CURDATE()) AS age
-    FROM
-        person pp
-    INNER JOIN patient p ON (pp.person_id = p.patient_id
-        AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id
-        AND form_id = 28
-        AND e.voided = 0
-        AND QUARTER(e.encounter_datetime) = 1
-        AND YEAR(e.encounter_datetime) = ':y')) Enrollment USING (indicator_id)
-    GROUP BY q2indicator) ind2 ON (ind1.indicator_id = ind2.indicator_id)
-        LEFT JOIN
-    (SELECT 
-        indicator_id,
-            q3indicator,
-            SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q3FTeens,
-            SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q3FSeniors,
-            SUM(IF((gender = 'F') AND age BETWEEN 0 AND 100, 1, 0)) AS q3Total
-    FROM
-        (SELECT 
-        1 AS indicator_id,
-            'Number of pregnant and lactating women enrolled into care during the reporting quarter. (subset of row 2 above)' AS q3indicator
-    ) Indicators
-    LEFT JOIN (SELECT DISTINCT
-        1 AS indicator_id,
-            pp.gender,
-            pp.person_id,
-            TIMESTAMPDIFF(YEAR, pp.birthdate, CURDATE()) AS age
-    FROM
-        person pp
-    INNER JOIN patient p ON (pp.person_id = p.patient_id
-        AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id
-        AND form_id = 27
-        AND QUARTER(e.encounter_datetime) = 1
-        AND YEAR(e.encounter_datetime) = ':y')
-    INNER JOIN obs o ON (e.encounter_id = o.encounter_id
-        AND o.concept_id = 90041
-        AND o.value_coded = 1065)) Enrollment USING (indicator_id)
-    GROUP BY q3indicator) ind3 ON (ind2.indicator_id = ind3.indicator_id)
-        LEFT JOIN
-    (SELECT 
-        indicator_id,
-            q4indicator,
-            SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 0 AND 100, 1, 0)) AS q4Total
-    FROM
-        (SELECT 
-        1 AS indicator_id,
-            'Number of clients started on INH Prophylaxis during the reporting quarter (Subset of row 2 above)' AS q4indicator
-    ) Indicators
-    LEFT JOIN (SELECT DISTINCT
-        1 AS indicator_id,
-            pp.gender,
-            pp.person_id,
-            TIMESTAMPDIFF(YEAR, pp.birthdate, CURDATE()) AS age,
-            YEAR(e.encounter_datetime) AS 'Year',
-            QUARTER(e.encounter_datetime) AS 'quarter'
-    FROM
-        person pp
-    INNER JOIN patient p ON (pp.person_id = p.patient_id
-        AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id
-        AND form_id = 28
-        AND e.voided = 0
-        AND CASE YEAR(e.encounter_datetime)
-        WHEN ':y' THEN QUARTER(e.encounter_datetime) &lt;= ':q'
-        ELSE QUARTER(e.encounter_datetime) &lt;= ':q'
-            OR QUARTER(e.encounter_datetime) >= ':q'
-    END
-        AND YEAR(e.encounter_datetime) &lt;= ':y')) Enrollment USING (indicator_id)
-    GROUP BY q4indicator) ind4 ON (ind3.indicator_id = ind4.indicator_id)
-        LEFT JOIN
-    (SELECT 
-        indicator_id,
-            q5indicator,
-            SUM(IF(gender = 'M' AND age &lt; 2, 1, 0)) AS q5MBabies,
-            SUM(IF(gender = 'F' AND age &lt; 2, 1, 0)) AS q5FBabies,
-            SUM(IF(gender = 'M' AND age BETWEEN 2 AND 4, 1, 0)) AS q5MToddlers,
-            SUM(IF(gender = 'F' AND age BETWEEN 2 AND 4, 1, 0)) AS q5FToddlers,
-            SUM(IF(gender = 'M' AND age BETWEEN 5 AND 14, 1, 0)) AS q5MTeens,
-            SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q5FTeens,
-            SUM(IF(gender = 'M' AND age > 14, 1, 0)) AS q5MSeniors,
-            SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q5FSeniors,
-            SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 0 AND 100, 1, 0)) AS q5Total
-    FROM
-        (SELECT 
-        1 AS indicator_id,
-            'Cumulative number of clients ever enrolled in HIV care at this facility at the end of the previous quarter (row 1 + row 2)' AS q5indicator
-    ) Indicators
-    LEFT JOIN (SELECT DISTINCT
-        1 AS indicator_id,
-            pp.gender,
-            pp.person_id,
-            TIMESTAMPDIFF(YEAR, pp.birthdate, CURDATE()) AS age,
-            YEAR(e.encounter_datetime) AS 'Year',
-            QUARTER(e.encounter_datetime) AS 'quarter'
-    FROM
-        person pp
-    INNER JOIN patient p ON (pp.person_id = p.patient_id
-        AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id
-        AND form_id = 28
-        AND e.voided = 0
-        AND CASE YEAR(e.encounter_datetime)
-        WHEN ':y' THEN QUARTER(e.encounter_datetime) &lt;= ':q'
-        ELSE QUARTER(e.encounter_datetime) &lt;= ':q'
-            OR QUARTER(e.encounter_datetime) >= ':q'
-    END
-        AND YEAR(e.encounter_datetime) &lt;= ':y')) Enrollment USING (indicator_id)
-    GROUP BY q5indicator) ind5 ON (ind4.indicator_id = ind5.indicator_id)
-        LEFT JOIN
-    (SELECT 
-        indicator_id,
-            q6indicator,
-            SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 0 AND 100, 1, 0)) AS q6Total
-    FROM
-        (SELECT 
-        1 AS indicator_id,
-            'No. of persons already enrolled in HIV care who transfered from another facility during the quarter' AS q6indicator
-    ) Indicators
-    LEFT JOIN (SELECT DISTINCT
-        1 AS indicator_id,
-            pp.gender,
-            pp.person_id,
-            TIMESTAMPDIFF(YEAR, pp.birthdate, CURDATE()) AS age
-    FROM
-        person pp
-    INNER JOIN patient p ON (pp.person_id = p.patient_id
-        AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id
-        AND form_id = 28
-        AND QUARTER(e.encounter_datetime) = 1
-        AND YEAR(e.encounter_datetime) = ':y')
-    INNER JOIN obs o ON (e.encounter_id = o.encounter_id
-        AND o.concept_id = 99160)) Enrollment USING (indicator_id)
-    GROUP BY q6indicator) ind6 ON (ind5.indicator_id = ind6.indicator_id)
-        LEFT JOIN
-    (SELECT 
-        indicator_id,
-            q7indicator,
-            SUM(IF(age &lt;= 14, 1, 0)) AS q71,
-            SUM(IF(age > 14, 1, 0)) AS q72,
-            SUM(IF(age BETWEEN 0 AND 100, 1, 0)) AS q7Total
-    FROM
-        (SELECT 
-        1 AS indicator_id,
-            'Number of active clients on pre-ART Care in the quarter' AS q7indicator
-    ) Indicators
-    LEFT JOIN (SELECT DISTINCT
-        1 AS indicator_id,
-            pp.gender,
-            pp.person_id,
-            MAX(e.encounter_datetime) en_date,
-            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-    FROM
-        person pp
-    INNER JOIN patient p ON (pp.person_id = p.patient_id
-        AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id
-        AND form_id = 27
-        AND QUARTER(e.encounter_datetime) = 1
-        AND YEAR(e.encounter_datetime) = ':y'
-        AND e.voided = 0
-        AND e.patient_id NOT IN (SELECT DISTINCT
-            patient_id
-        FROM
-            encounter ei
-        JOIN obs oi ON (ei.encounter_id = oi.encounter_id
-            AND form_id = 27
-            AND oi.concept_id = 90315
-            AND oi.value_coded > 0
-            AND oi.voided = 0
-            AND QUARTER(ei.encounter_datetime) = ':q'
-            AND YEAR(ei.encounter_datetime) = ':y')))
-    INNER JOIN obs o ON (e.encounter_id = o.encounter_id
-        AND o.voided = 0)
-    GROUP BY pp.person_id) enrollment USING (indicator_id)
-    GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
-        LEFT JOIN
-    (SELECT 
-        indicator_id,
-            q8indicator,
-            SUM(IF(age &lt;= 14, 1, 0)) AS q81,
-            SUM(IF(age > 14, 1, 0)) AS q82,
-            SUM(IF(age BETWEEN 0 AND 100, 1, 0)) AS q8Total
-    FROM
-        (SELECT 
-        1 AS indicator_id,
-            'Number active on pre-ART who received CPT/Daspone at last  visit in the quarter' AS q8indicator
-    ) Indicators
-    LEFT JOIN (SELECT DISTINCT
-        1 AS indicator_id,
-            pp.gender,
-            pp.person_id,
-            MAX(e.encounter_datetime) en_date,
-            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-    FROM
-        person pp
-    INNER JOIN patient p ON (pp.person_id = p.patient_id
-        AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id
-        AND form_id = 27
-        AND QUARTER(e.encounter_datetime) = 1
-        AND YEAR(e.encounter_datetime) = ':y'
-        AND e.voided = 0
-        AND e.patient_id NOT IN (SELECT DISTINCT
-            patient_id
-        FROM
-            encounter ei
-        JOIN obs oi ON (ei.encounter_id = oi.encounter_id
-            AND form_id = 27
-            AND oi.concept_id = 90315
-            AND oi.value_coded > 0
-            AND oi.voided = 0
-            AND QUARTER(ei.encounter_datetime) = ':q'
-            AND YEAR(ei.encounter_datetime) = ':y')))
-    INNER JOIN obs o ON (e.encounter_id = o.encounter_id
-        AND o.voided = 0
-        AND o.concept_id = 99037
-        AND o.value_numeric > 0)
-    GROUP BY pp.person_id) enrollment USING (indicator_id)
-    GROUP BY q8indicator) ind8 ON (ind7.indicator_id = ind8.indicator_id)
-        LEFT JOIN
-    (SELECT 
-        indicator_id,
-            q9indicator,
-            SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 0 AND 100, 1, 0)) AS q9Total
-    FROM
-        (SELECT 
-        1 AS indicator_id,
-            'No. active on pre-ART Care assessed for TB at last visit in the quarter' AS q9indicator
-    ) Indicators
-    LEFT JOIN (SELECT DISTINCT
-        1 AS indicator_id,
-            pp.gender,
-            pp.person_id,
-            MAX(e.encounter_datetime) en_date,
-            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-    FROM
-        person pp
-    INNER JOIN patient p ON (pp.person_id = p.patient_id
-        AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id
-        AND form_id = 27
-        AND QUARTER(e.encounter_datetime) = 1
-        AND YEAR(e.encounter_datetime) = ':y'
-        AND e.voided = 0
-        AND e.patient_id NOT IN (SELECT DISTINCT
-            patient_id
-        FROM
-            encounter ei
-        JOIN obs oi ON (ei.encounter_id = oi.encounter_id
-            AND form_id = 27
-            AND oi.concept_id = 90315
-            AND oi.value_coded > 0
-            AND oi.voided = 0
-            AND QUARTER(ei.encounter_datetime) = ':q'
-            AND YEAR(ei.encounter_datetime) = ':y')))
-    INNER JOIN obs o ON (e.encounter_id = o.encounter_id
-        AND o.voided = 0
-        AND o.concept_id = 90216
-        AND o.value_coded = 90073)
-    GROUP BY pp.person_id) enrollment USING (indicator_id)
-    GROUP BY q9indicator) ind9 ON (ind8.indicator_id = ind9.indicator_id)
-        LEFT JOIN
-    (SELECT 
-        indicator_id,
-            q10indicator,
-            SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 0 AND 100, 1, 0)) AS q10Total
-    FROM
-        (SELECT 
-        1 AS indicator_id,
-            'No. active on pre-ART Care diagnosed with TB in the quarter' AS q10indicator
-    ) Indicators
-    LEFT JOIN (SELECT DISTINCT
-        1 AS indicator_id,
-            pp.gender,
-            pp.person_id,
-            MAX(e.encounter_datetime) en_date,
-            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-    FROM
-        person pp
-    INNER JOIN patient p ON (pp.person_id = p.patient_id
-        AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id
-        AND form_id = 27
-        AND QUARTER(e.encounter_datetime) = 1
-        AND YEAR(e.encounter_datetime) = ':y'
-        AND e.voided = 0
-        AND e.patient_id NOT IN (SELECT DISTINCT
-            patient_id
-        FROM
-            encounter ei
-        JOIN obs oi ON (ei.encounter_id = oi.encounter_id
-            AND form_id = 27
-            AND oi.concept_id = 90315
-            AND oi.value_coded > 0
-            AND oi.voided = 0
-            AND QUARTER(ei.encounter_datetime) = ':q'
-            AND YEAR(ei.encounter_datetime) = ':y')))
-    INNER JOIN obs o ON (e.encounter_id = o.encounter_id
-        AND o.voided = 0
-        AND o.concept_id = 90216
-        AND o.value_coded = 90078)
-    GROUP BY pp.person_id) enrollment USING (indicator_id)
-    GROUP BY q10indicator) ind10 ON (ind9.indicator_id = ind10.indicator_id)
-        LEFT JOIN
-    (SELECT 
-        indicator_id,
-            q11indicator,
-            SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 0 AND 100, 1, 0)) AS q11Total
-    FROM
-        (SELECT 
-        1 AS indicator_id,
-            'No. active on pre-ART Care started on anti-TB treatment during the quarter' AS q11indicator
-    ) Indicators
-    LEFT JOIN (SELECT DISTINCT
-        1 AS indicator_id,
-            pp.gender,
-            pp.person_id,
-            MAX(e.encounter_datetime) en_date,
-            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-    FROM
-        person pp
-    INNER JOIN patient p ON (pp.person_id = p.patient_id
-        AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id
-        AND form_id = 27
-        AND QUARTER(e.encounter_datetime) = 1
-        AND YEAR(e.encounter_datetime) = ':y'
-        AND e.voided = 0
-        AND e.patient_id NOT IN (SELECT DISTINCT
-            patient_id
-        FROM
-            encounter ei
-        JOIN obs oi ON (ei.encounter_id = oi.encounter_id
-            AND form_id = 27
-            AND oi.concept_id = 90315
-            AND oi.value_coded > 0
-            AND oi.voided = 0
-            AND QUARTER(ei.encounter_datetime) = ':q'
-            AND YEAR(ei.encounter_datetime) = ':y')))
-    INNER JOIN obs o ON (e.encounter_id = o.encounter_id
-        AND o.voided = 0
-        AND o.concept_id = 90216
-        AND o.value_coded = 90071)
-    GROUP BY pp.person_id) enrollment USING (indicator_id)
-    GROUP BY q11indicator) ind11 ON (ind10.indicator_id = ind11.indicator_id)
-        LEFT JOIN
-    (SELECT 
-        indicator_id,
-            q12indicator,
-            SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 0 AND 100, 1, 0)) AS q12Total
-    FROM
-        (SELECT 
-        1 AS indicator_id,
-            'No. active on pre-ART Care assessed for Malnutrition at their visit in the quarter' AS q12indicator
-    ) Indicators
-    LEFT JOIN (SELECT DISTINCT
-        1 AS indicator_id,
-            pp.gender,
-            pp.person_id,
-            MAX(e.encounter_datetime) en_date,
-            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-    FROM
-        person pp
-    INNER JOIN patient p ON (pp.person_id = p.patient_id
-        AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id
-        AND form_id = 27
-        AND QUARTER(e.encounter_datetime) = 1
-        AND YEAR(e.encounter_datetime) = ':y'
-        AND e.voided = 0
-        AND e.patient_id NOT IN (SELECT DISTINCT
-            patient_id
-        FROM
-            encounter ei
-        JOIN obs oi ON (ei.encounter_id = oi.encounter_id
-            AND form_id = 27
-            AND oi.concept_id = 90315
-            AND oi.value_coded > 0
-            AND oi.voided = 0
-            AND QUARTER(ei.encounter_datetime) = ':q'
-            AND YEAR(ei.encounter_datetime) = ':y')))
-    INNER JOIN obs o ON (e.encounter_id = o.encounter_id
-        AND o.voided = 0
-        AND o.concept_id = 68)
-    GROUP BY pp.person_id) enrollment USING (indicator_id)
-    GROUP BY q12indicator) ind12 ON (ind11.indicator_id = ind12.indicator_id)
-        INNER JOIN
-    (SELECT 
-        indicator_id,
-            q13indicator,
-            SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 0 AND 100, 1, 0)) AS q13Total
-    FROM
-        (SELECT 
-        1 AS indicator_id,
-            'No. active on pre-ART Care who are malnourished at their last visit in the quarter' AS q13indicator
-    ) Indicators
-    LEFT JOIN (SELECT DISTINCT
-        1 AS indicator_id,
-            pp.gender,
-            pp.person_id,
-            MAX(e.encounter_datetime) en_date,
-            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-    FROM
-        person pp
-    INNER JOIN patient p ON (pp.person_id = p.patient_id
-        AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id
-        AND form_id = 27
-        AND QUARTER(e.encounter_datetime) = 1
-        AND YEAR(e.encounter_datetime) = ':y'
-        AND e.voided = 0
-        AND e.patient_id NOT IN (SELECT DISTINCT
-            patient_id
-        FROM
-            encounter ei
-        JOIN obs oi ON (ei.encounter_id = oi.encounter_id
-            AND form_id = 27
-            AND oi.concept_id = 90315
-            AND oi.value_coded > 0
-            AND oi.voided = 0
-            AND QUARTER(ei.encounter_datetime) = ':q'
-            AND YEAR(ei.encounter_datetime) = ':y')))
-    INNER JOIN obs o ON (e.encounter_id = o.encounter_id
-        AND o.voided = 0
-        AND o.concept_id = 68
-        AND o.value_coded IN (99271 , 99272, 99273))
-    GROUP BY pp.person_id) enrollment USING (indicator_id)
-    GROUP BY q13indicator) ind13 ON (ind12.indicator_id = ind13.indicator_id)
-        INNER JOIN
-    (SELECT 
-        indicator_id,
-            q14indicator,
-            SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 0 AND 100, 1, 0)) AS q14Total
-    FROM
-        (SELECT 
-        1 AS indicator_id,
-            'No. active on pre-ART Care eligible and ready but not started on ART by the end of the quarter' AS q14indicator
-    ) Indicators
-    LEFT JOIN (SELECT DISTINCT
-        1 AS indicator_id,
-            pp.gender,
-            pp.person_id,
-            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-    FROM
-        person pp
-    INNER JOIN patient p ON (pp.person_id = p.patient_id
-        AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id
-        AND form_id = 27
-        AND e.voided = 0
-        AND e.patient_id NOT IN (SELECT DISTINCT
-            patient_id
-        FROM
-            encounter ei
-        JOIN obs oi ON (ei.encounter_id = oi.encounter_id
-            AND form_id = 27
-            AND oi.concept_id = 90315
-            AND oi.value_coded > 0
-            AND oi.voided = 0)))
-    INNER JOIN obs o ON (e.encounter_id = o.encounter_id
-        AND o.voided = 0
-        AND YEAR(e.encounter_datetime) &lt;= ':y'
-        AND CASE YEAR(e.encounter_datetime)
-        WHEN ':y' THEN QUARTER(e.encounter_datetime) &lt;= ':q'
-        ELSE QUARTER(e.encounter_datetime) &lt;= ':q'
-            OR QUARTER(e.encounter_datetime) >= ':q'
-    END)
-    GROUP BY pp.person_id) enrollment USING (indicator_id)
-    GROUP BY q14indicator) ind14 ON (ind13.indicator_id = ind14.indicator_id)
-        INNER JOIN
-    (SELECT 
-        indicator_id,
-            q15indicator,
-            SUM(IF(gender = 'M' AND age &lt; 2, 1, 0)) AS q15MBabies,
-            SUM(IF(gender = 'F' AND age &lt; 2, 1, 0)) AS q15FBabies,
-            SUM(IF(gender = 'M' AND age BETWEEN 2 AND 4, 1, 0)) AS q15MToddlers,
-            SUM(IF(gender = 'F' AND age BETWEEN 2 AND 4, 1, 0)) AS q15FToddlers,
-            SUM(IF(gender = 'M' AND age BETWEEN 5 AND 14, 1, 0)) AS q15MTeens,
-            SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q15FTeens,
-            SUM(IF(gender = 'M' AND age > 14, 1, 0)) AS q15MSeniors,
-            SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q15FSeniors,
-            SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 0 AND 100, 1, 0)) AS q15Total
-    FROM
-        (SELECT 
-        1 AS indicator_id,
-            'Cumulative No. of clients ever enrolled on ART at this facility at the end of the previous  quarter' AS q15indicator
-    ) Indicators
-    LEFT JOIN (SELECT DISTINCT
-        1 AS indicator_id,
-            pp.gender,
-            pp.person_id,
-            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-    FROM
-        person pp
-    INNER JOIN patient p ON (pp.person_id = p.patient_id
-        AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id
-        AND e.voided = 0
-        AND CASE YEAR(e.encounter_datetime)
-        WHEN ':y' THEN QUARTER(e.encounter_datetime) &lt; ':q'
-        ELSE QUARTER(e.encounter_datetime) &lt;= ':q'
-            OR QUARTER(e.encounter_datetime) >= ':q'
-    END
-        AND YEAR(e.encounter_datetime) &lt;= ':y')
-    INNER JOIN obs o ON (e.encounter_id = o.encounter_id
-        AND o.voided = 0
-        AND o.concept_id = 99161)
-    GROUP BY pp.person_id) enrollment USING (indicator_id)
-    GROUP BY q15indicator) ind15 ON (ind14.indicator_id = ind15.indicator_id)
-        INNER JOIN
-    (SELECT 
-        indicator_id,
-            q16indicator,
-            SUM(IF(gender = 'M' AND age &lt; 2, 1, 0)) AS q16MBabies,
-            SUM(IF(gender = 'F' AND age &lt; 2, 1, 0)) AS q16FBabies,
-            SUM(IF(gender = 'M' AND age BETWEEN 2 AND 4, 1, 0)) AS q16MToddlers,
-            SUM(IF(gender = 'F' AND age BETWEEN 2 AND 4, 1, 0)) AS q16FToddlers,
-            SUM(IF(gender = 'M' AND age BETWEEN 5 AND 14, 1, 0)) AS q16MTeens,
-            SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q16FTeens,
-            SUM(IF(gender = 'M' AND age > 14, 1, 0)) AS q16MSeniors,
-            SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q16FSeniors,
-            SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 0 AND 100, 1, 0)) AS q16Total
-    FROM
-        (SELECT 
-        1 AS indicator_id,
-            'No. of new clients started on ART at this facility during the quarter' AS q16indicator
-    ) Indicators
-    LEFT JOIN (SELECT DISTINCT
-        1 AS indicator_id,
-            pp.gender,
-            pp.person_id,
-            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-    FROM
-        person pp
-    INNER JOIN patient p ON (pp.person_id = p.patient_id
-        AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id
-        AND e.voided = 0
-        AND QUARTER(e.encounter_datetime) = 1
-        AND YEAR(e.encounter_datetime) = ':y')
-    INNER JOIN obs o ON (e.encounter_id = o.encounter_id
-        AND o.voided = 0
-        AND o.concept_id = 99161)
-    GROUP BY pp.person_id) enrollment USING (indicator_id)
-    GROUP BY q16indicator) ind16 ON (ind15.indicator_id = ind16.indicator_id)
-        INNER JOIN
-    (SELECT 
-        indicator_id,
-            q17indicator,
-            SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 0 AND 100, 1, 0)) AS q17Total
-    FROM
-        (SELECT 
-        1 AS indicator_id,
-            'No. Of new clients started on ART at this facility during the quarter based on CD4 count' AS q17indicator
-    ) Indicators
-    LEFT JOIN (SELECT DISTINCT
-        1 AS indicator_id,
-            pp.gender,
-            pp.person_id,
-            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-    FROM
-        person pp
-    INNER JOIN patient p ON (pp.person_id = p.patient_id
-        AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id
-        AND e.voided = 0
-        AND QUARTER(e.encounter_datetime) = 1
-        AND YEAR(e.encounter_datetime) = ':y')
-        AND e.patient_id IN (SELECT DISTINCT
-            ei.patient_id
-        FROM
-            encounter ei
-        INNER JOIN obs oi ON (oi.encounter_id = ei.encounter_id
-            AND oi.concept_id = 99082
-            AND oi.value_numeric > 0
-            AND oi.voided = 0
-            AND ei.voided = 0))
-    INNER JOIN obs o ON (e.encounter_id = o.encounter_id
-        AND o.voided = 0
-        AND o.concept_id = 99161)
-    GROUP BY pp.person_id) enrollment USING (indicator_id)
-    GROUP BY q17indicator) ind17 ON (ind16.indicator_id = ind17.indicator_id)
-        INNER JOIN
-    (SELECT 
-        indicator_id,
-            q18indicator,
-            SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q18FTeens,
-            SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q18FSeniors,
-            SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 0 AND 100, 1, 0)) AS q18Total
-    FROM
-        (SELECT 
-        1 AS indicator_id,
-            'No. of pregnant women started on ART at this facility during the quarter (Subset of row 16 above)' AS q18indicator
-    ) Indicators
-    LEFT JOIN (SELECT DISTINCT
-        1 AS indicator_id,
-            pp.gender,
-            pp.person_id,
-            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-    FROM
-        person pp
-    INNER JOIN patient p ON (pp.person_id = p.patient_id
-        AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id
-        AND e.voided = 0
-        AND QUARTER(e.encounter_datetime) = 1
-        AND YEAR(e.encounter_datetime) = ':y')
-        AND e.patient_id IN (SELECT DISTINCT
-            ei.patient_id
-        FROM
-            encounter ei
-        INNER JOIN obs oi ON (oi.encounter_id = ei.encounter_id
-            AND oi.concept_id = 90041
-            AND oi.value_coded = 1065
-            AND oi.voided = 0))
-    INNER JOIN obs o ON (e.encounter_id = o.encounter_id
-        AND o.voided = 0
-        AND o.concept_id = 99161)
-    GROUP BY pp.person_id) enrollment USING (indicator_id)
-    GROUP BY q18indicator) ind18 ON (ind17.indicator_id = ind18.indicator_id)
-        INNER JOIN
-    (SELECT 
-        indicator_id,
-            q19indicator,
-            SUM(IF(gender = 'M' AND age &lt; 2, 1, 0)) AS q19MBabies,
-            SUM(IF(gender = 'F' AND age &lt; 2, 1, 0)) AS q19FBabies,
-            SUM(IF(gender = 'M' AND age BETWEEN 2 AND 4, 1, 0)) AS q19MToddlers,
-            SUM(IF(gender = 'F' AND age BETWEEN 2 AND 4, 1, 0)) AS q19FToddlers,
-            SUM(IF(gender = 'M' AND age BETWEEN 5 AND 14, 1, 0)) AS q19MTeens,
-            SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q19FTeens,
-            SUM(IF(gender = 'M' AND age > 14, 1, 0)) AS q19MSeniors,
-            SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q19FSeniors,
-            SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 0 AND 100, 1, 0)) AS q19Total
-    FROM
-        (SELECT 
-        1 AS indicator_id,
-            'Cumulative No. of individuals ever started on ART (row 15 + row 16)' AS q19indicator
-    ) Indicators
-    LEFT JOIN (SELECT DISTINCT
-        1 AS indicator_id,
-            pp.gender,
-            pp.person_id,
-            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-    FROM
-        person pp
-    INNER JOIN patient p ON (pp.person_id = p.patient_id
-        AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id
-        AND e.voided = 0
-        AND CASE YEAR(e.encounter_datetime)
-        WHEN ':y' THEN QUARTER(e.encounter_datetime) &lt;= ':q'
-        ELSE QUARTER(e.encounter_datetime) &lt;= ':q'
-            OR QUARTER(e.encounter_datetime) >= ':q'
-    END
-        AND YEAR(e.encounter_datetime) &lt;= ':y')
-    INNER JOIN obs o ON (e.encounter_id = o.encounter_id
-        AND o.voided = 0
-        AND o.concept_id = 99161)
-    GROUP BY pp.person_id) enrollment USING (indicator_id)
-    GROUP BY q19indicator) ind19 ON (ind18.indicator_id = ind19.indicator_id)
-        INNER JOIN
-    (SELECT 
-        indicator_id,
-            q20indicator,
-            SUM(IF(gender = 'M' AND age &lt; 2, 1, 0)) AS q20MBabies,
-            SUM(IF(gender = 'F' AND age &lt; 2, 1, 0)) AS q20FBabies,
-            SUM(IF(gender = 'M' AND age BETWEEN 2 AND 4, 1, 0)) AS q20MToddlers,
-            SUM(IF(gender = 'F' AND age BETWEEN 2 AND 4, 1, 0)) AS q20FToddlers,
-            SUM(IF(gender = 'M' AND age BETWEEN 5 AND 14, 1, 0)) AS q20MTeens,
-            SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q20FTeens,
-            SUM(IF(gender = 'M' AND age > 14, 1, 0)) AS q20MSeniors,
-            SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q20FSeniors,
-            SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 0 AND 100, 1, 0)) AS q20Total
-    FROM
-        (SELECT 
-        1 AS indicator_id,
-            'No. active on ART on 1st line ARV regimen' AS q20indicator
-    ) Indicators
-    LEFT JOIN (SELECT DISTINCT
-        1 AS indicator_id,
-            pp.gender,
-            pp.person_id,
-            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-    FROM
-        person pp
-    INNER JOIN patient p ON (pp.person_id = p.patient_id
-        AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id
-        AND e.voided = 0)
-    INNER JOIN obs o ON (e.encounter_id = o.encounter_id
-        AND o.voided = 0
-        AND o.concept_id = 90271)
-    GROUP BY pp.person_id) enrollment USING (indicator_id)
-    GROUP BY q20indicator) ind20 ON (ind19.indicator_id = ind20.indicator_id)
-        INNER JOIN
-    (SELECT 
-        indicator_id,
-            q21indicator,
-            SUM(IF(gender = 'M' AND age &lt; 2, 1, 0)) AS q21MBabies,
-            SUM(IF(gender = 'F' AND age &lt; 2, 1, 0)) AS q21FBabies,
-            SUM(IF(gender = 'M' AND age BETWEEN 2 AND 4, 1, 0)) AS q21MToddlers,
-            SUM(IF(gender = 'F' AND age BETWEEN 2 AND 4, 1, 0)) AS q21FToddlers,
-            SUM(IF(gender = 'M' AND age BETWEEN 5 AND 14, 1, 0)) AS q21MTeens,
-            SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q21FTeens,
-            SUM(IF(gender = 'M' AND age > 14, 1, 0)) AS q21MSeniors,
-            SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q21FSeniors,
-            SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 0 AND 100, 1, 0)) AS q21Total
-    FROM
-        (SELECT 
-        1 AS indicator_id,
-            'No. active on ART on 2nd line ARV regimen' AS q21indicator
-    ) Indicators
-    LEFT JOIN (SELECT DISTINCT
-        1 AS indicator_id,
-            pp.gender,
-            pp.person_id,
-            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-    FROM
-        person pp
-    INNER JOIN patient p ON (pp.person_id = p.patient_id
-        AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id
-        AND e.voided = 0)
-    INNER JOIN obs o ON (e.encounter_id = o.encounter_id
-        AND o.voided = 0
-        AND o.concept_id = 90305)
-    GROUP BY pp.person_id) enrollment USING (indicator_id)
-    GROUP BY q21indicator) ind21 ON (ind20.indicator_id = ind21.indicator_id)
-        INNER JOIN
-    (SELECT 
-        indicator_id,
-            q22indicator,
-            SUM(IF(gender = 'M' AND age &lt; 2, 1, 0)) AS q22MBabies,
-            SUM(IF(gender = 'F' AND age &lt; 2, 1, 0)) AS q22FBabies,
-            SUM(IF(gender = 'M' AND age BETWEEN 2 AND 4, 1, 0)) AS q22MToddlers,
-            SUM(IF(gender = 'F' AND age BETWEEN 2 AND 4, 1, 0)) AS q22FToddlers,
-            SUM(IF(gender = 'M' AND age BETWEEN 5 AND 14, 1, 0)) AS q22MTeens,
-            SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q22FTeens,
-            SUM(IF(gender = 'M' AND age > 14, 1, 0)) AS q22MSeniors,
-            SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q22FSeniors,
-            SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 0 AND 100, 1, 0)) AS q22Total
-    FROM
-        (SELECT 
-        1 AS indicator_id,
-            'No. active on ART on 3rd line or higher ARV regimen' AS q22indicator
-    ) Indicators
-    LEFT JOIN (SELECT DISTINCT
-        1 AS indicator_id,
-            pp.gender,
-            pp.person_id,
-            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-    FROM
-        person pp
-    INNER JOIN patient p ON (pp.person_id = p.patient_id
-        AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id
-        AND e.voided = 0)
-    INNER JOIN obs o ON (e.encounter_id = o.encounter_id
-        AND o.voided = 0
-        AND o.concept_id = 90305)
-    GROUP BY pp.person_id) enrollment USING (indicator_id)
-    GROUP BY q22indicator) ind22 ON (ind21.indicator_id = ind22.indicator_id)
-        INNER JOIN
-    (SELECT 
-        indicator_id,
-            q23indicator,
-            SUM(IF(gender = 'M' AND age &lt; 2, 1, 0)) AS q23MBabies,
-            SUM(IF(gender = 'F' AND age &lt; 2, 1, 0)) AS q23FBabies,
-            SUM(IF(gender = 'M' AND age BETWEEN 2 AND 4, 1, 0)) AS q23MToddlers,
-            SUM(IF(gender = 'F' AND age BETWEEN 2 AND 4, 1, 0)) AS q23FToddlers,
-            SUM(IF(gender = 'M' AND age BETWEEN 5 AND 14, 1, 0)) AS q23MTeens,
-            SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q23FTeens,
-            SUM(IF(gender = 'M' AND age > 14, 1, 0)) AS q23MSeniors,
-            SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q23FSeniors,
-            SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 0 AND 100, 1, 0)) AS q23Total
-    FROM
-        (SELECT 
-        1 AS indicator_id,
-            'No. active on ART who received CPT/Dapsone at the last visit in the quarter' AS q23indicator
-    ) Indicators
-    LEFT JOIN (SELECT DISTINCT
-        1 AS indicator_id,
-            pp.gender,
-            pp.person_id,
-            MAX(e.encounter_datetime) en_date,
-            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-    FROM
-        person pp
-    INNER JOIN patient p ON (pp.person_id = p.patient_id
-        AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id
-        AND form_id = 27
-        AND QUARTER(e.encounter_datetime) = 1
-        AND YEAR(e.encounter_datetime) = ':y'
-        AND e.voided = 0)
-    INNER JOIN obs o ON (e.encounter_id = o.encounter_id
-        AND o.concept_id = 99037
-        AND o.value_numeric > 0
-        AND o.voided = 0
-        AND e.patient_id IN (SELECT DISTINCT
-            patient_id
-        FROM
-            encounter ei
-        JOIN obs oi ON (ei.encounter_id = oi.encounter_id
-            AND form_id = 27
-            AND oi.concept_id = 90315
-            AND oi.value_coded > 0
-            AND oi.voided = 0
-            AND QUARTER(ei.encounter_datetime) = ':q'
-            AND YEAR(ei.encounter_datetime) = ':y')))
-    GROUP BY pp.person_id) enrollment USING (indicator_id)
-    GROUP BY q23indicator) ind23 ON (ind22.indicator_id = ind23.indicator_id)
-        INNER JOIN
-    (SELECT 
-        indicator_id,
-            q24indicator,
-            SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 0 AND 100, 1, 0)) AS q24Total
-    FROM
-        (SELECT 
-        1 AS indicator_id,
-            'No. active on ART assessed for TB at last visit in the  quarter' AS q24indicator
-    ) Indicators
-    LEFT JOIN (SELECT DISTINCT
-        1 AS indicator_id,
-            pp.gender,
-            pp.person_id,
-            MAX(e.encounter_datetime) en_date,
-            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-    FROM
-        person pp
-    INNER JOIN patient p ON (pp.person_id = p.patient_id
-        AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id
-        AND form_id = 27
-        AND QUARTER(e.encounter_datetime) = 1
-        AND YEAR(e.encounter_datetime) = ':y'
-        AND e.voided = 0
-        AND e.patient_id IN (SELECT DISTINCT
-            patient_id
-        FROM
-            encounter ei
-        JOIN obs oi ON (ei.encounter_id = oi.encounter_id
-            AND form_id = 27
-            AND oi.concept_id = 90315
-            AND oi.value_coded > 0
-            AND oi.voided = 0
-            AND QUARTER(ei.encounter_datetime) = ':q'
-            AND YEAR(ei.encounter_datetime) = ':y')))
-    INNER JOIN obs o ON (e.encounter_id = o.encounter_id
-        AND o.voided = 0
-        AND o.concept_id = 90216
-        AND o.value_coded = 90073)
-    GROUP BY pp.person_id) enrollment USING (indicator_id)
-    GROUP BY q24indicator) ind24 ON (ind23.indicator_id = ind24.indicator_id)
-        INNER JOIN
-    (SELECT 
-        indicator_id,
-            q25indicator,
-            SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 0 AND 100, 1, 0)) AS q25Total
-    FROM
-        (SELECT 
-        1 AS indicator_id,
-            'No. active on ART diagnosed with TB during the quarter' AS q25indicator
-    ) Indicators
-    LEFT JOIN (SELECT DISTINCT
-        1 AS indicator_id,
-            pp.gender,
-            pp.person_id,
-            MAX(e.encounter_datetime) en_date,
-            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-    FROM
-        person pp
-    INNER JOIN patient p ON (pp.person_id = p.patient_id
-        AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id
-        AND form_id = 27
-        AND QUARTER(e.encounter_datetime) = 1
-        AND YEAR(e.encounter_datetime) = ':y'
-        AND e.voided = 0
-        AND e.patient_id IN (SELECT DISTINCT
-            patient_id
-        FROM
-            encounter ei
-        JOIN obs oi ON (ei.encounter_id = oi.encounter_id
-            AND form_id = 27
-            AND oi.concept_id = 90315
-            AND oi.value_coded > 0
-            AND oi.voided = 0
-            AND QUARTER(ei.encounter_datetime) = ':q'
-            AND YEAR(ei.encounter_datetime) = ':y')))
-    INNER JOIN obs o ON (e.encounter_id = o.encounter_id
-        AND o.voided = 0
-        AND o.concept_id = 90216
-        AND o.value_coded = 90078)
-    GROUP BY pp.person_id) enrollment USING (indicator_id)
-    GROUP BY q25indicator) ind25 ON (ind24.indicator_id = ind25.indicator_id)
-        INNER JOIN
-    (SELECT 
-        indicator_id,
-            q26indicator,
-            SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 0 AND 100, 1, 0)) AS q26Total
-    FROM
-        (SELECT 
-        1 AS indicator_id,
-            'No. active on ART started on TB treatment during the quarter(New TB cases)' AS q26indicator
-    ) Indicators
-    LEFT JOIN (SELECT DISTINCT
-        1 AS indicator_id,
-            pp.gender,
-            pp.person_id,
-            MAX(e.encounter_datetime) en_date,
-            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-    FROM
-        person pp
-    INNER JOIN patient p ON (pp.person_id = p.patient_id
-        AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id
-        AND form_id = 27
-        AND QUARTER(e.encounter_datetime) = 1
-        AND YEAR(e.encounter_datetime) = ':y'
-        AND e.voided = 0
-        AND e.patient_id IN (SELECT DISTINCT
-            patient_id
-        FROM
-            encounter ei
-        JOIN obs oi ON (ei.encounter_id = oi.encounter_id
-            AND form_id = 27
-            AND oi.concept_id = 90315
-            AND oi.value_coded > 0
-            AND oi.voided = 0
-            AND QUARTER(ei.encounter_datetime) = ':q'
-            AND YEAR(ei.encounter_datetime) = ':y')))
-    INNER JOIN obs o ON (e.encounter_id = o.encounter_id
-        AND o.voided = 0
-        AND o.concept_id = 90217
-        AND QUARTER(o.value_datetime) = 1
-        AND YEAR(o.value_datetime) = ':y')
-    GROUP BY pp.person_id) enrollment USING (indicator_id)
-    GROUP BY q26indicator) ind26 ON (ind25.indicator_id = ind26.indicator_id)
-        INNER JOIN
-    (SELECT 
-        indicator_id,
-            q27indicator,
-            SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 0 AND 100, 1, 0)) AS q27Total
-    FROM
-        (SELECT 
-        1 AS indicator_id,
-            'Total No. active on ART  and on TB treatment during the quarter' AS q27indicator
-    ) Indicators
-    LEFT JOIN (SELECT DISTINCT
-        1 AS indicator_id,
-            pp.gender,
-            pp.person_id,
-            MAX(e.encounter_datetime) en_date,
-            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-    FROM
-        person pp
-    INNER JOIN patient p ON (pp.person_id = p.patient_id
-        AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id
-        AND form_id = 27
-        AND QUARTER(e.encounter_datetime) = 1
-        AND YEAR(e.encounter_datetime) = ':y'
-        AND e.voided = 0
-        AND e.patient_id IN (SELECT DISTINCT
-            patient_id
-        FROM
-            encounter ei
-        JOIN obs oi ON (ei.encounter_id = oi.encounter_id
-            AND form_id = 27
-            AND oi.concept_id = 90315
-            AND oi.value_coded > 0
-            AND oi.voided = 0
-            AND QUARTER(ei.encounter_datetime) = ':q'
-            AND YEAR(ei.encounter_datetime) = ':y')))
-    INNER JOIN obs o ON (e.encounter_id = o.encounter_id
-        AND o.voided = 0
-        AND o.concept_id = 90216
-        AND o.value_coded = 90071)
-    GROUP BY pp.person_id) enrollment USING (indicator_id)
-    GROUP BY q27indicator) ind27 ON (ind26.indicator_id = ind27.indicator_id)
-        INNER JOIN
-    (SELECT 
-        indicator_id,
-            q28indicator,
-            SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 0 AND 100, 1, 0)) AS q28Total
-    FROM
-        (SELECT 
-        1 AS indicator_id,
-            'No. active on ART with Good adherence(>95%) during the quarter' AS q28indicator
-    ) Indicators
-    LEFT JOIN (SELECT DISTINCT
-        1 AS indicator_id,
-            pp.gender,
-            pp.person_id,
-            MAX(e.encounter_datetime) en_date,
-            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-    FROM
-        person pp
-    INNER JOIN patient p ON (pp.person_id = p.patient_id
-        AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id
-        AND form_id = 27
-        AND QUARTER(e.encounter_datetime) = 1
-        AND YEAR(e.encounter_datetime) = ':y'
-        AND e.voided = 0)
-    INNER JOIN obs o ON (e.encounter_id = o.encounter_id
-        AND o.voided = 0
-        AND o.concept_id = 90221
-        AND o.value_coded = 90156
-        AND QUARTER(o.value_datetime) = 1
-        AND YEAR(o.value_datetime) = ':y')
-    GROUP BY pp.person_id) enrollment USING (indicator_id)
-    GROUP BY q28indicator) ind28 ON (ind27.indicator_id = ind28.indicator_id)
-        INNER JOIN
-    (SELECT 
-        indicator_id,
-            q29indicator,
-            SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 0 AND 100, 1, 0)) AS q29Total
-    FROM
-        (SELECT 
-        1 AS indicator_id,
-            'No. active on ART Care assessed for malnutrition at their visit in the quarter' AS q29indicator
-    ) Indicators
-    LEFT JOIN (SELECT DISTINCT
-        1 AS indicator_id,
-            pp.gender,
-            pp.person_id,
-            MAX(e.encounter_datetime) en_date,
-            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-    FROM
-        person pp
-    INNER JOIN patient p ON (pp.person_id = p.patient_id
-        AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id
-        AND form_id = 27
-        AND QUARTER(e.encounter_datetime) = 1
-        AND YEAR(e.encounter_datetime) = ':y'
-        AND e.voided = 0
-        AND e.patient_id IN (SELECT DISTINCT
-            patient_id
-        FROM
-            encounter ei
-        JOIN obs oi ON (ei.encounter_id = oi.encounter_id
-            AND form_id = 27
-            AND oi.concept_id = 90315
-            AND oi.value_coded > 0
-            AND oi.voided = 0
-            AND QUARTER(ei.encounter_datetime) = ':q'
-            AND YEAR(ei.encounter_datetime) = ':y')))
-    INNER JOIN obs o ON (e.encounter_id = o.encounter_id
-        AND o.voided = 0
-        AND o.concept_id = 68)
-    GROUP BY pp.person_id) enrollment USING (indicator_id)
-    GROUP BY q29indicator) ind29 ON (ind28.indicator_id = ind29.indicator_id)
-        INNER JOIN
-    (SELECT 
-        indicator_id,
-            q30indicator,
-            SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 0 AND 100, 1, 0)) AS q30Total
-    FROM
-        (SELECT 
-        1 AS indicator_id,
-            'No. active on ART who are malnuourished at their last visit in the quarter' AS q30indicator
-    ) Indicators
-    LEFT JOIN (SELECT DISTINCT
-        1 AS indicator_id,
-            pp.gender,
-            pp.person_id,
-            MAX(e.encounter_datetime) en_date,
-            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-    FROM
-        person pp
-    INNER JOIN patient p ON (pp.person_id = p.patient_id
-        AND p.voided = 0)
-    INNER JOIN encounter e ON (e.patient_id = p.patient_id
-        AND form_id = 27
-        AND QUARTER(e.encounter_datetime) = 1
-        AND YEAR(e.encounter_datetime) = ':y'
-        AND e.voided = 0
-        AND e.patient_id IN (SELECT DISTINCT
-            patient_id
-        FROM
-            encounter ei
-        JOIN obs oi ON (ei.encounter_id = oi.encounter_id
-            AND form_id = 27
-            AND oi.concept_id = 90315
-            AND oi.value_coded > 0
-            AND oi.voided = 0
-            AND QUARTER(ei.encounter_datetime) = ':q'
-            AND YEAR(ei.encounter_datetime) = ':y')))
-    INNER JOIN obs o ON (e.encounter_id = o.encounter_id
-        AND o.voided = 0
-        AND o.concept_id = 68
-        AND o.value_coded IN (99271 , 99272, 99273))
-    GROUP BY pp.person_id) enrollment USING (indicator_id)
-    GROUP BY q30indicator) ind30 ON (ind29.indicator_id = ind30.indicator_id)</property>
+            <property name="queryText">call hmis106a1a(?,?)</property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>1.0</Version>
+  <design:DataSetParameters>
+    <design:parameterDefinitions>
+      <design:inOutMode>In</design:inOutMode>
+      <design:attributes>
+        <design:name></design:name>
+        <design:position>1</design:position>
+        <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+        <design:precision>0</design:precision>
+        <design:scale>0</design:scale>
+        <design:nullability>Nullable</design:nullability>
+      </design:attributes>
+      <design:inputAttributes>
+        <design:elementAttributes>
+          <design:optional>true</design:optional>
+        </design:elementAttributes>
+      </design:inputAttributes>
+    </design:parameterDefinitions>
+    <design:parameterDefinitions>
+      <design:inOutMode>In</design:inOutMode>
+      <design:attributes>
+        <design:name></design:name>
+        <design:position>2</design:position>
+        <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+        <design:precision>0</design:precision>
+        <design:scale>0</design:scale>
+        <design:nullability>Nullable</design:nullability>
+      </design:attributes>
+      <design:inputAttributes>
+        <design:elementAttributes>
+          <design:optional>true</design:optional>
+        </design:elementAttributes>
+      </design:inputAttributes>
+    </design:parameterDefinitions>
+  </design:DataSetParameters>
+</model:DesignValues>]]></xml-property>
         </oda-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="location" id="10479">
             <list-property name="columnHints">
@@ -4141,42 +2323,38 @@ limit 1</property>
             <property name="showFooterOnLast">true</property>
             <page-header>
                 <grid id="10460">
+                    <property name="verticalAlign">middle</property>
                     <property name="width">100%</property>
-                    <column id="10461">
-                        <property name="width">33%</property>
-                    </column>
                     <column id="10462">
-                        <property name="width">34%</property>
+                        <property name="width">60%</property>
                     </column>
-                    <column id="10463">
-                        <property name="width">33%</property>
+                    <column id="10538">
+                        <property name="width">60%</property>
                     </column>
-                    <row id="10464">
-                        <cell id="10465">
+                    <column id="10539">
+                        <property name="width">60%</property>
+                    </column>
+                    <column id="10544">
+                        <property name="width">60%</property>
+                    </column>
+                    <row id="10549">
+                        <cell id="10550">
+                            <property name="colSpan">4</property>
+                            <property name="rowSpan">1</property>
                             <property name="textAlign">center</property>
                             <property name="verticalAlign">top</property>
-                        </cell>
-                        <cell id="10466">
-                            <property name="textAlign">center</property>
-                            <property name="verticalAlign">top</property>
-                            <image id="10476">
-                                <property name="height">100px</property>
-                                <property name="width">100px</property>
+                            <image id="10554">
+                                <property name="height">85px</property>
+                                <property name="width">75px</property>
                                 <property name="source">embed</property>
                                 <property name="imageName">Coat_of_arms_of_uganda.gif</property>
                             </image>
                         </cell>
-                        <cell id="10467">
-                            <property name="textAlign">center</property>
-                            <property name="verticalAlign">top</property>
-                        </cell>
                     </row>
                     <row id="10468">
-                        <cell id="10469">
-                            <property name="textAlign">center</property>
-                            <property name="verticalAlign">top</property>
-                        </cell>
                         <cell id="10470">
+                            <property name="colSpan">4</property>
+                            <property name="rowSpan">1</property>
                             <property name="textAlign">center</property>
                             <property name="verticalAlign">top</property>
                             <text id="10477">
@@ -4184,140 +2362,64 @@ limit 1</property>
                                 <text-property name="content"><![CDATA[MINISTRY OF HEALTH]]></text-property>
                             </text>
                         </cell>
-                        <cell id="10471">
-                            <property name="textAlign">center</property>
-                            <property name="verticalAlign">top</property>
-                        </cell>
                     </row>
                     <row id="10472">
-                        <cell id="10473">
-                            <property name="textAlign">center</property>
-                            <property name="verticalAlign">top</property>
-                        </cell>
                         <cell id="10474">
+                            <property name="colSpan">4</property>
+                            <property name="rowSpan">1</property>
                             <property name="textAlign">center</property>
                             <property name="verticalAlign">top</property>
                             <text id="10478">
                                 <property name="contentType">auto</property>
-                                <text-property name="content"><![CDATA[THE REPUBLIC OF UGANDA]]></text-property>
-                            </text>
-                        </cell>
-                        <cell id="10475">
-                            <property name="textAlign">center</property>
-                            <property name="verticalAlign">top</property>
-                        </cell>
-                    </row>
-                    <row id="10480">
-                        <cell id="10481">
-                            <property name="textAlign">left</property>
-                            <property name="verticalAlign">top</property>
-                        </cell>
-                        <cell id="10482">
-                            <property name="textAlign">center</property>
-                            <property name="verticalAlign">top</property>
-                            <text id="10494">
-                                <property name="contentType">auto</property>
                                 <text-property name="content"><![CDATA[HMIS FORM 106a:HEALTH UNIT QUARTERLY REPORT]]></text-property>
                             </text>
                         </cell>
-                        <cell id="10483">
-                            <property name="textAlign">right</property>
-                            <property name="verticalAlign">top</property>
-                        </cell>
                     </row>
-                    <row id="10484">
-                        <cell id="10485">
+                    <row id="10480">
+                        <cell id="10482">
                             <property name="textAlign">center</property>
                             <property name="verticalAlign">top</property>
-                            <data id="10508">
+                            <text id="10547">
+                                <property name="contentType">auto</property>
+                                <text-property name="content"><![CDATA[Name of Health Unit:]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="10526">
+                            <property name="textAlign">center</property>
+                            <property name="verticalAlign">top</property>
+                            <data id="10545">
+                                <property name="fontWeight">bold</property>
                                 <property name="dataSet">location</property>
                                 <list-property name="boundDataColumns">
                                     <structure>
                                         <property name="name">facility</property>
                                         <property name="displayName">facility</property>
-                                        <expression name="expression">"Health Unit: " + dataSetRow["facility"]</expression>
+                                        <expression name="expression">dataSetRow["facility"]</expression>
                                         <property name="dataType">string</property>
                                     </structure>
                                 </list-property>
                                 <property name="resultSetColumn">facility</property>
                             </data>
                         </cell>
-                        <cell id="10486">
+                        <cell id="10555">
                             <property name="textAlign">center</property>
                             <property name="verticalAlign">top</property>
-                            <data id="10516">
-                                <property name="dataSet">location</property>
-                                <list-property name="boundDataColumns">
-                                    <structure>
-                                        <property name="name">hsd</property>
-                                        <property name="displayName">Level</property>
-                                        <expression name="expression">"Level : _______ Code:__________"</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                </list-property>
-                                <property name="resultSetColumn">hsd</property>
-                            </data>
+                            <text id="10546">
+                                <property name="contentType">auto</property>
+                                <text-property name="content"><![CDATA[HSD]]></text-property>
+                            </text>
                         </cell>
-                        <cell id="10487">
+                        <cell id="10540">
                             <property name="textAlign">center</property>
                             <property name="verticalAlign">top</property>
-                            <data id="10509">
+                            <data id="10548">
+                                <property name="fontWeight">bold</property>
                                 <property name="dataSet">location</property>
                                 <list-property name="boundDataColumns">
                                     <structure>
                                         <property name="name">hsd</property>
                                         <property name="displayName">hsd</property>
-                                        <expression name="expression">"District :" + dataSetRow["hsd"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                </list-property>
-                                <property name="resultSetColumn">hsd</property>
-                            </data>
-                        </cell>
-                    </row>
-                    <row id="10498">
-                        <cell id="10499">
-                            <property name="textAlign">center</property>
-                            <property name="verticalAlign">top</property>
-                            <data id="10510">
-                                <property name="dataSet">location</property>
-                                <list-property name="boundDataColumns">
-                                    <structure>
-                                        <property name="name">hsd</property>
-                                        <property name="displayName">hsd</property>
-                                        <expression name="expression">"Health Sub-District :" + dataSetRow["hsd"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                </list-property>
-                                <property name="resultSetColumn">hsd</property>
-                            </data>
-                        </cell>
-                        <cell id="10500">
-                            <property name="textAlign">center</property>
-                            <property name="verticalAlign">top</property>
-                            <data id="10511">
-                                <property name="dataSet">location</property>
-                                <list-property name="boundDataColumns">
-                                    <structure>
-                                        <property name="name">hsd</property>
-                                        <property name="displayName">Subcoutny</property>
-                                        <expression name="expression">"Sub County: __________"</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                </list-property>
-                                <property name="resultSetColumn">hsd</property>
-                            </data>
-                        </cell>
-                        <cell id="10501">
-                            <property name="textAlign">center</property>
-                            <property name="verticalAlign">top</property>
-                            <data id="10512">
-                                <property name="dataSet">location</property>
-                                <list-property name="boundDataColumns">
-                                    <structure>
-                                        <property name="name">hsd</property>
-                                        <property name="displayName">Parish</property>
-                                        <expression name="expression">"Parish : "</expression>
+                                        <expression name="expression">dataSetRow["hsd"]</expression>
                                         <property name="dataType">string</property>
                                     </structure>
                                 </list-property>
@@ -4326,37 +2428,32 @@ limit 1</property>
                         </cell>
                     </row>
                     <row id="10502">
-                        <cell id="10503">
-                            <property name="textAlign">center</property>
-                            <property name="verticalAlign">top</property>
-                        </cell>
                         <cell id="10504">
+                            <property name="colSpan">4</property>
+                            <property name="rowSpan">1</property>
                             <property name="textAlign">center</property>
                             <property name="verticalAlign">top</property>
                             <data id="10513">
+                                <property name="fontWeight">bold</property>
                                 <property name="dataSet">location</property>
                                 <list-property name="boundDataColumns">
                                     <structure>
                                         <property name="name">hsd</property>
                                         <property name="displayName">Period</property>
                                         <expression name="expression">if (params["quarter"].value == 1){
-"Reporting Period: From January To March (months) Year : " + params["year"].value;
+"January - March  " + params["year"].value;
 }else if(params["quarter"].value == 2){
-"Reporting Period: From April To June (months) Year : " + params["year"].value;
+" April - June " + params["year"].value;
 }else if(params["quarter"].value == 3){
-"Reporting Period: From July To September (months) Year : " + params["year"].value;
+"July - September " + params["year"].value;
 }else if(params["quarter"].value == 4){
-"Reporting Period: From October To December (months) Year : " + params["year"].value;
+" October - December " + params["year"].value;
 }</expression>
                                         <property name="dataType">string</property>
                                     </structure>
                                 </list-property>
                                 <property name="resultSetColumn">hsd</property>
                             </data>
-                        </cell>
-                        <cell id="10505">
-                            <property name="textAlign">center</property>
-                            <property name="verticalAlign">top</property>
                         </cell>
                     </row>
                 </grid>
@@ -5339,7 +3436,8 @@ limit 1</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
                         <text id="10530">
-                            <property name="contentType">auto</property>
+                            <property name="textAlign">left</property>
+                            <property name="contentType">html</property>
                             <text-property name="content"><![CDATA[<H3>1A - HIV CARE/ART QUARTERLY CROSS SECTIONAL REPORT</H3>]]></text-property>
                         </text>
                     </cell>
@@ -5351,10 +3449,16 @@ limit 1</property>
                         <property name="fontFamily">"Times New Roman"</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <text id="10424">
-                            <property name="contentType">auto</property>
-                            <text-property name="content"><![CDATA[Register]]></text-property>
-                        </text>
+                        <extended-item extensionName="RotatedText" id="10537">
+                            <property name="rotationAngle">90</property>
+                            <expression name="text">"Register"</expression>
+                            <property name="wrapPoint">0in</property>
+                            <property name="fontFamily">"Times New Roman"</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontStyle">normal</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">#000000</property>
+                        </extended-item>
                     </cell>
                     <cell id="10387">
                         <property name="colSpan">1</property>
@@ -5552,10 +3656,16 @@ limit 1</property>
                         <property name="fontFamily">"Times New Roman"</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <text id="10426">
-                            <property name="contentType">auto</property>
-                            <text-property name="content"><![CDATA[Pre-ART]]></text-property>
-                        </text>
+                        <extended-item extensionName="RotatedText" id="10535">
+                            <property name="rotationAngle">90</property>
+                            <expression name="text">"Pre-ART"</expression>
+                            <property name="wrapPoint">0in</property>
+                            <property name="fontFamily">"Times New Roman"</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontStyle">normal</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">#000000</property>
+                        </extended-item>
                     </cell>
                     <cell id="10391">
                         <property name="fontFamily">"Times New Roman"</property>
@@ -6266,6 +4376,7 @@ limit 1</property>
                     </cell>
                 </row>
                 <row id="9911">
+                    <property name="pageBreakAfter">always</property>
                     <cell id="10404">
                         <property name="fontFamily">"Times New Roman"</property>
                         <text id="10441">
@@ -6325,10 +4436,16 @@ limit 1</property>
                         <property name="fontFamily">"Times New Roman"</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <text id="10427">
-                            <property name="contentType">auto</property>
-                            <text-property name="content"><![CDATA[ART]]></text-property>
-                        </text>
+                        <extended-item extensionName="RotatedText" id="10536">
+                            <property name="rotationAngle">90</property>
+                            <expression name="text">"ART"</expression>
+                            <property name="wrapPoint">0in</property>
+                            <property name="fontFamily">"Times New Roman"</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontStyle">normal</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">#000000</property>
+                        </extended-item>
                     </cell>
                     <cell id="10405">
                         <property name="fontFamily">"Times New Roman"</property>
