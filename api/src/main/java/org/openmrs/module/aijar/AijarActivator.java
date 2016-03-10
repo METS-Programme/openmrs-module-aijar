@@ -14,12 +14,10 @@
 package org.openmrs.module.aijar;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openmrs.Concept;
 import org.openmrs.GlobalProperty;
 import org.openmrs.api.AdministrationService;
 import org.openmrs.api.ConceptService;
@@ -172,8 +170,8 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 
 	        // retire concepts that are duplicated in the
 	        // concept metadata package
-	        ConceptService conceptService = Context.getConceptService();
-	        List<String> conceptsToRetire = Arrays.asList("8b64f9e1-196a-4802-a287-fd160fb97002", // YES
+            /*ConceptService conceptService = Context.getConceptService();
+            List<String> conceptsToRetire = Arrays.asList("8b64f9e1-196a-4802-a287-fd160fb97002", // YES
 			        "b1629d9a-91a5-4895-b6bc-647f3a944534" // NO
 			        , "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" // YES
 			        , "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" // NO
@@ -195,7 +193,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 			        conceptService.retireConcept(concept, "Duplicated in MDS import");
 			        log.info("Retired concept " + concept.toString());
 		        }
-	        }
+	        }*/
 
 	        // install concepts
             log.info("Installing standard metadata using the packages.xml file");
