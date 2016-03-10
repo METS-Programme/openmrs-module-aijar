@@ -362,7 +362,7 @@
         }
 
 
-        function enable_disable_ac_other(selected_option) {
+        function enable_disable_hiv_care(selected_option) {
 
             var class_name = jq(selected_option).attr("class");
 
@@ -374,18 +374,18 @@
 
             var disable = true;
 
-            var row_1 = '[class^="ArtCareOther"][class*="Child1"]';
-            var row_2 = '[class^="ArtCareOther"][class*="Child2"]';
-            var row_3 = '[class^="ArtCareOther"][class*="Child3"]';
-            var row_4 = '[class^="ArtCareOther"][class*="Child4"]';
-            var row_5 = '[class^="ArtCareOther"][class*="Child5"]';
+            var row_1 = '[class^="HIVCare"][class*="Child1"]';
+            var row_2 = '[class^="HIVCare"][class*="Child2"]';
+            var row_3 = '[class^="HIVCare"][class*="Child3"]';
+            var row_4 = '[class^="HIVCare"][class*="Child4"]';
+            var row_5 = '[class^="HIVCare"][class*="Child5"]';
 
             var xx = row_1;
-            var selected_value = jq(selected_option).find(":selected").text()
+            var selected_value = jq(selected_option).find("input").val();
 
             selected_value = selected_value.trim().toLowerCase();
 
-            if (selected_value == "other" || selected_value == "other specify") {
+            if (selected_value != "") {
                 disable = false;
             }
 
@@ -625,13 +625,13 @@
                     enable_disable_ac(jq(this))
                 });
 
-                jq('[class^="ArtCareOtherEnableDisable"]').change(function () {
-                    enable_disable_ac_other(jq(this));
+                jq('[class^="HIVCareEnableDisable"]').change(function () {
+                    enable_disable_hiv_care(jq(this));
                 });
 
 
-                jq('[class^="ArtCareOtherEnableDisable"]').each(function () {
-                    enable_disable_ac_other(jq(this))
+                jq('[class^="HIVCareEnableDisable"]').each(function () {
+                    enable_disable_hiv_care(jq(this))
                 });
 
 
@@ -1483,7 +1483,7 @@
                 </tr>
                 <tr>
                     <td>HIV enrolled</td>
-                    <td>
+                    <td class="HIVCareEnableDisable1">
                         <encounterDate default="today" allowFutureDates="false" id="hivEnrolledDate"/>
                     </td>
                     <td class="checkboxGroup"><span class="enableDisable">
@@ -1500,7 +1500,7 @@
                 </tr>
                 <tr>
                     <td>Eligible for ART</td>
-                    <td>
+                    <td class="HIVCareEnableDisableChild1">
                         <obs conceptId="90297" allowFutureDates="false"/>
                     </td>
                     <td rowspan="2">
@@ -1540,7 +1540,7 @@
                 </tr>
                 <tr>
                     <td>Eligible and ready</td>
-                    <td>
+                    <td class="HIVCareEnableDisableChild1">
                         <obs conceptId="90299" allowFutureDates="false"/>
                     </td>
                 </tr>

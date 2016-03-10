@@ -11,7 +11,7 @@
           formDisplayStyle="Standard"
           formLabel="ANC Register Form">
     <redirectOnSave
-            url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits" />
+            url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits"/>
     <script type="text/javascript">
         function enable_disable_pcr_test_result(selected_option) {
 
@@ -156,7 +156,7 @@
             var selected_value = jq("#ARVSEnableDisable1").find(":selected").text();
 
             var disable = false
-            var selector="";
+            var selector = "";
 
             var group = jq("#ARVSEnableDisableChild1");
 
@@ -176,7 +176,7 @@
             if (selector == "selected") {
                 group.find('select option[value=1175]').attr("selected", selector);
             }
-            else{
+            else {
                 group.find('select option[value=1175]').removeAttribute("selected");
             }
 
@@ -407,7 +407,8 @@
                              answerLabels="Stage1,Stage2,Stage3,Stage4,StageT1,StageT2,StageT3,StageT4"/>
                     </td>
                     <td rowspan="2" id="ARVSEnableDisableChild1">
-                        <obs conceptId="99744" labelText="" answerConceptIds="99745,99746,99747,99748,1175"
+                        <label>ARV drugs</label>
+                        <obs conceptId="99744" answerConceptIds="99745,99746,99747,99748,1175"
                              answerLabels="ART,ARTK,ART&#8730;,ARTK&#8730;,N/A"/>
                     </td>
                     <td rowspan="2">
@@ -424,7 +425,8 @@
                         <obs conceptId="856" labelText=""/>
                     </td>
                     <td>
-                        <obs conceptId="99751" labelText=""/>
+                        <label>Pre-ART No of Client</label>
+                        <obs conceptId="99751"/>
                     </td>
                     <td>
                         <obs conceptId="99750" labelText="" answerConceptIds="90003,90004" answerLabels="Yes,No"/>

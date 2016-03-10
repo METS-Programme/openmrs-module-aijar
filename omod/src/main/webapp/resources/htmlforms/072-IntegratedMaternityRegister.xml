@@ -256,6 +256,9 @@
                     <td rowspan="2">
                         <obs conceptId="99344" answerConceptIds="1175,631,99343,630"
                              answerLabels="NA,NVP Only,AZT and NVP,AZT and 3TC" style="dropdown"/>
+
+                        <obs conceptId="99744" answerConceptIds="99745,99746,99747,99748,1175"
+                             answerLabels="ART,ARTK,ART&#8730;,ARTK&#8730;,N/A"/>
                     </td>
                     <td>
                         <obs conceptId="99356" style="checkbox"/>
