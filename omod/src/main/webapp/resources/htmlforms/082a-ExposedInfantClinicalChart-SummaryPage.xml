@@ -7,7 +7,7 @@
           formUILocation="patientDashboard.visitActions"
           formOrder="4"
           formIcon="icon-medkit"
-          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; patient.person.age &lt; 3 &amp;&amp; sessionLocation.get('uuid')=='86863db4-6101-4ecf-9a86-5e716d6504e4'"
+          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; patient.person.age &lt; 3 &amp;&amp; sessionLocation.uuid=='86863db4-6101-4ecf-9a86-5e716d6504e4'"
           formDisplayStyle="Standard"
           formLabel="EID Card - Summary form">
     <redirectOnSave
