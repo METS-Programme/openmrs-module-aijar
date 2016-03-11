@@ -50,8 +50,8 @@ UPDATE form
 SET form_id = 13
 WHERE form_id = XX;
 UPDATE encounter
-SET encounter_type_id = 11, form_id = 13
-WHERE encounter_type_id = 11;
+SET encounter_type = 11, form_id = 13
+WHERE encounter_type = 11;
 
 /*!40101 SET SQL_MODE = @OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS = @OLD_FOREIGN_KEY_CHECKS */;
