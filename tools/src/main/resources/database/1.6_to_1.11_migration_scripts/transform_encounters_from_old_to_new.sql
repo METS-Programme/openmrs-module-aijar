@@ -26,7 +26,7 @@ SET encounter_type_id = 8
 WHERE encounter_type_id = 1;
 UPDATE form
 SET form_id = 14
-WHERE form_id = XX;
+WHERE form_id = ;
 UPDATE encounter
 SET encounter_type = 8, form_id = 14
 WHERE encounter_type = 1;
