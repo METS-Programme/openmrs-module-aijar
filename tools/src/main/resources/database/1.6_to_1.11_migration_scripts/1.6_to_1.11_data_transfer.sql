@@ -270,6 +270,20 @@ UPDATE openmrs.serialized_object          AS c1, openmrs_backup.serialized_objec
 
 
 -- add Provider role to all users with Data Entry and Data Manager Role
+INSERT INTO provider (person_id, creator, date_created, uuid)
+  SELECT
+    person_id,
+    2,
+    NOW(),
+    UUID()
+  FROM users u
+  WHERE user_id NOT IN (SELECT user_id
+                        FROM user_role
+                        WHERE role = 'Provider') AND
+        u.user_id IN (SELECT user_id
+                      FROM user_role
+                      WHERE (role = 'Data Manager' OR role = 'Data Entry'));
+
 INSERT INTO user_role (user_id, role)
   SELECT
     user_id,
