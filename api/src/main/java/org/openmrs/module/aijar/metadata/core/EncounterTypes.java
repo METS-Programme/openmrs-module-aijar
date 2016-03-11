@@ -44,7 +44,7 @@ public class EncounterTypes {
     public static EncounterTypeDescriptor LAB_ENCOUNTER = new EncounterTypeDescriptor() {
         @Override
         public String name() {
-            return "LAB ENCOUNTER";
+            return "LAB Encounter";
         }
 
         @Override
@@ -60,7 +60,7 @@ public class EncounterTypes {
     public static EncounterTypeDescriptor HEALTH_EDUCATION = new EncounterTypeDescriptor() {
         @Override
         public String name() {
-            return "ART Card - Health Education";
+            return "ART Card - Health Education Encounter";
         }
 
         @Override
@@ -76,7 +76,7 @@ public class EncounterTypes {
     public static EncounterTypeDescriptor MATERNITY = new EncounterTypeDescriptor() {
         @Override
         public String name() {
-            return "Maternity";
+            return "Maternity - Encounter";
         }
 
         @Override
@@ -93,7 +93,7 @@ public class EncounterTypes {
 
         @Override
         public String name() {
-            return "SMC - Summary";
+            return "SMC - Encounter";
         }
 
         @Override

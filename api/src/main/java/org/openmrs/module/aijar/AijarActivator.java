@@ -137,19 +137,19 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         properties.add(new GlobalProperty("htmlformentry.showDateFormat", "false"));//Disable date format display on form entry
 
         //Birt Settings
-       /* properties.add(new GlobalProperty("birt.alwaysUseOpenmrsJdbcProperties", "false"));
-        properties.add(new GlobalProperty("birt.birtHome", "/Users/jmpango/Data/birt/birt-runtime-2_3_2/ReportEngine"));
-        properties.add(new GlobalProperty("birt.datasetDir", "/Users/jmpango/Data/birt/reports/datasets"));
-        properties.add(new GlobalProperty("birt.loggingDir", "/Users/jmpango/Data/birt/logs"));
+        properties.add(new GlobalProperty("birt.alwaysUseOpenmrsJdbcProperties", "false"));
+        properties.add(new GlobalProperty("birt.birtHome", "C:/Application Data/OpenMRS/birt/birt-runtime-2_3_2/ReportEngine"));//Eg.Users/<<username>>/Data/birt/birt-runtime-2_3_2/ReportEngine"
+        properties.add(new GlobalProperty("birt.datasetDir", "C:/Application Data/OpenMRS/birt/reports/datasets"));
+        properties.add(new GlobalProperty("birt.loggingDir", "C:/Application Data/OpenMRS/birt/logs"));
         properties.add(new GlobalProperty("birt.defaultReportDesignFile", "default.rptdesign"));
         properties.add(new GlobalProperty("birt.loggingLevel", "OFF"));
         properties.add(new GlobalProperty("birt.mandatory", "false"));
-        properties.add(new GlobalProperty("birt.outputDir", "/Users/jmpango/Data/birt/reports/output"));
-        properties.add(new GlobalProperty("birt.reportDir", "/Users/jmpango/Data/birt/reports"));
-        properties.add(new GlobalProperty("birt.reportOutputFile", "/Users/jmpango/Data/birt/reports/output/ReportOutput.pdf"));
+        properties.add(new GlobalProperty("birt.outputDir", "C:/Application Data/OpenMRS/birt/reports/output"));
+        properties.add(new GlobalProperty("birt.reportDir", "C:/Application Data/OpenMRS/birt/reports"));
+        properties.add(new GlobalProperty("birt.reportOutputFile", "C:/Application Data/OpenMRS/birt/reports/output/ReportOutput.pdf"));
         properties.add(new GlobalProperty("birt.reportOutputFormat", "pdf"));
-        properties.add(new GlobalProperty("birt.reportPreviewFile", "/Users/jmpango/Data/birt/reports/output/ReportPreview.pdf"));
-        properties.add(new GlobalProperty("birt.started", "true"));*/
+        properties.add(new GlobalProperty("birt.reportPreviewFile", "C:/Application Data/OpenMRS/birt/reports/output/ReportPreview.pdf"));
+       // properties.add(new GlobalProperty("birt.started", "true"));
 
 
         return properties;
