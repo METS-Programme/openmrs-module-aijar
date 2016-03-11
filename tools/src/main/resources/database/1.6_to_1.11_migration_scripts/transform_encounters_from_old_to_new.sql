@@ -11,6 +11,15 @@
 
 -- Update the encounter types from 1.6.3
 -- TODO: Update this script for sites using 1.9.x which have maternity
+
+
+
+-- Delete forms causing conflict
+TRUNCATE form_field;
+TRUNCATE htmlformentry_html_form;
+DELETE FROM form
+WHERE LOWER(name) LIKE '%imai%' OR LOWER(name) LIKE '%lab form%';
+
 -- ART SUMMARY
 UPDATE encounter_type
 SET encounter_type_id = 8
@@ -32,17 +41,6 @@ WHERE form_id = XX;
 UPDATE encounter
 SET encounter_type = 9, form_id = 12
 WHERE encounter_type = 2;
-
--- LAB Encounter
-UPDATE encounter_type
-SET encounter_type_id = 10
-WHERE encounter_type_id = 10;
-UPDATE form
-SET form_id = 12
-WHERE form_id = XX;
-UPDATE encounter
-SET encounter_type = 10, form_id = 12
-WHERE encounter_type = 10;
 
 -- ART Health Education
 UPDATE encounter_type
