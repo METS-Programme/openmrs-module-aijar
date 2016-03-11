@@ -346,7 +346,8 @@
                                     <obs conceptId="162983" labelText="Gestation in Weeks"/>
                                     <br/>
                                     ANC #
-                                    <patient field="identifier" identifierTypeId="b0cc255e-ef57-4266-839e-0df7f5099eb9" />
+                                    <patient field="identifier" identifierTypeId="b0cc255e-ef57-4266-839e-0df7f5099eb9"
+                                             required="false" />
                                     <br/>
                                 </span>
                             </span>
@@ -406,7 +407,8 @@
                             <label>District TB No.</label>
                         </span>
                         <span class="DistrictTbRegEnableDisableChild1">
-                            <patient field="identifier" identifierTypeId="8110f2d2-1f98-4c38-aef3-11b19bb0a589" />
+                            <patient field="identifier" identifierTypeId="8110f2d2-1f98-4c38-aef3-11b19bb0a589"
+                                     required="false" />
                         </span>
 
                         <br/>
