@@ -380,8 +380,8 @@
                             <label>Mother's ANC No.:</label>
                         </td>
                         <td>
-                            <patient field="identifier" identifierTypeId="b0cc255e-ef57-4266-839e-0df7f5099eb9"
-                                     required="false"/>
+                            <!--<patient field="identifier" identifierTypeId="b0cc255e-ef57-4266-839e-0df7f5099eb9"
+                                     required="false"/>-->
                         </td>
                     </tr>
                     <tr>

@@ -528,6 +528,7 @@
                             <label>EID Number:</label>
                             <patient field="identifier" identifierTypeId="2c5b695d-4bf3-452f-8a7c-fe3ee3432ffe"
                                      required="true"/>
+
                         </td>
                     </tr>
                 </tbody>
