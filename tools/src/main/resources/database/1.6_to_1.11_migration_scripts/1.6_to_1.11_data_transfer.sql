@@ -268,3 +268,30 @@ UPDATE openmrs.serialized_object          AS c1, openmrs_backup.serialized_objec
 -- UPDATE openmrs.visit_attribute_type       AS c1, openmrs_backup.visit_attribute_type AS c2 SET c1.creator = if((select user_id from openmrs_backup.users where user_id = c2.creator),c2.creator,1) WHERE c2.uuid = c1.uuid;
 -- UPDATE openmrs.visit_type                 AS c1, openmrs_backup.visit_type AS c2 SET c1.creator = if((select user_id from openmrs_backup.users where user_id = c2.creator),c2.creator,1) WHERE c2.uuid = c1.uuid;
 
+
+-- add Provider role to all users with Data Entry and Data Manager Role
+INSERT INTO provider (person_id, creator, date_created, uuid)
+  SELECT
+    person_id,
+    2,
+    NOW(),
+    UUID()
+  FROM users u
+  WHERE user_id NOT IN (SELECT user_id
+                        FROM user_role
+                        WHERE role = 'Provider') AND
+        u.user_id IN (SELECT user_id
+                      FROM user_role
+                      WHERE (role = 'Data Manager' OR role = 'Data Entry'));
+
+INSERT INTO user_role (user_id, role)
+  SELECT
+    user_id,
+    'Provider'
+  FROM users u
+  WHERE user_id NOT IN (SELECT user_id
+                        FROM user_role
+                        WHERE role = 'Provider') AND
+        u.user_id IN (SELECT user_id
+                      FROM user_role
+                      WHERE (role = 'Data Manager' OR role = 'Data Entry'))
