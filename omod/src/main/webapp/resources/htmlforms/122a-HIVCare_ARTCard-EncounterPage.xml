@@ -209,7 +209,7 @@
                     if (requires == false) {
                         group.find('.required').show();
                     }
-                    else if(requires==true){
+                    else if (requires == true) {
                         group.find('.required').hide();
                     }
                 }
@@ -284,7 +284,7 @@
                     <td style="background: #B6D6E6;">
                         Encounter Location:
                         <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
-                                           tags="2,3,4" />
+                                           tags="2,3,4"/>
                     </td>
                 </tr>
                 </tbody>
@@ -352,7 +352,7 @@
                                     <br/>-->
                                 </span>
                             </span>
-                            </excludeIf>
+                        </excludeIf>
 
                             <span id="checkboxRadio">
                                 <span class="ARTYesNoEnableDisable1">
@@ -379,7 +379,9 @@
                                      answerLabel="Vasectomy/Tubal ligation"/>
                             </span>
                         <br/>
-                        <obs id="br" conceptId="99270" labelText="Age in months"/>
+                        <excludeIf velocityTest="$patient.gender =='M'">
+                            <obs id="br" conceptId="99270" labelText="Age in months"/>
+                        </excludeIf>
                     </td>
                 </tr>
                 </tbody>
@@ -646,6 +648,11 @@
                 </tr>
                 <tr>
                     <td>
+
+                        <obs id="br" conceptId="5497" dateLabel="Date:" labelText="CD4:"/>
+                        <br/>
+                        <obs id="br" conceptId="730" dateLabel="Date:" labelText="CD4%:"/>
+                        <br/>Severe
                         if CD4 less than 15% write minus(-) if CD4 >15 write plus (+)<br/>
                         <obs id="br" conceptId="99151" answerConceptIds="90125,99150"
                              answerLabels="+,-"/>

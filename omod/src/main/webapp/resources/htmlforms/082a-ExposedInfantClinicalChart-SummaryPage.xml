@@ -171,6 +171,7 @@
 
                 if (class_name.indexOf('Child') == -1) {
                     group.find("input").attr("disabled", disable);
+                    group.find("input").attr("value","");
                     group.find('select').attr("disabled", disable);
                 }
             });
@@ -381,8 +382,8 @@
                             <label>Mother's ANC No.:</label>
                         </td>
                         <td>
-                            <!--<patient field="identifier" identifierTypeId="b0cc255e-ef57-4266-839e-0df7f5099eb9"
-                                     required="false"/>-->
+                            <patient field="identifier" identifierTypeId="b0cc255e-ef57-4266-839e-0df7f5099eb9"
+                                     required="false"/>
                         </td>
                     </tr>
                     <tr>
@@ -406,7 +407,7 @@
                     <tr>
                         <td><label>Mother in care at an ART Clinic?:</label></td>
                         <td>
-                            <obs conceptId="162873" labelText=""/>
+                            <obs conceptId="162873" labelText="" />
                         </td>
                         <td>
                             <obs conceptId="162875" labelText="ART Clinic"/>
@@ -548,7 +549,7 @@
                         </td>
                         <td>Presumptive Referral</td>
                         <td class="LinkToCareEnableDisableChild1">
-                            <obs conceptId="163003"/>
+                            <obs conceptId="163003" answerConceptIds="90003,90004" />
                         </td>
                     </tr>
                 </table>
