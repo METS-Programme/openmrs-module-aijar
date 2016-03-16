@@ -10,8 +10,7 @@
           formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.gender=='F' &amp;&amp; patient.person.age &gt; 12 &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='e9bc61b5-69ff-414b-9cf0-0c22d6dfca2b'"
           formDisplayStyle="Standard"
           formLabel="ANC Register Form">
-    <redirectOnSave
-            url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits"/>
+    <redirectOnSave url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits"/>
     <script type="text/javascript">
         function enable_disable_pcr_test_result(selected_option) {
 
@@ -19,7 +18,7 @@
 
             var length = class_name.length;
 
-            var class_id = parseInt(class_name.substring(length - 1, length))
+            var class_id = parseInt(class_name.substring(length - 1, length));
 
             var row_id = class_id;
 
@@ -31,7 +30,7 @@
             var row_4 = '[class^="PCRTestResult"][class*="Child4"]';
 
             var xx = row_1;
-            var selected_value = jq(selected_option).find(":selected").text()
+            var selected_value = jq(selected_option).find(":selected").text();
 
             selected_value = selected_value.trim().toUpperCase();
 
@@ -82,7 +81,7 @@
 
             var length = class_name.length;
 
-            var class_id = parseInt(class_name.substring(length - 1, length))
+            var class_id = parseInt(class_name.substring(length - 1, length));
 
             var row_id = class_id;
 
@@ -121,7 +120,7 @@
 
             var length = class_name.length;
 
-            var class_id = parseInt(class_name.substring(length - 1, length))
+            var class_id = parseInt(class_name.substring(length - 1, length));
 
             var row_id = class_id;
 
@@ -155,7 +154,7 @@
         function enable_disable_arvs() {
             var selected_value = jq("#ARVSEnableDisable1").find(":selected").text();
 
-            var disable = false
+            var disable = false;
             var selector = "";
 
             var group = jq("#ARVSEnableDisableChild1");
@@ -334,16 +333,19 @@
                         <obs conceptId="99731" allowFutureDates="true"/>
                     </td>
                     <td>
+                        <label style="width: 100%;text-align: left">Weight</label>
                         <obs conceptId="90236"/>
                     </td>
                 </tr>
                 <tr>
                     <td class="INREnableDisable1">
+                        <label style="width: 100%;text-align: left">MUAC</label>
                         <obs conceptId="99030"/>
                     </td>
                 </tr>
                 <tr>
                     <td class="INREnableDisableChild1">
+                        <label style="width: 100%;text-align: left">INR No</label>
                         <obs conceptId="99733"/>
                     </td>
                 </tr>
@@ -403,6 +405,7 @@
                         <obs conceptId="99321"/>
                     </td>
                     <td>
+                        <label style="text-align: left">WHO Clinical Stage</label>
                         <obs conceptId="90203" labelText=""
                              answerConceptIds="90033,90034,90035,90036,90293,90294,90295,90296"
                              answerLabels="Stage1,Stage2,Stage3,Stage4,StageT1,StageT2,StageT3,StageT4"/>
@@ -413,16 +416,19 @@
                              answerLabels="ART,ARTK,ART&#8730;,ARTK&#8730;,N/A"/>
                     </td>
                     <td rowspan="2">
+                       <label style="text-align: left"> Infant Young Child feeding Counseling (IYCF)</label>
                         <obs conceptId="99749" labelText="" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
                     </td>
                 </tr>
                 <tr>
                     <td>
+                        <label style="text-align: left">CD4</label>
                         <obs conceptId="5497" labelText=""/>
                     </td>
                 </tr>
                 <tr>
                     <td>
+                        <label style="text-align: left">Viral Load</label>
                         <obs conceptId="856" labelText=""/>
                     </td>
                     <td>
@@ -430,6 +436,7 @@
                         <obs conceptId="99751"/>
                     </td>
                     <td>
+                        <label style="text-align: left">Maternal Nutrition Counseling</label>
                         <obs conceptId="99750" labelText="" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
                     </td>
                 </tr>

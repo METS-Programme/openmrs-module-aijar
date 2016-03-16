@@ -193,6 +193,7 @@
                         <obs conceptId="99321"/>
                     </td>
                     <td>
+                        <label style="text-align: left;">WHO Clinical Stage</label>
                         <obs id="br" conceptId="90203"
                              answerConceptIds="90033,90034,90035,90036,90293,90294,90295,90296"
                              answerLabels="1,2,3,4,T1,T2,T3,T4"/>
@@ -200,11 +201,13 @@
                 </tr>
                 <tr>
                     <td>
+                        <label style="text-align: left;">CD4 Count</label>
                         <obs id="br" conceptId="5497"/>
                     </td>
                 </tr>
                 <tr>
                     <td>
+                        <label style="text-align: left;">Viral Load</label>
                         <obs id="br" conceptId="856"/>
                     </td>
                 </tr>
@@ -255,27 +258,29 @@
                              style="dropdown"/>
                     </td>
                     <td rowspan="2">
+                        <label style="text-align: left">ARVs to Mother</label>
                         <obs conceptId="99344" answerConceptIds="1175,631,99343,630"
                              answerLabels="NA,NVP Only,AZT and NVP,AZT and 3TC" style="dropdown"/>
-
-                        <obs conceptId="99744" answerConceptIds="99745,99746,99747,99748,1175"
-                             answerLabels="ART,ARTK,ART&#8730;,ARTK&#8730;,N/A"/>
                     </td>
                     <td>
+                        <label style="text-align: left">Vit A Suppliment</label>
                         <obs conceptId="99356" style="checkbox"/>
                     </td>
                 </tr>
                 <tr>
                     <td class="INREnableDisable1">
+                        <label style="text-align: left">MUAC</label>
                         <obs conceptId="99030"/>
                     </td>
                 </tr>
                 <tr>
                     <td>
+                        <label style="text-align: left">Pre-ART No</label>
                         <patient field="identifier" identifierTypeId="e1731641-30ab-102d-86b0-7a5022ba4115"
                                  required="true"/>
                     </td>
                     <td class="INREnableDisableChild1">
+                        <label style="text-align: left">INR No.</label>
                         <obs conceptId="99733"/>
                     </td>
                 </tr>
