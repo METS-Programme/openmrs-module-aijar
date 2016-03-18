@@ -23,5 +23,8 @@ jq(document).ready(function () {
         jq(this).removeClass('editPatientIdentifier'); // also remove the class in case this script is loaded before the
         // onclick is added
     });
+
+    // change the first em to the text National ID
+    $("div.identifiers :first-child").text("National ID");
 });
 
