@@ -346,10 +346,10 @@
                                     <br/>
                                     <obs conceptId="162983" labelText="Gestation in Weeks"/>
                                     <br/>
-                                    <!--ANC #
+                                    ANC #
                                     <patient field="identifier" identifierTypeId="b0cc255e-ef57-4266-839e-0df7f5099eb9"
                                              required="false" />
-                                    <br/>-->
+                                    <br/>
                                 </span>
                             </span>
                         </excludeIf>
