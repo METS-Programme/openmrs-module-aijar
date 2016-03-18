@@ -104,7 +104,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
      */
     private List<GlobalProperty> configureGlobalProperties() {
         List<GlobalProperty> properties = new ArrayList<GlobalProperty>();
-        // The auto generated OpenMRS Identifier as the primary identifier that needs to be displayed
+        // The National ID as the primary identifier that needs to be displayed
         properties.add(
                 new GlobalProperty(EmrApiConstants.PRIMARY_IDENTIFIER_TYPE, PatientIdentifierTypes.NATIONAL_ID.uuid()));
 
