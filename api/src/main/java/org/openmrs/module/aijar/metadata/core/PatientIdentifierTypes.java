@@ -235,20 +235,20 @@ public class PatientIdentifierTypes {
 
         @Override
         public String description() {
-            return "The national ID number";
+            return "The Uganda National ID number";
         }
 
         public String uuid() {
             return "f0c16a6d-dc5f-4118-a803-616d0075d282";
         }
 
-        public String format() {
+        /*public String format() {
             return "[C][M][0-9a-zA-Z]{12}";
         }
 
         public String formatDescription() {
             return "No spaces mix of numbers and letters";
-        }
+        }*/
     };
 
 }

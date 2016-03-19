@@ -78,6 +78,8 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         try {
             // disable the reference app registration page
             appFrameworkService.disableApp("referenceapplication.registrationapp.registerPatient");
+            // the extension to the edit person details
+            appFrameworkService.disableExtension("org.openmrs.module.registrationapp.editPatientDemographics");
 
             // install HTML Forms
             setupHtmlForms();

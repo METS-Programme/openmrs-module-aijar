@@ -25,6 +25,6 @@ jq(document).ready(function () {
     });
 
     // change the first em to the text National ID
-    $("div.identifiers :first-child").text("National ID");
+    jq('em:contains("Patient ID")').text("National ID");
 });
 

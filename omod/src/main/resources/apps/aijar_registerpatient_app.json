@@ -19,27 +19,13 @@
     "config": {
       "allowUnknownPatients": false,
       "allowRetrospectiveEntry": true,
+      "allowManualIdentifier": true,
       "afterCreatedUrl": "/coreapps/clinicianfacing/patient.page?patientId={{patientId}}",
       "sections": [
         {
-          "id": "contactInfo",
+          "id": "demographics",
           "label": "aijar.registrationapp.otherdetails",
           "questions": [
-            {
-              "legend": "aijar.registrationapp.nationalidnumber",
-              "fields": [
-                {
-                  "type": "personAttribute",
-                  "label": "aijar.registrationapp.nationalidnumber.question",
-                  "formFieldName": "nin",
-                  "uuid": "f0c16a6d-dc5f-4118-a803-616d0075d282",
-                  "widget": {
-                    "providerName": "uicommons",
-                    "fragmentId": "field/text"
-                  }
-                }
-              ]
-            },
             {
               "legend": "aijar.registrationapp.maritalstatus",
               "fields": [
@@ -115,7 +101,7 @@
             },
             {
               "legend": "aijar.registrationapp.nextofkin",
-              "id": "nofKinLabel",
+              "id": "nextofkin",
               "fields": [
                 {
                   "type": "personAttribute",
