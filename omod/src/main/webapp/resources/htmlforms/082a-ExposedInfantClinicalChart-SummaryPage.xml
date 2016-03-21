@@ -276,8 +276,10 @@
                             <encounterDate default="today"></encounterDate>
                         </td>
                         <td><label>Entry Point (Clinic/Ward):</label>
-                            <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
-                                               tags="2,3,4" />
+                            <obs conceptId="90200"
+                                 answerConceptIds="90012,90016,99593,90019,90013,90015,90018,90002"
+                                 answerLabels="eMTCT,TB,YCC,Outreach,Out Patient,STI,Inpatient,Other"
+                                 required="true"/>
                         </td>
                     </tr>
                     <tr>
