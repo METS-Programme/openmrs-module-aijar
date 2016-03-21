@@ -165,6 +165,10 @@ public class PatientIdentifierTypes {
             return "b0cc255e-ef57-4266-839e-0df7f5099eb9";
         }
 
+        public boolean required() {
+            return false;
+        }
+
         /*public String format() {
             return "^\\d+$";
         }*/
@@ -186,6 +190,7 @@ public class PatientIdentifierTypes {
         }
 
         public String uuid() { return "c9e42035-7112-45b3-bfcf-4b37e1091dd4"; }
+
 
         /*public String format() {
             return "[0-9]{4}[\\/][1][4-9]";
