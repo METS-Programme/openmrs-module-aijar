@@ -409,11 +409,11 @@
                             <obs id="br" conceptId="90310" labelText="TB Stop Date:" allowFutureDates="true"/>
 
                         </span>
-                        <!--<label>District TB No.</label>
+                        <label>District TB No.</label>
                         <span class="DistrictTbRegEnableDisableChild1">
                             <patient field="identifier" identifierTypeId="8110f2d2-1f98-4c38-aef3-11b19bb0a589"
                                      required="false" />
-                        </span>-->
+                        </span>
 
                         <br/>
                     </td>

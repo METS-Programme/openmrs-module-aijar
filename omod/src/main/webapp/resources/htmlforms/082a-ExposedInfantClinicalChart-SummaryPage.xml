@@ -526,7 +526,7 @@
                     <tr>
                         <td><label>Referred to ART Clinic</label></td>
                         <td class="LinkToCareEnableDisableChild1">
-                            <obs conceptId="99430"></obs>
+                            <obs conceptId="99430" answerConceptIds="1065,1066"></obs>
                         </td>
                         <td>Date</td>
                         <td class="LinkToCareEnableDisableChild1"><obs conceptId="162981"/></td>
@@ -534,7 +534,7 @@
                     <tr>
                         <td><label>Enrolled at ART Clinic</label></td>
                         <td class="LinkToCareEnableDisableChild1">
-                            <obs conceptId="99430"/>
+                            <obs conceptId="163004" answerConceptIds="1065,1066"/>
                         </td>
                         <td>Date</td>
                         <td class="LinkToCareEnableDisableChild1">
@@ -542,7 +542,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><label>Pre-ART No</label></td>
+                        <td><label>Infant Pre-ART No</label></td>
                         <td class="LinkToCareEnableDisableChild1">
                             <obs conceptId="99751"></obs>
                         </td>
