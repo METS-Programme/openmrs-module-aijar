@@ -11,8 +11,10 @@ import org.springframework.stereotype.Component;
 public class EncounterTypeMetadataBundle extends AbstractMetadataBundle {
 
     public void install() throws Exception {
-        install(EncounterTypes.SUMMARY_PAGE);
-        install(EncounterTypes.ENCOUNTER_PAGE);
+        install(EncounterTypes.ART_SUMMARY_PAGE);
+        install(EncounterTypes.EID_SUMMARY_PAGE);
+        install(EncounterTypes.ART_ENCOUNTER_PAGE);
+        install(EncounterTypes.EID_ENCOUNTER_PAGE);
         install(EncounterTypes.LAB_ENCOUNTER);
         install(EncounterTypes.HEALTH_EDUCATION);
         install(EncounterTypes.SMC_SUMMARY);
