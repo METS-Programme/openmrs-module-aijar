@@ -13,6 +13,7 @@
  */
 package org.openmrs.module.aijar;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +36,7 @@ import org.openmrs.module.emrapi.EmrApiConstants;
 import org.openmrs.module.emrapi.utils.MetadataUtil;
 import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
 import org.openmrs.ui.framework.resource.ResourceFactory;
+import org.openmrs.util.OpenmrsUtil;
 
 /**
  * This class contains the logic that is run every time this module is either started or stopped.
@@ -140,17 +142,17 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 
         //Birt Settings
         properties.add(new GlobalProperty("birt.alwaysUseOpenmrsJdbcProperties", "false"));
-        properties.add(new GlobalProperty("birt.birtHome", "C:/Application Data/OpenMRS/birt/birt-runtime-2_3_2/ReportEngine"));//Eg.Users/<<username>>/Data/birt/birt-runtime-2_3_2/ReportEngine"
-        properties.add(new GlobalProperty("birt.datasetDir", "C:/Application Data/OpenMRS/birt/reports/datasets"));
-        properties.add(new GlobalProperty("birt.loggingDir", "C:/Application Data/OpenMRS/birt/logs"));
+        properties.add(new GlobalProperty("birt.birtHome", OpenmrsUtil.getApplicationDataDirectory() + "birt" + File.separator + "birt-runtime-2_3_2" + File.separator + "ReportEngine"));
+        properties.add(new GlobalProperty("birt.datasetDir", OpenmrsUtil.getApplicationDataDirectory() + "birt" + File.separator + "reports" + File.separator + "datasets"));
+        properties.add(new GlobalProperty("birt.loggingDir", OpenmrsUtil.getApplicationDataDirectory() + "birt" + File.separator + "logs"));
         properties.add(new GlobalProperty("birt.defaultReportDesignFile", "default.rptdesign"));
         properties.add(new GlobalProperty("birt.loggingLevel", "OFF"));
         properties.add(new GlobalProperty("birt.mandatory", "false"));
-        properties.add(new GlobalProperty("birt.outputDir", "C:/Application Data/OpenMRS/birt/reports/output"));
-        properties.add(new GlobalProperty("birt.reportDir", "C:/Application Data/OpenMRS/birt/reports"));
-        properties.add(new GlobalProperty("birt.reportOutputFile", "C:/Application Data/OpenMRS/birt/reports/output/ReportOutput.pdf"));
+        properties.add(new GlobalProperty("birt.outputDir", OpenmrsUtil.getApplicationDataDirectory() + "birt" + File.separator + "reports" + File.separator + "output"));
+        properties.add(new GlobalProperty("birt.reportDir", OpenmrsUtil.getApplicationDataDirectory() +  "birt" + File.separator + "reports"));
+        properties.add(new GlobalProperty("birt.reportOutputFile", OpenmrsUtil.getApplicationDataDirectory() + "birt" + File.separator + "reports" + File.separator + "output" + File.separator + "ReportOutput.pdf"));
         properties.add(new GlobalProperty("birt.reportOutputFormat", "pdf"));
-        properties.add(new GlobalProperty("birt.reportPreviewFile", "C:/Application Data/OpenMRS/birt/reports/output/ReportPreview.pdf"));
+        properties.add(new GlobalProperty("birt.reportPreviewFile", OpenmrsUtil.getApplicationDataDirectory() + "birt" + File.separator + "reports" + File.separator + "output" + File.separator + "ReportPreview.pdf"));
 
         // disable the appointmentshedulingui which currently has issues
         properties.add(new GlobalProperty("appointmentschedulingui.started", "false"));
