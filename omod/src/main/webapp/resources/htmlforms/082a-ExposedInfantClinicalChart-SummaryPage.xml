@@ -16,7 +16,7 @@
     <ifMode mode="EDIT" include="false">
         <lookup complexExpression="
             #set( $encounter = 0 )
-            #set( $encounter = $fn.latestEncounter('8d5b27bc-c2cc-11de-8d13-0010c6dffd0f'))
+            #set( $encounter = $fn.latestEncounter('9fcfcc91-ad60-4d84-9710-11cc25258719'))
             #if( $encounter != 0 )
                 &lt;script type=&quot;text/javascript&quot;>
                         if (window.location.href.indexOf('/module/htmlformentry/htmlForm.form') == -1) {
@@ -269,8 +269,8 @@
                     <tr>
                         <td>Health Facility: <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
                                                                tags="2,3,4"/></td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td> </td>
+                        <td> </td>
                     </tr>
                     <tr>
                         <td>
