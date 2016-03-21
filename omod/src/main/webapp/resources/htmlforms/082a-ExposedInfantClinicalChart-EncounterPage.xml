@@ -630,13 +630,13 @@
                     </tr>
                     <tr>
                         <td rowspan="3">Growth Measures</td>
-                        <td>Height</td>
+                        <td>Height (cm)</td>
                         <td>
                             <obs conceptId="5090"/>
                         </td>
                     </tr>
                     <tr>
-                        <td>Weight</td>
+                        <td>Weight (kg)</td>
                         <td>
                             <obs conceptId="5089"/>
                         </td>
@@ -661,24 +661,24 @@
                             Symptoms of HIV
                         </td>
                         <td class="lablex3">
-                            <obs id="br" conceptId="162853" answerConceptId="162848" answerLabel="WELL"/>
-                            <obs id="br" conceptId="162853" answerConceptId="162847" answerLabel="LN"/>
-                            <obs id="br" conceptId="162853" answerConceptId="832" answerLabel="WL"/>
-                            <obs id="br" conceptId="162853" answerConceptId="90103" answerLabel="F"/>
-                            <obs id="br" conceptId="162853" answerConceptId="90130" answerLabel="OT"/>
-                            <obs id="br" conceptId="162853" answerConceptId="162849" answerLabel="EL"/>
-                            <obs id="br" conceptId="162853" answerConceptId="162850" answerLabel="G"/>
-                            <obs id="br" conceptId="162853" answerConceptId="107" answerLabel="C"/>
-                            <obs id="br" conceptId="162853" answerConceptId="162851" answerLabel="ADR"/>
-                            <obs id="br" conceptId="162853" answerConceptId="162852" answerLabel="RDR"/>
-                            <obs id="br" conceptId="162853" answerConceptId="42" answerLabel="PNEU"/>
-                            <obs id="br" conceptId="162853" answerConceptId="512" answerLabel="RASH"/>
+                            <obs id="br" conceptId="162853" answerConceptId="162848" answerLabel="WELL: NO clinical signs or symptoms"/>
+                            <obs id="br" conceptId="162853" answerConceptId="162847" answerLabel="LN: Palpable Lymph Nodes "/>
+                            <obs id="br" conceptId="162853" answerConceptId="832" answerLabel="WL: Weight loss"/>
+                            <obs id="br" conceptId="162853" answerConceptId="90103" answerLabel="F: Fever"/>
+                            <obs id="br" conceptId="162853" answerConceptId="90130" answerLabel="OT: Oral thrush"/>
+                            <obs id="br" conceptId="162853" answerConceptId="162849" answerLabel="EI: Ear Infection"/>
+                            <obs id="br" conceptId="162853" answerConceptId="162850" answerLabel="G: Poor growth (height)"/>
+                            <obs id="br" conceptId="162853" answerConceptId="107" answerLabel="C: Coughing"/>
+                            <obs id="br" conceptId="162853" answerConceptId="162851" answerLabel="ADR: Acue Diarrhea"/>
+                            <obs id="br" conceptId="162853" answerConceptId="162852" answerLabel="RDR: Recurrent Diarrhea"/>
+                            <obs id="br" conceptId="162853" answerConceptId="42" answerLabel="PNEU: Pneumonia"/>
+                            <obs id="br" conceptId="162853" answerConceptId="512" answerLabel="RASH: Skin Rash"/>
                                 <span class="enableDisable">
                                     <span id="trigger">
-                                        <obs id="br" conceptId="162853" answerConceptId="90002" answerLabel="Others"/>
+                                        <obs id="br" conceptId="162853" answerConceptId="90002" answerLabel="Others (specify)"/>
                                     </span>
                                     <span id="disabled">
-                                        <obs id="br" conceptId="163008" answerLabel="Others"/>
+                                        <obs id="br" conceptId="163008" answerLabel="Others (specify)"/>
                                     </span>
                                 </span>
                         </td>
@@ -687,23 +687,23 @@
                         <td rowspan="2">Developmental Assesment for Evidance of Delay</td>
                         <td>Development Milestones</td>
                         <td class="lablex2">
-                            <obs conceptId="162864" id="br" answerConceptId="162855" answerLabels="SMI:Smilling"/>
-                            <obs conceptId="162864" id="br" answerConceptId="162857" answerLabels="SIT:Sitting"/>
-                            <obs conceptId="162864" id="br" answerConceptId="162856" answerLabels="W:Walking"/>
+                            <obs conceptId="162864" id="br" answerConceptId="162855" answerLabels="SMI: Smiling"/>
+                            <obs conceptId="162864" id="br" answerConceptId="162857" answerLabels="SIT: Sitting"/>
+                            <obs conceptId="162864" id="br" answerConceptId="162856" answerLabels="W: Walking"/>
                             <obs conceptId="162864" id="br" answerConceptId="162858"
-                                 answerLabels="HEAD:Controlling Head"/>
+                                 answerLabels="HEAD: Controlling Head"/>
                             <obs conceptId="162864" id="br" answerConceptId="162859"
-                                 answerLabels="TOB:Transfering objects from hand to hand"/>
+                                 answerLabels="TOB: Transfering objects from hand to hand"/>
                             <obs conceptId="162864" id="br" answerConceptId="162860"
-                                 answerLabels="COG:Cognition(point to 3 familiar objects)"/>
-                            <obs conceptId="162864" id="br" answerConceptId="162861" answerLabels="ROLL:Rolling Over"/>
-                            <obs conceptId="162864" id="br" answerConceptId="162862" answerLabels="CRA:Crawl"/>
-                            <obs conceptId="162864" id="br" answerConceptId="162863" answerLabels="ST:Stand"/>
+                                 answerLabels="COG: Cognition(point to 3 familiar objects)"/>
+                            <obs conceptId="162864" id="br" answerConceptId="162861" answerLabels="ROLL: Rolling Over"/>
+                            <obs conceptId="162864" id="br" answerConceptId="162862" answerLabels="CRA: Crawl"/>
+                            <obs conceptId="162864" id="br" answerConceptId="162863" answerLabels="ST: Stand"/>
                         </td>
 
                     </tr>
                     <tr>
-                        <td>Head Circumference</td>
+                        <td>Head Circumference (cm)</td>
                         <td>
                             <obs conceptId="5314"/>
                         </td>
