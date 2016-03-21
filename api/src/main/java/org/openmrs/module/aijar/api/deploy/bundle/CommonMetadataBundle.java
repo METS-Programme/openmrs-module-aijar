@@ -39,6 +39,7 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(PatientIdentifierTypes.OPENMRS_IDENTIFICATION_NUMBER);
         install(PatientIdentifierTypes.EXPOSED_INFANT_NUMBER);
         install(PatientIdentifierTypes.ANC_NUMBER);
+        install(PatientIdentifierTypes.EID_ANC_NUMBER);
         install(PatientIdentifierTypes.IPD_NUMBER);
         install(PatientIdentifierTypes.HCT_NUMBER);
         install(PatientIdentifierTypes.NATIONAL_ID);

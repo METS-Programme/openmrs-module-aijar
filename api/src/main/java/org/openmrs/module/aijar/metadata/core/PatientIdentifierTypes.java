@@ -165,13 +165,26 @@ public class PatientIdentifierTypes {
             return "b0cc255e-ef57-4266-839e-0df7f5099eb9";
         }
 
-        public boolean required() {
-            return false;
+        public String formatDescription() {
+            return "Begins with 1 at the beginning of the financial year (July)";
+        }
+    };
+
+
+    public static PatientIdentifierTypeDescriptor EID_ANC_NUMBER = new PatientIdentifierTypeDescriptor() {
+        @Override
+        public String name() {
+            return "EID Antenatal Care No.";
         }
 
-        /*public String format() {
-            return "^\\d+$";
-        }*/
+        @Override
+        public String description() {
+            return "This is the mother's ANC Number that is Entered on the EID card";
+        }
+
+        public String uuid() {
+            return "c1e009d5-7f0e-463e-a7aa-2fa439159bca";
+        }
 
         public String formatDescription() {
             return "Begins with 1 at the beginning of the financial year (July)";
