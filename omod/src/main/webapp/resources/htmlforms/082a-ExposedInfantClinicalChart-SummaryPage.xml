@@ -267,12 +267,18 @@
 
                 <table class="table table-bordered custom-table">
                     <tr>
+                        <td>Health Facility: <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
+                                                               tags="2,3,4"/></td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
                         <td>
                             <label>EI Number:</label>
                             <patient field="identifier" identifierTypeId="2c5b695d-4bf3-452f-8a7c-fe3ee3432ffe"
                                      required="true" placeholder="EXP"/>
                         </td>
-                        <td><label>Date Chart Openned:</label>
+                        <td><label>Date Chart Opened:</label>
                             <encounterDate default="today"></encounterDate>
                         </td>
                         <td><label>Entry Point (Clinic/Ward):</label>
