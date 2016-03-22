@@ -203,11 +203,11 @@
                     jq("span#nvpDate :input").attr("disabled", true);
                 }
 
-                if (ageInMonths &lt; 18 || ageInMonths == 18) {
+                if (ageInMonths &lt; 18) {
                     jq("#statusAbove18Months").remove();
                     jq("span#statusAbove18Months :input").attr("disabled", true);
                 }
-                else if (ageInMonths &gt; 18) {
+                else if (ageInMonths &gt; 18  || ageInMonths == 18) {
                     jq("#statusBelow18Months").remove();
                     jq("span#statusBelow18Months :input").attr("disabled", true);
                 }
