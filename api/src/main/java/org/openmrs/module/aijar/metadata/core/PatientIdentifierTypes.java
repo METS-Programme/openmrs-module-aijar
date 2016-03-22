@@ -40,7 +40,7 @@ public class PatientIdentifierTypes {
     public static PatientIdentifierTypeDescriptor EID_MOTHER_HIV_CARE_NUMBER = new PatientIdentifierTypeDescriptor() {
         @Override
         public String name() {
-            return "HIV Clinic No.";
+            return "EID Mother HIV Clinic No.";
         }
 
         @Override
