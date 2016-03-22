@@ -532,10 +532,6 @@
             <table>
                 <tbody>
                 <tr>
-                    <td colspan="2">
-                        Encounter Date:
-                        <encounterDate default="today"/>
-                    </td>
                     <td>
                         Service Provider:
                         <encounterProvider role="Provider" style="autocomplete"/>
@@ -582,7 +578,7 @@
                     <tr>
                         <td colspan="2">Date of Visit</td>
                         <td>
-                            <obs conceptId="99446"/>
+                            <encounterDate default="today"/>
                         </td>
                     </tr>
                     <tr>
