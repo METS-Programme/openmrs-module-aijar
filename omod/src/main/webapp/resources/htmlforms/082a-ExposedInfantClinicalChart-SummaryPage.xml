@@ -1,6 +1,6 @@
 <htmlform formName="HMIS 082a - Exposed Infant Card Summary Form"
           formDescription="Captures demographic details for infants born to HIV positive mothers"
-          formEncounterType="8d5b27bc-c2cc-11de-8d13-0010c6dffd0f"
+          formEncounterType="9fcfcc91-ad60-4d84-9710-11cc25258719"
           formUuid="860c5f2f-cf3c-4c3f-b0c4-9958b6a5a938"
           formVersion="1.2"
           formAddMetadata="yes"
@@ -16,7 +16,7 @@
     <ifMode mode="EDIT" include="false">
         <lookup complexExpression="
             #set( $encounter = 0 )
-            #set( $encounter = $fn.latestEncounter('8d5b27bc-c2cc-11de-8d13-0010c6dffd0f'))
+            #set( $encounter = $fn.latestEncounter('9fcfcc91-ad60-4d84-9710-11cc25258719'))
             #if( $encounter != 0 )
                 &lt;script type=&quot;text/javascript&quot;>
                         if (window.location.href.indexOf('/module/htmlformentry/htmlForm.form') == -1) {
@@ -267,12 +267,18 @@
 
                 <table class="table table-bordered custom-table">
                     <tr>
+                        <td>Health Facility: <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
+                                                               tags="2,3,4"/></td>
+                        <td> </td>
+                        <td> </td>
+                    </tr>
+                    <tr>
                         <td>
                             <label>EI Number:</label>
                             <patient field="identifier" identifierTypeId="2c5b695d-4bf3-452f-8a7c-fe3ee3432ffe"
                                      required="true" placeholder="EXP"/>
                         </td>
-                        <td><label>Date Chart Openned:</label>
+                        <td><label>Date Chart Opened:</label>
                             <encounterDate default="today"></encounterDate>
                         </td>
                         <td><label>Entry Point (Clinic/Ward):</label>

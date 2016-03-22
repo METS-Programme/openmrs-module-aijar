@@ -9,7 +9,7 @@ import org.openmrs.module.metadatadeploy.descriptor.EncounterTypeDescriptor;
  */
 public class EncounterTypes {
 
-    public static EncounterTypeDescriptor SUMMARY_PAGE = new EncounterTypeDescriptor() {
+    public static EncounterTypeDescriptor ART_SUMMARY_PAGE = new EncounterTypeDescriptor() {
         @Override
         public String name() {
             return "ART Card - Summary";
@@ -17,7 +17,7 @@ public class EncounterTypes {
 
         @Override
         public String description() {
-            return "Outpatient Adult & Children Initial Visit";
+            return "Outpatient Adult Initial Visit";
         }
 
         public String uuid() {
@@ -25,7 +25,23 @@ public class EncounterTypes {
         }
     };
 
-    public static EncounterTypeDescriptor ENCOUNTER_PAGE = new EncounterTypeDescriptor() {
+    public static EncounterTypeDescriptor EID_SUMMARY_PAGE = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "EID Card - Summary";
+        }
+
+        @Override
+        public String description() {
+            return "Outpatient Children Initial Visit";
+        }
+
+        public String uuid() {
+            return "9fcfcc91-ad60-4d84-9710-11cc25258719";
+        }
+    };
+
+    public static EncounterTypeDescriptor ART_ENCOUNTER_PAGE = new EncounterTypeDescriptor() {
         @Override
         public String name() {
             return "ART Card - Encounter";
@@ -38,6 +54,22 @@ public class EncounterTypes {
 
         public String uuid() {
             return "8d5b2be0-c2cc-11de-8d13-0010c6dffd0f";
+        }
+    };
+
+    public static EncounterTypeDescriptor EID_ENCOUNTER_PAGE = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "EID Card - Encounter";
+        }
+
+        @Override
+        public String description() {
+            return "Outpatient Child Return Visit";
+        }
+
+        public String uuid() {
+            return "4345dacb-909d-429c-99aa-045f2db77e2b";
         }
     };
 
