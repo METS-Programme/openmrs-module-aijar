@@ -37,6 +37,31 @@ public class PatientIdentifierTypes {
     };
 
 
+    public static PatientIdentifierTypeDescriptor EID_MOTHER_HIV_CARE_NUMBER = new PatientIdentifierTypeDescriptor() {
+        @Override
+        public String name() {
+            return "HIV Clinic No.";
+        }
+
+        @Override
+        public String description() {
+            return "This is the patient's identifier used at the treating facility";
+        }
+
+        public String uuid() {
+            return "024962ca-f16f-4ae3-824f-101fe3f05abf";
+        }
+
+        /*public String format() {
+            return "[X][X][X][\\/][0-9][0-9][0-9][0-9][0-9]";
+        }*/
+
+        public String formatDescription() {
+            return " The first three letters of the facility, followed by / then 5 numbers with no spaces";
+        }
+    };
+
+
     public static PatientIdentifierTypeDescriptor EXPOSED_INFANT_NUMBER = new PatientIdentifierTypeDescriptor() {
         @Override
         public String name() {
@@ -203,7 +228,6 @@ public class PatientIdentifierTypes {
         }
 
         public String uuid() { return "c9e42035-7112-45b3-bfcf-4b37e1091dd4"; }
-
 
         /*public String format() {
             return "[0-9]{4}[\\/][1][4-9]";

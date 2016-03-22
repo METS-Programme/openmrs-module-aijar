@@ -75,7 +75,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         AdministrationService administrationService = Context.getAdministrationService();
         AppFrameworkService appFrameworkService = Context.getService(AppFrameworkService.class);
         MetadataDeployService deployService = Context.getService(MetadataDeployService.class);
-	    ConceptService conceptService = Context.getConceptService();
+        ConceptService conceptService = Context.getConceptService();
 
         try {
             // disable the reference app registration page
@@ -116,7 +116,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         properties.add(new GlobalProperty(EmrApiConstants.GP_EXTRA_PATIENT_IDENTIFIER_TYPES,
                 PatientIdentifierTypes.HIV_CARE_NUMBER.uuid() + "," + PatientIdentifierTypes.EXPOSED_INFANT_NUMBER.uuid()
                         + "," + PatientIdentifierTypes.IPD_NUMBER.uuid() + "," + PatientIdentifierTypes.ANC_NUMBER.uuid()
-                        + "," + PatientIdentifierTypes.HCT_NUMBER.uuid()+","+PatientIdentifierTypes.EID_ANC_NUMBER.uuid()));
+                        + "," + PatientIdentifierTypes.HCT_NUMBER.uuid()+","+PatientIdentifierTypes.EID_ANC_NUMBER.uuid()+","+PatientIdentifierTypes.EID_MOTHER_HIV_CARE_NUMBER.uuid()));
 
         // set the name of the application
         properties.add(new GlobalProperty("application.name", "UgandaEMR - Uganda eHealth Solution"));
@@ -173,8 +173,8 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             deployService.installBundle(Context.getRegisteredComponents(UgandaAddressMetadataBundle.class).get(0));
             log.info("Finished installing addresshierarchy");
 
-	        // retire concepts that are duplicated in the
-	        // concept metadata package
+            // retire concepts that are duplicated in the
+            // concept metadata package
             /*ConceptService conceptService = Context.getConceptService();
             List<String> conceptsToRetire = Arrays.asList("8b64f9e1-196a-4802-a287-fd160fb97002", // YES
 			        "b1629d9a-91a5-4895-b6bc-647f3a944534" // NO
@@ -186,12 +186,9 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 			        , "1734AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  // YEARS
 			        , "111633AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" // URINARY TRACT INFECTION
 			        , "117543AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" // HERPES ZOSTER
-
 	        );
-
 	        for (String uuid : conceptsToRetire) {
 		        Concept concept = conceptService.getConceptByUuid(uuid);
-
 		        if (concept != null) {
 			        // retire the concept
 			        log.info("Retiring concept " + concept.toString());
@@ -200,7 +197,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 		        }
 	        }*/
 
-	        // install concepts
+            // install concepts
             log.info("Installing standard metadata using the packages.xml file");
             MetadataUtil.setupStandardMetadata(getClass().getClassLoader());
             log.info("Standard metadata installed");
