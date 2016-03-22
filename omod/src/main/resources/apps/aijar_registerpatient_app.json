@@ -19,7 +19,6 @@
     "config": {
       "allowUnknownPatients": false,
       "allowRetrospectiveEntry": true,
-      "allowManualIdentifier": true,
       "afterCreatedUrl": "/coreapps/clinicianfacing/patient.page?patientId={{patientId}}",
       "sections": [
         {
