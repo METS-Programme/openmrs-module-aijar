@@ -1618,8 +1618,8 @@
                     </td>
                     <td rowspan="3" class="ArtCareEnableDisable2" style="width:20%;">
                         <obs conceptId="99061"
-                             answerConceptIds="99005,99006,99015,99016,99039,99040,99041,99042,99884,99885,99143"
-                             answerLabels="AZT-3TC-NVP, AZT-3TC-EFV, D4T-3TC-NVP, D4T-3TC-EFV, TDF-3TC-NVP, TDF-3TC-EFV, TDF-FTC-NVP, TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,OTHER"
+                             answerConceptIds="99005,99006,99015,99016,99039,99040,99041,99042,99884,99885,163017,99143"
+                             answerLabels="AZT-3TC-NVP, AZT-3TC-EFV, D4T-3TC-NVP, D4T-3TC-EFV, TDF-3TC-NVP, TDF-3TC-EFV, TDF-FTC-NVP, TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-LPV/r,OTHER"
                              labelText="Initial Regimen"/>
                         <p class="ArtCareEnableDisableChild2">
                             <obs conceptId="99268" labelText="Others"/>
@@ -1666,8 +1666,8 @@
                     <td colspan="2" class="ArtCareEnableDisable1">
                         <small>
                             <obs labelText="ARVs" conceptId="99064"
-                                 answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99007,99008,99044,99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99046,90002"
-                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,ZDV-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,ZDV-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,AZT-3TC-LPV/r,Other"/>
+                                 answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99007,99008,99044,99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99046,163017,90002"
+                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,ZDV-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,ZDV-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,AZT-3TC-LPV/r,ABC-3TC-LPV/r,Other"/>
                         </small>
                         <p class="ArtCareEnableDisableChild1">
                             <obs conceptId="99269" size="12" labelText="Other:"/>
@@ -1690,8 +1690,8 @@
                         </td>
                         <td class="ArtCareEnableDisable3">
                             <obs conceptId="90315"
-                                 answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99884,99885,99143"
-                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,Other"/>
+                                 answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99884,99885,163017,99143"
+                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3CT-LPV/r,Other"/>
                             <p class="ArtCareEnableDisableChild3">
                                 <obs size="20" conceptId="99146" labelText="Other"/>
                             </p>
@@ -1709,8 +1709,8 @@
                         </td>
                         <td class="ArtCareEnableDisable4">
                             <obs conceptId="90315"
-                                 answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99884,99885,99143"
-                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,Other"/>
+                                 answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99884,99885,163017,99143"
+                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3CT-LPV/r,Other"/>
                             <p class="ArtCareEnableDisableChild4">
                                 <obs size="20" conceptId="99146" labelText="Other"/>
                             </p>
@@ -1728,8 +1728,8 @@
                         </td>
                         <td class="ArtCareEnableDisable5">
                             <obs conceptId="90315"
-                                 answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99884,99885,99143"
-                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,Other"/>
+                                 answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99884,99885,163017,99143"
+                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3CT-LPV/r,Other"/>
                             <p class="ArtCareEnableDisableChild5">
                                 <obs size="20" conceptId="99146" labelText="Other"/>
                             </p>
@@ -1747,8 +1747,8 @@
                         </td>
                         <td class="ArtCareEnableDisable6">
                             <obs conceptId="90315"
-                                 answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99884,99885,99143"
-                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,Other"/>
+                                 answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99884,99885,163017,99143"
+                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3CT-LPV/r,Other"/>
                             <p class="ArtCareEnableDisableChild6">
                                 <obs size="20" conceptId="99146" labelText="Other"/>
                             </p>
