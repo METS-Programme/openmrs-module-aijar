@@ -389,8 +389,7 @@
                             <label>Mother's ANC No.:</label>
                         </td>
                         <td>
-                            <patient field="identifier" identifierTypeId="c1e009d5-7f0e-463e-a7aa-2fa439159bca"
-                                     required="false"/>
+                            <obs conceptId="99777"/>
                         </td>
                     </tr>
                     <tr>
@@ -421,9 +420,7 @@
                         </td>
                         <td>
                             <label>Mother's ART No</label>
-                            <patient field="identifier" identifierTypeId="024962ca-f16f-4ae3-824f-101fe3f05abf"
-                                     required="false"/>
-                            <!--<obs conceptId="162874" labelText=""/>-->
+                            <obs conceptId="162874" labelText=""/>
                         </td>
                     </tr>
                 </table>
