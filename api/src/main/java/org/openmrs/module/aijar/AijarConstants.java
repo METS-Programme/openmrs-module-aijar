@@ -13,5 +13,5 @@ public class AijarConstants {
     /**
      * Global property names
      */
-    public static final String GP_DEFAULT_LOCATION = MODULE_ID + ".defaultLocation";
+    public static final String GP_HEALTH_CENTER_NAME = MODULE_ID + ".healthCenterName";
 }

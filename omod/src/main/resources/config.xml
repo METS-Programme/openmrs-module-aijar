@@ -89,5 +89,14 @@
         </require_module>
 	</require_modules>
 
+	<!-- Global Properties -->
+	<globalProperty>
+		<property>aijar.healthCenterName</property>
+		<defaultValue>Health Center Name</defaultValue>
+		<description>
+			Allows one to set the name of the health center for this installation
+		</description>
+	</globalProperty>
+
 </module>
 
