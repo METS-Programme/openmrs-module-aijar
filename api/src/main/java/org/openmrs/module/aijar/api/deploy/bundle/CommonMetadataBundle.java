@@ -21,26 +21,13 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
     public void install() throws Exception {
         // install the patient identifier types
         log.info("Installing PatientIdentifierTypes");
-        // add a check if the HIV care number already exists do not install it
-        PatientIdentifierType hivCareNumber = MetadataUtils.possible(PatientIdentifierType.class, PatientIdentifierTypes
-                .HIV_CARE_NUMBER.uuid());
-        if (hivCareNumber == null) {
-            install(PatientIdentifierTypes.HIV_CARE_NUMBER);
-        }
-
-        // add a check not to overwrite the district TB number if it exists
-        PatientIdentifierType tbNumber = MetadataUtils.possible(PatientIdentifierType.class, PatientIdentifierTypes
-                .DISTRICT_TB_NUMBER.uuid());
-        if (tbNumber == null) {
-            install(PatientIdentifierTypes.DISTRICT_TB_NUMBER);
-        }
+        install(PatientIdentifierTypes.HIV_CARE_NUMBER);
+        install(PatientIdentifierTypes.DISTRICT_TB_NUMBER);
         install(PatientIdentifierTypes.OLD_OPENMRS_IDENTIFICATION_NUMBER);
         install(PatientIdentifierTypes.OPENMRS_ID);
         install(PatientIdentifierTypes.OPENMRS_IDENTIFICATION_NUMBER);
         install(PatientIdentifierTypes.EXPOSED_INFANT_NUMBER);
         install(PatientIdentifierTypes.ANC_NUMBER);
-        install(PatientIdentifierTypes.EID_ANC_NUMBER);
-        install(PatientIdentifierTypes.EID_MOTHER_HIV_CARE_NUMBER);
         install(PatientIdentifierTypes.IPD_NUMBER);
         install(PatientIdentifierTypes.HCT_NUMBER);
         install(PatientIdentifierTypes.NATIONAL_ID);
