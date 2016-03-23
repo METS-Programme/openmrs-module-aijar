@@ -203,11 +203,11 @@
                     jq("span#nvpDate :input").attr("disabled", true);
                 }
 
-                if (ageInMonths &lt; 18 || ageInMonths == 18) {
+                if (ageInMonths &lt; 18) {
                     jq("#statusAbove18Months").remove();
                     jq("span#statusAbove18Months :input").attr("disabled", true);
                 }
-                else if (ageInMonths &gt; 18) {
+                else if (ageInMonths &gt; 18  || ageInMonths == 18) {
                     jq("#statusBelow18Months").remove();
                     jq("span#statusBelow18Months :input").attr("disabled", true);
                 }
@@ -491,7 +491,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><label>18 Month Raid Test</label></td>
+                        <td><label>18 Month Rapid Test</label></td>
                         <td class="PCRTestResultEnableDisable4">
                             <obs conceptId="162879"/>
                         </td>
