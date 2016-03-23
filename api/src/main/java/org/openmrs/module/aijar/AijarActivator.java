@@ -83,6 +83,8 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         try {
             // disable the reference app registration page
             appFrameworkService.disableApp("referenceapplication.registrationapp.registerPatient");
+            // disable the start visit app since all data is retrospective
+            appFrameworkService.disableExtension("org.openmrs.module.coreapps.createVisit");
             // the extension to the edit person details
             appFrameworkService.disableExtension("org.openmrs.module.registrationapp.editPatientDemographics");
 
