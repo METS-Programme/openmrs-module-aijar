@@ -342,13 +342,15 @@
                                 <span id="disabled">
                                     <obs conceptId="5596" labelText="EDD" allowFutureDates="true"/>
                                     <br/>
+                                </span>
                                     <obs conceptId="90012" labelText="EMTCT"/>
                                     <br/>
+                                <span id="disabled">
                                     <obs conceptId="162983" labelText="Gestation in Weeks"/>
                                     <br/>
                                     ANC #
                                     <patient field="identifier" identifierTypeId="b0cc255e-ef57-4266-839e-0df7f5099eb9"
-                                             required="false" />
+                                             required="false"/>
                                     <br/>
                                 </span>
                             </span>
@@ -412,7 +414,7 @@
                         <label>District TB No.</label>
                         <span class="DistrictTbRegEnableDisableChild1">
                             <patient field="identifier" identifierTypeId="8110f2d2-1f98-4c38-aef3-11b19bb0a589"
-                                     required="false" />
+                                     required="false"/>
                         </span>
 
                         <br/>
