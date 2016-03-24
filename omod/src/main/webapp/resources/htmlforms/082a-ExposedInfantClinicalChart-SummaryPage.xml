@@ -135,6 +135,85 @@
 
         }
 
+        function enable_disable_eid_yes_no(selected_option) {
+
+            var class_name = jq(selected_option).attr("class");
+
+            var length = class_name.length;
+
+            var class_id = parseInt(class_name.substring(length - 1, length))
+
+            var row_id = class_id;
+
+            var disable = true;
+
+            var row_1 = '[class^="EIDYesNo"][class*="Child1"]';
+            var row_2 = '[class^="EIDYesNo"][class*="Child2"]';
+            var row_3 = '[class^="EIDYesNo"][class*="Child3"]';
+            var row_4 = '[class^="EIDYesNo"][class*="Child4"]';
+
+            var row_5 = '[class^="EIDYesNo"][class*="Child5"]';
+            var row_6 = '[class^="EIDYesNo"][class*="Child6"]';
+            var row_7 = '[class^="EIDYesNo"][class*="Child7"]';
+            var row_8 = '[class^="EIDYesNo"][class*="Child8"]';
+
+            var row_9 = '[class^="EIDYesNo"][class*="Child9"]';
+
+            var xx = row_1;
+            var selected_value = jq(selected_option).find(":selected").text()
+
+            selected_value = selected_value.trim().toLowerCase();
+
+            if (selected_value == "yes") {
+                disable = false;
+            }
+
+            switch (row_id) {
+                case 1:
+                    xx = row_1;
+                    break;
+                case 2:
+                    xx = row_2;
+                    break;
+                case 3:
+                    xx = row_3;
+                    break;
+                case 4:
+                    xx = row_4;
+                    break;
+
+                case 5:
+                    xx = row_5;
+                    break;
+                case 6:
+                    xx = row_6;
+                    break;
+                case 7:
+                    xx = row_7;
+                    break;
+                case 8:
+                    xx = row_8;
+                    break;
+                case 9:
+                    xx = row_9;
+                    break;
+            }
+
+            jq(xx).each(function () {
+                var group = jq(this);
+
+                if (class_name.indexOf('Child') == -1) {
+                    // // group.find("input").attr("value", "");
+                    group.find("input").fadeTo(250, 1);
+                    // // group.find('select').prop("selectedIndex", 0);
+                    group.find(":checkbox").attr("checked", false);
+                    group.find("input").attr("disabled", disable);
+                    group.find('select').attr("disabled", disable);
+
+                }
+            });
+        }
+
 
         function enable_disable_link_to_care(selected_option) {
 
@@ -237,6 +316,14 @@
 
                 jq('[class^="LinkToCareEnableDisable"]').each(function () {
                     enable_disable_link_to_care(jq(this));
+                });
+
+                jq('[class^="EIDYesNoEnableDisable"]').change(function () {
+                    enable_disable_eid_yes_no(jq(this));
+                });
+
+                jq('[class^="EIDYesNoEnableDisable"]').each(function () {
+                    enable_disable_eid_yes_no(jq(this));
                 });
 
 
@@ -412,13 +499,13 @@
                     </tr>
                     <tr>
                         <td><label>Mother in care at an ART Clinic?:</label></td>
-                        <td>
+                        <td class="EIDYesNoEnableDisable1">
                             <obs conceptId="162873" labelText="" />
                         </td>
-                        <td>
+                        <td class="EIDYesNoEnableDisableChild1">
                             <obs conceptId="162875" labelText="ART Clinic"/>
                         </td>
-                        <td>
+                        <td class="EIDYesNoEnableDisableChild1">
                             <label>Mother's ART No</label>
                             <obs conceptId="162874" labelText=""/>
                         </td>
