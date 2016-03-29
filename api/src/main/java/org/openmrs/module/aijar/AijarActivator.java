@@ -20,8 +20,10 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.GlobalProperty;
+import org.openmrs.Location;
 import org.openmrs.api.AdministrationService;
 import org.openmrs.api.ConceptService;
+import org.openmrs.api.LocationService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.Module;
 import org.openmrs.module.ModuleActivator;
@@ -76,10 +78,13 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         AppFrameworkService appFrameworkService = Context.getService(AppFrameworkService.class);
         MetadataDeployService deployService = Context.getService(MetadataDeployService.class);
         ConceptService conceptService = Context.getConceptService();
+        LocationService locationService = Context.getLocationService();
 
         try {
             // disable the reference app registration page
             appFrameworkService.disableApp("referenceapplication.registrationapp.registerPatient");
+            // disable the start visit app since all data is retrospective
+            appFrameworkService.disableExtension("org.openmrs.module.coreapps.createVisit");
             // the extension to the edit person details
             appFrameworkService.disableExtension("org.openmrs.module.registrationapp.editPatientDemographics");
 
@@ -91,6 +96,11 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 
             // save defined global properties
             administrationService.saveGlobalProperties(configureGlobalProperties());
+
+            // update the name of the default health center with that stored in the global property
+            Location healthCenter = locationService.getLocationByUuid("629d78e9-93e5-43b0-ad8a-48313fd99117");
+            healthCenter.setName(administrationService.getGlobalProperty(AijarConstants.GP_HEALTH_CENTER_NAME));
+            locationService.saveLocation(healthCenter);
 
         } catch (Exception e) {
             Module mod = ModuleFactory.getModuleById("aijar");
@@ -116,7 +126,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         properties.add(new GlobalProperty(EmrApiConstants.GP_EXTRA_PATIENT_IDENTIFIER_TYPES,
                 PatientIdentifierTypes.HIV_CARE_NUMBER.uuid() + "," + PatientIdentifierTypes.EXPOSED_INFANT_NUMBER.uuid()
                         + "," + PatientIdentifierTypes.IPD_NUMBER.uuid() + "," + PatientIdentifierTypes.ANC_NUMBER.uuid()
-                        + "," + PatientIdentifierTypes.HCT_NUMBER.uuid()+","+PatientIdentifierTypes.EID_ANC_NUMBER.uuid()+","+PatientIdentifierTypes.EID_MOTHER_HIV_CARE_NUMBER.uuid()));
+                        + "," + PatientIdentifierTypes.HCT_NUMBER.uuid()));
 
         // set the name of the application
         properties.add(new GlobalProperty("application.name", "UgandaEMR - Uganda eHealth Solution"));

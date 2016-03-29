@@ -7,7 +7,7 @@
           formUILocation="patientDashboard.visitActions"
           formOrder="5"
           formIcon="icon-medkit"
-          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; patient.person.age &lt; 3 &amp;&amp; sessionLocation.uuid=='86863db4-6101-4ecf-9a86-5e716d6504e4'"
+          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; patient.person.age &lt; 6 &amp;&amp; sessionLocation.uuid=='86863db4-6101-4ecf-9a86-5e716d6504e4'"
           formDisplayStyle="Standard"
           formLabel="EID Card - Encounter form">
     <redirectOnSave
@@ -564,8 +564,8 @@
                         <td colspan="2">Type of visit</td>
                         <td>
                             <obs conceptId="162992"
-                                 answerConceptIds="162993,162994,162995,162996,162997,162998,162999,163000,163001,163002"
-                                 answerLabels="Visit 1,Visit 2,Visit 3,Visit 4,Visit 5,Visit 6,Visit 7,Visit 8,Visit 9,Visit 10"
+                                 answerConceptIds="162993,162994,162995,162996,162997,162998,162999,163000,163001,163002,163018,163019,163020,163021,163022"
+                                 answerLabels="Visit 1,Visit 2,Visit 3,Visit 4,Visit 5,Visit 6,Visit 7,Visit 8,Visit 9,Visit 10,Visit 11,Visit 12,Visit 13,Visit 14,Visit 15"
                                  required="true"/>
                         </td>
                     </tr>
@@ -584,7 +584,7 @@
                     <tr>
                         <td colspan="2">Age(Months)</td>
                         <td>
-                            <obs conceptId="99449"/>
+                            <obs conceptId="99449" required="false"/>
                         </td>
                     </tr>
                     <tr>
@@ -614,6 +614,10 @@
                             <obs conceptId="162839" answerConceptId="162837"/>
                             <obs conceptId="162839" answerConceptId="63"/>
                             <obs conceptId="162839" answerConceptId="162838"/>
+                            <obs conceptId="162839" answerConceptId="99356" answerLabel="Vitamin A"/>
+                            <obs conceptId="162839" answerConceptId="163014" answerLabel="PCV-1"/>
+                            <obs conceptId="162839" answerConceptId="163015" answerLabel="PCV-2"/>
+                            <obs conceptId="162839" answerConceptId="163016" answerLabel="PCV-3"/>
                             <span class="enableDisable">
                                         <span id="trigger">
                                             <obs conceptId="162839" answerConceptId="90002" answerLabel="Not Done"/>
