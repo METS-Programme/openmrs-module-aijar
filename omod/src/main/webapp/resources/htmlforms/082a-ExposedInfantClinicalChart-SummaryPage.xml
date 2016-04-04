@@ -351,14 +351,11 @@
                 <h3>
                     Care Entry Point
                 </h3>
-
+                         <span style="display: none;">
+                        <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
+                                           order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
+                        </span>
                 <table class="table table-bordered custom-table">
-                    <tr>
-                        <td>Health Facility: <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
-                                                               tags="2,3,4"/></td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
                     <tr>
                         <td>
                             <label>EI Number:</label>

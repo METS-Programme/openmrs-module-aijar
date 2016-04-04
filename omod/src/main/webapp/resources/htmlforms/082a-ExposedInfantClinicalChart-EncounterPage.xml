@@ -532,14 +532,13 @@
             <table>
                 <tbody>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         Service Provider:
                         <encounterProvider role="Provider" style="autocomplete"/>
-                    </td>
-                    <td>
-                        Encounter Location:
+                                                 <span style="display: none;">
                         <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
-                                           tags="2,3,4"/>
+                                           order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
+                        </span>
                     </td>
                     <td>
                         <label>EID Number:</label>

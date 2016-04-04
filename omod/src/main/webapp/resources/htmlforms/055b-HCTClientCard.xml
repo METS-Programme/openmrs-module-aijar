@@ -176,11 +176,10 @@
                     <td>
                         <label>Date:</label>
                         <encounterDate default="today"/>
-                    </td>
-                    <td>
-                        <label>Point of Testing:</label>
+                        <span style="display: none;">
                         <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
-                                           tags="2,3,4" />
+                                           order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
+                        </span>
                     </td>
                     <td>
                         <label>Is the Center static or an Outreach?:</label>

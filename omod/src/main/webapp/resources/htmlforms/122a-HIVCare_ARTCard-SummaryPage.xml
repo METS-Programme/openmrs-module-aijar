@@ -67,7 +67,7 @@
             jq(xx).each(function () {
                 var group = jq(this);
                 if (class_name.indexOf('Children') == -1) {
-                      // // group.find('select').prop("selectedIndex", 0);
+                    // // group.find('select').prop("selectedIndex", 0);
                     group.find('select').attr("disabled", disable);
                 }
                 if (class_name.indexOf('GrandChildren') == -1) {
@@ -596,91 +596,91 @@
                     enable_disable_fm(jq(this));
                 });
 
-                    jq('[class^="FamilyMemberEnableDisable"]').each(function () {
-                        enable_disable_fm(jq(this));
-                    });
+                jq('[class^="FamilyMemberEnableDisable"]').each(function () {
+                    enable_disable_fm(jq(this));
+                });
 
 
-                    jq('[class^="ExposedInfantFinalStatusEnableDisable"]').change(function () {
-                        enable_disable_ei_final_status(jq(this));
-                    });
+                jq('[class^="ExposedInfantFinalStatusEnableDisable"]').change(function () {
+                    enable_disable_ei_final_status(jq(this));
+                });
 
-                    jq('[class^="ExposedInfantFinalStatusEnableDisable"]').each(function () {
-                        enable_disable_ei_final_status(jq(this));
-                    });
+                jq('[class^="ExposedInfantFinalStatusEnableDisable"]').each(function () {
+                    enable_disable_ei_final_status(jq(this));
+                });
 
-                    jq('[class^="ExposedInfantPCRResultEnableDisable"]').change(function () {
-                        enable_disable_ei_pcr_result(jq(this));
-                    });
+                jq('[class^="ExposedInfantPCRResultEnableDisable"]').change(function () {
+                    enable_disable_ei_pcr_result(jq(this));
+                });
 
-                    jq('[class^="ExposedInfantPCRResultEnableDisable"]').each(function () {
-                        enable_disable_ei_pcr_result(jq(this));
-                    });
-
-
-                    jq('[class^="ArtCareEnableDisable"]').change(function () {
-                        enable_disable_ac(jq(this));
-                    });
+                jq('[class^="ExposedInfantPCRResultEnableDisable"]').each(function () {
+                    enable_disable_ei_pcr_result(jq(this));
+                });
 
 
-                    jq('[class^="ArtCareEnableDisable"]').each(function () {
-                        enable_disable_ac(jq(this))
-                    });
-
-                    jq('[class^="HIVCareEnableDisable"]').change(function () {
-                        enable_disable_hiv_care(jq(this));
-                    });
+                jq('[class^="ArtCareEnableDisable"]').change(function () {
+                    enable_disable_ac(jq(this));
+                });
 
 
-                    jq('[class^="HIVCareEnableDisable"]').each(function () {
-                        enable_disable_hiv_care(jq(this))
-                    });
+                jq('[class^="ArtCareEnableDisable"]').each(function () {
+                    enable_disable_ac(jq(this))
+                });
+
+                jq('[class^="HIVCareEnableDisable"]').change(function () {
+                    enable_disable_hiv_care(jq(this));
+                });
 
 
-                    jq('[class^="ARTTreatmentInterruptionEnableDisable"]').change(function () {
-                        enable_disable_ati(jq(this));
-                    });
+                jq('[class^="HIVCareEnableDisable"]').each(function () {
+                    enable_disable_hiv_care(jq(this))
+                });
 
 
-                    jq('[class^="ARTTreatmentInterruptionEnableDisable"]').each(function () {
-                        enable_disable_ati(jq(this))
-                    });
+                jq('[class^="ARTTreatmentInterruptionEnableDisable"]').change(function () {
+                    enable_disable_ati(jq(this));
+                });
 
-                    jq('[class^="PriorYesNoEnableDisable"]').change(function () {
-                        enable_disable_prior_yes_no(jq(this));
-                    });
 
-                    jq('[class^="PriorYesNoEnableDisable"]').each(function () {
-                        enable_disable_prior_yes_no(jq(this));
-                    });
+                jq('[class^="ARTTreatmentInterruptionEnableDisable"]').each(function () {
+                    enable_disable_ati(jq(this))
+                });
 
-                    jq(".enableDisable").each(function () {
-                        var group = jq(this);
+                jq('[class^="PriorYesNoEnableDisable"]').change(function () {
+                    enable_disable_prior_yes_no(jq(this));
+                });
 
-                        function disableFn() {
-                            group.children("#disabled").fadeTo(250, 1);
-                            group.children("#disabled").find(":checkbox").attr("checked", false); //uncheck
-                            group.children("#disabled").find("input").attr("disabled", true); //disable
-                            group.children("#disabled").find("select").attr("disabled", true);
+                jq('[class^="PriorYesNoEnableDisable"]').each(function () {
+                    enable_disable_prior_yes_no(jq(this));
+                });
+
+                jq(".enableDisable").each(function () {
+                    var group = jq(this);
+
+                    function disableFn() {
+                        group.children("#disabled").fadeTo(250, 1);
+                        group.children("#disabled").find(":checkbox").attr("checked", false); //uncheck
+                        group.children("#disabled").find("input").attr("disabled", true); //disable
+                        group.children("#disabled").find("select").attr("disabled", true);
+                    }
+
+                    function enableFn() {
+                        group.children("#disabled").fadeTo(250, 1);
+                        group.children("#disabled").find("input").attr("disabled", false);
+                        group.children("#disabled").find("select").attr("disabled", false);
+
+                    }
+
+                    disableFn();
+                    jq(this).children("#trigger").find(":checkbox:first").change(function () {
+                        var checked = jq(this).attr("checked");
+                        if (checked == "checked") {
+                            enableFn();
+                        } else {
+                            disableFn();
                         }
-
-                        function enableFn() {
-                            group.children("#disabled").fadeTo(250, 1);
-                            group.children("#disabled").find("input").attr("disabled", false);
-                            group.children("#disabled").find("select").attr("disabled", false);
-
-                        }
-
-                        disableFn();
-                        jq(this).children("#trigger").find(":checkbox:first").change(function () {
-                            var checked = jq(this).attr("checked");
-                            if (checked == "checked") {
-                                enableFn();
-                            } else {
-                                disableFn();
-                            }
-                        });
                     });
+                });
 
 
                 jq(".checkboxGroup").each(function () {
@@ -788,14 +788,13 @@
             <table class="enrollment">
                 <tbody>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         <label>Attending Clinician:</label>
                         <encounterProvider role="Provider" style="autocomplete"/>
-                    </td>
-                    <td>
-                        <label>Enrolled at:</label>
+                         <span style="display: none;">
                         <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
-                                           tags="2,3,4"/>
+                                           order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
+                        </span>
                     </td>
                     <td>
                         <label>Pt Clinic #:</label>
