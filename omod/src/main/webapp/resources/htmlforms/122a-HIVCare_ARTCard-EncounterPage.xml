@@ -284,7 +284,7 @@
                     <td style="background: #B6D6E6;">
                         Encounter Location:
                         <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
-                                           tags="2,3,4"/>
+                                           order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
                     </td>
                 </tr>
                 </tbody>
@@ -368,6 +368,7 @@
                                 <br/>
                                 <obs id="br" conceptId="374" answerConceptId="190" answerLabel="Condoms"/>
                                 <excludeIf velocityTest="$patient.gender =='M' ">
+                                    <span class="lablex2">
                                     <obs id="br" conceptId="374" answerConceptId="780"
                                          answerLabel="Oral Contraceptive pills"/>
                                     <obs id="br" conceptId="374" answerConceptId="5279"
@@ -376,6 +377,7 @@
                                          answerLabel="Diaphram/Cervical Cap"/>
                                     <obs id="br" conceptId="374" answerConceptId="5275"
                                          answerLabel="Intra uterine device (IUD)"/>
+                                    </span>
                                 </excludeIf>
                                 <obs id="br" conceptId="374" answerConceptId="99265"
                                      answerLabel="Vasectomy/Tubal ligation"/>
@@ -665,7 +667,7 @@
                         Date HIV Viral Load Taken
                         <obs conceptId="163023"/>
                     </td>
-                    <td>
+                    <td class="lablex2">
                         <b>Tests ordered:</b><br/>
                         <obs id="br" conceptId="1271" answerConceptId="1019"
                              answerLabel="CBC"/>
@@ -693,7 +695,7 @@
                                 </span>
                             </span>
                     </td>
-                    <td>
+                    <td class="lablex2">
                         <b>Referred for</b><br/>
                         <obs id="br" conceptId="99054" answerConceptId="99053"
                              answerLabel="Theraputic Feeding"/>
