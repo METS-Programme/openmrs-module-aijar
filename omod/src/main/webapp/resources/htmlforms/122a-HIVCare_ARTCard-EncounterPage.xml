@@ -277,19 +277,10 @@
         <div class="headers" style="text-align: center;">
             <h3>HIV Care/ART CARD - Encounter Page</h3>
         </div>
-        <section>
-            <table id="inner" style="background: #F3F3F3;background: #B6D6E6;border: solid 1px #A0A0A0; width: 99%;">
-                <tbody>
-                <tr>
-                    <td style="background: #B6D6E6;">
-                        Encounter Location:
-                        <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
-                                           order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </section>
+        <span style="display: none;">
+            <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
+                               order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
+        </span>
 
         <section>
             <table>
