@@ -19,7 +19,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
 		<org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 			<filenameBase>metadata/Uganda_Encounter_Types</filenameBase>
 			<groupUuid>1d7a4fdf-f6ab-49a4-b687-344f012a16ac</groupUuid>
-			<version>1</version>
+			<version>2</version>
 			<importMode>MIRROR</importMode>
 		</org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 	</packages>
