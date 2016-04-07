@@ -118,8 +118,9 @@
 							<encounterDate default="today"/>
 						</td>
 						<td colspan="2">
-							<label>Attending Clinician:</label>
-							<encounterProvider role="Provider" style="autocomplete"/>
+							<label><span class="required">*</span> Attending Clinician:</label>
+							<encounterProvider role="Provider" style="autocomplete" required="required"/>
+
 							<span style="display: none;">
 								<encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
 												   order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
