@@ -707,7 +707,7 @@
                         <obs id="br" conceptId="90224" labelText="# Hospitalized days:">
                         </obs>
                     </td>
-                    <td>
+                    <td><label><span class="required">*</span>Attending Clinician</label>
                         <encounterProvider role="Provider" style="autocomplete"/>
                     </td>
                 </tr>

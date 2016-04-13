@@ -118,8 +118,9 @@
 							<encounterDate default="today"/>
 						</td>
 						<td colspan="2">
-							<label>Attending Clinician:</label>
-							<encounterProvider role="Provider" style="autocomplete"/>
+							<label><span class="required">*</span> Attending Clinician:</label>
+							<encounterProvider role="Provider" style="autocomplete" required="required"/>
+
 							<span style="display: none;">
 								<encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
 												   order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
@@ -134,8 +135,8 @@
 					<tbody>
 						<tr>
 							<td colspan="2"></td>
-							<td></td>
-							<td>Date</td>
+							<td> </td>
+							<!--<td>Date</td>-->
 							<td>Comments</td>
 						</tr>
 						<tr class="enableDisable">
@@ -147,9 +148,9 @@
 							<td id="trigger">
 								<obs conceptId="99169" answerConceptId="90003"/>
 							</td>
-							<td id="disabled">
+<!--							<td id="disabled">
 								<obs conceptId="99200"/>
-							</td>
+							</td>-->
 							<td id="disabled">
 								<obs conceptId="99201" rows="2" cols="15"/>
 							</td>
@@ -160,9 +161,9 @@
 							<td id="trigger">
 								<obs conceptId="99170" answerConceptId="90003"/>
 							</td>
-							<td id="disabled">
+<!--							<td id="disabled">
 								<obs conceptId="99202"/>
-							</td>
+							</td>-->
 							<td id="disabled">
 								<obs conceptId="99203" rows="2" cols="15"/>
 							</td>
@@ -173,9 +174,9 @@
 							<td id="trigger">
 								<obs conceptId="99171" answerConceptId="90003"/>
 							</td>
-							<td id="disabled">
+<!--							<td id="disabled">
 								<obs conceptId="99204"/>
-							</td>
+							</td>-->
 							<td id="disabled">
 								<obs conceptId="99205" rows="2" cols="15"/>
 							</td>
@@ -186,9 +187,9 @@
 							<td id="trigger">
 								<obs conceptId="99172" answerConceptId="90003"/>
 							</td>
-							<td id="disabled">
+<!--							<td id="disabled">
 								<obs conceptId="99206"/>
-							</td>
+							</td>-->
 							<td id="disabled">
 								<obs conceptId="99207" rows="2" cols="15"/>
 							</td>
@@ -199,9 +200,9 @@
 							<td id="trigger">
 								<obs conceptId="99173" answerConceptId="90003"/>
 							</td>
-							<td id="disabled">
+<!--							<td id="disabled">
 								<obs conceptId="99208"/>
-							</td>
+							</td>-->
 							<td id="disabled">
 								<obs conceptId="99209" rows="2" cols="15"/>
 							</td>
@@ -212,9 +213,9 @@
 							<td id="trigger">
 								<obs conceptId="99174" answerConceptId="90003"/>
 							</td>
-							<td id="disabled">
+<!--							<td id="disabled">
 								<obs conceptId="99210"/>
-							</td>
+							</td>-->
 							<td id="disabled">
 								<obs conceptId="99211" rows="2" cols="15"/>
 							</td>
@@ -225,9 +226,9 @@
 							<td id="trigger">
 								<obs conceptId="99175" answerConceptId="90003"/>
 							</td>
-							<td id="disabled">
+<!--							<td id="disabled">
 								<obs conceptId="99212"/>
-							</td>
+							</td>-->
 							<td id="disabled">
 								<obs conceptId="99213" rows="2" cols="15"/>
 							</td>
@@ -238,9 +239,9 @@
 							<td id="trigger">
 								<obs conceptId="99176" answerConceptId="90003"/>
 							</td>
-							<td id="disabled">
+<!--							<td id="disabled">
 								<obs conceptId="99214"/>
-							</td>
+							</td>-->
 							<td id="disabled">
 								<obs conceptId="99215" rows="2" cols="15"/>
 							</td>
@@ -251,9 +252,9 @@
 							<td id="trigger">
 								<obs conceptId="99177" answerConceptId="90003"/>
 							</td>
-							<td id="disabled">
+<!--							<td id="disabled">
 								<obs conceptId="99216"/>
-							</td>
+							</td>-->
 							<td id="disabled">
 								<obs conceptId="99217" rows="2" cols="15"/>
 							</td>
@@ -264,9 +265,9 @@
 							<td id="trigger">
 								<obs conceptId="99178" answerConceptId="90003"/>
 							</td>
-							<td id="disabled">
+<!--							<td id="disabled">
 								<obs conceptId="99218"/>
-							</td>
+							</td>-->
 							<td id="disabled">
 								<obs conceptId="99219" rows="2" cols="15"/>
 							</td>
@@ -277,9 +278,9 @@
 							<td id="trigger">
 								<obs conceptId="99179" answerConceptId="90003"/>
 							</td>
-							<td id="disabled">
+<!--							<td id="disabled">
 								<obs conceptId="99220"/>
-							</td>
+							</td>-->
 							<td id="disabled">
 								<obs conceptId="99221" rows="2" cols="15"/>
 							</td>
@@ -293,9 +294,9 @@
 							<td id="trigger">
 								<obs conceptId="99180" answerConceptId="90003"/>
 							</td>
-							<td id="disabled">
+<!--							<td id="disabled">
 								<obs conceptId="99222"/>
-							</td>
+							</td>-->
 							<td id="disabled">
 								<obs conceptId="99223" rows="2" cols="15"/>
 							</td>
@@ -306,9 +307,9 @@
 							<td id="trigger">
 								<obs conceptId="99181" answerConceptId="90003"/>
 							</td>
-							<td id="disabled">
+<!--							<td id="disabled">
 								<obs conceptId="99224"/>
-							</td>
+							</td>-->
 							<td id="disabled">
 								<obs conceptId="99225" rows="2" cols="15"/>
 							</td>
@@ -319,9 +320,9 @@
 							<td id="trigger">
 								<obs conceptId="99182" answerConceptId="90003"/>
 							</td>
-							<td id="disabled">
+<!--							<td id="disabled">
 								<obs conceptId="99226"/>
-							</td>
+							</td>-->
 							<td id="disabled">
 								<obs conceptId="99227" rows="2" cols="15"/>
 							</td>
@@ -332,9 +333,9 @@
 							<td id="trigger">
 								<obs conceptId="99183" answerConceptId="90003"/>
 							</td>
-							<td id="disabled">
+<!--							<td id="disabled">
 								<obs conceptId="99228"/>
-							</td>
+							</td>-->
 							<td id="disabled">
 								<obs conceptId="99229" rows="2" cols="15"/>
 							</td>
@@ -349,9 +350,9 @@
 							<td id="trigger">
 								<obs conceptId="99184" answerConceptId="90003"/>
 							</td>
-							<td id="disabled">
+<!--							<td id="disabled">
 								<obs conceptId="99230"/>
-							</td>
+							</td>-->
 							<td id="disabled">
 								<obs conceptId="99231" rows="2" cols="15"/>
 							</td>
@@ -363,9 +364,9 @@
 							<td id="trigger">
 								<obs conceptId="99185" answerConceptId="90003"/>
 							</td>
-							<td id="disabled">
+<!--							<td id="disabled">
 								<obs conceptId="99233"/>
-							</td>
+							</td>-->
 							<td id="disabled">
 								<obs conceptId="99232" rows="2" cols="15"/>
 							</td>
@@ -376,9 +377,9 @@
 							<td id="trigger">
 								<obs conceptId="99191" answerConceptId="90003"/>
 							</td>
-							<td id="disabled">
+<!--							<td id="disabled">
 								<obs conceptId="99234"/>
-							</td>
+							</td>-->
 							<td id="disabled">
 								<obs conceptId="99235" rows="2" cols="15"/>
 							</td>
@@ -391,9 +392,9 @@
 							<td id="trigger">
 								<obs conceptId="99186" answerConceptId="90003"/>
 							</td>
-							<td id="disabled">
+<!--							<td id="disabled">
 								<obs conceptId="99236"/>
-							</td>
+							</td>-->
 							<td id="disabled">
 								<obs conceptId="99237" rows="2" cols="15"/>
 							</td>
@@ -404,9 +405,9 @@
 							<td id="trigger">
 								<obs conceptId="99187" answerConceptId="90003"/>
 							</td>
-							<td id="disabled">
+<!--							<td id="disabled">
 								<obs conceptId="99238"/>
-							</td>
+							</td>-->
 							<td id="disabled">
 								<obs conceptId="99239" rows="2" cols="15"/>
 							</td>
@@ -417,9 +418,9 @@
 							<td id="trigger">
 								<obs conceptId="99188" answerConceptId="90003"/>
 							</td>
-							<td id="disabled">
+<!--							<td id="disabled">
 								<obs conceptId="99240"/>
-							</td>
+							</td>-->
 							<td id="disabled">
 								<obs conceptId="99241" rows="2" cols="15"/>
 							</td>
@@ -430,9 +431,9 @@
 							<td id="trigger">
 								<obs conceptId="99189" answerConceptId="90003"/>
 							</td>
-							<td id="disabled">
+<!--							<td id="disabled">
 								<obs conceptId="99242"/>
-							</td>
+							</td>-->
 							<td id="disabled">
 								<obs conceptId="99243" rows="2" cols="15"/>
 							</td>
@@ -443,9 +444,9 @@
 							<td id="trigger">
 								<obs conceptId="99190" answerConceptId="90003"/>
 							</td>
-							<td id="disabled">
+<!--							<td id="disabled">
 								<obs conceptId="99244"/>
-							</td>
+							</td>-->
 							<td id="disabled">
 								<obs conceptId="99245" rows="2" cols="15"/>
 							</td>
@@ -456,9 +457,9 @@
 							<td id="trigger">
 								<obs conceptId="99246" answerConceptId="90003"/>
 							</td>
-							<td id="disabled">
+<!--							<td id="disabled">
 								<obs conceptId="99248"/>
-							</td>
+							</td>-->
 							<td id="disabled">
 								<obs conceptId="99247" rows="2" cols="15"/>
 							</td>
@@ -469,9 +470,9 @@
 							<td id="trigger">
 								<obs conceptId="99192" answerConceptId="90003"/>
 							</td>
-							<td id="disabled">
+<!--							<td id="disabled">
 								<obs conceptId="99249"/>
-							</td>
+							</td>-->
 							<td id="disabled">
 								<obs conceptId="99250" rows="2" cols="15"/>
 							</td>
@@ -485,9 +486,9 @@
 							<td id="trigger">
 								<obs conceptId="99194" answerConceptId="90003"/>
 							</td>
-							<td id="disabled">
+<!--							<td id="disabled">
 								<obs conceptId="99253"/>
-							</td>
+							</td>-->
 							<td id="disabled">
 								<obs conceptId="99254" rows="2" cols="15"/>
 							</td>
@@ -498,9 +499,9 @@
 							<td id="trigger">
 								<obs conceptId="99195" answerConceptId="90003"/>
 							</td>
-							<td id="disabled">
+<!--							<td id="disabled">
 								<obs conceptId="99255"/>
-							</td>
+							</td>-->
 							<td id="disabled">
 								<obs conceptId="99256" rows="2" cols="15"/>
 							</td>
@@ -511,9 +512,9 @@
 							<td id="trigger">
 								<obs conceptId="99196" answerConceptId="90003"/>
 							</td>
-							<td id="disabled">
+<!--							<td id="disabled">
 								<obs conceptId="99257"/>
-							</td>
+							</td>-->
 							<td id="disabled">
 								<obs conceptId="99258" rows="2" cols="15"/>
 							</td>
@@ -524,9 +525,9 @@
 							<td id="trigger">
 								<obs conceptId="99197" answerConceptId="90003"/>
 							</td>
-							<td id="disabled">
+<!--							<td id="disabled">
 								<obs conceptId="99259"/>
-							</td>
+							</td>-->
 							<td id="disabled">
 								<obs conceptId="99260" rows="2" cols="15"/>
 							</td>
@@ -537,10 +538,9 @@
 							<td id="trigger">
 								<obs conceptId="99199" answerConceptId="90003"/>
 							</td>
-							<td id="disabled">
-
+<!--							<td id="disabled">
 								<obs conceptId="99263"/>
-							</td>
+							</td>-->
 							<td id="disabled">
 								<obs conceptId="99264" rows="2" cols="15"/>
 							</td>

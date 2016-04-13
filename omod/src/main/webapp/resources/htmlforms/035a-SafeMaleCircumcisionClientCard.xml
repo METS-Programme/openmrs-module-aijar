@@ -280,7 +280,7 @@
                              answerLabels="Static/Fixed,Outreach,Camp" required="true"/>
                     </td>
                     <td>
-                        <label>Clinic Team Leader:</label>
+                        <label><span class="required">*</span>Clinic Team Leader:</label>
                         <encounterProvider role="Provider" style="autocomplete"/>
                     </td>
                 </tr>

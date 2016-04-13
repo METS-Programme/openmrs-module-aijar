@@ -383,7 +383,7 @@
                             <obs conceptId="99773" id="ctxDate"/>
                         </td>
                         <td>
-                            <label> Clinical Team Leader:</label>
+                            <label><span class="required">*</span> Clinical Team Leader:</label>
                             <encounterProvider role="Provider" style="autocomplete"/>
                         </td>
                     </tr>

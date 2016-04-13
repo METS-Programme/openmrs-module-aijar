@@ -789,7 +789,7 @@
                 <tbody>
                 <tr>
                     <td colspan="2">
-                        <label>Attending Clinician:</label>
+                        <label><span class="required">*</span>Attending Clinician:</label>
                         <encounterProvider role="Provider" style="autocomplete"/>
                          <span style="display: none;">
                         <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
