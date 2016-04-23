@@ -1,126 +1,122 @@
--- Removed the other alteration of tables and started with the entry of users
--- Added the missing columns on the respective tables i.e. creator,voided_by,creted_by,retired_by,changed_by
-alter table openmrs.users                      modify column creator int(11);
-alter table openmrs.users                      modify column person_id int(11);
+/*!40101 SET NAMES utf8 */;
 
--- Delete concept_names that have no concepts
-delete from openmrs_backup.concept_name where openmrs_backup.concept_name.concept_id not in (select concept_id from openmrs_backup.concept);
+/*!40101 SET SQL_MODE=''*/;
 
-INSERT INTO openmrs.users (user_id,system_id,username,password,salt,secret_question,secret_answer,date_created,date_changed,retired,date_retired,retire_reason,uuid) select user_id,system_id,username,password,salt,secret_question,secret_answer,date_created,date_changed,retired,date_retired,retire_reason,uuid from openmrs_backup.users where openmrs_backup.users.user_id not in (select user_id from openmrs.users);
-
-INSERT INTO openmrs.role (role,description,uuid) select role,description,uuid from openmrs_backup.role where openmrs_backup.role.role not in (select role from openmrs.role);
-INSERT INTO openmrs.role_role (parent_role,child_role) select parent_role,child_role from openmrs_backup.role_role where (openmrs_backup.role_role.parent_role not in (select parent_role from openmrs.role_role) and openmrs_backup.role_role.child_role not in (select child_role from openmrs.role_role));
-INSERT INTO openmrs.privilege (privilege,description,uuid) select privilege,description,uuid from openmrs_backup.privilege where openmrs_backup.privilege.privilege not in (select privilege from openmrs.privilege);
-INSERT INTO openmrs.role_privilege (role,privilege) select role,privilege from openmrs_backup.role_privilege where (openmrs_backup.role_privilege.role not in (select role from openmrs.role_privilege) and openmrs_backup.role_privilege.privilege not in (select privilege from openmrs.role_privilege));
-
-INSERT INTO openmrs.concept_class (concept_class_id,name ,description,date_created,retired,date_retired,retire_reason,uuid,creator,retired_by) select concept_class_id,name ,description,date_created,retired,date_retired,retire_reason,uuid,creator,retired_by from openmrs_backup.concept_class where openmrs_backup.concept_class.concept_class_id not in (select concept_class_id from openmrs.concept_class);
-INSERT INTO openmrs.concept_datatype (concept_datatype_id,name,hl7_abbreviation ,description,date_created,retired,date_retired,retire_reason,uuid,creator,retired_by) select concept_datatype_id,name,hl7_abbreviation ,description,date_created,retired,date_retired,retire_reason,uuid,creator,retired_by from openmrs_backup.concept_datatype where openmrs_backup.concept_datatype.concept_datatype_id not in (select concept_datatype_id from openmrs.concept_datatype);
-INSERT INTO openmrs.concept_name_tag (concept_name_tatransferg_id,tag,description,date_created,voided,date_voided,void_reason,uuid,creator,voided_by) select concept_name_tag_id,tag,description,date_created,voided,date_voided,void_reason,uuid,creator,voided_by from openmrs_backup.concept_name_tag where openmrs_backup.concept_name_tag.concept_name_tag_id not in (select concept_name_tag_id from openmrs.concept_name_tag);
-INSERT INTO openmrs.concept (concept_id,retired,short_name,description,form_text,datatype_id,class_id,is_set,date_created,version,date_changed,date_retired,retire_reason,uuid,creator,changed_by,retired_by) select concept_id,retired,short_name,description,form_text,datatype_id,class_id,is_set,date_created,version,date_changed,date_retired,retire_reason,uuid,creator,changed_by,retired_by from openmrs_backup.concept where openmrs_backup.concept.concept_id not in (select concept_id from openmrs.concept);
-INSERT INTO openmrs.concept_description (concept_description_id,concept_id,description,locale,date_created,date_changed,uuid,creator,changed_by) select concept_description_id,concept_id,description,locale,date_created,date_changed,uuid,creator,changed_by from openmrs_backup.concept_description where openmrs_backup.concept_description.concept_description_id not in (select concept_description_id from openmrs.concept_description);
-INSERT INTO openmrs.concept_name (concept_name_id,concept_id,name,locale,date_created,voided,date_voided,void_reason,uuid,creator,voided_by) select concept_name_id,concept_id,name,locale,date_created,voided,date_voided,void_reason,uuid,creator,voided_by from openmrs_backup.concept_name where openmrs_backup.concept_name.concept_name_id not in (select concept_name_id from openmrs.concept_name) and openmrs_backup.concept_name.concept_id in (select concept_id from openmrs_backup.concept);
-INSERT INTO openmrs.concept_name_tag_map (concept_name_id,concept_name_tag_id) select concept_name_id,concept_name_tag_id from openmrs_backup.concept_name_tag_map where( openmrs_backup.concept_name_tag_map.concept_name_id not in (select concept_name_id from openmrs.concept_name_tag_map) and openmrs_backup.concept_name_tag_map.concept_name_tag_id not in (select concept_name_tag_id from openmrs.concept_name_tag_map));
-INSERT INTO openmrs.concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise) select concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise from openmrs_backup.concept_numeric where openmrs_backup.concept_numeric.concept_id not in (select concept_id from openmrs.concept_numeric);
-INSERT INTO openmrs.concept_complex (concept_id,handler) select concept_id,handler from openmrs_backup.concept_complex where openmrs_backup.concept_complex.concept_id not in (select concept_id from openmrs.concept_complex);
-INSERT INTO openmrs.concept_answer (concept_answer_id,concept_id,answer_concept,answer_drug,date_created,uuid,creator) select concept_answer_id,concept_id,answer_concept,answer_drug,date_created,uuid,creator from openmrs_backup.concept_answer where openmrs_backup.concept_answer.concept_answer_id not in (select concept_answer_id from openmrs.concept_answer);
-INSERT INTO openmrs.concept_set (concept_set_id,concept_id,concept_set,sort_weight,date_created,uuid,creator) select concept_set_id,concept_id,concept_set,sort_weight,date_created,uuid,creator from openmrs_backup.concept_set where openmrs_backup.concept_set.concept_set_id not in (select concept_set_id from openmrs.concept_set);
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
-INSERT INTO openmrs.person (person_id,gender,birthdate,birthdate_estimated,dead,death_date,cause_of_death,date_created,date_changed,voided,date_voided,void_reason,uuid,creator,changed_by,voided_by) select person_id,gender,birthdate,birthdate_estimated,dead,death_date,cause_of_death,date_created,date_changed,voided,date_voided,void_reason,uuid,creator,changed_by,voided_by from openmrs_backup.person where openmrs_backup.person.person_id not in (select person_id from openmrs.person);
-INSERT INTO openmrs.person_address (person_address_id,person_id,preferred,address1,address2,city_village,state_province,postal_code,country,latitude,longitude,date_created,voided,date_voided,void_reason,county_district,uuid,creator,voided_by) select person_address_id,person_id,preferred,address1,address2,city_village,state_province,postal_code,country,latitude,longitude,date_created,voided,date_voided,void_reason,county_district,uuid,creator,voided_by from openmrs_backup.person_address where openmrs_backup.person_address.person_address_id not in (select person_address_id from openmrs.person_address);
-INSERT INTO openmrs.person_attribute (person_attribute_id,person_id,value,person_attribute_type_id,date_created,date_changed,voided,date_voided,void_reason,uuid,creator,changed_by,voided_by) select person_attribute_id,person_id,value,person_attribute_type_id,date_created,date_changed,voided,date_voided,void_reason,uuid,creator,changed_by,voided_by from openmrs_backup.person_attribute where openmrs_backup.person_attribute.person_attribute_id not in (select person_attribute_id from openmrs.person_attribute);
-INSERT INTO openmrs.person_attribute_type (person_attribute_type_id,name,description,format,foreign_key,searchable,date_created,date_changed,retired,date_retired,retire_reason,edit_privilege,sort_weight,uuid,creator,changed_by,retired_by) select person_attribute_type_id,name,description,format,foreign_key,searchable,date_created,date_changed,retired,date_retired,retire_reason,edit_privilege,sort_weight,uuid,creator,changed_by,retired_by from openmrs_backup.person_attribute_type where openmrs_backup.person_attribute_type.person_attribute_type_id not in (select person_attribute_type_id from openmrs.person_attribute_type);
-INSERT INTO openmrs.person_name (person_name_id,preferred,person_id,prefix,given_name,middle_name,family_name_prefix,family_name,family_name2,family_name_suffix,degree,date_created,voided,date_voided,void_reason,date_changed,uuid,creator,voided_by,changed_by) select person_name_id,preferred,person_id,prefix,given_name,middle_name,family_name_prefix,family_name,family_name2,family_name_suffix,degree,date_created,voided,date_voided,void_reason,date_changed,uuid,creator,voided_by,changed_by from openmrs_backup.person_name where openmrs_backup.person_name.person_name_id not in (select person_name_id from openmrs.person_name);
+DROP PROCEDURE IF EXISTS `transfer`;
+DROP FUNCTION IF EXISTS `fn_intersect_string`;
 
-INSERT INTO openmrs.user_role (user_id,role) select user_id,role from openmrs_backup.user_role where (openmrs_backup.user_role.user_id not in (select user_id from openmrs.user_role) and openmrs_backup.user_role.role not in (select role from openmrs.user_role)) and openmrs_backup.user_role.user_id <> 1;
-INSERT INTO openmrs.user_property (user_id,property,property_value) select user_id,property,property_value from openmrs_backup.user_property where openmrs_backup.user_property.user_id not in (select user_id from openmrs.user_property);
+DELIMITER $$
+CREATE DEFINER=`openmrs`@`localhost` FUNCTION `fn_intersect_string`(arg_str1 TEXT, arg_str2 TEXT) RETURNS text CHARSET utf8
+  BEGIN
+    SET arg_str1 = CONCAT(arg_str1, ",");
+    SET @var_result = "";
 
-INSERT INTO openmrs.relationship_type (relationship_type_id,a_is_to_b,b_is_to_a,preferred,weight,description,date_created,retired,date_retired,retire_reason,uuid,creator,retired_by) select relationship_type_id,a_is_to_b,b_is_to_a,preferred,weight,description,date_created,retired,date_retired,retire_reason,uuid,creator,retired_by from openmrs_backup.relationship_type where openmrs_backup.relationship_type.relationship_type_id not in (select relationship_type_id from openmrs.relationship_type) and openmrs_backup.relationship_type.uuid not in (select uuid from openmrs.relationship_type);
-INSERT INTO openmrs.relationship (relationship_id,person_a,relationship,person_b,date_created,voided,date_voided,void_reason,uuid,creator,voided_by) select relationship_id,person_a,relationship,person_b,date_created,voided,date_voided,void_reason,uuid,creator,voided_by from openmrs_backup.relationship where openmrs_backup.relationship.relationship_id not in (select relationship_id from openmrs.relationship);
+    WHILE(INSTR(arg_str1, ",") > 0)
+    DO
+      SET @var_val = SUBSTRING_INDEX(arg_str1, ",", 1);
+      SET arg_str1 = SUBSTRING(arg_str1, INSTR(arg_str1, ",") + 1);
 
-INSERT INTO openmrs.patient (patient_id,date_created,date_changed,voided,date_voided,void_reason,creator,changed_by,voided_by) select patient_id,date_created,date_changed,voided,date_voided,void_reason,creator,changed_by,voided_by from openmrs_backup.patient where openmrs_backup.patient.patient_id not in (select patient_id from openmrs.patient);
-INSERT INTO openmrs.patient_identifier_type (patient_identifier_type_id,name,description,format,check_digit,date_created,required,format_description,validator,retired,date_retired,retire_reason,uuid,creator,retired_by) select patient_identifier_type_id,name,description,format,check_digit,date_created,required,format_description,validator,retired,date_retired,retire_reason,uuid,creator,retired_by from openmrs_backup.patient_identifier_type where openmrs_backup.patient_identifier_type.patient_identifier_type_id not in (select patient_identifier_type_id from openmrs.patient_identifier_type);
--- INSERT INTO openmrs.location (location_id,name,description,address1,address2,city_village,state_province,postal_code,country,latitude,longitude,date_created,county_district,retired,date_retired,retire_reason,parent_location,uuid) select location_id,name,description,address1,address2,city_village,state_province,postal_code,country,latitude,longitude,date_created,county_district,retired,date_retired,retire_reason,parent_location,uuid from openmrs_backup.location where openmrs_backup.location.location_id not in (select location_id from openmrs.location);
+      IF(FIND_IN_SET(@var_val, arg_str2) > 0)
+      THEN
+        SET @var_result = CONCAT(@var_result, @var_val, ",");
+      END IF;
+    END WHILE;
 
-INSERT INTO openmrs.patient_identifier (patient_identifier_id,patient_id,identifier,identifier_type,preferred,location_id,date_created,voided,date_voided,void_reason,uuid,creator,changed_by,voided_by) select patient_identifier_id,patient_id,identifier,identifier_type,preferred,2,date_created,voided,date_voided,void_reason,uuid,creator,changed_by,voided_by from openmrs_backup.patient_identifier where openmrs_backup.patient_identifier.patient_identifier_id not in (select patient_identifier_id from openmrs.patient_identifier);
-INSERT INTO openmrs.patient_state (patient_state_id,patient_program_id,state,start_date,end_date,date_created,date_changed,voided,date_voided,void_reason,uuid,creator,changed_by,voided_by) select patient_state_id,patient_program_id,state,start_date,end_date,date_created,date_changed,voided,date_voided,void_reason,uuid,creator,changed_by,voided_by from openmrs_backup.patient_state where openmrs_backup.patient_state.patient_state_id not in (select patient_state_id from openmrs.patient_state);
-INSERT INTO openmrs.program (program_id,concept_id,date_created,date_changed,retired,name,description,uuid,creator,changed_by) select program_id,concept_id,date_created,date_changed,retired,name,description,uuid,creator,changed_by from openmrs_backup.program where openmrs_backup.program.program_id not in (select program_id from openmrs.program);
-INSERT INTO openmrs.patient_program (patient_program_id,patient_id,program_id,date_enrolled,date_completed,date_created,date_changed,voided,date_voided,void_reason,uuid,creator,changed_by,voided_by) select patient_program_id,patient_id,program_id,date_enrolled,date_completed,date_created,date_changed,voided,date_voided,void_reason,uuid,creator,changed_by,voided_by from openmrs_backup.patient_program where openmrs_backup.patient_program.patient_program_id not in (select patient_program_id from openmrs.patient_program);
-
-INSERT INTO openmrs.program_workflow (program_workflow_id,program_id,concept_id,date_created,retired,date_changed,uuid,creator,changed_by) select program_workflow_id,program_id,concept_id,date_created,retired,date_changed,uuid,creator,changed_by from openmrs_backup.program_workflow where openmrs_backup.program_workflow.program_workflow_id not in (select program_workflow_id from openmrs.program_workflow);
-INSERT INTO openmrs.program_workflow_state (program_workflow_state_id,program_workflow_id,concept_id,initial,terminal,date_created,retired,date_changed,uuid,creator,changed_by) select program_workflow_state_id,program_workflow_id,concept_id,initial,terminal,date_created,retired,date_changed,uuid,creator,changed_by from openmrs_backup.program_workflow_state where openmrs_backup.program_workflow_state.program_workflow_state_id not in (select program_workflow_state_id from openmrs.program_workflow_state);
-
-INSERT INTO openmrs.concept_state_conversion (concept_state_conversion_id,concept_id,program_workflow_id,program_workflow_state_id,uuid) select concept_state_conversion_id,concept_id,program_workflow_id,program_workflow_state_id,uuid from openmrs_backup.concept_state_conversion where openmrs_backup.concept_state_conversion.concept_state_conversion_id not in (select concept_state_conversion_id from openmrs.concept_state_conversion);
+    RETURN TRIM(BOTH "," FROM @var_result);
+  END$$
+DELIMITER ;
 
 
-INSERT INTO openmrs.location_tag (location_tag_id,description,date_created,retired,date_retired,retire_reason,uuid,creator,retired_by) select location_tag_id,description,date_created,retired,date_retired,retire_reason,uuid,creator,retired_by from openmrs_backup.location_tag where openmrs_backup.location_tag.location_tag_id not in (select location_tag_id from openmrs.location_tag);
-INSERT INTO openmrs.location_tag_map (location_id,location_tag_id) select 2,location_tag_id from openmrs_backup.location_tag_map where( openmrs_backup.location_tag_map.location_tag_id not in (select location_tag_id from openmrs.location_tag_map) and openmrs_backup.location_tag_map.location_id not in (select location_id from openmrs.location_tag_map));
+DELIMITER $$
+CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `transfer`()
+  BEGIN
+    DECLARE t_name TEXT;
+    -- DECLARE q_statment TEXT;
+    DECLARE t1_columns TEXT;
+    DECLARE t2_columns TEXT;
+    DECLARE inter_columns TEXT;
+    DECLARE inter_columns_insert TEXT;
+    DECLARE pri_columns TEXT;
+    DECLARE pri_col TEXT;
+    DECLARE where_clause TEXT;
+    DECLARE provider_column CHAR(20);
+    DECLARE n INT DEFAULT 0;
+    DECLARE i INT DEFAULT 0;
+
+    DECLARE done INT DEFAULT FALSE;
+    DECLARE done_primary_keys INT DEFAULT FALSE;
+
+    DECLARE cursor_i CURSOR FOR SELECT table_name FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'openmrs_backup'  AND table_rows > 0 AND lower(table_name) not like '%liquibase%' AND lower(table_name) not in ('form','location','encounter_type');
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+
+    DROP TEMPORARY TABLE IF EXISTS tb;
+    CREATE TEMPORARY TABLE IF NOT EXISTS tb(`name` TEXT);
+
+    OPEN cursor_i;
+    read_loop: LOOP
+      FETCH cursor_i INTO t_name;
+      IF done THEN
+        LEAVE read_loop;
+      END IF;
+
+      SELECT GROUP_CONCAT(COLUMN_NAME) INTO t1_columns FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = t_name AND table_schema = 'openmrs_backup';
+
+      SELECT GROUP_CONCAT(COLUMN_NAME) INTO t2_columns FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = t_name AND table_schema = 'openmrs';
+
+      SELECT COUNT(*) INTO n FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = t_name AND table_schema = 'openmrs_backup' AND COLUMN_KEY = 'PRI';
+      SET i=0;
+      SET where_clause = '';
+
+      WHILE i < n DO
+        SELECT COLUMN_NAME INTO pri_col FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = t_name AND table_schema = 'openmrs_backup' AND COLUMN_KEY = 'PRI' LIMIT i,1;
+        SET where_clause = CONCAT(where_clause,'openmrs_backup.',t_name,'.',pri_col,' not in (select ',pri_col,' from openmrs.',t_name,') AND ');
+        SET i = i + 1;
+      END WHILE;
 
 
-INSERT INTO openmrs.field_type (field_type_id,name,description,is_set,date_created,uuid) select field_type_id,name,description,is_set,date_created,uuid from openmrs_backup.field_type where openmrs_backup.field_type.field_type_id not in (select field_type_id from openmrs.field_type);
-INSERT INTO openmrs.field (field_id,name,description,field_type,concept_id,table_name,attribute_name,default_value,select_multiple,date_created,date_changed,retired,date_retired,retire_reason,uuid,creator,changed_by,retired_by) select field_id,name,description,field_type,concept_id,table_name,attribute_name,default_value,select_multiple,date_created,date_changed,retired,date_retired,retire_reason,uuid,creator,changed_by,retired_by from openmrs_backup.field where openmrs_backup.field.field_id not in (select field_id from openmrs.field);
-INSERT INTO openmrs.field_answer (field_id,answer_id,date_created,uuid,creator) select field_id,answer_id,date_created,uuid,creator from openmrs_backup.field_answer where openmrs_backup.field_answer.field_id not in (select field_id from openmrs.field_answer);
+      SELECT fn_intersect_string(t1_columns,t2_columns) INTO inter_columns;
 
--- Replaced the encounter table with the default location_id of 2 as per aijar
-INSERT INTO openmrs.encounter (encounter_id,encounter_type,patient_id,location_id,form_id,encounter_datetime,date_created,voided,date_voided,void_reason,date_changed,uuid,creator,voided_by,changed_by) select encounter_id,encounter_type,patient_id,2,form_id,encounter_datetime,date_created,voided,date_voided,void_reason,date_changed,uuid,creator,voided_by,changed_by from openmrs_backup.encounter where openmrs_backup.encounter.encounter_id not in (select encounter_id from openmrs.encounter) and openmrs_backup.encounter.encounter_type in (select distinct encounter_type_id from openmrs.encounter_type) and openmrs_backup.encounter.form_id in (select distinct form_id from openmrs.form);
+      IF(inter_columns is not null AND inter_columns <> '') THEN
+        IF t_name in ('encounter','obs','location_tag_map') THEN
+          SET inter_columns_insert = REPLACE(inter_columns, 'location_id', '2');
+        ELSE
+          SET inter_columns_insert = inter_columns;
+        END IF;
+        SET @q_statment = CONCAT('insert into openmrs.',t_name,'(',inter_columns,') select ',inter_columns,' from openmrs_backup.',t_name,if(where_clause <> '',CONCAT(' where ',SUBSTRING(where_clause, 1, CHAR_LENGTH(where_clause) - 4)),''));
+        INSERT INTO tb(`name`) VALUES(@q_statment);
+      END IF;
 
-INSERT INTO openmrs.order_type (order_type_id,name,description,date_created,retired,date_retired,retire_reason,uuid,creator,retired_by) select order_type_id,name,description,date_created,retired,date_retired,retire_reason,uuid,creator,retired_by from openmrs_backup.order_type where openmrs_backup.order_type.order_type_id not in (select order_type_id from openmrs.order_type);
+      PREPARE stmt FROM @q_statment;
+      EXECUTE stmt;
+      DEALLOCATE PREPARE stmt;
 
--- Replaced the obs table with the default location_id of 2
-INSERT INTO openmrs.obs(obs_id,person_id,concept_id,encounter_id,order_id,obs_datetime,location_id,obs_group_id,accession_number,value_group_id,value_boolean,value_coded,value_coded_name_id,value_drug,value_datetime,value_numeric,value_modifier,value_text,value_complex,comments,date_created,voided,date_voided,void_reason,uuid,creator,voided_by) select obs_id,person_id,concept_id,encounter_id,order_id,obs_datetime,2,obs_group_id,accession_number,value_group_id,value_boolean,value_coded,value_coded_name_id,value_drug,value_datetime,value_numeric,value_modifier,value_text,value_complex,comments,date_created,voided,date_voided,void_reason,uuid,creator,voided_by from openmrs_backup.obs where openmrs_backup.obs.obs_id not in (select obs_id from openmrs.obs) and obs_group_id is null and openmrs_backup.obs.encounter_id in (select distinct encounter_id from openmrs.encounter) order by obs_id;
-INSERT INTO openmrs.obs(obs_id,person_id,concept_id,encounter_id,order_id,obs_datetime,location_id,obs_group_id,accession_number,value_group_id,value_boolean,value_coded,value_coded_name_id,value_drug,value_datetime,value_numeric,value_modifier,value_text,value_complex,comments,date_created,voided,date_voided,void_reason,uuid,creator,voided_by) select obs_id,person_id,concept_id,encounter_id,order_id,obs_datetime,2,obs_group_id,accession_number,value_group_id,value_boolean,value_coded,value_coded_name_id,value_drug,value_datetime,value_numeric,value_modifier,value_text,value_complex,comments,date_created,voided,date_voided,void_reason,uuid,creator,voided_by from openmrs_backup.obs where openmrs_backup.obs.obs_id not in (select obs_id from openmrs.obs) and openmrs_backup.obs.encounter_id in (select distinct encounter_id from openmrs.encounter) order by obs_id;
+    END LOOP;
+    CLOSE cursor_i;
 
-INSERT INTO openmrs.concept_proposal (concept_proposal_id,concept_id,encounter_id,original_text,final_text,obs_id,obs_concept_id,state,comments,date_created,date_changed,locale,uuid,creator,changed_by) select concept_proposal_id,concept_id,encounter_id,original_text,final_text,obs_id,obs_concept_id,state,comments,date_created,date_changed,locale,uuid,creator,changed_by from openmrs_backup.concept_proposal where openmrs_backup.concept_proposal.concept_proposal_id not in (select concept_proposal_id from openmrs.concept_proposal);
-INSERT INTO openmrs.concept_proposal_tag_map (concept_proposal_id,concept_name_tag_id) select concept_proposal_id,concept_name_tag_id from openmrs_backup.concept_proposal_tag_map where (openmrs_backup.concept_proposal_tag_map.concept_proposal_id not in (select concept_proposal_id from openmrs.concept_proposal_tag_map) and openmrs_backup.concept_proposal_tag_map.concept_name_tag_id not in (select concept_name_tag_id from openmrs.concept_proposal_tag_map));
+    -- add Provider role to all users with Data Entry and Data Manager Role
+    -- Removed condition for role as data manager and data entry because some encounters will not have providers
+    -- @TODO check if user is has ecnouters and then add him as normal provider without data entry privileges
+    INSERT INTO provider (person_id, creator, date_created, uuid) SELECT person_id, 2, NOW(), UUID() FROM users u WHERE user_id NOT IN (SELECT user_id FROM user_role WHERE role = 'Provider');
+    INSERT INTO user_role (user_id, role) SELECT user_id, 'Provider' FROM users u WHERE user_id NOT IN (SELECT user_id FROM user_role WHERE role = 'Provider') AND u.user_id IN (SELECT user_id FROM user_role WHERE (role = 'Data Manager' OR role = 'Data Entry'));
 
-INSERT INTO openmrs.cohort (cohort_id,name,description,date_created,voided,date_voided,void_reason,date_changed,uuid,voided_by,changed_by) select cohort_id,name,description,date_created,voided,date_voided,void_reason,date_changed,uuid,voided_by,changed_by from openmrs_backup.cohort where openmrs_backup.cohort.cohort_id not in (select cohort_id from openmrs.cohort);
-INSERT INTO openmrs.cohort_member (cohort_id,patient_id) select cohort_id,patient_id from openmrs_backup.cohort_member where (openmrs_backup.cohort_member.cohort_id not in (select cohort_id from openmrs.cohort_member) and openmrs_backup.cohort_member.patient_id not in (select patient_id from openmrs.cohort_member));
+    -- Check to see if the database encounter table has column provider_id
+    SELECT COUNT(*) INTO provider_column FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = 'encounter' AND table_schema = 'openmrs_backup' AND COLUMN_NAME = 'provider_id';
+    -- Insert encounter_providers after creating providers
+    IF provider_column > 0 THEN
+      INSERT INTO openmrs.encounter_provider(encounter_id,provider_id,encounter_role_id,creator,date_created,voided,uuid) select encounter_id,(select openmrs.provider.provider_id from openmrs.provider where person_id = openmrs_backup.encounter.provider_id),2,2,NOW(),0,UUID() from openmrs_backup.encounter;
+    END IF;
+  END$$
+DELIMITER ;
 
-INSERT INTO openmrs.note (note_id,note_type,patient_id,obs_id,encounter_id,text,priority,parent,date_created,date_changed,uuid,creator,changed_by) select note_id,note_type,patient_id,obs_id,encounter_id,text,priority,parent,date_created,date_changed,uuid,creator,changed_by from openmrs_backup.note where openmrs_backup.note.note_id not in (select note_id from openmrs.note);
+call transfer();
 
-INSERT INTO openmrs.notification_alert (alert_id,text,satisfied_by_any,alert_read,date_to_expire,date_created,date_changed,uuid,creator,changed_by) select alert_id,text,satisfied_by_any,alert_read,date_to_expire,date_created,date_changed,uuid,creator,changed_by from openmrs_backup.notification_alert where openmrs_backup.notification_alert.alert_id not in (select alert_id from openmrs.notification_alert);
-INSERT INTO openmrs.notification_template (template_id,name,template,subject,sender,recipients,ordinal,uuid) select template_id,name,template,subject,sender,recipients,ordinal,uuid from openmrs_backup.notification_template where openmrs_backup.notification_template.template_id not in (select template_id from openmrs.notification_template);
-INSERT INTO openmrs.notification_alert_recipient (alert_id,user_id,alert_read,date_changed,uuid) select alert_id,user_id,alert_read,date_changed,uuid from openmrs_backup.notification_alert_recipient where openmrs_backup.notification_alert_recipient.alert_id not in (select alert_id from openmrs.notification_alert_recipient);
-
-INSERT INTO openmrs.hl7_in_archive (hl7_in_archive_id,hl7_source,hl7_source_key,hl7_data,date_created,message_state,uuid) select hl7_in_archive_id,hl7_source,hl7_source_key,hl7_data,date_created,message_state,uuid from openmrs_backup.hl7_in_archive where openmrs_backup.hl7_in_archive.hl7_in_archive_id not in (select hl7_in_archive_id from openmrs.hl7_in_archive);
-INSERT INTO openmrs.hl7_in_error (hl7_in_error_id,hl7_source,hl7_source_key,hl7_data,error,error_details,date_created,uuid) select hl7_in_error_id,hl7_source,hl7_source_key,hl7_data,error,error_details,date_created,uuid from openmrs_backup.hl7_in_error where openmrs_backup.hl7_in_error.hl7_in_error_id not in (select hl7_in_error_id from openmrs.hl7_in_error);
-INSERT INTO openmrs.hl7_source (hl7_source_id,name,description,date_created,uuid,creator) select hl7_source_id,name,description,date_created,uuid,creator from openmrs_backup.hl7_source where openmrs_backup.hl7_source.hl7_source_id not in (select hl7_source_id from openmrs.hl7_source);
-INSERT INTO openmrs.hl7_in_queue (hl7_in_queue_id,hl7_source,hl7_source_key,hl7_data,message_state,date_processed,error_msg,date_created,uuid) select hl7_in_queue_id,hl7_source,hl7_source_key,hl7_data,message_state,date_processed,error_msg,date_created,uuid from openmrs_backup.hl7_in_queue where openmrs_backup.hl7_in_queue.hl7_in_queue_id not in (select hl7_in_queue_id from openmrs.hl7_in_queue);
-
-INSERT INTO openmrs.report_schema_xml (report_schema_id,name,description,xml_data,uuid) select report_schema_id,name,description,xml_data,uuid from openmrs_backup.report_schema_xml where openmrs_backup.report_schema_xml.report_schema_id not in (select report_schema_id from openmrs.report_schema_xml);
-INSERT INTO openmrs.report_object (report_object_id,name,description,report_object_type,report_object_sub_type,xml_data,date_created,date_changed,voided,date_voided,void_reason,uuid,creator,changed_by,voided_by) select report_object_id,name,description,report_object_type,report_object_sub_type,xml_data,date_created,date_changed,voided,date_voided,void_reason,uuid,creator,changed_by,voided_by from openmrs_backup.report_object where openmrs_backup.report_object.report_object_id not in (select report_object_id from openmrs.report_object);
-
-INSERT INTO openmrs.serialized_object (serialized_object_id,name,description,type,subtype,serialization_class,serialized_data,date_created,date_changed,retired,date_retired,retire_reason,uuid,creator,changed_by,retired_by) select serialized_object_id,name,description,type,subtype,serialization_class,serialized_data,date_created,date_changed,retired,date_retired,retire_reason,uuid,creator,changed_by,retired_by from openmrs_backup.serialized_object where openmrs_backup.serialized_object.serialized_object_id not in (select serialized_object_id from openmrs.serialized_object) and openmrs_backup.serialized_object.uuid not in (select uuid from openmrs.serialized_object);
-
--- update users with there creators and the people they are related to
-UPDATE openmrs.users  AS c1, openmrs_backup.users AS c2 SET c1.creator = c2.creator,c1.person_id = c2.person_id,c1.changed_by = c2.changed_by,c1.retired_by = c2.retired_by  WHERE c1.uuid = c2.uuid;
-
--- Removed the transfer of locations only updating the main location with the values from the old database
-UPDATE openmrs.location  AS c1, openmrs_backup.location AS c2 SET c1.location_id = c1.location_id, c1.name= c2.name,c1.description = c2.description,c1.address1 = c2.address1,c1.address2 = c2.address2,c1.city_village = c2.city_village,c1.state_province = c2.state_province,c1.postal_code =c1.postal_code,c1.country = c2.country,c1.latitude = c2.latitude,c1.longitude = c2.longitude ,c1.date_created = c2.date_created,c1.county_district = c2.county_district,c1.retired = c2.retired,c1.date_retired =c1.date_retired,c1.retire_reason = c2.retire_reason WHERE c2.location_id = 1  AND c1.location_id = 2;
-
--- add Provider role to all users with Data Entry and Data Manager Role
-INSERT INTO provider (person_id, creator, date_created, uuid)
-  SELECT
-    person_id,
-    2,
-    NOW(),
-    UUID()
-  FROM users u
-  WHERE user_id NOT IN (SELECT user_id
-                        FROM user_role
-                        WHERE role = 'Provider') AND
-        u.user_id IN (SELECT user_id
-                      FROM user_role
-                      WHERE (role = 'Data Manager' OR role = 'Data Entry'));
-
-INSERT INTO user_role (user_id, role)
-  SELECT
-    user_id,
-    'Provider'
-  FROM users u
-  WHERE user_id NOT IN (SELECT user_id
-                        FROM user_role
-                        WHERE role = 'Provider') AND
-        u.user_id IN (SELECT user_id
-                      FROM user_role
-                      WHERE (role = 'Data Manager' OR role = 'Data Entry'))
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
