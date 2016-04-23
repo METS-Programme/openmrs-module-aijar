@@ -17,41 +17,41 @@
 -- Delete forms causing conflict
 TRUNCATE form_field;
 TRUNCATE htmlformentry_html_form;
-DELETE FROM form
-WHERE LOWER(name) LIKE '%imai%' OR LOWER(name) LIKE '%lab form%';
+delete from form where form_id not in (select distinct form_id from encounter);
+delete from encounter_type where encounter_type_id not in (select distinct encounter_type from encounter);
+
 
 -- ART SUMMARY
-UPDATE encounter_type
-SET encounter_type_id = 8
-WHERE encounter_type_id = 1;
-UPDATE form
-SET form_id = 14
-WHERE form_id = ;
-UPDATE encounter
-SET encounter_type = 8, form_id = 14
-WHERE encounter_type = 1;
+update encounter set encounter_type = (select encounter_type_id from openmrs.encounter_type where locate('art',name) > 0 and locate('summary',name) > 0),form_id = (select form_id from openmrs.form where locate('art',name) > 0 and locate('card',name) > 0 and locate('summary',name) > 0) where encounter_type IN (select encounter_type_id from encounter_type where locate('summary',name) > 0 and locate('page',name) > 0);
+update encounter_type set encounter_type_id = (select encounter_type_id from openmrs.encounter_type where locate('art',name) > 0 and locate('summary',name) > 0) where locate('summary',name) > 0 and locate('page',name) > 0;
+update form set form_id = (select form_id from openmrs.form where locate('art',name) > 0 and locate('card',name) > 0 and locate('summary',name) > 0),encounter_type = (select encounter_type_id from openmrs.encounter_type where locate('art',name) > 0 and locate('summary',name) > 0) where locate('art',name) > 0 and locate('card',name) > 0 and locate('summary',name) > 0 and locate('new',name) = 0;
+-- UPDATE encounter_type SET encounter_type_id = 8 WHERE encounter_type_id = 1;
+-- UPDATE form SET form_id = 14 WHERE form_id = 28;
+-- UPDATE encounter SET encounter_type = 8, form_id = 14 WHERE encounter_type = 1;
 
 -- ART Encounter Page
-UPDATE encounter_type
-SET encounter_type_id = 9
-WHERE encounter_type_id = 2;
-UPDATE form
-SET form_id = 12
-WHERE form_id = XX;
-UPDATE encounter
-SET encounter_type = 9, form_id = 12
-WHERE encounter_type = 2;
+update encounter set encounter_type = (select encounter_type_id from openmrs.encounter_type where locate('art',name) > 0 and locate('card',name) > 0 and locate('encounter',name) > 0 and locate('education',name) = 0),form_id = (select form_id from openmrs.form where locate('art',name) > 0 and locate('card',name) > 0 and locate('encounter',name) > 0) where encounter_type IN (select encounter_type_id from encounter_type where locate('encounter',name) > 0 and locate('page',name) > 0);
+update encounter_type set encounter_type_id = (select encounter_type_id from openmrs.encounter_type where locate('art',name) > 0 and locate('card',name) > 0 and locate('encounter',name) > 0 and locate('education',name) = 0) where locate('encounter',name) > 0 and locate('page',name) > 0;
+update form set form_id = (select form_id from openmrs.form where locate('art',name) > 0 and locate('card',name) > 0 and locate('encounter',name) > 0),encounter_type = (select encounter_type_id from openmrs.encounter_type where locate('art',name) > 0 and locate('card',name) > 0 and locate('encounter',name) > 0 and locate('education',name) = 0) where locate('art',name) > 0 and locate('card',name) > 0 and locate('encounter',name) > 0 and locate('new',form.name) = 0;
+-- UPDATE encounter_type SET encounter_type_id = 9 WHERE encounter_type_id = 2;
+-- UPDATE form SET form_id = 12 WHERE form_id =27;
+-- UPDATE encounter SET encounter_type = 9, form_id = 12 WHERE encounter_type = 2;
 
 -- ART Health Education
-UPDATE encounter_type
-SET encounter_type_id = 11
-WHERE encounter_type_id = 11;
+update encounter set encounter_type = (select encounter_type_id from openmrs.encounter_type where locate('art',name) > 0 and locate('card',name) > 0 and locate('education',name) > 0),form_id = (select form_id from openmrs.form where locate('art',name) > 0 and locate('card',name) > 0 and locate('education',name) > 0) where encounter_type IN (select encounter_type_id from encounter_type where locate('health',name) > 0 and locate('education',name) > 0);
+update encounter_type set encounter_type_id = (select encounter_type_id from openmrs.encounter_type where locate('art',name) > 0 and locate('card',name) > 0 and locate('education',name) > 0) where locate('health',name) > 0 and locate('education',name) > 0;
 UPDATE form
-SET form_id = 13
-WHERE form_id = XX;
-UPDATE encounter
-SET encounter_type = 11, form_id = 13
-WHERE encounter_type = 11;
+SET form_id      = (SELECT form_id
+                    FROM openmrs.form
+                    WHERE locate('art', name) > 0 AND locate('card', name) > 0 AND locate('education', name) > 0),
+  encounter_type = (SELECT encounter_type_id
+                    FROM openmrs.encounter_type
+                    WHERE locate('art', name) > 0 AND locate('card', name) > 0 AND locate('education', name) > 0)
+WHERE locate('art', name) > 0 AND locate('card', name) > 0 AND locate('education', name) > 0 AND locate('new', name) = 0;
+
+-- UPDATE encounter_type SET encounter_type_id = 11 WHERE encounter_type_id = 11;
+-- UPDATE form SET form_id = 13 WHERE form_id = 34;
+-- UPDATE encounter SET encounter_type = 11, form_id = 13 WHERE encounter_type = 11;
 
 /*!40101 SET SQL_MODE = @OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS = @OLD_FOREIGN_KEY_CHECKS */;
