@@ -165,6 +165,77 @@
             });
         }
 
+        function enable_disable_adherence(selected_option) {
+
+            var class_name = jq(selected_option).attr("class");
+
+            var length = class_name.length;
+
+            var class_id = parseInt(class_name.substring(length - 1, length))
+
+            var row_id = class_id;
+
+            var disable = true;
+
+            var row_1 = '[class^="Adherence"][class*="Child1"]';
+            var row_2 = '[class^="Adherence"][class*="Child2"]';
+            var row_3 = '[class^="Adherence"][class*="Child3"]';
+            var row_4 = '[class^="Adherence"][class*="Child4"]';
+
+            var row_5 = '[class^="Adherence"][class*="Child5"]';
+            var row_6 = '[class^="Adherence"][class*="Child6"]';
+            var row_7 = '[class^="Adherence"][class*="Child7"]';
+            var row_8 = '[class^="Adherence"][class*="Child8"]';
+
+            var row_9 = '[class^="Adherence"][class*="Child9"]';
+
+            var xx = row_1;
+            var selected_value = jq(selected_option).find(":selected").text()
+
+            selected_value = selected_value.trim().toLowerCase();
+
+            if (selected_value != "good") {
+                disable = false;
+            }
+
+            switch (row_id) {
+                case 1:
+                    xx = row_1;
+                    break;
+                case 2:
+                    xx = row_2;
+                    break;
+                case 3:
+                    xx = row_3;
+                    break;
+                case 4:
+                    xx = row_4;
+                    break;
+
+                case 5:
+                    xx = row_5;
+                    break;
+                case 6:
+                    xx = row_6;
+                    break;
+                case 7:
+                    xx = row_7;
+                    break;
+                case 8:
+                    xx = row_8;
+                    break;
+                case 9:
+                    xx = row_9;
+                    break;
+            }
+            jq(xx).each(function () {
+                var group = jq(this);
+                if (class_name.indexOf('Child') == -1) {
+                    group.find("input").attr("disabled", disable);
+                }
+            });
+        }
+
         function enable_disable_district_tb_reg(selected_option) {
 
             var class_name = jq(selected_option).attr("class");
@@ -239,6 +310,14 @@
 
                 jq('[class^="DistrictTbRegEnableDisable"]').each(function () {
                     enable_disable_district_tb_reg(jq(this));
+                });
+
+                jq('[class^="AdherenceEnableDisable"]').change(function () {
+                    enable_disable_adherence(jq(this));
+                });
+
+                jq('[class^="AdherenceEnableDisable"]').each(function () {
+                    enable_disable_adherence(jq(this));
                 });
 
                 jq(".enableDisable").each(function () {
@@ -574,9 +653,11 @@
                             </span>
                     </td>
                     <td class="EnableDisableAdherenceReason checkboxGroup lablex3">
+                        <span class="AdherenceEnableDisable1">
                         <obs conceptId="90221" answerConceptIds="90156,90157,90158"
                              answerLabels=" Good, Fair, Poor" labelText="Adhererence:"/>
-                            <span class="enableDisable">
+                            </span>
+                            <span class="AdherenceEnableDisableChild1">
                                 Why Poor/Fair:
                                 <br/>
                                 <obs id="br" conceptId="90223" answerConceptId="90040"
