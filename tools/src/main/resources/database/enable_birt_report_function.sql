@@ -8,6 +8,9 @@
   DROP PROCEDURE IF EXISTS `hmis106a1aYouth`;
   DROP PROCEDURE IF EXISTS `hmis106a1b`;
   DROP PROCEDURE IF EXISTS `hmis105EID`;
+  DROP PROCEDURE IF EXISTS `mergeSummaryPages`;
+  DROP PROCEDURE IF EXISTS `transfer`;
+
 
   DROP FUNCTION IF EXISTS `get_adherence_Count`;
   DROP FUNCTION IF EXISTS `get_adherenceType_Count`;
@@ -998,7 +1001,7 @@
   DELIMITER ;
 
   DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` PROCEDURE `getPreARTData`(IN start_year INT)
+  CREATE DEFINER=`root`@`localhost` PROCEDURE `getPreARTData`(IN start_year INTEGER)
   BEGIN
 
       DECLARE bDone INT;
@@ -1068,7 +1071,7 @@
                                 getArtEligibilityAndReadyDate(e.patient_id) AS 'date_eligible_and_ready_for_art',
                                 getArtBaseTransferDate(e.patient_id)        AS 'date_art_started'
                               FROM encounter e
-                              WHERE e.voided = 0 AND YEAR(e.encounter_datetime) = start_year AND e.encounter_type = 8
+                              WHERE e.voided = 0 AND YEAR(e.encounter_datetime) = start_year AND e.encounter_type = (select encounter_type_id from encounter_type where locate('art',name) > 0 and locate('summary',name) > 0)
                               ORDER BY e.encounter_datetime;
 
       DECLARE CONTINUE HANDLER FOR NOT FOUND SET bDone = 1;
@@ -1203,7 +1206,7 @@
   DELIMITER ;
 
   DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` PROCEDURE `getPreARTFollowup`(IN start_year INTEGER)
+  CREATE DEFINER=`root`@`localhost` PROCEDURE `getPreARTFollowup`(IN start_year INT)
   BEGIN
 
       DECLARE bDone INT;
@@ -1239,7 +1242,7 @@
 
       DECLARE curs CURSOR FOR SELECT DISTINCT e.patient_id AS 'patient_id'
                               FROM encounter e
-                              WHERE e.voided = 0 AND YEAR(e.encounter_datetime) = start_year AND e.encounter_type = 8
+                              WHERE e.voided = 0 AND YEAR(e.encounter_datetime) = start_year AND e.encounter_type = (select encounter_type_id from encounter_type where locate('art',name) > 0 and locate('summary',name) > 0)
                               ORDER BY e.encounter_datetime;
 
       DECLARE CONTINUE HANDLER FOR NOT FOUND SET bDone = 1;
@@ -1346,7 +1349,7 @@
   DELIMITER ;
 
   DELIMITER $$
-  CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `hmis105EID`(IN start_year CHAR(5), IN start_month CHAR(2))
+  CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `hmis105EID`(IN start_year CHAR(5), IN start_month CHAR(3))
   BEGIN DECLARE start_year_month CHAR(6) DEFAULT CONCAT(start_year,start_month);
       SELECT
         (SELECT COUNT(*)
@@ -1399,8 +1402,7 @@
            INNER JOIN obs o ON (o.encounter_id = e.encounter_id
                                 AND o.voided = 0
                                 AND e.voided = 0
-                                AND e.form_id IN (10 ,
-                                                  11))
+                                AND e.form_id IN (select encounter_type_id from encounter_type where locate('eid',name) > 0 and locate('card',name) > 0))
          WHERE EXTRACT(YEAR_MONTH
                        FROM e.encounter_datetime) = start_year_month
                AND o.concept_id IN (1040 ,
@@ -1412,10 +1414,9 @@
            INNER JOIN obs o ON (o.encounter_id = e.encounter_id
                                 AND o.voided = 0
                                 AND e.voided = 0
-                                AND e.form_id IN (10 ,
-                                                  11))
+                                AND e.form_id IN (select encounter_type_id from encounter_type where locate('eid',name) > 0 and locate('card',name) > 0))
          WHERE EXTRACT(YEAR_MONTH
-           FROM e.encounter_datetime) = start_year_month
+                       FROM e.encounter_datetime) = start_year_month
                AND o.concept_id = 99751
                AND o.value_text IS NOT NULL) AS 'oncare',
 
@@ -1424,8 +1425,7 @@
            INNER JOIN obs o ON (o.encounter_id = e.encounter_id
                                 AND o.voided = 0
                                 AND e.voided = 0
-                                AND e.form_id IN (10 ,
-                                                  11))
+                                AND e.form_id IN (select encounter_type_id from encounter_type where locate('eid',name) > 0 and locate('card',name) > 0))
          WHERE EXTRACT(YEAR_MONTH
                        FROM e.encounter_datetime) = start_year_month
                AND o.concept_id = 99037) AS 'oncpt',
@@ -1435,8 +1435,7 @@
            INNER JOIN obs o ON (o.encounter_id = e.encounter_id
                                 AND o.voided = 0
                                 AND e.voided = 0
-                                AND e.form_id IN (10 ,
-                                                  11))
+                                AND e.form_id IN (select encounter_type_id from encounter_type where locate('eid',name) > 0 and locate('card',name) > 0))
          WHERE EXTRACT(YEAR_MONTH
                        FROM e.encounter_datetime) = start_year_month
                AND o.concept_id = 99037) AS 'oncptwithin2months'; END$$
@@ -4155,7 +4154,6 @@
       END IF;
     END$$
   DELIMITER ;
-
   DELIMITER $$
   CREATE DEFINER=`openmrs`@`localhost` FUNCTION `fn_intersect_string`(arg_str1 TEXT, arg_str2 TEXT) RETURNS text CHARSET utf8
   BEGIN
@@ -4691,7 +4689,7 @@
   DELIMITER ;
 
   DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `get_CD4_count`(StartDate VARCHAR(12), EndDate VARCHAR(12), Patient_ID INT) RETURNS varchar(10) CHARSET latin1
+  CREATE DEFINER=`root`@`localhost` FUNCTION `get_CD4_count`(StartDate VARCHAR(12), EndDate VARCHAR(12), Patient_ID INTEGER) RETURNS varchar(10) CHARSET latin1
       DETERMINISTIC
   RETURN
     (
@@ -4714,7 +4712,7 @@
                     FROM encounter
                     WHERE
                       encounter_datetime BETWEEN str_to_date(StartDate, "%d/%m/%Y") AND str_to_date(EndDate, "%d/%m/%Y")
-                      AND patient_id = Patient_ID AND form_id = 31
+                      AND patient_id = Patient_ID AND form_id = (select form_id from form where locate('art',name) > 0 and locate('card',name) > 0 and locate('encounter',name) > 0)
                     GROUP BY patient_id
                   ) LatestEncounter
            ) CD4
@@ -5401,7 +5399,7 @@
   DELIMITER ;
 
   DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getEnrolDate`(`personid` INTEGER) RETURNS date
+  CREATE DEFINER=`root`@`localhost` FUNCTION `getEnrolDate`(`personid` INT) RETURNS date
       READS SQL DATA
   BEGIN
 
@@ -5409,7 +5407,7 @@
       RETURN (
         SELECT encounter_datetime AS enroldt
         FROM encounter
-        WHERE encounter_type = 8
+        WHERE encounter_type = (select encounter_type_id from encounter_type where locate('art',name) > 0 and locate('summary',name) > 0)
               AND voided = 0
               AND personid = patient_id
         LIMIT 1
@@ -5484,7 +5482,7 @@
   DELIMITER ;
 
   DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getFUARTStatus`(Patient_ID INT, start_date DATE, end_date DATE) RETURNS char(1) CHARSET utf8
+  CREATE DEFINER=`root`@`localhost` FUNCTION `getFUARTStatus`(Patient_ID INTEGER, start_date DATE, end_date DATE) RETURNS char(1) CHARSET utf8
   BEGIN
 
       DECLARE times_seen_in_quarter INT DEFAULT 0;
@@ -5550,7 +5548,7 @@
                 INTO times_seen_in_quarter
                 FROM encounter
                 WHERE encounter_datetime BETWEEN start_date AND end_date
-                      AND encounter_type IN (8, 9)
+                      AND encounter_type IN (select encounter_type_id from encounter_type where locate('art',name) > 0)
                       AND patient_id = Patient_ID AND voided = 0;
 
                 SELECT COUNT(obs_id)
@@ -5995,7 +5993,7 @@
 
   DELIMITER $$
   CREATE DEFINER=`root`@`localhost` FUNCTION `get_seen_status`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
-                                                               Patient_ID INT) RETURNS char(50) CHARSET latin1
+                                                               Patient_ID INTEGER) RETURNS char(50) CHARSET latin1
       DETERMINISTIC
   RETURN
     (
@@ -6004,7 +6002,7 @@
              SELECT COUNT(encounter_id) AS NumberOfTimesSeenInPeriod
              FROM encounter
              WHERE encounter_datetime BETWEEN str_to_date(StartDate, "%d/%m/%Y") AND str_to_date(EndDate, "%d/%m/%Y")
-                   AND form_id = 31
+                   AND form_id = (select form_id from openmrs.form where locate('art',name) > 0 and locate('card',name) > 0 and locate('encounter',name) > 0)
                    AND patient_id = Patient_ID
 
            ) RecentSEENStatus
@@ -6028,7 +6026,7 @@
   DELIMITER ;
 
   DELIMITER $$
-  CREATE DEFINER=`openmrs`@`localhost` FUNCTION `getStatusAtEnrollment`(patient INT) RETURNS char(5) CHARSET utf8
+  CREATE DEFINER=`openmrs`@`localhost` FUNCTION `getStatusAtEnrollment`(patient INTEGER) RETURNS char(5) CHARSET utf8
   BEGIN
 
       DECLARE lactating INT;
@@ -6040,35 +6038,35 @@
       SELECT if(o.obs_id > 0, '1', '')
       INTO eid
       FROM obs o INNER JOIN encounter e
-          ON (e.encounter_id = o.encounter_id AND e.encounter_type = 8 AND o.concept_id = 99149 AND o.value_boolean = TRUE
+          ON (e.encounter_id = o.encounter_id AND e.encounter_type = (select encounter_type_id from encounter_type where locate('art',name) > 0 and locate('summary',name) > 0) AND o.concept_id = 99149 AND o.value_boolean = TRUE
               AND o.person_id = patient)
       ORDER BY e.encounter_datetime ASC
       LIMIT 1;
       SELECT if(o.obs_id > 0, '2', '')
       INTO pregnant
       FROM obs o INNER JOIN encounter e
-          ON (e.encounter_id = o.encounter_id AND e.encounter_type = 8 AND o.concept_id = 99602 AND o.value_boolean = TRUE
+          ON (e.encounter_id = o.encounter_id AND e.encounter_type = (select encounter_type_id from encounter_type where locate('art',name) > 0 and locate('summary',name) > 0) AND o.concept_id = 99602 AND o.value_boolean = TRUE
               AND o.person_id = patient)
       ORDER BY e.encounter_datetime ASC
       LIMIT 1;
       SELECT if(o.obs_id > 0, '3', '')
       INTO tb
       FROM obs o INNER JOIN encounter e
-          ON (e.encounter_id = o.encounter_id AND e.encounter_type = 8 AND o.concept_id = 99600 AND o.value_boolean = TRUE
+          ON (e.encounter_id = o.encounter_id AND e.encounter_type = (select encounter_type_id from encounter_type where locate('art',name) > 0 and locate('summary',name) > 0) AND o.concept_id = 99600 AND o.value_boolean = TRUE
               AND o.person_id = patient)
       ORDER BY e.encounter_datetime ASC
       LIMIT 1;
       SELECT if(o.obs_id > 0, '4', '')
       INTO lactating
       FROM obs o INNER JOIN encounter e
-          ON (e.encounter_id = o.encounter_id AND e.encounter_type = 8 AND o.concept_id = 99601 AND o.value_boolean = TRUE
+          ON (e.encounter_id = o.encounter_id AND e.encounter_type = (select encounter_type_id from encounter_type where locate('art',name) > 0 and locate('summary',name) > 0) AND o.concept_id = 99601 AND o.value_boolean = TRUE
               AND o.person_id = patient)
       ORDER BY e.encounter_datetime ASC
       LIMIT 1;
       SELECT if(o.obs_id > 0, '5', '')
       INTO ti
       FROM obs o INNER JOIN encounter e
-          ON (e.encounter_id = o.encounter_id AND e.encounter_type = 8 AND o.concept_id = 99110 AND o.value_coded = 90003
+          ON (e.encounter_id = o.encounter_id AND e.encounter_type = (select encounter_type_id from encounter_type where locate('art',name) > 0 and locate('summary',name) > 0) AND o.concept_id = 99110 AND o.value_coded = 90003
               AND o.person_id = patient)
       ORDER BY e.encounter_datetime ASC
       LIMIT 1;
