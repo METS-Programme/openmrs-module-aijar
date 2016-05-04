@@ -9,6 +9,7 @@
 
 
 DROP PROCEDURE IF EXISTS `transfer`;
+DROP PROCEDURE IF EXISTS `mergeSummaryPages`;
 DROP FUNCTION IF EXISTS `fn_intersect_string`;
 
 DELIMITER $$
@@ -72,7 +73,6 @@ CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `transfer`()
       SELECT COUNT(*) INTO n FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = t_name AND table_schema = 'openmrs_backup' AND COLUMN_KEY = 'PRI';
       SET i=0;
       SET where_clause = '';
-
       WHILE i < n DO
         SELECT COLUMN_NAME INTO pri_col FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = t_name AND table_schema = 'openmrs_backup' AND COLUMN_KEY = 'PRI' LIMIT i,1;
         SET where_clause = CONCAT(where_clause,'openmrs_backup.',t_name,'.',pri_col,' not in (select ',pri_col,' from openmrs.',t_name,') AND ');
@@ -88,8 +88,7 @@ CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `transfer`()
         ELSE
           SET inter_columns_insert = inter_columns;
         END IF;
-        SET @q_statment = CONCAT('insert into openmrs.',t_name,'(',inter_columns,') select ',inter_columns,' from openmrs_backup.',t_name,if(where_clause <> '',CONCAT(' where ',SUBSTRING(where_clause, 1, CHAR_LENGTH(where_clause) - 4)),''));
-        INSERT INTO tb(`name`) VALUES(@q_statment);
+        SET @q_statment = CONCAT('insert into openmrs.',t_name,'(',inter_columns,') select ',inter_columns_insert,' from openmrs_backup.',t_name,if(where_clause <> '',CONCAT(' where ',SUBSTRING(where_clause, 1, CHAR_LENGTH(where_clause) - 4)),''));
       END IF;
 
       PREPARE stmt FROM @q_statment;
@@ -98,6 +97,10 @@ CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `transfer`()
 
     END LOOP;
     CLOSE cursor_i;
+
+    -- Removed the transfer of locations only updating the main location with the values from the old database
+
+    UPDATE openmrs.location  AS c1, openmrs_backup.location AS c2 SET c1.location_id = c1.location_id, c1.name= c2.name,c1.description = c2.description,c1.address1 = c2.address1,c1.address2 = c2.address2,c1.city_village = c2.city_village,c1.state_province = c2.state_province,c1.postal_code =c1.postal_code,c1.country = c2.country,c1.latitude = c2.latitude,c1.longitude = c2.longitude ,c1.date_created = c2.date_created,c1.county_district = c2.county_district,c1.retired = c2.retired,c1.date_retired =c1.date_retired,c1.retire_reason = c2.retire_reason WHERE c2.location_id = 1  AND c1.location_id = 2;
 
     -- add Provider role to all users with Data Entry and Data Manager Role
     -- Removed condition for role as data manager and data entry because some encounters will not have providers
@@ -114,7 +117,49 @@ CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `transfer`()
   END$$
 DELIMITER ;
 
+DELIMITER $$
+CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `mergeSummaryPages`()
+BEGIN
+
+	DECLARE patient TEXT;
+	DECLARE ecnounter TEXT;
+	DECLARE total TEXT;
+	DECLARE found_string TEXT;
+	DECLARE occurance INT;
+	DECLARE i INT DEFAULT 2;
+	DECLARE done INT DEFAULT FALSE;
+	DECLARE cursor_i CURSOR FOR select patient_id,encounter_type,count(*) from encounter where encounter_type = 14 group by patient_id,encounter_type HAVING COUNT(*) > 1;
+	DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+
+	DROP TEMPORARY TABLE IF EXISTS tb;
+	CREATE TEMPORARY TABLE IF NOT EXISTS tb(`name` TEXT);
+
+	OPEN cursor_i;
+		read_loop: LOOP
+			FETCH cursor_i INTO patient,ecnounter,total;
+			IF done THEN
+			  LEAVE read_loop;
+			END IF;
+
+      select GROUP_CONCAT(encounter_id) INTO found_string from encounter where patient_id = patient and encounter_type = 14;
+			select LENGTH(found_string) - LENGTH(REPLACE(found_string, ',', '')) INTO occurance;
+
+      SET i=1;
+			WHILE i <= occurance DO
+				update obs set encounter_id = SUBSTRING_INDEX( found_string, ',', 1 ) where encounter_id = SUBSTRING_INDEX( SUBSTRING_INDEX(found_string , ',', i + 1 ), ',', -1 );
+        -- delete from encounter where encounter_id = SUBSTRING_INDEX( SUBSTRING_INDEX(found_string , ',', i + 1 ), ',', -1 );
+        SET i = i + 1;
+			END WHILE;
+			-- delete from obs where obs_id not in(select ob from (select max(obs_id) as ob,concept_id as c,max(obs_datetime) as dt from obs where encounter_id = ecnounter group by concept_id order by concept_id) tmp);
+		END LOOP;
+	CLOSE cursor_i;
+
+END$$
+DELIMITER ;
+
+
 call transfer();
+call mergeSummaryPages();
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
