@@ -276,7 +276,7 @@
                         <encounterDate default="today" required="true"/>
                     </td>
                     <td>
-                        <label<span class="required">*</span>>Service Provider:</label>
+                        <label><span class="required">*</span>>Service Provider:</label>
                         <encounterProvider role="Provider" style="autocomplete"/>
                         <span style="display: none;">
                         <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
