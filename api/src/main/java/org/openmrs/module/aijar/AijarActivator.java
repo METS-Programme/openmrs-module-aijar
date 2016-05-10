@@ -91,6 +91,11 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             // the extension to the edit person details
             appFrameworkService.disableExtension("org.openmrs.module.registrationapp.editPatientDemographics");
 
+            // form entry app on the home page
+            appFrameworkService.disableApp("xforms.formentry");
+            // form entry extension in active visits
+            appFrameworkService.disableExtension("xforms.formentry.cfpd");
+
             // install HTML Forms
             setupHtmlForms();
 
