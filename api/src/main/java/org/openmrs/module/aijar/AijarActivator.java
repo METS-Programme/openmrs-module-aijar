@@ -80,12 +80,21 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         LocationService locationService = Context.getLocationService();
 
         try {
+
+            // Rebuild the concept search index
+            Context.updateSearchIndex();
+
             // disable the reference app registration page
             appFrameworkService.disableApp("referenceapplication.registrationapp.registerPatient");
             // disable the start visit app since all data is retrospective
             appFrameworkService.disableExtension("org.openmrs.module.coreapps.createVisit");
             // the extension to the edit person details
             appFrameworkService.disableExtension("org.openmrs.module.registrationapp.editPatientDemographics");
+
+            // form entry app on the home page
+            appFrameworkService.disableApp("xforms.formentry");
+            // form entry extension in active visits
+            appFrameworkService.disableExtension("xforms.formentry.cfpd");
 
             // install HTML Forms
             setupHtmlForms();

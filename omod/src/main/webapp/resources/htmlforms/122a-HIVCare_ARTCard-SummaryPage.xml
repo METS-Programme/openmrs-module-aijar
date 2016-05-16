@@ -1612,18 +1612,20 @@
                     <th colspan="4" style="background-color: #377F9C;color: white;text-align: center;">Start ART</th>
                 </tr>
                 <tr>
-                    <td rowspan="3" style="width:20%;">
-                        <obs conceptId="99161" labelText="Date started:"/>
-                    </td>
-                    <td rowspan="3" class="ArtCareEnableDisable2" style="width:20%;">
-                        <obs conceptId="99061"
-                             answerConceptIds="99005,99006,99015,99016,99039,99040,99041,99042,99884,99885,163017,99143"
-                             answerLabels="AZT-3TC-NVP, AZT-3TC-EFV, D4T-3TC-NVP, D4T-3TC-EFV, TDF-3TC-NVP, TDF-3TC-EFV, TDF-FTC-NVP, TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-LPV/r,OTHER"
-                             labelText="Initial Regimen"/>
-                        <p class="ArtCareEnableDisableChild2">
-                            <obs conceptId="99268" labelText="Others"/>
-                        </p>
-                    </td>
+                    <obsgroup groupingConceptId="99162">
+                        <td rowspan="3" style="width:20%;">
+                            <obs conceptId="99161" labelText="Date started:"/>
+                        </td>
+                        <td rowspan="3" class="ArtCareEnableDisable2" style="width:20%;">
+                            <obs conceptId="99061"
+                                 answerConceptIds="99005,99006,99015,99016,99039,99040,99041,99042,99884,99885,163017,99143"
+                                 answerLabels="AZT-3TC-NVP, AZT-3TC-EFV, D4T-3TC-NVP, D4T-3TC-EFV, TDF-3TC-NVP, TDF-3TC-EFV, TDF-FTC-NVP, TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-LPV/r,OTHER"
+                                 labelText="Initial Regimen"/>
+                            <p class="ArtCareEnableDisableChild2">
+                                <obs conceptId="99268" labelText="Others"/>
+                            </p>
+                        </td>
+                    </obsgroup>
                     <td style="width:20%;">
                         <obs conceptId="99069" labelText="Wt"/>
                     </td>
