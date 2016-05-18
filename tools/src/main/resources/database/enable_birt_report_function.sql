@@ -198,7 +198,7 @@
           CONCAT(getTransferInTxt(e.patient_id), IF(getCareEntryTxt(e.patient_id) IN ('PMTCT', 'eMTCT'), 'eMTCT',
                                                     '')) AS 'ti_emtct',
           TIMESTAMPDIFF(YEAR, p.birthdate,
-                        CURDATE())                       AS 'age',
+                        (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY))                       AS 'age',
           p.gender                                       AS 'sex',
           getFunctionalStatusTxt(e.patient_id,
                                  o.value_datetime)       AS 'function_status',
@@ -550,7 +550,7 @@
           SET enc = '';
           SET fu = '';
 
-          IF (start_year <= YEAR(CURDATE()) AND start_month <= MONTH(CURDATE()))
+          IF (start_year <= YEAR((MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AND start_month <= MONTH((MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)))
           THEN
 
             SET enc = getEncounterId(patient, start_year, real_date);
@@ -734,7 +734,7 @@
           SET start_date = MAKEDATE(start_year, 1) + INTERVAL real_date - 1 MONTH;
           SET end_date = MAKEDATE(start_year, 1) + INTERVAL real_date MONTH - INTERVAL 1 DAY;
 
-          IF (start_year <= YEAR(CURDATE()) AND start_month < MONTH(CURDATE()))
+          IF (start_year <= YEAR((MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AND start_month < MONTH((MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)))
           THEN
 
             SET enc = getEncounterId(patient, start_year, real_date);
@@ -910,7 +910,7 @@
           SET start_date = MAKEDATE(start_year, 1) + INTERVAL real_date - 1 MONTH;
           SET end_date = MAKEDATE(start_year, 1) + INTERVAL real_date MONTH - INTERVAL 1 DAY;
 
-          IF (start_year <= YEAR(CURDATE()) AND start_month < MONTH(CURDATE()))
+          IF (start_year <= YEAR((MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AND start_month < MONTH((MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)))
           THEN
 
             SET enc = getEncounterId(patient, start_year, real_date);
@@ -1125,7 +1125,7 @@
         LIMIT 1;
         SELECT
           pp.gender,
-          TIMESTAMPDIFF(YEAR, pp.birthdate, CURDATE())
+          TIMESTAMPDIFF(YEAR, pp.birthdate, (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY))
         INTO p_sex, p_age
         FROM person pp
         WHERE person_id = patient_id
@@ -1477,7 +1477,7 @@
            (SELECT DISTINCT 1 AS indicator_id,
               pp.gender,
               pp.person_id,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURDATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate, (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND e.encounter_type = (select encounter_type_id from encounter_type where locate('art',name) > 0 and locate('summary',name) > 0)
@@ -1516,7 +1516,7 @@
            (SELECT DISTINCT 1 AS indicator_id,
               pp.gender,
               pp.person_id,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURDATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate, (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND e.encounter_type = (select encounter_type_id from encounter_type where locate('art',name) > 0 and locate('summary',name) > 0)
@@ -1539,7 +1539,7 @@
            (SELECT DISTINCT 1 AS indicator_id,
               pp.gender,
               pp.person_id,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURDATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate, (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
   									   AND e.encounter_type = (select encounter_type_id from encounter_type where locate('art',name) > 0 and locate('summary',name) > 0)
@@ -1562,7 +1562,7 @@
            (SELECT DISTINCT 1 AS indicator_id,
               p.gender,
               p.person_id,
-                            TIMESTAMPDIFF(YEAR, p.birthdate, CURDATE()) AS age,
+                            TIMESTAMPDIFF(YEAR, p.birthdate, (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age,
                             YEAR(o.obs_datetime) AS 'Year',
                             QUARTER(o.obs_datetime) AS 'quarter'
             FROM person p
@@ -1604,7 +1604,7 @@
            (SELECT DISTINCT 1 AS indicator_id,
               pp.gender,
               pp.person_id,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURDATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate, (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND e.encounter_type = (select encounter_type_id from encounter_type where locate('art',name) > 0 and locate('summary',name) > 0)
@@ -1624,7 +1624,7 @@
            (SELECT DISTINCT 1 AS indicator_id,
               pp.gender,
               pp.person_id,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURDATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate, (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND e.encounter_type = (select encounter_type_id from encounter_type where locate('art',name) > 0 and locate('summary',name) > 0)
@@ -2548,7 +2548,7 @@
            (SELECT DISTINCT 1 AS indicator_id,
               pp.gender,
               pp.person_id,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURDATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate, (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND e.encounter_type = (select encounter_type_id from encounter_type where locate('art',name) > 0 and locate('summary',name) > 0)
@@ -2572,7 +2572,7 @@
            LEFT JOIN (SELECT DISTINCT 1 AS indicator_id,
               pp.gender,
               pp.person_id,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURDATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate, (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND e.encounter_type = (select encounter_type_id from encounter_type where locate('art',name) > 0 and locate('summary',name) > 0)
@@ -2594,7 +2594,7 @@
            LEFT JOIN (SELECT DISTINCT 1 AS indicator_id,
               pp.gender,
               pp.person_id,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURDATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate, (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
   									   AND e.encounter_type = (select encounter_type_id from encounter_type where locate('art',name) > 0 and locate('summary',name) > 0)
@@ -2618,7 +2618,7 @@
            LEFT JOIN (SELECT DISTINCT 1 AS indicator_id,
               p.gender,
               p.person_id,
-                            TIMESTAMPDIFF(YEAR, p.birthdate, CURDATE()) AS age,
+                            TIMESTAMPDIFF(YEAR, p.birthdate, (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age,
                             YEAR(o.obs_datetime) AS 'Year',
                             QUARTER(o.obs_datetime) AS 'quarter'
             FROM person p
@@ -2645,7 +2645,7 @@
            LEFT JOIN (SELECT DISTINCT 1 AS indicator_id,
               pp.gender,
               pp.person_id,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURDATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate, (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND e.encounter_type = (select encounter_type_id from encounter_type where locate('art',name) > 0 and locate('summary',name) > 0)
@@ -2666,7 +2666,7 @@
            LEFT JOIN (SELECT DISTINCT 1 AS indicator_id,
               pp.gender,
               pp.person_id,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURDATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate, (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND e.encounter_type = (select encounter_type_id from encounter_type where locate('art',name) > 0 and locate('summary',name) > 0)
@@ -4842,11 +4842,11 @@
 
       IF (only_preg = 0)
       THEN
-        SELECT COUNT(*) INTO number_on_cohort FROM person pp INNER JOIN obs o ON (pp.person_id = o.person_id AND TIMESTAMPDIFF(YEAR,pp.birthdate, CURDATE()) >= 5 AND o.voided = 0 AND o.concept_id = 99071 AND o.value_numeric < 250 AND FIND_IN_SET(o.person_id, people_started));
+        SELECT COUNT(*) INTO number_on_cohort FROM person pp INNER JOIN obs o ON (pp.person_id = o.person_id AND TIMESTAMPDIFF(YEAR,pp.birthdate, (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) >= 5 AND o.voided = 0 AND o.concept_id = 99071 AND o.value_numeric < 250 AND FIND_IN_SET(o.person_id, people_started));
 
       ELSEIF (only_preg = 1) THEN
         select group_concat(person_id) INTO pregnant_mothers from obs where concept_id = 90012 and value_coded = 90003 AND voided = 0;
-        SELECT COUNT(*) INTO number_on_cohort FROM person pp INNER JOIN obs o ON (pp.person_id = o.person_id AND TIMESTAMPDIFF(YEAR,pp.birthdate, CURDATE()) >= 5 AND o.voided = 0 AND o.concept_id = 99071 AND o.value_numeric < 250 AND FIND_IN_SET(o.person_id, people_started)) AND FIND_IN_SET(o.person_id, only_preg);
+        SELECT COUNT(*) INTO number_on_cohort FROM person pp INNER JOIN obs o ON (pp.person_id = o.person_id AND TIMESTAMPDIFF(YEAR,pp.birthdate, (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) >= 5 AND o.voided = 0 AND o.concept_id = 99071 AND o.value_numeric < 250 AND FIND_IN_SET(o.person_id, people_started)) AND FIND_IN_SET(o.person_id, only_preg);
 
       END IF;
 
@@ -4866,11 +4866,11 @@
 
       IF (only_preg = 0)
       THEN
-        SELECT COUNT(*) INTO number_on_cohort FROM person pp INNER JOIN obs o ON (pp.person_id = o.person_id AND TIMESTAMPDIFF(YEAR,pp.birthdate, CURDATE()) >= 5 AND o.voided = 0 AND o.concept_id = 99071 AND FIND_IN_SET(o.person_id, people_started));
+        SELECT COUNT(*) INTO number_on_cohort FROM person pp INNER JOIN obs o ON (pp.person_id = o.person_id AND TIMESTAMPDIFF(YEAR,pp.birthdate, (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) >= 5 AND o.voided = 0 AND o.concept_id = 99071 AND FIND_IN_SET(o.person_id, people_started));
 
       ELSEIF (only_preg = 1) THEN
         select group_concat(person_id) INTO pregnant_mothers from obs where concept_id = 90012 and value_coded = 90003 AND voided = 0;
-        SELECT COUNT(*) INTO number_on_cohort FROM person pp INNER JOIN obs o ON (pp.person_id = o.person_id AND TIMESTAMPDIFF(YEAR,pp.birthdate, CURDATE()) >= 5 AND o.voided = 0 AND o.concept_id = 99071 AND FIND_IN_SET(o.person_id, people_started)) AND FIND_IN_SET(o.person_id, only_preg);
+        SELECT COUNT(*) INTO number_on_cohort FROM person pp INNER JOIN obs o ON (pp.person_id = o.person_id AND TIMESTAMPDIFF(YEAR,pp.birthdate, (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) >= 5 AND o.voided = 0 AND o.concept_id = 99071 AND FIND_IN_SET(o.person_id, people_started)) AND FIND_IN_SET(o.person_id, only_preg);
 
       END IF;
 
@@ -4983,11 +4983,11 @@
 
       IF (only_preg = 0)
       THEN
-        SELECT COUNT(distinct o.person_id) INTO number_on_cohort FROM person pp INNER JOIN obs o ON (pp.person_id = o.person_id AND TIMESTAMPDIFF(YEAR,pp.birthdate, CURDATE()) >= 5 AND o.voided = 0 AND o.concept_id = 99071 AND o.obs_datetime BETWEEN MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL months_before MONTH AND MAKEDATE(start_year, 1) + INTERVAL start_quarter QUARTER - INTERVAL months_before MONTH - INTERVAL 1 DAY AND o.value_numeric < 250 AND FIND_IN_SET(o.person_id, people_started));
+        SELECT COUNT(distinct o.person_id) INTO number_on_cohort FROM person pp INNER JOIN obs o ON (pp.person_id = o.person_id AND TIMESTAMPDIFF(YEAR,pp.birthdate, (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) >= 5 AND o.voided = 0 AND o.concept_id = 99071 AND o.obs_datetime BETWEEN MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL months_before MONTH AND MAKEDATE(start_year, 1) + INTERVAL start_quarter QUARTER - INTERVAL months_before MONTH - INTERVAL 1 DAY AND o.value_numeric < 250 AND FIND_IN_SET(o.person_id, people_started));
 
       ELSEIF (only_preg = 1) THEN
         select group_concat(distinct person_id) INTO pregnant_mothers from obs where concept_id = 90012 and value_coded = 90003 AND voided = 0;
-        SELECT COUNT(distinct o.person_id) INTO number_on_cohort FROM person pp INNER JOIN obs o ON (pp.person_id = o.person_id AND TIMESTAMPDIFF(YEAR,pp.birthdate, CURDATE()) >= 5 AND o.voided = 0 AND o.concept_id = 99071 AND o.obs_datetime BETWEEN MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL months_before MONTH AND MAKEDATE(start_year, 1) + INTERVAL start_quarter QUARTER - INTERVAL months_before MONTH - INTERVAL 1 DAY AND o.value_numeric < 250 AND FIND_IN_SET(o.person_id, people_started)) AND FIND_IN_SET(o.person_id, only_preg);
+        SELECT COUNT(distinct o.person_id) INTO number_on_cohort FROM person pp INNER JOIN obs o ON (pp.person_id = o.person_id AND TIMESTAMPDIFF(YEAR,pp.birthdate, (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) >= 5 AND o.voided = 0 AND o.concept_id = 99071 AND o.obs_datetime BETWEEN MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL months_before MONTH AND MAKEDATE(start_year, 1) + INTERVAL start_quarter QUARTER - INTERVAL months_before MONTH - INTERVAL 1 DAY AND o.value_numeric < 250 AND FIND_IN_SET(o.person_id, people_started)) AND FIND_IN_SET(o.person_id, only_preg);
 
       END IF;
 
@@ -5006,11 +5006,11 @@
 
       IF (only_preg = 0)
       THEN
-        SELECT COUNT(distinct o.person_id) INTO number_on_cohort FROM person pp INNER JOIN obs o ON (pp.person_id = o.person_id AND TIMESTAMPDIFF(YEAR,pp.birthdate, CURDATE()) >= 5 AND o.voided = 0 AND o.concept_id = 99071 AND o.obs_datetime BETWEEN MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL months_before MONTH AND MAKEDATE(start_year, 1) + INTERVAL start_quarter QUARTER - INTERVAL months_before MONTH - INTERVAL 1 DAY AND FIND_IN_SET(o.person_id, people_started));
+        SELECT COUNT(distinct o.person_id) INTO number_on_cohort FROM person pp INNER JOIN obs o ON (pp.person_id = o.person_id AND TIMESTAMPDIFF(YEAR,pp.birthdate, (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) >= 5 AND o.voided = 0 AND o.concept_id = 99071 AND o.obs_datetime BETWEEN MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL months_before MONTH AND MAKEDATE(start_year, 1) + INTERVAL start_quarter QUARTER - INTERVAL months_before MONTH - INTERVAL 1 DAY AND FIND_IN_SET(o.person_id, people_started));
 
       ELSEIF (only_preg = 1) THEN
         select group_concat(distinct person_id) INTO pregnant_mothers from obs where concept_id = 90012 and value_coded = 90003 AND voided = 0;
-        SELECT COUNT(distinct o.person_id) INTO number_on_cohort FROM person pp INNER JOIN obs o ON (pp.person_id = o.person_id AND TIMESTAMPDIFF(YEAR,pp.birthdate, CURDATE()) >= 5 AND o.voided = 0 AND o.concept_id = 99071 AND o.obs_datetime BETWEEN MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL months_before MONTH AND MAKEDATE(start_year, 1) + INTERVAL start_quarter QUARTER - INTERVAL months_before MONTH - INTERVAL 1 DAY AND FIND_IN_SET(o.person_id, people_started)) AND FIND_IN_SET(o.person_id, only_preg);
+        SELECT COUNT(distinct o.person_id) INTO number_on_cohort FROM person pp INNER JOIN obs o ON (pp.person_id = o.person_id AND TIMESTAMPDIFF(YEAR,pp.birthdate, (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) >= 5 AND o.voided = 0 AND o.concept_id = 99071 AND o.obs_datetime BETWEEN MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL months_before MONTH AND MAKEDATE(start_year, 1) + INTERVAL start_quarter QUARTER - INTERVAL months_before MONTH - INTERVAL 1 DAY AND FIND_IN_SET(o.person_id, people_started)) AND FIND_IN_SET(o.person_id, only_preg);
 
       END IF;
 
