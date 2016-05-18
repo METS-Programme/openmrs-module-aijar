@@ -1635,36 +1635,40 @@
                                    AND o.value_coded = 90003)) Enrollment USING (indicator_id)
          GROUP BY q6indicator) ind6 ON (ind5.indicator_id = ind6.indicator_id)
         LEFT JOIN
-        (SELECT indicator_id,
-           q7indicator,
-           SUM(IF(age <= 14, 1, 0)) AS q71,
-           SUM(IF(age > 14, 1, 0)) AS q72,
-           SUM(IF(age >= 0, 1, 0)) AS q7Total
-         FROM
-           (SELECT 1 AS indicator_id,
-                   'Number of active clients on pre-ART Care in the quarter' AS q7indicator ) Indicators
-           LEFT JOIN
-           (SELECT DISTINCT 1 AS indicator_id,
-              pp.gender,
-              pp.person_id,
-                            MAX(e.encounter_datetime) en_date,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-            FROM person pp
-              INNER JOIN encounter e ON (e.patient_id = pp.person_id
-                                         AND QUARTER(e.encounter_datetime) = start_quarter
-                                         AND YEAR(e.encounter_datetime) = start_year
-                                         AND e.voided = 0
-                                         AND e.patient_id NOT IN
-                                             (SELECT DISTINCT oi.person_id
-                                              FROM obs oi
-                                              WHERE oi.concept_id = 90315
-                                                    AND oi.value_coded > 0
-                                                    AND oi.voided = 0
-                                                    AND oi.obs_datetime <= (MAKEDATE(start_year, 1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)))
-              INNER JOIN obs o ON (e.encounter_id = o.encounter_id
-                                   AND o.voided = 0)
-            GROUP BY pp.person_id) enrollment USING (indicator_id)
-         GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
+        (SELECT
+    indicator_id,
+    q7indicator,
+    SUM(IF(age <= 14, 1, 0)) AS q71,
+    SUM(IF(age > 14, 1, 0)) AS q72,
+    SUM(1) AS q7Total
+FROM
+    (SELECT
+        1 AS indicator_id,
+            'Number of active clients on pre-ART Care in the quarter' AS q7indicator
+    ) Indicators
+        LEFT JOIN
+    (SELECT DISTINCT
+        1 AS indicator_id,
+            pp.gender,
+            pp.person_id,
+            TIMESTAMPDIFF(YEAR, pp.birthdate, (MAKEDATE(start_year, 1) + INTERVAL 1 QUARTER - INTERVAL 1 DAY)) AS age
+    FROM
+        person pp
+    INNER JOIN encounter e ON (e.patient_id = pp.person_id
+        AND QUARTER(e.encounter_datetime) = start_quarter
+        AND YEAR(e.encounter_datetime) = start_year
+        AND e.encounter_type in(select encounter_type_id from encounter_type where locate('art',name) > 0 and locate('card',name) > 0 and locate('encounter',name) > 0 and locate('education',name) = 0)
+        AND e.voided = 0
+        AND e.patient_id NOT IN (SELECT
+            oi.person_id
+        FROM
+            obs oi
+        WHERE
+            oi.voided = 0
+            AND ((oi.concept_id = 90315 AND oi.value_coded > 0) OR (oi.concept_id = 99061 AND oi.value_coded > 0))
+                AND oi.obs_datetime <= (MAKEDATE(start_year, 1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)))
+    GROUP BY pp.person_id) enrollment USING (indicator_id)
+GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
         LEFT JOIN
         (SELECT indicator_id,
            q8indicator,
