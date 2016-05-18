@@ -301,7 +301,7 @@
             var row_13 = '[class^="ArtCare"][class*="Child13"]';
 
             var xx = row_1;
-            var selected_value = jq(selected_option).find(":selected").text()
+            var selected_value = jq(selected_option).find(":selected").text();
 
             selected_value = selected_value.trim().toLowerCase();
 
