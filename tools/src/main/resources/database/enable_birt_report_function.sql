@@ -1639,7 +1639,7 @@
            q7indicator,
            SUM(IF(age <= 14, 1, 0)) AS q71,
            SUM(IF(age > 14, 1, 0)) AS q72,
-           SUM(IF(age > 0, 1, 0)) AS q7Total
+           SUM(IF(age >= 0, 1, 0)) AS q7Total
          FROM
            (SELECT 1 AS indicator_id,
                    'Number of active clients on pre-ART Care in the quarter' AS q7indicator ) Indicators
@@ -1660,8 +1660,7 @@
                                               WHERE oi.concept_id = 90315
                                                     AND oi.value_coded > 0
                                                     AND oi.voided = 0
-                                                    AND QUARTER(oi.obs_datetime) = start_quarter
-                                                    AND YEAR(oi.obs_datetime) = start_year))
+                                                    AND oi.obs_datetime <= (MAKEDATE(start_year, 1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)))
               INNER JOIN obs o ON (e.encounter_id = o.encounter_id
                                    AND o.voided = 0)
             GROUP BY pp.person_id) enrollment USING (indicator_id)
@@ -2626,7 +2625,7 @@
                                   AND o.concept_id = 99604
                                   AND o.voided =0
                                   AND p.voided = 0
-                                  AND o.value_numeric > 0)) Enrollment USING (indicator_id)
+                                  AND o.value_numeric > 0) group by p.person_id having count(*) = 1) Enrollment USING (indicator_id)
          GROUP BY q4indicator) ind4 ON (ind3.indicator_id = ind4.indicator_id)
         LEFT JOIN
         (SELECT
