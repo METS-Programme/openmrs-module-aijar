@@ -114,6 +114,7 @@
   DROP FUNCTION IF EXISTS `getWhoStageBaseTxt`;
   DROP FUNCTION IF EXISTS `getWHOStageDate`;
   DROP FUNCTION IF EXISTS `getWhoStageTxt`;
+  DROP FUNCTION IF EXISTS `getActiveOnPreARTDuringQuarter`;
 
   DELIMITER $$
   CREATE DEFINER=`root`@`localhost` PROCEDURE `getARTData`(IN start_year INT, IN start_month INT)
@@ -1441,9 +1442,10 @@
                AND o.concept_id = 99037) AS 'oncptwithin2months'; END$$
   DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `hmis106a1a`(IN start_year INTEGER, IN start_quarter INTEGER)
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `hmis106a1a`(IN start_year INT, IN start_quarter INT)
+BEGIN
+  DECLARE patientsOnPreART TEXT DEFAULT getActiveOnPreARTDuringQuarter(start_year,start_quarter);
       SELECT *
       FROM
         (SELECT indicator_id,
@@ -1542,7 +1544,7 @@
                             TIMESTAMPDIFF(YEAR, pp.birthdate, (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
-  									   AND e.encounter_type = (select encounter_type_id from encounter_type where locate('art',name) > 0 and locate('summary',name) > 0)
+                       AND e.encounter_type = (select encounter_type_id from encounter_type where locate('art',name) > 0 and locate('summary',name) > 0)
                                          AND QUARTER(e.encounter_datetime) = start_quarter
                                          AND YEAR(e.encounter_datetime) = start_year)
               INNER JOIN obs o ON (e.encounter_id = o.encounter_id
@@ -1550,27 +1552,26 @@
                                    AND o.value_coded = 90012)) Enrollment USING (indicator_id)
          GROUP BY q3indicator) ind3 ON (ind2.indicator_id = ind3.indicator_id)
         LEFT JOIN
-        (SELECT indicator_id,
+        (SELECT
+           indicator_id,
            q4indicator,
-           SUM(IF((gender = 'F'
-                   OR gender = 'M')
+           SUM(IF((gender = 'F' OR gender = 'M')
                   AND age BETWEEN 0 AND 100, 1, 0)) AS q4Total
          FROM
-           (SELECT 1 AS indicator_id,
-                   'Number of clients started on INH Prophylaxis during the reporting quarter (Subset of row 2 above)' AS q4indicator ) Indicators
-           LEFT JOIN
-           (SELECT DISTINCT 1 AS indicator_id,
+           (SELECT
+              1                                                                                                   AS indicator_id,
+              'Number of clients started on INH Prophylaxis during the reporting quarter (Subset of row 2 above)' AS q4indicator
+           ) Indicators
+           LEFT JOIN (SELECT DISTINCT 1 AS indicator_id,
               p.gender,
               p.person_id,
-                            TIMESTAMPDIFF(YEAR, p.birthdate, (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age,
-                            YEAR(o.obs_datetime) AS 'Year',
-                            QUARTER(o.obs_datetime) AS 'quarter'
+                            TIMESTAMPDIFF(YEAR, p.birthdate, (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person p
               INNER JOIN obs o ON(p.person_id = o.person_id
                                   AND o.concept_id = 99604
                                   AND o.voided =0
                                   AND p.voided = 0
-                                  AND o.value_numeric > 0)) Enrollment USING (indicator_id)
+                                  AND o.value_numeric > 0) group by p.person_id having count(*) = 1) Enrollment USING (indicator_id)
          GROUP BY q4indicator) ind4 ON (ind3.indicator_id = ind4.indicator_id)
         LEFT JOIN
         (SELECT indicator_id,
@@ -1649,25 +1650,11 @@ FROM
         LEFT JOIN
     (SELECT DISTINCT
         1 AS indicator_id,
-            pp.gender,
-            pp.person_id,
-            TIMESTAMPDIFF(YEAR, pp.birthdate, (MAKEDATE(start_year, 1) + INTERVAL 1 QUARTER - INTERVAL 1 DAY)) AS age
+            p.gender,
+            p.person_id,
+            TIMESTAMPDIFF(YEAR, p.birthdate, (MAKEDATE(start_year, 1) + INTERVAL 1 QUARTER - INTERVAL 1 DAY)) AS age
     FROM
-        person pp
-    INNER JOIN encounter e ON (e.patient_id = pp.person_id
-        AND QUARTER(e.encounter_datetime) = start_quarter
-        AND YEAR(e.encounter_datetime) = start_year
-        AND e.encounter_type in(select encounter_type_id from encounter_type where locate('art',name) > 0 and locate('card',name) > 0 and locate('encounter',name) > 0 and locate('education',name) = 0)
-        AND e.voided = 0
-        AND e.patient_id NOT IN (SELECT
-            oi.person_id
-        FROM
-            obs oi
-        WHERE
-            oi.voided = 0
-            AND ((oi.concept_id = 90315 AND oi.value_coded > 0) OR (oi.concept_id = 99061 AND oi.value_coded > 0))
-                AND oi.obs_datetime <= (MAKEDATE(start_year, 1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)))
-    GROUP BY pp.person_id) enrollment USING (indicator_id)
+        person p WHERE FIND_IN_SET(p.person_id, patientsOnPreART)) enrollment USING (indicator_id)
 GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
         LEFT JOIN
         (SELECT indicator_id,
@@ -1680,29 +1667,15 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
                    'Number active on pre-ART who received CPT/Daspone at last  visit in the quarter' AS q8indicator ) Indicators
            LEFT JOIN
            (SELECT DISTINCT 1 AS indicator_id,
-              pp.gender,
-              pp.person_id,
-                            MAX(e.encounter_datetime) en_date,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-            FROM person pp
-              INNER JOIN encounter e ON (e.patient_id = pp.person_id
-                                         AND e.encounter_type = (select encounter_type_id from encounter_type where locate('art',name) > 0 and locate('card',name) > 0 and locate('encounter',name) > 0 and locate('education',name) = 0)
-                                         AND QUARTER(e.encounter_datetime) = start_quarter
-                                         AND YEAR(e.encounter_datetime) = start_year
-                                         AND e.voided = 0
-                                         AND e.patient_id NOT IN
-                                             (SELECT DISTINCT oi.person_id
-                                              FROM obs oi
-                                              WHERE oi.concept_id = 90315
-                                                    AND oi.value_coded > 0
-                                                    AND oi.voided = 0
-                                                    AND QUARTER(oi.obs_datetime) = start_quarter
-                                                    AND YEAR(oi.obs_datetime) = start_year))
-              INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+              p.gender,
+              p.person_id,
+                            TIMESTAMPDIFF(YEAR, p.birthdate, (MAKEDATE(start_year, 1) + INTERVAL 1 QUARTER - INTERVAL 1 DAY)) AS age
+            FROM person p
+              INNER JOIN obs o ON (p.person_id = o.person_id
                                    AND o.voided = 0
                                    AND o.concept_id = 99037
-                                   AND o.value_numeric > 0)
-            GROUP BY pp.person_id) enrollment USING (indicator_id)
+                                   AND o.value_numeric > 0 AND FIND_IN_SET(p.person_id, patientsOnPreART))
+            GROUP BY p.person_id) enrollment USING (indicator_id)
          GROUP BY q8indicator) ind8 ON (ind7.indicator_id = ind8.indicator_id)
         LEFT JOIN
         (SELECT indicator_id,
@@ -1715,28 +1688,15 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
                    'No. active on pre-ART Care assessed for TB at last visit in the quarter' AS q9indicator ) Indicators
            LEFT JOIN
            (SELECT DISTINCT 1 AS indicator_id,
-              pp.gender,
-              pp.person_id,
-                            MAX(e.encounter_datetime) en_date,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-            FROM person pp
-              INNER JOIN encounter e ON (e.patient_id = pp.person_id
-                                         AND QUARTER(e.encounter_datetime) = start_quarter
-                                         AND YEAR(e.encounter_datetime) = start_year
-                                         AND e.voided = 0
-                                         AND e.patient_id NOT IN
-                                             (SELECT DISTINCT person_id
-                                              FROM obs oi
-                                              WHERE oi.concept_id = 90315
-                                                    AND oi.value_coded > 0
-                                                    AND oi.voided = 0
-                                                    AND QUARTER(oi.obs_datetime) = start_quarter
-                                                    AND YEAR(oi.obs_datetime) = start_year))
-              INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+              p.gender,
+              p.person_id,
+                            TIMESTAMPDIFF(YEAR, p.birthdate, CURRENT_DATE()) AS age
+            FROM person p
+              INNER JOIN obs o ON (p.person_id = o.person_id
                                    AND o.voided = 0
                                    AND o.concept_id = 90216
-                                   AND o.value_coded > 0)
-            GROUP BY pp.person_id) enrollment USING (indicator_id)
+                                   AND o.value_coded > 0 AND FIND_IN_SET(p.person_id, patientsOnPreART))
+            GROUP BY p.person_id) enrollment USING (indicator_id)
          GROUP BY q9indicator) ind9 ON (ind8.indicator_id = ind9.indicator_id)
         LEFT JOIN
         (SELECT indicator_id,
@@ -1749,29 +1709,15 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
                    'No. active on pre-ART Care diagnosed with TB in the quarter' AS q10indicator ) Indicators
            LEFT JOIN
            (SELECT DISTINCT 1 AS indicator_id,
-              pp.gender,
-              pp.person_id,
-                            MAX(e.encounter_datetime) en_date,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-            FROM person pp
-              INNER JOIN patient p ON (pp.person_id = p.patient_id
-                                       AND p.voided = 0)
-              INNER JOIN encounter e ON (e.patient_id = p.patient_id
-                                         AND QUARTER(e.encounter_datetime) = start_quarter
-                                         AND YEAR(e.encounter_datetime) = start_year
-                                         AND e.voided = 0
-                                         AND e.patient_id NOT IN
-                                             (SELECT DISTINCT oi.person_id
-                                              FROM obs oi WHERE oi.concept_id = 90315
-                                                                AND oi.value_coded > 0
-                                                                AND oi.voided = 0
-                                                                AND QUARTER(oi.obs_datetime) = start_quarter
-                                                                AND YEAR(oi.obs_datetime) = start_year))
-              INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+              p.gender,
+              p.person_id,
+                            TIMESTAMPDIFF(YEAR, p.birthdate, CURRENT_DATE()) AS age
+            FROM person p
+              INNER JOIN obs o ON (p.person_id = o.person_id
                                    AND o.voided = 0
                                    AND o.concept_id = 90216
-                                   AND o.value_coded = 90078)
-            GROUP BY pp.person_id) enrollment USING (indicator_id)
+                                   AND o.value_coded = 90078 AND FIND_IN_SET(p.person_id, patientsOnPreART))
+            GROUP BY p.person_id) enrollment USING (indicator_id)
          GROUP BY q10indicator) ind10 ON (ind9.indicator_id = ind10.indicator_id)
         LEFT JOIN
         (SELECT indicator_id,
@@ -1784,30 +1730,15 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
                    'No. active on pre-ART Care started on anti-TB treatment during the quarter' AS q11indicator ) Indicators
            LEFT JOIN
            (SELECT DISTINCT 1 AS indicator_id,
-              pp.gender,
-              pp.person_id,
-                            MAX(e.encounter_datetime) en_date,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-            FROM person pp
-              INNER JOIN patient p ON (pp.person_id = p.patient_id
-                                       AND p.voided = 0)
-              INNER JOIN encounter e ON (e.patient_id = p.patient_id
-                                         AND form_id = 12
-                                         AND QUARTER(e.encounter_datetime) = 1
-                                         AND YEAR(e.encounter_datetime) = start_year
-                                         AND e.voided = 0
-                                         AND e.patient_id NOT IN
-                                             (SELECT DISTINCT oi.person_id
-                                              FROM obs oi WHERE oi.concept_id = 90315
-                                                                AND oi.value_coded > 0
-                                                                AND oi.voided = 0
-                                                                AND QUARTER(oi.obs_datetime) = start_quarter
-                                                                AND YEAR(oi.obs_datetime) = start_year))
-              INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+              p.gender,
+              p.person_id,
+                            TIMESTAMPDIFF(YEAR, p.birthdate, CURRENT_DATE()) AS age
+            FROM person p
+              INNER JOIN obs o ON (p.person_id = o.person_id
                                    AND o.voided = 0
                                    AND o.concept_id = 90216
-                                   AND o.value_coded = 90071)
-            GROUP BY pp.person_id) enrollment USING (indicator_id)
+                                   AND o.value_coded = 90071 AND FIND_IN_SET(p.person_id, patientsOnPreART))
+            GROUP BY p.person_id) enrollment USING (indicator_id)
          GROUP BY q11indicator) ind11 ON (ind10.indicator_id = ind11.indicator_id)
         LEFT JOIN
         (SELECT indicator_id,
@@ -1820,26 +1751,14 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
                    'No. active on pre-ART Care assessed for Malnutrition at their visit in the quarter' AS q12indicator ) Indicators
            LEFT JOIN
            (SELECT DISTINCT 1 AS indicator_id,
-              pp.gender,
-              pp.person_id,
-                            MAX(e.encounter_datetime) en_date,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-            FROM person pp
-              INNER JOIN encounter e ON (e.patient_id = pp.person_id
-                                         AND QUARTER(e.encounter_datetime) = start_quarter
-                                         AND YEAR(e.encounter_datetime) = start_year
-                                         AND e.voided = 0
-                                         AND e.patient_id NOT IN
-                                             (SELECT DISTINCT oi.person_id
-                                              FROM obs oi WHERE oi.concept_id = 90315
-                                                                AND oi.value_coded > 0
-                                                                AND oi.voided = 0
-                                                                AND QUARTER(oi.obs_datetime) = start_quarter
-                                                                AND YEAR(oi.obs_datetime) = start_year))
-              INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+              p.gender,
+              p.person_id,
+                            TIMESTAMPDIFF(YEAR, p.birthdate, CURRENT_DATE()) AS age
+            FROM person p
+              INNER JOIN obs o ON (p.person_id = o.person_id
                                    AND o.voided = 0
-                                   AND o.concept_id IN (90236,5090,99030,99069) AND (o.value_numeric > 0 OR o.value_coded > 0))
-            GROUP BY pp.person_id) enrollment USING (indicator_id)
+                                   AND o.concept_id IN (90236,5090,99030,99069) AND (o.value_numeric > 0 OR o.value_coded > 0) AND FIND_IN_SET(p.person_id, patientsOnPreART))
+            GROUP BY p.person_id) enrollment USING (indicator_id)
          GROUP BY q12indicator) ind12 ON (ind11.indicator_id = ind12.indicator_id)
         INNER JOIN
         (SELECT indicator_id,
@@ -1852,28 +1771,15 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
                    'No. active on pre-ART Care who are malnourished at their last visit in the quarter' AS q13indicator ) Indicators
            LEFT JOIN
            (SELECT DISTINCT 1 AS indicator_id,
-              pp.gender,
-              pp.person_id,
-                            MAX(e.encounter_datetime) en_date,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-            FROM person pp
-              INNER JOIN patient p ON (pp.person_id = p.patient_id
-                                       AND p.voided = 0)
-              INNER JOIN encounter e ON (e.patient_id = p.patient_id
-                                         AND QUARTER(e.encounter_datetime) = start_year
-                                         AND YEAR(e.encounter_datetime) = start_year
-                                         AND e.voided = 0
-                                         AND e.patient_id NOT IN
-                                             (SELECT DISTINCT oi.person_id
-                                              FROM  obs oi WHERE oi.concept_id = 90315
-                                                                 AND oi.value_coded > 0
-                                                                 AND oi.voided = 0
-                                                                 AND QUARTER(oi.obs_datetime) = start_quarter
-                                                                 AND YEAR(oi.obs_datetime) = start_year))
-              INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+              p.gender,
+              p.person_id,
+                            TIMESTAMPDIFF(YEAR, p.birthdate, CURRENT_DATE()) AS age
+            FROM person p
+              INNER JOIN obs o ON (p.person_id = o.person_id
                                    AND o.voided = 0
+                                   AND FIND_IN_SET(p.person_id, patientsOnPreART)
                                    AND ((o.concept_id = 68 AND o.value_coded IN (99271,99272,99273)) OR (o.concept_id = 99030 AND o.value_coded IN (99028,99029)) OR (o.concept_id = 460 AND o.value_coded = 90003)))
-            GROUP BY pp.person_id) enrollment USING (indicator_id)
+            GROUP BY p.person_id) enrollment USING (indicator_id)
          GROUP BY q13indicator) ind13 ON (ind12.indicator_id = ind13.indicator_id)
         INNER JOIN
         (SELECT indicator_id,
@@ -1886,24 +1792,14 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
                    'No. active on pre-ART Care eligible and ready but not started on ART by the end of the quarter' AS q14indicator ) Indicators
            LEFT JOIN
            (SELECT DISTINCT 1 AS indicator_id,
-              pp.gender,
-              pp.person_id,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
-            FROM person pp
-              INNER JOIN patient p ON (pp.person_id = p.patient_id
-                                       AND p.voided = 0)
-              INNER JOIN encounter e ON (e.patient_id = p.patient_id
-                                         AND form_id = 12
-                                         AND e.voided = 0
-                                         AND e.patient_id NOT IN
-                                             (SELECT DISTINCT oi.person_id FROM obs oi WHERE oi.concept_id = 90315
-                                                                                             AND oi.value_coded > 0
-                                                                                             AND oi.voided = 0))
-              INNER JOIN obs o ON (e.encounter_id = o.encounter_id
+              p.gender,
+              p.person_id,
+                            TIMESTAMPDIFF(YEAR, p.birthdate, CURRENT_DATE()) AS age
+            FROM person p
+              INNER JOIN obs o ON (p.person_id = o.person_id
                                    AND o.voided = 0
-                                   AND YEAR(o.value_datetime) = start_year
-                                   AND QUARTER(o.value_datetime) = start_quarter AND o.concept_id = 90299)
-            GROUP BY pp.person_id) enrollment USING (indicator_id)
+                                   AND FIND_IN_SET(p.person_id, patientsOnPreART))
+            GROUP BY p.person_id) enrollment USING (indicator_id)
          GROUP BY q14indicator) ind14 ON (ind13.indicator_id = ind14.indicator_id)
         INNER JOIN
         (SELECT indicator_id,
@@ -2526,7 +2422,8 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
          GROUP BY q30indicator) ind30 ON (ind29.indicator_id = ind30.indicator_id);
 
     END$$
-  DELIMITER ;
+DELIMITER ;
+
 
   DELIMITER $$
   CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `hmis106a1aYouth`(IN start_year INT, IN start_quarter INT)
@@ -2621,9 +2518,7 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
            LEFT JOIN (SELECT DISTINCT 1 AS indicator_id,
               p.gender,
               p.person_id,
-                            TIMESTAMPDIFF(YEAR, p.birthdate, (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age,
-                            YEAR(o.obs_datetime) AS 'Year',
-                            QUARTER(o.obs_datetime) AS 'quarter'
+                            TIMESTAMPDIFF(YEAR, p.birthdate, (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person p
               INNER JOIN obs o ON(p.person_id = o.person_id
                                   AND o.concept_id = 99604
@@ -6475,3 +6370,28 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
            AND obsdatetime = obs_datetime
            AND voided = 0 HAVING stage IS NOT NULL LIMIT 1 ); END$$
   DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`openmrs`@`localhost` FUNCTION `getActiveOnPreARTDuringQuarter`(start_year integer,start_quarter integer) RETURNS text CHARSET utf8
+BEGIN
+
+DECLARE onPreART TEXT;
+
+SELECT group_concat(distinct e.patient_id) into onPreART
+    FROM
+         encounter e WHERE  QUARTER(e.encounter_datetime) = start_quarter
+        AND YEAR(e.encounter_datetime) = start_year
+        AND e.encounter_type in(select encounter_type_id from encounter_type where locate('art',name) > 0 and locate('card',name) > 0 and locate('encounter',name) > 0 and locate('education',name) = 0)
+        AND e.voided = 0
+        AND e.patient_id NOT IN (SELECT
+            oi.person_id
+        FROM
+            obs oi
+        WHERE
+            oi.voided = 0
+            AND ((oi.concept_id = 90315 AND oi.value_coded > 0) OR (oi.concept_id = 99061 AND oi.value_coded > 0))
+                AND oi.obs_datetime <= (MAKEDATE(start_year, 1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY));
+
+RETURN onPreART;
+END$$
+DELIMITER ;
