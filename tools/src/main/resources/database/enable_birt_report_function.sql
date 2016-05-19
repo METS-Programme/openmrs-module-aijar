@@ -115,10 +115,12 @@
   DROP FUNCTION IF EXISTS `getWHOStageDate`;
   DROP FUNCTION IF EXISTS `getWhoStageTxt`;
   DROP FUNCTION IF EXISTS `getActiveOnPreARTDuringQuarter`;
-
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` PROCEDURE `getARTData`(IN start_year INT, IN start_month INT)
-  BEGIN
+  DROP FUNCTION IF EXISTS `startedARTDuringQuarter`;
+  DROP FUNCTION IF EXISTS `transferInRegimen`;
+  DROP FUNCTION IF EXISTS `enrolledOnARTDuringQuarter`;
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getARTData`(IN start_year INT, IN start_month INT)
+BEGIN
       DECLARE bDone INT;
 
       DECLARE patient_id INT;
@@ -436,11 +438,11 @@
       FROM artData
       WHERE patient_id IS NOT NULL;
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` PROCEDURE `GetARTFollowupData0_24`(IN start_year INT, IN start_month INT)
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetARTFollowupData0_24`(IN start_year INT, IN start_month INT)
+BEGIN
       DECLARE bDone INT;
 
       DECLARE patient INT;
@@ -643,11 +645,11 @@
         art_followup_data_0_24
       WHERE patient_id IS NOT NULL;
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` PROCEDURE `GetARTFollowupData25_48`(IN start_year INT, IN start_month INT)
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetARTFollowupData25_48`(IN start_year INT, IN start_month INT)
+BEGIN
       DECLARE bDone INT;
 
       DECLARE patient INT;
@@ -822,11 +824,11 @@
       FROM
         art_followup_data_25_48;
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` PROCEDURE `GetARTFollowupData49_72`(IN start_year INT, IN start_month INT)
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetARTFollowupData49_72`(IN start_year INT, IN start_month INT)
+BEGIN
       DECLARE bDone INT;
 
       DECLARE patient INT;
@@ -999,11 +1001,11 @@
       FROM art_followup_data_49_72
       WHERE patient_id IS NOT NULL;
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` PROCEDURE `getPreARTData`(IN start_year INTEGER)
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getPreARTData`(IN start_year INTEGER)
+BEGIN
 
       DECLARE bDone INT;
 
@@ -1204,11 +1206,11 @@
       FROM artPreData
       WHERE patient_id IS NOT NULL;
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` PROCEDURE `getPreARTFollowup`(IN start_year INT)
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getPreARTFollowup`(IN start_year INT)
+BEGIN
 
       DECLARE bDone INT;
       DECLARE patient_id INT;
@@ -1347,11 +1349,11 @@
       SELECT DISTINCT *
       FROM pre_art_followup_data;
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `hmis105EID`(IN start_year CHAR(5), IN start_month CHAR(3))
-  BEGIN DECLARE start_year_month CHAR(6) DEFAULT CONCAT(start_year,start_month);
+DELIMITER $$
+CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `hmis105EID`(IN start_year CHAR(5), IN start_month CHAR(3))
+BEGIN DECLARE start_year_month CHAR(6) DEFAULT CONCAT(start_year,start_month);
       SELECT
         (SELECT COUNT(*)
          FROM encounter e
@@ -1440,12 +1442,16 @@
          WHERE EXTRACT(YEAR_MONTH
                        FROM e.encounter_datetime) = start_year_month
                AND o.concept_id = 99037) AS 'oncptwithin2months'; END$$
-  DELIMITER ;
+DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `hmis106a1a`(IN start_year INTEGER, IN start_quarter INTEGER)
+CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `hmis106a1a`(IN start_year INT, IN start_quarter INT)
 BEGIN
   DECLARE patientsOnPreART TEXT DEFAULT getActiveOnPreARTDuringQuarter(start_year,start_quarter);
+  DECLARE enrolledDuringQuarter TEXT DEFAULT enrolledOnARTDuringQuarter(start_year,start_quarter);
+  DECLARE transferInART TEXT DEFAULT transferInRegimen(start_year,start_quarter);
+  DECLARE patientsStartedARTDuring TEXT DEFAULT startedARTDuringQuarter(start_year,start_quarter);
+
       SELECT *
       FROM
         (SELECT indicator_id,
@@ -1834,8 +1840,9 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
             FROM person p
               INNER JOIN obs o ON (p.person_id = o.person_id
                                    AND o.voided = 0
-                                   AND o.concept_id  = 99161
-                                   AND o.value_datetime <= MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL 1 DAY
+                                   AND ((o.concept_id  = 99161 AND o.value_datetime <= MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL 1 DAY) OR ((o.concept_id = 90315 AND o.value_coded > 0) OR (o.concept_id = 99061 AND o.value_coded > 0))
+                AND o.obs_datetime <= (MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL 1 DAY))
+
                                    )
             GROUP BY p.person_id) enrollment USING (indicator_id)
          GROUP BY q15indicator) ind15 ON (ind14.indicator_id = ind15.indicator_id)
@@ -1870,12 +1877,7 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
               p.person_id,
                             TIMESTAMPDIFF(YEAR, p.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person p
-              INNER JOIN obs o ON (p.person_id = o.person_id
-                                   AND o.voided = 0
-                                   AND o.concept_id = 99161
-                                   AND QUARTER(o.value_datetime) = start_quarter
-                  AND YEAR(o.value_datetime) = start_year
-                                   )
+              WHERE (FIND_IN_SET(p.person_id, enrolledDuringQuarter) OR FIND_IN_SET(p.person_id, patientsStartedARTDuring))
             GROUP BY p.person_id) enrollment USING (indicator_id)
          GROUP BY q16indicator) ind16 ON (ind15.indicator_id = ind16.indicator_id)
         INNER JOIN
@@ -2412,11 +2414,9 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
     END$$
 DELIMITER ;
 
-
-
-  DELIMITER $$
-  CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `hmis106a1aYouth`(IN start_year INT, IN start_quarter INT)
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `hmis106a1aYouth`(IN start_year INT, IN start_quarter INT)
+BEGIN
 
       SELECT *
       FROM
@@ -2486,7 +2486,7 @@ DELIMITER ;
                             TIMESTAMPDIFF(YEAR, pp.birthdate, (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
-  									   AND e.encounter_type = (select encounter_type_id from encounter_type where locate('art',name) > 0 and locate('summary',name) > 0)
+                       AND e.encounter_type = (select encounter_type_id from encounter_type where locate('art',name) > 0 and locate('summary',name) > 0)
                                          AND QUARTER(e.encounter_datetime) = start_quarter
                                          AND YEAR(e.encounter_datetime) = start_year)
               INNER JOIN obs o ON (e.encounter_id = o.encounter_id
@@ -3392,11 +3392,11 @@ DELIMITER ;
          GROUP BY q30indicator) ind30 ON (ind29.indicator_id = ind30.indicator_id);
 
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` PROCEDURE `hmis106a1b`(IN start_year INTEGER, IN start_quarter INTEGER)
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `hmis106a1b`(IN start_year INTEGER, IN start_quarter INTEGER)
+BEGIN
       DECLARE h11a CHAR(255) DEFAULT 'All patients 6 months';
       DECLARE h12a CHAR(100) DEFAULT getCohortMonth(start_year, start_quarter, 6);
       DECLARE h13a INT DEFAULT getCohortAllBefore3(start_year, start_quarter, 6,0);
@@ -3917,51 +3917,51 @@ DELIMITER ;
         h715b,
         h716b;
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `mergeSummaryPages`()
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `mergeSummaryPages`()
+BEGIN
 
-  	DECLARE patient TEXT;
-  	DECLARE ecnounter TEXT;
-  	DECLARE total TEXT;
-  	DECLARE found_string TEXT;
-  	DECLARE occurance INT;
-  	DECLARE i INT DEFAULT 2;
-  	DECLARE done INT DEFAULT FALSE;
-  	DECLARE cursor_i CURSOR FOR select patient_id,encounter_type,count(*) from encounter where encounter_type = 14 group by patient_id,encounter_type HAVING COUNT(*) > 1;
-  	DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+    DECLARE patient TEXT;
+    DECLARE ecnounter TEXT;
+    DECLARE total TEXT;
+    DECLARE found_string TEXT;
+    DECLARE occurance INT;
+    DECLARE i INT DEFAULT 2;
+    DECLARE done INT DEFAULT FALSE;
+    DECLARE cursor_i CURSOR FOR select patient_id,encounter_type,count(*) from encounter where encounter_type = 14 group by patient_id,encounter_type HAVING COUNT(*) > 1;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
 
-  	DROP TEMPORARY TABLE IF EXISTS tb;
-  	CREATE TEMPORARY TABLE IF NOT EXISTS tb(`name` TEXT);
+    DROP TEMPORARY TABLE IF EXISTS tb;
+    CREATE TEMPORARY TABLE IF NOT EXISTS tb(`name` TEXT);
 
-  	OPEN cursor_i;
-  		read_loop: LOOP
-  			FETCH cursor_i INTO patient,ecnounter,total;
-  			IF done THEN
-  			  LEAVE read_loop;
-  			END IF;
+    OPEN cursor_i;
+      read_loop: LOOP
+        FETCH cursor_i INTO patient,ecnounter,total;
+        IF done THEN
+          LEAVE read_loop;
+        END IF;
 
         select GROUP_CONCAT(encounter_id) INTO found_string from encounter where patient_id = patient and encounter_type = 14;
-  			select LENGTH(found_string) - LENGTH(REPLACE(found_string, ',', '')) INTO occurance;
+        select LENGTH(found_string) - LENGTH(REPLACE(found_string, ',', '')) INTO occurance;
 
         SET i=1;
-  			WHILE i <= occurance DO
-  				update obs set encounter_id = SUBSTRING_INDEX( found_string, ',', 1 ) where encounter_id = SUBSTRING_INDEX( SUBSTRING_INDEX(found_string , ',', i + 1 ), ',', -1 );
+        WHILE i <= occurance DO
+          update obs set encounter_id = SUBSTRING_INDEX( found_string, ',', 1 ) where encounter_id = SUBSTRING_INDEX( SUBSTRING_INDEX(found_string , ',', i + 1 ), ',', -1 );
           delete from encounter where encounter_id = SUBSTRING_INDEX( SUBSTRING_INDEX(found_string , ',', i + 1 ), ',', -1 );
           SET i = i + 1;
-  			END WHILE;
+        END WHILE;
 
-  		END LOOP;
-  	CLOSE cursor_i;
+      END LOOP;
+    CLOSE cursor_i;
 
   END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `transfer`()
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `transfer`()
+BEGIN
       DECLARE t_name TEXT;
 
       DECLARE t1_columns TEXT;
@@ -4040,10 +4040,27 @@ DELIMITER ;
         INSERT INTO openmrs.encounter_provider(encounter_id,provider_id,encounter_role_id,creator,date_created,voided,uuid) select encounter_id,(select openmrs.provider.provider_id from openmrs.provider where person_id = openmrs_backup.encounter.provider_id),2,2,NOW(),0,UUID() from openmrs_backup.encounter;
       END IF;
     END$$
-  DELIMITER ;
-  DELIMITER $$
-  CREATE DEFINER=`openmrs`@`localhost` FUNCTION `fn_intersect_string`(arg_str1 TEXT, arg_str2 TEXT) RETURNS text CHARSET utf8
-  BEGIN
+DELIMITER ;
+
+
+DELIMITER $$
+CREATE DEFINER=`openmrs`@`localhost` FUNCTION `enrolledOnARTDuringQuarter`(start_year int,start_quarter int) RETURNS text CHARSET utf8
+BEGIN
+DECLARE onART TEXT;
+
+SELECT group_concat(person_id) into onART
+    FROM (select o.person_id as 'person_id' from obs o WHERE
+    QUARTER(o.value_datetime) = start_quarter
+        AND YEAR(o.value_datetime) = start_year
+        AND o.concept_id = 99161
+        AND o.voided = 0) p;
+RETURN onART;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`openmrs`@`localhost` FUNCTION `fn_intersect_string`(arg_str1 TEXT, arg_str2 TEXT) RETURNS text CHARSET utf8
+BEGIN
       SET arg_str1 = CONCAT(arg_str1, ",");
       SET @var_result = "";
 
@@ -4060,12 +4077,37 @@ DELIMITER ;
 
       RETURN TRIM(BOTH "," FROM @var_result);
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `get_adherence_Count`(AdherenceType INT, StartDate DATE, EndDate DATE) RETURNS int(11)
-      DETERMINISTIC
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`openmrs`@`localhost` FUNCTION `getActiveOnPreARTDuringQuarter`(start_year integer,start_quarter integer) RETURNS text CHARSET utf8
+BEGIN
+
+DECLARE onPreART TEXT;
+
+SELECT group_concat(distinct e.patient_id) into onPreART
+    FROM
+         encounter e WHERE  QUARTER(e.encounter_datetime) = start_quarter
+        AND YEAR(e.encounter_datetime) = start_year
+        AND e.encounter_type in(select encounter_type_id from encounter_type where locate('art',name) > 0 and locate('card',name) > 0 and locate('encounter',name) > 0 and locate('education',name) = 0)
+        AND e.voided = 0
+        AND e.patient_id NOT IN (SELECT
+            oi.person_id
+        FROM
+            obs oi
+        WHERE
+            oi.voided = 0
+            AND ((oi.concept_id = 90315 AND oi.value_coded > 0) OR (oi.concept_id = 99061 AND oi.value_coded > 0))
+                AND oi.obs_datetime <= (MAKEDATE(start_year, 1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY));
+
+RETURN onPreART;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `get_adherence_Count`(AdherenceType INT, StartDate DATE, EndDate DATE) RETURNS int(11)
+    DETERMINISTIC
+BEGIN
       DECLARE result INT DEFAULT -1;
 
       SELECT Adherence
@@ -4085,12 +4127,12 @@ DELIMITER ;
            ) AA;
       RETURN result;
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `get_adherenceType_Count`(AdherenceType INT, StartDate DATE, EndDate DATE) RETURNS int(11)
-      DETERMINISTIC
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `get_adherenceType_Count`(AdherenceType INT, StartDate DATE, EndDate DATE) RETURNS int(11)
+    DETERMINISTIC
+BEGIN
       DECLARE result INT DEFAULT -1;
 
       SELECT Adherence
@@ -4112,11 +4154,11 @@ DELIMITER ;
            ) AA;
       RETURN result;
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`openmrs`@`localhost` FUNCTION `getADHStatusTxt`(patient_id INT, start_date DATE, end_date DATE) RETURNS char(1) CHARSET latin1
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`openmrs`@`localhost` FUNCTION `getADHStatusTxt`(patient_id INT, start_date DATE, end_date DATE) RETURNS char(1) CHARSET latin1
+BEGIN
 
       RETURN (SELECT if(value_coded = 90156, 'G',
                         if(value_coded = 90157, 'F',
@@ -4127,12 +4169,12 @@ DELIMITER ;
               LIMIT 1
       );
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getAncNumberTxt`(`encounterid` INTEGER) RETURNS char(15) CHARSET latin1
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getAncNumberTxt`(`encounterid` INTEGER) RETURNS char(15) CHARSET latin1
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT value_text
@@ -4144,12 +4186,12 @@ DELIMITER ;
 
       );
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getAppKeepTxt`(`encounterid` INTEGER) RETURNS char(3) CHARSET latin1
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getAppKeepTxt`(`encounterid` INTEGER) RETURNS char(3) CHARSET latin1
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT if(value_numeric = 1, "Y", "N") AS app_keep
@@ -4162,12 +4204,12 @@ DELIMITER ;
       );
 
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getArtBaseTransferDate`(`personid` INTEGER) RETURNS date
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getArtBaseTransferDate`(`personid` INTEGER) RETURNS date
+    READS SQL DATA
+BEGIN
 
 
       RETURN
@@ -4180,12 +4222,12 @@ DELIMITER ;
 
 
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getArtEligibilityAndReadyDate`(`personid` INTEGER) RETURNS date
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getArtEligibilityAndReadyDate`(`personid` INTEGER) RETURNS date
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT value_datetime AS eligible_and_ready_date
@@ -4197,12 +4239,12 @@ DELIMITER ;
       );
 
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getArtEligibilityDate`(`personid` INTEGER) RETURNS date
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getArtEligibilityDate`(`personid` INTEGER) RETURNS date
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT value_datetime AS eligible_date
@@ -4214,12 +4256,12 @@ DELIMITER ;
       );
 
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getArtEligibilityReasonTxt`(`personid` INTEGER) RETURNS char(15) CHARSET latin1
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getArtEligibilityReasonTxt`(`personid` INTEGER) RETURNS char(15) CHARSET latin1
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT if(concept_id = 99083, "Clinical",
@@ -4235,12 +4277,12 @@ DELIMITER ;
       );
 
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getArtRegCoded`(`encounterid` INTEGER) RETURNS char(12) CHARSET latin1
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getArtRegCoded`(`encounterid` INTEGER) RETURNS char(12) CHARSET latin1
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT value_coded AS freg
@@ -4250,12 +4292,12 @@ DELIMITER ;
                     AND encounterid = encounter_id
               LIMIT 1);
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getArtRegCoded2`(`personid` INTEGER, `obsdatetime` DATE) RETURNS int(11)
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getArtRegCoded2`(`personid` INTEGER, `obsdatetime` DATE) RETURNS int(11)
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT value_coded AS freg
@@ -4266,12 +4308,12 @@ DELIMITER ;
                     AND obsdatetime = obs_datetime
               LIMIT 1);
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getArtRegTxt`(`encounterid` INTEGER) RETURNS char(6) CHARSET latin1
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getArtRegTxt`(`encounterid` INTEGER) RETURNS char(6) CHARSET latin1
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT min(if(value_coded = 99015, '1a',
@@ -4302,12 +4344,12 @@ DELIMITER ;
                     AND encounterid = encounter_id
               LIMIT 1);
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getArtRegTxt2`(`personid` INTEGER, `obsdatetime` DATE) RETURNS char(10) CHARSET latin1
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getArtRegTxt2`(`personid` INTEGER, `obsdatetime` DATE) RETURNS char(10) CHARSET latin1
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT min(if(value_coded = 99015, '1a',
@@ -4339,12 +4381,12 @@ DELIMITER ;
                     AND obsdatetime = obs_datetime
               LIMIT 1);
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getArtRestartDate`(`personid` INTEGER, `encdt` CHAR(6)) RETURNS date
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getArtRestartDate`(`personid` INTEGER, `encdt` CHAR(6)) RETURNS date
+    READS SQL DATA
+BEGIN
 
 
       RETURN (
@@ -4358,12 +4400,12 @@ DELIMITER ;
       );
 
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getArtStartDate`(`personid` INTEGER) RETURNS date
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getArtStartDate`(`personid` INTEGER) RETURNS date
+    READS SQL DATA
+BEGIN
 
 
       RETURN
@@ -4377,12 +4419,12 @@ DELIMITER ;
 
 
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getArtStartDate2`(`personid` INTEGER, `reportdt` DATE) RETURNS date
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getArtStartDate2`(`personid` INTEGER, `reportdt` DATE) RETURNS date
+    READS SQL DATA
+BEGIN
 
 
       RETURN
@@ -4397,12 +4439,12 @@ DELIMITER ;
 
 
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getArtStartRegTxt`(`personid` INTEGER) RETURNS char(10) CHARSET latin1
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getArtStartRegTxt`(`personid` INTEGER) RETURNS char(10) CHARSET latin1
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT min(if(value_coded = 99015, '1a',
@@ -4433,12 +4475,12 @@ DELIMITER ;
                     AND personid = person_id
               LIMIT 1);
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getArtStopDate`(`personid` INTEGER, `obsdatetime` DATE) RETURNS date
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getArtStopDate`(`personid` INTEGER, `obsdatetime` DATE) RETURNS date
+    READS SQL DATA
+BEGIN
 
 
       RETURN
@@ -4453,12 +4495,12 @@ DELIMITER ;
 
 
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getArtStopDate1`(`personid` INTEGER, `encdt` CHAR(6)) RETURNS date
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getArtStopDate1`(`personid` INTEGER, `encdt` CHAR(6)) RETURNS date
+    READS SQL DATA
+BEGIN
 
 
       RETURN (
@@ -4473,12 +4515,12 @@ DELIMITER ;
       );
 
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getArtStopReasonTxt`(`personid` INTEGER, `encdt` CHAR) RETURNS char(2) CHARSET latin1
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getArtStopReasonTxt`(`personid` INTEGER, `encdt` CHAR) RETURNS char(2) CHARSET latin1
+    READS SQL DATA
+BEGIN
 
 
       RETURN (
@@ -4508,12 +4550,12 @@ DELIMITER ;
       );
 
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getBaseWeightValue`(`personid` INTEGER, `artstartdt` DATE) RETURNS int(11)
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getBaseWeightValue`(`personid` INTEGER, `artstartdt` DATE) RETURNS int(11)
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT if(concept_id = 99069, value_numeric,
@@ -4527,12 +4569,12 @@ DELIMITER ;
       );
 
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getCareEntryTxt`(`personid` INT) RETURNS char(15) CHARSET latin1
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCareEntryTxt`(`personid` INT) RETURNS char(15) CHARSET latin1
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT if(value_coded = 90012, "eMTCT",
@@ -4553,12 +4595,12 @@ DELIMITER ;
       );
 
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getCd4BaseValue`(`personid` INTEGER, `artstartdt` DATE) RETURNS int(11)
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCd4BaseValue`(`personid` INTEGER, `artstartdt` DATE) RETURNS int(11)
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT if(concept_id = 99071, value_numeric,
@@ -4573,12 +4615,12 @@ DELIMITER ;
               LIMIT 1
       );
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `get_CD4_count`(StartDate VARCHAR(12), EndDate VARCHAR(12), Patient_ID INTEGER) RETURNS varchar(10) CHARSET latin1
-      DETERMINISTIC
-  RETURN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `get_CD4_count`(StartDate VARCHAR(12), EndDate VARCHAR(12), Patient_ID INTEGER) RETURNS varchar(10) CHARSET latin1
+    DETERMINISTIC
+RETURN
     (
       SELECT IFNULL(CD4Count, CD4Percentage) AS CD4_Count
       FROM (
@@ -4604,12 +4646,12 @@ DELIMITER ;
                   ) LatestEncounter
            ) CD4
     )$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getCd4SevereBaseValue`(`personid` INTEGER, `artstartdt` DATE) RETURNS int(11)
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCd4SevereBaseValue`(`personid` INTEGER, `artstartdt` DATE) RETURNS int(11)
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT if(value_coded = 99150 AND datediff(artstartdt, obs_datetime) BETWEEN 0 AND 31, 0, NULL) AS bsevere
@@ -4621,12 +4663,12 @@ DELIMITER ;
               LIMIT 1
       );
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getCD4Value`(`personid` INTEGER, `obsdatetime` DATE) RETURNS int(11)
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCD4Value`(`personid` INTEGER, `obsdatetime` DATE) RETURNS int(11)
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT value_numeric
@@ -4639,12 +4681,12 @@ DELIMITER ;
               LIMIT 1
       );
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getCodedDeathDate`(`personid` INTEGER) RETURNS date
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCodedDeathDate`(`personid` INTEGER) RETURNS date
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT value_datetime
@@ -4655,12 +4697,12 @@ DELIMITER ;
       );
 
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore10`(start_year INT, start_quarter INT, months_before INT,
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore10`(start_year INT, start_quarter INT, months_before INT,
                                                                     only_preg  TINYINT(1)) RETURNS int(11)
-  BEGIN
+BEGIN
 
       DECLARE number_on_cohort INT;
       DECLARE pregnant_mothers TEXT;
@@ -4681,21 +4723,21 @@ DELIMITER ;
 
       RETURN number_on_cohort;
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore11`(start_year INTEGER, start_quarter INT, months_before INTEGER,
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore11`(start_year INTEGER, start_quarter INT, months_before INTEGER,
                                                                     only_preg  TINYINT(1)) RETURNS int(11)
-  BEGIN
+BEGIN
 
       RETURN 0;
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore12`(start_year INTEGER, start_quarter INTEGER, months_before INTEGER,
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore12`(start_year INTEGER, start_quarter INTEGER, months_before INTEGER,
                                                                     only_preg  TINYINT(1)) RETURNS int(11)
-  BEGIN
+BEGIN
       DECLARE number_on_cohort INT;
       DECLARE pregnant_mothers TEXT;
       DECLARE people_started TEXT;
@@ -4715,12 +4757,12 @@ DELIMITER ;
 
       RETURN number_on_cohort;
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore15a`(start_year    INTEGER, start_quarter INTEGER,
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore15a`(start_year    INTEGER, start_quarter INTEGER,
                                                                      months_before INTEGER, only_preg TINYINT(1)) RETURNS int(11)
-  BEGIN
+BEGIN
       DECLARE number_on_cohort INT;
       DECLARE pregnant_mothers TEXT;
       DECLARE people_started TEXT;
@@ -4739,12 +4781,12 @@ DELIMITER ;
 
       RETURN number_on_cohort;
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore15b`(start_year    INTEGER, start_quarter INT,
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore15b`(start_year    INTEGER, start_quarter INT,
                                                                      months_before INTEGER, only_preg TINYINT(1)) RETURNS int(11)
-  BEGIN
+BEGIN
       DECLARE number_on_cohort INT;
       DECLARE pregnant_mothers TEXT;
       DECLARE people_started TEXT;
@@ -4763,12 +4805,12 @@ DELIMITER ;
 
       RETURN number_on_cohort;
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore16`(start_year INTEGER, start_quarter INTEGER, months_before INTEGER,
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore16`(start_year INTEGER, start_quarter INTEGER, months_before INTEGER,
                                                                     only_preg  TINYINT(1)) RETURNS int(11)
-  BEGIN
+BEGIN
       DECLARE number_on_cohort INT;
       DECLARE pregnant_mothers TEXT;
       DECLARE people_started TEXT;
@@ -4833,12 +4875,12 @@ DELIMITER ;
 
       RETURN number_on_cohort;
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore3`(start_year INT, start_quarter INTEGER, months_before INTEGER,
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore3`(start_year INT, start_quarter INTEGER, months_before INTEGER,
                                                                    only_preg  TINYINT(1)) RETURNS int(11)
-  BEGIN
+BEGIN
 
       DECLARE number_on_cohort INT;
       DECLARE pregnant_mothers TEXT;
@@ -4856,12 +4898,12 @@ DELIMITER ;
 
       RETURN number_on_cohort;
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore4a`(start_year INTEGER, start_quarter INTEGER, months_before INTEGER,
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore4a`(start_year INTEGER, start_quarter INTEGER, months_before INTEGER,
                                                                     only_preg  TINYINT(1)) RETURNS int(11)
-  BEGIN
+BEGIN
       DECLARE number_on_cohort INT;
       DECLARE pregnant_mothers TEXT;
       DECLARE people_started TEXT;
@@ -4880,11 +4922,11 @@ DELIMITER ;
 
       RETURN number_on_cohort;
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore4b`(start_year INTEGER, start_quarter INTEGER, months_before INTEGER, only_preg  TINYINT(1)) RETURNS int(11)
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore4b`(start_year INTEGER, start_quarter INTEGER, months_before INTEGER, only_preg  TINYINT(1)) RETURNS int(11)
+BEGIN
       DECLARE number_on_cohort INT;
       DECLARE pregnant_mothers TEXT;
       DECLARE people_started TEXT;
@@ -4903,12 +4945,12 @@ DELIMITER ;
 
       RETURN number_on_cohort;
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore5`(start_year INTEGER, start_quarter INTEGER, months_before INTEGER,
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore5`(start_year INTEGER, start_quarter INTEGER, months_before INTEGER,
                                                                    only_preg  TINYINT(1)) RETURNS int(11)
-  BEGIN
+BEGIN
       DECLARE number_on_cohort INT;
       DECLARE pregnant_mothers TEXT;
       DECLARE people_started TEXT;
@@ -4975,12 +5017,12 @@ DELIMITER ;
 
       RETURN number_on_cohort;
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore6`(start_year INTEGER, start_quarter INTEGER, months_before INTEGER,
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore6`(start_year INTEGER, start_quarter INTEGER, months_before INTEGER,
                                                                    only_preg  TINYINT(1)) RETURNS int(11)
-  BEGIN
+BEGIN
       DECLARE number_on_cohort INT;
       DECLARE pregnant_mothers TEXT;
       DECLARE people_started TEXT;
@@ -4995,11 +5037,11 @@ DELIMITER ;
       END IF;
       RETURN number_on_cohort;
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore7`(start_year INT, start_quarter INTEGER, months_before INTEGER, only_preg  TINYINT(1)) RETURNS int(11)
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore7`(start_year INT, start_quarter INTEGER, months_before INTEGER, only_preg  TINYINT(1)) RETURNS int(11)
+BEGIN
       DECLARE number_on_cohort INT;
       DECLARE pregnant_mothers TEXT;
       DECLARE people_started TEXT;
@@ -5019,12 +5061,12 @@ DELIMITER ;
 
       RETURN number_on_cohort;
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore9`(start_year INTEGER, start_quarter INT, months_before INT,
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCohortAllBefore9`(start_year INTEGER, start_quarter INT, months_before INT,
                                                                    only_preg  TINYINT(1)) RETURNS int(11)
-  BEGIN
+BEGIN
       DECLARE number_on_cohort INT;
       DECLARE pregnant_mothers TEXT;
       DECLARE people_started TEXT;
@@ -5044,11 +5086,11 @@ DELIMITER ;
 
       RETURN number_on_cohort;
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`openmrs`@`localhost` FUNCTION `getCohortMonth`(start_year INT, start_quarter INT, months_before INT) RETURNS char(30) CHARSET latin1
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`openmrs`@`localhost` FUNCTION `getCohortMonth`(start_year INT, start_quarter INT, months_before INT) RETURNS char(30) CHARSET latin1
+BEGIN
       DECLARE end_date DATE DEFAULT
         MAKEDATE(start_year, 1) + INTERVAL start_quarter QUARTER - INTERVAL months_before MONTH - INTERVAL 1 DAY;
       DECLARE start_date DATE DEFAULT MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER -
@@ -5057,13 +5099,13 @@ DELIMITER ;
 
       RETURN CONCAT(MONTHNAME(start_date), '-', MONTHNAME(end_date), ' ', YEAR(end_date));
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `get_cpt_receipt_status`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `get_cpt_receipt_status`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
                                                                       Patient_ID INT) RETURNS char(50) CHARSET latin1
-      DETERMINISTIC
-  RETURN
+    DETERMINISTIC
+RETURN
     (
       SELECT IF(NumberOfCPTDrugsRcpt < 1, 'N', 'Y') AS CPTReceiptStatus
       FROM (
@@ -5077,12 +5119,12 @@ DELIMITER ;
              GROUP BY person_id
            ) CPTDrugsRcptFrequency
     )$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getCptStartDate`(`personid` INTEGER) RETURNS date
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCptStartDate`(`personid` INTEGER) RETURNS date
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT min(obs_datetime) cpt_start
@@ -5090,12 +5132,12 @@ DELIMITER ;
               WHERE concept_id IN (99033, 99037) AND personid = person_id AND voided = 0
               GROUP BY person_id);
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getCptStatusTxt`(`encounterid` INTEGER) RETURNS char(3) CHARSET latin1
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getCptStatusTxt`(`encounterid` INTEGER) RETURNS char(3) CHARSET latin1
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT if(value_coded IS NOT NULL, "N", if(value_numeric = 0, "N", if(value_numeric > 0, "Y", ""))) AS cpt
@@ -5107,11 +5149,11 @@ DELIMITER ;
       );
 
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`openmrs`@`localhost` FUNCTION `getCptStatusTxt2`(`encounterid` INT) RETURNS char(1) CHARSET utf8
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`openmrs`@`localhost` FUNCTION `getCptStatusTxt2`(`encounterid` INT) RETURNS char(1) CHARSET utf8
+BEGIN
 
       RETURN (SELECT if(value_numeric > 0, "Y", "") AS cpt
               FROM obs
@@ -5122,12 +5164,12 @@ DELIMITER ;
       );
 
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getDeathDate`(`personid` INTEGER) RETURNS date
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getDeathDate`(`personid` INTEGER) RETURNS date
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT if(a.death_date IS NULL, b.value_datetime, a.death_date) AS deathDate
@@ -5148,13 +5190,13 @@ DELIMITER ;
       );
 
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `get_death_status`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `get_death_status`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
                                                                 Patient_ID INT) RETURNS char(50) CHARSET latin1
-      DETERMINISTIC
-  RETURN (SELECT CONCAT('DEAD: ', CAST(date_format(DeathDate, '%d/%m/%Y') AS CHAR(10))) AS DeathStatus
+    DETERMINISTIC
+RETURN (SELECT CONCAT('DEAD: ', CAST(date_format(DeathDate, '%d/%m/%Y') AS CHAR(10))) AS DeathStatus
             FROM (
                    SELECT
                      person_Id,
@@ -5166,12 +5208,12 @@ DELIMITER ;
                    GROUP BY person_Id
                  ) RecentDeath
     )$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getEddDate`(`encounterid` INTEGER) RETURNS date
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getEddDate`(`encounterid` INTEGER) RETURNS date
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT value_datetime
@@ -5183,12 +5225,12 @@ DELIMITER ;
 
       );
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getEddEncounterId`(`personid` INTEGER) RETURNS int(11)
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getEddEncounterId`(`personid` INTEGER) RETURNS int(11)
+    READS SQL DATA
+BEGIN
 
 
       RETURN (
@@ -5202,12 +5244,12 @@ DELIMITER ;
 
       );
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getEddEncounterId2`(`personid` INTEGER) RETURNS int(11)
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getEddEncounterId2`(`personid` INTEGER) RETURNS int(11)
+    READS SQL DATA
+BEGIN
 
 
       RETURN (
@@ -5221,12 +5263,12 @@ DELIMITER ;
 
       );
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getEddEncounterId3`(`personid` INTEGER) RETURNS int(11)
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getEddEncounterId3`(`personid` INTEGER) RETURNS int(11)
+    READS SQL DATA
+BEGIN
 
 
       RETURN (
@@ -5240,12 +5282,12 @@ DELIMITER ;
 
       );
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getEddEncounterId4`(`personid` INTEGER) RETURNS int(11)
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getEddEncounterId4`(`personid` INTEGER) RETURNS int(11)
+    READS SQL DATA
+BEGIN
 
 
       RETURN (
@@ -5259,36 +5301,36 @@ DELIMITER ;
 
       );
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getEncounterId`(`patientid`       INTEGER, `encounter_year` INTEGER,
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getEncounterId`(`patientid`       INTEGER, `encounter_year` INTEGER,
                                                               `encounter_month` INTEGER) RETURNS int(11)
-  BEGIN
+BEGIN
       RETURN (SELECT MAX(encounter_id)
               FROM encounter
               WHERE patientid = patient_id AND EXTRACT(YEAR_MONTH FROM encounter_datetime) = EXTRACT(YEAR_MONTH FROM (
                 MAKEDATE(encounter_year, 1) + INTERVAL encounter_month MONTH - INTERVAL 1 DAY)) AND voided = 0
               LIMIT 1);
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getEncounterId2`(`patientid`         INTEGER, `encounter_year` INTEGER,
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getEncounterId2`(`patientid`         INTEGER, `encounter_year` INTEGER,
                                                                `encounter_quarter` INTEGER) RETURNS int(11)
-  BEGIN
+BEGIN
       RETURN (SELECT MAX(encounter_id)
               FROM encounter
               WHERE patientid = patient_id AND YEAR(encounter_datetime) = encounter_year AND
                     QUARTER(encounter_datetime) = encounter_quarter AND voided = 0
               LIMIT 1);
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getEnrolDate`(`personid` INT) RETURNS date
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getEnrolDate`(`personid` INT) RETURNS date
+    READS SQL DATA
+BEGIN
 
 
       RETURN (
@@ -5301,12 +5343,12 @@ DELIMITER ;
       );
 
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getFirstArtStopDate`(`personid` INTEGER) RETURNS date
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getFirstArtStopDate`(`personid` INTEGER) RETURNS date
+    READS SQL DATA
+BEGIN
 
 
       RETURN
@@ -5320,12 +5362,12 @@ DELIMITER ;
 
 
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getFlucStartDate`(`personid` INTEGER) RETURNS date
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getFlucStartDate`(`personid` INTEGER) RETURNS date
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT min(obs_datetime) fluc_start
@@ -5335,13 +5377,13 @@ DELIMITER ;
               GROUP BY person_id);
 
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `get_followup_status`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `get_followup_status`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
                                                                    Patient_ID INT) RETURNS char(50) CHARSET latin1
-      DETERMINISTIC
-  RETURN
+    DETERMINISTIC
+RETURN
     (
       SELECT IFNULL((SELECT get_death_status(StartDate, EndDate, Patient_ID)),
                     IFNULL((get_transfer_status(StartDate, EndDate, Patient_ID)),
@@ -5355,22 +5397,22 @@ DELIMITER ;
                     )
              ) AS FollowUpStatus
     )$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `get_followup_status2`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `get_followup_status2`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
                                                                     Patient_ID INT) RETURNS char(50) CHARSET utf8
-  BEGIN
+BEGIN
 
       RETURN CONCAT(get_death_status(StartDate, EndDate, Patient_ID), get_transfer_status(StartDate, EndDate, Patient_ID),
                     get_lost_status(StartDate, EndDate, Patient_ID), get_seen_status(StartDate, EndDate, Patient_ID),
                     get_scheduled_visits(StartDate, EndDate, Patient_ID));
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getFUARTStatus`(Patient_ID INTEGER, start_date DATE, end_date DATE) RETURNS char(1) CHARSET utf8
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getFUARTStatus`(Patient_ID INTEGER, start_date DATE, end_date DATE) RETURNS char(1) CHARSET utf8
+BEGIN
 
       DECLARE times_seen_in_quarter INT DEFAULT 0;
       DECLARE number_of_visits_in_quarter INT DEFAULT 0;
@@ -5457,12 +5499,12 @@ DELIMITER ;
 
       END IF;
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getFunctionalStatusTxt`(`personid` INTEGER, `obsdatetime` DATE) RETURNS char(5) CHARSET latin1
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getFunctionalStatusTxt`(`personid` INTEGER, `obsdatetime` DATE) RETURNS char(5) CHARSET latin1
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT if(value_coded = 90037, "Amb", if(value_coded = 90038, "Work", "Bed")) AS f_status
@@ -5473,11 +5515,11 @@ DELIMITER ;
                     AND obsdatetime = obs_datetime
               LIMIT 1);
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getFUStatus`(Patient_ID INT, start_date DATE, end_date DATE) RETURNS char(30) CHARSET utf8
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getFUStatus`(Patient_ID INT, start_date DATE, end_date DATE) RETURNS char(30) CHARSET utf8
+BEGIN
 
       DECLARE times_seen_in_quarter INT DEFAULT 0;
       DECLARE number_of_visits_in_quarter INT DEFAULT 0;
@@ -5543,12 +5585,12 @@ DELIMITER ;
         END IF;
       END IF;
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getINHStartDate`(`personid` INTEGER) RETURNS date
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getINHStartDate`(`personid` INTEGER) RETURNS date
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT min(obs_datetime) cpt_start
@@ -5556,12 +5598,12 @@ DELIMITER ;
               WHERE concept_id IN (99604, 99605) AND personid = person_id AND voided = 0
               GROUP BY person_id);
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getLastCd4SevereValue`(`personid` INTEGER, `reportdt` DATE) RETURNS int(11)
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getLastCd4SevereValue`(`personid` INTEGER, `reportdt` DATE) RETURNS int(11)
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT if(value_coded = 99150, 1, 0) AS severe
@@ -5574,12 +5616,12 @@ DELIMITER ;
               LIMIT 1
       );
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getLastCd4Value`(`personid` INTEGER, `reportdt` DATE) RETURNS int(11)
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getLastCd4Value`(`personid` INTEGER, `reportdt` DATE) RETURNS int(11)
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT value_numeric
@@ -5592,24 +5634,24 @@ DELIMITER ;
               LIMIT 1
       );
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getLastEncounterDate`(`personid` INTEGER) RETURNS date
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getLastEncounterDate`(`personid` INT) RETURNS date
+    READS SQL DATA
+BEGIN
       RETURN (SELECT encounter_datetime
               FROM encounter
-              WHERE encounter_type IN (1, 2) AND patient_id = personid AND voided = 0
+              WHERE encounter_type IN (select encounter_type_id from encounter_type where uuid in('8d5b27bc-c2cc-11de-8d13-0010c6dffd0f','8d5b2be0-c2cc-11de-8d13-0010c6dffd0f')) AND patient_id = personid AND voided = 0
               ORDER BY encounter_datetime DESC
               LIMIT 1);
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getLastVisitDate`(`personid` INTEGER, `reportdt` DATE) RETURNS date
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getLastVisitDate`(`personid` INTEGER, `reportdt` DATE) RETURNS date
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT date(max(encounter_datetime))
@@ -5621,13 +5663,13 @@ DELIMITER ;
 
 
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `get_lost_status`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `get_lost_status`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
                                                                Patient_ID INT) RETURNS char(50) CHARSET latin1
-      DETERMINISTIC
-  RETURN
+    DETERMINISTIC
+RETURN
     (
       SELECT 'LOST' AS LostStatus
       FROM (
@@ -5650,12 +5692,12 @@ DELIMITER ;
            ) RecentLostStatus
 
     )$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getMonthCD4Value`(`personid` INTEGER, `monthyr` CHAR(6)) RETURNS int(11)
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getMonthCD4Value`(`personid` INTEGER, `monthyr` CHAR(6)) RETURNS int(11)
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT value_numeric
@@ -5669,12 +5711,12 @@ DELIMITER ;
 
       );
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getMonthsOnCurrent`(`personid` INTEGER) RETURNS int(11)
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getMonthsOnCurrent`(`personid` INTEGER) RETURNS int(11)
+    READS SQL DATA
+BEGIN
 
 
       RETURN (
@@ -5688,12 +5730,12 @@ DELIMITER ;
         LIMIT 1
       );
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getMonthsSinceStart`(`personid` INTEGER) RETURNS int(11)
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getMonthsSinceStart`(`personid` INTEGER) RETURNS int(11)
+    READS SQL DATA
+BEGIN
 
 
       RETURN (
@@ -5706,12 +5748,12 @@ DELIMITER ;
         ORDER BY obs_datetime DESC
         LIMIT 1);
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getNumberDrugEncounter`(`personid` INTEGER) RETURNS int(11)
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getNumberDrugEncounter`(`personid` INTEGER) RETURNS int(11)
+    READS SQL DATA
+BEGIN
 
 
       RETURN (
@@ -5735,12 +5777,12 @@ DELIMITER ;
       );
 
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getNumberDrugSummary`(`personid` INTEGER) RETURNS int(11)
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getNumberDrugSummary`(`personid` INTEGER) RETURNS int(11)
+    READS SQL DATA
+BEGIN
 
 
       RETURN (
@@ -5764,12 +5806,12 @@ DELIMITER ;
       );
 
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`openmrs`@`localhost` FUNCTION `getNutritionalStatus`(Patient_ID INT, start_date DATE, end_date DATE) RETURNS char(10) CHARSET latin1
-      DETERMINISTIC
-  RETURN
+DELIMITER $$
+CREATE DEFINER=`openmrs`@`localhost` FUNCTION `getNutritionalStatus`(Patient_ID INT, start_date DATE, end_date DATE) RETURNS char(10) CHARSET latin1
+    DETERMINISTIC
+RETURN
     (
       SELECT CASE value_coded
              WHEN 99271
@@ -5792,12 +5834,12 @@ DELIMITER ;
              GROUP BY person_id
            ) NutritionalOptions
     )$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getPatientIdentifierTxt`(`personid` INTEGER) RETURNS char(15) CHARSET latin1
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getPatientIdentifierTxt`(`personid` INTEGER) RETURNS char(15) CHARSET latin1
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT identifier
@@ -5806,12 +5848,43 @@ DELIMITER ;
                     AND personid = patient_id
               LIMIT 1);
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getReferralText`(`personid` INTEGER) RETURNS char(30) CHARSET latin1
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`openmrs`@`localhost` FUNCTION `getRecieviedARTBeforeQuarter`(start_year integer,start_quarter integer) RETURNS text CHARSET utf8
+BEGIN
+DECLARE onART TEXT;
+
+SELECT group_concat(person_id) into onART
+    FROM (select o.person_id as 'person_id' from encounter e inner join  obs o using(encounter_id) WHERE
+    e.encounter_datetime <= (MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL 1 DAY)
+        AND o.concept_id = 90315
+        AND o.value_coded > 0
+        AND o.voided = 0) p;
+RETURN onART;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`openmrs`@`localhost` FUNCTION `getRecieviedARTDuringQuarter`(start_year integer,start_quarter integer) RETURNS text CHARSET utf8
+BEGIN
+DECLARE onART TEXT;
+
+SELECT group_concat(person_id) into onART
+    FROM (select o.person_id as 'person_id' from encounter e inner join  obs o using(encounter_id) WHERE
+    QUARTER(e.encounter_datetime) = start_quarter
+        AND YEAR(e.encounter_datetime) = start_year
+        AND o.concept_id = 90315
+        AND o.value_coded > 0
+        AND o.voided = 0) p;
+RETURN onART;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getReferralText`(`personid` INTEGER) RETURNS char(30) CHARSET latin1
+    READS SQL DATA
+BEGIN
       RETURN (
         SELECT if(concept_id = 99054 AND value_coded = 99053, "Therapeutic Feeding",
                   if(concept_id = 99054 AND value_coded = 99051, "Infant Feeding Counselling",
@@ -5824,12 +5897,12 @@ DELIMITER ;
               AND personid = person_id
               AND voided = 0);
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getReturnDate`(`encounterid` INTEGER) RETURNS date
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getReturnDate`(`encounterid` INTEGER) RETURNS date
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT value_datetime AS return_date
@@ -5841,12 +5914,12 @@ DELIMITER ;
       );
 
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getReturnDate2`(`personid` INTEGER, `obsdatetime` DATE) RETURNS date
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getReturnDate2`(`personid` INTEGER, `obsdatetime` DATE) RETURNS date
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT value_datetime AS return_date
@@ -5859,13 +5932,13 @@ DELIMITER ;
       );
 
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `get_scheduled_visits`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `get_scheduled_visits`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
                                                                     Patient_ID INT) RETURNS char(50) CHARSET latin1
-      DETERMINISTIC
-  RETURN
+    DETERMINISTIC
+RETURN
     (
       SELECT IF(NumberOfVisitsScheduledInPeriod = 0, 'NO SCHEDULED VISIT', NULL) AS Scheduled_Visits_Status
       FROM (
@@ -5876,13 +5949,13 @@ DELIMITER ;
            ) Visits
 
     )$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `get_seen_status`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `get_seen_status`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
                                                                Patient_ID INTEGER) RETURNS char(50) CHARSET latin1
-      DETERMINISTIC
-  RETURN
+    DETERMINISTIC
+RETURN
     (
       SELECT IF(NumberOfTimesSeenInPeriod > 0, 'SEEN', NULL) AS SEENStatus
       FROM (
@@ -5895,12 +5968,12 @@ DELIMITER ;
            ) RecentSEENStatus
 
     )$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getStartEncounterId`(`personid` INTEGER) RETURNS int(11)
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getStartEncounterId`(`personid` INTEGER) RETURNS int(11)
+    READS SQL DATA
+BEGIN
       RETURN (SELECT encounter_id
               FROM obs
               WHERE concept_id = 1255 AND value_coded IN (1256, 1585)
@@ -5910,11 +5983,11 @@ DELIMITER ;
               LIMIT 1
       );
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`openmrs`@`localhost` FUNCTION `getStatusAtEnrollment`(patient INTEGER) RETURNS char(5) CHARSET utf8
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`openmrs`@`localhost` FUNCTION `getStatusAtEnrollment`(patient INTEGER) RETURNS char(5) CHARSET utf8
+BEGIN
 
       DECLARE lactating INT;
       DECLARE pregnant INT;
@@ -5961,12 +6034,12 @@ DELIMITER ;
       RETURN CONCAT_WS(' ', COALESCE(eid, ''), COALESCE(pregnant, ''), COALESCE(eid, ''), COALESCE(tb, ''),
                        COALESCE(ti, ''));
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getSubstituteDate`(`obsgroupid` INTEGER) RETURNS date
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getSubstituteDate`(`obsgroupid` INTEGER) RETURNS date
+    READS SQL DATA
+BEGIN
 
 
       RETURN (
@@ -5978,12 +6051,12 @@ DELIMITER ;
               AND obsgroupid = obs_group_id
         LIMIT 1);
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getSubstituteObsGroupId`(`personid` INTEGER) RETURNS int(11)
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getSubstituteObsGroupId`(`personid` INTEGER) RETURNS int(11)
+    READS SQL DATA
+BEGIN
 
 
       RETURN (
@@ -5995,12 +6068,12 @@ DELIMITER ;
         LIMIT 0, 1
       );
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getSubstituteObsGroupId2`(`personid` INTEGER) RETURNS int(11)
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getSubstituteObsGroupId2`(`personid` INTEGER) RETURNS int(11)
+    READS SQL DATA
+BEGIN
 
 
       RETURN (
@@ -6012,12 +6085,12 @@ DELIMITER ;
         LIMIT 1, 1
       );
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getSubstituteReasonTxt`(`obsgroupid` INTEGER) RETURNS char(15) CHARSET latin1
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getSubstituteReasonTxt`(`obsgroupid` INTEGER) RETURNS char(15) CHARSET latin1
+    READS SQL DATA
+BEGIN
 
 
       RETURN (
@@ -6038,12 +6111,12 @@ DELIMITER ;
         LIMIT 1
       );
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getSwitchDate`(`obsgroupid` INTEGER) RETURNS date
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getSwitchDate`(`obsgroupid` INTEGER) RETURNS date
+    READS SQL DATA
+BEGIN
 
 
       RETURN (
@@ -6056,12 +6129,12 @@ DELIMITER ;
         LIMIT 1
       );
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getSwitchObsGroupId`(`personid` INTEGER) RETURNS int(11)
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getSwitchObsGroupId`(`personid` INTEGER) RETURNS int(11)
+    READS SQL DATA
+BEGIN
 
 
       RETURN (
@@ -6073,12 +6146,12 @@ DELIMITER ;
         LIMIT 0, 1
       );
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getSwitchObsGroupId2`(`personid` INTEGER) RETURNS int(11)
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getSwitchObsGroupId2`(`personid` INTEGER) RETURNS int(11)
+    READS SQL DATA
+BEGIN
 
 
       RETURN (
@@ -6090,12 +6163,12 @@ DELIMITER ;
         LIMIT 1, 2
       );
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getSwitchReasonTxt`(`obsgroupid` INTEGER) RETURNS int(11)
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getSwitchReasonTxt`(`obsgroupid` INTEGER) RETURNS int(11)
+    READS SQL DATA
+BEGIN
 
 
       RETURN (
@@ -6116,12 +6189,12 @@ DELIMITER ;
         LIMIT 1
       );
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getTbRegNoTxt`(`personid` INTEGER) RETURNS char(15) CHARSET utf8
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getTbRegNoTxt`(`personid` INTEGER) RETURNS char(15) CHARSET utf8
+    READS SQL DATA
+BEGIN
 
 
       RETURN (
@@ -6132,12 +6205,12 @@ DELIMITER ;
         LIMIT 1);
 
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getTbStartDate`(`personid` INTEGER) RETURNS date
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getTbStartDate`(`personid` INTEGER) RETURNS date
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT min(value_datetime) AS start
@@ -6145,12 +6218,12 @@ DELIMITER ;
               WHERE concept_id = 90217 AND voided = 0 AND personid = person_id
               GROUP BY person_id);
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `get_tb_status`(StartDate VARCHAR(12), EndDate VARCHAR(12), Patient_ID INT) RETURNS char(50) CHARSET latin1
-      DETERMINISTIC
-  RETURN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `get_tb_status`(StartDate VARCHAR(12), EndDate VARCHAR(12), Patient_ID INT) RETURNS char(50) CHARSET latin1
+    DETERMINISTIC
+RETURN
     (
       SELECT CASE value_coded
              WHEN 90079
@@ -6172,12 +6245,12 @@ DELIMITER ;
              GROUP BY person_id
            ) TBOptions
     )$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getTbStatusTxt`(`encounterid` INTEGER) RETURNS int(11)
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getTbStatusTxt`(`encounterid` INTEGER) RETURNS int(11)
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT if(value_coded = 90079, 1,
@@ -6190,12 +6263,12 @@ DELIMITER ;
       );
 
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getTbStopDate`(`personid` INTEGER) RETURNS date
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getTbStopDate`(`personid` INTEGER) RETURNS date
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT min(value_datetime) AS stop
@@ -6206,12 +6279,12 @@ DELIMITER ;
               GROUP BY person_id
               LIMIT 1);
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getTransferInTxt`(`personid` INTEGER) RETURNS char(5) CHARSET latin1
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getTransferInTxt`(`personid` INTEGER) RETURNS char(5) CHARSET latin1
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT if(concept_id = 99055 AND value_coded = 1065, "TI",
@@ -6226,12 +6299,12 @@ DELIMITER ;
       );
 
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getTransferOutDate`(`personid` INTEGER) RETURNS date
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getTransferOutDate`(`personid` INTEGER) RETURNS date
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT value_datetime AS tout_date
@@ -6244,13 +6317,13 @@ DELIMITER ;
       );
 
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `get_transfer_status`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `get_transfer_status`(StartDate  VARCHAR(12), EndDate VARCHAR(12),
                                                                    Patient_ID INT) RETURNS char(50) CHARSET latin1
-      DETERMINISTIC
-  RETURN
+    DETERMINISTIC
+RETURN
     (
       SELECT CONCAT(A.TransferStatus, ' ', B.TransferStatus) AS TransferStatus
       FROM (
@@ -6274,12 +6347,12 @@ DELIMITER ;
           GROUP BY person_Id
         ) B ON A.person_Id = B.person_Id
     )$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getWeightValue`(`personid` INTEGER, `obsdatetime` DATE) RETURNS int(11)
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getWeightValue`(`personid` INTEGER, `obsdatetime` DATE) RETURNS int(11)
+    READS SQL DATA
+BEGIN
 
 
       RETURN (
@@ -6291,12 +6364,12 @@ DELIMITER ;
               AND voided = 0
         LIMIT 1);
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getWhoStageBaseTxt`(`personid` INTEGER, `artstartdt` DATE) RETURNS int(11)
-      READS SQL DATA
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getWhoStageBaseTxt`(`personid` INTEGER, `artstartdt` DATE) RETURNS int(11)
+    READS SQL DATA
+BEGIN
 
 
       RETURN (SELECT if(concept_id = 99070 AND value_coded = 1204, 1,
@@ -6320,11 +6393,11 @@ DELIMITER ;
               LIMIT 1
       );
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getWHOStageDate`(patient_id INT, stage INT) RETURNS date
-  BEGIN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getWHOStageDate`(patient_id INT, stage INT) RETURNS date
+BEGIN
       RETURN (SELECT MAX(obs_datetime)
               FROM obs
               WHERE concept_id = 90203 AND
@@ -6334,12 +6407,12 @@ DELIMITER ;
                                                                                         if(stage = 4, 90036, NULL)))) AND
                     concept_id IS NOT NULL);
     END$$
-  DELIMITER ;
+DELIMITER ;
 
-  DELIMITER $$
-  CREATE DEFINER=`root`@`localhost` FUNCTION `getWhoStageTxt`(`personid` INTEGER, `obsdatetime` DATE) RETURNS int(11)
-      READS SQL DATA
-  BEGIN RETURN
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getWhoStageTxt`(`personid` INTEGER, `obsdatetime` DATE) RETURNS int(11)
+    READS SQL DATA
+BEGIN RETURN
     (SELECT if(concept_id = 90203
                AND value_coded = 90033
                OR concept_id = 90203
@@ -6358,29 +6431,57 @@ DELIMITER ;
            AND personid = person_id
            AND obsdatetime = obs_datetime
            AND voided = 0 HAVING stage IS NOT NULL LIMIT 1 ); END$$
-  DELIMITER ;
+DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER=`openmrs`@`localhost` FUNCTION `getActiveOnPreARTDuringQuarter`(start_year integer,start_quarter integer) RETURNS text CHARSET utf8
+CREATE DEFINER=`openmrs`@`localhost` FUNCTION `startedARTDuringQuarter`(start_year integer,start_quarter integer) RETURNS text CHARSET utf8
 BEGIN
 
-DECLARE onPreART TEXT;
+DECLARE onART TEXT;
 
-SELECT group_concat(distinct e.patient_id) into onPreART
+SELECT
+    GROUP_CONCAT(distinct person_id) into onART
+FROM
+    (SELECT
+        DISTINCT o.person_id AS 'person_id'
     FROM
-         encounter e WHERE  QUARTER(e.encounter_datetime) = start_quarter
-        AND YEAR(e.encounter_datetime) = start_year
-        AND e.encounter_type in(select encounter_type_id from encounter_type where locate('art',name) > 0 and locate('card',name) > 0 and locate('encounter',name) > 0 and locate('education',name) = 0)
-        AND e.voided = 0
-        AND e.patient_id NOT IN (SELECT
-            oi.person_id
-        FROM
-            obs oi
-        WHERE
-            oi.voided = 0
-            AND ((oi.concept_id = 90315 AND oi.value_coded > 0) OR (oi.concept_id = 99061 AND oi.value_coded > 0))
-                AND oi.obs_datetime <= (MAKEDATE(start_year, 1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY));
+        obs o
+    WHERE
+        QUARTER(o.obs_datetime) = start_quarter
+            AND YEAR(o.obs_datetime) = start_year
+            AND ((o.concept_id = 90315 AND o.value_coded > 0))
+            AND o.voided = 0
+            AND o.person_id NOT IN (SELECT DISTINCT
+                person_id
+            FROM
+                obs oi
+            WHERE
+                oi.obs_datetime <= MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL 1 DAY
+                    AND ((oi.concept_id = 90315 AND oi.value_coded > 0))
+                    AND oi.voided = 0) group by o.person_id order by o.person_id) art;
 
-RETURN onPreART;
+RETURN onART;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`openmrs`@`localhost` FUNCTION `transferInRegimen`(start_year integer,start_quarter integer) RETURNS text CHARSET utf8
+BEGIN
+DECLARE onART TEXT;
+
+SELECT
+    GROUP_CONCAT(person_id) into onART
+FROM
+    (SELECT
+        o.person_id AS 'person_id'
+    FROM
+        obs o
+    WHERE
+        QUARTER(o.obs_datetime) = start_quarter
+            AND YEAR(o.obs_datetime) = start_year
+            AND ((o.concept_id = 99604 AND o.value_coded > 0) OR (o.concept_id = 99269 AND o.value_text is not null))
+            AND o.voided = 0) art;
+
+RETURN onART;
 END$$
 DELIMITER ;
