@@ -1690,7 +1690,7 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
            (SELECT DISTINCT 1 AS indicator_id,
               p.gender,
               p.person_id,
-                            TIMESTAMPDIFF(YEAR, p.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, p.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person p
               INNER JOIN obs o ON (p.person_id = o.person_id
                                    AND o.voided = 0
@@ -1711,7 +1711,7 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
            (SELECT DISTINCT 1 AS indicator_id,
               p.gender,
               p.person_id,
-                            TIMESTAMPDIFF(YEAR, p.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, p.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person p
               INNER JOIN obs o ON (p.person_id = o.person_id
                                    AND o.voided = 0
@@ -1732,7 +1732,7 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
            (SELECT DISTINCT 1 AS indicator_id,
               p.gender,
               p.person_id,
-                            TIMESTAMPDIFF(YEAR, p.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, p.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person p
               INNER JOIN obs o ON (p.person_id = o.person_id
                                    AND o.voided = 0
@@ -1753,7 +1753,7 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
            (SELECT DISTINCT 1 AS indicator_id,
               p.gender,
               p.person_id,
-                            TIMESTAMPDIFF(YEAR, p.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, p.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person p
               INNER JOIN obs o ON (p.person_id = o.person_id
                                    AND o.voided = 0
@@ -1773,7 +1773,7 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
            (SELECT DISTINCT 1 AS indicator_id,
               p.gender,
               p.person_id,
-                            TIMESTAMPDIFF(YEAR, p.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, p.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person p
               INNER JOIN obs o ON (p.person_id = o.person_id
                                    AND o.voided = 0
@@ -1794,7 +1794,7 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
            (SELECT DISTINCT 1 AS indicator_id,
               p.gender,
               p.person_id,
-                            TIMESTAMPDIFF(YEAR, p.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, p.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person p
               INNER JOIN obs o ON (p.person_id = o.person_id
                                    AND o.voided = 0
@@ -1830,7 +1830,7 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
            (SELECT DISTINCT 1 AS indicator_id,
               p.gender,
               p.person_id,
-                            TIMESTAMPDIFF(YEAR, p.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, p.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person p
               INNER JOIN obs o ON (p.person_id = o.person_id
                                    AND o.voided = 0
@@ -1868,7 +1868,7 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
            (SELECT DISTINCT 1 AS indicator_id,
               p.gender,
               p.person_id,
-                            TIMESTAMPDIFF(YEAR, p.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, p.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person p
               INNER JOIN obs o ON (p.person_id = o.person_id
                                    AND o.voided = 0
@@ -1891,7 +1891,7 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
            (SELECT DISTINCT 1 AS indicator_id,
               p.gender,
               p.person_id,
-                            TIMESTAMPDIFF(YEAR, p.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, p.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person p
               INNER JOIN obs o ON (p.person_id = o.person_id AND o.voided = 0
               AND o.concept_id = 99161
@@ -1917,7 +1917,7 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
            (SELECT DISTINCT 1 AS indicator_id,
               p.gender,
               p.person_id,
-                            TIMESTAMPDIFF(YEAR, p.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, p.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person p
               INNER JOIN obs o ON (p.person_id = o.person_id
                                    AND o.voided = 0
@@ -1956,7 +1956,7 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
            (SELECT DISTINCT 1 AS indicator_id,
               p.gender,
               p.person_id,
-                            TIMESTAMPDIFF(YEAR, p.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, p.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person p
               INNER JOIN obs o ON (p.person_id = o.person_id
                                    AND o.voided = 0
@@ -1993,7 +1993,7 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
            (SELECT DISTINCT 1 AS indicator_id,
               pp.gender,
               pp.person_id,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND e.voided = 0)
@@ -2045,7 +2045,7 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
            (SELECT DISTINCT 1 AS indicator_id,
               pp.gender,
               pp.person_id,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND e.voided = 0)
@@ -2103,7 +2103,7 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
            (SELECT DISTINCT 1 AS indicator_id,
               pp.gender,
               pp.person_id,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND e.voided = 0)
@@ -2147,7 +2147,7 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
               pp.gender,
               pp.person_id,
                             MAX(e.encounter_datetime) en_date,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND QUARTER(e.encounter_datetime) = start_quarter
@@ -2180,7 +2180,7 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
               pp.gender,
               pp.person_id,
                             MAX(e.encounter_datetime) en_date,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND QUARTER(e.encounter_datetime) = start_quarter
@@ -2215,7 +2215,7 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
               pp.gender,
               pp.person_id,
                             MAX(e.encounter_datetime) en_date,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND QUARTER(e.encounter_datetime) = start_quarter
@@ -2248,7 +2248,7 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
               pp.gender,
               pp.person_id,
                             MAX(e.encounter_datetime) en_date,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND QUARTER(e.encounter_datetime) = start_quarter
@@ -2282,7 +2282,7 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
               pp.gender,
               pp.person_id,
                             MAX(e.encounter_datetime) en_date,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND form_id = 12
@@ -2318,7 +2318,7 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
               pp.gender,
               pp.person_id,
                             MAX(e.encounter_datetime) en_date,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND QUARTER(e.encounter_datetime) = start_quarter
@@ -2344,7 +2344,7 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
               pp.gender,
               pp.person_id,
                             MAX(e.encounter_datetime) en_date,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN patient p ON (pp.person_id = p.patient_id
                                        AND p.voided = 0)
@@ -2381,7 +2381,7 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
               pp.gender,
               pp.person_id,
                             MAX(e.encounter_datetime) en_date,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN patient p ON (pp.person_id = p.patient_id
                                        AND p.voided = 0)
@@ -2579,7 +2579,7 @@ DELIMITER ;
               pp.gender,
               pp.person_id,
                             MAX(e.encounter_datetime) en_date,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND QUARTER(e.encounter_datetime) = start_quarter
@@ -2613,7 +2613,7 @@ DELIMITER ;
               pp.gender,
               pp.person_id,
                             MAX(e.encounter_datetime) en_date,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND e.encounter_type = (select encounter_type_id from encounter_type where locate('art',name) > 0 and locate('card',name) > 0 and locate('encounter',name) > 0 and locate('education',name) = 0)
@@ -2649,7 +2649,7 @@ DELIMITER ;
               pp.gender,
               pp.person_id,
                             MAX(e.encounter_datetime) en_date,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND QUARTER(e.encounter_datetime) = start_quarter
@@ -2684,7 +2684,7 @@ DELIMITER ;
               pp.gender,
               pp.person_id,
                             MAX(e.encounter_datetime) en_date,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN patient p ON (pp.person_id = p.patient_id
                                        AND p.voided = 0)
@@ -2720,7 +2720,7 @@ DELIMITER ;
               pp.gender,
               pp.person_id,
                             MAX(e.encounter_datetime) en_date,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN patient p ON (pp.person_id = p.patient_id
                                        AND p.voided = 0)
@@ -2757,7 +2757,7 @@ DELIMITER ;
               pp.gender,
               pp.person_id,
                             MAX(e.encounter_datetime) en_date,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND QUARTER(e.encounter_datetime) = start_quarter
@@ -2790,7 +2790,7 @@ DELIMITER ;
               pp.gender,
               pp.person_id,
                             MAX(e.encounter_datetime) en_date,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN patient p ON (pp.person_id = p.patient_id
                                        AND p.voided = 0)
@@ -2824,7 +2824,7 @@ DELIMITER ;
            LEFT JOIN (SELECT DISTINCT 1 AS indicator_id,
               pp.gender,
               pp.person_id,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN patient p ON (pp.person_id = p.patient_id
                                        AND p.voided = 0)
@@ -2859,7 +2859,7 @@ DELIMITER ;
            LEFT JOIN (SELECT DISTINCT 1 AS indicator_id,
               pp.gender,
               pp.person_id,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND e.voided = 0
@@ -2887,7 +2887,7 @@ DELIMITER ;
            LEFT JOIN (SELECT DISTINCT 1 AS indicator_id,
               pp.gender,
               pp.person_id,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND e.voided = 0
@@ -2912,7 +2912,7 @@ DELIMITER ;
            LEFT JOIN (SELECT DISTINCT 1 AS indicator_id,
               pp.gender,
               pp.person_id,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND e.voided = 0
@@ -2938,7 +2938,7 @@ DELIMITER ;
            LEFT JOIN (SELECT DISTINCT 1 AS indicator_id,
               pp.gender,
               pp.person_id,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND e.voided = 0
@@ -2973,7 +2973,7 @@ DELIMITER ;
            LEFT JOIN (SELECT DISTINCT 1 AS indicator_id,
               pp.gender,
               pp.person_id,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND e.voided = 0
@@ -3001,7 +3001,7 @@ DELIMITER ;
            LEFT JOIN (SELECT DISTINCT 1 AS indicator_id,
               pp.gender,
               pp.person_id,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND e.voided = 0)
@@ -3042,7 +3042,7 @@ DELIMITER ;
            LEFT JOIN (SELECT DISTINCT 1 AS indicator_id,
               pp.gender,
               pp.person_id,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND e.voided = 0)
@@ -3089,7 +3089,7 @@ DELIMITER ;
            LEFT JOIN (SELECT DISTINCT 1 AS indicator_id,
               pp.gender,
               pp.person_id,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND e.voided = 0)
@@ -3122,7 +3122,7 @@ DELIMITER ;
               pp.gender,
               pp.person_id,
                             MAX(e.encounter_datetime) en_date,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND QUARTER(e.encounter_datetime) = start_quarter
@@ -3156,7 +3156,7 @@ DELIMITER ;
               pp.gender,
               pp.person_id,
                             MAX(e.encounter_datetime) en_date,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND QUARTER(e.encounter_datetime) = start_quarter
@@ -3192,7 +3192,7 @@ DELIMITER ;
               pp.gender,
               pp.person_id,
                             MAX(e.encounter_datetime) en_date,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND QUARTER(e.encounter_datetime) = start_quarter
@@ -3226,7 +3226,7 @@ DELIMITER ;
               pp.gender,
               pp.person_id,
                             MAX(e.encounter_datetime) en_date,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND QUARTER(e.encounter_datetime) = start_quarter
@@ -3261,7 +3261,7 @@ DELIMITER ;
               pp.gender,
               pp.person_id,
                             MAX(e.encounter_datetime) en_date,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND form_id = 12
@@ -3298,7 +3298,7 @@ DELIMITER ;
               pp.gender,
               pp.person_id,
                             MAX(e.encounter_datetime) en_date,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN encounter e ON (e.patient_id = pp.person_id
                                          AND QUARTER(e.encounter_datetime) = start_quarter
@@ -3325,7 +3325,7 @@ DELIMITER ;
               pp.gender,
               pp.person_id,
                             MAX(e.encounter_datetime) en_date,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN patient p ON (pp.person_id = p.patient_id
                                        AND p.voided = 0)
@@ -3363,7 +3363,7 @@ DELIMITER ;
               pp.gender,
               pp.person_id,
                             MAX(e.encounter_datetime) en_date,
-                            TIMESTAMPDIFF(YEAR, pp.birthdate, CURRENT_DATE()) AS age
+                            TIMESTAMPDIFF(YEAR, pp.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person pp
               INNER JOIN patient p ON (pp.person_id = p.patient_id
                                        AND p.voided = 0)
