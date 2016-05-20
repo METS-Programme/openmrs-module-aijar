@@ -1442,10 +1442,8 @@ BEGIN DECLARE start_year_month CHAR(6) DEFAULT CONCAT(start_year,start_month);
          WHERE EXTRACT(YEAR_MONTH
                        FROM e.encounter_datetime) = start_year_month
                AND o.concept_id = 99037) AS 'oncptwithin2months'; END$$
-DELIMITER ;
-
 DELIMITER $$
-CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `hmis106a1a`(IN start_year INT, IN start_quarter INT)
+CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `hmis106a1a`(IN start_year INTEGER, IN start_quarter INTEGER)
 BEGIN
   DECLARE patientsOnPreART TEXT DEFAULT getActiveOnPreARTDuringQuarter(start_year,start_quarter);
   DECLARE enrolledDuringQuarter TEXT DEFAULT enrolledOnARTDuringQuarter(start_year,start_quarter);
@@ -1877,7 +1875,23 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
               p.person_id,
                             TIMESTAMPDIFF(YEAR, p.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person p
-              WHERE (FIND_IN_SET(p.person_id, enrolledDuringQuarter) OR FIND_IN_SET(p.person_id, patientsStartedARTDuring))
+              WHERE p.person_id in (SELECT
+      o.person_id
+    FROM
+        obs o
+    WHERE
+        QUARTER(o.obs_datetime) = start_quarter
+            AND YEAR(o.obs_datetime) = start_year
+            AND ((o.concept_id = 90315 AND o.value_coded > 0))
+            AND o.voided = 0
+            AND person_id not in (select person_id from obs where ((concept_id = 99110 and value_coded = 90003 and YEAR(obs_datetime) = 2016 and QUARTER(obs_datetime) = 1) AND person_id in (select person_id from obs where concept_id = 90315 and value_coded > 0 and YEAR(obs_datetime) = 2016 and QUARTER(obs_datetime) = 1)) OR (concept_id = 99064 and value_coded > 0 and YEAR(obs_datetime) = 2016 and QUARTER(obs_datetime) = 1))
+      AND person_id not in (select person_id from obs where concept_id = 99061 and value_coded > 0 and obs_datetime <= MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL 1 DAY)
+            AND o.person_id NOT IN (
+        SELECT person_id FROM obs oi
+        WHERE
+          oi.obs_datetime <= MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL 1 DAY
+            AND ((oi.concept_id = 90315 AND oi.value_coded > 0))
+            AND oi.voided = 0))
             GROUP BY p.person_id) enrollment USING (indicator_id)
          GROUP BY q16indicator) ind16 ON (ind15.indicator_id = ind16.indicator_id)
         INNER JOIN
@@ -1896,10 +1910,24 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
                             TIMESTAMPDIFF(YEAR, p.birthdate,  (MAKEDATE(start_year,1) + INTERVAL start_quarter QUARTER - INTERVAL 1 DAY)) AS age
             FROM person p
               INNER JOIN obs o ON (p.person_id = o.person_id AND o.voided = 0
-              AND o.concept_id = 99161
               AND o.person_id IN (SELECT DISTINCT oi.person_id FROM obs oi WHERE oi.concept_id = 99082 AND oi.value_numeric > 0 AND oi.voided = 0))
-              AND QUARTER(o.value_datetime) = start_quarter
-                                         AND YEAR(o.value_datetime) = start_year
+              AND o.person_id IN (SELECT
+    o.person_id
+    FROM
+        obs o
+    WHERE
+        QUARTER(o.obs_datetime) = start_quarter
+            AND YEAR(o.obs_datetime) = start_year
+            AND ((o.concept_id = 90315 AND o.value_coded > 0))
+            AND o.voided = 0
+            AND person_id not in (select person_id from obs where ((concept_id = 99110 and value_coded = 90003 and YEAR(obs_datetime) = 2016 and QUARTER(obs_datetime) = 1) AND person_id in (select person_id from obs where concept_id = 90315 and value_coded > 0 and YEAR(obs_datetime) = 2016 and QUARTER(obs_datetime) = 1)) OR (concept_id = 99064 and value_coded > 0 and YEAR(obs_datetime) = 2016 and QUARTER(obs_datetime) = 1))
+      AND person_id not in (select person_id from obs where concept_id = 99061 and value_coded > 0 and obs_datetime <= MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL 1 DAY)
+            AND o.person_id NOT IN (
+        SELECT person_id FROM obs oi
+        WHERE
+          oi.obs_datetime <= MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL 1 DAY
+            AND ((oi.concept_id = 90315 AND oi.value_coded > 0))
+            AND oi.voided = 0))
             GROUP BY p.person_id) enrollment USING (indicator_id)
          GROUP BY q17indicator) ind17 ON (ind16.indicator_id = ind17.indicator_id)
         INNER JOIN
@@ -1923,10 +1951,25 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
             FROM person p
               INNER JOIN obs o ON (p.person_id = o.person_id
                                    AND o.voided = 0
-                                   AND QUARTER(o.value_datetime) = start_quarter
-                   AND YEAR(o.value_datetime) = start_year
-                                    AND o.person_id IN(SELECT DISTINCT oi.person_id FROM obs oi WHERE oi.concept_id = 90012 AND oi.value_coded = 90003)
-                                   AND o.concept_id = 99161)
+                                    AND o.person_id IN(SELECT DISTINCT oi.person_id FROM obs oi WHERE oi.concept_id = 90012 AND oi.value_coded = 90003  AND QUARTER(oi.value_datetime) = start_quarter
+                   AND YEAR(oi.value_datetime) = start_year)
+                                   AND o.person_id IN (SELECT
+    o.person_id
+    FROM
+        obs o
+    WHERE
+        QUARTER(o.obs_datetime) = start_quarter
+            AND YEAR(o.obs_datetime) = start_year
+            AND ((o.concept_id = 90315 AND o.value_coded > 0))
+            AND o.voided = 0
+            AND person_id not in (select person_id from obs where ((concept_id = 99110 and value_coded = 90003 and YEAR(obs_datetime) = 2016 and QUARTER(obs_datetime) = 1) AND person_id in (select person_id from obs where concept_id = 90315 and value_coded > 0 and YEAR(obs_datetime) = 2016 and QUARTER(obs_datetime) = 1)) OR (concept_id = 99064 and value_coded > 0 and YEAR(obs_datetime) = 2016 and QUARTER(obs_datetime) = 1))
+      AND person_id not in (select person_id from obs where concept_id = 99061 and value_coded > 0 and obs_datetime <= MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL 1 DAY)
+            AND o.person_id NOT IN (
+        SELECT person_id FROM obs oi
+        WHERE
+          oi.obs_datetime <= MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL 1 DAY
+            AND ((oi.concept_id = 90315 AND oi.value_coded > 0))
+            AND oi.voided = 0)))
             GROUP BY p.person_id) enrollment USING (indicator_id)
          GROUP BY q18indicator) ind18 ON (ind17.indicator_id = ind18.indicator_id)
         INNER JOIN
@@ -2413,6 +2456,7 @@ GROUP BY q7indicator) ind7 ON (ind6.indicator_id = ind7.indicator_id)
 
     END$$
 DELIMITER ;
+
 
 DELIMITER $$
 CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `hmis106a1aYouth`(IN start_year INT, IN start_quarter INT)
