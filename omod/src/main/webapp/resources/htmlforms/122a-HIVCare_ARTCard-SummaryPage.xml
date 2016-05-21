@@ -69,10 +69,14 @@
                 if (class_name.indexOf('Children') == -1) {
                     // // group.find('select').prop("selectedIndex", 0);
                     group.find('select').attr("disabled", disable);
+                    group.find("select").fadeTo(250, 1);
+                    group.find("input").fadeTo(250, 1);
                 }
                 if (class_name.indexOf('GrandChildren') == -1) {
                     // // group.find("input").attr("value", "");
                     group.find("input").attr("disabled", disable1);
+                    group.find("select").fadeTo(250, 1);
+                    group.find("input").fadeTo(250, 1);
                 }
 
             });
@@ -213,6 +217,8 @@
                 if (class_name.indexOf('Children') == -1) {
                     // // group.find("input").attr("value", "");
                     group.find("input").attr("disabled", disable);
+                    group.find("select").fadeTo(250, 1);
+                    group.find("input").fadeTo(250, 1);
                 }
 
             });
@@ -269,6 +275,8 @@
                     // // group.find("input").attr("value", "");
                     group.find("input").attr("disabled", disable);
                     group.find("select").attr("disabled", disable);
+                    group.find("select").fadeTo(250, 1);
+                    group.find("input").fadeTo(250, 1);
                 }
             });
         }
@@ -357,6 +365,8 @@
                 if (class_name.indexOf('Child') == -1) {
                     // // group.find("input").attr("value", "");
                     group.find("input").attr("disabled", disable);
+                    group.find("select").fadeTo(250, 1);
+                    group.find("input").fadeTo(250, 1);
                 }
             });
         }
@@ -413,6 +423,8 @@
                 if (class_name.indexOf('Child') == -1) {
                     // // group.find("input").attr("value", "");
                     group.find("input").attr("disabled", disable);
+                    group.find("select").fadeTo(250, 1);
+                    group.find("input").fadeTo(250, 1);
                 }
             });
         }
@@ -480,11 +492,15 @@
                 var group = jq(this);
                 if (class_name.indexOf('Child') == -1) {
                     group.find("input").attr("disabled", disable);
+                    group.find("select").fadeTo(250, 1);
+                    group.find("input").fadeTo(250, 1);
                 }
                 if (class_name.indexOf('GrandChild') == -1) {
                     // // group.find("input").attr("value", "");
                     // // group.find('select').prop("selectedIndex", 0);
                     group.find('select').attr("disabled", disable2);
+                    group.find("select").style=
+                    group.find("input#").fadeTo(250, 1);
                 }
             });
         }
@@ -1116,7 +1132,6 @@
                 </tbody>
             </table>
         </section>
-        <excludeIf velocityTest="$patient.gender =='M' ">
             <section class="exposed-infant">
                 <h3>Exposed Infant Follow-up</h3>
                 <table border="0" style="background-color: #EEE">
@@ -1358,7 +1373,6 @@
                     </tr>
                 </table>
             </section>
-        </excludeIf>
         <section>
             <h3>Prior ART</h3>
             <table border="0" id="art-history" style="background-color: #EEE">
