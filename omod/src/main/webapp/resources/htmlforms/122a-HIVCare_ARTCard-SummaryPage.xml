@@ -1116,7 +1116,6 @@
                 </tbody>
             </table>
         </section>
-        <excludeIf velocityTest="$patient.gender =='M' ">
             <section class="exposed-infant">
                 <h3>Exposed Infant Follow-up</h3>
                 <table border="0" style="background-color: #EEE">
@@ -1358,7 +1357,6 @@
                     </tr>
                 </table>
             </section>
-        </excludeIf>
         <section>
             <h3>Prior ART</h3>
             <table border="0" id="art-history" style="background-color: #EEE">
