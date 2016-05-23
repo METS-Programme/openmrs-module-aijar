@@ -504,6 +504,16 @@
                     });
                 }
 
+        		// add JQuery validator classes and rules
+				jq("#90278 input").addClass("ugphone");
+
+				// add the validator on the beforeSubmit
+				beforeSubmit.push(function(){
+						jq("#htmlform").validate();
+		                return jq("#htmlform").valid();
+					}
+				)
+
                 var gender = jq("span.gender").html();
                 var age = jq("span.age").html();
 
@@ -886,7 +896,7 @@
                 <tr>
                     <td>
                         <label>Telephone (whose)</label>
-                        <obs conceptId="90278" size="12"/>
+                        <obs conceptId="90278" size="12" class="ugphone" id="90278"/>
                     </td>
                     <td>
                         <label>Home Care provided by:</label>
