@@ -1440,7 +1440,6 @@ UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.conc
 
 -- Started on CPT
 UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id,o.value_datetime from obs o where o.concept_id = 99773 and YEAR(o.value_datetime) = start_year AND MONTH(o.value_datetime) = start_month group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET started_on_cpt = 1,started_on_cpt_within_2_months = TIMESTAMPDIFF(MONTH, t.dob,t1.value_datetime);
-
 SELECT
         (SELECT COUNT(*) FROM aijar_105_eid where first_pcr = 1 and first_pcr_age <= 18) AS '1PCR',
         (SELECT COUNT(*) FROM aijar_105_eid where second_pcr = 1 and second_pcr_age <= 18) AS '2PCR',
