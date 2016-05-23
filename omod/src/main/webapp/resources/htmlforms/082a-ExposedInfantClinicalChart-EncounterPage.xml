@@ -571,7 +571,7 @@
                     <tr>
                         <td colspan="2">Date of Appointment</td>
                         <td>
-                            <obs conceptId="99443"/>
+                            <obs conceptId="99443" allowFutureDates="true" />
                         </td>
                     </tr>
                     <tr>

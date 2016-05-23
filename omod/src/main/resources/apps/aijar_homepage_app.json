@@ -56,5 +56,20 @@
         "order": 120
       }
     ]
+  },
+  {
+    "id": "aijar.cohortbuilder.link",
+    "extensions": [
+      {
+        "id": "aijar.cohortbuilder.homepageLink",
+        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+        "type": "link",
+        "label": "aijar.app.cohortbuilder.label",
+        "url": "cohortBuilder.list",
+        "icon": "icon-building",
+        "order": 105,
+        "requiredPrivilege": "Manage Reports"
+      }
+    ]
   }
 ]
