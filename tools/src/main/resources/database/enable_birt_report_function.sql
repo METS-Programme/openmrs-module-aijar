@@ -1352,96 +1352,114 @@ BEGIN
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `hmis105EID`(IN start_year CHAR(5), IN start_month CHAR(3))
-BEGIN DECLARE start_year_month CHAR(6) DEFAULT CONCAT(start_year,start_month);
-      SELECT
-        (SELECT COUNT(*)
-         FROM encounter e
-           INNER JOIN obs o ON (o.encounter_id = e.encounter_id
-                                AND o.voided = 0
-                                AND e.voided = 0)
-         WHERE EXTRACT(YEAR_MONTH
-                       FROM e.encounter_datetime) = start_year_month
-               AND o.concept_id = 99606
-               AND EXTRACT(YEAR_MONTH
-                           FROM o.value_datetime) = start_year_month) AS '1PCR',
-        (SELECT COUNT(*)
-         FROM encounter e
-           INNER JOIN obs o ON (o.encounter_id = e.encounter_id
-                                AND o.voided = 0
-                                AND e.voided = 0)
-         WHERE EXTRACT(YEAR_MONTH
-                       FROM e.encounter_datetime) = start_year_month
-               AND o.concept_id = 99436
-               AND EXTRACT(YEAR_MONTH
-                           FROM o.value_datetime) = start_year_month) AS '2PCR',
-        (SELECT COUNT(*)
-         FROM encounter e
-           INNER JOIN obs o ON (o.encounter_id = e.encounter_id
-                                AND o.voided = 0
-                                AND e.voided = 0)
-         WHERE EXTRACT(YEAR_MONTH
-                       FROM e.encounter_datetime) = start_year_month
-               AND o.concept_id = 99279
-               AND o.value_numeric <= 2) AS '<2 months',
-        (SELECT COUNT(*) FROM obs o WHERE o.voided = 0 AND o.concept_id = 99435 AND EXTRACT(YEAR_MONTH FROM o.obs_datetime) = start_year_month) AS '1PCRResults',
-        (SELECT COUNT(*) FROM obs o WHERE o.voided = 0 AND o.concept_id = 99435 AND EXTRACT(YEAR_MONTH FROM o.obs_datetime) = start_year_month AND o.value_coded = 703) AS '1PCRResults+',
-        (SELECT COUNT(*) FROM obs o WHERE o.voided = 0 AND o.concept_id = 99440 AND EXTRACT(YEAR_MONTH FROM o.obs_datetime) = start_year_month) AS '2PCRResults',
-        (SELECT COUNT(*) FROM obs o WHERE o.voided = 0 AND o.concept_id = 99440 AND EXTRACT(YEAR_MONTH FROM o.obs_datetime) = start_year_month AND o.value_coded = 703) AS '2PCRResults+',
-        (SELECT COUNT(*) FROM obs o WHERE o.voided = 0 AND EXTRACT(YEAR_MONTH FROM o.obs_datetime) = start_year_month AND o.concept_id IN (99435,99440)) AS 'PCRResults',
-        (SELECT COUNT(*)
-         FROM
-           (SELECT o.concept_id,o.person_id,o.obs_datetime AS 'pcrdate' FROM obs o WHERE o.voided = 0 AND EXTRACT(YEAR_MONTH FROM o.obs_datetime) = start_year_month AND o.concept_id IN (99606 ,99436)) t1
-           LEFT OUTER JOIN
-           (SELECT o.concept_id,o.person_id,o.value_datetime AS 'pcrresultsdate' FROM  obs o WHERE o.voided = 0 AND EXTRACT(YEAR_MONTH FROM o.obs_datetime) = start_year_month AND o.concept_id IN (99435,99440)) t2
-             ON (t1.person_id = t2.person_id AND DATEDIFF(t1.pcrdate, t2.pcrresultsdate) <= 14 AND ((t1.concept_id = 99606 AND t2.concept_id = 99435)OR (t1.concept_id = 99436 AND t2.concept_id = 99440)))) AS 'Within two weeks',
-        (SELECT COUNT(*) FROM  obs o WHERE o.voided = 0 AND EXTRACT(YEAR_MONTH FROM o.obs_datetime) = start_year_month AND o.concept_id IN (99438 ,99442)) 'Given to Caregiver',
-        (SELECT COUNT(*) FROM encounter e INNER JOIN obs o ON (o.encounter_id = e.encounter_id AND o.voided = 0 AND e.voided = 0 AND e.form_id IN (10 ,11)) WHERE EXTRACT(YEAR_MONTH FROM e.encounter_datetime) = start_year_month
-                                                                                                                                                                  AND o.concept_id IN (1040 ,
-                                                                                                                                                                                       1326)) AS 'rapidtest',
+CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `hmis105EID`(IN start_year int, IN start_month int)
+BEGIN
 
-        (SELECT COUNT(*)
-         FROM encounter e
-           INNER JOIN obs o ON (o.encounter_id = e.encounter_id
-                                AND o.voided = 0
-                                AND e.voided = 0
-                                AND e.form_id IN (select encounter_type_id from encounter_type where locate('eid',name) > 0 and locate('card',name) > 0))
-         WHERE EXTRACT(YEAR_MONTH
-                       FROM e.encounter_datetime) = start_year_month
-               AND o.concept_id IN (1040 ,
-                                    1326)
-               AND o.value_coded = 703) AS 'rapidtestresult',
+    DROP TABLE IF EXISTS aijar_105_eid;
 
-        (SELECT COUNT(*)
-         FROM encounter e
-           INNER JOIN obs o ON (o.encounter_id = e.encounter_id
-                                AND o.voided = 0
-                                AND e.voided = 0
-                                AND e.form_id IN (select encounter_type_id from encounter_type where locate('eid',name) > 0 and locate('card',name) > 0))
-         WHERE EXTRACT(YEAR_MONTH
-                       FROM e.encounter_datetime) = start_year_month
-               AND o.concept_id = 99751
-               AND o.value_text IS NOT NULL) AS 'oncare',
+    CREATE TABLE IF NOT EXISTS aijar_105_eid (
+    patient_id INT,
+    dob date,
+    age INT,
+    gender CHAR(1),
+    date_enrolled DATE,
+    first_pcr tinyint default 0,
+    second_pcr tinyint default 0,
+    first_pcr_age int,
+    second_pcr_age int,
+    first_pcr_test_date date,
+    second_pcr_test_date date,
+    first_pcr_test_results tinyint default 0,
+    first_pcr_test_results_positive tinyint default 0,
+    second_pcr_test_results tinyint default 0,
+    second_pcr_test_results_positive tinyint default 0,
+    first_pcr_results_given_to_care_giver tinyint default 0,
+    date_first_pcr_results_given_to_care_give date,
+    second_pcr_results_given_to_care_giver tinyint default 0,
+    date_second_pcr_results_given_to_care_give date,
+    rapid_test_at_18_months tinyint default 0,
+    rapid_test_at_18_months_positive tinyint default 0,
+    on_care tinyint default 0,
+    started_on_cpt tinyint default 0,
+    started_on_cpt_within_2_months tinyint default 0
+    );
 
-        (SELECT COUNT(*)
-         FROM encounter e
-           INNER JOIN obs o ON (o.encounter_id = e.encounter_id
-                                AND o.voided = 0
-                                AND e.voided = 0
-                                AND e.form_id IN (select encounter_type_id from encounter_type where locate('eid',name) > 0 and locate('card',name) > 0))
-         WHERE EXTRACT(YEAR_MONTH
-                       FROM e.encounter_datetime) = start_year_month
-               AND o.concept_id = 99037) AS 'oncpt',
+    insert into aijar_105_eid(patient_id,dob,age,gender,date_enrolled)
+    SELECT
+        p.person_id,
+        p.birthdate,
+		TIMESTAMPDIFF(MONTH, p.birthdate, (MAKEDATE(start_year, 1) + INTERVAL start_month MONTH - INTERVAL 1 DAY)),
+    p.gender,
+    e.encounter_datetime
+FROM person p
+INNER JOIN encounter e ON(e.patient_id = p.person_id AND e.encounter_type IN (select encounter_type_id from encounter_type where uuid in('9fcfcc91-ad60-4d84-9710-11cc25258719','4345dacb-909d-429c-99aa-045f2db77e2b')) AND e.voided = 0 and p.voided = 0 ) group by e.patient_id;
 
-        (SELECT COUNT(*)
-         FROM encounter e
-           INNER JOIN obs o ON (o.encounter_id = e.encounter_id
-                                AND o.voided = 0
-                                AND e.voided = 0
-                                AND e.form_id IN (select encounter_type_id from encounter_type where locate('eid',name) > 0 and locate('card',name) > 0))
-         WHERE EXTRACT(YEAR_MONTH
-                       FROM e.encounter_datetime) = start_year_month
-               AND o.concept_id = 99037) AS 'oncptwithin2months'; END$$
+-- First PCR Date during month and year
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 99606 and YEAR(o.value_datetime) = start_year AND MONTH(o.value_datetime) = start_month group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET first_pcr = 1;
+
+-- Second PCR Date during month and year
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 99436 and YEAR(o.value_datetime) = start_year AND MONTH(o.value_datetime) = start_month group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET second_pcr = 1;
+
+-- Age at first PCR
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id, MAX(o.value_datetime) as ag from obs o where o.concept_id = 99606 group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET first_pcr_age = TIMESTAMPDIFF(MONTH, t.dob, t1.ag),first_pcr_test_date = t1.ag;
+
+-- Age at second PCR
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id, MAX(o.value_datetime) as ag from obs o where o.concept_id = 99436  group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET second_pcr_age = TIMESTAMPDIFF(MONTH, t.dob,t1.ag), second_pcr_test_date = t1.ag;
+
+-- First PCR test results
+-- TODO fix the concept for when results are received
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 99435 and YEAR(o.obs_datetime) = start_year AND MONTH(o.obs_datetime) = start_month group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET first_pcr_test_results = 1;
+
+-- First PCR test results postive
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 99435 and YEAR(o.obs_datetime) = start_year AND MONTH(o.obs_datetime) = start_month group by o.person_id and o.voided = 0 and o.value_coded = 703) t1 ON t.patient_id = t1.person_id SET first_pcr_test_results_positive = 1;
+
+
+-- Second PCR test results
+-- TODO fix the concept for when results are received
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 99440 and YEAR(o.obs_datetime) = start_year AND MONTH(o.obs_datetime) = start_month group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET second_pcr_test_results = 1;
+
+-- Second PCR test results postive
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 99440 and YEAR(o.obs_datetime) = start_year AND MONTH(o.obs_datetime) = start_month group by o.person_id and o.voided = 0 and o.value_coded = 703) t1 ON t.patient_id = t1.person_id SET second_pcr_test_results_positive = 1;
+
+
+-- Fisrt PCR results give to care giver
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id,o.value_datetime from obs o where o.concept_id = 99438 and YEAR(o.value_datetime) = start_year AND MONTH(o.value_datetime) = start_month group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET first_pcr_results_given_to_care_giver = 1,date_first_pcr_results_given_to_care_give = t1.value_datetime ;
+
+-- Second PCR results give to care giver
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id,o.value_datetime from obs o where o.concept_id = 99442 and YEAR(o.value_datetime) = start_year AND MONTH(o.value_datetime) = start_month group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET second_pcr_results_given_to_care_giver = 1 ,date_second_pcr_results_given_to_care_give = t1.value_datetime;
+
+
+-- Rapid test at 18 months
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 162879 and YEAR(o.value_datetime) = start_year AND MONTH(o.value_datetime) = start_month group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET rapid_test_at_18_months = 1;
+
+-- Rapid test at 18 months  positive
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 162880 and value_coded = 703 and YEAR(o.obs_datetime) = start_year AND MONTH(o.obs_datetime) = start_month group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET rapid_test_at_18_months_positive = 1;
+
+-- EID enrolled into care
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 163004 and value_coded = 1065 and YEAR(o.obs_datetime) = start_year AND MONTH(o.obs_datetime) = start_month group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET on_care = 1;
+
+-- Started on CPT
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id,o.value_datetime from obs o where o.concept_id = 99773 and YEAR(o.value_datetime) = start_year AND MONTH(o.value_datetime) = start_month group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET started_on_cpt = 1,started_on_cpt_within_2_months = TIMESTAMPDIFF(MONTH, t.dob,t1.value_datetime);
+SELECT
+        (SELECT COUNT(*) FROM aijar_105_eid where first_pcr = 1 and first_pcr_age <= 18) AS '1PCR',
+        (SELECT COUNT(*) FROM aijar_105_eid where second_pcr = 1 and second_pcr_age <= 18) AS '2PCR',
+        (SELECT COUNT(*) FROM aijar_105_eid where (first_pcr = 1 OR second_pcr = 1) and (first_pcr_age < 2 or second_pcr_age < 2)) AS '<2 months',
+        (SELECT COUNT(*) FROM aijar_105_eid where first_pcr_test_results = 1) AS '1PCRResults',
+        (SELECT COUNT(*) FROM aijar_105_eid where first_pcr_test_results = 1 and first_pcr_test_results_positive = 1) AS '1PCRResults+',
+        (SELECT COUNT(*) FROM aijar_105_eid where second_pcr_test_results = 1) AS '2PCRResults',
+        (SELECT COUNT(*) FROM aijar_105_eid where second_pcr_test_results = 1 and second_pcr_test_results_positive = 1) AS '2PCRResults+',
+        (SELECT COUNT(*) FROM aijar_105_eid where first_pcr = 1 OR second_pcr = 1) AS 'PCRResults',
+        (SELECT COUNT(*) FROM aijar_105_eid where (first_pcr = 1 OR second_pcr = 1) and (DATEDIFF(first_pcr_test_date, date_first_pcr_results_given_to_care_give) <= 14 OR DATEDIFF(second_pcr_test_date, date_second_pcr_results_given_to_care_give) <= 14)) AS 'Within two weeks',
+        (SELECT COUNT(*) FROM aijar_105_eid where first_pcr_results_given_to_care_giver = 1) AS 'Given to Caregiver',
+        (SELECT COUNT(*) FROM aijar_105_eid where rapid_test_at_18_months = 1) AS 'rapidtest',
+        (SELECT COUNT(*) FROM aijar_105_eid where rapid_test_at_18_months_positive = 1) AS 'rapidtestresult',
+        (SELECT COUNT(*) FROM aijar_105_eid where on_care = 1) AS 'oncare',
+        (SELECT COUNT(*) FROM aijar_105_eid where started_on_cpt = 1) AS 'oncpt',
+        (SELECT COUNT(*) FROM aijar_105_eid where started_on_cpt_within_2_months = 1) AS 'oncptwithin2months';
+
+END$$
+DELIMITER ;
+
 
 DELIMITER $$
 CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `hmis106a1a`(IN start_year INT, IN start_quarter INT)
