@@ -264,6 +264,16 @@
                     });
                 }
 
+				// add JQuery validator classes and rules
+				jq("#162889 input, #162870 input").addClass("ugphone");
+
+				// add the validator on the beforeSubmit
+				beforeSubmit.push(function(){
+						jq("#htmlform").validate();
+						return jq("#htmlform").valid();
+					}
+				)
+
                 var gender = jq("span.gender").html();
                 var age = jq("span.age").html();
                 var gender = jq("span.gender").html();
@@ -404,7 +414,7 @@
                     </tr>
                     <tr>
                         <td >Telephone No</td>
-                        <td><obs conceptId="162889"/></td>
+                        <td><obs conceptId="162889" id="162889"/></td>
                         <td >District</td>
                         <td ><obs conceptId="162884"/></td>
                         <td >County</td>
@@ -441,8 +451,8 @@
                         <td  colspan="3"><obs conceptId="90269" labelText="Relationship:"/></td>
                     </tr>
                     <tr>
-                        <td >Telphone No</td>
-                        <td ><obs conceptId="162870"/></td>
+                        <td >Telephone No</td>
+                        <td ><obs conceptId="162870" id="162870"/></td>
                         <td >Has this person been disclosed to?</td>
                         <td  colspan="3"><obs conceptId="162871"/></td>
                     </tr>
