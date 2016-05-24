@@ -118,6 +118,9 @@
   DROP FUNCTION IF EXISTS `startedARTDuringQuarter`;
   DROP FUNCTION IF EXISTS `transferInRegimen`;
   DROP FUNCTION IF EXISTS `enrolledOnARTDuringQuarter`;
+  DROP FUNCTION IF EXISTS `fn_intersect_string`;
+  DROP FUNCTION IF EXISTS `getRecieviedARTBeforeQuarter`;
+  DROP FUNCTION IF EXISTS `getRecieviedARTDuringQuarter`;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getARTData`(IN start_year INT, IN start_month INT)
 BEGIN
