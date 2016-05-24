@@ -1477,6 +1477,7 @@ BEGIN
     date_enrolled DATE,
     first_visit_in_qurater tinyint default 0,
     visited_in_quarter tinyint default 0,
+    visit_before_qurater tinyint default 0,
     preg_and_lactating tinyint default 0,
     started_inh tinyint default 0,
     transfer_in tinyint default 0,
@@ -1491,6 +1492,7 @@ BEGIN
     malnourished tinyint default 0,
     eligible_and_ready tinyint default 0,
     art_based_on_preg tinyint default 0,
+    preg_during_quarter tinyint default 0,
     art_based_on_cd4 tinyint default 0,
     first_line_child tinyint default 0,
     first_line_adult tinyint default 0,
@@ -1507,6 +1509,9 @@ BEGIN
     e.encounter_datetime
 FROM person p
 INNER JOIN encounter e ON(e.patient_id = p.person_id AND e.encounter_type IN (select encounter_type_id from encounter_type where uuid in('8d5b27bc-c2cc-11de-8d13-0010c6dffd0f','8d5b2be0-c2cc-11de-8d13-0010c6dffd0f')) AND e.voided = 0 and p.voided = 0 ) group by e.patient_id;
+
+-- Had encounter before this quarter
+UPDATE aijar_106a1a AS t INNER JOIN (select e.patient_id from encounter e where e.encounter_datetime <= (MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL 1 DAY) and e.voided = 0 group by patient_id) t1 ON t.patient_id = t1.patient_id SET visit_before_qurater = 1;
 
 -- Had first encounter this quarter
 UPDATE aijar_106a1a AS t INNER JOIN (select e.patient_id from encounter e where YEAR(e.encounter_datetime) = start_year AND QUARTER(e.encounter_datetime) = start_quarter and e.voided = 0 and e.patient_id not in (select ei.patient_id from encounter ei where ei.encounter_datetime <= (MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL 1 DAY) ) group by patient_id) t1 ON t.patient_id = t1.patient_id SET first_visit_in_qurater = 1;
@@ -1525,7 +1530,6 @@ UPDATE aijar_106a1a AS t INNER JOIN (select person_id from obs where concept_id 
 
 -- Update the column transfered from another facility while on art
 UPDATE aijar_106a1a AS t INNER JOIN (select person_id from obs where concept_id = 99064 and value_coded > 0 and YEAR(obs_datetime) = start_year and QUARTER(obs_datetime) = start_quarter and voided = 0 group by person_id having count(*) BETWEEN 1 AND 3) t1 ON t.patient_id = t1.person_id SET transfer_in_on_art = 1;
-
 
 -- Update the column for patients who are on art this quarter
 UPDATE aijar_106a1a AS t INNER JOIN (select person_id from obs where ((concept_id = 90315 AND value_coded > 0) OR (concept_id = 99061 AND value_coded > 0)) and YEAR(obs_datetime) = start_year and QUARTER(obs_datetime) = start_quarter  AND voided = 0 group by person_id) t1 ON t.patient_id = t1.person_id SET on_art_this_quarter = 1;
@@ -1556,10 +1560,14 @@ UPDATE aijar_106a1a AS t INNER JOIN (select person_id from obs where concept_id 
 
 -- ART section
 
--- Update the column for those started art based on cd4
-UPDATE aijar_106a1a AS t INNER JOIN (select person_id from obs where concept_id = 99602  and value_coded = 1 and YEAR(obs_datetime) = start_year and QUARTER(obs_datetime) = start_quarter group by person_id) t1 ON t.patient_id = t1.person_id SET art_based_on_preg = 1;
+-- Pregnant during quarter
+UPDATE aijar_106a1a AS t INNER JOIN (select person_id from obs where concept_id = 90041  and value_coded = 1065 and YEAR(obs_datetime) = start_year and QUARTER(obs_datetime) = start_quarter group by person_id) t1 ON t.patient_id = t1.person_id SET preg_during_quarter = 1;
 
 -- Update the column for those started art based on pregnancy
+UPDATE aijar_106a1a AS t INNER JOIN (select person_id from obs where concept_id = 99602  and value_numeric = 1 and YEAR(obs_datetime) = start_year and QUARTER(obs_datetime) = start_quarter group by person_id) t1 ON t.patient_id = t1.person_id SET art_based_on_preg = 1;
+
+
+-- Update the column for those started art based on cd4
 UPDATE aijar_106a1a AS t INNER JOIN (select person_id from obs where concept_id = 99082  and value_numeric > 0 and YEAR(obs_datetime) = start_year and QUARTER(obs_datetime) = start_quarter group by person_id) t1 ON t.patient_id = t1.person_id SET art_based_on_cd4 = 1;
 
 -- Patients on first line regimen children
@@ -1603,7 +1611,7 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where first_visit_in_qurater = 0) Enrollment USING (indicator_id)) ind1
+        aijar_106a1a where visit_before_qurater = 1 and transfer_in = 0) Enrollment USING (indicator_id)) ind1
         LEFT JOIN
     (SELECT
         indicator_id,
@@ -1625,7 +1633,7 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where first_visit_in_qurater = 1) Enrollment USING (indicator_id)) ind2 ON (ind1.indicator_id = ind2.indicator_id)
+        aijar_106a1a where first_visit_in_qurater = 1 and transfer_in = 0) Enrollment USING (indicator_id)) ind2 ON (ind1.indicator_id = ind2.indicator_id)
         LEFT JOIN
     (SELECT
         indicator_id,
@@ -1641,7 +1649,7 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where first_visit_in_qurater = 1 and preg_and_lactating = 1) Enrollment USING (indicator_id)
+        aijar_106a1a where first_visit_in_qurater = 1 and preg_and_lactating = 1 and transfer_in = 0) Enrollment USING (indicator_id)
     GROUP BY q3indicator) ind3 ON (ind2.indicator_id = ind3.indicator_id)
         LEFT JOIN
     (SELECT
@@ -1657,7 +1665,7 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where first_visit_in_qurater = 1 and started_inh = 1) Enrollment USING (indicator_id)) ind4 ON (ind3.indicator_id = ind4.indicator_id)
+        aijar_106a1a where first_visit_in_qurater = 1 and started_inh = 1 and transfer_in = 0) Enrollment USING (indicator_id)) ind4 ON (ind3.indicator_id = ind4.indicator_id)
         LEFT JOIN
     (SELECT
         indicator_id,
@@ -1679,7 +1687,7 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a) Enrollment USING (indicator_id)) ind5 ON (ind4.indicator_id = ind5.indicator_id)
+        aijar_106a1a where transfer_in = 0 and (visited_in_quarter = 1 or visit_before_qurater = 1)) Enrollment USING (indicator_id)) ind5 ON (ind4.indicator_id = ind5.indicator_id)
         LEFT JOIN
     (SELECT
         indicator_id,
@@ -1710,7 +1718,7 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0) enrollment USING (indicator_id)) ind7 ON (ind6.indicator_id = ind7.indicator_id)
+        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and on_art_before_this_quarter = 0) enrollment USING (indicator_id)) ind7 ON (ind6.indicator_id = ind7.indicator_id)
         LEFT JOIN
     (SELECT
         indicator_id,
@@ -1726,7 +1734,7 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and on_cpt = 1) enrollment USING (indicator_id)) ind8 ON (ind7.indicator_id = ind8.indicator_id)
+        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and on_cpt = 1 and on_art_before_this_quarter = 0) enrollment USING (indicator_id)) ind8 ON (ind7.indicator_id = ind8.indicator_id)
         LEFT JOIN
     (SELECT
         indicator_id,
@@ -1741,7 +1749,7 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and assessed_for_tb = 1) enrollment USING (indicator_id)) ind9 ON (ind8.indicator_id = ind9.indicator_id)
+        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and assessed_for_tb = 1 and on_art_before_this_quarter = 0) enrollment USING (indicator_id)) ind9 ON (ind8.indicator_id = ind9.indicator_id)
         LEFT JOIN
     (SELECT
         indicator_id,
@@ -1756,7 +1764,7 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and diagnosed_with_tb = 1) enrollment USING (indicator_id)) ind10 ON (ind9.indicator_id = ind10.indicator_id)
+        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and diagnosed_with_tb = 1 and on_art_before_this_quarter = 0) enrollment USING (indicator_id)) ind10 ON (ind9.indicator_id = ind10.indicator_id)
         LEFT JOIN
     (SELECT
         indicator_id,
@@ -1771,7 +1779,7 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and started_tb_rx = 1) enrollment USING (indicator_id)) ind11 ON (ind10.indicator_id = ind11.indicator_id)
+        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and started_tb_rx = 1 and on_art_before_this_quarter = 0) enrollment USING (indicator_id)) ind11 ON (ind10.indicator_id = ind11.indicator_id)
         LEFT JOIN
     (SELECT
         indicator_id,
@@ -1786,7 +1794,7 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and assessed_for_malnutrition = 1) enrollment USING (indicator_id)) ind12 ON (ind11.indicator_id = ind12.indicator_id)
+        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and assessed_for_malnutrition = 1 and on_art_before_this_quarter = 0) enrollment USING (indicator_id)) ind12 ON (ind11.indicator_id = ind12.indicator_id)
         INNER JOIN
     (SELECT
         indicator_id,
@@ -1801,7 +1809,7 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and malnourished = 1) enrollment USING (indicator_id)) ind13 ON (ind12.indicator_id = ind13.indicator_id)
+        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and malnourished = 1 and on_art_before_this_quarter = 0) enrollment USING (indicator_id)) ind13 ON (ind12.indicator_id = ind13.indicator_id)
         INNER JOIN
     (SELECT
         indicator_id,
@@ -1815,7 +1823,7 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and eligible_and_ready = 1) enrollment USING (indicator_id)) ind14 ON (ind13.indicator_id = ind14.indicator_id)
+        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and eligible_and_ready = 1 and on_art_before_this_quarter = 0) enrollment USING (indicator_id)) ind14 ON (ind13.indicator_id = ind14.indicator_id)
         INNER JOIN
     (SELECT
         indicator_id,
@@ -1876,7 +1884,7 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where on_art_this_quarter = 1 and first_visit_in_qurater = 1 and art_based_on_cd4 = 1) enrollment USING (indicator_id)) ind17 ON (ind16.indicator_id = ind17.indicator_id)
+        aijar_106a1a where on_art_this_quarter = 1 and on_art_before_this_quarter = 0 and art_based_on_cd4 = 1 and transfer_in_on_art = 0) enrollment USING (indicator_id)) ind17 ON (ind16.indicator_id = ind17.indicator_id)
         INNER JOIN
     (SELECT
         indicator_id,
@@ -1893,7 +1901,7 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where on_art_this_quarter = 1 and first_visit_in_qurater = 1 and art_based_on_preg = 1) enrollment USING (indicator_id)) ind18 ON (ind17.indicator_id = ind18.indicator_id)
+        aijar_106a1a where on_art_this_quarter = 1 and on_art_before_this_quarter = 0 and (art_based_on_preg = 1 or preg_during_quarter = 1) and transfer_in_on_art = 0) enrollment USING (indicator_id)) ind18 ON (ind17.indicator_id = ind18.indicator_id)
         INNER JOIN
     (SELECT
         indicator_id,
@@ -2117,8 +2125,6 @@ FROM
 
 END$$
 DELIMITER ;
-
-
 
 DELIMITER $$
 CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `hmis106a1a`(IN start_year INT, IN start_quarter INT)
