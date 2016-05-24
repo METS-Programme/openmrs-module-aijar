@@ -39,6 +39,13 @@
 					<property name="resourcePath" value="css/aijar.css"/>
 					<property name="priority" value="-200" />
 				</bean>
+				<!-- Validation library -->
+				<bean class="org.openmrs.ui.framework.resource.Resource">
+					<property name="category" value="js" />
+					<property name="providerName" value="${project.parent.artifactId}" />
+					<property name="resourcePath" value="js/jquery.validate.min.js" />
+					<property name="priority" value="-195" />
+				</bean>
 				<bean class="org.openmrs.ui.framework.resource.Resource">
 					<property name="category" value="js" />
 					<property name="providerName" value="${project.parent.artifactId}" />

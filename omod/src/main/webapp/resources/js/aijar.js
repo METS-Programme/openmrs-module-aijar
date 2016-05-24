@@ -26,5 +26,14 @@ jq(document).ready(function () {
 
     // change the first em to the text National ID
     jq('em:contains("Patient ID")').text("National ID");
+
+    /* Add validation to all HTML forms built using HTML Form entry - their ID is htmlform
+     */
+    jq.validator.addMethod( "ugphone", function( phone_number, element ) {
+        phone_number = phone_number.replace( /\(|\)|\s+|-/g, "" );
+        return this.optional( element ) || phone_number.length == 10 &&
+                                           phone_number.match( /^[0-9]{1,10}$/ );
+    }, "Please specify a valid mobile number without any spaces like 0712345678" );
 });
+
 
