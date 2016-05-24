@@ -1352,7 +1352,7 @@ BEGIN
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `hmis105EID`(IN start_year int, IN start_month int)
+CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `hmis105EID`(IN start_year INT, IN start_month INT)
 BEGIN
 
     DROP TABLE IF EXISTS aijar_105_eid;
@@ -1395,55 +1395,56 @@ FROM person p
 INNER JOIN encounter e ON(e.patient_id = p.person_id AND e.encounter_type IN (select encounter_type_id from encounter_type where uuid in('9fcfcc91-ad60-4d84-9710-11cc25258719','4345dacb-909d-429c-99aa-045f2db77e2b')) AND e.voided = 0 and p.voided = 0 ) group by e.patient_id;
 
 -- First PCR Date during month and year
-UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 99606 and YEAR(o.value_datetime) = start_year AND MONTH(o.value_datetime) = start_month group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET first_pcr = 1;
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 99606 and YEAR(o.value_datetime) = start_year AND MONTH(o.value_datetime) = start_month and o.voided = 0) t1 ON t.patient_id = t1.person_id SET first_pcr = 1;
 
 -- Second PCR Date during month and year
-UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 99436 and YEAR(o.value_datetime) = start_year AND MONTH(o.value_datetime) = start_month group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET second_pcr = 1;
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 99436 and YEAR(o.value_datetime) = start_year AND MONTH(o.value_datetime) = start_month and o.voided = 0) t1 ON t.patient_id = t1.person_id SET second_pcr = 1;
 
 -- Age at first PCR
-UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id, MAX(o.value_datetime) as ag from obs o where o.concept_id = 99606 group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET first_pcr_age = TIMESTAMPDIFF(MONTH, t.dob, t1.ag),first_pcr_test_date = t1.ag;
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id, MAX(o.value_datetime) as ag from obs o where o.concept_id = 99606 and o.voided = 0) t1 ON t.patient_id = t1.person_id SET first_pcr_age = TIMESTAMPDIFF(MONTH, t.dob, t1.ag),first_pcr_test_date = t1.ag;
 
 -- Age at second PCR
-UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id, MAX(o.value_datetime) as ag from obs o where o.concept_id = 99436  group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET second_pcr_age = TIMESTAMPDIFF(MONTH, t.dob,t1.ag), second_pcr_test_date = t1.ag;
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id, MAX(o.value_datetime) as ag from obs o where o.concept_id = 99436 and o.voided = 0) t1 ON t.patient_id = t1.person_id SET second_pcr_age = TIMESTAMPDIFF(MONTH, t.dob,t1.ag), second_pcr_test_date = t1.ag;
 
 -- First PCR test results
 -- TODO fix the concept for when results are received
-UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 99435 and YEAR(o.obs_datetime) = start_year AND MONTH(o.obs_datetime) = start_month group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET first_pcr_test_results = 1;
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 99435 and YEAR(o.obs_datetime) = start_year AND MONTH(o.obs_datetime) = start_month and o.voided = 0) t1 ON t.patient_id = t1.person_id SET first_pcr_test_results = 1;
 
 -- First PCR test results postive
-UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 99435 and YEAR(o.obs_datetime) = start_year AND MONTH(o.obs_datetime) = start_month group by o.person_id and o.voided = 0 and o.value_coded = 703) t1 ON t.patient_id = t1.person_id SET first_pcr_test_results_positive = 1;
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 99435 and YEAR(o.obs_datetime) = start_year AND MONTH(o.obs_datetime) = start_month and o.voided = 0 and o.value_coded = 703) t1 ON t.patient_id = t1.person_id SET first_pcr_test_results_positive = 1;
 
 
 -- Second PCR test results
 -- TODO fix the concept for when results are received
-UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 99440 and YEAR(o.obs_datetime) = start_year AND MONTH(o.obs_datetime) = start_month group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET second_pcr_test_results = 1;
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 99440 and YEAR(o.obs_datetime) = start_year AND MONTH(o.obs_datetime) = start_month and o.voided = 0) t1 ON t.patient_id = t1.person_id SET second_pcr_test_results = 1;
 
 -- Second PCR test results postive
-UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 99440 and YEAR(o.obs_datetime) = start_year AND MONTH(o.obs_datetime) = start_month group by o.person_id and o.voided = 0 and o.value_coded = 703) t1 ON t.patient_id = t1.person_id SET second_pcr_test_results_positive = 1;
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 99440 and YEAR(o.obs_datetime) = start_year AND MONTH(o.obs_datetime) = start_month and o.voided = 0 and o.value_coded = 703) t1 ON t.patient_id = t1.person_id SET second_pcr_test_results_positive = 1;
 
 
 -- Fisrt PCR results give to care giver
-UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id,o.value_datetime from obs o where o.concept_id = 99438 and YEAR(o.value_datetime) = start_year AND MONTH(o.value_datetime) = start_month group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET first_pcr_results_given_to_care_giver = 1,date_first_pcr_results_given_to_care_give = t1.value_datetime ;
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id,o.value_datetime from obs o where o.concept_id = 99438 and YEAR(o.value_datetime) = start_year AND MONTH(o.value_datetime) = start_month and o.voided = 0) t1 ON t.patient_id = t1.person_id SET first_pcr_results_given_to_care_giver = 1,date_first_pcr_results_given_to_care_give = t1.value_datetime ;
 
 -- Second PCR results give to care giver
-UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id,o.value_datetime from obs o where o.concept_id = 99442 and YEAR(o.value_datetime) = start_year AND MONTH(o.value_datetime) = start_month group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET second_pcr_results_given_to_care_giver = 1 ,date_second_pcr_results_given_to_care_give = t1.value_datetime;
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id,o.value_datetime from obs o where o.concept_id = 99442 and YEAR(o.value_datetime) = start_year AND MONTH(o.value_datetime) = start_month and o.voided = 0) t1 ON t.patient_id = t1.person_id SET second_pcr_results_given_to_care_giver = 1 ,date_second_pcr_results_given_to_care_give = t1.value_datetime;
 
 
 -- Rapid test at 18 months
-UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 162879 and YEAR(o.value_datetime) = start_year AND MONTH(o.value_datetime) = start_month group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET rapid_test_at_18_months = 1;
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 162879 and YEAR(o.value_datetime) = start_year AND MONTH(o.value_datetime) = start_month and o.voided = 0) t1 ON t.patient_id = t1.person_id SET rapid_test_at_18_months = 1;
 
 -- Rapid test at 18 months  positive
-UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 162880 and value_coded = 703 and YEAR(o.obs_datetime) = start_year AND MONTH(o.obs_datetime) = start_month group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET rapid_test_at_18_months_positive = 1;
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 162880 and value_coded = 703 and YEAR(o.obs_datetime) = start_year AND MONTH(o.obs_datetime) = start_month and o.voided = 0) t1 ON t.patient_id = t1.person_id SET rapid_test_at_18_months_positive = 1;
 
 -- EID enrolled into care
-UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 163004 and value_coded = 1065 and YEAR(o.obs_datetime) = start_year AND MONTH(o.obs_datetime) = start_month group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET on_care = 1;
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 163004 and value_coded = 1065 and YEAR(o.obs_datetime) = start_year AND MONTH(o.obs_datetime) = start_month and o.voided = 0) t1 ON t.patient_id = t1.person_id SET on_care = 1;
 
 -- Started on CPT
-UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id,o.value_datetime from obs o where o.concept_id = 99773 and YEAR(o.value_datetime) = start_year AND MONTH(o.value_datetime) = start_month group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET started_on_cpt = 1,started_on_cpt_within_2_months = TIMESTAMPDIFF(MONTH, t.dob,t1.value_datetime);
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id,o.value_datetime from obs o where o.concept_id = 99773 and YEAR(o.value_datetime) = start_year AND MONTH(o.value_datetime) = start_month and o.voided = 0) t1 ON t.patient_id = t1.person_id SET started_on_cpt = 1,started_on_cpt_within_2_months = TIMESTAMPDIFF(MONTH, t.dob,t1.value_datetime);
+
 SELECT
-        (SELECT COUNT(*) FROM aijar_105_eid where first_pcr = 1 and first_pcr_age <= 18) AS '1PCR',
-        (SELECT COUNT(*) FROM aijar_105_eid where second_pcr = 1 and second_pcr_age <= 18) AS '2PCR',
-        (SELECT COUNT(*) FROM aijar_105_eid where (first_pcr = 1 OR second_pcr = 1) and (first_pcr_age < 2 or second_pcr_age < 2)) AS '<2 months',
+        (SELECT COUNT(*) FROM aijar_105_eid where first_pcr = 1 and age < 18) AS '1PCR',
+        (SELECT COUNT(*) FROM aijar_105_eid where second_pcr = 1 and age < 18) AS '2PCR',
+        (SELECT COUNT(*) FROM aijar_105_eid where (first_pcr = 1 OR second_pcr = 1) and age < 2) AS '<2 months',
         (SELECT COUNT(*) FROM aijar_105_eid where first_pcr_test_results = 1) AS '1PCRResults',
         (SELECT COUNT(*) FROM aijar_105_eid where first_pcr_test_results = 1 and first_pcr_test_results_positive = 1) AS '1PCRResults+',
         (SELECT COUNT(*) FROM aijar_105_eid where second_pcr_test_results = 1) AS '2PCRResults',
@@ -1457,8 +1458,10 @@ SELECT
         (SELECT COUNT(*) FROM aijar_105_eid where started_on_cpt = 1) AS 'oncpt',
         (SELECT COUNT(*) FROM aijar_105_eid where started_on_cpt_within_2_months = 1) AS 'oncptwithin2months';
 
+
 END$$
 DELIMITER ;
+
 
 
 DELIMITER $$
