@@ -4,11 +4,11 @@
 	<parent>
 		<groupId>org.openmrs.module</groupId>
 		<artifactId>aijar</artifactId>
-		<version>1.0.9</version>
+		<version>1.0.10-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>aijar-omod</artifactId>
-  <version>1.0.9</version>
+  <version>1.0.10-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>aijar Module OMOD</name>
 	<description>OMOD project for aijar</description>
