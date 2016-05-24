@@ -118,6 +118,9 @@
   DROP FUNCTION IF EXISTS `startedARTDuringQuarter`;
   DROP FUNCTION IF EXISTS `transferInRegimen`;
   DROP FUNCTION IF EXISTS `enrolledOnARTDuringQuarter`;
+  DROP FUNCTION IF EXISTS `fn_intersect_string`;
+  DROP FUNCTION IF EXISTS `getRecieviedARTBeforeQuarter`;
+  DROP FUNCTION IF EXISTS `getRecieviedARTDuringQuarter`;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getARTData`(IN start_year INT, IN start_month INT)
 BEGIN
@@ -1352,7 +1355,7 @@ BEGIN
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `hmis105EID`(IN start_year int, IN start_month int)
+CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `hmis105EID`(IN start_year INT, IN start_month INT)
 BEGIN
 
     DROP TABLE IF EXISTS aijar_105_eid;
@@ -1395,55 +1398,56 @@ FROM person p
 INNER JOIN encounter e ON(e.patient_id = p.person_id AND e.encounter_type IN (select encounter_type_id from encounter_type where uuid in('9fcfcc91-ad60-4d84-9710-11cc25258719','4345dacb-909d-429c-99aa-045f2db77e2b')) AND e.voided = 0 and p.voided = 0 ) group by e.patient_id;
 
 -- First PCR Date during month and year
-UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 99606 and YEAR(o.value_datetime) = start_year AND MONTH(o.value_datetime) = start_month group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET first_pcr = 1;
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 99606 and YEAR(o.value_datetime) = start_year AND MONTH(o.value_datetime) = start_month and o.voided = 0) t1 ON t.patient_id = t1.person_id SET first_pcr = 1;
 
 -- Second PCR Date during month and year
-UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 99436 and YEAR(o.value_datetime) = start_year AND MONTH(o.value_datetime) = start_month group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET second_pcr = 1;
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 99436 and YEAR(o.value_datetime) = start_year AND MONTH(o.value_datetime) = start_month and o.voided = 0) t1 ON t.patient_id = t1.person_id SET second_pcr = 1;
 
 -- Age at first PCR
-UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id, MAX(o.value_datetime) as ag from obs o where o.concept_id = 99606 group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET first_pcr_age = TIMESTAMPDIFF(MONTH, t.dob, t1.ag),first_pcr_test_date = t1.ag;
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id, MAX(o.value_datetime) as ag from obs o where o.concept_id = 99606 and o.voided = 0) t1 ON t.patient_id = t1.person_id SET first_pcr_age = TIMESTAMPDIFF(MONTH, t.dob, t1.ag),first_pcr_test_date = t1.ag;
 
 -- Age at second PCR
-UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id, MAX(o.value_datetime) as ag from obs o where o.concept_id = 99436  group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET second_pcr_age = TIMESTAMPDIFF(MONTH, t.dob,t1.ag), second_pcr_test_date = t1.ag;
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id, MAX(o.value_datetime) as ag from obs o where o.concept_id = 99436 and o.voided = 0) t1 ON t.patient_id = t1.person_id SET second_pcr_age = TIMESTAMPDIFF(MONTH, t.dob,t1.ag), second_pcr_test_date = t1.ag;
 
 -- First PCR test results
 -- TODO fix the concept for when results are received
-UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 99435 and YEAR(o.obs_datetime) = start_year AND MONTH(o.obs_datetime) = start_month group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET first_pcr_test_results = 1;
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 99435 and YEAR(o.obs_datetime) = start_year AND MONTH(o.obs_datetime) = start_month and o.voided = 0) t1 ON t.patient_id = t1.person_id SET first_pcr_test_results = 1;
 
 -- First PCR test results postive
-UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 99435 and YEAR(o.obs_datetime) = start_year AND MONTH(o.obs_datetime) = start_month group by o.person_id and o.voided = 0 and o.value_coded = 703) t1 ON t.patient_id = t1.person_id SET first_pcr_test_results_positive = 1;
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 99435 and YEAR(o.obs_datetime) = start_year AND MONTH(o.obs_datetime) = start_month and o.voided = 0 and o.value_coded = 703) t1 ON t.patient_id = t1.person_id SET first_pcr_test_results_positive = 1;
 
 
 -- Second PCR test results
 -- TODO fix the concept for when results are received
-UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 99440 and YEAR(o.obs_datetime) = start_year AND MONTH(o.obs_datetime) = start_month group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET second_pcr_test_results = 1;
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 99440 and YEAR(o.obs_datetime) = start_year AND MONTH(o.obs_datetime) = start_month and o.voided = 0) t1 ON t.patient_id = t1.person_id SET second_pcr_test_results = 1;
 
 -- Second PCR test results postive
-UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 99440 and YEAR(o.obs_datetime) = start_year AND MONTH(o.obs_datetime) = start_month group by o.person_id and o.voided = 0 and o.value_coded = 703) t1 ON t.patient_id = t1.person_id SET second_pcr_test_results_positive = 1;
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 99440 and YEAR(o.obs_datetime) = start_year AND MONTH(o.obs_datetime) = start_month and o.voided = 0 and o.value_coded = 703) t1 ON t.patient_id = t1.person_id SET second_pcr_test_results_positive = 1;
 
 
 -- Fisrt PCR results give to care giver
-UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id,o.value_datetime from obs o where o.concept_id = 99438 and YEAR(o.value_datetime) = start_year AND MONTH(o.value_datetime) = start_month group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET first_pcr_results_given_to_care_giver = 1,date_first_pcr_results_given_to_care_give = t1.value_datetime ;
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id,o.value_datetime from obs o where o.concept_id = 99438 and YEAR(o.value_datetime) = start_year AND MONTH(o.value_datetime) = start_month and o.voided = 0) t1 ON t.patient_id = t1.person_id SET first_pcr_results_given_to_care_giver = 1,date_first_pcr_results_given_to_care_give = t1.value_datetime ;
 
 -- Second PCR results give to care giver
-UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id,o.value_datetime from obs o where o.concept_id = 99442 and YEAR(o.value_datetime) = start_year AND MONTH(o.value_datetime) = start_month group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET second_pcr_results_given_to_care_giver = 1 ,date_second_pcr_results_given_to_care_give = t1.value_datetime;
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id,o.value_datetime from obs o where o.concept_id = 99442 and YEAR(o.value_datetime) = start_year AND MONTH(o.value_datetime) = start_month and o.voided = 0) t1 ON t.patient_id = t1.person_id SET second_pcr_results_given_to_care_giver = 1 ,date_second_pcr_results_given_to_care_give = t1.value_datetime;
 
 
 -- Rapid test at 18 months
-UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 162879 and YEAR(o.value_datetime) = start_year AND MONTH(o.value_datetime) = start_month group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET rapid_test_at_18_months = 1;
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 162879 and YEAR(o.value_datetime) = start_year AND MONTH(o.value_datetime) = start_month and o.voided = 0) t1 ON t.patient_id = t1.person_id SET rapid_test_at_18_months = 1;
 
 -- Rapid test at 18 months  positive
-UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 162880 and value_coded = 703 and YEAR(o.obs_datetime) = start_year AND MONTH(o.obs_datetime) = start_month group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET rapid_test_at_18_months_positive = 1;
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 162880 and value_coded = 703 and YEAR(o.obs_datetime) = start_year AND MONTH(o.obs_datetime) = start_month and o.voided = 0) t1 ON t.patient_id = t1.person_id SET rapid_test_at_18_months_positive = 1;
 
 -- EID enrolled into care
-UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 163004 and value_coded = 1065 and YEAR(o.obs_datetime) = start_year AND MONTH(o.obs_datetime) = start_month group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET on_care = 1;
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id from obs o where o.concept_id = 163004 and value_coded = 1065 and YEAR(o.obs_datetime) = start_year AND MONTH(o.obs_datetime) = start_month and o.voided = 0) t1 ON t.patient_id = t1.person_id SET on_care = 1;
 
 -- Started on CPT
-UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id,o.value_datetime from obs o where o.concept_id = 99773 and YEAR(o.value_datetime) = start_year AND MONTH(o.value_datetime) = start_month group by o.person_id and o.voided = 0) t1 ON t.patient_id = t1.person_id SET started_on_cpt = 1,started_on_cpt_within_2_months = TIMESTAMPDIFF(MONTH, t.dob,t1.value_datetime);
+UPDATE aijar_105_eid AS t INNER JOIN (select o.person_id,o.value_datetime from obs o where o.concept_id = 99773 and YEAR(o.value_datetime) = start_year AND MONTH(o.value_datetime) = start_month and o.voided = 0) t1 ON t.patient_id = t1.person_id SET started_on_cpt = 1,started_on_cpt_within_2_months = TIMESTAMPDIFF(MONTH, t.dob,t1.value_datetime);
+
 SELECT
-        (SELECT COUNT(*) FROM aijar_105_eid where first_pcr = 1 and first_pcr_age <= 18) AS '1PCR',
-        (SELECT COUNT(*) FROM aijar_105_eid where second_pcr = 1 and second_pcr_age <= 18) AS '2PCR',
-        (SELECT COUNT(*) FROM aijar_105_eid where (first_pcr = 1 OR second_pcr = 1) and (first_pcr_age < 2 or second_pcr_age < 2)) AS '<2 months',
+        (SELECT COUNT(*) FROM aijar_105_eid where first_pcr = 1 and age < 18) AS '1PCR',
+        (SELECT COUNT(*) FROM aijar_105_eid where second_pcr = 1 and age < 18) AS '2PCR',
+        (SELECT COUNT(*) FROM aijar_105_eid where (first_pcr = 1 OR second_pcr = 1) and age < 2) AS '<2 months',
         (SELECT COUNT(*) FROM aijar_105_eid where first_pcr_test_results = 1) AS '1PCRResults',
         (SELECT COUNT(*) FROM aijar_105_eid where first_pcr_test_results = 1 and first_pcr_test_results_positive = 1) AS '1PCRResults+',
         (SELECT COUNT(*) FROM aijar_105_eid where second_pcr_test_results = 1) AS '2PCRResults',
@@ -1457,8 +1461,10 @@ SELECT
         (SELECT COUNT(*) FROM aijar_105_eid where started_on_cpt = 1) AS 'oncpt',
         (SELECT COUNT(*) FROM aijar_105_eid where started_on_cpt_within_2_months = 1) AS 'oncptwithin2months';
 
+
 END$$
 DELIMITER ;
+
 
 
 DELIMITER $$
@@ -1474,6 +1480,7 @@ BEGIN
     date_enrolled DATE,
     first_visit_in_qurater tinyint default 0,
     visited_in_quarter tinyint default 0,
+    visit_before_qurater tinyint default 0,
     preg_and_lactating tinyint default 0,
     started_inh tinyint default 0,
     transfer_in tinyint default 0,
@@ -1488,6 +1495,7 @@ BEGIN
     malnourished tinyint default 0,
     eligible_and_ready tinyint default 0,
     art_based_on_preg tinyint default 0,
+    preg_during_quarter tinyint default 0,
     art_based_on_cd4 tinyint default 0,
     first_line_child tinyint default 0,
     first_line_adult tinyint default 0,
@@ -1504,6 +1512,9 @@ BEGIN
     e.encounter_datetime
 FROM person p
 INNER JOIN encounter e ON(e.patient_id = p.person_id AND e.encounter_type IN (select encounter_type_id from encounter_type where uuid in('8d5b27bc-c2cc-11de-8d13-0010c6dffd0f','8d5b2be0-c2cc-11de-8d13-0010c6dffd0f')) AND e.voided = 0 and p.voided = 0 ) group by e.patient_id;
+
+-- Had encounter before this quarter
+UPDATE aijar_106a1a AS t INNER JOIN (select e.patient_id from encounter e where e.encounter_datetime <= (MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL 1 DAY) and e.voided = 0 group by patient_id) t1 ON t.patient_id = t1.patient_id SET visit_before_qurater = 1;
 
 -- Had first encounter this quarter
 UPDATE aijar_106a1a AS t INNER JOIN (select e.patient_id from encounter e where YEAR(e.encounter_datetime) = start_year AND QUARTER(e.encounter_datetime) = start_quarter and e.voided = 0 and e.patient_id not in (select ei.patient_id from encounter ei where ei.encounter_datetime <= (MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL 1 DAY) ) group by patient_id) t1 ON t.patient_id = t1.patient_id SET first_visit_in_qurater = 1;
@@ -1522,7 +1533,6 @@ UPDATE aijar_106a1a AS t INNER JOIN (select person_id from obs where concept_id 
 
 -- Update the column transfered from another facility while on art
 UPDATE aijar_106a1a AS t INNER JOIN (select person_id from obs where concept_id = 99064 and value_coded > 0 and YEAR(obs_datetime) = start_year and QUARTER(obs_datetime) = start_quarter and voided = 0 group by person_id having count(*) BETWEEN 1 AND 3) t1 ON t.patient_id = t1.person_id SET transfer_in_on_art = 1;
-
 
 -- Update the column for patients who are on art this quarter
 UPDATE aijar_106a1a AS t INNER JOIN (select person_id from obs where ((concept_id = 90315 AND value_coded > 0) OR (concept_id = 99061 AND value_coded > 0)) and YEAR(obs_datetime) = start_year and QUARTER(obs_datetime) = start_quarter  AND voided = 0 group by person_id) t1 ON t.patient_id = t1.person_id SET on_art_this_quarter = 1;
@@ -1553,10 +1563,14 @@ UPDATE aijar_106a1a AS t INNER JOIN (select person_id from obs where concept_id 
 
 -- ART section
 
--- Update the column for those started art based on cd4
-UPDATE aijar_106a1a AS t INNER JOIN (select person_id from obs where concept_id = 99602  and value_coded = 1 and YEAR(obs_datetime) = start_year and QUARTER(obs_datetime) = start_quarter group by person_id) t1 ON t.patient_id = t1.person_id SET art_based_on_preg = 1;
+-- Pregnant during quarter
+UPDATE aijar_106a1a AS t INNER JOIN (select person_id from obs where concept_id = 90041  and value_coded = 1065 and YEAR(obs_datetime) = start_year and QUARTER(obs_datetime) = start_quarter group by person_id) t1 ON t.patient_id = t1.person_id SET preg_during_quarter = 1;
 
 -- Update the column for those started art based on pregnancy
+UPDATE aijar_106a1a AS t INNER JOIN (select person_id from obs where concept_id = 99602  and value_numeric = 1 and YEAR(obs_datetime) = start_year and QUARTER(obs_datetime) = start_quarter group by person_id) t1 ON t.patient_id = t1.person_id SET art_based_on_preg = 1;
+
+
+-- Update the column for those started art based on cd4
 UPDATE aijar_106a1a AS t INNER JOIN (select person_id from obs where concept_id = 99082  and value_numeric > 0 and YEAR(obs_datetime) = start_year and QUARTER(obs_datetime) = start_quarter group by person_id) t1 ON t.patient_id = t1.person_id SET art_based_on_cd4 = 1;
 
 -- Patients on first line regimen children
@@ -1600,7 +1614,7 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where first_visit_in_qurater = 0) Enrollment USING (indicator_id)) ind1
+        aijar_106a1a where visit_before_qurater = 1 and transfer_in = 0) Enrollment USING (indicator_id)) ind1
         LEFT JOIN
     (SELECT
         indicator_id,
@@ -1622,7 +1636,7 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where first_visit_in_qurater = 1) Enrollment USING (indicator_id)) ind2 ON (ind1.indicator_id = ind2.indicator_id)
+        aijar_106a1a where first_visit_in_qurater = 1 and transfer_in = 0) Enrollment USING (indicator_id)) ind2 ON (ind1.indicator_id = ind2.indicator_id)
         LEFT JOIN
     (SELECT
         indicator_id,
@@ -1638,7 +1652,7 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where first_visit_in_qurater = 1 and preg_and_lactating = 1) Enrollment USING (indicator_id)
+        aijar_106a1a where first_visit_in_qurater = 1 and preg_and_lactating = 1 and transfer_in = 0) Enrollment USING (indicator_id)
     GROUP BY q3indicator) ind3 ON (ind2.indicator_id = ind3.indicator_id)
         LEFT JOIN
     (SELECT
@@ -1654,7 +1668,7 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where first_visit_in_qurater = 1 and started_inh = 1) Enrollment USING (indicator_id)) ind4 ON (ind3.indicator_id = ind4.indicator_id)
+        aijar_106a1a where first_visit_in_qurater = 1 and started_inh = 1 and transfer_in = 0) Enrollment USING (indicator_id)) ind4 ON (ind3.indicator_id = ind4.indicator_id)
         LEFT JOIN
     (SELECT
         indicator_id,
@@ -1676,7 +1690,7 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a) Enrollment USING (indicator_id)) ind5 ON (ind4.indicator_id = ind5.indicator_id)
+        aijar_106a1a where transfer_in = 0 and (visited_in_quarter = 1 or visit_before_qurater = 1)) Enrollment USING (indicator_id)) ind5 ON (ind4.indicator_id = ind5.indicator_id)
         LEFT JOIN
     (SELECT
         indicator_id,
@@ -1707,7 +1721,7 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0) enrollment USING (indicator_id)) ind7 ON (ind6.indicator_id = ind7.indicator_id)
+        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and on_art_before_this_quarter = 0) enrollment USING (indicator_id)) ind7 ON (ind6.indicator_id = ind7.indicator_id)
         LEFT JOIN
     (SELECT
         indicator_id,
@@ -1723,7 +1737,7 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and on_cpt = 1) enrollment USING (indicator_id)) ind8 ON (ind7.indicator_id = ind8.indicator_id)
+        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and on_cpt = 1 and on_art_before_this_quarter = 0) enrollment USING (indicator_id)) ind8 ON (ind7.indicator_id = ind8.indicator_id)
         LEFT JOIN
     (SELECT
         indicator_id,
@@ -1738,7 +1752,7 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and assessed_for_tb = 1) enrollment USING (indicator_id)) ind9 ON (ind8.indicator_id = ind9.indicator_id)
+        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and assessed_for_tb = 1 and on_art_before_this_quarter = 0) enrollment USING (indicator_id)) ind9 ON (ind8.indicator_id = ind9.indicator_id)
         LEFT JOIN
     (SELECT
         indicator_id,
@@ -1753,7 +1767,7 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and diagnosed_with_tb = 1) enrollment USING (indicator_id)) ind10 ON (ind9.indicator_id = ind10.indicator_id)
+        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and diagnosed_with_tb = 1 and on_art_before_this_quarter = 0) enrollment USING (indicator_id)) ind10 ON (ind9.indicator_id = ind10.indicator_id)
         LEFT JOIN
     (SELECT
         indicator_id,
@@ -1768,7 +1782,7 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and started_tb_rx = 1) enrollment USING (indicator_id)) ind11 ON (ind10.indicator_id = ind11.indicator_id)
+        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and started_tb_rx = 1 and on_art_before_this_quarter = 0) enrollment USING (indicator_id)) ind11 ON (ind10.indicator_id = ind11.indicator_id)
         LEFT JOIN
     (SELECT
         indicator_id,
@@ -1783,7 +1797,7 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and assessed_for_malnutrition = 1) enrollment USING (indicator_id)) ind12 ON (ind11.indicator_id = ind12.indicator_id)
+        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and assessed_for_malnutrition = 1 and on_art_before_this_quarter = 0) enrollment USING (indicator_id)) ind12 ON (ind11.indicator_id = ind12.indicator_id)
         INNER JOIN
     (SELECT
         indicator_id,
@@ -1798,7 +1812,7 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and malnourished = 1) enrollment USING (indicator_id)) ind13 ON (ind12.indicator_id = ind13.indicator_id)
+        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and malnourished = 1 and on_art_before_this_quarter = 0) enrollment USING (indicator_id)) ind13 ON (ind12.indicator_id = ind13.indicator_id)
         INNER JOIN
     (SELECT
         indicator_id,
@@ -1812,7 +1826,7 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and eligible_and_ready = 1) enrollment USING (indicator_id)) ind14 ON (ind13.indicator_id = ind14.indicator_id)
+        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and eligible_and_ready = 1 and on_art_before_this_quarter = 0) enrollment USING (indicator_id)) ind14 ON (ind13.indicator_id = ind14.indicator_id)
         INNER JOIN
     (SELECT
         indicator_id,
@@ -1873,7 +1887,7 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where on_art_this_quarter = 1 and first_visit_in_qurater = 1 and art_based_on_cd4 = 1) enrollment USING (indicator_id)) ind17 ON (ind16.indicator_id = ind17.indicator_id)
+        aijar_106a1a where on_art_this_quarter = 1 and on_art_before_this_quarter = 0 and art_based_on_cd4 = 1 and transfer_in_on_art = 0) enrollment USING (indicator_id)) ind17 ON (ind16.indicator_id = ind17.indicator_id)
         INNER JOIN
     (SELECT
         indicator_id,
@@ -1890,7 +1904,7 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where on_art_this_quarter = 1 and first_visit_in_qurater = 1 and art_based_on_preg = 1) enrollment USING (indicator_id)) ind18 ON (ind17.indicator_id = ind18.indicator_id)
+        aijar_106a1a where on_art_this_quarter = 1 and on_art_before_this_quarter = 0 and (art_based_on_preg = 1 or preg_during_quarter = 1) and transfer_in_on_art = 0) enrollment USING (indicator_id)) ind18 ON (ind17.indicator_id = ind18.indicator_id)
         INNER JOIN
     (SELECT
         indicator_id,
@@ -2115,10 +2129,8 @@ FROM
 END$$
 DELIMITER ;
 
-
-
 DELIMITER $$
-CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `hmis106a1aYouth`(IN start_year INTEGER, IN start_quarter INTEGER)
+CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `hmis106a1a`(IN start_year INT, IN start_quarter INT)
 BEGIN
 
     DROP TABLE IF EXISTS aijar_106a1a;
@@ -2130,6 +2142,7 @@ BEGIN
     date_enrolled DATE,
     first_visit_in_qurater tinyint default 0,
     visited_in_quarter tinyint default 0,
+    visit_before_qurater tinyint default 0,
     preg_and_lactating tinyint default 0,
     started_inh tinyint default 0,
     transfer_in tinyint default 0,
@@ -2161,6 +2174,9 @@ BEGIN
 FROM person p
 INNER JOIN encounter e ON(e.patient_id = p.person_id AND e.encounter_type IN (select encounter_type_id from encounter_type where uuid in('8d5b27bc-c2cc-11de-8d13-0010c6dffd0f','8d5b2be0-c2cc-11de-8d13-0010c6dffd0f')) AND e.voided = 0 and p.voided = 0 ) group by e.patient_id;
 
+-- Had encounter before this quarter
+UPDATE aijar_106a1a AS t INNER JOIN (select e.patient_id from encounter e where e.encounter_datetime <= (MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL 1 DAY) and e.voided = 0 group by patient_id) t1 ON t.patient_id = t1.patient_id SET visit_before_qurater = 1;
+
 -- Had first encounter this quarter
 UPDATE aijar_106a1a AS t INNER JOIN (select e.patient_id from encounter e where YEAR(e.encounter_datetime) = start_year AND QUARTER(e.encounter_datetime) = start_quarter and e.voided = 0 and e.patient_id not in (select ei.patient_id from encounter ei where ei.encounter_datetime <= (MAKEDATE(start_year, 1) + INTERVAL start_quarter - 1 QUARTER - INTERVAL 1 DAY) ) group by patient_id) t1 ON t.patient_id = t1.patient_id SET first_visit_in_qurater = 1;
 
@@ -2178,7 +2194,6 @@ UPDATE aijar_106a1a AS t INNER JOIN (select person_id from obs where concept_id 
 
 -- Update the column transfered from another facility while on art
 UPDATE aijar_106a1a AS t INNER JOIN (select person_id from obs where concept_id = 99064 and value_coded > 0 and YEAR(obs_datetime) = start_year and QUARTER(obs_datetime) = start_quarter and voided = 0 group by person_id having count(*) BETWEEN 1 AND 3) t1 ON t.patient_id = t1.person_id SET transfer_in_on_art = 1;
-
 
 -- Update the column for patients who are on art this quarter
 UPDATE aijar_106a1a AS t INNER JOIN (select person_id from obs where ((concept_id = 90315 AND value_coded > 0) OR (concept_id = 99061 AND value_coded > 0)) and YEAR(obs_datetime) = start_year and QUARTER(obs_datetime) = start_quarter  AND voided = 0 group by person_id) t1 ON t.patient_id = t1.person_id SET on_art_this_quarter = 1;
@@ -2239,11 +2254,15 @@ FROM
     (SELECT
         indicator_id,
             q1indicator,
-           SUM(IF(gender = 'M' AND age BETWEEN 9 AND 14, 1, 0))  AS q1MTeens,
-           SUM(IF(gender = 'F' AND age BETWEEN 9 AND 14, 1, 0))  AS q1FTeens,
-           SUM(IF(gender = 'M' AND age BETWEEN 15 AND 19, 1, 0)) AS q1MSeniors,
-           SUM(IF(gender = 'F' AND age BETWEEN 15 AND 19, 1, 0)) AS q1FSeniors,
-           SUM(IF((gender = 'F' OR gender = 'M') AND (age BETWEEN 9 AND 19), 1, 0)) AS q1Total
+            SUM(IF(gender = 'M' AND age < 2, 1, 0)) AS q1MBabies,
+            SUM(IF(gender = 'F' AND age < 2, 1, 0)) AS q1FBabies,
+            SUM(IF(gender = 'M' AND age >= 2 AND age <= 4, 1, 0)) AS q1MToddlers,
+            SUM(IF(gender = 'F' AND age >= 2 AND age <= 4, 1, 0)) AS q1FToddlers,
+            SUM(IF(gender = 'M' AND age >= 5 AND age <= 14, 1, 0)) AS q1MTeens,
+            SUM(IF(gender = 'F' AND age >= 5 AND age <= 14, 1, 0)) AS q1FTeens,
+            SUM(IF(gender = 'M' AND age > 14, 1, 0)) AS q1MSeniors,
+            SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q1FSeniors,
+            SUM(IF((gender = 'F' OR gender = 'M'), 1, 0)) AS q1Total
     FROM
         (SELECT
         1 AS indicator_id,
@@ -2252,16 +2271,20 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where first_visit_in_qurater = 0) Enrollment USING (indicator_id)) ind1
+        aijar_106a1a where visit_before_qurater = 1 and transfer_in = 0) Enrollment USING (indicator_id)) ind1
         LEFT JOIN
     (SELECT
         indicator_id,
             q2indicator,
-            SUM(IF(gender = 'M' AND age BETWEEN 9 AND 14, 1, 0))                 AS q2MTeens,
-           SUM(IF(gender = 'F' AND age BETWEEN 9 AND 14, 1, 0))                 AS q2FTeens,
-           SUM(IF(gender = 'M' AND age BETWEEN 15 AND 19, 1, 0))                AS q2MSeniors,
-           SUM(IF(gender = 'F' AND age BETWEEN 15 AND 19, 1, 0))                AS q2FSeniors,
-           SUM(IF((gender = 'F' OR gender = 'M') AND (age BETWEEN 9 AND 19), 1, 0)) AS Total
+            SUM(IF(gender = 'M' AND age < 2, 1, 0)) AS q2MBabies,
+            SUM(IF(gender = 'F' AND age < 2, 1, 0)) AS q2FBabies,
+            SUM(IF(gender = 'M' AND age >= 2 AND age <= 4, 1, 0)) AS q2MToddlers,
+            SUM(IF(gender = 'F' AND age >= 2 AND age <= 4, 1, 0)) AS q2FToddlers,
+            SUM(IF(gender = 'M' AND age >= 5 AND age <= 14, 1, 0)) AS q2MTeens,
+            SUM(IF(gender = 'F' AND age >= 5 AND age <= 14, 1, 0)) AS q2FTeens,
+            SUM(IF(gender = 'M' AND age > 14, 1, 0)) AS q2MSeniors,
+            SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q2FSeniors,
+            SUM(IF((gender = 'F' OR gender = 'M'), 1, 0)) AS Total
     FROM
         (SELECT
         1 AS indicator_id,
@@ -2270,14 +2293,14 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where first_visit_in_qurater = 1) Enrollment USING (indicator_id)) ind2 ON (ind1.indicator_id = ind2.indicator_id)
+        aijar_106a1a where first_visit_in_qurater = 1 and transfer_in = 0) Enrollment USING (indicator_id)) ind2 ON (ind1.indicator_id = ind2.indicator_id)
         LEFT JOIN
     (SELECT
         indicator_id,
             q3indicator,
-           SUM(IF(gender = 'F' AND age BETWEEN 9 AND 14, 1, 0))  AS q3FTeens,
-           SUM(IF(gender = 'F' AND age BETWEEN 15 AND 19, 1, 0)) AS q3FSeniors,
-           SUM(IF(gender = 'F' AND age BETWEEN 9 AND 19, 1, 0)) AS q3Total
+            SUM(IF(gender = 'F' AND age >= 5 AND age <= 14, 1, 0)) AS q3FTeens,
+            SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q3FSeniors,
+            SUM(IF((gender = 'F'), 1, 0)) AS q3Total
     FROM
         (SELECT
         1 AS indicator_id,
@@ -2286,14 +2309,14 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where first_visit_in_qurater = 1 and preg_and_lactating = 1) Enrollment USING (indicator_id)
+        aijar_106a1a where first_visit_in_qurater = 1 and preg_and_lactating = 1 and transfer_in = 0) Enrollment USING (indicator_id)
     GROUP BY q3indicator) ind3 ON (ind2.indicator_id = ind3.indicator_id)
         LEFT JOIN
     (SELECT
         indicator_id,
             q4indicator,
             SUM(IF((gender = 'F' OR gender = 'M')
-                  AND age BETWEEN 9 AND 19, 1, 0)) AS q4Total
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q4Total
     FROM
         (SELECT
         1 AS indicator_id,
@@ -2302,16 +2325,20 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where first_visit_in_qurater = 1 and started_inh = 1) Enrollment USING (indicator_id)) ind4 ON (ind3.indicator_id = ind4.indicator_id)
+        aijar_106a1a where first_visit_in_qurater = 1 and started_inh = 1 and transfer_in = 0) Enrollment USING (indicator_id)) ind4 ON (ind3.indicator_id = ind4.indicator_id)
         LEFT JOIN
     (SELECT
         indicator_id,
             q5indicator,
-            SUM(IF(gender = 'M' AND age BETWEEN 9 AND 14, 1, 0))  AS q5MTeens,
-           SUM(IF(gender = 'F' AND age BETWEEN 9 AND 14, 1, 0))  AS q5FTeens,
-           SUM(IF(gender = 'M' AND age BETWEEN 15 AND 19, 1, 0)) AS q5MSeniors,
-           SUM(IF(gender = 'F' AND age BETWEEN 15 AND 19, 1, 0)) AS q5FSeniors,
-           SUM(IF((gender = 'F' OR gender = 'M') AND (age BETWEEN 9 AND 19), 1, 0)) AS q5Total
+            SUM(IF(gender = 'M' AND age < 2, 1, 0)) AS q5MBabies,
+            SUM(IF(gender = 'F' AND age < 2, 1, 0)) AS q5FBabies,
+            SUM(IF(gender = 'M' AND age >= 2 AND age <= 4, 1, 0)) AS q5MToddlers,
+            SUM(IF(gender = 'F' AND age >= 2 AND age <= 4, 1, 0)) AS q5FToddlers,
+            SUM(IF(gender = 'M' AND age >= 5 AND age <= 14, 1, 0)) AS q5MTeens,
+            SUM(IF(gender = 'F' AND age >= 5 AND age <= 14, 1, 0)) AS q5FTeens,
+            SUM(IF(gender = 'M' AND age > 14, 1, 0)) AS q5MSeniors,
+            SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q5FSeniors,
+            SUM(IF((gender = 'F' OR gender = 'M'), 1, 0)) AS q5Total
     FROM
         (SELECT
         1 AS indicator_id,
@@ -2320,13 +2347,13 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a) Enrollment USING (indicator_id)) ind5 ON (ind4.indicator_id = ind5.indicator_id)
+        aijar_106a1a where transfer_in = 0 and (visited_in_quarter = 1 or visit_before_qurater = 1)) Enrollment USING (indicator_id)) ind5 ON (ind4.indicator_id = ind5.indicator_id)
         LEFT JOIN
     (SELECT
         indicator_id,
             q6indicator,
             SUM(IF((gender = 'F' OR gender = 'M')
-                  AND age BETWEEN 9 AND 19, 1, 0)) AS q6Total
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q6Total
     FROM
         (SELECT
         1 AS indicator_id,
@@ -2340,9 +2367,9 @@ FROM
     (SELECT
         indicator_id,
             q7indicator,
-            SUM(IF(age BETWEEN 9 AND 14, 1, 0))  AS q71,
-           SUM(IF(age BETWEEN 15 AND 19, 1, 0)) AS q72,
-           SUM(IF(age BETWEEN 9 AND 19, 1, 0)) AS q7Total
+            SUM(IF(age <= 14, 1, 0)) AS q71,
+            SUM(IF(age > 14, 1, 0)) AS q72,
+            SUM(1) AS q7Total
     FROM
         (SELECT
         1 AS indicator_id,
@@ -2351,14 +2378,14 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0) enrollment USING (indicator_id)) ind7 ON (ind6.indicator_id = ind7.indicator_id)
+        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and on_art_before_this_quarter = 0) enrollment USING (indicator_id)) ind7 ON (ind6.indicator_id = ind7.indicator_id)
         LEFT JOIN
     (SELECT
         indicator_id,
             q8indicator,
-            SUM(IF(age BETWEEN 9 AND 14, 1, 0))  AS q81,
-           SUM(IF(age BETWEEN 15 AND 19, 1, 0)) AS q82,
-           SUM(IF(age BETWEEN 9 AND 19, 1, 0)) AS q8Total
+            SUM(IF(age <= 14, 1, 0)) AS q81,
+            SUM(IF(age > 14, 1, 0)) AS q82,
+            SUM(IF(age BETWEEN 0 AND 100, 1, 0)) AS q8Total
     FROM
         (SELECT
         1 AS indicator_id,
@@ -2367,13 +2394,13 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and on_cpt = 1) enrollment USING (indicator_id)) ind8 ON (ind7.indicator_id = ind8.indicator_id)
+        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and on_cpt = 1 and on_art_before_this_quarter = 0) enrollment USING (indicator_id)) ind8 ON (ind7.indicator_id = ind8.indicator_id)
         LEFT JOIN
     (SELECT
         indicator_id,
             q9indicator,
             SUM(IF((gender = 'F' OR gender = 'M')
-                  AND age BETWEEN 9 AND 19, 1, 0)) AS q9Total
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q9Total
     FROM
         (SELECT
         1 AS indicator_id,
@@ -2382,13 +2409,13 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and assessed_for_tb = 1) enrollment USING (indicator_id)) ind9 ON (ind8.indicator_id = ind9.indicator_id)
+        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and assessed_for_tb = 1 and on_art_before_this_quarter = 0) enrollment USING (indicator_id)) ind9 ON (ind8.indicator_id = ind9.indicator_id)
         LEFT JOIN
     (SELECT
         indicator_id,
             q10indicator,
             SUM(IF((gender = 'F' OR gender = 'M')
-                  AND age BETWEEN 9 AND 19, 1, 0)) AS q10Total
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q10Total
     FROM
         (SELECT
         1 AS indicator_id,
@@ -2397,13 +2424,13 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and diagnosed_with_tb = 1) enrollment USING (indicator_id)) ind10 ON (ind9.indicator_id = ind10.indicator_id)
+        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and diagnosed_with_tb = 1 and on_art_before_this_quarter = 0) enrollment USING (indicator_id)) ind10 ON (ind9.indicator_id = ind10.indicator_id)
         LEFT JOIN
     (SELECT
         indicator_id,
             q11indicator,
             SUM(IF((gender = 'F' OR gender = 'M')
-                  AND age BETWEEN 9 AND 19, 1, 0)) AS q11Total
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q11Total
     FROM
         (SELECT
         1 AS indicator_id,
@@ -2412,13 +2439,13 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and started_tb_rx = 1) enrollment USING (indicator_id)) ind11 ON (ind10.indicator_id = ind11.indicator_id)
+        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and started_tb_rx = 1 and on_art_before_this_quarter = 0) enrollment USING (indicator_id)) ind11 ON (ind10.indicator_id = ind11.indicator_id)
         LEFT JOIN
     (SELECT
         indicator_id,
             q12indicator,
-                       SUM(IF((gender = 'F' OR gender = 'M')
-                  AND age BETWEEN 9 AND 19, 1, 0)) AS q12Total
+            SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q12Total
     FROM
         (SELECT
         1 AS indicator_id,
@@ -2427,13 +2454,13 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and assessed_for_malnutrition = 1) enrollment USING (indicator_id)) ind12 ON (ind11.indicator_id = ind12.indicator_id)
+        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and assessed_for_malnutrition = 1 and on_art_before_this_quarter = 0) enrollment USING (indicator_id)) ind12 ON (ind11.indicator_id = ind12.indicator_id)
         INNER JOIN
     (SELECT
         indicator_id,
             q13indicator,
             SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 9 AND 19, 1, 0)) AS q13Total
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q13Total
     FROM
         (SELECT
         1 AS indicator_id,
@@ -2442,12 +2469,12 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and malnourished = 1) enrollment USING (indicator_id)) ind13 ON (ind12.indicator_id = ind13.indicator_id)
+        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and malnourished = 1 and on_art_before_this_quarter = 0) enrollment USING (indicator_id)) ind13 ON (ind12.indicator_id = ind13.indicator_id)
         INNER JOIN
     (SELECT
         indicator_id,
             q14indicator,
-            SUM(IF((gender = 'F' OR gender = 'M') AND age BETWEEN 9 AND 19, 1, 0)) AS q14Total
+            SUM(IF((gender = 'F' OR gender = 'M') AND age BETWEEN 0 AND 100, 1, 0)) AS q14Total
     FROM
         (SELECT
         1 AS indicator_id,
@@ -2456,17 +2483,21 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and eligible_and_ready = 1) enrollment USING (indicator_id)) ind14 ON (ind13.indicator_id = ind14.indicator_id)
+        aijar_106a1a where visited_in_quarter = 1 and on_art_this_quarter = 0 and eligible_and_ready = 1 and on_art_before_this_quarter = 0) enrollment USING (indicator_id)) ind14 ON (ind13.indicator_id = ind14.indicator_id)
         INNER JOIN
     (SELECT
         indicator_id,
             q15indicator,
-            SUM(IF(gender = 'M' AND age BETWEEN 9 AND 14, 1, 0))  AS q15MTeens,
-           SUM(IF(gender = 'F' AND age BETWEEN 9 AND 14, 1, 0))  AS q15FTeens,
-           SUM(IF(gender = 'M' AND age BETWEEN 15 AND 19, 1, 0)) AS q15MSeniors,
-           SUM(IF(gender = 'F' AND age BETWEEN 15 AND 19, 1, 0)) AS q15FSeniors,
-           SUM(IF((gender = 'F' OR gender = 'M')
-                  AND age BETWEEN 9 AND 19, 1, 0)) AS q15Total
+            SUM(IF(gender = 'M' AND age < 2, 1, 0)) AS q15MBabies,
+            SUM(IF(gender = 'F' AND age < 2, 1, 0)) AS q15FBabies,
+            SUM(IF(gender = 'M' AND age BETWEEN 2 AND 4, 1, 0)) AS q15MToddlers,
+            SUM(IF(gender = 'F' AND age BETWEEN 2 AND 4, 1, 0)) AS q15FToddlers,
+            SUM(IF(gender = 'M' AND age BETWEEN 5 AND 14, 1, 0)) AS q15MTeens,
+            SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q15FTeens,
+            SUM(IF(gender = 'M' AND age > 14, 1, 0)) AS q15MSeniors,
+            SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q15FSeniors,
+            SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q15Total
     FROM
         (SELECT
         1 AS indicator_id,
@@ -2480,12 +2511,16 @@ FROM
     (SELECT
         indicator_id,
             q16indicator,
-            SUM(IF(gender = 'M' AND age BETWEEN 9 AND 14, 1, 0))  AS q16MTeens,
-           SUM(IF(gender = 'F' AND age BETWEEN 9 AND 14, 1, 0))  AS q16FTeens,
-           SUM(IF(gender = 'M' AND age BETWEEN 15 AND 19, 1, 0)) AS q16MSeniors,
-           SUM(IF(gender = 'F' AND age BETWEEN 15 AND 19, 1, 0)) AS q16FSeniors,
-           SUM(IF((gender = 'F' OR gender = 'M')
-                  AND age BETWEEN 9 AND 19, 1, 0)) AS q16Total
+            SUM(IF(gender = 'M' AND age < 2, 1, 0)) AS q16MBabies,
+            SUM(IF(gender = 'F' AND age < 2, 1, 0)) AS q16FBabies,
+            SUM(IF(gender = 'M' AND age BETWEEN 2 AND 4, 1, 0)) AS q16MToddlers,
+            SUM(IF(gender = 'F' AND age BETWEEN 2 AND 4, 1, 0)) AS q16FToddlers,
+            SUM(IF(gender = 'M' AND age BETWEEN 5 AND 14, 1, 0)) AS q16MTeens,
+            SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q16FTeens,
+            SUM(IF(gender = 'M' AND age > 14, 1, 0)) AS q16MSeniors,
+            SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q16FSeniors,
+            SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q16Total
     FROM
         (SELECT
         1 AS indicator_id,
@@ -2500,7 +2535,7 @@ FROM
         indicator_id,
             q17indicator,
             SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 9 AND 19, 1, 0)) AS q17Total
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q17Total
     FROM
         (SELECT
         1 AS indicator_id,
@@ -2509,15 +2544,15 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where on_art_this_quarter = 1 and first_visit_in_qurater = 1 and art_based_on_cd4 = 1) enrollment USING (indicator_id)) ind17 ON (ind16.indicator_id = ind17.indicator_id)
+        aijar_106a1a where on_art_this_quarter = 1 and on_art_before_this_quarter = 0 and art_based_on_cd4 = 1 and transfer_in_on_art = 0) enrollment USING (indicator_id)) ind17 ON (ind16.indicator_id = ind17.indicator_id)
         INNER JOIN
     (SELECT
         indicator_id,
             q18indicator,
-           SUM(IF(gender = 'F' AND age BETWEEN 9 AND 14, 1, 0))  AS q18FTeens,
-           SUM(IF(gender = 'F' AND age BETWEEN 15 AND 19, 1, 0)) AS q18FSeniors,
-           SUM(IF((gender = 'F' OR gender = 'M')
-                  AND age BETWEEN 9 AND 19, 1, 0)) AS q18Total
+            SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q18FTeens,
+            SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q18FSeniors,
+            SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q18Total
     FROM
         (SELECT
         1 AS indicator_id,
@@ -2526,17 +2561,21 @@ FROM
     LEFT JOIN (SELECT
         1 AS indicator_id, gender, age
     FROM
-        aijar_106a1a where on_art_this_quarter = 1 and first_visit_in_qurater = 1 and art_based_on_preg = 1) enrollment USING (indicator_id)) ind18 ON (ind17.indicator_id = ind18.indicator_id)
+        aijar_106a1a where on_art_this_quarter = 1 and on_art_before_this_quarter = 0 and art_based_on_preg = 1 and transfer_in_on_art = 0) enrollment USING (indicator_id)) ind18 ON (ind17.indicator_id = ind18.indicator_id)
         INNER JOIN
     (SELECT
         indicator_id,
             q19indicator,
-           SUM(IF(gender = 'M' AND age BETWEEN 9 AND 14, 1, 0))  AS q19MTeens,
-           SUM(IF(gender = 'F' AND age BETWEEN 9 AND 14, 1, 0))  AS q19FTeens,
-           SUM(IF(gender = 'M' AND age BETWEEN 15 AND 19, 1, 0)) AS q19MSeniors,
-           SUM(IF(gender = 'F' AND age BETWEEN 15 AND 19, 1, 0)) AS q19FSeniors,
-           SUM(IF((gender = 'F' OR gender = 'M')
-                  AND age BETWEEN 9 AND 19, 1, 0)) AS q19Total
+            SUM(IF(gender = 'M' AND age < 2, 1, 0)) AS q19MBabies,
+            SUM(IF(gender = 'F' AND age < 2, 1, 0)) AS q19FBabies,
+            SUM(IF(gender = 'M' AND age BETWEEN 2 AND 4, 1, 0)) AS q19MToddlers,
+            SUM(IF(gender = 'F' AND age BETWEEN 2 AND 4, 1, 0)) AS q19FToddlers,
+            SUM(IF(gender = 'M' AND age BETWEEN 5 AND 14, 1, 0)) AS q19MTeens,
+            SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q19FTeens,
+            SUM(IF(gender = 'M' AND age > 14, 1, 0)) AS q19MSeniors,
+            SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q19FSeniors,
+            SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q19Total
     FROM
         (SELECT
         1 AS indicator_id,
@@ -2550,12 +2589,16 @@ FROM
     (SELECT
         indicator_id,
             q20indicator,
-            SUM(IF(gender = 'M' AND age BETWEEN 9 AND 14, 1, 0))  AS q20MTeens,
-           SUM(IF(gender = 'F' AND age BETWEEN 9 AND 14, 1, 0))  AS q20FTeens,
-           SUM(IF(gender = 'M' AND age BETWEEN 15 AND 19, 1, 0)) AS q20MSeniors,
-           SUM(IF(gender = 'F' AND age BETWEEN 15 AND 19, 1, 0)) AS q20FSeniors,
-           SUM(IF((gender = 'F' OR gender = 'M')
-                  AND age BETWEEN 9 AND 19, 1, 0))  AS q20Total
+            SUM(IF(gender = 'M' AND age < 2, 1, 0)) AS q20MBabies,
+            SUM(IF(gender = 'F' AND age < 2, 1, 0)) AS q20FBabies,
+            SUM(IF(gender = 'M' AND age BETWEEN 2 AND 4, 1, 0)) AS q20MToddlers,
+            SUM(IF(gender = 'F' AND age BETWEEN 2 AND 4, 1, 0)) AS q20FToddlers,
+            SUM(IF(gender = 'M' AND age BETWEEN 5 AND 14, 1, 0)) AS q20MTeens,
+            SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q20FTeens,
+            SUM(IF(gender = 'M' AND age > 14, 1, 0)) AS q20MSeniors,
+            SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q20FSeniors,
+            SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q20Total
     FROM
         (SELECT
         1 AS indicator_id,
@@ -2569,12 +2612,16 @@ FROM
     (SELECT
         indicator_id,
             q21indicator,
-            SUM(IF(gender = 'M' AND age BETWEEN 9 AND 14, 1, 0))  AS q21MTeens,
-           SUM(IF(gender = 'F' AND age BETWEEN 9 AND 14, 1, 0))  AS q21FTeens,
-           SUM(IF(gender = 'M' AND age BETWEEN 15 AND 19, 1, 0)) AS q21MSeniors,
-           SUM(IF(gender = 'F' AND age BETWEEN 15 AND 19, 1, 0)) AS q21FSeniors,
-           SUM(IF((gender = 'F' OR gender = 'M')
-                  AND age BETWEEN 9 AND 19, 1, 0)) AS q21Total
+            SUM(IF(gender = 'M' AND age < 2, 1, 0)) AS q21MBabies,
+            SUM(IF(gender = 'F' AND age < 2, 1, 0)) AS q21FBabies,
+            SUM(IF(gender = 'M' AND age BETWEEN 2 AND 4, 1, 0)) AS q21MToddlers,
+            SUM(IF(gender = 'F' AND age BETWEEN 2 AND 4, 1, 0)) AS q21FToddlers,
+            SUM(IF(gender = 'M' AND age BETWEEN 5 AND 14, 1, 0)) AS q21MTeens,
+            SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q21FTeens,
+            SUM(IF(gender = 'M' AND age > 14, 1, 0)) AS q21MSeniors,
+            SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q21FSeniors,
+            SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q21Total
     FROM
         (SELECT
         1 AS indicator_id,
@@ -2588,12 +2635,16 @@ FROM
     (SELECT
         indicator_id,
             q22indicator,
-            SUM(IF(gender = 'M' AND age BETWEEN 9 AND 14, 1, 0))  AS q22MTeens,
-           SUM(IF(gender = 'F' AND age BETWEEN 9 AND 14, 1, 0))  AS q22FTeens,
-           SUM(IF(gender = 'M' AND age BETWEEN 15 AND 19, 1, 0)) AS q22MSeniors,
-           SUM(IF(gender = 'F' AND age BETWEEN 15 AND 19, 1, 0)) AS q22FSeniors,
-           SUM(IF((gender = 'F' OR gender = 'M')
-                  AND age BETWEEN 9 AND 19, 1, 0)) AS q22Total
+            SUM(IF(gender = 'M' AND age < 2, 1, 0)) AS q22MBabies,
+            SUM(IF(gender = 'F' AND age < 2, 1, 0)) AS q22FBabies,
+            SUM(IF(gender = 'M' AND age BETWEEN 2 AND 4, 1, 0)) AS q22MToddlers,
+            SUM(IF(gender = 'F' AND age BETWEEN 2 AND 4, 1, 0)) AS q22FToddlers,
+            SUM(IF(gender = 'M' AND age BETWEEN 5 AND 14, 1, 0)) AS q22MTeens,
+            SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q22FTeens,
+            SUM(IF(gender = 'M' AND age > 14, 1, 0)) AS q22MSeniors,
+            SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q22FSeniors,
+            SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q22Total
     FROM
         (SELECT
         1 AS indicator_id,
@@ -2607,12 +2658,16 @@ FROM
     (SELECT
         indicator_id,
             q23indicator,
-            SUM(IF(gender = 'M' AND age BETWEEN 9 AND 14, 1, 0))  AS q23MTeens,
-           SUM(IF(gender = 'F' AND age BETWEEN 9 AND 14, 1, 0))  AS q23FTeens,
-           SUM(IF(gender = 'M' AND age BETWEEN 15 AND 19, 1, 0)) AS q23MSeniors,
-           SUM(IF(gender = 'F' AND age BETWEEN 15 AND 19, 1, 0)) AS q23FSeniors,
-           SUM(IF((gender = 'F' OR gender = 'M')
-                  AND age BETWEEN 9 AND 19, 1, 0))  AS q23Total
+            SUM(IF(gender = 'M' AND age < 2, 1, 0)) AS q23MBabies,
+            SUM(IF(gender = 'F' AND age < 2, 1, 0)) AS q23FBabies,
+            SUM(IF(gender = 'M' AND age BETWEEN 2 AND 4, 1, 0)) AS q23MToddlers,
+            SUM(IF(gender = 'F' AND age BETWEEN 2 AND 4, 1, 0)) AS q23FToddlers,
+            SUM(IF(gender = 'M' AND age BETWEEN 5 AND 14, 1, 0)) AS q23MTeens,
+            SUM(IF(gender = 'F' AND age BETWEEN 5 AND 14, 1, 0)) AS q23FTeens,
+            SUM(IF(gender = 'M' AND age > 14, 1, 0)) AS q23MSeniors,
+            SUM(IF(gender = 'F' AND age > 14, 1, 0)) AS q23FSeniors,
+            SUM(IF((gender = 'F' OR gender = 'M')
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q23Total
     FROM
         (SELECT
         1 AS indicator_id,
@@ -2627,7 +2682,7 @@ FROM
         indicator_id,
             q24indicator,
             SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 9 AND 19, 1, 0)) AS q24Total
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q24Total
     FROM
         (SELECT
         1 AS indicator_id,
@@ -2642,7 +2697,7 @@ FROM
         indicator_id,
             q25indicator,
             SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 9 AND 19, 1, 0)) AS q25Total
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q25Total
     FROM
         (SELECT
         1 AS indicator_id,
@@ -2657,7 +2712,7 @@ FROM
         indicator_id,
             q26indicator,
             SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 9 AND 19, 1, 0)) AS q26Total
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q26Total
     FROM
         (SELECT
         1 AS indicator_id,
@@ -2672,7 +2727,7 @@ FROM
         indicator_id,
             q27indicator,
             SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 9 AND 19, 1, 0)) AS q27Total
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q27Total
     FROM
         (SELECT
         1 AS indicator_id,
@@ -2687,7 +2742,7 @@ FROM
         indicator_id,
             q28indicator,
             SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 9 AND 19, 1, 0)) AS q28Total
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q28Total
     FROM
         (SELECT
         1 AS indicator_id,
@@ -2702,7 +2757,7 @@ FROM
         indicator_id,
             q29indicator,
             SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 9 AND 19, 1, 0)) AS q29Total
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q29Total
     FROM
         (SELECT
         1 AS indicator_id,
@@ -2717,7 +2772,7 @@ FROM
         indicator_id,
             q30indicator,
             SUM(IF((gender = 'F' OR gender = 'M')
-                AND age BETWEEN 9 AND 19, 1, 0)) AS q30Total
+                AND age BETWEEN 0 AND 100, 1, 0)) AS q30Total
     FROM
         (SELECT
         1 AS indicator_id,
@@ -2730,6 +2785,7 @@ FROM
 
 END$$
 DELIMITER ;
+
 
 
 DELIMITER $$
