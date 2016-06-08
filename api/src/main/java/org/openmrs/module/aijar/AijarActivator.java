@@ -36,6 +36,7 @@ import org.openmrs.module.appframework.service.AppFrameworkService;
 import org.openmrs.module.emrapi.EmrApiConstants;
 import org.openmrs.module.emrapi.utils.MetadataUtil;
 import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
+import org.openmrs.module.reporting.common.ObjectUtil;
 import org.openmrs.ui.framework.resource.ResourceFactory;
 import org.openmrs.util.OpenmrsUtil;
 
@@ -110,6 +111,10 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             healthCenter.setName(administrationService.getGlobalProperty(AijarConstants.GP_HEALTH_CENTER_NAME));
             locationService.saveLocation(healthCenter);
 
+	        // cleanup liquibase change logs to enable installation of data integrity module
+	        removeOldChangeLocksForDataIntegrityModule();
+
+
         } catch (Exception e) {
             Module mod = ModuleFactory.getModuleById("aijar");
             ModuleFactory.stopModule(mod);
@@ -174,6 +179,9 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 
         // disable the appointmentshedulingui which currently has issues
         properties.add(new GlobalProperty("appointmentschedulingui.started", "false"));
+
+	    // Exclude temporary reporting tables by database backup module
+	    properties.add(new GlobalProperty("databasebackup.tablesExcluded", "aijar_105_eid,aijar_106a1a"));
 
         return properties;
     }
@@ -240,6 +248,15 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             }
         }
 
+    }
+
+    private void removeOldChangeLocksForDataIntegrityModule() {
+        String gpVal = Context.getAdministrationService().getGlobalProperty("dataintegrity.database_version");
+        if (ObjectUtil.isNull(gpVal)) {
+            AdministrationService as = Context.getAdministrationService();
+            log.warn("Removing liquibase change log locks for previously installed data integrity instance");
+            as.executeSQL("delete from liquibasechangelog WHERE ID like 'dataintegrity%';", false);
+        }
     }
 
     /**
