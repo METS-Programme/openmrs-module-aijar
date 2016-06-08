@@ -21,9 +21,14 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.GlobalProperty;
 import org.openmrs.Location;
+import org.openmrs.Patient;
+import org.openmrs.PatientIdentifier;
+import org.openmrs.PatientIdentifierType;
+import org.openmrs.api.APIException;
 import org.openmrs.api.AdministrationService;
 import org.openmrs.api.ConceptService;
 import org.openmrs.api.LocationService;
+import org.openmrs.api.PatientService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.Module;
 import org.openmrs.module.ModuleActivator;
@@ -35,8 +40,11 @@ import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
 import org.openmrs.module.appframework.service.AppFrameworkService;
 import org.openmrs.module.emrapi.EmrApiConstants;
 import org.openmrs.module.emrapi.utils.MetadataUtil;
+import org.openmrs.module.idgen.IdentifierSource;
+import org.openmrs.module.idgen.service.IdentifierSourceService;
 import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
 import org.openmrs.module.reporting.common.ObjectUtil;
+import org.openmrs.notification.AlertService;
 import org.openmrs.ui.framework.resource.ResourceFactory;
 import org.openmrs.util.OpenmrsUtil;
 
@@ -114,6 +122,9 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 	        // cleanup liquibase change logs to enable installation of data integrity module
 	        removeOldChangeLocksForDataIntegrityModule();
 
+	        // generate OpenMRS ID for patients without the identifier
+	        generateOpenMRSIdentifierForPatientsWithout();
+
 
         } catch (Exception e) {
             Module mod = ModuleFactory.getModuleById("aijar");
@@ -123,8 +134,54 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 
         log.info("aijar Module started");
     }
+	/**
+	 * Generate an OpenMRS ID for patients who do not have one due to a migration from an old OpenMRS ID to a new one which contains a check-digit
+	 *
+	 **/
+	private void generateOpenMRSIdentifierForPatientsWithout()  {
+		PatientService patientService = Context.getPatientService();
+		AdministrationService as = Context.getAdministrationService();
+		IdentifierSourceService iss = Context.getService(IdentifierSourceService.class);
+		AlertService alertService = Context.getAlertService();
 
-    /**
+		List<List<Object>> patientIds = as.executeSQL("SELECT patient_id FROM patient_identifier WHERE patient_id NOT IN (SELECT patient_id FROM patient_identifier p INNER JOIN patient_identifier_type pt ON (p.identifier_type = pt.patient_identifier_type_id AND pt.uuid = '05a29f94-c0ed-11e2-94be-8c13b969e334'))", true);
+
+		if (patientIds.size() == 0) {
+			// no patients to process
+			return;
+		}
+
+		// get the identifier source copied from RegistrationCoreServiceImpl
+		IdentifierSource idSource =  iss.getIdentifierSource(1); // this is the default OpenMRS identifier source
+		PatientIdentifierType patientIdentifierType = patientService.getPatientIdentifierTypeByUuid("05a29f94-c0ed-11e2-94be-8c13b969e334");
+
+		for (List<Object> row: patientIds) {
+			Patient p = patientService.getPatient((Integer) row.get(0));
+
+			PatientIdentifier pid = new PatientIdentifier();
+			pid.setIdentifierType(patientIdentifierType);
+			pid.setIdentifier(iss.generateIdentifier(idSource, "New OpenMRS ID with CheckDigit"));
+			pid.setPreferred(true);
+
+			p.addIdentifier(pid);
+			log.info("Adding OpenMRS ID " + pid.getIdentifier() + " to patient with id " + p.getPatientId());
+
+			// update the patient
+			try {
+				patientService.savePatient(p);
+			} catch (APIException e) {
+				// log the error to the alert service but do not rethrow the exception since the module has to start
+				alertService.notifySuperUsers("Error updating OpenMRS identifier for patient #" + p.getPatientId(), e);
+				log.error("Error updating OpenMRS identifier for patient #" + p.getPatientId(), e);
+			}
+		}
+
+		log.info("All patients updated with new OpenMRS ID");
+
+
+	}
+
+	/**
      * Configure the global properties for the expected functionality
      *
      * @return
@@ -143,6 +200,9 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 
         // set the name of the application
         properties.add(new GlobalProperty("application.name", "UgandaEMR - Uganda eHealth Solution"));
+
+	    // the regular expression for validating patient names to include periods
+	    properties.add(new GlobalProperty("patient.nameValidationRegex", "^[a-zA-Z.\\-]+$"));
 
         // the search mode for patients to enable searching any part of names rather than the beginning
         properties.add(new GlobalProperty("patientSearch.matchMode", "ANYWHERE"));
