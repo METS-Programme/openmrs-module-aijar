@@ -1,8 +1,8 @@
-<htmlform formName="Comprehensive HIV-Care Patient Referral-Transfer"
+<htmlform formName="Comprehensive-HIV-Care-Patient-Referral-Transfer"
           formDescription="Summary entry form for patients enrolled for ART"
-          formEncounterType="8d5b27bc-c2cc-11de-8d13-0010c6dffd0f"
-          formUuid="52653a60-8300-4c13-be4d-4b746da06fee"
-          formVersion="1.2"
+          formEncounterType="7b68d557-85ef-4fc8-b767-4fa4f5eb5c23"
+          formUuid="5896892e-2b55-4801-8cd7-f8bcaf13ce1f"
+          formVersion="1.0"
           formAddMetadata="yes"
           formUILocation="patientDashboard.visitActions"
           formOrder="1"
@@ -14,9 +14,9 @@
     <redirectOnSave
             url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits"/>
     <script type="text/javascript">
-        function enable_disable(selected_option, class_name_attribute, conditions, input_type) {
+        function enable_disable(field, class_name_prefix, conditions, input_type) {
 
-            var class_name = jq(selected_option).attr("class");
+            var class_name = jq(field).attr("class");
 
             var length = class_name.length;
 
@@ -26,15 +26,15 @@
             var disable = true;
             var requires = true;
 
-            var row = '[class^="' + class_name_attribute + '"][class*="' + childClass + '"]';
+            var row = '[class^="' + class_name_prefix + '"][class*="' + childClass + '"]';
 
             var selected_value = null;
 
             if (input_type == "select") {
-                selected_value = jq(selected_option).find(":selected").text().trim().toLowerCase();
+                selected_value = jq(field).find(":selected").text().trim().toLowerCase();
             }
-            else if (input_type == "input_hidden") {
-                selected_value = jq(selected_option).find("input[type=hidden]").val().trim().toLowerCase();
+            else if (input_type == "hidden") {
+                selected_value = jq(field).find("input[type=hidden]").val().trim().toLowerCase();
             }
 
 
@@ -52,6 +52,7 @@
                     // group.find('select').prop("selectedIndex", 0);
                     group.find("input").attr("disabled", disable);
                     group.find('select').attr("disabled", disable);
+
                     if (disable = true) {
                         group.find("input").fadeTo(250, 1);
 
@@ -243,7 +244,6 @@
                         </p>
                     </td>
                     <td>
-
                         <obs id="br" conceptId="856" labelText="Viral Load"/>
                         <br/>
                         <obs id="br" conceptId="21" labelText="HB"/>
