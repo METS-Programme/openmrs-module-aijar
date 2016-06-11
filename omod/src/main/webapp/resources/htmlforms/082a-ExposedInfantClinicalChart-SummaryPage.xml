@@ -267,7 +267,21 @@
 				// add JQuery validator classes and rules
 				jq("#162889 input, #162870 input").addClass("ugphone");
 
-				// add the validator on the beforeSubmit
+				// add validation rule to ensure that the chart is opened after the birthdate of the child
+				jq.validator.addMethod("birthBeforeChartOpenedDate", function(value, element ) {
+		            var birthDate = new Date(jq('#birthDate').text());
+					var dateOpened = new Date(getValue('encounterDate.value'));
+					alert("The encounter date is " + dateOpened);
+					alert("The birth date is " + birthDate);
+					return dateOpened >= birthDate;
+
+				}, "The date file opened has to be after the date of birth of the exposed infant");
+
+
+				// add the validation rule
+				jq("#encounterDate input").addClass("birthBeforeChartOpenedDate");
+
+		// add the validator on the beforeSubmit
 				beforeSubmit.push(function(){
 						jq("#htmlform").validate();
 						return jq("#htmlform").valid();
@@ -355,6 +369,7 @@
     <div class="ai-page-frame">
         <div class="headers" style="text-align: center;">
             <h3 id="h3white">Exposed Infant Clinical Chart - Summary Form</h3>
+
         </div>
         <div class="ai-page-content">
             <section>
@@ -364,7 +379,10 @@
                          <span style="display: none;">
                         <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
                                            order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
-                        </span>
+
+							 <span id="birthDate"><lookup expression="patient.birthdate"/></span>
+						 </span>
+
                 <table class="table table-bordered custom-table">
                     <tr>
                         <td>
@@ -373,8 +391,8 @@
                                      required="true" placeholder="EXP"/>
                         </td>
                         <td><label>Date Chart Opened:</label>
-                            <encounterDate default="today"></encounterDate>
-                        </td>
+                            <encounterDate default="today" id="encounterDate"/>
+						</td>
                         <td><label>Entry Point (Clinic/Ward):</label>
                             <obs conceptId="90200"
                                  answerConceptIds="90012,90016,99593,90019,90013,90015,90018,90002"
