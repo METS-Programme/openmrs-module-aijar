@@ -1828,7 +1828,7 @@
                     </td>
                     <td class="ARTStartEnableDisableChild1">
                         <excludeIf velocityTest="$patient.gender =='M' ">
-                            <obs conceptId="99603" answerConceptIds="90003,90004"
+                            <obs conceptId="99072" answerConceptIds="90003,90004"
                                  answerLabels="Y, N" labelText="Preg"/>
                         </excludeIf>
                     </td>
