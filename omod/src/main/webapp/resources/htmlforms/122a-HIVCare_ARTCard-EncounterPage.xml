@@ -247,7 +247,7 @@
             var row_id = class_id;
 
             var disable = true;
-            var requires = true;
+            var requires = false;
 
             var row_1 = '[class^="DistrictTbReg"][class*="Child1"]';
 
@@ -258,7 +258,7 @@
 
             if (selected_value == "tb rx") {
                 disable = false;
-                requires = false;
+                requires = true;
             }
 
             switch (row_id) {
