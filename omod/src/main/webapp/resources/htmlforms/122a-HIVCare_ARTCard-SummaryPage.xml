@@ -1034,7 +1034,8 @@
                             </span>
                         </td>
                         <td>
-
+                            <label>National ID:</label>
+                            <patient field="identifier" identifierTypeId="f0c16a6d-dc5f-4118-a803-616d0075d282" required="false"/>
                         </td>
                     </obsgroup>
                 </tr>
