@@ -124,7 +124,7 @@
         }
 
         table td {
-            background: #B6D6E6;
+            background: #fbfaee;
             color: #404040;
         }
 
@@ -345,17 +345,4 @@
     <section>
         <submit/>
     </section>
-    <!-- End of HTML Form -->
-    <ifMode mode="EDIT" include="false">
-        <lookup complexExpression="
-            #set( $encounter = 0 )
-            #set( $encounter = $fn.latestEncounter('8d5b27bc-c2cc-11de-8d13-0010c6dffd0f'))
-            #if( $encounter != 0 )
-                &lt;script type=&quot;text/javascript&quot;>
-                        if (window.location.href.indexOf('/module/htmlformentry/htmlForm.form') == -1) {
-                            window.location.href = window.location.protocol + &quot;//&quot; + window.location.host + &quot;/&quot;+ OPENMRS_CONTEXT_PATH + &quot;/htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=$encounter.patientId&amp;visitId=$encounter.visit.visitId&amp;formUuid=52653a60-8300-4c13-be4d-4b746da06fee&amp;encounterId=$encounter.encounterId&amp;returnUrl=%2F&quot; + OPENMRS_CONTEXT_PATH + &quot;%2Fcoreapps%2Fclinicianfacing%2Fpatient.page%3FpatientId%3D$encounter.patientId&quot;;
-                        }
-                &lt;/script>
-            #end"/>
-    </ifMode>
 </htmlform>
