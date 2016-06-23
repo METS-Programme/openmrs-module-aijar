@@ -56,7 +56,7 @@
         text-align: center;
     }
 
-    .footer{
+    .footer {
         float: left;
         margin: 0px 15px;
         width: 95%;
@@ -64,37 +64,43 @@
         font-size: 0.7em;
         color: #808080;
     }
+
     .footer .left_al {
         float: left;
     }
 
-    .footer .right_al{
+    .footer .right_al {
         float: right;
     }
-    .footer a{
+
+    .footer a {
         color: #404040;
         font-size: 1em;
         padding: 5px;
         text-decoration: none;
     }
-    .footer a:hover{
+
+    .footer a:hover {
         color: #404040;
         font-size: 1em;
         padding: 5px;
         text-decoration: underline;
     }
-    .footer a:active{
+
+    .footer a:active {
         color: #404040;
         font-size: 1em;
         padding: 5px;
         text-decoration: none;
     }
-    .footer a:after{
+
+    .footer a:after {
         color: #404040;
         font-size: 1em;
         padding: 5px;
         text-decoration: none;
     }
+
     header {
         line-height: 1em;
         -moz-border-radius: 5px;
@@ -286,11 +292,13 @@
         </form>
 
     </div>
+
     <div class="footer">
         <div class="left_al">
             &#169; ${year} All Rights Reserved <a href="http://www.health.go.ug" target="_blank"
                                                   title="Ministry of Health Uganda">Ministry of Health - Republic of Uganda</a>
         </div>
+
         <div class="right_al">
             Ver ${project.parent.version} powered by <a href="http://www.mets.or.ug" target="_blank"
                                                         title="Makerere University School of Public Health METS Programme">METS Programme</a>

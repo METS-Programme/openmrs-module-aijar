@@ -367,15 +367,15 @@
                 <tr>
                     <td style="width: 15%;background: #F3F3F3;">Date
                         <br/>
-                        Tick box if scheduled
+                                                                Tick box if scheduled
                     </td>
                     <td style="width: 15%;background: #F3F3F3;">Next appointment Date</td>
                     <td style="width: 15%;background: #F3F3F3;">Duration in months since first starting ART/since
-                        starting current regimen
+                                                                starting current regimen
                     </td>
                     <td style="width: 15%;background: #F3F3F3;">Wt / Ht / MUAC</td>
                     <td style="width: 15%;background: #F3F3F3;">If pregnant EDD/EMTCT? Write gestation in weeks
-                        and ANC#
+                                                                and ANC#
                     </td>
                 </tr>
                 <tr>
@@ -577,7 +577,7 @@
                     <td style="width: 5%;background: #F3F3F3;padding: 20px;">INH</td>
                     <td style="width: 15%;background: #F3F3F3;padding: 20px;">Other Meds dispensed</td>
                     <td style="width: 15%;background: #F3F3F3;padding: 20px; text-align: center;" colspan="2">ARV
-                        drugs
+                                                                                                              drugs
                     </td>
                 </tr>
                 <tr>
@@ -728,15 +728,15 @@
                         <br/>
                         <obs id="br" conceptId="730" dateLabel="Date:" labelText="CD4%:"/>
                         <br/>Severe
-                        if CD4 less than 15% write minus(-) if CD4 >15 write plus (+)
+                             if CD4 less than 15% write minus(-) if CD4 >15 write plus (+)
                         <br/>
                         <obs id="br" conceptId="99151" answerConceptIds="90125,99150"
                              answerLabels="+,-"/>
                         <br/>
-                        HIV Viral Load
+                             HIV Viral Load
                         <obs id="br" conceptId="856"/>
                         <br/>
-                        Date HIV Viral Load Taken
+                             Date HIV Viral Load Taken
                         <obs conceptId="163023"/>
                     </td>
                     <td class="lablex2">

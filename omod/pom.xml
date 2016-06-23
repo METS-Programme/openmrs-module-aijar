@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
@@ -8,7 +9,7 @@
 	</parent>
 
 	<artifactId>aijar-omod</artifactId>
-  <version>1.0.10-SNAPSHOT</version>
+	<version>1.0.10-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>aijar Module OMOD</name>
 	<description>OMOD project for aijar</description>
@@ -23,7 +24,7 @@
 			<version>${project.parent.version}</version>
 		</dependency>
 		
-				
+
 		<!-- End OpenMRS modules -->
 		
 
@@ -79,14 +80,14 @@
 		</dependency>
 
 		<dependency>
-            <groupId>org.openmrs.module</groupId>
-            <artifactId>registrationapp-omod</artifactId>
-        </dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>registrationapp-omod</artifactId>
+		</dependency>
 
-        <dependency>
-            <groupId>org.openmrs.module</groupId>
-            <artifactId>uiframework-api</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>uiframework-api</artifactId>
+		</dependency>
 
 	</dependencies>
 

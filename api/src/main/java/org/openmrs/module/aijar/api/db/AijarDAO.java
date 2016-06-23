@@ -16,7 +16,7 @@ package org.openmrs.module.aijar.api.db;
 import org.openmrs.module.aijar.api.AijarService;
 
 /**
- *  Database methods for {@link AijarService}.
+ * Database methods for {@link AijarService}.
  */
 public interface AijarDAO {
 	

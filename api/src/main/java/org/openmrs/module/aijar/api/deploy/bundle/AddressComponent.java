@@ -7,60 +7,65 @@ import org.openmrs.module.addresshierarchy.AddressField;
  */
 public class AddressComponent {
 
-    private AddressField field;
-    private String nameMapping;
-    private int sizeMapping;
-    private String elementDefault;
-    private boolean requiredInHierarchy;
+	private AddressField field;
 
-    public AddressComponent() {
-    }
+	private String nameMapping;
 
-    public AddressComponent(AddressField field, String nameMapping, int sizeMapping, String elementDefault, boolean requiredInHierarchy) {
-        this.field = field;
-        this.nameMapping = nameMapping;
-        this.sizeMapping = sizeMapping;
-        this.elementDefault = elementDefault;
-        this.requiredInHierarchy = requiredInHierarchy;
-    }
+	private int sizeMapping;
 
-    public AddressField getField() {
-        return field;
-    }
+	private String elementDefault;
 
-    public void setField(AddressField field) {
-        this.field = field;
-    }
+	private boolean requiredInHierarchy;
 
-    public String getNameMapping() {
-        return nameMapping;
-    }
+	public AddressComponent() {
+	}
 
-    public void setNameMapping(String nameMapping) {
-        this.nameMapping = nameMapping;
-    }
+	public AddressComponent(AddressField field, String nameMapping, int sizeMapping, String elementDefault,
+	                        boolean requiredInHierarchy) {
+		this.field = field;
+		this.nameMapping = nameMapping;
+		this.sizeMapping = sizeMapping;
+		this.elementDefault = elementDefault;
+		this.requiredInHierarchy = requiredInHierarchy;
+	}
 
-    public int getSizeMapping() {
-        return sizeMapping;
-    }
+	public AddressField getField() {
+		return field;
+	}
 
-    public void setSizeMapping(int sizeMapping) {
-        this.sizeMapping = sizeMapping;
-    }
+	public void setField(AddressField field) {
+		this.field = field;
+	}
 
-    public String getElementDefault() {
-        return elementDefault;
-    }
+	public String getNameMapping() {
+		return nameMapping;
+	}
 
-    public void setElementDefault(String elementDefault) {
-        this.elementDefault = elementDefault;
-    }
+	public void setNameMapping(String nameMapping) {
+		this.nameMapping = nameMapping;
+	}
 
-    public boolean isRequiredInHierarchy() {
-        return requiredInHierarchy;
-    }
+	public int getSizeMapping() {
+		return sizeMapping;
+	}
 
-    public void setRequiredInHierarchy(boolean requiredInHierarchy) {
-        this.requiredInHierarchy = requiredInHierarchy;
-    }
+	public void setSizeMapping(int sizeMapping) {
+		this.sizeMapping = sizeMapping;
+	}
+
+	public String getElementDefault() {
+		return elementDefault;
+	}
+
+	public void setElementDefault(String elementDefault) {
+		this.elementDefault = elementDefault;
+	}
+
+	public boolean isRequiredInHierarchy() {
+		return requiredInHierarchy;
+	}
+
+	public void setRequiredInHierarchy(boolean requiredInHierarchy) {
+		this.requiredInHierarchy = requiredInHierarchy;
+	}
 }

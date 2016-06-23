@@ -1,8 +1,8 @@
 <%
-    ui.decorateWith("appui", "standardEmrPage", [ title: ui.message("referenceapplication.home.title") ])
+    ui.decorateWith("appui", "standardEmrPage", [title: ui.message("referenceapplication.home.title")])
 
     def htmlSafeId = { extension ->
-        "${ extension.id.replace(".", "-") }-${ extension.id.replace(".", "-") }-extension"
+        "${extension.id.replace(".", "-")}-${extension.id.replace(".", "-")}-extension"
     }
 %>
 <script type="text/javascript">
@@ -27,8 +27,9 @@
         <ul style="list-style:square;margin-left:25px;">
             <li>Mpango Jonathan (METS) - 0756524011</li>
             <li>Stephen S Musoke (METS) - 0706553260</li>
-            <li>Alfred Bagenda (MoH) - 0706937715 </li>
+            <li>Alfred Bagenda (MoH) - 0706937715</li>
         </ul>
+
         <p></p>
 
         <h2>Online Demo</h2>

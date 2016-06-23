@@ -7,7 +7,7 @@
 	<name>${project.parent.name}</name>
 	<version>${project.parent.version}</version>
 	<package>${project.parent.groupId}.${project.parent.artifactId}</package>
-    <author>METS Program</author>
+	<author>METS Program</author>
 	<description>
 		${project.parent.description}
 	</description>
@@ -27,9 +27,9 @@
 	
 	<!-- Maps hibernate file's, if present -->
 	<mappingFiles>
-				
+
 		aijar.hbm.xml
-				
+
 	</mappingFiles>
 
 	<!-- Internationalization -->
@@ -51,42 +51,42 @@
 	<!-- Required Modules -->
 
 	<require_modules>
-        <require_module>
-            org.openmrs.module.appframework
-        </require_module>
-        <require_module>
-            org.openmrs.module.dataexchange
-        </require_module>
-        <require_module>
-            org.openmrs.module.emrapi
-        </require_module>
-        <require_module>
-            org.openmrs.module.formentryapp
-        </require_module>
-        <require_module>
-            org.openmrs.module.htmlformentry
-        </require_module>
-        <require_module>
-            org.openmrs.module.htmlformentryui
-        </require_module>
-        <require_module>
-            org.openmrs.module.idgen
-        </require_module>
-        <require_module>
-            org.openmrs.module.metadatadeploy
-        </require_module>
-        <require_module>
-            org.openmrs.module.reporting
-        </require_module>
-        <require_module>
-            org.openmrs.module.registrationapp
-        </require_module>
-        <require_module>
-            org.openmrs.module.registrationcore
-        </require_module>
-        <require_module>
-            org.openmrs.module.uiframework
-        </require_module>
+		<require_module>
+			org.openmrs.module.appframework
+		</require_module>
+		<require_module>
+			org.openmrs.module.dataexchange
+		</require_module>
+		<require_module>
+			org.openmrs.module.emrapi
+		</require_module>
+		<require_module>
+			org.openmrs.module.formentryapp
+		</require_module>
+		<require_module>
+			org.openmrs.module.htmlformentry
+		</require_module>
+		<require_module>
+			org.openmrs.module.htmlformentryui
+		</require_module>
+		<require_module>
+			org.openmrs.module.idgen
+		</require_module>
+		<require_module>
+			org.openmrs.module.metadatadeploy
+		</require_module>
+		<require_module>
+			org.openmrs.module.reporting
+		</require_module>
+		<require_module>
+			org.openmrs.module.registrationapp
+		</require_module>
+		<require_module>
+			org.openmrs.module.registrationcore
+		</require_module>
+		<require_module>
+			org.openmrs.module.uiframework
+		</require_module>
 	</require_modules>
 
 	<!-- Global Properties -->

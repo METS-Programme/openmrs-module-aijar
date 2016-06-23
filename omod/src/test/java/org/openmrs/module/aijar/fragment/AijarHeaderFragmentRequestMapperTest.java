@@ -1,10 +1,9 @@
 package org.openmrs.module.aijar.fragment;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-import org.openmrs.module.aijar.page.AijarLoginPageRequestMapper;
 import org.openmrs.ui.framework.fragment.FragmentRequest;
 
 /**

@@ -11,7 +11,7 @@
           formDisplayStyle="Standard"
           formLabel="SMC Client Card">
     <redirectOnSave
-            url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits" />
+            url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits"/>
 
     <style>
 
@@ -58,11 +58,13 @@
         table th, table td {
             border: 1px solid #C7C7C7;
         }
-        h4{
+
+        h4 {
             background: #C1C1C1;
             color: #000;
         }
-        h3{
+
+        h3 {
             background: #C1C1C1;
             color: #000;
         }
@@ -102,8 +104,9 @@
 
             selected_value = selected_value.trim().toUpperCase();
 
-            if (selected_value.toLowerCase() == "other" || selected_value.toLowerCase() == "others"  || selected_value.toLowerCase() == "others" || selected_value.toLowerCase() == "other specify")
+            if (selected_value.toLowerCase() == "other" || selected_value.toLowerCase() == "others" || selected_value.toLowerCase() == "others" || selected_value.toLowerCase() == "other specify") {
                 disable = false;
+            }
 
             switch (row_id) {
                 case 1:

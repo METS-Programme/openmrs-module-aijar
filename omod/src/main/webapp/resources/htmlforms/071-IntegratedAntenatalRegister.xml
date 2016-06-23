@@ -10,7 +10,8 @@
           formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.gender=='F' &amp;&amp; patient.person.age &gt; 12 &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='e9bc61b5-69ff-414b-9cf0-0c22d6dfca2b'"
           formDisplayStyle="Standard"
           formLabel="ANC Register Form">
-    <redirectOnSave url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits"/>
+    <redirectOnSave
+            url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits"/>
     <script type="text/javascript">
         function enable_disable_pcr_test_result(selected_option) {
 
@@ -301,7 +302,7 @@
                     <th rowspan="3" style="background: #FBFBFB;text-align: center;font-weight: bold;">Gestation Age</th>
                     <th rowspan="3" style="background: #FBFBFB;text-align: center;font-weight: bold;">ANC1 Trimming</th>
                     <th rowspan="3" style="background: #FBFBFB;text-align: center;font-weight: bold;">Expected Date of
-                        Delivery (EDD)
+                                                                                                      Delivery (EDD)
                     </th>
                     <th style="background: #FBFBFB;text-align: center;font-weight: bold;;">Weight</th>
                 </tr>
@@ -356,15 +357,16 @@
                     <th style="background: #FBFBFB;text-align: center;font-weight: bold;" rowspan="4">Blood Pressure
                     </th>
                     <th style="background: #FBFBFB;text-align: center;font-weight: bold;" colspan="2" rowspan="3">EMTCT
-                        Codes
+                                                                                                                  Codes
                     </th>
                     <th style="background: #FBFBFB;text-align: center;font-weight: bold;" rowspan="4">Diagnosis</th>
                     <th style="background: #FBFBFB;text-align: center;font-weight: bold;" rowspan="2">WHO Clinical
-                        Stage
+                                                                                                      Stage
                     </th>
                     <th style="background: #FBFBFB;text-align: center;font-weight: bold;" rowspan="3">ARV drugs</th>
                     <th style="background: #FBFBFB;text-align: center;font-weight: bold;" rowspan="3">Infant Young Child
-                        feeding Counseling (IYCF)
+                                                                                                      feeding Counseling
+                                                                                                      (IYCF)
                     </th>
                 </tr>
                 <tr>
@@ -378,7 +380,7 @@
                     <td style="background: #FBFBFB;text-align: center;font-weight: bold;">Viral Load</td>
                     <td style="background: #FBFBFB;text-align: center;font-weight: bold;">Pre-ART No of Client</td>
                     <td style="background: #FBFBFB;text-align: center;font-weight: bold;">Maternal Nutrition
-                        Counseling
+                                                                                          Counseling
                     </td>
                 </tr>
                 <tr>
@@ -415,7 +417,7 @@
                              answerLabels="ART,ARTK,ART&#8730;,ARTK&#8730;,N/A"/>
                     </td>
                     <td rowspan="2">
-                       <label style="text-align: left"> Infant Young Child feeding Counseling (IYCF)</label>
+                        <label style="text-align: left"> Infant Young Child feeding Counseling (IYCF)</label>
                         <obs conceptId="99749" labelText="" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
                     </td>
                 </tr>
@@ -447,10 +449,10 @@
                     <th style="background: #FBFBFB;text-align: center;font-weight: bold;" rowspan="2">TB Status</th>
                     <th style="background: #FBFBFB;text-align: center;font-weight: bold;" rowspan="2">Haemoglobin</th>
                     <th style="background: #FBFBFB;text-align: center;font-weight: bold;" colspan="2">Syphilis Test
-                        Results
+                                                                                                      Results
                     </th>
                     <th style="background: #FBFBFB;text-align: center;font-weight: bold;" rowspan="2">Family Planning
-                        Counseling
+                                                                                                      Counseling
                     </th>
                     <th style="background: #FBFBFB;text-align: center;font-weight: bold;" rowspan="2">TT</th>
                 </tr>
@@ -541,7 +543,7 @@
                     <th style="background: #FBFBFB;text-align: center;font-weight: bold;">Referral In/Out
                     </th>
                     <th style="background: #FBFBFB;text-align: center;font-weight: bold;">Risk
-                        Factors/Complications
+                                                                                          Factors/Complications
                     </th>
                 </tr>
                 <tr>

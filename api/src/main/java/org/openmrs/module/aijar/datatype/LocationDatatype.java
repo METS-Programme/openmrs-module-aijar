@@ -27,27 +27,27 @@ import org.springframework.stereotype.Component;
 @Component
 public class LocationDatatype extends SerializingCustomDatatype<Location> {
 
-    /**
-     * @see SerializingCustomDatatype#deserialize(String)
-     */
-    @Override
-    public Location deserialize(String serializedValue) {
-        if (StringUtils.isEmpty(serializedValue)) {
-            return null;
-        }
+	/**
+	 * @see SerializingCustomDatatype#deserialize(String)
+	 */
+	@Override
+	public Location deserialize(String serializedValue) {
+		if (StringUtils.isEmpty(serializedValue)) {
+			return null;
+		}
 
-        return Context.getLocationService().getLocation(Integer.valueOf(serializedValue));
-    }
+		return Context.getLocationService().getLocation(Integer.valueOf(serializedValue));
+	}
 
-    /**
-     * @see SerializingCustomDatatype#serialize(Object)
-     */
-    @Override
-    public String serialize(Location typedValue) {
-        if (typedValue == null) {
-            return null;
-        }
+	/**
+	 * @see SerializingCustomDatatype#serialize(Object)
+	 */
+	@Override
+	public String serialize(Location typedValue) {
+		if (typedValue == null) {
+			return null;
+		}
 
-        return typedValue.getLocationId().toString();
-    }
+		return typedValue.getLocationId().toString();
+	}
 }

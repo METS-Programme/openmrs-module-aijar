@@ -501,7 +501,6 @@
         }
 
 
-
         function enable_disable_art_start3(selected_option) {
 
             var class_name = jq(selected_option).attr("class");
@@ -756,9 +755,9 @@
 
                 // add the validator on the beforeSubmit
                 beforeSubmit.push(function () {
-                            jq("#htmlform").validate();
-                            return jq("#htmlform").valid();
-                        }
+                                      jq("#htmlform").validate();
+                                      return jq("#htmlform").valid();
+                                  }
                 )
 
                 var gender = jq("span.gender").html();
@@ -981,7 +980,9 @@
                                 } else {
                                     flip = !checked;
                                 }
-                                if (jq.attr("type") == "text") if (flip == false) flip = !filp; // this is so the user doesn't go to check thecheckbox, then uncheck it when they hit the input.uncheckAll();
+                                if (jq.attr("type") == "text") if (flip == false) {
+                                    flip = !filp;
+                                } // this is so the user doesn't go to check thecheckbox, then uncheck it when they hit the input.uncheckAll();
                                 jq(this).parents("#checkboxAll:first").find(":checkbox").attr("checked", flip);
                                 jq(this).parents("#checkboxAll:first").find(":checkbox").change();
                             }
@@ -1123,7 +1124,8 @@
                         </td>
                         <td>
                             <label>National ID:</label>
-                            <patient field="identifier" identifierTypeId="f0c16a6d-dc5f-4118-a803-616d0075d282" required="false"/>
+                            <patient field="identifier" identifierTypeId="f0c16a6d-dc5f-4118-a803-616d0075d282"
+                                     required="false"/>
                         </td>
                     </obsgroup>
                 </tr>
@@ -1198,7 +1200,7 @@
                     </td>
                     <td style="color: #404040; padding: 15px;width: 20%;">
                         <b>Unique
-                            No</b>
+                           No</b>
                     </td>
                 </tr>
                 <tr>
@@ -2050,7 +2052,7 @@
                 <tr>
                     <td rowspan="5" style="background: white;">2nd-line</td>
                     <td colspan="4" style="background-color: #377F9C;color: white;text-align: center;">Switch to 2nd
-                        line
+                                                                                                       line
                     </td>
                 </tr>
                 <tr>
@@ -2130,7 +2132,7 @@
                 <tr>
                     <td rowspan="5" style="background: white;">3rd-line</td>
                     <td colspan="4" style="background-color: #377F9C;color: white;text-align: center;">Switch to 3rd
-                        line
+                                                                                                       line
                     </td>
                 </tr>
                 <tr>

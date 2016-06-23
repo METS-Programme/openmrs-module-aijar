@@ -13,9 +13,9 @@
  */
 package org.openmrs.module.aijar.api.impl;
 
-import org.openmrs.api.impl.BaseOpenmrsService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.aijar.api.AijarService;
 import org.openmrs.module.aijar.api.db.AijarDAO;
 
@@ -29,16 +29,16 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 	private AijarDAO dao;
 	
 	/**
-     * @param dao the dao to set
-     */
-    public void setDao(AijarDAO dao) {
-	    this.dao = dao;
-    }
-    
-    /**
-     * @return the dao
-     */
-    public AijarDAO getDao() {
-	    return dao;
-    }
+	 * @return the dao
+	 */
+	public AijarDAO getDao() {
+		return dao;
+	}
+
+	/**
+	 * @param dao the dao to set
+	 */
+	public void setDao(AijarDAO dao) {
+		this.dao = dao;
+	}
 }

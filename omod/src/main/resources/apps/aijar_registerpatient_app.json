@@ -39,27 +39,27 @@
                 }
               ]
             },
-           /* {
-              "legend": "aijar.registrationapp.birth.location",
-              "fields": [
-                {
-                  "type": "personAddress",
-                  "label": "aijar.registrationapp.birth.location.question",
-                  "uuid": "8d8718c2-c2cc-11de-8d13-0010c6dffd0f",
-                  "formFieldName": "birthLocation",
-                  "widget": {
-                    "providerName": "registrationapp",
-                    "fragmentId": "field/personAddressWithHierarchy",
-                    "config": {
-                      "shortcutFor": "address4",
-                      "manualFields": [
-                        "address5"
-                      ]
-                    }
-                  }
-                }
-              ]
-            },*/
+            /* {
+               "legend": "aijar.registrationapp.birth.location",
+               "fields": [
+                 {
+                   "type": "personAddress",
+                   "label": "aijar.registrationapp.birth.location.question",
+                   "uuid": "8d8718c2-c2cc-11de-8d13-0010c6dffd0f",
+                   "formFieldName": "birthLocation",
+                   "widget": {
+                     "providerName": "registrationapp",
+                     "fragmentId": "field/personAddressWithHierarchy",
+                     "config": {
+                       "shortcutFor": "address4",
+                       "manualFields": [
+                         "address5"
+                       ]
+                     }
+                   }
+                 }
+               ]
+             },*/
             {
               "legend": "aijar.registrationapp.currentaddress",
               "fields": [
