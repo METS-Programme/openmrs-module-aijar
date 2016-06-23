@@ -406,7 +406,7 @@
                     <td>
                         <excludeIf velocityTest="$patient.gender =='M' || $patient.age &lt; 9">
                                 <span class="ARTYesNoEnableDisable2">
-                                    <obs conceptId="90041" style="checkbox" answerConceptIds="1066,1065"
+                                    <obs conceptId="90041" style="checkbox" answerConceptIds="1065,1066"
                                          answerLabels="Yes,No" labelText="Pregnant"/>
                                 </span>
                                 <span class="ARTYesNoEnableDisableChild2">
