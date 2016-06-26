@@ -732,16 +732,19 @@
                         <br/>
                         <obs id="br" conceptId="99151" answerConceptIds="90125,99150"
                              answerLabels="+,-"/>
-                        <br/>Viral Load Results
+                        <br/><b>Viral Load</b>
+                        <br/>
+                             Date Viral Load Taken
+                        <obs conceptId="163023"/>
+                        <br/>
+                             Viral Load Results
                         <br/>
                         <obs id="br" conceptId="1305" answerConceptIds="1306,1301"
                              answerLabels="Detected,Not Detected"/>
                         <br/>
-                             HIV Viral Load
+                             Viral Load (copies/ml)
                         <obs id="br" conceptId="856"/>
-                        <br/>
-                             Date HIV Viral Load Taken
-                        <obs conceptId="163023"/>
+
                     </td>
                     <td class="lablex2">
                         <b>Tests ordered:</b>
