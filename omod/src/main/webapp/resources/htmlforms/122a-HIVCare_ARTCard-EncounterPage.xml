@@ -732,6 +732,10 @@
                         <br/>
                         <obs id="br" conceptId="99151" answerConceptIds="90125,99150"
                              answerLabels="+,-"/>
+                        <br/>Viral Load Results
+                        <br/>
+                        <obs id="br" conceptId="1305" answerConceptIds="1306,1301"
+                             answerLabels="Detected,Not Detected"/>
                         <br/>
                              HIV Viral Load
                         <obs id="br" conceptId="856"/>
