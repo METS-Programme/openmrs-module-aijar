@@ -7,5 +7,26 @@
 	From applicationContext-service.xml in openmrs-api
 	Needed to override and add hibernate mappings to the classpath since omod is not packaged yet
 	-->
+	<bean id="sessionFactory" class="org.openmrs.api.db.hibernate.HibernateSessionFactoryBean">
+		<property name="configLocations">
+			<list>
+				<value>classpath:hibernate.cfg.xml</value>
+			</list>
+		</property>
+		<property name="mappingJarLocations">
+			<ref bean="mappingJarResources" />
+		</property>
+		<!--  default properties must be set in the hibernate.default.properties -->
+	</bean>
 
+	<!--
+		Tell the service context to use the system classloader to load classes instead of
+		the openmrs classloader.  This allows junit tests with context service calls to
+		be run inside of a module
+	-->
+	<bean parent="serviceContext">
+		<property name="useSystemClassLoader">
+			<value>true</value>
+		</property>
+	</bean>
 </beans>

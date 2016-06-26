@@ -9,7 +9,6 @@
 	</parent>
 
 	<artifactId>aijar-api</artifactId>
-	<version>1.0.10-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>aijar Module API</name>
 	<description>API project for aijar</description>
@@ -58,6 +57,21 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>webservices.rest-omod-1.8</artifactId>
+			<version>${webservices.restModuleVersion}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>webservices.rest-omod-1.8</artifactId>
+			<version>${webservices.restModuleVersion}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+
 		<!-- End OpenMRS core -->
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
@@ -91,7 +105,12 @@
 
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
-			<artifactId>htmlformentry-api</artifactId>
+			<artifactId>htmlformentry19ext-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>htmlformentry-omod</artifactId>
 		</dependency>
 
 		<dependency>
@@ -123,6 +142,11 @@
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>metadatasharing-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>providermanagement-api</artifactId>
 		</dependency>
 
 		<dependency>

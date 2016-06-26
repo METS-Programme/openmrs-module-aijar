@@ -34,11 +34,16 @@ public class HtmlFormsInitializer implements Initializer {
 
 	protected static final String formsPath = "htmlforms/";
 
+	/* variable for testing forms during development */
+	private List<HtmlForm> htmlForms;
+
 	/**
 	 * @see Initializer#started()
 	 */
 	public synchronized void started() {
 		log.info("Setting HFE forms for " + AijarConstants.MODULE_ID);
+
+		htmlForms = new ArrayList<HtmlForm>();
 
 		final ResourceFactory resourceFactory = ResourceFactory.getInstance();
 		final ResourceProvider resourceProvider = resourceFactory.getResourceProviders().get(providerName);
@@ -51,9 +56,8 @@ public class HtmlFormsInitializer implements Initializer {
 			log.error("No HTML forms could be retrieved from the provided folder: " + providerName + ":" + formsPath);
 			return;
 		}
-		for (File file : formsDir.listFiles()) {
+		for (File file : formsDir.listFiles())
 			formPaths.add(formsPath + file.getName());    // Adding each file's path to the list
-		}
 
 		// Save form + add its meta data
 		final FormManager formManager = Context.getRegisteredComponent("formManager", FormManager.class);
@@ -63,10 +67,11 @@ public class HtmlFormsInitializer implements Initializer {
 		final HtmlFormEntryService hfeService = Context.getService(HtmlFormEntryService.class);
 		for (String formPath : formPaths) {
 			// Save form
-			HtmlForm htmlForm = null;
+			HtmlForm form = null;
 			try {
-				htmlForm = HtmlFormUtil.getHtmlFormFromUiResource(resourceFactory, formService, hfeService, providerName,
+				form = HtmlFormUtil.getHtmlFormFromUiResource(resourceFactory, formService, hfeService, providerName,
 						formPath);
+				htmlForms.add(form);
 			}
 			catch (IOException e) {
 				log.error("Could not generate HTML form from the following resource file: " + formPath, e);
@@ -80,17 +85,20 @@ public class HtmlFormsInitializer implements Initializer {
 			ExtensionForm extensionForm = null;
 			try {
 				extensionForm = ExtensionFormUtil.getExtensionFormFromUiResourceAndForm(resourceFactory, providerName,
-						formPath, hfeAppService, formManager, htmlForm.getForm());
+						formPath, hfeAppService, formManager, form.getForm());
 			}
 			catch (Exception e) {
 				log.error(
-						"The form was created but its extension point could not be created in Manage Forms \\ Configure "
-								+ "Metadata: "
+						"The form was created but its extension point could not be created in Manage Forms \\ Configure Metadata: "
 								+ formPath, e);
 				continue;
 			}
 			log.info("The form at " + formPath + " has been successfully loaded with its metadata");
 		}
+	}
+
+	public List<HtmlForm> getAvailableForms() {
+		return htmlForms;
 	}
 
 	/**

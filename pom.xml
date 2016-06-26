@@ -48,8 +48,9 @@
 	</modules>
 
 	<properties>
-		<openMRSVersion>1.11.5</openMRSVersion>
+		<openMRSVersion>1.11.6</openMRSVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<webservices.restModuleVersion>2.14</webservices.restModuleVersion>
 
 		<!-- module version defeinitions -->
 		<addresshierarchyVersion>2.7</addresshierarchyVersion>
@@ -60,9 +61,12 @@
 		<emrapiVersion>1.12</emrapiVersion>
 		<formentryappVersion>1.2</formentryappVersion>
 		<htmlformentryuiVersion>1.3</htmlformentryuiVersion>
+		<htmlformentry19extVersion>1.7</htmlformentry19extVersion>
 		<htmlformentryVersion>2.6</htmlformentryVersion>
+
 		<idgenVersion>3.2</idgenVersion>
 		<junitParamsVersion>1.0.4</junitParamsVersion>
+		<providermanagementVersion>2.4</providermanagementVersion>
 		<reportingVersion>0.9.8.1</reportingVersion>
 		<registrationcoreVersion>1.3</registrationcoreVersion>
 		<registrationappVersion>1.4</registrationappVersion>
@@ -106,13 +110,6 @@
 				<type>jar</type>
 				<scope>provided</scope>
 			</dependency>
-			<dependency>
-				<groupId>org.openmrs.module</groupId>
-				<artifactId>reporting-api</artifactId>
-				<version>${reportingVersion}</version>
-				<type>jar</type>
-				<scope>provided</scope>
-			</dependency>
 
 			<dependency>
 				<groupId>org.openmrs.api</groupId>
@@ -137,6 +134,7 @@
 				<type>pom</type>
 				<scope>test</scope>
 			</dependency>
+
 			<!-- End OpenMRS core -->
 
 			<!-- custom module -->
@@ -191,8 +189,15 @@
 
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
-				<artifactId>htmlformentry-api</artifactId>
+				<artifactId>htmlformentry-omod</artifactId>
 				<version>${htmlformentryVersion}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>htmlformentry19ext-api</artifactId>
+				<version>${htmlformentry19extVersion}</version>
 				<scope>provided</scope>
 			</dependency>
 
@@ -226,6 +231,13 @@
 
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
+				<artifactId>providermanagement-api</artifactId>
+				<version>${providermanagementVersion}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
 				<artifactId>referenceapplication-omod</artifactId>
 				<version>${referenceapplicationVersion}</version>
 				<scope>provided</scope>
@@ -242,6 +254,13 @@
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>registrationapp-omod</artifactId>
 				<version>${registrationappVersion}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>reporting-api</artifactId>
+				<version>${reportingVersion}</version>
 				<scope>provided</scope>
 			</dependency>
 
