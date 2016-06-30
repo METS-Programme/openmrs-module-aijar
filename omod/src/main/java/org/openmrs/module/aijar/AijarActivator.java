@@ -24,7 +24,6 @@ import org.openmrs.Location;
 import org.openmrs.Patient;
 import org.openmrs.PatientIdentifier;
 import org.openmrs.PatientIdentifierType;
-import org.openmrs.api.APIException;
 import org.openmrs.api.AdministrationService;
 import org.openmrs.api.ConceptService;
 import org.openmrs.api.LocationService;
@@ -176,7 +175,8 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 			try {
 				patientService.savePatient(p);
 			}
-			catch (APIException e) {
+			catch (Exception e) {
+				// Catch a general exception as there may be other exceptions that occur while saving the patient
 				// log the error to the alert service but do not rethrow the exception since the module has to start
 				alertService.notifySuperUsers("Error updating OpenMRS identifier for patient #" + p.getPatientId(), e);
 				log.error("Error updating OpenMRS identifier for patient #" + p.getPatientId(), e);

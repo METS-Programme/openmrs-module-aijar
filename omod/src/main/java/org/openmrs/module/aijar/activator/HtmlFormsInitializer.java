@@ -45,7 +45,7 @@ public class HtmlFormsInitializer implements Initializer {
 
 		htmlForms = new ArrayList<HtmlForm>();
 
-		final ResourceFactory resourceFactory = ResourceFactory.getInstance();
+		final ResourceFactory resourceFactory = Context.getRegisteredComponent("coreResourceFactory", ResourceFactory.class);
 		final ResourceProvider resourceProvider = resourceFactory.getResourceProviders().get(providerName);
 
 		// Scanning the forms resources folder
