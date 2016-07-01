@@ -190,6 +190,10 @@
                         <patient field="identifier" identifierTypeId="c9e42035-7112-45b3-bfcf-4b37e1091dd4"
                                  required="true"/>
                     </td>
+                    <td>
+                        <label>National ID:</label>
+                        <patient field="identifier" identifierTypeId="f0c16a6d-dc5f-4118-a803-616d0075d282" required="false"/>
+                    </td>
                 </tr>
 
                 <includeIf velocityTest="$patient.age &lt; 12">
