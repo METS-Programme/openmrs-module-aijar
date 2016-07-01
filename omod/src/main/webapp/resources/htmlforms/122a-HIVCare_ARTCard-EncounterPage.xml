@@ -385,7 +385,10 @@
                         <obs id="br" conceptId="90069" labelText="Scheduled?" style="checkbox"/>
                     </td>
                     <td>
-                        <obs id="br" conceptId="5096" required="required" allowFutureDates="true" labelText="Return date:"/>
+                        <excludeIf velocityTest="$patient.person.dead ==true ">
+                            <obs id="br" conceptId="5096" required="required" allowFutureDates="true"
+                                 labelText="Return date:"/>
+                        </excludeIf>
                     </td>
                     <td>
                         <obs id="br" conceptId="99024" labelText="Duration(Months since baseline):"/>
