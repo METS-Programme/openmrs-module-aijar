@@ -740,7 +740,7 @@
                         <obs id="br" conceptId="856"/>
                         <br/>
                         Date HIV Viral Load Taken
-                        <obs conceptId="163023"/>
+                        <obs conceptId="163023" allowFutureDates="false"/>
                     </td>
                     <td class="lablex2">
                         <b>Tests ordered:</b>
