@@ -400,8 +400,23 @@
                         <br/>
                         <obs id="br" conceptId="5090" labelText="Ht"/>
                         <br/>
-                        <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
-                             answerLabels="Green, Red, Yellow" labelText="MUAC"/>
+                        <includeIf velocityTest="$patient.age &lt; 5">
+                            <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                                 answerLabels="Green &gt;= 12.5cm, Red &lt; 11.5cm, Yellow 11.5cm - &lt; 12.5cm" labelText="MUAC"/>
+                        </includeIf>
+                        <includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
+                            <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                                 answerLabels="Green &gt;=14.5cm,Red &lt; 13.5cm,Yellow 13.5cm - &lt; 14.5cm" labelText="MUAC"/>
+                        </includeIf>
+                        <includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
+                            <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                                 answerLabels="Green &gt;=19.0cm, Red &lt; 16.5cm, Yellow 16.5cm - &lt; 19.0cm" labelText="MUAC"/>
+                        </includeIf>
+
+                        <includeIf velocityTest="$patient.age &gt;=18">
+                            <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                                 answerLabels="Green &gt;=22.0cm, Red &lt;19.0cm , Yellow 19.0cm - &lt; 122.0cm" labelText="MUAC"/>
+                        </includeIf>
                         <br/>
                         <obs id="br" conceptId="460" labelText="oedema:" answerConceptIds="90003,90004"
                              answerLabels="Oedema +,-" style="dropdown"/>
