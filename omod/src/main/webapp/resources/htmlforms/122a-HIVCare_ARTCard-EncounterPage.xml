@@ -162,6 +162,17 @@
                     // group.find('select').prop("selectedIndex", 0);
                     group.find('select').attr("disabled", disable);
                 }
+
+                if (disable) {
+                    // fade out the fields that are disabled
+                    group.find("input").fadeTo(250, 0.25);
+                    group.find("select").fadeTo(250, 0.25);
+                } else {
+                    // remove the fade on the fields
+                    group.find("input").fadeTo(250, 1);
+                    group.find("select").fadeTo(250, 1);
+                }
+
             });
         }
 
@@ -233,6 +244,16 @@
                 if (class_name.indexOf('Child') == -1) {
                     group.find("input").attr("disabled", disable);
                 }
+                if (disable) {
+                    // fade out the fields that are disabled
+                    group.find("input").fadeTo(250, 0.25);
+                    group.find("select").fadeTo(250, 0.25);
+                } else {
+                    // remove the fade on the fields
+                    group.find("input").fadeTo(250, 1);
+                    group.find("select").fadeTo(250, 1);
+                }
+
             });
         }
 
@@ -283,6 +304,17 @@
                     else if (requires == true) {
                         group.find('.required').hide();
                     }
+
+                    if (disable) {
+                        // fade out the fields that are disabled
+                        group.find("input").fadeTo(250, 0.25);
+                        group.find("select").fadeTo(250, 0.25);
+                    } else {
+                        // remove the fade on the fields
+                        group.find("input").fadeTo(250, 1);
+                        group.find("select").fadeTo(250, 1);
+                    }
+
                 }
             });
         }
@@ -324,7 +356,7 @@
                     var group = jq(this);
 
                     function disableFn() {
-                        group.children("#disabled").fadeTo(250, 1);
+                        group.children("#disabled").fadeTo(250, 0.25);
                         group.children("#disabled").find(":checkbox").attr("checked", false); //uncheck
                         // group.children("#disabled").find("input[type$='text']").val("");
                         group.children("#disabled").find("input").attr("disabled", true); //disable
@@ -402,20 +434,20 @@
                         <br/>
                         <includeIf velocityTest="$patient.age &lt; 5">
                             <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
-                                 answerLabels="Green &gt;= 12.5cm, Red &lt; 11.5cm, Yellow 11.5cm - &lt; 12.5cm" labelText="MUAC"/>
+                                 answerLabels="Green &gt;= 12.5cm, Red &lt; 11.5cm, Yellow 11.5cm - &lt;= 12.5cm" labelText="MUAC"/>
                         </includeIf>
                         <includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
                             <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
-                                 answerLabels="Green &gt;=14.5cm,Red &lt; 13.5cm,Yellow 13.5cm - &lt; 14.5cm" labelText="MUAC"/>
+                                 answerLabels="Green &gt;=14.5cm,Red &lt; 13.5cm,Yellow 13.5cm - &lt;= 14.5cm" labelText="MUAC"/>
                         </includeIf>
                         <includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
                             <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
-                                 answerLabels="Green &gt;=19.0cm, Red &lt; 16.5cm, Yellow 16.5cm - &lt; 19.0cm" labelText="MUAC"/>
+                                 answerLabels="Green &gt;=19.0cm, Red &lt; 16.5cm, Yellow 16.5cm - &lt;= 19.0cm" labelText="MUAC"/>
                         </includeIf>
 
                         <includeIf velocityTest="$patient.age &gt;=18">
                             <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
-                                 answerLabels="Green &gt;=22.0cm, Red &lt;19.0cm , Yellow 19.0cm - &lt; 122.0cm" labelText="MUAC"/>
+                                 answerLabels="Green &gt;=22.0cm, Red &lt;19.0cm , Yellow 19.0cm - &lt;= 122.0cm" labelText="MUAC"/>
                         </includeIf>
                         <br/>
                         <obs id="br" conceptId="460" labelText="oedema:" answerConceptIds="90003,90004"
@@ -750,12 +782,18 @@
                         <br/>
                         <obs id="br" conceptId="99151" answerConceptIds="90125,99150"
                              answerLabels="+,-"/>
+                        <br/><b>Viral Load</b>
                         <br/>
-                        HIV Viral Load
-                        <obs id="br" conceptId="856"/>
-                        <br/>
-                        Date HIV Viral Load Taken
+                        Date Viral Load Taken
                         <obs conceptId="163023" allowFutureDates="false"/>
+                        <br/>
+                        Viral Load Results
+                        <br/>
+                        <obs id="br" conceptId="1305" answerConceptIds="1306,1301"
+                             answerLabels="Detected,Not Detected"/>
+                        <br/>
+                        Viral Load (copies/ml)
+                        <obs id="br" conceptId="856"/>
                     </td>
                     <td class="lablex2">
                         <b>Tests ordered:</b>
