@@ -14,20 +14,21 @@ package org.openmrs.module.aijar.activator;
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
 
-
 /**
  * Interface for code to be run during the module activation process
- * @see {@link https://raw.githubusercontent.com/PIH/openmrs-module-pihmalawi/master/api/src/main/java/org/openmrs/module/pihmalawi/activator/Initializer.java}
+ *
+ * @see
+ * {@link https://raw.githubusercontent.com/PIH/openmrs-module-pihmalawi/master/api/src/main/java/org/openmrs/module/pihmalawi/activator/Initializer.java}
  */
 public interface Initializer {
 
-    /**
-     * Run during the activator started method
-     */
-    void started();
+	/**
+	 * Run during the activator started method
+	 */
+	void started();
 
-    /**
-     * Run during the activator stopped method
-     */
-    void stopped();
+	/**
+	 * Run during the activator stopped method
+	 */
+	void stopped();
 }

@@ -14,15 +14,15 @@
 
 package org.openmrs.module.aijar.fragment.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import org.openmrs.api.context.Context;
 import org.openmrs.module.appframework.domain.Extension;
 import org.openmrs.module.appframework.service.AppFrameworkService;
 import org.openmrs.module.appui.AppUiExtensions;
 import org.openmrs.ui.framework.annotation.SpringBean;
 import org.openmrs.ui.framework.fragment.FragmentModel;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  *

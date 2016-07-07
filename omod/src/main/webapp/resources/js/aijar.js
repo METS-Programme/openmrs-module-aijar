@@ -29,11 +29,11 @@ jq(document).ready(function () {
 
     /* Add validation rule for Uganda phone numbers, once applied to an element will validate the format and show a message
      */
-    jq.validator.addMethod( "ugphone", function( phone_number, element ) {
-        phone_number = phone_number.replace( /\(|\)|\s+|-/g, "" );
-        return this.optional( element ) || phone_number.length == 10 &&
-                                           phone_number.match( /^[0-9]{1,10}$/ );
-    }, "Please specify a valid mobile number without any spaces like 0712345678" );
+    jq.validator.addMethod("ugphone", function (phone_number, element) {
+        phone_number = phone_number.replace(/\(|\)|\s+|-/g, "");
+        return this.optional(element) || phone_number.length == 10 &&
+                                         phone_number.match(/^[0-9]{1,10}$/);
+    }, "Please specify a valid mobile number without any spaces like 0712345678");
 });
 
 

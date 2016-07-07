@@ -11,6 +11,7 @@
             <strong>${ui.message("aijar.patientdashboard.person.lastcd4")}:</strong>
             ${lastcd4} ${lastcd4joiner} ${lastcd4date}
         </div>
+
         <div>
             <strong>${ui.message("aijar.patientdashboard.person.currentregimen")}:</strong>
             ${currentregimen}

@@ -11,7 +11,7 @@
           formDisplayStyle="Standard"
           formLabel="HCT Client Card">
     <redirectOnSave
-            url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits" />
+            url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits"/>
 
     <style>
 
@@ -80,7 +80,7 @@
             var selected_value = jQuery.trim(fp_combo.find(":selected").text());
 
             var disable = selected_value.toUpperCase()
-                    != "YES"
+                          != "YES"
             $(".EnableDisablepartnerchild").find("input").attr("disabled", disable);
 
         }
@@ -109,8 +109,9 @@
 
             selected_value = selected_value.trim().toUpperCase();
 
-            if (selected_value.toLowerCase() == "yes")
+            if (selected_value.toLowerCase() == "yes") {
                 disable = false;
+            }
 
             switch (row_id) {
                 case 1:
@@ -243,7 +244,9 @@
                     </td>
                     <td colspan="3">
                             <span id="checkboxRadio">
-                                <obs conceptId="162925" answerConceptIds="99416,162920,162921,162922,162923,99056,90012,162924" answerLabels="Facility based,Work place,Comm/Out reach,HBHCT,Circumcision (SMC),PEP,PMTCT,MARPS"/>
+                                <obs conceptId="162925"
+                                     answerConceptIds="99416,162920,162921,162922,162923,99056,90012,162924"
+                                     answerLabels="Facility based,Work place,Comm/Out reach,HBHCT,Circumcision (SMC),PEP,PMTCT,MARPS"/>
                             </span>
                     </td>
                 </tr>
@@ -344,7 +347,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2"><label>Is there suspision for TB<br/>(Currentcough,fever,weightloss and nightsweats):</label>
+                    <td colspan="2"><label>Is there suspision for TB<br/>(Currentcough,fever,weightloss and
+                                           nightsweats):</label>
                         <obs conceptId="99498" answerConceptIds="1065,1066" answerLabels="Yes,No"/>
                     </td>
                 </tr>
@@ -357,7 +361,9 @@
                     <td class="HCTEnableDisable5"><label>Has client been linked to care or any other services?:</label>
                         <obs conceptId="162982" answerConceptIds="1065,1066" answerLabels="Yes,No"/>
                     </td>
-                    <td class="HCTEnableDisableChild5"><label>Where?:<obs conceptId="90200"/></label>
+                    <td class="HCTEnableDisableChild5"><label>Where?:
+                        <obs conceptId="90200"/>
+                    </label>
 
                     </td>
                 </tr>

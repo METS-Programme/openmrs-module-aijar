@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class UserManagementLegacyUIOverridePageController {
+
 	protected final Log log = LogFactory.getLog(getClass());
 
-	@RequestMapping({"admin/patients/index.htm", "/findPatient.htm"})
+	@RequestMapping({ "admin/patients/index.htm", "/findPatient.htm" })
 	public String overrideHomepage() {
 		return "forward:/coreapps/findpatient/findPatient.page?app=coreapps.findPatient";
 	}

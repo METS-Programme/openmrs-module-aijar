@@ -7,7 +7,6 @@ import org.openmrs.ui.framework.page.PageRequestMapper;
 import org.springframework.stereotype.Component;
 
 /**
- *
  * Overrides the mapping to the login page for the reference application to a custom page
  *
  * Created by ssmusoke on 18/02/2016.

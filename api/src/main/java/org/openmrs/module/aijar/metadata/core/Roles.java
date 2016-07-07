@@ -1,10 +1,10 @@
 package org.openmrs.module.aijar.metadata.core;
 
-import org.openmrs.module.metadatadeploy.descriptor.PrivilegeDescriptor;
-import org.openmrs.module.metadatadeploy.descriptor.RoleDescriptor;
-
 import java.util.Arrays;
 import java.util.List;
+
+import org.openmrs.module.metadatadeploy.descriptor.PrivilegeDescriptor;
+import org.openmrs.module.metadatadeploy.descriptor.RoleDescriptor;
 
 /**
  * Basic roles
@@ -13,52 +13,54 @@ import java.util.List;
  */
 public class Roles {
 
-    public static RoleDescriptor DATA_MANAGER = new RoleDescriptor() {
-        @Override
-        public String role() {
-            return "Aijar Role: Data Manager";
-        }
+	public static RoleDescriptor DATA_MANAGER = new RoleDescriptor() {
 
-        @Override
-        public String description() {
-            return "Aijar Role: Data Manager";
-        }
+		@Override
+		public String role() {
+			return "Aijar Role: Data Manager";
+		}
 
-        @Override
-        public List<PrivilegeDescriptor> privileges() {
-            return Arrays.asList(
-                    Privileges.APP_COREAPPS_ACTIVE_VISITS,
-                    Privileges.APP_COREAPPS_FIND_PATIENT,
+		@Override
+		public String description() {
+			return "Aijar Role: Data Manager";
+		}
 
-                    Privileges.APP_COREAPPS_PATIENT_DASHBOARD,
-                    Privileges.APP_COREAPPS_PATIENT_VISITS
-            );
-        }
+		@Override
+		public List<PrivilegeDescriptor> privileges() {
+			return Arrays.asList(
+					Privileges.APP_COREAPPS_ACTIVE_VISITS,
+					Privileges.APP_COREAPPS_FIND_PATIENT,
 
-        public String uuid() {
-            return "f92705e3-6d34-4009-8ad3-b0ea80dab140";
-        }
-    };
+					Privileges.APP_COREAPPS_PATIENT_DASHBOARD,
+					Privileges.APP_COREAPPS_PATIENT_VISITS
+			);
+		}
 
-    public static RoleDescriptor RECORDS_OFFICER = new RoleDescriptor() {
-        @Override
-        public String role() {
-            return "Aijar Role: Records Officer";
-        }
+		public String uuid() {
+			return "f92705e3-6d34-4009-8ad3-b0ea80dab140";
+		}
+	};
 
-        @Override
-        public String description() {
-            return "Aijar Role: Records Officer";
-        }
+	public static RoleDescriptor RECORDS_OFFICER = new RoleDescriptor() {
 
-        @Override
-        public List<PrivilegeDescriptor> privileges() {
-            return null;
-        }
+		@Override
+		public String role() {
+			return "Aijar Role: Records Officer";
+		}
 
-        public String uuid() {
-            return "f92705e3-6d34-4010-8ad3-b0ea80dab141";
-        }
-    };
+		@Override
+		public String description() {
+			return "Aijar Role: Records Officer";
+		}
+
+		@Override
+		public List<PrivilegeDescriptor> privileges() {
+			return null;
+		}
+
+		public String uuid() {
+			return "f92705e3-6d34-4010-8ad3-b0ea80dab141";
+		}
+	};
 
 }

@@ -415,27 +415,39 @@ UPDATE concept_answer
 SET answer_concept = 90001
 WHERE answer_concept = 1067;
 
-UPDATE obs SET value_coded = 5136 WHERE value_coded = 90128;  # DEMENTIA
+UPDATE obs
+SET value_coded = 5136
+WHERE value_coded = 90128; # DEMENTIA
 UPDATE concept_answer
 SET answer_concept = 5136
 WHERE answer_concept = 90128;
-UPDATE obs SET value_coded = 90109 WHERE value_coded = 5245; # PALLOR
+UPDATE obs
+SET value_coded = 90109
+WHERE value_coded = 5245; # PALLOR
 UPDATE concept_answer
 SET answer_concept = 90109
 WHERE answer_concept = 5245;
-UPDATE obs SET value_coded = 90087 WHERE value_coded = 5275; #  INTRAUTERINE DEVICE
+UPDATE obs
+SET value_coded = 90087
+WHERE value_coded = 5275; #  INTRAUTERINE DEVICE
 UPDATE concept_answer
 SET answer_concept = 90087
 WHERE answer_concept = 5275;
-UPDATE obs SET value_coded = 90106 WHERE value_coded = 5313; # MUSCLE TENDERNESS
+UPDATE obs
+SET value_coded = 90106
+WHERE value_coded = 5313; # MUSCLE TENDERNESS
 UPDATE concept_answer
 SET answer_concept = 90106
 WHERE answer_concept = 5313;
-UPDATE obs SET value_coded = 90006 WHERE value_coded = 5555; # MARRIED
+UPDATE obs
+SET value_coded = 90006
+WHERE value_coded = 5555; # MARRIED
 UPDATE concept_answer
 SET answer_concept = 90006
 WHERE answer_concept = 5555;
-UPDATE obs SET value_coded = 5829 WHERE value_coded = 90187 ; # PYRAZINAMIDE
+UPDATE obs
+SET value_coded = 5829
+WHERE value_coded = 90187; # PYRAZINAMIDE
 UPDATE concept_answer
 SET answer_concept = 5829
 WHERE answer_concept = 90187;

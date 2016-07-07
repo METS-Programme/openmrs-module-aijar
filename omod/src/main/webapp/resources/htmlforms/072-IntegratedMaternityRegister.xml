@@ -11,7 +11,7 @@
           formDisplayStyle="Standard"
           formLabel="Maternity">
     <redirectOnSave
-            url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits" />
+            url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits"/>
 
     <style>
 
