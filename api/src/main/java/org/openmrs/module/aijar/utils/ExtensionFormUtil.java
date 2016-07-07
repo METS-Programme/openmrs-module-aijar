@@ -6,14 +6,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.jfree.util.Log;
+import org.apache.commons.logging.LogFactory;
 import org.openmrs.Form;
 import org.openmrs.module.appframework.domain.Extension;
 import org.openmrs.module.formentryapp.FormEntryAppService;
 import org.openmrs.module.formentryapp.FormManager;
 import org.openmrs.module.formentryapp.page.controller.forms.ExtensionForm;
 import org.openmrs.module.htmlformentry.HtmlFormEntryUtil;
-import org.openmrs.ui.framework.resource.ResourceFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
@@ -26,22 +25,20 @@ public class ExtensionFormUtil {
 
 	public static final String DEFAULT_UILOCATION = "patientDashboard.overallActions";
 
+	protected static final org.apache.commons.logging.Log log = LogFactory.getLog(ExtensionFormUtil.class);
+
 	protected static final String DISPLAY_STYLE = "displayStyle";
 
 	/**
 	 * Returns the ExtensionForm corresponding to a Form instance AND saves it.
 	 *
-	 * @param providerName Eg. "lfhcforms".
-	 * @param formPath     The relative form path under webapp/resources (eg. "htmlforms/myform.xml")
+	 * @param fileXml The XML string for the file
 	 * @param form         The Form instance
 	 */
-	public static ExtensionForm getExtensionFormFromUiResourceAndForm(ResourceFactory resourceFactory, String providerName,
-	                                                                  String formPath, FormEntryAppService hfeAppService,
+	public static ExtensionForm getExtensionFormFromUiResourceAndForm(String fileXml, FormEntryAppService hfeAppService,
 	                                                                  FormManager formManager, Form form) throws Exception {
 
-		final String xml = resourceFactory.getResourceAsString(providerName, formPath);
-
-		final ExtensionForm extensionForm = getExtensionFormFromXML(xml);
+		final ExtensionForm extensionForm = getExtensionFormFromXML(fileXml);
 		extensionForm.setId("");
 		extensionForm.setLabel(form.getName());
 		extensionForm.setForm(form);
@@ -120,7 +117,7 @@ public class ExtensionFormUtil {
 			val = Integer.parseInt(stringValue);
 		}
 		catch (NumberFormatException e) {
-			Log.error(stringValue + "could not be parsed to an integer while parsing\n" + htmlForm.toString(), e);
+			log.error(stringValue + "could not be parsed to an integer while parsing\n" + htmlForm.toString(), e);
 		}
 		return val;
 	}

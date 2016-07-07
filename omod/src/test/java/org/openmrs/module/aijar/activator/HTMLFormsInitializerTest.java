@@ -8,12 +8,12 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.htmlformentry.HtmlForm;
+import org.openmrs.module.htmlformentry.HtmlFormEntryService;
 import org.openmrs.module.htmlformentry.HtmlFormValidator;
 import org.openmrs.test.Verifies;
 import org.openmrs.ui.framework.resource.ModuleResourceProvider;
 import org.openmrs.ui.framework.resource.ResourceFactory;
 import org.openmrs.web.test.BaseModuleWebContextSensitiveTest;
-import org.springframework.validation.BindException;
 import org.springframework.validation.Errors;
 
 /**
@@ -30,7 +30,7 @@ public class HTMLFormsInitializerTest extends BaseModuleWebContextSensitiveTest 
 
 		ModuleResourceProvider rp = Mockito.mock(ModuleResourceProvider.class);
 		Mockito.when(rp.getResource(Mockito.eq("htmlforms/"))).thenReturn(new File
-				("omod/src/main/webapp/resources/htmlforms/"));
+				("src/main/webapp/resources/htmlforms/"));
 		final ResourceFactory resourceFactory = Context.getRegisteredComponent("coreResourceFactory", ResourceFactory
 				.class);
 		resourceFactory.addResourceProvider("aijar", rp);
@@ -43,11 +43,12 @@ public class HTMLFormsInitializerTest extends BaseModuleWebContextSensitiveTest 
 			Assert.assertTrue("There are no HTML forms loaded", false);
 		}
 
+		// check that the file on the file system is the same as that which has been saved
+		HtmlFormEntryService hfe = Context.getService(HtmlFormEntryService.class);
 		for (HtmlForm form : forms) {
-			HtmlFormValidator hfv = new HtmlFormValidator();
-			Errors errors = new BindException(form, "htmlForm");
-			hfv.validate(form, errors);
-			Assert.assertFalse("Error validating " + form.getName() + errors.toString(), errors.hasErrors());
+			System.out.println("Verifying " + form.getName() + " was saved correctly");
+			HtmlForm savedVersion = hfe.getHtmlFormByUuid(form.getUuid());
+			Assert.assertEquals(savedVersion, form);
 		}
 	}
 	
