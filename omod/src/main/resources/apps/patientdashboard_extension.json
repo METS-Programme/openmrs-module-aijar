@@ -7,5 +7,15 @@
       "provider": "${project.parent.artifactId}",
       "fragment": "patientSummary"
     }
+  },
+  {
+    "id": "${project.parent.groupId}.${project.parent.artifactId}.patientDashboard.patientActions.deletePatient",
+    "extensionPointId": "patientDashboard.overallActions",
+
+    "type": "link",
+    "label": "aijar.markpatientdeceased.label",
+    "url": "aijar/markPatientDead.page?patientId={{patient.uuid}}",
+    "icon": "icon-ambulance",
+    "order": 15
   }
 ]
