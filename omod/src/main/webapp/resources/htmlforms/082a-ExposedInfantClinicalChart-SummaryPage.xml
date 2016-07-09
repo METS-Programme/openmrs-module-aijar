@@ -297,8 +297,6 @@
 				jq.validator.addMethod("birthBeforeChartOpenedDate", function(value, element ) {
 		            var birthDate = new Date(jq('#birthDate').text());
 					var dateOpened = new Date(getValue('encounterDate.value'));
-					alert("The encounter date is " + dateOpened);
-					alert("The birth date is " + birthDate);
 					return dateOpened >= birthDate;
 
 				}, "The date file opened has to be after the date of birth of the exposed infant");
@@ -450,6 +448,11 @@
                 </h3>
 
                 <table class="table table-bordered custom-table">
+                    <tr>
+                        <td>Mother</td>
+                        <td colspan="5"><relationship type="8d91a210-c2cc-11de-8d13-0010c6dffd0f" whoAmI="B"
+                                                      changeExistingRelationship="true" required="true"/></td>
+                    </tr>
                     <tr>
                         <td style="width:15%;">Mother's Name</td>
                         <td style="width: 15%;"><obs conceptId="99776"/></td>
