@@ -171,7 +171,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 				patientService.savePatient(p);
 			} catch (Exception e) {
 				// log the error to the alert service but do not rethrow the exception since the module has to start
-				alertService.notifySuperUsers("Error updating OpenMRS identifier for patient #" + p.getPatientId(), e);
+				alertService.notifySuperUsers("Error updating OpenMRS identifier for patient #" + p.getPatientId(), new Exception());
 				log.error("Error updating OpenMRS identifier for patient #" + p.getPatientId(), e);
 			}
 		}
