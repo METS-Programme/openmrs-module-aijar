@@ -46,7 +46,6 @@ ${ui.includeFragment("coreapps", "patientHeader", [patient: patient])}
                     label        : "aijar.markpatientdeceased.dateofdeath",
                     formFieldName: "deathDate",
                     left         : true,
-                    classes      : ['required'],
                     defaultDate  : person?.getDeathDate() ?: null,
                     useTime      : false,
                     showEstimated: false,
