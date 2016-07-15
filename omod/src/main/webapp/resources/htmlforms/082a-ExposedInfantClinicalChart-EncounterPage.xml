@@ -138,6 +138,15 @@
                 else if (class_name.indexOf('GrandChildren') == -1) {
                     group.find("input").attr("disabled", disable);
                 }
+                if (disable) {
+                    // fade out the fields that are disabled
+                    group.find("input").fadeTo(250, 0.25);
+                    group.find("select").fadeTo(250, 0.25);
+                } else {
+                    // remove the fade on the fields
+                    group.find("input").fadeTo(250, 1);
+                    group.find("select").fadeTo(250, 1);
+                }
 
             });
 
@@ -192,6 +201,15 @@
                 if (class_name.indexOf('Children') == -1) {
                     group.find("input").attr("disabled", disable);
                 }
+                if (disable) {
+                    // fade out the fields that are disabled
+                    group.find("input").fadeTo(250, 0.25);
+                    group.find("select").fadeTo(250, 0.25);
+                } else {
+                    // remove the fade on the fields
+                    group.find("input").fadeTo(250, 1);
+                    group.find("select").fadeTo(250, 1);
+                }
 
             });
 
@@ -232,6 +250,16 @@
 
                 if (class_name.indexOf('Child') == -1) {
                     group.find("input").attr("disabled", disable);
+                }
+
+                if (disable) {
+                    // fade out the fields that are disabled
+                    group.find("input").fadeTo(250, 0.25);
+                    group.find("select").fadeTo(250, 0.25);
+                } else {
+                    // remove the fade on the fields
+                    group.find("input").fadeTo(250, 1);
+                    group.find("select").fadeTo(250, 1);
                 }
 
             });
@@ -296,6 +324,15 @@
                 if (class_name.indexOf('Child') == -1) {
                     group.find("input").attr("disabled", disable);
                     group.find('select').attr("disabled", disable);
+                }
+                if (disable) {
+                    // fade out the fields that are disabled
+                    group.find("input").fadeTo(250, 0.25);
+                    group.find("select").fadeTo(250, 0.25);
+                } else {
+                    // remove the fade on the fields
+                    group.find("input").fadeTo(250, 1);
+                    group.find("select").fadeTo(250, 1);
                 }
 
             });
@@ -443,7 +480,7 @@
                             var group = jq(this);
 
                             function disableFn() {
-                                group.children("#disabled").fadeTo(250, 1);
+                                group.children("#disabled").fadeTo(250, 0.25);
                                 group.children("#disabled").find(":checkbox").attr("checked", false); //uncheck
                                 // group.children("#disabled").find("input[type$='text']").val("");
                                 group.children("#disabled").find("input").attr("disabled", true); //disable
@@ -571,7 +608,7 @@
                     <tr>
                         <td colspan="2">Date of Appointment</td>
                         <td>
-                            <obs conceptId="99443" allowFutureDates="true" />
+                            <obs conceptId="99443" allowFutureDates="true"/>
                         </td>
                     </tr>
                     <tr>
@@ -660,21 +697,26 @@
                             Symptoms of HIV
                         </td>
                         <td class="lablex3">
-                            <obs id="br" conceptId="162853" answerConceptId="162848" answerLabel="WELL: NO clinical signs or symptoms"/>
-                            <obs id="br" conceptId="162853" answerConceptId="162847" answerLabel="LN: Palpable Lymph Nodes "/>
+                            <obs id="br" conceptId="162853" answerConceptId="162848"
+                                 answerLabel="WELL: NO clinical signs or symptoms"/>
+                            <obs id="br" conceptId="162853" answerConceptId="162847"
+                                 answerLabel="LN: Palpable Lymph Nodes "/>
                             <obs id="br" conceptId="162853" answerConceptId="832" answerLabel="WL: Weight loss"/>
                             <obs id="br" conceptId="162853" answerConceptId="90103" answerLabel="F: Fever"/>
                             <obs id="br" conceptId="162853" answerConceptId="90130" answerLabel="OT: Oral thrush"/>
                             <obs id="br" conceptId="162853" answerConceptId="162849" answerLabel="EI: Ear Infection"/>
-                            <obs id="br" conceptId="162853" answerConceptId="162850" answerLabel="G: Poor growth (height)"/>
+                            <obs id="br" conceptId="162853" answerConceptId="162850"
+                                 answerLabel="G: Poor growth (height)"/>
                             <obs id="br" conceptId="162853" answerConceptId="107" answerLabel="C: Coughing"/>
                             <obs id="br" conceptId="162853" answerConceptId="162851" answerLabel="ADR: Acue Diarrhea"/>
-                            <obs id="br" conceptId="162853" answerConceptId="162852" answerLabel="RDR: Recurrent Diarrhea"/>
+                            <obs id="br" conceptId="162853" answerConceptId="162852"
+                                 answerLabel="RDR: Recurrent Diarrhea"/>
                             <obs id="br" conceptId="162853" answerConceptId="42" answerLabel="PNEU: Pneumonia"/>
                             <obs id="br" conceptId="162853" answerConceptId="512" answerLabel="RASH: Skin Rash"/>
                                 <span class="enableDisable">
                                     <span id="trigger">
-                                        <obs id="br" conceptId="162853" answerConceptId="90002" answerLabel="Others (specify)"/>
+                                        <obs id="br" conceptId="162853" answerConceptId="90002"
+                                             answerLabel="Others (specify)"/>
                                     </span>
                                     <span id="disabled">
                                         <obs id="br" conceptId="163008" answerLabel="Others (specify)"/>

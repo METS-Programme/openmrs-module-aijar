@@ -27,7 +27,7 @@ jq(document).ready(function () {
     // change the first em to the text National ID
     jq('em:contains("Patient ID")').text("National ID");
 
-    /* Add validation to all HTML forms built using HTML Form entry - their ID is htmlform
+    /* Add validation rule for Uganda phone numbers, once applied to an element will validate the format and show a message
      */
     jq.validator.addMethod( "ugphone", function( phone_number, element ) {
         phone_number = phone_number.replace( /\(|\)|\s+|-/g, "" );

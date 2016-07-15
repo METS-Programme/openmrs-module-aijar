@@ -102,6 +102,15 @@
                     group.find("input").attr("disabled", disable);
                     group.find('select').attr("disabled", disable);
                 }
+                if (disable) {
+                    // fade out the fields that are disabled
+                    group.find("input").fadeTo(250, 0.25);
+                    group.find("select").fadeTo(250, 0.25);
+                } else {
+                    // remove the fade on the fields
+                    group.find("input").fadeTo(250, 1);
+                    group.find("select").fadeTo(250, 1);
+                }
             });
         }
 
@@ -157,6 +166,10 @@
                         <label>ANC Number:</label>
                         <patient field="identifier" identifierTypeId="b0cc255e-ef57-4266-839e-0df7f5099eb9"
                                  required="true"/>
+                    </td>
+                    <td>
+                        <label>National ID:</label>
+                        <patient field="identifier" identifierTypeId="f0c16a6d-dc5f-4118-a803-616d0075d282" required="false"/>
                     </td>
                 </tr>
                 </tbody>

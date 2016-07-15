@@ -13,17 +13,13 @@
  */
 package org.openmrs.module.aijar;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openmrs.GlobalProperty;
-import org.openmrs.Location;
+import org.openmrs.*;
 import org.openmrs.api.AdministrationService;
 import org.openmrs.api.ConceptService;
 import org.openmrs.api.LocationService;
+import org.openmrs.api.PatientService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.Module;
 import org.openmrs.module.ModuleActivator;
@@ -35,13 +31,22 @@ import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
 import org.openmrs.module.appframework.service.AppFrameworkService;
 import org.openmrs.module.emrapi.EmrApiConstants;
 import org.openmrs.module.emrapi.utils.MetadataUtil;
+import org.openmrs.module.idgen.IdentifierSource;
+import org.openmrs.module.idgen.service.IdentifierSourceService;
 import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
+import org.openmrs.module.reporting.common.ObjectUtil;
+import org.openmrs.notification.AlertService;
 import org.openmrs.ui.framework.resource.ResourceFactory;
 import org.openmrs.util.OpenmrsUtil;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 /**
  * This class contains the logic that is run every time this module is either started or stopped.
- *
+ * <p>
  * TODO: Refactor the whole class to use initializers like
  */
 public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
@@ -110,6 +115,13 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             healthCenter.setName(administrationService.getGlobalProperty(AijarConstants.GP_HEALTH_CENTER_NAME));
             locationService.saveLocation(healthCenter);
 
+            // cleanup liquibase change logs to enable installation of data integrity module
+            removeOldChangeLocksForDataIntegrityModule();
+
+            // generate OpenMRS ID for patients without the identifier
+            generateOpenMRSIdentifierForPatientsWithout();
+
+
         } catch (Exception e) {
             Module mod = ModuleFactory.getModuleById("aijar");
             ModuleFactory.stopModule(mod);
@@ -117,6 +129,63 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         }
 
         log.info("aijar Module started");
+    }
+
+    /**
+     * Generate patientIdentifier for old OpenMRS Migration to the new
+     * */
+
+    protected PatientIdentifier generatePatientIdentifier() {
+        IdentifierSourceService iss = Context.getService(IdentifierSourceService.class);
+        IdentifierSource idSource = iss.getIdentifierSource(1); // this is the default OpenMRS identifier source
+        PatientService patientService = Context.getPatientService();
+
+        UUID uuid = UUID.randomUUID();
+
+        PatientIdentifierType patientIdentifierType = patientService.getPatientIdentifierTypeByUuid("05a29f94-c0ed-11e2-94be-8c13b969e334");
+
+        PatientIdentifier pid = new PatientIdentifier();
+        pid.setIdentifierType(patientIdentifierType);
+        String identifier = iss.generateIdentifier(idSource, "New OpenMRS ID with CheckDigit");
+        pid.setIdentifier(identifier);
+        pid.setPreferred(true);
+        pid.setUuid(String.valueOf(uuid));
+
+        return pid;
+
+    }
+
+    /**
+     * Generate an OpenMRS ID for patients who do not have one due to a migration from an old OpenMRS ID to a new one which contains a check-digit
+     **/
+    private void generateOpenMRSIdentifierForPatientsWithout() {
+        PatientService patientService = Context.getPatientService();
+        AdministrationService as = Context.getAdministrationService();
+        AlertService alertService = Context.getAlertService();
+
+        List<List<Object>> patientIds = as.executeSQL("SELECT patient_id FROM patient_identifier WHERE patient_id NOT IN (SELECT patient_id FROM patient_identifier p INNER JOIN patient_identifier_type pt ON (p.identifier_type = pt.patient_identifier_type_id AND pt.uuid = '05a29f94-c0ed-11e2-94be-8c13b969e334'))", true);
+
+        if (patientIds.size() == 0) {
+            // no patients to process
+            return;
+        }
+        // get the identifier source copied from RegistrationCoreServiceImpl
+
+        for (List<Object> row : patientIds) {
+            Patient p = patientService.getPatient((Integer) row.get(0));
+            // Create new Patient Identifier
+            PatientIdentifier pid = generatePatientIdentifier();
+            pid.setPatient(p);
+            try {
+                log.info("Adding OpenMRS ID " + pid.getIdentifier() + " to patient with id " + p.getPatientId());
+                // Save the patient Identifier
+                patientService.savePatientIdentifier(pid);
+            } catch (Exception e) {
+                // log the error to the alert service but do not rethrow the exception since the module has to start
+                log.error("Error updating OpenMRS identifier for patient #" + p.getPatientId(), e);
+            }
+        }
+        log.info("All patients updated with new OpenMRS ID");
     }
 
     /**
@@ -138,6 +207,9 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 
         // set the name of the application
         properties.add(new GlobalProperty("application.name", "UgandaEMR - Uganda eHealth Solution"));
+
+        // the regular expression for validating patient names to include periods
+        properties.add(new GlobalProperty("patient.nameValidationRegex", "^[a-zA-Z.\\-]+$"));
 
         // the search mode for patients to enable searching any part of names rather than the beginning
         properties.add(new GlobalProperty("patientSearch.matchMode", "ANYWHERE"));
@@ -167,13 +239,16 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         properties.add(new GlobalProperty("birt.loggingLevel", "OFF"));
         properties.add(new GlobalProperty("birt.mandatory", "false"));
         properties.add(new GlobalProperty("birt.outputDir", OpenmrsUtil.getApplicationDataDirectory() + "birt" + File.separator + "reports" + File.separator + "output"));
-        properties.add(new GlobalProperty("birt.reportDir", OpenmrsUtil.getApplicationDataDirectory() +  "birt" + File.separator + "reports"));
+        properties.add(new GlobalProperty("birt.reportDir", OpenmrsUtil.getApplicationDataDirectory() + "birt" + File.separator + "reports"));
         properties.add(new GlobalProperty("birt.reportOutputFile", OpenmrsUtil.getApplicationDataDirectory() + "birt" + File.separator + "reports" + File.separator + "output" + File.separator + "ReportOutput.pdf"));
         properties.add(new GlobalProperty("birt.reportOutputFormat", "pdf"));
         properties.add(new GlobalProperty("birt.reportPreviewFile", OpenmrsUtil.getApplicationDataDirectory() + "birt" + File.separator + "reports" + File.separator + "output" + File.separator + "ReportPreview.pdf"));
 
         // disable the appointmentshedulingui which currently has issues
         properties.add(new GlobalProperty("appointmentschedulingui.started", "false"));
+
+        // Exclude temporary reporting tables by database backup module
+        properties.add(new GlobalProperty("databasebackup.tablesExcluded", "aijar_105_eid,aijar_106a1a"));
 
         return properties;
     }
@@ -240,6 +315,15 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             }
         }
 
+    }
+
+    private void removeOldChangeLocksForDataIntegrityModule() {
+        String gpVal = Context.getAdministrationService().getGlobalProperty("dataintegrity.database_version");
+        if (ObjectUtil.isNull(gpVal)) {
+            AdministrationService as = Context.getAdministrationService();
+            log.warn("Removing liquibase change log locks for previously installed data integrity instance");
+            as.executeSQL("delete from liquibasechangelog WHERE ID like 'dataintegrity%';", false);
+        }
     }
 
     /**
