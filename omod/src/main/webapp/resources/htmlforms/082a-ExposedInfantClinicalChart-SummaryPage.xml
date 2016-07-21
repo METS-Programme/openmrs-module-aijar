@@ -297,8 +297,6 @@
 				jq.validator.addMethod("birthBeforeChartOpenedDate", function(value, element ) {
 		            var birthDate = new Date(jq('#birthDate').text());
 					var dateOpened = new Date(getValue('encounterDate.value'));
-					alert("The encounter date is " + dateOpened);
-					alert("The birth date is " + birthDate);
 					return dateOpened >= birthDate;
 
 				}, "The date file opened has to be after the date of birth of the exposed infant");
