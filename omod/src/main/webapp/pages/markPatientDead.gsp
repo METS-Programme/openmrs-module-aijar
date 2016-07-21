@@ -76,7 +76,7 @@ ${ui.includeFragment("coreapps", "patientHeader", [patient: patient])}
                 %>
             </select>
             <span class="field-error"></span>
-            <input type="submit" value="Post">
+            <input type="submit" value="Submit">
         </p>
     </fieldset>
 </form>
