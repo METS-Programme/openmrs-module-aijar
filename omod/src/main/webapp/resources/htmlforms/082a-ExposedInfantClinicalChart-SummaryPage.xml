@@ -449,11 +449,6 @@
 
                 <table class="table table-bordered custom-table">
                     <tr>
-                        <td>Mother</td>
-                        <td colspan="5"><relationship type="8d91a210-c2cc-11de-8d13-0010c6dffd0f" whoAmI="B"
-                                                      changeExistingRelationship="true" required="true"/></td>
-                    </tr>
-                    <tr>
                         <td style="width:15%;">Mother's Name</td>
                         <td style="width: 15%;"><obs conceptId="99776"/></td>
                         <td style="width:15%;">Common Name</td>
