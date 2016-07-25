@@ -688,7 +688,8 @@
                         <td></td>
                         <td>MUAC (cm)</td>
                         <td>
-                            <obs conceptId="99801" answerConceptIds="99027,99029,99028" answerLabels="G,Y,R"/>
+                            <obs conceptId="99801" answerConceptIds="99028,99029,99027"
+                                 answerLabels="Red &lt;11.5cm and/or Oedema Present,Yellow 11.5 -&lt;12.5cm and Oedema Absent,Green &gt;=12.5cm and Oedema Absent"/>
                         </td>
                     </tr>
                     <tr>
