@@ -29,7 +29,7 @@
 							<executable>/bin/bash</executable>
 							<workingDirectory>${pom.basedir}/src/main/resources</workingDirectory>
 							<arguments>
-								<argument>createupgradesql.sh</argument>
+								<argument>create-sql-scripts.sh</argument>
 							</arguments>
 						</configuration>
 					</execution>
