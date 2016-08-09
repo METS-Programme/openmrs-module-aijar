@@ -1,5 +1,9 @@
 /tools/target
 
+# Scripts for installer
+/tools/src/main/resources/upgrade/new-install.sql
+/tools/src/main/resources/upgrade/upgrade.sql
+
 # Created by .ignore support plugin (hsz.mobi)
 .DS_Store
 ### JetBrains template
@@ -91,4 +95,3 @@ local.properties
 .texlipse
 
 # Created by .ignore support plugin (hsz.mobi)
-/tools/src/main/resources/upgrade/upgrade.sql
