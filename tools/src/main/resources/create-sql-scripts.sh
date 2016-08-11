@@ -1,13 +1,7 @@
 #!/usr/bin/env bash
 
-# Delete Existing new-install.sql
-rm upgrade/new-install.sql
-# Delete Existing upgrade.sql
-rm upgrade/upgrade.sql
-# Create an SQL script for a new installation
-
 # Turns off foreign key cheks to speed up script execution
-cat database/mysql_script_header.sql >> upgrade/new-install.sql
+cat database/mysql_script_header.sql > upgrade/new-install.sql
 
 # adds the current concept dictionary
 cat database/concept_dictonary_ref.sql >> upgrade/new-install.sql
@@ -24,7 +18,7 @@ cat database/mysql_script_footer.sql >> upgrade/new-install.sql
 # Create an SQL script for an upgrade
 
 # Turns off foreign key cheks to speed up script execution
-cat database/mysql_script_header.sql >> upgrade/upgrade.sql
+cat database/mysql_script_header.sql > upgrade/upgrade.sql
 
 # adds the current concept dictionary
 cat database/concept_dictonary_ref.sql >> upgrade/upgrade.sql
