@@ -258,7 +258,8 @@
                     function disableFn() {
                         group.children("#disabled").fadeTo(250, 0.25);
                         /*  group.children("#disabled").find(":checkbox").attr("checked", false); uncheck */
-                        group.children("#disabled").find("input").attr("disabled", true); /* disable */
+                        group.children("#disabled").find("input").attr("disabled", true);
+                        /* disable */
                         group.children("#disabled").find("select").attr("disabled", true);
                     }
 
@@ -369,7 +370,13 @@
                                     <obs conceptId="5596" labelText="EDD" allowFutureDates="true"/>
                                     <br/>
                                 </span>
-                            <obs conceptId="90012" labelText="EMTCT"/>
+                            <span class="ARTYesNoEnableDisable3">
+                            <obs conceptId="90012" labelText="EMTCT" answerConceptIds="90003,90004"
+                                 answerLabels="Yes,No"/>
+                            </span>
+                        </excludeIf>
+
+                        <excludeIf velocityTest="$patient.gender =='M' || $patient.age &lt; 9">
                             <br/>
                                 <span class="ARTYesNoEnableDisableChild2">
                                     <obs conceptId="162983" labelText="Gestation in Weeks"/>
@@ -409,8 +416,11 @@
                             </span>
                         <br/>
                         <excludeIf velocityTest="$patient.gender =='M'">
+                            <span class="ARTYesNoEnableDisableChild3">
                             <obs id="br" conceptId="99270" labelText="Age in months"/>
+                            </span>
                         </excludeIf>
+
                     </td>
                 </tr>
                 </tbody>
