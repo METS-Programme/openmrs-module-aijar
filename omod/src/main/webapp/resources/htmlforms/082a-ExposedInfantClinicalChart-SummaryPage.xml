@@ -11,7 +11,7 @@
           formDisplayStyle="Standard"
           formLabel="EID Card - Summary form">
     <redirectOnSave
-            url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits" />
+            url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits"/>
 
     <ifMode mode="EDIT" include="false">
         <lookup complexExpression="
@@ -131,11 +131,11 @@
                     group.find("input").attr("disabled", disable);
                 }
                 if (disable) {
-                    // fade out the fields that are disabled
+                    /* fade out the fields that are disabled */
                     group.find("input").fadeTo(250, 0.25);
                     group.find("select").fadeTo(250, 0.25);
                 } else {
-                    // remove the fade on the fields
+                    /* remove the fade on the fields */
                     group.find("input").fadeTo(250, 1);
                     group.find("select").fadeTo(250, 1);
                 }
@@ -212,19 +212,19 @@
                 var group = jq(this);
 
                 if (class_name.indexOf('Child') == -1) {
-                    // // group.find("input").attr("value", "");
-                    // // group.find('select').prop("selectedIndex", 0);
+                    /* group.find("input").attr("value", ""); */
+                    /* group.find('select').prop("selectedIndex", 0); */
                     group.find(":checkbox").attr("checked", false);
                     group.find("input").attr("disabled", disable);
                     group.find('select').attr("disabled", disable);
 
                 }
                 if (disable) {
-                    // fade out the fields that are disabled
+                    /*  // fade out the fields that are disabled*/
                     group.find("input").fadeTo(250, 0.25);
                     group.find("select").fadeTo(250, 0.25);
                 } else {
-                    // remove the fade on the fields
+                    /* remove the fade on the fields*/
                     group.find("input").fadeTo(250, 1);
                     group.find("select").fadeTo(250, 1);
                 }
@@ -266,15 +266,15 @@
 
                 if (class_name.indexOf('Child') == -1) {
                     group.find("input").attr("disabled", disable);
-                    group.find("input").attr("value","");
+                    group.find("input").attr("value", "");
                     group.find('select').attr("disabled", disable);
                 }
                 if (disable) {
-                    // fade out the fields that are disabled
+                    /**/ fade out the fields that are disabled
                     group.find("input").fadeTo(250, 0.25);
                     group.find("select").fadeTo(250, 0.25);
                 } else {
-                    // remove the fade on the fields
+                    /**/ remove the fade on the fields
                     group.find("input").fadeTo(250, 1);
                     group.find("select").fadeTo(250, 1);
                 }
@@ -290,27 +290,27 @@
                     });
                 }
 
-				// add JQuery validator classes and rules
-				jq("#162889 input, #162870 input").addClass("ugphone");
+                /* add JQuery validator classes and rules*/
+                jq("#162889 input, #162870 input").addClass("ugphone");
 
-				// add validation rule to ensure that the chart is opened after the birthdate of the child
-				jq.validator.addMethod("birthBeforeChartOpenedDate", function(value, element ) {
-		            var birthDate = new Date(jq('#birthDate').text());
-					var dateOpened = new Date(getValue('encounterDate.value'));
-					return dateOpened >= birthDate;
+                /* add validation rule to ensure that the chart is opened after the birthdate of the child*/
+                jq.validator.addMethod("birthBeforeChartOpenedDate", function (value, element) {
+                    var birthDate = new Date(jq('#birthDate').text());
+                    var dateOpened = new Date(getValue('encounterDate.value'));
+                    return dateOpened >= birthDate;
 
-				}, "The date file opened has to be after the date of birth of the exposed infant");
+                }, "The date file opened has to be after the date of birth of the exposed infant");
 
 
-				// add the validation rule
-				jq("#encounterDate input").addClass("birthBeforeChartOpenedDate");
+                /*add the validation rule*/
+                jq("#encounterDate input").addClass("birthBeforeChartOpenedDate");
 
-		// add the validator on the beforeSubmit
-				beforeSubmit.push(function(){
-						jq("#htmlform").validate();
-						return jq("#htmlform").valid();
-					}
-				)
+                /* add the validator on the beforeSubmit*/
+                beforeSubmit.push(function () {
+                            jq("#htmlform").validate();
+                            return jq("#htmlform").valid();
+                        }
+                )
 
                 var gender = jq("span.gender").html();
                 var age = jq("span.age").html();
@@ -318,14 +318,14 @@
                 var age = jq("span.age").html();
                 var ageInDays = jq("span.patientAgeInDays").html();
                 var ageInMonths = jq("span.patientAgeInMonths").html();
-                var ctxDays = 42; //This is equal to six weeks
-                var nvpDays = 1;  //This is one day
-                var pcr1stDays = 42;  //This is one day
+                var ctxDays = 42; /*This is equal to six weeks*/
+                var nvpDays = 1;  /*This is one day*/
+                var pcr1stDays = 42;  /*This is one day*/
 
                 jq('.patientAgeInDays').hide();
                 jq('.patientAgeInMonths').hide();
 
-                //enable nvp if child is atleast nvpDays days old
+                /*enable nvp if child is atleast nvpDays days old*/
                 if (ageInDays &lt; nvpDays) {
                     jq("span#nvpDate :input").attr("disabled", true);
                 }
@@ -334,17 +334,17 @@
                     jq("#statusAbove18Months").remove();
                     jq("span#statusAbove18Months :input").attr("disabled", true);
                 }
-                else if (ageInMonths &gt; 18  || ageInMonths == 18) {
+                else if (ageInMonths &gt; 18 || ageInMonths == 18) {
                     jq("#statusBelow18Months").remove();
                     jq("span#statusBelow18Months :input").attr("disabled", true);
                 }
 
-                //enable nvp if child is atleast ctxDays days old
+                /*enable nvp if child is atleast ctxDays days old*/
                 if (ageInDays &lt; ctxDays) {
                     jq("span#ctxDate :input").attr("disabled", true);
                 }
 
-                //enable pcr1st if child is atleast pcr1stDays days old
+                /*enable pcr1st if child is atleast pcr1stDays days old*/
                 if (ageInDays &lt; pcr1stDays) {
                     jq("span#pcr1stDate :input").attr("disabled", true);
                 }
@@ -416,7 +416,7 @@
                         </td>
                         <td><label>Date Chart Opened:</label>
                             <encounterDate default="today" id="encounterDate"/>
-						</td>
+                        </td>
                         <td><label>Entry Point (Clinic/Ward):</label>
                             <obs conceptId="90200"
                                  answerConceptIds="90012,90016,99593,90019,90013,90015,90018,90002"
@@ -450,53 +450,85 @@
                 <table class="table table-bordered custom-table">
                     <tr>
                         <td style="width:15%;">Mother's Name</td>
-                        <td style="width: 15%;"><obs conceptId="99776"/></td>
+                        <td style="width: 15%;">
+                            <obs conceptId="99776"/>
+                        </td>
                         <td style="width:15%;">Common Name</td>
-                        <td  colspan="3"><obs conceptId="99775"/></td>
+                        <td colspan="3">
+                            <obs conceptId="99775"/>
+                        </td>
                     </tr>
                     <tr>
-                        <td >Telephone No</td>
-                        <td><obs conceptId="162889" id="162889"/></td>
-                        <td >District</td>
-                        <td ><obs conceptId="162884"/></td>
-                        <td >County</td>
-                        <td ><obs conceptId="162885"/></td>
+                        <td>Telephone No</td>
+                        <td>
+                            <obs conceptId="162889" id="162889"/>
+                        </td>
+                        <td>District</td>
+                        <td>
+                            <obs conceptId="162884"/>
+                        </td>
+                        <td>County</td>
+                        <td>
+                            <obs conceptId="162885"/>
+                        </td>
                     </tr>
                     <tr>
-                        <td >Sub county</td>
-                        <td ><obs conceptId="162886"/></td>
-                        <td >Village</td>
-                        <td ><obs conceptId="162887"/></td>
-                        <td >Parish</td>
-                        <td ><obs conceptId="162888"/></td>
+                        <td>Sub county</td>
+                        <td>
+                            <obs conceptId="162886"/>
+                        </td>
+                        <td>Village</td>
+                        <td>
+                            <obs conceptId="162887"/>
+                        </td>
+                        <td>Parish</td>
+                        <td>
+                            <obs conceptId="162888"/>
+                        </td>
                     </tr>
                     <tr>
-                        <td >LC1 Zone</td>
-                        <td ><obs conceptId="99137"/></td>
-                        <td  rowspan="2">How should outreach workers introduce themselves?</td>
-                        <td  colspan="3" rowspan="2"><obs conceptId="162867" style="textarea"/></td>
+                        <td>LC1 Zone</td>
+                        <td>
+                            <obs conceptId="99137"/>
+                        </td>
+                        <td rowspan="2">How should outreach workers introduce themselves?</td>
+                        <td colspan="3" rowspan="2">
+                            <obs conceptId="162867" style="textarea"/>
+                        </td>
                     </tr>
                     <tr>
-                        <td >LC1 Chairman</td>
-                        <td ><obs conceptId="162866"/></td>
+                        <td>LC1 Chairman</td>
+                        <td>
+                            <obs conceptId="162866"/>
+                        </td>
                     </tr>
                     <tr>
-                        <td  colspan="6">Directions to caregiver's home address</td>
+                        <td colspan="6">Directions to caregiver's home address</td>
                     </tr>
                     <tr>
-                        <td  colspan="6"><obs conceptId="162868" style="textarea"/></td>
+                        <td colspan="6">
+                            <obs conceptId="162868" style="textarea"/>
+                        </td>
                     </tr>
                     <tr>
-                        <td >Alternate Contact Person</td>
-                        <td ><obs conceptId="162869"/></td>
-                        <td >Relationship</td>
-                        <td  colspan="3"><obs conceptId="90269" labelText="Relationship:"/></td>
+                        <td>Alternate Contact Person</td>
+                        <td>
+                            <obs conceptId="162869"/>
+                        </td>
+                        <td>Relationship</td>
+                        <td colspan="3">
+                            <obs conceptId="90269" labelText="Relationship:"/>
+                        </td>
                     </tr>
                     <tr>
-                        <td >Telephone No</td>
-                        <td ><obs conceptId="162870" id="162870"/></td>
-                        <td >Has this person been disclosed to?</td>
-                        <td  colspan="3"><obs conceptId="162871"/></td>
+                        <td>Telephone No</td>
+                        <td>
+                            <obs conceptId="162870" id="162870"/>
+                        </td>
+                        <td>Has this person been disclosed to?</td>
+                        <td colspan="3">
+                            <obs conceptId="162871"/>
+                        </td>
                     </tr>
                 </table>
             </section>
@@ -509,9 +541,13 @@
                 <table class="table table-bordered custom-table">
                     <tr>
                         <td><label>Place of Delivery:</label></td>
-                        <td><obs conceptId="99570" labelText=""/></td>
+                        <td>
+                            <obs conceptId="99570" labelText=""/>
+                        </td>
                         <td><label>Mode of Delivery:</label></td>
-                        <td><obs conceptId="5630" labelText=""/></td>
+                        <td>
+                            <obs conceptId="5630" labelText=""/>
+                        </td>
                     </tr>
 
                     <tr>
@@ -549,7 +585,7 @@
                     <tr>
                         <td><label>Mother in care at an ART Clinic?:</label></td>
                         <td class="EIDYesNoEnableDisable1">
-                            <obs conceptId="162873" labelText="" />
+                            <obs conceptId="162873" labelText=""/>
                         </td>
                         <td class="EIDYesNoEnableDisableChild1">
                             <obs conceptId="162875" labelText="ART Clinic"/>
@@ -670,7 +706,9 @@
                             <obs conceptId="99430" answerConceptIds="1065,1066"></obs>
                         </td>
                         <td>Date</td>
-                        <td class="LinkToCareEnableDisableChild1"><obs conceptId="162981"/></td>
+                        <td class="LinkToCareEnableDisableChild1">
+                            <obs conceptId="162981"/>
+                        </td>
                     </tr>
                     <tr>
                         <td><label>Enrolled at ART Clinic</label></td>
@@ -689,46 +727,67 @@
                         </td>
                         <td>Presumptive Referral</td>
                         <td class="LinkToCareEnableDisableChild1">
-                            <obs conceptId="163003" answerConceptIds="90003,90004" />
+                            <obs conceptId="163003" answerConceptIds="90003,90004"/>
                         </td>
                     </tr>
                 </table>
             </section>
             <section>
                 <h3>
-                 Follow-Up Section
+                    Follow-Up Section
                 </h3>
                 <table>
                     <tr>
                         <td rowspan="2">First Attempt</td>
-                        <td>Date:<obs conceptId="162967"/></td>
-                        <td>Method:<obs conceptId="162968"/> </td>
+                        <td>Date:
+                            <obs conceptId="162967"/>
+                        </td>
+                        <td>Method:
+                            <obs conceptId="162968"/>
+                        </td>
                     </tr>
                     <tr>
-                        <td colspan="2">Outcome:<obs conceptId="162969"/></td>
+                        <td colspan="2">Outcome:
+                            <obs conceptId="162969"/>
+                        </td>
                     </tr>
                     <tr>
                         <td rowspan="2">Second Attempt</td>
-                        <td>Date:<obs conceptId="162971"/></td>
-                        <td>Method:<obs conceptId="162972"/></td>
+                        <td>Date:
+                            <obs conceptId="162971"/>
+                        </td>
+                        <td>Method:
+                            <obs conceptId="162972"/>
+                        </td>
                     </tr>
                     <tr>
-                        <td colspan="2">Outcome:<obs conceptId="162973"/></td>
+                        <td colspan="2">Outcome:
+                            <obs conceptId="162973"/>
+                        </td>
                     </tr>
                     <tr>
                         <td rowspan="2">Third Attempt</td>
-                        <td>Date:<obs conceptId="162975"/></td>
-                        <td>Method:<obs conceptId="162976"/></td>
+                        <td>Date:
+                            <obs conceptId="162975"/>
+                        </td>
+                        <td>Method:
+                            <obs conceptId="162976"/>
+                        </td>
                     </tr>
                     <tr>
-                        <td colspan="2">Outcome:<obs conceptId="162977"/></td>
+                        <td colspan="2">Outcome:
+                            <obs conceptId="162977"/>
+                        </td>
                     </tr>
                     <tr>
                         <td> Final Outcome</td>
                         <td>
-                            <obs conceptId="99428" answerConceptIds="99427,99430,5240,90306,99112" answerLabels="Discharged Negative,Referred to ART Clinic,Lost (>6 Months),Transferred,Died"/>
+                            <obs conceptId="99428" answerConceptIds="99427,99430,5240,90306,99112"
+                                 answerLabels="Discharged Negative,Referred to ART Clinic,Lost (>6 Months),Transferred,Died"/>
                         </td>
-                        <td><label>Date</label><obs conceptId="162979"/></td>
+                        <td><label>Date</label>
+                            <obs conceptId="162979"/>
+                        </td>
                     </tr>
                 </table>
             </section>

@@ -67,25 +67,25 @@
             jq(xx).each(function () {
                 var group = jq(this);
                 if (class_name.indexOf('Children') == -1) {
-                    // // group.find('select').prop("selectedIndex", 0);
+                    /* group.find('select').prop("selectedIndex", 0);*/
                     group.find('select').attr("disabled", disable);
                     if (disable) {
-                        // fade out the fields that are disabled
+                        /* fade out the fields that are disabled*/
                         group.find("select").fadeTo(250, 0.25);
                     } else {
-                        // remove the fade on the fields
+                        /* remove the fade on the fields*/
                         group.find("select").fadeTo(250, 1);
                     }
                 }
                 if (class_name.indexOf('GrandChildren') == -1) {
-                    // // group.find("input").attr("value", "");
+                    /* group.find("input").attr("value", "");*/
                     group.find("input").attr("disabled", disable1);
 
                     if (disable1) {
-                        // fade out the fields that are disabled
+                        /* fade out the fields that are disabled*/
                         group.find("input").fadeTo(250, 0.25);
                     } else {
-                        // remove the fade on the fields
+                        /* remove the fade on the fields*/
                         group.find("input").fadeTo(250, 1);
                     }
                 }
@@ -165,17 +165,16 @@
                 var group = jq(this);
 
                 if (class_name.indexOf('Child') == -1) {
-                    // // group.find('select').prop("selectedIndex", 0);
-                    //
+                    /* group.find('select').prop("selectedIndex", 0);*/
                     group.find("input").attr("disabled", disable);
                     group.find('select').attr("disabled", disable);
 
                     if (disable) {
                         group.find(":checkbox").attr("checked", false);
-                        // fade out the fields that are disabled
+                        /* fade out the fields that are disabled*/
                         group.find("input").fadeTo(250, 0.25);
                     } else {
-                        // remove the fade on the fields
+                        /* remove the fade on the fields*/
                         group.find("input").fadeTo(250, 1);
                     }
 
@@ -233,14 +232,14 @@
             jq(xx).each(function () {
                 var group = jq(this);
                 if (class_name.indexOf('Children') == -1) {
-                    // // group.find("input").attr("value", "");
+                    /* group.find("input").attr("value", "");*/
                     group.find("input").attr("disabled", disable);
 
                     if (disable) {
-                        // fade out the fields that are disabled
+                        /* fade out the fields that are disabled*/
                         group.find("input").fadeTo(250, 0.25);
                     } else {
-                        // remove the fade on the fields
+                        /* remove the fade on the fields*/
                         group.find("input").fadeTo(250, 1);
                     }
                 }
@@ -296,16 +295,16 @@
             jq(xx).each(function () {
                 var group = jq(this);
                 if (class_name.indexOf('Children') == -1) {
-                    // // group.find("input").attr("value", "");
+                    /* group.find("input").attr("value", "");*/
                     group.find("input").attr("disabled", disable);
                     group.find("select").attr("disabled", disable);
 
                     if (disable) {
-                        // fade out the fields that are disabled
+                        /* fade out the fields that are disabled*/
                         group.find("input").fadeTo(250, 0.25);
                         group.find("select").fadeTo(250, 0.25);
                     } else {
-                        // remove the fade on the fields
+                        /* remove the fade on the fields*/
                         group.find("input").fadeTo(250, 1);
                         group.find("select").fadeTo(250, 0.25);
                     }
@@ -396,14 +395,14 @@
             jq(xx).each(function () {
                 var group = jq(this);
                 if (class_name.indexOf('Child') == -1) {
-                    // // group.find("input").attr("value", "");
+                    /* group.find("input").attr("value", "");*/
                     group.find("input").attr("disabled", disable);
 
                     if (disable) {
-                        // fade out the fields that are disabled
+                        /* fade out the fields that are disabled*/
                         group.find("input").fadeTo(250, 0.25);
                     } else {
-                        // remove the fade on the fields
+                        /* remove the fade on the fields*/
                         group.find("input").fadeTo(250, 1);
                     }
                 }
@@ -486,15 +485,15 @@
             jq(xx).each(function () {
                 var group = jq(this);
                 if (class_name.indexOf('Child') == -1) {
-                    // // group.find("input").attr("value", "");
+                    /* group.find("input").attr("value", "");*/
                     group.find("input").attr("disabled", disable);
                     group.find("select").attr("disabled", disable);
 
                     if (disable) {
-                        // fade out the fields that are disabled
+                        /* fade out the fields that are disabled*/
                         group.find("input").fadeTo(250, 0.25);
                     } else {
-                        // remove the fade on the fields
+                        /* remove the fade on the fields*/
                         group.find("input").fadeTo(250, 1);
                     }
                 }
@@ -541,15 +540,15 @@
             jq(xx).each(function () {
                 var group = jq(this);
                 if (class_name.indexOf('Child') == -1) {
-                    // // group.find("input").attr("value", "");
+                    /* group.find("input").attr("value", "");*/
                     group.find("input").attr("disabled", disable);
                     group.find("select").attr("disabled", disable);
 
                     if (disable) {
-                        // fade out the fields that are disabled
+                        /* fade out the fields that are disabled*/
                         group.find("input").fadeTo(250, 0.25);
                     } else {
-                        // remove the fade on the fields
+                        /* remove the fade on the fields*/
                         group.find("input").fadeTo(250, 1);
                     }
                 }
@@ -634,14 +633,14 @@
             jq(xx).each(function () {
                 var group = jq(this);
                 if (class_name.indexOf('Child') == -1) {
-                    // // group.find("input").attr("value", "");
+                    /* group.find("input").attr("value", "");*/
                     group.find("input").attr("disabled", disable);
 
                     if (disable) {
-                        // fade out the fields that are disabled
+                        /* fade out the fields that are disabled*/
                         group.find("input").fadeTo(250, 0.25);
                     } else {
-                        // remove the fade on the fields
+                        /* remove the fade on the fields*/
                         group.find("input").fadeTo(250, 1);
                     }
                 }
@@ -718,23 +717,23 @@
                     group.find("input").attr("disabled", disable);
 
                     if (disable) {
-                        // fade out the fields that are disabled
+                        /* fade out the fields that are disabled*/
                         group.find("input").fadeTo(250, 0.25);
                     } else {
-                        // remove the fade on the fields
+                        /* remove the fade on the fields*/
                         group.find("input").fadeTo(250, 1);
                     }
                 }
                 if (class_name.indexOf('GrandChild') == -1) {
-                    // // group.find("input").attr("value", "");
-                    // // group.find('select').prop("selectedIndex", 0);
+                    /* group.find("input").attr("value", "");*/
+                    /* group.find('select').prop("selectedIndex", 0);*/
                     group.find('select').attr("disabled", disable2);
 
                     if (disable2) {
-                        // fade out the fields that are disabled
+                        /* fade out the fields that are disabled*/
                         group.find('select').fadeTo(250, 0.25);
                     } else {
-                        // remove the fade on the fields
+                        /* remove the fade on the fields*/
                         group.find('select').fadeTo(250, 1);
                     }
                 }
@@ -749,10 +748,10 @@
                     });
                 }
 
-                // add JQuery validator classes and rules
+                /* add JQuery validator classes and rules*/
                 jq("#90278 input").addClass("ugphone");
 
-                // add the validator on the beforeSubmit
+                /* add the validator on the beforeSubmit*/
                 beforeSubmit.push(function () {
                             jq("#htmlform").validate();
                             return jq("#htmlform").valid();
@@ -848,8 +847,8 @@
 
                     function disableFn() {
                         group.children("#disabled").fadeTo(250, 0.25);
-                        //  group.children("#disabled").find(":checkbox").attr("checked", false); //uncheck
-                        group.children("#disabled").find("input").attr("disabled", true); //disable
+                        /*  group.children("#disabled").find(":checkbox").attr("checked", false); //uncheck*/
+                        group.children("#disabled").find("input").attr("disabled", true); /*disable*/
                         group.children("#disabled").find("select").attr("disabled", true);
                     }
 
@@ -898,7 +897,7 @@
                                 } else {
                                     flip = !checked;
                                 }
-                                if (jq.attr("type") == "text") if (flip == false) flip = !filp; // this is so the user doesn't go to check thecheckbox, then uncheck it when they hit the input.uncheckAll();
+                                if (jq.attr("type") == "text") if (flip == false) flip = !filp; /* this is so the user doesn't go to check thecheckbox, then uncheck it when they hit the input.uncheckAll();*/
                                 jq(this).parents("#checkboxAll:first").find(":checkbox").attr("checked", flip);
                                 jq(this).parents("#checkboxAll:first").find(":checkbox").change();
                             }
