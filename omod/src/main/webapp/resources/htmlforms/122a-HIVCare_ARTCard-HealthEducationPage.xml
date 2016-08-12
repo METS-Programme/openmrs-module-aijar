@@ -27,24 +27,21 @@
 
                     function disableFn() {
                         group.children("#disabled").fadeTo(250, 0.25);
-                        group.children("#disabled").find(":checkbox").attr("checked", false); //uncheck
-                        // group.children("#disabled").find("input[type$='text']").val("");
-                        group.children("#disabled").find("input").attr("disabled", true); //disable
+                        /*  group.children("#disabled").find(":checkbox").attr("checked", false); //uncheck*/
+                        group.children("#disabled").find("input").attr("disabled", true); /*disable*/
                         group.children("#disabled").find("select").attr("disabled", true);
-                        group.children("#disabled").find("textarea").attr("disabled", true);
                     }
 
                     function enableFn() {
-
-
                         group.children("#disabled").fadeTo(250, 1);
                         group.children("#disabled").find("input").attr("disabled", false);
                         group.children("#disabled").find("select").attr("disabled", false);
-                        group.children("#disabled").find("textarea").attr("disabled", false);
 
                     }
 
-                    disableFn();
+                    if (jq(this).children("#trigger").find(":checkbox:first").attr("checked") != "checked") {
+                        disableFn();
+                    }ßß
                     jq(this).children("#trigger").find(":checkbox:first").change(function () {
                         var checked = jq(this).attr("checked");
                         if (checked == "checked") {

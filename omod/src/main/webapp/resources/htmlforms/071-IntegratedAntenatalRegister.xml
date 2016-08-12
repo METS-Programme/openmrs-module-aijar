@@ -73,11 +73,11 @@
                 }
 
                 if (disable) {
-                    // fade out the fields that are disabled
+                    /* fade out the fields that are disabled */
                     group.find("input").fadeTo(250, 0.25);
                     group.find("select").fadeTo(250, 0.25);
                 } else {
-                    // remove the fade on the fields
+                    /* remove the fade on the fields */
                     group.find("input").fadeTo(250, 1);
                     group.find("select").fadeTo(250, 1);
                 }
@@ -122,11 +122,11 @@
                 }
 
                 if (disable) {
-                    // fade out the fields that are disabled
+                    /* fade out the fields that are disabled */
                     group.find("input").fadeTo(250, 0.25);
                     group.find("select").fadeTo(250, 0.25);
                 } else {
-                    // remove the fade on the fields
+                    /* remove the fade on the fields */
                     group.find("input").fadeTo(250, 1);
                     group.find("select").fadeTo(250, 1);
                 }
@@ -169,11 +169,11 @@
                 }
 
                 if (disable) {
-                    // fade out the fields that are disabled
+                    /* fade out the fields that are disabled */
                     group.find("input").fadeTo(250, 0.25);
                     group.find("select").fadeTo(250, 0.25);
                 } else {
-                    // remove the fade on the fields
+                    /* remove the fade on the fields */
                     group.find("input").fadeTo(250, 1);
                     group.find("select").fadeTo(250, 1);
                 }

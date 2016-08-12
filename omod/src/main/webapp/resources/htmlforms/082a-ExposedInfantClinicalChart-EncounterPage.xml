@@ -7,7 +7,7 @@
           formUILocation="patientDashboard.visitActions"
           formOrder="5"
           formIcon="icon-medkit"
-          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; patient.person.age &lt; 6 &amp;&amp; sessionLocation.uuid=='86863db4-6101-4ecf-9a86-5e716d6504e4'"
+          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; patient.person.age &lt; 6 &amp;&amp; sessionLocation.uuid=='e9bc61b5-69ff-414b-9cf0-0c22d6dfca2b'"
           formDisplayStyle="Standard"
           formLabel="EID Card - Encounter form">
     <redirectOnSave
@@ -139,11 +139,11 @@
                     group.find("input").attr("disabled", disable);
                 }
                 if (disable) {
-                    // fade out the fields that are disabled
+                    /* fade out the fields that are disabled */
                     group.find("input").fadeTo(250, 0.25);
                     group.find("select").fadeTo(250, 0.25);
                 } else {
-                    // remove the fade on the fields
+                    /* remove the fade on the fields */
                     group.find("input").fadeTo(250, 1);
                     group.find("select").fadeTo(250, 1);
                 }
@@ -202,11 +202,11 @@
                     group.find("input").attr("disabled", disable);
                 }
                 if (disable) {
-                    // fade out the fields that are disabled
+                    /* fade out the fields that are disabled */
                     group.find("input").fadeTo(250, 0.25);
                     group.find("select").fadeTo(250, 0.25);
                 } else {
-                    // remove the fade on the fields
+                    /* remove the fade on the fields */
                     group.find("input").fadeTo(250, 1);
                     group.find("select").fadeTo(250, 1);
                 }
@@ -253,11 +253,11 @@
                 }
 
                 if (disable) {
-                    // fade out the fields that are disabled
+                    /* fade out the fields that are disabled */
                     group.find("input").fadeTo(250, 0.25);
                     group.find("select").fadeTo(250, 0.25);
                 } else {
-                    // remove the fade on the fields
+                    /* remove the fade on the fields */
                     group.find("input").fadeTo(250, 1);
                     group.find("select").fadeTo(250, 1);
                 }
@@ -326,11 +326,11 @@
                     group.find('select').attr("disabled", disable);
                 }
                 if (disable) {
-                    // fade out the fields that are disabled
+                    /* fade out the fields that are disabled */
                     group.find("input").fadeTo(250, 0.25);
                     group.find("select").fadeTo(250, 0.25);
                 } else {
-                    // remove the fade on the fields
+                    /* remove the fade on the fields */
                     group.find("input").fadeTo(250, 1);
                     group.find("select").fadeTo(250, 1);
                 }
@@ -380,13 +380,13 @@
                         });
 
 
-                        //If Male disable all options that only apply to females
+                        /* If Male disable all options that only apply to females */
                         if (gender == "M") {
                             jq("input#w246").attr("disabled", true);
                             jq("input#w248").attr("disabled", true);
                         }
 
-                        // If above five years disable options that only apply to below 5 year olds
+                        /* If above five years disable options that only apply to below 5 year olds */
                         if (age &gt; 5) {
                             jq("input#w250").attr("disabled", true);
                             jq("input#w252").attr("disabled", true);
@@ -399,48 +399,48 @@
                             }
                         });
 
-                        // disable the HIV enrolled date input
+                        /* disable the HIV enrolled date input */
                         jq('#w233-display').attr("disabled", "disabled");
 
-                        // When the HIV date confirmed field is selected, then set the minimum value of the HIV enrolled date
+                        /* When the HIV date confirmed field is selected, then set the minimum value of the HIV enrolled date */
                         jq('#w6-display').change(function () {
-                            // enable the HIV enrolled date picker
+                            /* enable the HIV enrolled date picker */
                             jq('#w233-display').removeAttr("disabled", "");
 
-                            // clear the HIV enrolled date so that a new one can be selected
+                            /* clear the HIV enrolled date so that a new one can be selected */
                             jq('#w233-display').val("");
                             jq('#w233').val("");
 
-                            // set the minimum date using the HIV confirmed date
+                            /* set the minimum date using the HIV confirmed date */
                             jq('#w233-display').datepicker("option", "minDate", jq('#w6-display').val());
                         });
 
-                        // when there is a value in the HIV date confirmed field
+                        /* when there is a value in the HIV date confirmed field */
                         if (jq('#w6-display').length > 0) {
-                            // set the minimum date using the HIV confirmed date
+                            /* set the minimum date using the HIV confirmed date */
                             jq('#w233-display').datepicker("option", "minDate", jq('#w6-display').val());
                         }
 
 
-                        // disable the Transfer date input
+                        /* disable the Transfer date input */
                         jq('#w278-display').attr("disabled", "disabled");
 
-                        // When the ART start Date field is selected, then set the minimum value of the Transer date
+                        /* When the ART start Date field is selected, then set the minimum value of the Transer date */
                         jq('#w286-display').change(function () {
-                            // enable the HIV enrolled date picker
+                            /* enable the HIV enrolled date picker */
                             jq('#w278-display').removeAttr("disabled", "");
 
-                            // clear the Transfer Date so that a new one can be selected
+                            /* clear the Transfer Date so that a new one can be selected */
                             jq('#w278-display').val("");
                             jq('#w233').val("");
 
-                            // set the minimum date using the ART start date
+                            /* set the minimum date using the ART start date */
                             jq('#w278-display').datepicker("option", "minDate", jq('#w286-display').val());
                         });
 
-                        // when there is a value in the Transfer field
+                        /* when there is a value in the Transfer field */
                         if (jq('#w286-display').length > 0) {
-                            // set the minimum date using the ART Start date
+                            /* set the minimum date using the ART Start date */
                             jq('#w278-display').datepicker("option", "minDate", jq('#w286-display').val());
                         }
 
@@ -481,9 +481,9 @@
 
                             function disableFn() {
                                 group.children("#disabled").fadeTo(250, 0.25);
-                                group.children("#disabled").find(":checkbox").attr("checked", false); //uncheck
-                                // group.children("#disabled").find("input[type$='text']").val("");
-                                group.children("#disabled").find("input").attr("disabled", true); //disable
+                                group.children("#disabled").find(":checkbox").attr("checked", false);
+                                /* group.children("#disabled").find("input[type$='text']").val(""); */
+                                group.children("#disabled").find("input").attr("disabled", true);
                                 group.children("#disabled").find("select").attr("disabled", true);
                             }
 
@@ -494,7 +494,10 @@
 
                             }
 
-                            disableFn();
+                            if (jq(this).children("#trigger").find(":checkbox:first").attr("checked") != "checked") {
+                                disableFn();
+                            }
+
                             jq(this).children("#trigger").find(":checkbox:first").change(function () {
                                 var checked = jq(this).attr("checked");
                                 if (checked == "checked") {
@@ -528,7 +531,7 @@
                                         } else {
                                             flip = !checked;
                                         }
-                                        if (jq.attr("type") == "text") if (flip == false) flip = !filp; // this is so the user doesn't go to check the checkbox, then uncheck it when they hit the input.
+                                        if (jq.attr("type") == "text") if (flip == false) flip = !filp; /* this is so the user doesn't go to check the checkbox, then uncheck it when they hit the input. */
                                         uncheckAll();
                                         jq(this).parents("#checkboxAll:first").find(":checkbox").attr("checked", flip);
                                         jq(this).parents("#checkboxAll:first").find(":checkbox").change();
