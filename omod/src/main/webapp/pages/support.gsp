@@ -51,9 +51,9 @@
         <h2>User Manuel</h2>
 
         <p>
-            <a href="http://bit.ly/ugandaemr-usermanual-pdf" target="_blank"><i class="icon-download-alt"></i> Download (PDF 50MB)</a>
+            <a href="http://bit.ly/ugandaemr-usermanual-pdf" target="_blank"><i class="icon-download-alt"></i> Download (PDF 50MB) http://bit.ly/ugandaemr-usermanual-pdf</a>
             <br/><br/>
-            <a href="http://bit.ly/ugandaemr-usermanual" target="_blank">Read online</a>
+            <a href="http://bit.ly/ugandaemr-usermanual" target="_blank">Read Online http://bit.ly/ugandaemr-usermanual</a>
         </p>
     </div>
 </div>
