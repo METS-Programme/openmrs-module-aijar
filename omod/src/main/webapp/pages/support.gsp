@@ -47,6 +47,7 @@
             <br>
             Password: Manager123
         </p>
+
         <h2>User Manuel</h2>
 
         <p>
