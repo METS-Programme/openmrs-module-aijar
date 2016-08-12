@@ -20,8 +20,8 @@
                                    target="_blank">openmrs-support-ug@googlegroups
             .com</a></p>
 
-        <p>UgandaEMR Community: <a href="mailto:ugandaemr@googlegroups.com@googlegroups.com"
-                                   target="_blank">ugandaemr@googlegroups.com@googlegroups.com</a></p>
+        <p>UgandaEMR Community: <a href="mailto:ugandaemr@googlegroups.com"
+                                   target="_blank">ugandaemr@googlegroups.com</a></p>
 
         <h2>UgandaEMR TWG Contact Numbers</h2>
         <ul style="list-style:square;margin-left:25px;">
