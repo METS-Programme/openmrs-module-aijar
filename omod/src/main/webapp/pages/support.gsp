@@ -51,9 +51,9 @@
         <h2>User Manuel</h2>
 
         <p>
-            <a href="https://www.gitbook.com/download/pdf/book/mets-programme/ugandaemr-documentation" target="_blank">Download</a>
+            <a href="http://bit.ly/ugandaemr-usermanual-pdf" target="_blank"><i class="icon-download-alt"></i> Download (PDF 50MB)</a>
             <br/><br/>
-            <a href="https://www.gitbook.com/download/pdf/book/mets-programme/ugandaemr-documentation" target="_blank">Read</a>
+            <a href="http://bit.ly/ugandaemr-usermanual" target="_blank">Read online</a>
         </p>
     </div>
 </div>
