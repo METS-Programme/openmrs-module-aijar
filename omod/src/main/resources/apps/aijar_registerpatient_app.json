@@ -10,7 +10,7 @@
         "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
         "type": "link",
         "label": "aijar.registrationapp.registerpatient.label",
-        "url": "aijar/aijarRegisterPatient.page?appId=aijar.registrationapp.registerPatient",
+        "url": "registrationapp/registerPatient.page?appId=aijar.registrationapp.registerPatient",
         "icon": "icon-user",
         "order": 1,
         "requiredPrivilege": "App: registrationapp.registerPatient"
@@ -39,27 +39,6 @@
                 }
               ]
             },
-           /* {
-              "legend": "aijar.registrationapp.birth.location",
-              "fields": [
-                {
-                  "type": "personAddress",
-                  "label": "aijar.registrationapp.birth.location.question",
-                  "uuid": "8d8718c2-c2cc-11de-8d13-0010c6dffd0f",
-                  "formFieldName": "birthLocation",
-                  "widget": {
-                    "providerName": "registrationapp",
-                    "fragmentId": "field/personAddressWithHierarchy",
-                    "config": {
-                      "shortcutFor": "address4",
-                      "manualFields": [
-                        "address5"
-                      ]
-                    }
-                  }
-                }
-              ]
-            },*/
             {
               "legend": "aijar.registrationapp.currentaddress",
               "fields": [
@@ -71,9 +50,8 @@
                     "providerName": "registrationapp",
                     "fragmentId": "field/personAddressWithHierarchy",
                     "config": {
-                      "shortcutFor": "address4",
                       "manualFields": [
-                        "address5"
+                        "address4","address5"
                       ]
                     }
                   }
@@ -90,10 +68,13 @@
                   "uuid": "14d4f066-15f5-102d-96e4-000c29c2a5d7",
                   "widget": {
                     "providerName": "uicommons",
-                    "fragmentId": "field/text"
+                    "fragmentId": "field/text",
+                    "config": {
+                      "regex": "^[0-9]{10}$"
+                    }
                   },
                   "cssClasses": [
-                    "number"
+                    "number", "regex"
                   ]
                 }
               ]
