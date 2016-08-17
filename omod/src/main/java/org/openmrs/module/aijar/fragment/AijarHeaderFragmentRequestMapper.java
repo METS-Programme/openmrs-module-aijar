@@ -32,8 +32,9 @@ public class AijarHeaderFragmentRequestMapper implements FragmentRequestMapper {
 				request.setFragmentIdOverride("aijarHeader");
 
 				log.info(request.toString());
+				return true;
 			}
 		}
-		return true;
+		return false;
 	}
 }
