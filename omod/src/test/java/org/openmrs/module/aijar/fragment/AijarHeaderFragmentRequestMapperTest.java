@@ -4,7 +4,6 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-import org.openmrs.module.aijar.page.AijarLoginPageRequestMapper;
 import org.openmrs.ui.framework.fragment.FragmentRequest;
 
 /**
