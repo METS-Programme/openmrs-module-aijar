@@ -8,14 +8,17 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * Overrides the mapping to the login page for the reference application to a custom page
+ * Overrides the mapping to the login page for the reference application to a a customized page for UgandaEMR
  *
- * Created by ssmusoke on 18/02/2016.
  */
 @Component
-public class AijarLoginPageRequestMapper implements PageRequestMapper {
+public class UgandaEMRLoginPageRequestMapper implements PageRequestMapper {
 
 	protected final Log log = LogFactory.getLog(getClass());
+	
+	public UgandaEMRLoginPageRequestMapper(){
+		log.info("initializing XXX " + getClass());
+	}
 
 	/**
 	 * Implementations should call {@link PageRequest#setProviderNameOverride(String)} and
@@ -33,8 +36,9 @@ public class AijarLoginPageRequestMapper implements PageRequestMapper {
 				request.setPageNameOverride("aijarLogin");
 
 				log.info(request.toString());
+				return true;
 			}
 		}
-		return true;
+		return false;
 	}
 }

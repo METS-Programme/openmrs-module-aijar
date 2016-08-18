@@ -27,7 +27,7 @@ public class AijarLoginPageRequestMapperTest {
 		assertEquals(request.getMappedProviderName(), "referenceapplication");
 		assertEquals(request.getMappedPageName(), "login");
 
-		AijarLoginPageRequestMapper mapper = new AijarLoginPageRequestMapper();
+		UgandaEMRLoginPageRequestMapper mapper = new UgandaEMRLoginPageRequestMapper();
 
 		assertTrue(mapper.mapRequest(request));
 		assertEquals(request.getMappedProviderName(), "aijar");
