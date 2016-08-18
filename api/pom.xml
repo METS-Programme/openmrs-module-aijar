@@ -4,11 +4,11 @@
 	<parent>
 		<groupId>org.openmrs.module</groupId>
 		<artifactId>aijar</artifactId>
-		<version>1.0.12</version>
+		<version>1.0.13-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>aijar-api</artifactId>
-  <version>1.0.12</version>
+  <version>1.0.13-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>aijar Module API</name>
 	<description>API project for aijar</description>
