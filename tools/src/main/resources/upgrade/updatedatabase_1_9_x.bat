@@ -13,7 +13,7 @@
 @REM  Now copy the data from openmrs_backup into the openmrs_script
     
 
-@mysql --port=3306 -u root openmrs < upgrade.sql
+@mysql --port=3306 -u root openmrs < upgrade_1_9_x.sql
 
 
 @echo Migration from 1.6.3 to 1.11.6 completed
