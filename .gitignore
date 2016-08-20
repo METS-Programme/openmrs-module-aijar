@@ -1,8 +1,7 @@
 /tools/target
 
 # Scripts for installer
-/tools/src/main/resources/upgrade/new-install.sql
-/tools/src/main/resources/upgrade/upgrade.sql
+/tools/src/main/resources/upgrade/*.sql
 
 # Created by .ignore support plugin (hsz.mobi)
 .DS_Store
