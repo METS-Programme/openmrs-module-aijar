@@ -2,6 +2,7 @@
 
 
 /** update the visit table */
+SELECT 'Adding visits to encounters' as log;
 INSERT INTO visit (patient_id, visit_type_id, date_started, date_stopped, location_id, creator, date_created, uuid, changed_by, date_changed)
   SELECT
     patient_id,
@@ -22,3 +23,5 @@ UPDATE encounter e INNER JOIN visit v ON (
   e.patient_id = v.patient_id AND e.encounter_datetime = v.date_started AND e.creator = v.creator AND
   e.location_id = v.location_id AND e.visit_id IS NULL)
 SET e.visit_id = v.visit_id;
+
+SELECT 'Adding visits to encounters complete' as log;
