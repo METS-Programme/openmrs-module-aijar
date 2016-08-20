@@ -8,4 +8,7 @@ This module provides the following configuration meta-data:
 * Patient Registration functionality
 * Look and feel customizations
 
+# Setting up a development environment 
+Instructions to setup a UgandaEMR development environment can be found in the [UgandaEMR Technical Guide](https://mets-programme.gitbooks.io/ugandaemr-technical-guide/content/setup-dev-environment.html "UgandaEMR Technical Guide")
+
 
