@@ -1,4 +1,10 @@
+before_install: "git clone -b travis `git config --get remote.origin.url` target/travis"
+script: "mvn deploy --settings target/travis/settings.xml"
+
 language: java
+branches:
+  except:
+    - travis
 jdk:
  - openjdk6
  - oraclejdk7
@@ -6,3 +12,8 @@ script: mvn clean install --batch-mode
 matrix:
   allow_failures:
     - jdk: oraclejdk7
+
+    env:
+      global:
+      - secure: gvsTN50OOyiFM98jketfXuWBV9WyxYk8n385wRt/qwJzw1mSinzQHDdKS0RCBGaDeeKduhXeGuH7wfxSBxRckSTxaIYyoNe6qRGrbClPR/F8vGyuCPwg8tX1MMZLrgg0m6rbJcQR+F1sEX11CgGzE+QvS3plD5BmdKJVqhCJbj1vL7ZAtLcoPxgwgugpBmxwqEfGV531v/Qv2rzc34QDi8+srzvcAAU6rXSg81Ej94HHi5BTQq2DW0piYzTKchAgWdKIn6mMCAUOlDa6rQDYnQd+xReEB82W99cwDqpYSkjWPqv/6YebnE9wJzPHrkFzgWTbFhJzQcYJRVHh4h2SfNRdo6zhbW/jxyADRw5StR6/wwM2ha26H/O6cCcMHjjE5F+TpLVlI2fZPc7JDVotFBMLthLJirDKBpixRPxu3uTs8Iz5W0RwkTuEJqfyJN2AiDa+XD/E/g6qZh1cR6qh+TenZTRYeU8+lW5xj/Sl6czMbMiilvty/Evdb92aa1WNq3TmdO1FREhmyVe7goOvxywoWPGFsCJdrG+T3FzLt9WHabs0ZTC6b4f5S0d74WWj+vHOcYXD20Sa4FBdsFefMklnA+PybOG9y1XAOisORFlb+jpOKr6LDOTSGv/UyaywzmEGMlAKUrOHBwDeJJ+aav9wXY3dqlrRHDoT42e4QbE=
+      - secure: O7hSBnlTjODNic2MiiWUAP9gMODCk5E9DSRZKKCQr3c3epBe/s96D42YqFYfltpu44BVzcbvt2ACVb+fTrh210sfUpCEkjScAolrzYt0PW3Td8hIfqw6h+uq1gqKQ81oIL/m+Xn65PyNhSasP/C8/gcELp7apeXPdYCUHvHXyde85eMET+1wx/UUv9nYc5Pz9hQBZaudcPDmunb7DOsdfuiyi6m4Jc0KJM0iwe5cNbZloxXSH2jWwR5xH3b7PZi+1/ltO/2+DHOMdffrlE17EhEt5mN5rG72BKJTPOE8US+A/LVun0j/PoO/QgtUg/Puc8TGZKnHimVeZcXKaWCEvP2P4eYpGHkER+71Dzu47weirA6JwDcTeXb+B2ZdvDogvt1pg7hy1/eF5vGIdd2cgUr/zPEh2Go639UViSUTcrxcZ1AGX4lcRdk/ZJwKvYmLNNy7TBxzKipTayYDdgO9JO9NiPG2zHFrOtY/tINrw/YrGPLJvf9vZeANq4giQ6+TbMb9Iyz3CwWdlKviPSVI9bGxW0VnY70cp0YPmXlJetkrY3zHKEgW26uUIIPATYJ6MiSTRfAunZITo0KqM3gU33KF4+WuF7XPmmwk5NLhdc5R72Jhx/A8BlPF5XfZ9CaLEHVpwkRwcn8ipw9lOvQwcFHX+FGSVR6Oxj8cLrUVvDc=
