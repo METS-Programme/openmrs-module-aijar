@@ -165,56 +165,6 @@ CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `transfer`()
   END$$
 DELIMITER ;
 
-DELIMITER $$
-CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `mergeSummaryPages`()
-  BEGIN
-
-    DECLARE patient TEXT;
-    DECLARE ecnounter TEXT;
-    DECLARE total TEXT;
-    DECLARE found_string TEXT;
-    DECLARE occurance INT;
-    DECLARE i INT DEFAULT 2;
-    DECLARE  e_id CHAR(8);
-    DECLARE done INT DEFAULT FALSE;
-    DECLARE cursor_i CURSOR FOR select e.patient_id,group_concat(encounter_id),count(*) as encounters from encounter e inner join encounter_type et on(et.uuid = '8d5b27bc-c2cc-11de-8d13-0010c6dffd0f' and e.encounter_type = et.encounter_type_id ) group by e.patient_id,e.encounter_type HAVING COUNT(*) > 1 order by e.encounter_id;
-    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
-
-    DROP TEMPORARY TABLE IF EXISTS tb;
-    CREATE TEMPORARY TABLE IF NOT EXISTS tb(`name` TEXT);
-
-    SELECT 'Trying to merge summary pages if there are patients with more than one' as log;
-
-    -- Delete encounters without observations
-
-    delete from encounter where encounter_id not in (select encounter_id from obs);
-
-    -- Delete visits without encounters
-
-    delete from visit where visit_id not in (select visit_id from encounter);
-
-    OPEN cursor_i;
-    read_loop: LOOP
-      FETCH cursor_i INTO patient,ecnounter,total;
-      IF done THEN
-        LEAVE read_loop;
-      END IF;
-
-      SET i=1;
-      WHILE i <= total DO
-        SET e_id = substring_index (substring_index ( ecnounter,',',i ), ',', -1);
-        -- TODO merge the summary pages
-        SET i = i + 1;
-      END WHILE;
-      -- delete from obs where obs_id not in(select ob from (select max(obs_id) as ob,concept_id as c,max(obs_datetime) as dt from obs where encounter_id = ecnounter group by concept_id order by concept_id) tmp);
-    END LOOP;
-    CLOSE cursor_i;
-
-  END$$
-DELIMITER ;
-
-
 call transfer();
-call mergeSummaryPages();
 
 SELECT 'Database export complete' as log;
