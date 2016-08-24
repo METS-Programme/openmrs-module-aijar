@@ -70,7 +70,7 @@
                     "providerName": "uicommons",
                     "fragmentId": "field/text",
                     "config": {
-                      "regex": "^[0-9]{10}$"
+                      "regex": "^[0-9]{10}$|^$"
                     }
                   },
                   "cssClasses": [
