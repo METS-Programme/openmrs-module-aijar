@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
 # Turns off foreign key cheks to speed up script execution
-cat database/mysql_script_header.sql > upgrade/new-install.sql
+cat database/openmrs-platform.sql > upgrade/new-install.sql
+
+# Turns off foreign key cheks to speed up script execution
+cat database/mysql_script_header.sql >> upgrade/new-install.sql
 
 # adds the current concept dictionary
 cat database/concept_dictonary_ref.sql >> upgrade/new-install.sql
