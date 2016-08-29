@@ -139,8 +139,6 @@ CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `transfer`()
 
       SELECT CONCAT('Preparing the data transfer sql statement from the old database to the new database for table  ',t_name) as log;
 
-      SELECT @q_statment;
-
       PREPARE stmt FROM @q_statment;
 
       SELECT CONCAT('Executing the data transfer sql statement from the old database to the new database for table  ',t_name) as log;

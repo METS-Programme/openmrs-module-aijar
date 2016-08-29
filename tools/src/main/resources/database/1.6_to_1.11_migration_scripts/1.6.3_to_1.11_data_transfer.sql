@@ -45,7 +45,7 @@ CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `transfer`()
 
     -- Retrieving all tables from the backup database excluding liquibase tables, form,location,encounter_type which are already populated by aijar
 
-    DECLARE cursor_i CURSOR FOR SELECT table_name FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'openmrs_backup'  AND table_rows > 0 AND lower(table_name) not like '%liquibase%' AND lower(table_name) not in ('form','location','encounter_type');
+    DECLARE cursor_i CURSOR FOR SELECT table_name FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'openmrs_backup'  AND table_rows > 0 AND lower(table_name) not like '%liquibase%' AND lower(table_name) not in ('form','location','encounter_type','scheduler_task_config','scheduler_task_config_property');
 
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
 
@@ -138,8 +138,6 @@ CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `transfer`()
       END IF;
 
       SELECT CONCAT('Preparing the data transfer sql statement from the old database to the new database for table  ',t_name) as log;
-
-      SELECT @q_statment;
 
       PREPARE stmt FROM @q_statment;
 
