@@ -33,8 +33,8 @@ cat database/1.6_to_1.11_migration_scripts/transform_encounters_from_old_to_new.
 cat database/1.6_to_1.11_migration_scripts/delete_address_hierarchy.sql >> upgrade/upgrade_1_9_x.sql
 
 # Actual data migration from the openmrs_backup to openmrs database
-cat database/1.6_to_1.11_migration_scripts/1.6_to_1.11_data_transfer.sql >> upgrade/upgrade_1_6_x.sql
-cat database/1.6_to_1.11_migration_scripts/1.6_to_1.11_data_transfer.sql >> upgrade/upgrade_1_9_x.sql
+cat database/1.6_to_1.11_migration_scripts/1.6.3_to_1.11_data_transfer.sql >> upgrade/upgrade_1_6_x.sql
+cat database/1.6_to_1.11_migration_scripts/1.9.1_to_1.11_data_transfer.sql >> upgrade/upgrade_1_9_x.sql
 
 # add visits to encounters - which is required in 1.11.x
 cat database/1.6_to_1.11_migration_scripts/add_visit_to_encounter.sql >> upgrade/upgrade_1_6_x.sql
