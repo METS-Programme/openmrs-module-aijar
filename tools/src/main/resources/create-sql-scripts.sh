@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Turns off foreign key cheks to speed up script execution
-cat database/1.6_to_1.11_migration_scripts/openmrs-platform.sql > upgrade/new-install.sql
+cat database/openmrs-platform.sql > upgrade/new-install.sql
 
 # Turns off foreign key cheks to speed up script execution
 cat database/mysql_script_header.sql >> upgrade/new-install.sql
