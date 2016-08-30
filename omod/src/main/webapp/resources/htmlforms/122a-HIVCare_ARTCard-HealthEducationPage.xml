@@ -41,7 +41,7 @@
 
                     if (jq(this).children("#trigger").find(":checkbox:first").attr("checked") != "checked") {
                         disableFn();
-                    }ßß
+                    }
                     jq(this).children("#trigger").find(":checkbox:first").change(function () {
                         var checked = jq(this).attr("checked");
                         if (checked == "checked") {
