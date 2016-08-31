@@ -198,12 +198,19 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         // The National ID as the primary identifier that needs to be displayed
         properties.add(
                 new GlobalProperty(EmrApiConstants.PRIMARY_IDENTIFIER_TYPE, PatientIdentifierTypes.NATIONAL_ID.uuid()));
+        
+        String ART_Patient_Number_Identifier = "";
+        // check if the ART patient number is to be displayed then add it here
+        if (Context.getAdministrationService().getGlobalProperty("ugandaemr.showARTPatientNumberIdentifier").equals("true")) {
+            log.info("Adding ART patient number to extra identifier types property");
+            ART_Patient_Number_Identifier = "," + PatientIdentifierTypes.ART_PATIENT_NUMBER.uuid();
+        }
 
         // set the HIV care number and EID number as additional identifiers that can be searched for
         properties.add(new GlobalProperty(EmrApiConstants.GP_EXTRA_PATIENT_IDENTIFIER_TYPES,
                 PatientIdentifierTypes.HIV_CARE_NUMBER.uuid() + "," + PatientIdentifierTypes.EXPOSED_INFANT_NUMBER.uuid()
                         + "," + PatientIdentifierTypes.IPD_NUMBER.uuid() + "," + PatientIdentifierTypes.ANC_NUMBER.uuid()
-                        + "," + PatientIdentifierTypes.HCT_NUMBER.uuid()));
+                        + "," + PatientIdentifierTypes.HCT_NUMBER.uuid() + ART_Patient_Number_Identifier));
 
         // set the name of the application
         properties.add(new GlobalProperty("application.name", "UgandaEMR - Uganda eHealth Solution"));
