@@ -489,12 +489,20 @@
                         <br/>
                     </td>
                     <td>
-                        <obs conceptId="90227"
-                             answerConceptIds="90100,90099,90095,90117,90092,90116,90093,90094,90115,90091,90098"
-                             answerLabels="AB,Anaemia,BN,CNS,Diarrhoea,FAT,Fatigue,Headache,Jaundice,Nausea,Rash"/>
+                        <obs id="br" conceptId="90227" answerConceptId="90100" answerLabel="AB"/>
+                        <obs id="br" conceptId="90227" answerConceptId="90099" answerLabel="Anaemia"/>
+                        <obs id="br" conceptId="90227" answerConceptId="90095" answerLabel="BN"/>
+                        <obs id="br" conceptId="90227" answerConceptId="90117" answerLabel="CNS"/>
+                        <obs id="br" conceptId="90227" answerConceptId="90092" answerLabel="Diarrhoea"/>
+                        <obs id="br" conceptId="90227" answerConceptId="90116" answerLabel="FAT"/>
+                        <obs id="br" conceptId="90227" answerConceptId="90093" answerLabel="Fatigue"/>
+                        <obs id="br" conceptId="90227" answerConceptId="90094" answerLabel="Headache"/>
+                        <obs id="br" conceptId="90227" answerConceptId="90115" answerLabel="Jaundice"/>
+                        <obs id="br" conceptId="90227" answerConceptId="90091" answerLabel="Nausea"/>
+                        <obs id="br" conceptId="90227" answerConceptId="90098" answerLabel="Rash"/>
                             <span class="enableDisable">
                                 <span id="trigger">
-                                    <obs conceptId="90227" answerConceptId="90002" answerLabel="Other specify:"/>
+                                    <obs id="br" conceptId="90227" answerConceptId="90002" answerLabel="Other specify:"/>
                                 </span>
                                 <span id="disabled">
                                     <obs conceptId="99113" size="17" labelText=""/>
@@ -776,6 +784,15 @@
                                     <obs id="br" conceptId="99114" size="16" labelText=""/>
                                 </span>
                             </span>
+
+                        <div>Test results:</div>
+                        <obs id="br" conceptId="21" labelText="Hb:" dateLabel="Date:"/><br/>
+                        <obs id="br" conceptId="856" labelText="Viral load:" dateLabel="Date:"/><br/>
+
+                        <obsgroup groupingConceptId="99292">
+                            <obs conceptId="99290" answerConceptIds="1019,99152,12,307,99149" answerLabels="CBC,RPR,CXR,Sputums,PCR" labelText="Other Results:" dateLabel="Date:"/>
+                            <obs conceptId="99291" size="16" labelText=""/>
+                        </obsgroup>
                     </td>
                     <td class="lablex2">
                         <b>Referred for</b>
