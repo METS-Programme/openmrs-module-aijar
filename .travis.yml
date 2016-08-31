@@ -6,7 +6,7 @@ branches:
   except:
     - travis
 jdk:
- - openjdk6
+ - openjdk7
  - oraclejdk7
 script: mvn clean install --batch-mode
 matrix:
