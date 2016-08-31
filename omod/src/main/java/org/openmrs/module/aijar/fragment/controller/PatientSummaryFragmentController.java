@@ -1,6 +1,7 @@
 package org.openmrs.module.aijar.fragment.controller;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -33,8 +34,9 @@ public class PatientSummaryFragmentController {
                            @SpringBean("conceptService") ConceptService conceptService,
                            @SpringBean("personService") PersonService personService,
                            @FragmentParam("patientId") Patient patient) throws ParseException {
-
-        Person person = personService.getPerson(patient.getPersonId());
+	
+	    DecimalFormat df = new DecimalFormat("#.#");
+	    Person person = personService.getPerson(patient.getPersonId());
 	    List<Person> who = new ArrayList<Person>();
 	    who.add(person);
 
@@ -124,7 +126,7 @@ public class PatientSummaryFragmentController {
 	    if (currentHeight == null || currentWeight == null) {
 		    model.addAttribute("bmi", "");
 	    } else {
-		    model.addAttribute("bmi", (currentWeight.getValueNumeric()*100/currentHeight.getValueNumeric()));
+		    model.addAttribute("bmi", df.format(currentWeight.getValueNumeric()*100/currentHeight.getValueNumeric()));
 	    }
     }
     
