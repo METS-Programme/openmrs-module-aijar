@@ -46,29 +46,94 @@ public class PatientSummaryFragmentController {
 
 	    List<Concept> currentRegimen = new ArrayList<Concept>();
 	    currentRegimen.add(conceptService.getConcept("90315"));
-
-	    List<Obs> cd4Counts = obsService.getObservations(who, null, cd4, null, null, null, null, 1, null, null, null,
-			    false);
-
-        if (cd4Counts.size() > 0) {
-            //TODO:use pretty print for date formatting.
-            DateFormat formatter = new SimpleDateFormat("dd.MMM.yyyy");
-            model.addAttribute("lastcd4", cd4Counts.get(0).getValueNumeric());
-            model.addAttribute("lastcd4date", formatter.format(cd4Counts.get(0).getObsDatetime()));
-            model.addAttribute("lastcd4joiner", "on");
+	    
+	    List<Concept> height = new ArrayList<Concept>();
+	    height.add(conceptService.getConcept("5090"));
+	    List<Concept> weight = new ArrayList<Concept>();
+	    weight.add(conceptService.getConcept("90236")); // for adults
+	    weight.add(conceptService.getConcept("5089")); // for infants
+	    List<Concept> viralLoadDate = new ArrayList<Concept>();
+	    viralLoadDate.add(conceptService.getConcept("163023"));
+	    List<Concept> viralLoadResult = new ArrayList<Concept>();
+	    viralLoadResult.add(conceptService.getConcept("1305"));
+	    List<Concept> viralLoadValue = new ArrayList<Concept>();
+	    viralLoadValue.add(conceptService.getConcept("856"));
+	
+	    //TODO:use pretty print for date formatting.
+	    DateFormat formatter = new SimpleDateFormat("dd.MMM.yyyy");
+		Obs latestCd4 = getMostRecentObservation(obsService, who, cd4);
+        if (latestCd4 == null) {
+	        model.addAttribute("lastcd4", "None Available");
+	        model.addAttribute("lastcd4date", "");
+	        model.addAttribute("lastcd4joiner", "");
         } else {
-            model.addAttribute("lastcd4", "None Available");
-            model.addAttribute("lastcd4date", "");
-            model.addAttribute("lastcd4joiner", "");
+	        model.addAttribute("lastcd4", latestCd4.getValueNumeric());
+	        model.addAttribute("lastcd4date", formatter.format(latestCd4.getObsDatetime()));
+	        model.addAttribute("lastcd4joiner", "on");
         }
 
-	    List<Obs> currentRegimens = obsService.getObservations(who, null, currentRegimen, null, null, null, null, 1, null,
-			    null, null,
-			    false);
-	    if (currentRegimens.size() > 0) {
-            model.addAttribute("currentregimen", currentRegimens.get(0).getValueCoded().getName());
+	    Obs currentRegimenObs = getMostRecentObservation(obsService, who, currentRegimen);
+	    if (currentRegimenObs == null) {
+		    model.addAttribute("currentregimen", "None Available");
+		    model.addAttribute("currentregimendate","");
+		    model.addAttribute("currentregimenjoiner", "");
         } else {
-            model.addAttribute("currentregimen", "None Available");
+		    model.addAttribute("currentregimen", currentRegimenObs.getValueCoded().getName());
+		    model.addAttribute("currentregimendate", formatter.format(currentRegimenObs.getObsDatetime()));
+		    model.addAttribute("currentregimenjoiner", "from");
         }
+        
+        Obs latestViralLoadDate = getMostRecentObservation(obsService, who, viralLoadDate);
+	    if (latestViralLoadDate == null) {
+		    model.addAttribute("viralloaddate", "No VL results");
+	    } else {
+		    model.addAttribute("viralloaddate", "Sample taken on " + latestViralLoadDate.getValueDate());
+	    }
+	    
+	    Obs latestViralLoadResult = getMostRecentObservation(obsService, who, viralLoadResult);
+	    if (latestViralLoadResult == null) {
+		    model.addAttribute("viralloadresult", "");
+	    } else {
+	    	if (latestViralLoadResult.getValueCoded().getId() == 1306) {
+			    model.addAttribute("viralloadresult", "Not Detected");
+		    } else {
+			    Obs latestViralLoadValue = getMostRecentObservation(obsService, who, viralLoadValue);
+			    if (latestViralLoadValue == null) {
+				    model.addAttribute("viralloadresult", "Detected, No Viral Load Result Available");
+			    } else {
+				    model.addAttribute("viralloadresult", latestViralLoadValue.getValueNumeric());
+			    }
+		    }
+		    
+	    }
+	    
+	    Obs currentHeight = getMostRecentObservation(obsService, who, height);
+	    if (currentHeight == null) {
+		    model.addAttribute("height", "");
+	    } else {
+		    model.addAttribute("height", currentHeight.getValueNumeric() + " cm");
+	    }
+	
+	    Obs currentWeight = getMostRecentObservation(obsService, who, weight);
+	    if (currentWeight == null) {
+		    model.addAttribute("weight", "");
+	    } else {
+		    model.addAttribute("weight", currentWeight.getValueNumeric() + " kg");
+	    }
+	    
+	    if (currentHeight == null || currentWeight == null) {
+		    model.addAttribute("bmi", "");
+	    } else {
+		    model.addAttribute("bmi", (currentWeight.getValueNumeric()*100/currentHeight.getValueNumeric()));
+	    }
+    }
+    
+    private Obs getMostRecentObservation(ObsService obsService, List<Person> who, List<Concept> concepts) {
+    	List<Obs> obs = obsService.getObservations(who, null, concepts, null, null, null, null, 1, null, null, null,
+			    false);
+	    if (obs.size() > 0) {
+	    	return obs.get(0);
+	    }
+	    return null;
     }
 }

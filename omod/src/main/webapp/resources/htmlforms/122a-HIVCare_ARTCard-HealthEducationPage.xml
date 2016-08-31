@@ -13,6 +13,40 @@
     <redirectOnSave
             url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits"/>
 
+    <ifMode mode="ENTER">
+        <includeIf velocityTest="$fn.allEncounters('8d5b27bc-c2cc-11de-8d13-0010c6dffd0f').size() == 0">
+            <script>
+                jq(function() {
+                    alert('This patient has no Summary page, you will now be forwarded fill a summary page before entering Health Education card');
+
+                        /*
+                         * queryParameters -> handles the query string parameters
+                         * queryString -> the query string without the fist '?' character
+                         * re -> the regular expression
+                         * m -> holds the string matching the regular expression
+                         */
+                        var queryParameters = {}, queryString = location.search.substring(1),
+                                re = /([^&amp;=]+)=([^&amp;]*)/g, m;
+
+                        // Creates a map with the query string parameters
+                        while (m = re.exec(queryString)) {
+                            queryParameters[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+                        }
+
+                        // Change the formUuid parameter to that of the summary page
+                        queryParameters['formUuid'] = '52653a60-8300-4c13-be4d-4b746da06fee';
+
+                        /*
+                         * Replace the query portion of the URL.
+                         * jQuery.param() -> create a serialized representation of an array or
+                         *     object, suitable for use in a URL query string or Ajax request.
+                         */
+                        location.search = jq.param(queryParameters); // Causes page to reload
+                });
+            </script>
+            </includeIf>
+    </ifMode>
+
     <script type="text/javascript">
         if (jQuery) {
             jq(document).ready(function () {
