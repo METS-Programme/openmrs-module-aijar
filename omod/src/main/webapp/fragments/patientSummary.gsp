@@ -13,7 +13,15 @@
         </div>
         <div>
             <strong>${ui.message("aijar.patientdashboard.person.currentregimen")}:</strong>
-            ${currentregimen}
+            ${currentregimen} ${currentregimenjoiner} ${currentregimendate}
+        </div>
+        <div>
+            <strong>${ui.message("aijar.patientdashboard.person.viralload")}:</strong>
+            ${viralloaddate} ${viralloadresult}
+        </div>
+        <div>
+            <strong>${ui.message("aijar.patientdashboard.person.bmi")}:</strong>
+            ${bmi} (${height} ${weight})
         </div>
     </div>
 </div>
