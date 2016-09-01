@@ -87,6 +87,11 @@
 		<description>
 			Allows one to set the name of the health center for this installation
 		</description>
+		<property>ugandaemr.showARTPatientNumberIdentifier</property>
+		<defaultValue>false</defaultValue>
+		<description>
+			Whether or not to show the ART patient number identifier
+		</description>
 	</globalProperty>
 
 </module>

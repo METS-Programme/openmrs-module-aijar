@@ -980,13 +980,19 @@
             <table class="enrollment">
                 <tbody>
                 <tr>
-                    <td colspan="2">
+                    <td>
                         <label><span class="required">*</span>Attending Clinician:</label>
                         <encounterProvider role="Provider" style="autocomplete"/>
                          <span style="display: none;">
                         <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
                                            order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
                         </span>
+                    </td>
+                    <td>
+                        <includeIf velocityTest="$fn.globalProperty('ugandaemr.showARTPatientNumberIdentifier') == true">
+                            <label>ART Patient No.</label>
+                            <patient field="identifier" identifierTypeId="3c76abfd-5e2d-4194-b0d4-00b73c7fc1ac"/>
+                            </includeIf>
                     </td>
                     <td>
                         <label>Pt Clinic #:</label>

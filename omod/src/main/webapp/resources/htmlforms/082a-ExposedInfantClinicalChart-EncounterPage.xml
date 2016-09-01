@@ -17,7 +17,7 @@
         <includeIf velocityTest="$fn.allEncounters('9fcfcc91-ad60-4d84-9710-11cc25258719').size() == 0">
             <script>
                 jq(function() {
-                    alert('This infant has no Summary page, you will now be forwarded fill a summary page before entering an encounter');
+                    alert('This patient has no Summary page, you will now be forwarded to the patient dashboard');
 
                     /*
                      * queryParameters -> handles the query string parameters
@@ -33,15 +33,14 @@
                         queryParameters[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
                     }
 
-                    // Change the formUuid parameter to that of the summary page
-                    queryParameters['formUuid'] = '860c5f2f-cf3c-4c3f-b0c4-9958b6a5a938';
-
                     /*
                      * Replace the query portion of the URL.
                      * jQuery.param() -> create a serialized representation of an array or
                      *     object, suitable for use in a URL query string or Ajax request.
                      */
-                    location.search = jq.param(queryParameters); // Causes page to reload
+                    location.href = window.location.protocol + "//" + window.location.host +
+                                    '/' + OPENMRS_CONTEXT_PATH + '/coreapps/clinicianfacing/patient.page?patientId='
+                                    + queryParameters['patientId']; // Causes page to reload
                 });
             </script>
         </includeIf>
