@@ -430,21 +430,21 @@
                             <span class="ARTYesNoEnableDisableChild1">
                                 Family Planning Method:
                                 <br/>
-                                <obs id="br" conceptId="374" answerConceptId="190" answerLabel="Condoms"/>
+                                <obs id="br" conceptId="374" answerConceptId="190" answerLabel="1 - Condoms"/>
                                 <excludeIf velocityTest="$patient.gender =='M' ">
                                     <span class="lablex2">
                                         <obs id="br" conceptId="374" answerConceptId="780"
-                                             answerLabel="Oral Contraceptive pills"/>
+                                             answerLabel="2 - Oral Contraceptive pills"/>
                                         <obs id="br" conceptId="374" answerConceptId="5279"
-                                             answerLabel="Injectable/Implantable hormonies"/>
+                                             answerLabel="3 - Injectable/Implantable hormonies"/>
                                         <obs id="br" conceptId="374" answerConceptId="5278"
-                                             answerLabel="Diaphram/Cervical Cap"/>
+                                             answerLabel="4 - Diaphram/Cervical Cap"/>
                                         <obs id="br" conceptId="374" answerConceptId="5275"
-                                             answerLabel="Intra uterine device (IUD)"/>
+                                             answerLabel="5 - Intra uterine device (IUD)"/>
                                     </span>
                                 </excludeIf>
                                 <obs id="br" conceptId="374" answerConceptId="99265"
-                                     answerLabel="Vasectomy/Tubal ligation"/>
+                                     answerLabel="6 - Vasectomy/Tubal ligation"/>
                             </span>
                         <br/>
                         <excludeIf velocityTest="$patient.gender =='M'">
