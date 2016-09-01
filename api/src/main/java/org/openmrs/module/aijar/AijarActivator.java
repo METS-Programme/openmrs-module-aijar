@@ -85,10 +85,6 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         LocationService locationService = Context.getLocationService();
 
         try {
-
-            // Rebuild the concept search index
-            Context.updateSearchIndex();
-
             // disable the reference app registration page
             appFrameworkService.disableApp("referenceapplication.registrationapp.registerPatient");
             // disable the start visit app since all data is retrospective
