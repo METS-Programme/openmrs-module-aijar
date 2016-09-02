@@ -93,20 +93,31 @@ public class PatientSummaryFragmentController {
 	    }
 	    
 	    Obs latestViralLoadResult = getMostRecentObservation(obsService, who, viralLoadResult);
+	    Obs latestViralLoadValue = getMostRecentObservation(obsService, who, viralLoadValue);
 	    if (latestViralLoadResult == null) {
 		    model.addAttribute("viralloadresult", "");
 	    } else {
+		    model.addAttribute("viralloadresult", "Not Detected");
 	    	if (latestViralLoadResult.getValueCoded().getId() == 1306) {
 			    model.addAttribute("viralloadresult", "Not Detected");
 		    } else {
-			    Obs latestViralLoadValue = getMostRecentObservation(obsService, who, viralLoadValue);
 			    if (latestViralLoadValue == null) {
 				    model.addAttribute("viralloadresult", "Detected, No Viral Load Result Available");
 			    } else {
 				    model.addAttribute("viralloadresult", latestViralLoadValue.getValueNumeric());
 			    }
 		    }
-		    
+	    }
+	    // handle legacy cases of data where a viral load was entered but was put as 0 for not detected
+	    // The previous check for viral load result is a new addition so previous data may not follow it to the letter
+	    if (latestViralLoadValue != null) {
+	    	// there is a viral load result
+		    if (latestViralLoadValue.getValueNumeric() == 0) {
+		    	// not detected
+			    model.addAttribute("viralloadresult", "Not Detected");
+		    } else {
+			    model.addAttribute("viralloadresult", latestViralLoadValue.getValueNumeric());
+		    }
 	    }
 	    
 	    Obs currentHeight = getMostRecentObservation(obsService, who, height);
