@@ -137,7 +137,8 @@ public class PatientSummaryFragmentController {
 	    if (currentHeight == null || currentWeight == null) {
 		    model.addAttribute("bmi", "");
 	    } else {
-		    model.addAttribute("bmi", df.format(currentWeight.getValueNumeric()*100/currentHeight.getValueNumeric()));
+		    model.addAttribute("bmi", df.format(currentWeight.getValueNumeric()*100/(currentHeight.getValueNumeric() *
+				                                                                             currentHeight.getValueNumeric())));
 	    }
     }
     
