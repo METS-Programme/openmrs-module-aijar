@@ -1,0 +1,140 @@
+<htmlform formName="LAB - Molecular"
+          formDescription="LAB - Molecular"
+          formEncounterType="214e27a1-606a-4b1e-a96e-d736c87069d5"
+          formUuid="f8a4a5f0-7370-11e6-8b77-86f30ca893d3"
+          formVersion="1.0"
+          formAddMetadata="yes"
+          formUILocation="patientDashboard.visitActions"
+          formOrder="1"
+          formIcon="icon-medkit"
+          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='ba158c33-dc43-4306-9a4a-b4075751d36c'"
+          formDisplayStyle="Standard"
+          formLabel="LAB - Molecular">
+    <!-- TODO: Fix the url of all the forms to display their contents once done -->
+    <redirectOnSave
+            url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits"/>
+
+    <style>
+
+        form label, .form label {
+            float: left;
+            padding: 0px 10px 0 0;
+        }
+
+        form input[type="checkbox"], form input[type="radio"], .form input[type="checkbox"], .form input[type="radio"] {
+            margin: 10px 15px;
+        }
+
+        table td {
+            background: #FFFFFF;
+            color: #404040;
+        }
+
+        form select, .form select {
+            min-width: 0px;
+        }
+
+        form input, form select, form textarea, form ul.select, .form input, .form select, .form textarea, .form
+        ul.select {
+            background-color: #FBFBFB;
+            border: 1px solid #CEC9C9;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 10px;
+            min-width: 20%;
+        }
+
+        .row {
+            width: 100%;
+            float: left;
+            display: inline-flex;
+            clear: both;
+        }
+
+        .row .row-col2 {
+            float: left;
+            width: 50%;
+        }
+
+        table th, table td {
+            border: 1px solid #AFAFAF;
+        }
+    </style>
+    <div class="ai-page-frame">
+        <div class="headers" style="text-align: center;">
+            <h3 style="background: #FFFF7D; padding: 10px;">MOLECULAR LAB ENTRY FORM</h3>
+        </div>
+        <section>
+            <table>
+                <tbody>
+                <tr>
+                    <td>
+                        Request date:
+                        <encounterDate default="today"/>
+                     <span style="display: none;">
+                        <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
+                                           order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
+                        </span>
+                    </td>
+                    <td>
+                        <label><span class="required">*</span> Provider:</label>
+                        <encounterProvider role="Provider" style="autocomplete" required="required"/>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </section>
+        <br/>
+        <section>
+            <table>
+                <tbody>
+
+                <tr>
+                    <td colspan="3"><b>HIV DNA PCR, QUAL:</b>
+                        <obs id="br" conceptId="1030" labelText="" answers="1138,664,703"
+                             answerLabels="Intermediate, Negative, Positive" style="radio"/>
+                    </td>
+                    <td><b>Chlamydia Trachomatis DNA PCR </b>:
+                        <obs id="br" conceptId="1034" labelText="" answers="1300,664,703,1304"
+                             answerLabels="Equivocal,Negative, Positive, Poor sample" style="radio"/>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td><b>HIV Viral Load:</b>
+                        <obs id="br" conceptId="99093" answers="99090,99091,99092" answerLabels="&#61;,&#60;,&#62;"
+                             style="radio"/>
+                    </td>
+                    <td>
+                        <obs conceptId="856"/>
+                    </td>
+                    <td>copies/ml</td>
+                    <td><b> GONORRHEA PCR: </b>
+                        <obs id="br" conceptId="1038" labelText="" answers="1300,664,703,1304"
+                             answerLabels="Equivocal,Negative, Positive, Poor sample" style="radio"/>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td colspan="3"><b>HERPES PCR: </b>
+                        <obs id="br" conceptId="1046" labelText="" answers="1300,664,703,1304"
+                             answerLabels="Equivocal,Negative, Positive, Poor sample" style="radio"/>
+                    </td>
+                    <td><b>TRICHOMONAS PCR:</b>
+                        <obs id="br" conceptId="1039" labelText="" answers="1300,664,703,1304"
+                             answerLabels="Equivocal,Negative, Positive, Poor sample" style="radio"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <submit/>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</htmlform>

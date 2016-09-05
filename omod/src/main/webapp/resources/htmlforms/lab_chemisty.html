@@ -1,0 +1,260 @@
+<htmlform formName="HMIS Form 089a  Daily Activity Laboratory Register for Clinical Chemistry"
+          formDescription="Daily Activity Laboratory Register for Clinical Chemistry"
+          formEncounterType="214e27a1-606a-4b1e-a96e-d736c87069d5"
+          formUuid="47f0337c-7268-11e6-8b77-86f30ca893d3"
+          formVersion="1.0"
+          formAddMetadata="yes"
+          formUILocation="patientDashboard.visitActions"
+          formOrder="1"
+          formIcon="icon-medkit"
+          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='ba158c33-dc43-4306-9a4a-b4075751d36c'"
+          formDisplayStyle="Standard"
+          formLabel="LAB - Clinical Chemistry">
+    <!-- TODO: Fix the url of all the forms to display their contents once done -->
+    <redirectOnSave
+            url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits"/>
+
+    <style>
+
+        form label, .form label {
+            float: left;
+            padding: 0px 10px 0 0;
+        }
+
+        form input[type="checkbox"], form input[type="radio"], .form input[type="checkbox"], .form input[type="radio"] {
+            margin: 10px 15px;
+        }
+
+        table td {
+            background: #FFFFFF;
+            color: #404040;
+        }
+
+        form select, .form select {
+            min-width: 0px;
+        }
+
+        form input, form select, form textarea, form ul.select, .form input, .form select, .form textarea, .form
+        ul.select {
+            background-color: #FBFBFB;
+            border: 1px solid #CEC9C9;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 10px;
+            min-width: 20%;
+        }
+
+        .row {
+            width: 100%;
+            float: left;
+            display: inline-flex;
+            clear: both;
+        }
+
+        .row .row-col2 {
+            float: left;
+            width: 50%;
+        }
+
+        table th, table td {
+            border: 1px solid #AFAFAF;
+        }
+    </style>
+    <div class="ai-page-frame">
+        <div class="headers" style="text-align: center;">
+            <h3 style="background: #FFFF7D; padding: 10px;">CHEMISTRY LAB ENTRY FORM</h3>
+        </div>
+        <section>
+            <table>
+                <tbody>
+                <tr>
+                    <td>
+                        Request date:
+                        <encounterDate default="today"/>
+                     <span style="display: none;">
+                        <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
+                                           order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
+                        </span>
+                    </td>
+
+                    <td>
+
+                        <label><span class="required">*</span> Provider:</label>
+                        <encounterProvider role="Provider" style="autocomplete" required="required"/>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </section>
+        <br/>
+        <section>
+            <table>
+                <tbody>
+                <tr>
+                    <td>Albumin:</td>
+                    <td>
+                        <obs conceptId="848"/>
+                    </td>
+                    <td>g/L</td>
+                    <td>HDL:</td>
+                    <td>
+                        <obs conceptId="1007"/>
+                    </td>
+                    <td>mmol/L</td>
+                </tr>
+
+                <tr>
+                    <td>Alkaline Phosphatase:</td>
+                    <td>
+                        <obs conceptId="785"/>
+                    </td>
+                    <td>U/L</td>
+                    <td>Lactate:</td>
+                    <td>
+                        <obs conceptId="1012"/>
+                    </td>
+                    <td>mmol/L</td>
+                </tr>
+
+                <tr>
+                    <td>Amylase:</td>
+                    <td>
+                        <obs conceptId="1299"/>
+                    </td>
+                    <td>U/L</td>
+                    <td>Lactate Dehydrogenase:</td>
+                    <td>
+                        <obs conceptId="1014"/>
+                    </td>
+                    <td>U/L</td>
+                </tr>
+
+                <tr>
+                    <td>SGPT (ALT):</td>
+                    <td>
+                        <obs conceptId="654"/>
+                    </td>
+                    <td>U/L</td>
+                    <td>LDL:</td>
+                    <td>
+                        <obs conceptId="1008"/>
+                    </td>
+                    <td>mmol/L</td>
+                </tr>
+
+                <tr>
+                    <td>SGOT (AST):</td>
+                    <td>
+                        <obs conceptId="653"/>
+                    </td>
+                    <td>U/L</td>
+                    <td>Lipase:</td>
+                    <td>
+                        <obs conceptId="1013"/>
+                    </td>
+                    <td>U/L</td>
+                </tr>
+
+                <tr>
+                    <td>Bicarbonate:</td>
+                    <td>
+                        <obs conceptId="1135"/>
+                    </td>
+                    <td>mmol/L</td>
+                    <td>Potassium:</td>
+                    <td>
+                        <obs conceptId="1033"/>
+                    </td>
+                    <td>mmol/L</td>
+                </tr>
+
+                <tr>
+                    <td>Direct Bilirubin:</td>
+                    <td>
+                        <obs conceptId="1297"/>
+                    </td>
+                    <td>mmol/L</td>
+                    <td>Sodium:</td>
+                    <td>
+                        <obs conceptId="1132"/>
+                    </td>
+                    <td>mmol/L</td>
+                </tr>
+
+                <tr>
+                    <td>Creatinine:</td>
+                    <td>
+                        <obs conceptId="790"/>
+                    </td>
+                    <td>mmol/L</td>
+                    <td>Total Bilirubin:</td>
+                    <td>
+                        <obs conceptId="655"/>
+                    </td>
+                    <td>mmol/L</td>
+                </tr>
+
+                <tr>
+                    <td>Creatine Kinase:</td>
+                    <td>
+                        <obs conceptId="1011"/>
+                    </td>
+                    <td>U/L</td>
+                    <td>Total Protein:</td>
+                    <td>
+                        <obs conceptId="717"/>
+                    </td>
+                    <td>g/L</td>
+                </tr>
+
+                <tr>
+                    <td>Chloride:</td>
+                    <td>
+                        <obs conceptId="1134"/>
+                    </td>
+                    <td>mmol/L</td>
+                    <td>Triglycerides:</td>
+                    <td>
+                        <obs conceptId="1009"/>
+                    </td>
+                    <td>mmol/L</td>
+                </tr>
+
+                <tr>
+                    <td>Total Cholesterol:</td>
+                    <td>
+                        <obs conceptId="1006"/>
+                    </td>
+                    <td>mmol/L</td>
+                    <td>BUN (Blood Urine Nitrogen):</td>
+                    <td>
+                        <obs conceptId="857"/>
+                    </td>
+                    <td>mmol/L</td>
+                </tr>
+
+                <tr>
+                    <td>Glucose:</td>
+                    <td>
+                        <obs conceptId="887"/>
+                    </td>
+                    <td>mmol/L</td>
+                    <td>VLDL:
+                    </td>
+                    <td>
+                        <obs conceptId="1298"/>
+                    </td>
+                    <td>mmol/L</td>
+                </tr>
+                <tr>
+                    <td>
+                        <submit/>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+        <br/>
+    </div>
+</htmlform>

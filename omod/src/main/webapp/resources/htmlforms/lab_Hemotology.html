@@ -1,0 +1,329 @@
+<htmlform formName="HMIS Form 094 - Daily Activity Register for Haematological Indices"
+          formDescription="Daily Activity Register for Haematological Indices"
+          formEncounterType="214e27a1-606a-4b1e-a96e-d736c87069d5"
+          formUuid="2ce7425c-7338-11e6-8b77-86f30ca893d3"
+          formVersion="1.0"
+          formAddMetadata="yes"
+          formUILocation="patientDashboard.visitActions"
+          formOrder="1"
+          formIcon="icon-medkit"
+          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='ba158c33-dc43-4306-9a4a-b4075751d36c'"
+          formDisplayStyle="Standard"
+          formLabel="HMIS Form 094 - Daily Activity Register for Haematological Indices">
+    <!-- TODO: Fix the url of all the forms to display their contents once done -->
+    <redirectOnSave
+            url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits"/>
+
+    <style>
+
+        form label, .form label {
+            float: left;
+            padding: 0px 10px 0 0;
+        }
+
+        form input[type="checkbox"], form input[type="radio"], .form input[type="checkbox"], .form input[type="radio"] {
+            margin: 10px 15px;
+        }
+
+        table td {
+            background: #FFFFFF;
+            color: #404040;
+        }
+
+        form select, .form select {
+            min-width: 0px;
+        }
+
+        form input, form select, form textarea, form ul.select, .form input, .form select, .form textarea, .form
+        ul.select {
+            background-color: #FBFBFB;
+            border: 1px solid #CEC9C9;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 10px;
+            min-width: 20%;
+        }
+
+        .row {
+            width: 100%;
+            float: left;
+            display: inline-flex;
+            clear: both;
+        }
+
+        .row .row-col2 {
+            float: left;
+            width: 50%;
+        }
+
+        table th, table td {
+            border: 1px solid #AFAFAF;
+        }
+    </style>
+    <div class="ai-page-frame">
+        <div class="headers" style="text-align: center;">
+            <h3 style="background: #FFFF7D; padding: 10px;">HEMOTOLOGY LAB ENTRY FORM</h3>
+        </div>
+        <section>
+            <table>
+                <tbody>
+                <tr>
+                    <td>
+                        Request date:
+                        <encounterDate default="today"/>
+                     <span style="display: none;">
+                        <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
+                                           order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
+                        </span>
+                    </td>
+                    <td>
+                        <label><span class="required">*</span> Provider:</label>
+                        <encounterProvider role="Provider" style="autocomplete" required="required"/>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </section>
+        <br>
+        <section>
+            <table>
+                <tbody>
+                <tr>
+                    <th colspan="3">COMPLETE BLOOD COUNTS</th>
+                    <th colspan="3">AUTOMATED, 10<sup>3</sup>/Ã‚ÂµL</th>
+                </tr>
+
+                <tr>
+                    <td>WBC:</td>
+                    <td>
+                        <obs conceptId="678"/>
+                    </td>
+                    <td>10<sup>3</sup>/Ã‚ÂµL</td>
+                    <td>Absolute Neutrophil Count:</td>
+                    <td>
+                        <obs conceptId="1330"/>
+                    </td>
+                    <td>10<sup>3</sup>/Ã‚ÂµL</td>
+                </tr>
+
+                <tr>
+                    <td>RBC:</td>
+                    <td>
+                        <obs conceptId="679"/>
+                    </td>
+                    <td>10<sup>6</sup>/Ã‚ÂµL</td>
+                    <td>Absolute Lymphocyte Count:
+                    </td>
+                    <td>
+                        <obs conceptId="952"/>
+                    </td>
+                    <td>10<sup>3</sup>/Ã‚ÂµL</td>
+                </tr>
+
+                <tr>
+                    <td>HGB:</td>
+                    <td>
+                        <obs conceptId="21"/>
+                    </td>
+                    <td>g/dL</td>
+                    <td>Absolute Monocyte Count:
+                    </td>
+                    <td>
+                        <obs conceptId="1331"/>
+                    </td>
+                    <td>10<sup>3</sup>/Ã‚ÂµL</td>
+                </tr>
+
+                <tr>
+                    <td>HCT:</td>
+                    <td>
+                        <obs conceptId="1015"/>
+                    </td>
+                    <td>%</td>
+                    <td>Absolute Eosinophil Count:
+                    </td>
+                    <td>
+                        <obs conceptId="1332"/>
+                    </td>
+                    <td>10<sup>3</sup>/Ã‚ÂµL</td>
+                </tr>
+
+                <tr>
+                    <td>MCV:</td>
+                    <td>
+                        <obs conceptId="851"/>
+                    </td>
+                    <td>fL
+                    </td>
+                    <td>Absolute Basophil Count:</td>
+                    <td>
+                        <obs conceptId="1333"/>
+                    </td>
+                    <td>10<sup>3</sup>/Ã‚ÂµL</td>
+                </tr>
+
+                <tr>
+                    <td>MCH:</td>
+                    <td>
+                        <obs conceptId="1018"/>
+                    </td>
+                    <td>pg</td>
+                    <td>Absolute Atypical Lymphocyte Count:</td>
+                    <td>
+                        <obs conceptId="1334"/>
+                    </td>
+                    <td>10<sup>3</sup>/Ã‚ÂµL</td>
+                </tr>
+
+                <tr>
+                    <td>MCHC:</td>
+                    <td>
+                        <obs conceptId="1017"/>
+                    </td>
+                    <td>g/dL</td>
+                    <td>Absolute Immature Cell Count:
+                    </td>
+                    <td>
+                        <obs conceptId="1335"/>
+                    </td>
+                    <td>10<sup>3</sup>/Ã‚ÂµL</td>
+                </tr>
+
+                <tr>
+                    <td>RDW:</td>
+                    <td>
+                        <obs conceptId="1016"/>
+                    </td>
+                    <td>%</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>PLT:</td>
+                    <td>
+                        <obs conceptId="729"/>
+                    </td>
+                    <td>10<sup>3</sup>/Ã‚ÂµL</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+        <br>
+        <section>
+            <table>
+                <tbody>
+                <tr>
+                    <th colspan="3">AUTOMATED, PERCENT</th>
+                    <th colspan="3">MICROSCOPIC EXAMS</th>
+                </tr>
+
+                <tr>
+                    <td>Neutrophils %:</td>
+                    <td>
+                        <obs conceptId="1022"/>
+                    </td>
+                    <td>%</td>
+                    <td>Bands %:</td>
+                    <td>
+                        <obs conceptId="1337"/>
+                    </td>
+                    <td>%</td>
+                </tr>
+
+                <tr>
+                    <td>Lymphocytes %:</td>
+                    <td>
+                        <obs conceptId="1021"/>
+                    </td>
+                    <td>%</td>
+                    <td>Lymphocytes %:</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>Monocytes %:</td>
+                    <td>
+                        <obs conceptId="1023"/>
+                    </td>
+                    <td>%</td>
+                    <td>Monocytes %:
+                    </td>
+                    <td>
+                        <obs conceptId="1339"/>
+                    </td>
+                    <td>%</td>
+                </tr>
+
+                <tr>
+                    <td>Eosinophils %:
+                    </td>
+                    <td>
+                        <obs conceptId="1024"/>
+                    </td>
+                    <td>%</td>
+                    <td>Eosinophils %:
+                    </td>
+                    <td>
+                        <obs conceptId="1340"/>
+                    </td>
+                    <td>%</td>
+                </tr>
+
+                <tr>
+                    <td>Basophils %:
+                    </td>
+                    <td>
+                        <obs conceptId="1025"/>
+                    </td>
+                    <td>%</td>
+                    <td>Basophils %:</td>
+                    <td>
+                        <obs conceptId="1341"/>
+                    </td>
+                    <td>%</td>
+                </tr>
+
+                <tr>
+                    <td>Atypical Lymphocyte %:
+                    </td>
+                    <td>
+                        <obs conceptId="1328"/>
+                    </td>
+                    <td>%</td>
+                    <td>Reticulocytes %:
+                    </td>
+                    <td>
+                        <obs conceptId="1327"/>
+                    </td>
+                    <td>%</td>
+                </tr>
+
+                <tr>
+                    <td>Immature Cell %:</td>
+                    <td>
+                        <obs conceptId="1329"/>
+                    </td>
+                    <td>%</td>
+                    <td>Erythrocyte Sedimentation Rate:</td>
+                    <td>
+                        <obs conceptId="855"/>
+                    </td>
+                    <td>mm/hr</td>
+                </tr>
+                <tr>
+                    <td>
+                        <submit/>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</htmlform>
