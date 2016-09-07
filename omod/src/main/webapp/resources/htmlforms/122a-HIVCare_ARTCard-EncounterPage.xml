@@ -373,18 +373,18 @@
                                  labelText="MUAC"/>
                         </includeIf>
                         <includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
-                            <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                            <obs id="br" conceptId="99030" answerConceptIds="99028,99029,99027"
                                  answerLabels="Red &lt; 13.5cm,Yellow 13.5cm - &lt;14.5cm,Green &gt;=14.5cm"
                                  labelText="MUAC"/>
                         </includeIf>
                         <includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
-                            <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                            <obs id="br" conceptId="99030" answerConceptIds="99028,99029,99027"
                                  answerLabels="Red &lt; 16.5cm, Yellow 16.5cm - &lt;19.0cm,Green &gt;=19.0cm"
                                  labelText="MUAC"/>
                         </includeIf>
 
                         <includeIf velocityTest="$patient.age &gt;=18">
-                            <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                            <obs id="br" conceptId="99030" answerConceptIds="99028,99029,99027"
                                  answerLabels="Red &lt;19.0cm , Yellow 19.0cm - &lt;22.0cm,Green &gt;=22.0cm"
                                  labelText="MUAC"/>
                         </includeIf>

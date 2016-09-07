@@ -991,7 +991,7 @@
                     <td>
                         <includeIf velocityTest="$fn.globalProperty('ugandaemr.showARTPatientNumberIdentifier') == true">
                             <label>ART Patient No.</label>
-                            <patient field="identifier" identifierTypeId="3c76abfd-5e2d-4194-b0d4-00b73c7fc1ac"/>
+                            <patient field="identifier" identifierTypeId="3c76abfd-5e2d-4194-b0d4-00b73c7fc1ac" required="false" />
                             </includeIf>
                     </td>
                     <td>
