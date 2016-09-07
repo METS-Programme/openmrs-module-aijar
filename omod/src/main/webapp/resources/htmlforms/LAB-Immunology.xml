@@ -6,6 +6,7 @@
           formAddMetadata="yes"
           formUILocation="patientDashboard.visitActions"
           formOrder="1"
+          class="simple-form-ui"
           formIcon="icon-medkit"
           formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='ba158c33-dc43-4306-9a4a-b4075751d36c'"
           formDisplayStyle="Standard"
@@ -108,12 +109,12 @@
                     <td>
                         <obs conceptId="1028"/>
                     </td>
-                    <td>cells/Ã‚ÂµL</td>
+                    <td>Cells/Ã‚ÂµL</td>
                     <td>CD4 Count:</td>
                     <td>
                         <obs conceptId="5497"/>
                     </td>
-                    <td>cells/Ã‚ÂµL</td>
+                    <td>Cells/Ã‚ÂµL</td>
                 </tr>
 
                 <tr>
@@ -126,7 +127,7 @@
                     <td>
                         <obs conceptId="1319"/>
                     </td>
-                    <td>cells/Ã‚ÂµL</td>
+                    <td>Cells/Ã‚ÂµL</td>
                 </tr>
 
                 <tr>
@@ -134,7 +135,7 @@
                     <td>
                         <obs conceptId="853"/>
                     </td>
-                    <td>cells/Ã‚ÂµL</td>
+                    <td>Cells/Ã‚ÂµL</td>
                     <td>CD4/Cd8 ratio:</td>
                     <td>
                         <obs conceptId="854"/>
