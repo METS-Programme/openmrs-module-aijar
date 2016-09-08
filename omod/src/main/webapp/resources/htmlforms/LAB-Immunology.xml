@@ -71,7 +71,7 @@
                 <tr>
                     <td>
                         Request date:
-                        <encounterDate default="today"/>
+                        <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
                      <span style="display: none;">
                         <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
                                            order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
@@ -109,12 +109,12 @@
                     <td>
                         <obs conceptId="1028"/>
                     </td>
-                    <td>Cells/Ã‚ÂµL</td>
+                    <td>cells/Ã‚ÂµL</td>
                     <td>CD4 Count:</td>
                     <td>
                         <obs conceptId="5497"/>
                     </td>
-                    <td>Cells/Ã‚ÂµL</td>
+                    <td>cells/Ã‚ÂµL</td>
                 </tr>
 
                 <tr>
@@ -127,7 +127,7 @@
                     <td>
                         <obs conceptId="1319"/>
                     </td>
-                    <td>Cells/Ã‚ÂµL</td>
+                    <td>cells/Ã‚ÂµL</td>
                 </tr>
 
                 <tr>
@@ -135,7 +135,7 @@
                     <td>
                         <obs conceptId="853"/>
                     </td>
-                    <td>Cells/Ã‚ÂµL</td>
+                    <td>cells/Ã‚ÂµL</td>
                     <td>CD4/Cd8 ratio:</td>
                     <td>
                         <obs conceptId="854"/>
