@@ -3,13 +3,12 @@
           formEncounterType="214e27a1-606a-4b1e-a96e-d736c87069d5"
           formUuid="47f0337c-7268-11e6-8b77-86f30ca893d3"
           formVersion="1.0"
-          class="simple-form-ui"
           formAddMetadata="yes"
           formUILocation="patientDashboard.visitActions"
           formOrder="1"
           formIcon="icon-medkit"
           formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='ba158c33-dc43-4306-9a4a-b4075751d36c'"
-          formDisplayStyle="Standard"
+          formDisplayStyle="Simple"
           formLabel="LAB - Clinical Chemistry">
     <!-- TODO: Fix the url of all the forms to display their contents once done -->
     <redirectOnSave
