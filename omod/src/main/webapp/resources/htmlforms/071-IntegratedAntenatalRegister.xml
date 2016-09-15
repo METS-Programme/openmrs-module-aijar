@@ -320,7 +320,7 @@
                     <td>
                         <label>ANC Number:</label>
                         <patient field="identifier" identifierTypeId="b0cc255e-ef57-4266-839e-0df7f5099eb9"
-                                 required="true"/>
+                                 required="false"/>
                     </td>
                     <td>
                         <label>National ID:</label>
