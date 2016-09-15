@@ -8,7 +8,7 @@
           formOrder="1"
           formIcon="icon-medkit"
           formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='ba158c33-dc43-4306-9a4a-b4075751d36c'"
-          formDisplayStyle="Simple"
+          formDisplayStyle="Standard"
           formLabel="LAB - Immunology">
     <!-- TODO: Fix the url of all the forms to display their contents once done -->
     <redirectOnSave
