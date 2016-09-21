@@ -347,7 +347,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <encounterDate default="today"/>
+                        <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
                         <br/>
                         <obs id="br" conceptId="90069" labelText="Scheduled?" style="checkbox"/>
                     </td>

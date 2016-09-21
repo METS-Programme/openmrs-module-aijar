@@ -145,7 +145,7 @@
                 <tr>
                     <td>
                         <label>Date:</label>
-                        <encounterDate default="today"/>
+                        <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
 
                         <span style="display: none;">
 

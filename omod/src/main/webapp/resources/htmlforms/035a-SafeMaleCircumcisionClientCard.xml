@@ -670,7 +670,7 @@
                     <tr>
                         <td colspan="3">
                             <label>Date of circumcision:</label>
-                            <encounterDate default="today"/>
+                            <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
                         </td>
                     </tr>
                     <tr>
