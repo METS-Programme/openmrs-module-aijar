@@ -24,7 +24,9 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.Module;
 import org.openmrs.module.ModuleActivator;
 import org.openmrs.module.ModuleFactory;
+import org.openmrs.module.aijar.activator.AppConfigurationInitializer;
 import org.openmrs.module.aijar.activator.HtmlFormsInitializer;
+import org.openmrs.module.aijar.activator.Initializer;
 import org.openmrs.module.aijar.api.deploy.bundle.CommonMetadataBundle;
 import org.openmrs.module.aijar.api.deploy.bundle.UgandaAddressMetadataBundle;
 import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
@@ -97,8 +99,10 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             // form entry extension in active visits
             appFrameworkService.disableExtension("xforms.formentry.cfpd");
 
-            // install HTML Forms
-            setupHtmlForms();
+            // run the initializers
+            for (Initializer initializer : getInitializers()) {
+                initializer.started();
+            }
 
             // install commonly used metadata
             installCommonMetadata(deployService);
@@ -309,24 +313,6 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         }
     }
 
-    // Method responsible for HTMLForms insertation
-    private void setupHtmlForms() throws Exception {
-        try {
-            HtmlFormsInitializer hfi = new HtmlFormsInitializer();
-            hfi.started();
-
-        } catch (Exception e) {
-            log.error("Error loading the HTML forms " + e.toString());
-            // this is a hack to get component test to pass until we find the proper way to mock this
-            if (ResourceFactory.getInstance().getResourceProviders() == null) {
-                log.error("Unable to load HTML forms--this error is expected when running component tests");
-            } else {
-                throw e;
-            }
-        }
-
-    }
-
     private void removeOldChangeLocksForDataIntegrityModule() {
         String gpVal = Context.getAdministrationService().getGlobalProperty("dataintegrity.database_version");
         if (ObjectUtil.isNull(gpVal)) {
@@ -349,5 +335,12 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
     public void stopped() {
 
         log.info("aijar Module stopped");
+    }
+
+    public List<Initializer> getInitializers() {
+        List<Initializer> l = new ArrayList<Initializer>();
+        l.add(new AppConfigurationInitializer());
+        l.add(new HtmlFormsInitializer());
+        return l;
     }
 }
