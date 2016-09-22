@@ -89,40 +89,179 @@
         </section>
         <br/>
         <section>
+            <label>Renal Profile Tests</label>
             <table>
                 <tbody>
+                <tr>
+                    <td>Potassium:</td>
+                    <td>
+                        <obs conceptId="1033"/>
+                    </td>
+                    <td>mmol/L</td>
+
+                </tr>
+                <tr>
+                    <td>Sodium:</td>
+                    <td>
+                        <obs conceptId="1132"/>
+                    </td>
+                    <td>mmol/L</td>
+
+                </tr>
+                <tr>
+                    <td>Creatinine:</td>
+                    <td>
+                        <obs conceptId="790"/>
+                    </td>
+                    <td>mmol/L</td>
+                </tr>
+                <tr>
+                    <td>SGPT (ALT):</td>
+                    <td>
+                        <obs conceptId="654"/>
+                    </td>
+                    <td>U/L</td>
+                </tr>
+                </tbody>
+
+            </table>
+        </section>
+        <br/>
+        <section>
+            <label>Liver Profile Tests</label>
+            <table>
+                <tbody>
+                <tr>
+                    <td>SGOT (AST):</td>
+                    <td>
+                        <obs conceptId="653"/>
+                    </td>
+                    <td>U/L</td>
+                </tr>
+                <tr>
+                    <td>Total Bilirubin:</td>
+                    <td>
+                        <obs conceptId="655"/>
+                    </td>
+                    <td>mmol/L</td>
+                </tr>
+                <tr>
+                    <td>Direct Bilirubin:</td>
+                    <td>
+                        <obs conceptId="1297"/>
+                    </td>
+                    <td>mmol/L</td>
+                </tr>
                 <tr>
                     <td>Albumin:</td>
                     <td>
                         <obs conceptId="848"/>
                     </td>
                     <td>g/L</td>
+                </tr>
+                <tr>
+                    <td>Total Protein:</td>
+                    <td>
+                        <obs conceptId="717"/>
+                    </td>
+                    <td>g/L</td>
+                </tr>
+                <tr>
+                    <td>Triglycerides:</td>
+                    <td>
+                        <obs conceptId="1009"/>
+                    </td>
+                    <td>mmol/L</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+        <br/>
+        <section>
+            <label>Lipid/Cardiac Profile Test</label>
+            <table>
+                <tbody>
+                <tr>
+                    <td>Total Cholesterol:</td>
+                    <td>
+                        <obs conceptId="1006"/>
+                    </td>
+                    <td>mmol/L</td>
+                </tr>
+                <tr>
+                    <td>Creatine Kinase:</td>
+                    <td>
+                        <obs conceptId="1011"/>
+                    </td>
+                    <td>U/L</td>
+                </tr>
+                <tr>
+                    <td>LDL:</td>
+                    <td>
+                        <obs conceptId="1008"/>
+                    </td>
+                    <td>mmol/L</td>
+                </tr>
+                <tr>
                     <td>HDL:</td>
                     <td>
                         <obs conceptId="1007"/>
                     </td>
                     <td>mmol/L</td>
                 </tr>
-
+                </tbody>
+            </table>
+        </section>
+        <br/>
+        <section>
+            <label>Bone Profile</label>
+            <table>
+                <tbody>
                 <tr>
                     <td>Alkaline Phosphatase:</td>
                     <td>
                         <obs conceptId="785"/>
                     </td>
                     <td>U/L</td>
-                    <td>Lactate:</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+        <br/>
+        <section>
+            <label>Miscellaneous</label>
+            <table>
+                <tbody>
+                <tr>
+                    <td>Bicarbonate:</td>
                     <td>
-                        <obs conceptId="1012"/>
+                        <obs conceptId="1135"/>
                     </td>
                     <td>mmol/L</td>
                 </tr>
-
+                <tr>
+                    <td>Glucose:</td>
+                    <td>
+                        <obs conceptId="887"/>
+                    </td>
+                    <td>mmol/L</td>
+                </tr>
                 <tr>
                     <td>Amylase:</td>
                     <td>
                         <obs conceptId="1299"/>
                     </td>
                     <td>U/L</td>
+                </tr>
+                <tr>
+                    <td>Lactate:</td>
+                    <td>
+                        <obs conceptId="1012"/>
+                    </td>
+                    <td>mmol/L</td>
+                </tr>
+                <tr>
+
                     <td>Lactate Dehydrogenase:</td>
                     <td>
                         <obs conceptId="1014"/>
@@ -130,25 +269,8 @@
                     <td>U/L</td>
                 </tr>
 
-                <tr>
-                    <td>SGPT (ALT):</td>
-                    <td>
-                        <obs conceptId="654"/>
-                    </td>
-                    <td>U/L</td>
-                    <td>LDL:</td>
-                    <td>
-                        <obs conceptId="1008"/>
-                    </td>
-                    <td>mmol/L</td>
-                </tr>
 
                 <tr>
-                    <td>SGOT (AST):</td>
-                    <td>
-                        <obs conceptId="653"/>
-                    </td>
-                    <td>U/L</td>
                     <td>Lipase:</td>
                     <td>
                         <obs conceptId="1013"/>
@@ -157,76 +279,15 @@
                 </tr>
 
                 <tr>
-                    <td>Bicarbonate:</td>
-                    <td>
-                        <obs conceptId="1135"/>
-                    </td>
-                    <td>mmol/L</td>
-                    <td>Potassium:</td>
-                    <td>
-                        <obs conceptId="1033"/>
-                    </td>
-                    <td>mmol/L</td>
-                </tr>
-
-                <tr>
-                    <td>Direct Bilirubin:</td>
-                    <td>
-                        <obs conceptId="1297"/>
-                    </td>
-                    <td>mmol/L</td>
-                    <td>Sodium:</td>
-                    <td>
-                        <obs conceptId="1132"/>
-                    </td>
-                    <td>mmol/L</td>
-                </tr>
-
-                <tr>
-                    <td>Creatinine:</td>
-                    <td>
-                        <obs conceptId="790"/>
-                    </td>
-                    <td>mmol/L</td>
-                    <td>Total Bilirubin:</td>
-                    <td>
-                        <obs conceptId="655"/>
-                    </td>
-                    <td>mmol/L</td>
-                </tr>
-
-                <tr>
-                    <td>Creatine Kinase:</td>
-                    <td>
-                        <obs conceptId="1011"/>
-                    </td>
-                    <td>U/L</td>
-                    <td>Total Protein:</td>
-                    <td>
-                        <obs conceptId="717"/>
-                    </td>
-                    <td>g/L</td>
-                </tr>
-
-                <tr>
                     <td>Chloride:</td>
                     <td>
                         <obs conceptId="1134"/>
                     </td>
                     <td>mmol/L</td>
-                    <td>Triglycerides:</td>
-                    <td>
-                        <obs conceptId="1009"/>
-                    </td>
-                    <td>mmol/L</td>
                 </tr>
 
                 <tr>
-                    <td>Total Cholesterol:</td>
-                    <td>
-                        <obs conceptId="1006"/>
-                    </td>
-                    <td>mmol/L</td>
+
                     <td>BUN (Blood Urine Nitrogen):</td>
                     <td>
                         <obs conceptId="857"/>
@@ -235,11 +296,6 @@
                 </tr>
 
                 <tr>
-                    <td>Glucose:</td>
-                    <td>
-                        <obs conceptId="887"/>
-                    </td>
-                    <td>mmol/L</td>
                     <td>VLDL:
                     </td>
                     <td>
@@ -247,6 +303,13 @@
                     </td>
                     <td>mmol/L</td>
                 </tr>
+                </tbody>
+            </table>
+        </section>
+        <br/>
+        <section>
+            <table>
+                <tbody>
                 <tr>
                     <td>
                         <submit/>

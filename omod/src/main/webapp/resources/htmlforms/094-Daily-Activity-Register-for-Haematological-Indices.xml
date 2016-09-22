@@ -91,7 +91,20 @@
                 <tbody>
                 <tr>
                     <th colspan="3">COMPLETE BLOOD COUNTS</th>
-                    <th colspan="3">AUTOMATED, 10<sup>3</sup>/Ã‚ÂµL</th>
+                    <th colspan="3">AUTOMATED, 10<sup>3</sup>µL</th>
+                </tr>
+
+                <tr>
+                    <td>HBGN:</td>
+                    <td>
+                        <obs conceptId="21"/>
+                    </td>
+                    <td>10<sup>3</sup>µL</td>
+                    <td>Absolute Neutrophil Count:</td>
+                    <td>
+                        <obs conceptId="1330"/>
+                    </td>
+                    <td>10<sup>3</sup>µL</td>
                 </tr>
 
                 <tr>
@@ -99,12 +112,12 @@
                     <td>
                         <obs conceptId="678"/>
                     </td>
-                    <td>10<sup>3</sup>/Ã‚ÂµL</td>
+                    <td>10<sup>3</sup>µL</td>
                     <td>Absolute Neutrophil Count:</td>
                     <td>
                         <obs conceptId="1330"/>
                     </td>
-                    <td>10<sup>3</sup>/Ã‚ÂµL</td>
+                    <td>10<sup>3</sup>µL</td>
                 </tr>
 
                 <tr>
@@ -112,29 +125,28 @@
                     <td>
                         <obs conceptId="679"/>
                     </td>
-                    <td>10<sup>6</sup>/Ã‚ÂµL</td>
+                    <td>10<sup>6</sup>µL</td>
                     <td>Absolute Lymphocyte Count:
                     </td>
                     <td>
                         <obs conceptId="952"/>
                     </td>
-                    <td>10<sup>3</sup>/Ã‚ÂµL</td>
+                    <td>10<sup>3</sup>µL</td>
                 </tr>
 
                 <tr>
-                    <td>HGB:</td>
+                    <td>Complete BC:</td>
                     <td>
-                        <obs conceptId="21"/>
+                        <obs conceptId="679"/>
                     </td>
-                    <td>g/dL</td>
-                    <td>Absolute Monocyte Count:
+                    <td>10<sup>6</sup>µL</td>
+                    <td>Absolute Lymphocyte Count:
                     </td>
                     <td>
-                        <obs conceptId="1331"/>
+                        <obs conceptId="952"/>
                     </td>
-                    <td>10<sup>3</sup>/Ã‚ÂµL</td>
+                    <td>10<sup>3</sup>µL</td>
                 </tr>
-
                 <tr>
                     <td>HCT:</td>
                     <td>
@@ -146,7 +158,7 @@
                     <td>
                         <obs conceptId="1332"/>
                     </td>
-                    <td>10<sup>3</sup>/Ã‚ÂµL</td>
+                    <td>10<sup>3</sup>µL</td>
                 </tr>
 
                 <tr>
@@ -160,7 +172,7 @@
                     <td>
                         <obs conceptId="1333"/>
                     </td>
-                    <td>10<sup>3</sup>/Ã‚ÂµL</td>
+                    <td>10<sup>3</sup>µL</td>
                 </tr>
 
                 <tr>
@@ -173,7 +185,7 @@
                     <td>
                         <obs conceptId="1334"/>
                     </td>
-                    <td>10<sup>3</sup>/Ã‚ÂµL</td>
+                    <td>10<sup>3</sup>µL</td>
                 </tr>
 
                 <tr>
@@ -187,7 +199,7 @@
                     <td>
                         <obs conceptId="1335"/>
                     </td>
-                    <td>10<sup>3</sup>/Ã‚ÂµL</td>
+                    <td>10<sup>3</sup>µL</td>
                 </tr>
 
                 <tr>
@@ -206,7 +218,17 @@
                     <td>
                         <obs conceptId="729"/>
                     </td>
-                    <td>10<sup>3</sup>/Ã‚ÂµL</td>
+                    <td>10<sup>3</sup>µL</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>MPV:</td>
+                    <td>
+                        <obs conceptId="1307"/>
+                    </td>
+                    <td>10<sup>3</sup>µL</td>
                     <td></td>
                     <td></td>
                     <td></td>
