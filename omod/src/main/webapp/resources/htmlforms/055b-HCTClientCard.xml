@@ -11,7 +11,7 @@
           formDisplayStyle="Standard"
           formLabel="HCT Client Card">
     <redirectOnSave
-            url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits" />
+            url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits"/>
 
     <style>
 
@@ -201,7 +201,8 @@
                     </td>
                     <td>
                         <label>National ID:</label>
-                        <patient field="identifier" identifierTypeId="f0c16a6d-dc5f-4118-a803-616d0075d282" required="false"/>
+                        <patient field="identifier" identifierTypeId="f0c16a6d-dc5f-4118-a803-616d0075d282"
+                                 required="false"/>
                     </td>
                 </tr>
 
@@ -256,7 +257,9 @@
                     </td>
                     <td colspan="3">
                             <span id="checkboxRadio">
-                                <obs conceptId="162925" answerConceptIds="99416,162920,162921,162922,162923,99056,90012,162924" answerLabels="Facility based,Work place,Comm/Out reach,HBHCT,Circumcision (SMC),PEP,PMTCT,MARPS"/>
+                                <obs conceptId="162925"
+                                     answerConceptIds="99416,162920,162921,162922,162923,99056,90012,162924"
+                                     answerLabels="Facility based,Work place,Comm/Out reach,HBHCT,Circumcision (SMC),PEP,PMTCT,MARPS"/>
                             </span>
                     </td>
                 </tr>
@@ -286,15 +289,17 @@
                         <obs conceptId="99463"/>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <label>Has your spouse /partner been tested for HIV before? :</label>
-                    </td>
-                    <td colspan="3" class="HCTEnableDisable3">
-                        <obs id="br" conceptId="99472" answerConceptIds="1065,1066,99480"
-                             answerLabels="Yes,No,Don't Know"/>
-                    </td>
-                </tr>
+                <excludeIf velocityTest="$patient.age &lt; 9">
+                    <tr>
+                        <td>
+                            <label>Has your spouse /partner been tested for HIV before? :</label>
+                        </td>
+                        <td colspan="3" class="HCTEnableDisable3">
+                            <obs id="br" conceptId="99472" answerConceptIds="1065,1066,99480"
+                                 answerLabels="Yes,No,Don't Know"/>
+                        </td>
+                    </tr>
+                </excludeIf>
                 <tr>
                     <td>
                         <label style="float:right"><i>If yes What were the Results</i></label>
@@ -346,18 +351,21 @@
                         <obs conceptId="99411" answerConceptIds="1065,1066" answerLabels="Yes,No"/>
                     </td>
                 </tr>
+                <excludeIf velocityTest="$patient.age &lt; 9">
+                    <tr>
+                        <td class="HCTEnableDisable4" colspan="2"><label>Results received as a couple:</label>
+                            <obs conceptId="99494" answerConceptIds="1065,1066" answerLabels="Yes,No"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="HCTEnableDisableChild4" colspan="2"><label>Couple results:</label>
+                            <obs conceptId="99497" answerConceptIds="6096,99496" answerLabels="Discordant,Cordant"/>
+                        </td>
+                    </tr>
+                </excludeIf>
                 <tr>
-                    <td class="HCTEnableDisable4" colspan="2"><label>Results received as a couple:</label>
-                        <obs conceptId="99494" answerConceptIds="1065,1066" answerLabels="Yes,No"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="HCTEnableDisableChild4" colspan="2"><label>Couple results:</label>
-                        <obs conceptId="99497" answerConceptIds="6096,99496" answerLabels="Discordant,Cordant"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2"><label>Is there suspision for TB<br/>(Currentcough,fever,weightloss and nightsweats):</label>
+                    <td colspan="2"><label>Is there suspision for TB<br/>(Currentcough,fever,weightloss and
+                        nightsweats):</label>
                         <obs conceptId="99498" answerConceptIds="1065,1066" answerLabels="Yes,No"/>
                     </td>
                 </tr>
@@ -370,7 +378,9 @@
                     <td class="HCTEnableDisable5"><label>Has client been linked to care or any other services?:</label>
                         <obs conceptId="162982" answerConceptIds="1065,1066" answerLabels="Yes,No"/>
                     </td>
-                    <td class="HCTEnableDisableChild5"><label>Where?:<obs conceptId="90200"/></label>
+                    <td class="HCTEnableDisableChild5"><label>Where?:
+                        <obs conceptId="90200"/>
+                    </label>
 
                     </td>
                 </tr>

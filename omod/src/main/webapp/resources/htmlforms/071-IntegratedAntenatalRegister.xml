@@ -181,35 +181,38 @@
         }
 
 
+
+
+
+
         function enable_disable_arvs() {
             var selected_value = jq("#ARVSEnableDisable1").find(":selected").text();
 
             var disable = false;
-            var selector = "";
+            var selector1 = "";
 
             var group = jq("#ARVSEnableDisableChild1");
 
-            if (selected_value == "TR" || selected_value == "TR√" || selected_value == "TR+") {
+            if (selected_value == "TR" || selected_value == 'TR&#8730;' || selected_value == "TR+") {
                 disable = true;
-                selector = "selected";
+                selector1 = "selected";
             }
             else {
                 disable = false;
-                selector = "";
+                selector1 = "";
             }
 
             group.find('select option[value=99745]').attr("disabled", disable);
             group.find('select option[value=99746]').attr("disabled", disable);
             group.find('select option[value=99747]').attr("disabled", disable);
             group.find('select option[value=99748]').attr("disabled", disable);
-            if (selector == "selected") {
-                group.find('select option[value=1175]').attr("selected", selector);
+
+            if (selector1 == "selected") {
+                group.find('select option[value=1175]').attr("selected", selector1);
             }
             else {
                 group.find('select option[value=1175]').removeAttribute("selected");
             }
-
-
         }
 
         if (jQuery) {
@@ -235,6 +238,7 @@
                 jq('[class^="EMTCTCodesEnableDisable"]').each(function () {
                     enable_disable_emtct_codes(jq(this));
                 });
+
                 jq("#ARVSEnableDisable1").change(function () {
                     enable_disable_arvs();
                 });
@@ -316,7 +320,7 @@
                     <td>
                         <label>ANC Number:</label>
                         <patient field="identifier" identifierTypeId="b0cc255e-ef57-4266-839e-0df7f5099eb9"
-                                 required="true"/>
+                                 required="false"/>
                     </td>
                     <td>
                         <label>National ID:</label>
