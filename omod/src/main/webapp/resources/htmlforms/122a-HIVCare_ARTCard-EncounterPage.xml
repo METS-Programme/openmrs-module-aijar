@@ -243,8 +243,9 @@
                 var encounterDate = getValue('encounterDate.value');
                 var returnDate = getValue('returndate.value');
 
-                if (encounterDate &lt; returnDate) {
-                    getField('returndate.error').html('The return date must be after the date of this vist ' + encounterDate).show();
+                if (encounterDate &gt;= returnDate) {
+                    getField('returndate.error').html('The return date must be after the date of this visit ' +
+                                                      encounterDate).show();
                     return false;
                 }
 
