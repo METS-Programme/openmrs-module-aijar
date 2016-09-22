@@ -234,6 +234,22 @@
 
 
         if (jQuery) {
+
+            <!-- Validation rules -->
+            beforeSubmit.push(function() {
+                <!-- clear the previous errors -->
+                setValue('returndate.error', '');
+
+                var encounterDate = getValue('encounterDate.value');
+                var returnDate = getValue('returndate.value');
+
+                if (encounterDate &lt; returnDate) {
+                    getField('returndate.error').html('The return date must be after the date of this vist ' + encounterDate).show();
+                    return false;
+                }
+
+
+            });
             jq(document).ready(function () {
                 if (jq.browser.msie) {
                     jq(":checkbox").click(function () {
@@ -347,13 +363,13 @@
                 </tr>
                 <tr>
                     <td>
-                        <encounterDate default="today"/>
+                        <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
                         <br/>
                         <obs id="br" conceptId="90069" labelText="Scheduled?" style="checkbox"/>
                     </td>
                     <td>
                         <excludeIf velocityTest="$patient.person.dead ==true ">
-                            <obs id="br" conceptId="5096" required="required" allowFutureDates="true"
+                            <obs id="returndate" conceptId="5096" required="required" allowFutureDates="true"
                                  labelText="Return date:"/>
                         </excludeIf>
                     </td>
@@ -407,9 +423,9 @@
                                  answerLabels="Yes,No"/>
                             </span>
                         </excludeIf>
-
-                        <excludeIf velocityTest="$patient.gender =='M' || $patient.age &lt; 9">
-                            <br/>
+                        <excludeIf velocityTest="$patient.age &lt; 9">
+                            <excludeIf velocityTest="$patient.gender =='M'">
+                                <br/>
                                 <span class="ARTYesNoEnableDisableChild2">
                                     <obs conceptId="162983" labelText="Gestation in Weeks"/>
                                     <br/>
@@ -418,7 +434,7 @@
                                              required="false"/>
                                     <br/>
                                 </span>
-                        </excludeIf>
+                            </excludeIf>
 
                             <span id="checkboxRadio">
                                 <span class="ARTYesNoEnableDisable1">
@@ -426,7 +442,7 @@
                                          labelText="Family Planning?"/>
                                 </span>
                             </span>
-                        <br/>
+                            <br/>
                             <span class="ARTYesNoEnableDisableChild1">
                                 Family Planning Method:
                                 <br/>
@@ -446,11 +462,12 @@
                                 <obs id="br" conceptId="374" answerConceptId="99265"
                                      answerLabel="6 - Vasectomy/Tubal ligation"/>
                             </span>
-                        <br/>
-                        <excludeIf velocityTest="$patient.gender =='M'">
-                            <span class="ARTYesNoEnableDisableChild3">
-                            <obs id="br" conceptId="99270" labelText="Age in months"/>
-                            </span>
+                            <br/>
+                            <excludeIf velocityTest="$patient.gender =='M'">
+                                <span class="ARTYesNoEnableDisableChild3">
+                                <obs id="br" conceptId="99270" labelText="Age in months"/>
+                                </span>
+                            </excludeIf>
                         </excludeIf>
 
                     </td>

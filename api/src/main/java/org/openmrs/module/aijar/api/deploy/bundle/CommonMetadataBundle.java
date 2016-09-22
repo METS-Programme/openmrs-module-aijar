@@ -1,9 +1,7 @@
 package org.openmrs.module.aijar.api.deploy.bundle;
 
-import org.openmrs.PatientIdentifierType;
 import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
 import org.openmrs.module.aijar.metadata.core.PersonAttributeTypes;
-import org.openmrs.module.metadatadeploy.MetadataUtils;
 import org.openmrs.module.metadatadeploy.bundle.AbstractMetadataBundle;
 import org.springframework.stereotype.Component;
 
@@ -32,6 +30,7 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(PatientIdentifierTypes.HCT_NUMBER);
         install(PatientIdentifierTypes.NATIONAL_ID);
         install(PatientIdentifierTypes.ART_PATIENT_NUMBER);
+        install(PatientIdentifierTypes.RESEARCH_PATIENT_ID);
         log.info("Patient IdentifierTypes installed");
 
         // install person attribute types
