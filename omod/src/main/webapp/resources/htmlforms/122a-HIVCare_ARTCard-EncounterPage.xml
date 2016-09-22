@@ -249,7 +249,7 @@
                     return false;
                 }
 
-
+                return true;
             });
             jq(document).ready(function () {
                 if (jq.browser.msie) {
