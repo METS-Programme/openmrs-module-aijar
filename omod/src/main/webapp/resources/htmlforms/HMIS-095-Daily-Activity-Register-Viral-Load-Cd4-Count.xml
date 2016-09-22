@@ -9,7 +9,7 @@
           formIcon="icon-medkit"
           formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='ba158c33-dc43-4306-9a4a-b4075751d36c'"
           formDisplayStyle="Standard"
-          formLabel="HMIS 095 Daily Activity Register Viral Load Cd4 Count(Immunology)">
+          formLabel="HMIS 095 Daily Activity Register Viral Load Cd4 Count (Immunology) ">
     <!-- TODO: Fix the url of all the forms to display their contents once done -->
     <redirectOnSave
             url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits"/>
@@ -108,12 +108,12 @@
                     <td>
                         <obs conceptId="1028"/>
                     </td>
-                    <td>cells/Ã‚ÂµL</td>
+                    <td>cells,µL</td>
                     <td>CD4 Count:</td>
                     <td>
                         <obs conceptId="5497"/>
                     </td>
-                    <td>cells/Ã‚ÂµL</td>
+                    <td>cells,µL</td>
                 </tr>
 
                 <tr>
@@ -126,7 +126,7 @@
                     <td>
                         <obs conceptId="1319"/>
                     </td>
-                    <td>cells/Ã‚ÂµL</td>
+                    <td>cells,µL</td>
                 </tr>
 
                 <tr>
@@ -134,7 +134,7 @@
                     <td>
                         <obs conceptId="853"/>
                     </td>
-                    <td>cells/Ã‚ÂµL</td>
+                    <td>cells,µL</td>
                     <td>CD4/Cd8 ratio:</td>
                     <td>
                         <obs conceptId="854"/>
