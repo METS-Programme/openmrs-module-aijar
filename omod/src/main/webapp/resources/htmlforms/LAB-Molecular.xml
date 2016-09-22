@@ -127,13 +127,11 @@
                              answerLabels="Equivocal,Negative, Positive, Poor sample" style="radio"/>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <submit/>
-                    </td>
-                </tr>
                 </tbody>
             </table>
         </section>
+
+        <br/>
+        <submit/>
     </div>
 </htmlform>
