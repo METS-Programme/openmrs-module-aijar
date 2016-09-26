@@ -149,7 +149,7 @@
                 <tr>
                     <td colspan="2">
                         <label>Encounter Date:</label>
-                        <encounterDate default="today"/>
+                        <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
                     </td>
                     <td colspan="2">
                         <label><span class="required">*</span> Attending Clinician:</label>

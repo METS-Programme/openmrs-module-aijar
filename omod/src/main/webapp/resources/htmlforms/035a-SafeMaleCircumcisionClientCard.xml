@@ -11,7 +11,7 @@
           formDisplayStyle="Standard"
           formLabel="SMC Client Card">
     <redirectOnSave
-            url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits" />
+            url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits"/>
 
     <style>
 
@@ -58,11 +58,13 @@
         table th, table td {
             border: 1px solid #C7C7C7;
         }
-        h4{
+
+        h4 {
             background: #C1C1C1;
             color: #000;
         }
-        h3{
+
+        h3 {
             background: #C1C1C1;
             color: #000;
         }
@@ -102,7 +104,7 @@
 
             selected_value = selected_value.trim().toUpperCase();
 
-            if (selected_value.toLowerCase() == "other" || selected_value.toLowerCase() == "others"  || selected_value.toLowerCase() == "others" || selected_value.toLowerCase() == "other specify")
+            if (selected_value.toLowerCase() == "other" || selected_value.toLowerCase() == "others" || selected_value.toLowerCase() == "others" || selected_value.toLowerCase() == "other specify")
                 disable = false;
 
             switch (row_id) {
@@ -274,6 +276,38 @@
                 jq('[class^="SMCYesNoEnableDisable"]').each(function () {
                     enable_disable_smc_yes_no(jq(this));
                 });
+
+                jq(".enableDisable").each(function () {
+                    var group = jq(this);
+
+                    function disableFn() {
+                        group.children("#disabled").fadeTo(250, 0.25);
+                        /*  group.children("#disabled").find(":checkbox").attr("checked", false); uncheck */
+                        group.children("#disabled").find("input").attr("disabled", true);
+                        /* disable */
+                        group.children("#disabled").find("select").attr("disabled", true);
+                    }
+
+                    function enableFn() {
+                        group.children("#disabled").fadeTo(250, 1);
+                        group.children("#disabled").find("input").attr("disabled", false);
+                        group.children("#disabled").find("select").attr("disabled", false);
+
+                    }
+
+                    if (jq(this).children("#trigger").find(":checkbox:first").attr("checked") != "checked") {
+                        disableFn();
+                    }
+
+                    jq(this).children("#trigger").find(":checkbox:first").change(function () {
+                        var checked = jq(this).attr("checked");
+                        if (checked == "checked") {
+                            enableFn();
+                        } else {
+                            disableFn();
+                        }
+                    });
+                });
             });
         }
     </script>
@@ -302,7 +336,8 @@
                     </td>
                     <td>
                         <label>National ID:</label>
-                        <patient field="identifier" identifierTypeId="f0c16a6d-dc5f-4118-a803-616d0075d282" required="false"/>
+                        <patient field="identifier" identifierTypeId="f0c16a6d-dc5f-4118-a803-616d0075d282"
+                                 required="false"/>
                     </td>
                 </tr>
                 </tbody>
@@ -319,14 +354,28 @@
                             <label>How did you hear about SMC</label>
                         </td>
                         <td>
-                            <span class="SMCOtherEnableDisable1">
-                            <obs conceptId="99612" answerConceptIds="99614,99615,99616,99617,162897,162898,90002 "
-                                 answerLabels="Friend/Family, Radio, TV, HCW Referral,VHT,Megaphones/Community radio, Other"/>
+                            <obs conceptId="99612" id="br" answerConceptId="99614" 
+                                 answerLabel="Friend/Family"/>
+                            <obs conceptId="99612" id="br" answerConceptId="99615" 
+                                 answerLabel="Radio"/>
+                            <obs conceptId="99612" id="br" answerConceptId="99616" 
+                                 answerLabel="TV"/>
+                            <obs conceptId="99612" id="br" answerConceptId="99617" 
+                                 answerLabel="HCW Referral"/>
+                            <obs conceptId="99612" id="br" answerConceptId="162897" 
+                                 answerLabel="VHT"/>
+                            <obs conceptId="99612" id="br" answerConceptId="162898" 
+                                 answerLabel="Megaphones/Community"/>
+                            <br/>
+                             <span class="enableDisable">
+                                 <span id="trigger">
+                                   <obs conceptId="99612" id="br" answerConceptId="90002"  answerLabel="Other"/>
+                                 </span>
+                                 <span id="disabled">
+                                    <obs conceptId="99613" labelText="Other Specify"/>
+                                 </span>
                             </span>
-                            <span class="SMCOtherEnableDisableChild1">
-                                <br/>
-                            <obs conceptId="99613" labelText="Other Specify"/>
-                                </span>
+
                         </td>
                     </obsgroup>
                 </tr>
@@ -670,7 +719,7 @@
                     <tr>
                         <td colspan="3">
                             <label>Date of circumcision:</label>
-                            <encounterDate default="today"/>
+                            <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
                         </td>
                     </tr>
                     <tr>

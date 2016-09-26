@@ -1,6 +1,7 @@
 package org.openmrs.module.aijar.utils;
 
-import org.jfree.util.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.commons.logging.Log;
 import org.openmrs.Form;
 import org.openmrs.module.appframework.domain.Extension;
 import org.openmrs.module.formentryapp.FormEntryAppService;
@@ -19,6 +20,8 @@ import java.util.*;
  * @author Dimitri Renault
  */
 public class ExtensionFormUtil {
+    
+    protected org.apache.commons.logging.Log log = LogFactory.getLog(getClass());
 
     public static final String DEFAULT_UILOCATION = "patientDashboard.overallActions";
     protected static final String DISPLAY_STYLE = "displayStyle";
@@ -105,12 +108,13 @@ public class ExtensionFormUtil {
     }
 
     protected static int getAttributeIntegerValue(Node htmlForm, String attributeName, int defaultValue) {
+	    Log log = LogFactory.getLog(ExtensionFormUtil.class);
         String stringValue = getAttributeStringValue(htmlForm, attributeName, (new Integer(defaultValue)).toString());
         int val = defaultValue;
         try {
             val = Integer.parseInt(stringValue);
         } catch (NumberFormatException e) {
-            Log.error(stringValue + "could not be parsed to an integer while parsing\n" + htmlForm.toString(), e);
+            log.error(stringValue + "could not be parsed to an integer while parsing\n" + htmlForm.toString(), e);
         }
         return val;
     }
