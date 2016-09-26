@@ -156,6 +156,9 @@ public class PatientSummaryFragmentController {
 	 * @return The viral load value
 	 */
 	private Object getViralLoadValue(Obs result) {
+		if (result == null) {
+			return null;
+		}
 	    if (result.getValueNumeric() == null) {
 		    return result.getValueText();
 	    }
