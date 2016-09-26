@@ -66,6 +66,9 @@
         <require_module>
             org.openmrs.module.metadatadeploy
         </require_module>
+		<require_module>
+			org.openmrs.module.referenceapplication
+		</require_module>
         <require_module>
             org.openmrs.module.reporting
         </require_module>
