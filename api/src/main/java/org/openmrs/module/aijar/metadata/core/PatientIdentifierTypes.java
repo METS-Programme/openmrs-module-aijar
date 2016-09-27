@@ -35,6 +35,26 @@ public class PatientIdentifierTypes {
             return " The first three letters of the facility, followed by / then 5 numbers with no spaces";
         }
     };
+    
+    public static PatientIdentifierTypeDescriptor ART_PATIENT_NUMBER = new PatientIdentifierTypeDescriptor() {
+        @Override
+        public String name() {
+            return "ART Patient No.";
+        }
+        
+        @Override
+        public String description() {
+            return "This is the ART number that is given to clients who have started ART";
+        }
+        
+        public String uuid() {
+            return "3c76abfd-5e2d-4194-b0d4-00b73c7fc1ac";
+        }
+        
+        public String formatDescription() {
+            return " No specific format required as it varies from facility to facility";
+        }
+    };
 
     public static PatientIdentifierTypeDescriptor EXPOSED_INFANT_NUMBER = new PatientIdentifierTypeDescriptor() {
         @Override
@@ -245,6 +265,23 @@ public class PatientIdentifierTypes {
         public String formatDescription() {
             return "No spaces mix of numbers and letters";
         }*/
+    };
+
+    public static PatientIdentifierTypeDescriptor RESEARCH_PATIENT_ID = new PatientIdentifierTypeDescriptor() {
+
+        @Override
+        public String name() {
+            return "Research Identifier";
+        }
+
+        @Override
+        public String description() {
+            return "An identifier used for patients within research settings";
+        }
+
+        public String uuid() {
+            return "20653abb-689c-4975-bbfa-00de7b507a95";
+        }
     };
 
 }

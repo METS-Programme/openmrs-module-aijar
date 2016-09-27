@@ -24,7 +24,9 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.Module;
 import org.openmrs.module.ModuleActivator;
 import org.openmrs.module.ModuleFactory;
+import org.openmrs.module.aijar.activator.AppConfigurationInitializer;
 import org.openmrs.module.aijar.activator.HtmlFormsInitializer;
+import org.openmrs.module.aijar.activator.Initializer;
 import org.openmrs.module.aijar.api.deploy.bundle.CommonMetadataBundle;
 import org.openmrs.module.aijar.api.deploy.bundle.UgandaAddressMetadataBundle;
 import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
@@ -85,10 +87,6 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         LocationService locationService = Context.getLocationService();
 
         try {
-
-            // Rebuild the concept search index
-            Context.updateSearchIndex();
-
             // disable the reference app registration page
             appFrameworkService.disableApp("referenceapplication.registrationapp.registerPatient");
             // disable the start visit app since all data is retrospective
@@ -101,8 +99,10 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             // form entry extension in active visits
             appFrameworkService.disableExtension("xforms.formentry.cfpd");
 
-            // install HTML Forms
-            setupHtmlForms();
+            // run the initializers
+            for (Initializer initializer : getInitializers()) {
+                initializer.started();
+            }
 
             // install commonly used metadata
             installCommonMetadata(deployService);
@@ -198,12 +198,26 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         // The National ID as the primary identifier that needs to be displayed
         properties.add(
                 new GlobalProperty(EmrApiConstants.PRIMARY_IDENTIFIER_TYPE, PatientIdentifierTypes.NATIONAL_ID.uuid()));
+        
+        String ART_Patient_Number_Identifier = "";
+        // check if the ART patient number is to be displayed then add it here
+        if (Context.getAdministrationService().getGlobalProperty("ugandaemr.showARTPatientNumberIdentifier").equals("true")) {
+            log.info("Adding ART patient number to extra identifier types property");
+            ART_Patient_Number_Identifier = "," + PatientIdentifierTypes.ART_PATIENT_NUMBER.uuid();
+        }
+
+        String Research_Patient_Identifier = "";
+        // check if the ART patient number is to be displayed then add it here
+        if (Context.getAdministrationService().getGlobalProperty("ugandaemr.showResearchPatientIdentifier").equals("true")) {
+            log.info("Adding research atient number to extra identifier types property");
+            Research_Patient_Identifier = "," + PatientIdentifierTypes.RESEARCH_PATIENT_ID.uuid();
+        }
 
         // set the HIV care number and EID number as additional identifiers that can be searched for
         properties.add(new GlobalProperty(EmrApiConstants.GP_EXTRA_PATIENT_IDENTIFIER_TYPES,
                 PatientIdentifierTypes.HIV_CARE_NUMBER.uuid() + "," + PatientIdentifierTypes.EXPOSED_INFANT_NUMBER.uuid()
                         + "," + PatientIdentifierTypes.IPD_NUMBER.uuid() + "," + PatientIdentifierTypes.ANC_NUMBER.uuid()
-                        + "," + PatientIdentifierTypes.HCT_NUMBER.uuid()));
+                        + "," + PatientIdentifierTypes.HCT_NUMBER.uuid() + ART_Patient_Number_Identifier + Research_Patient_Identifier));
 
         // set the name of the application
         properties.add(new GlobalProperty("application.name", "UgandaEMR - Uganda eHealth Solution"));
@@ -299,24 +313,6 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         }
     }
 
-    // Method responsible for HTMLForms insertation
-    private void setupHtmlForms() throws Exception {
-        try {
-            HtmlFormsInitializer hfi = new HtmlFormsInitializer();
-            hfi.started();
-
-        } catch (Exception e) {
-            log.error("Error loading the HTML forms " + e.toString());
-            // this is a hack to get component test to pass until we find the proper way to mock this
-            if (ResourceFactory.getInstance().getResourceProviders() == null) {
-                log.error("Unable to load HTML forms--this error is expected when running component tests");
-            } else {
-                throw e;
-            }
-        }
-
-    }
-
     private void removeOldChangeLocksForDataIntegrityModule() {
         String gpVal = Context.getAdministrationService().getGlobalProperty("dataintegrity.database_version");
         if (ObjectUtil.isNull(gpVal)) {
@@ -339,5 +335,12 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
     public void stopped() {
 
         log.info("aijar Module stopped");
+    }
+
+    public List<Initializer> getInitializers() {
+        List<Initializer> l = new ArrayList<Initializer>();
+        l.add(new AppConfigurationInitializer());
+        l.add(new HtmlFormsInitializer());
+        return l;
     }
 }

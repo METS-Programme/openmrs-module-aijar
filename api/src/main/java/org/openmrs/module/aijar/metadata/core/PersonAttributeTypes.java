@@ -83,4 +83,46 @@ public class PersonAttributeTypes {
             return "8d872150-c2cc-11de-8d13-0010c6dffd0f";
         }
     };
+    
+    public static PersonAttributeTypeDescriptor TELEPHONE_NUMBER_2 = new PersonAttributeTypeDescriptor() {
+        @Override
+        public double sortWeight() {
+            return 8;
+        }
+        
+        @Override
+        public String name() {
+            return "Alternate Telephone Number";
+        }
+        
+        @Override
+        public String description() {
+            return "Alternate Telephone number";
+        }
+        
+        public String uuid() {
+            return "8c44d411-285f-46c6-9f17-c2f919823b34";
+        }
+    };
+    
+    public static PersonAttributeTypeDescriptor TELEPHONE_NUMBER_3 = new PersonAttributeTypeDescriptor() {
+        @Override
+        public double sortWeight() {
+            return 10;
+        }
+        
+        @Override
+        public String name() {
+            return "Second Alternate Telephone Number";
+        }
+        
+        @Override
+        public String description() {
+            return "Second Alternate Telephone number";
+        }
+        
+        public String uuid() {
+            return "a00eda65-2f66-4fda-a683-c1787eb626a9";
+        }
+    };
 }

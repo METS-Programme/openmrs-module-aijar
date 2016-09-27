@@ -1,6 +1,7 @@
 package org.openmrs.module.aijar.fragment.controller;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -33,8 +34,9 @@ public class PatientSummaryFragmentController {
                            @SpringBean("conceptService") ConceptService conceptService,
                            @SpringBean("personService") PersonService personService,
                            @FragmentParam("patientId") Patient patient) throws ParseException {
-
-        Person person = personService.getPerson(patient.getPersonId());
+	
+	    DecimalFormat df = new DecimalFormat("#.#");
+	    Person person = personService.getPerson(patient.getPersonId());
 	    List<Person> who = new ArrayList<Person>();
 	    who.add(person);
 
@@ -87,24 +89,33 @@ public class PatientSummaryFragmentController {
 	    if (latestViralLoadDate == null) {
 		    model.addAttribute("viralloaddate", "No VL results");
 	    } else {
-		    model.addAttribute("viralloaddate", "Sample taken on " + latestViralLoadDate.getValueDate());
+		    model.addAttribute("viralloaddate", "Sample taken on " + formatter.format(latestViralLoadDate.getValueDate()));
 	    }
 	    
 	    Obs latestViralLoadResult = getMostRecentObservation(obsService, who, viralLoadResult);
+	    Obs latestViralLoadValue = getMostRecentObservation(obsService, who, viralLoadValue);
 	    if (latestViralLoadResult == null) {
 		    model.addAttribute("viralloadresult", "");
 	    } else {
+		    model.addAttribute("viralloadresult", "Not Detected");
 	    	if (latestViralLoadResult.getValueCoded().getId() == 1306) {
 			    model.addAttribute("viralloadresult", "Not Detected");
 		    } else {
-			    Obs latestViralLoadValue = getMostRecentObservation(obsService, who, viralLoadValue);
 			    if (latestViralLoadValue == null) {
 				    model.addAttribute("viralloadresult", "Detected, No Viral Load Result Available");
 			    } else {
-				    model.addAttribute("viralloadresult", latestViralLoadValue.getValueNumeric());
+				    model.addAttribute("viralloadresult", "with " + getViralLoadValue(latestViralLoadValue) + " copies/ml");
 			    }
 		    }
-		    
+	    }
+	    // handle legacy cases of data where a viral load was entered but was put as 0 for not detected
+	    // The previous check for viral load result is a new addition so previous data may not follow it to the letter
+	    if (getViralLoadValue(latestViralLoadValue) != null) {
+		    model.addAttribute("viralloadresult", "with " + getViralLoadValue(latestViralLoadValue) + " copies/ml");
+		    // if there is no viral load date, use the obs_datetime value
+		    if (latestViralLoadDate == null) {
+			    model.addAttribute("viralloaddate", "Sample taken on " + formatter.format(latestViralLoadValue.getObsDatetime()));
+		    }
 	    }
 	    
 	    Obs currentHeight = getMostRecentObservation(obsService, who, height);
@@ -124,7 +135,8 @@ public class PatientSummaryFragmentController {
 	    if (currentHeight == null || currentWeight == null) {
 		    model.addAttribute("bmi", "");
 	    } else {
-		    model.addAttribute("bmi", (currentWeight.getValueNumeric()*100/currentHeight.getValueNumeric()));
+		    model.addAttribute("bmi", df.format(currentWeight.getValueNumeric()*10000/(currentHeight.getValueNumeric() *
+				                                                                             currentHeight.getValueNumeric())));
 	    }
     }
     
@@ -135,5 +147,21 @@ public class PatientSummaryFragmentController {
 	    	return obs.get(0);
 	    }
 	    return null;
+    }
+	
+	/**
+	 * Get the numeric or text value of the viral load value - caters for both current and legacy data collection needs
+	 *
+	 * @param result The Obs containing the viral load result
+	 * @return The viral load value
+	 */
+	private Object getViralLoadValue(Obs result) {
+		if (result == null) {
+			return null;
+		}
+	    if (result.getValueNumeric() == null) {
+		    return result.getValueText();
+	    }
+	    return result.getValueNumeric();
     }
 }

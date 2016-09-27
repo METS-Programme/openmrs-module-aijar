@@ -4,11 +4,11 @@
 	<parent>
 		<groupId>org.openmrs.module</groupId>
 		<artifactId>aijar</artifactId>
-		<version>1.0.13-SNAPSHOT</version>
+		<version>1.0.15-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>aijar-omod</artifactId>
-  <version>1.0.13-SNAPSHOT</version>
+  <version>1.0.15-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>aijar Module OMOD</name>
 	<description>OMOD project for aijar</description>
@@ -76,6 +76,11 @@
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>emrapi-omod</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>referenceapplication-omod</artifactId>
 		</dependency>
 
 		<dependency>

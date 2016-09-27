@@ -16,7 +16,7 @@
         <includeIf velocityTest="$fn.allEncounters('8d5b27bc-c2cc-11de-8d13-0010c6dffd0f').size() == 0">
             <script>
                 jq(function() {
-                    alert('This patient has no Summary page, you will now be forwarded fill a summary page before entering an encounter');
+                    alert('This patient has no Summary page, you will now be forwarded to the patient dashboard');
 
                     /*
                      * queryParameters -> handles the query string parameters
@@ -32,15 +32,14 @@
                         queryParameters[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
                     }
 
-                    // Change the formUuid parameter to that of the summary page
-                    queryParameters['formUuid'] = '52653a60-8300-4c13-be4d-4b746da06fee';
-
                     /*
                      * Replace the query portion of the URL.
                      * jQuery.param() -> create a serialized representation of an array or
                      *     object, suitable for use in a URL query string or Ajax request.
                      */
-                    location.search = jq.param(queryParameters); // Causes page to reload
+                    location.href = window.location.protocol + "//" + window.location.host +
+                                    '/' + OPENMRS_CONTEXT_PATH + '/coreapps/clinicianfacing/patient.page?patientId='
+                                    + queryParameters['patientId']; // Causes page to reload
                 });
             </script>
         </includeIf>
@@ -235,6 +234,23 @@
 
 
         if (jQuery) {
+
+            <!-- Validation rules -->
+            beforeSubmit.push(function() {
+                <!-- clear the previous errors -->
+                setValue('returndate.error', '');
+
+                var encounterDate = getValue('encounterDate.value');
+                var returnDate = getValue('returndate.value');
+
+                if (encounterDate &gt;= returnDate) {
+                    getField('returndate.error').html('The return date must be after the date of this visit ' +
+                                                      encounterDate).show();
+                    return false;
+                }
+
+                return true;
+            });
             jq(document).ready(function () {
                 if (jq.browser.msie) {
                     jq(":checkbox").click(function () {
@@ -348,13 +364,13 @@
                 </tr>
                 <tr>
                     <td>
-                        <encounterDate default="today"/>
+                        <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
                         <br/>
                         <obs id="br" conceptId="90069" labelText="Scheduled?" style="checkbox"/>
                     </td>
                     <td>
                         <excludeIf velocityTest="$patient.person.dead ==true ">
-                            <obs id="br" conceptId="5096" required="required" allowFutureDates="true"
+                            <obs id="returndate" conceptId="5096" required="required" allowFutureDates="true"
                                  labelText="Return date:"/>
                         </excludeIf>
                     </td>
@@ -374,18 +390,18 @@
                                  labelText="MUAC"/>
                         </includeIf>
                         <includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
-                            <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                            <obs id="br" conceptId="99030" answerConceptIds="99028,99029,99027"
                                  answerLabels="Red &lt; 13.5cm,Yellow 13.5cm - &lt;14.5cm,Green &gt;=14.5cm"
                                  labelText="MUAC"/>
                         </includeIf>
                         <includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
-                            <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                            <obs id="br" conceptId="99030" answerConceptIds="99028,99029,99027"
                                  answerLabels="Red &lt; 16.5cm, Yellow 16.5cm - &lt;19.0cm,Green &gt;=19.0cm"
                                  labelText="MUAC"/>
                         </includeIf>
 
                         <includeIf velocityTest="$patient.age &gt;=18">
-                            <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                            <obs id="br" conceptId="99030" answerConceptIds="99028,99029,99027"
                                  answerLabels="Red &lt;19.0cm , Yellow 19.0cm - &lt;22.0cm,Green &gt;=22.0cm"
                                  labelText="MUAC"/>
                         </includeIf>
@@ -408,9 +424,9 @@
                                  answerLabels="Yes,No"/>
                             </span>
                         </excludeIf>
-
-                        <excludeIf velocityTest="$patient.gender =='M' || $patient.age &lt; 9">
-                            <br/>
+                        <excludeIf velocityTest="$patient.age &lt; 9">
+                            <excludeIf velocityTest="$patient.gender =='M'">
+                                <br/>
                                 <span class="ARTYesNoEnableDisableChild2">
                                     <obs conceptId="162983" labelText="Gestation in Weeks"/>
                                     <br/>
@@ -419,7 +435,7 @@
                                              required="false"/>
                                     <br/>
                                 </span>
-                        </excludeIf>
+                            </excludeIf>
 
                             <span id="checkboxRadio">
                                 <span class="ARTYesNoEnableDisable1">
@@ -427,31 +443,32 @@
                                          labelText="Family Planning?"/>
                                 </span>
                             </span>
-                        <br/>
+                            <br/>
                             <span class="ARTYesNoEnableDisableChild1">
                                 Family Planning Method:
                                 <br/>
-                                <obs id="br" conceptId="374" answerConceptId="190" answerLabel="Condoms"/>
+                                <obs id="br" conceptId="374" answerConceptId="190" answerLabel="1 - Condoms"/>
                                 <excludeIf velocityTest="$patient.gender =='M' ">
                                     <span class="lablex2">
                                         <obs id="br" conceptId="374" answerConceptId="780"
-                                             answerLabel="Oral Contraceptive pills"/>
+                                             answerLabel="2 - Oral Contraceptive pills"/>
                                         <obs id="br" conceptId="374" answerConceptId="5279"
-                                             answerLabel="Injectable/Implantable hormonies"/>
+                                             answerLabel="3 - Injectable/Implantable hormonies"/>
                                         <obs id="br" conceptId="374" answerConceptId="5278"
-                                             answerLabel="Diaphram/Cervical Cap"/>
+                                             answerLabel="4 - Diaphram/Cervical Cap"/>
                                         <obs id="br" conceptId="374" answerConceptId="5275"
-                                             answerLabel="Intra uterine device (IUD)"/>
+                                             answerLabel="5 - Intra uterine device (IUD)"/>
                                     </span>
                                 </excludeIf>
                                 <obs id="br" conceptId="374" answerConceptId="99265"
-                                     answerLabel="Vasectomy/Tubal ligation"/>
+                                     answerLabel="6 - Vasectomy/Tubal ligation"/>
                             </span>
-                        <br/>
-                        <excludeIf velocityTest="$patient.gender =='M'">
-                            <span class="ARTYesNoEnableDisableChild3">
-                            <obs id="br" conceptId="99270" labelText="Age in months"/>
-                            </span>
+                            <br/>
+                            <excludeIf velocityTest="$patient.gender =='M'">
+                                <span class="ARTYesNoEnableDisableChild3">
+                                <obs id="br" conceptId="99270" labelText="Age in months"/>
+                                </span>
+                            </excludeIf>
                         </excludeIf>
 
                     </td>
@@ -490,12 +507,20 @@
                         <br/>
                     </td>
                     <td>
-                        <obs conceptId="90227"
-                             answerConceptIds="90100,90099,90095,90117,90092,90116,90093,90094,90115,90091,90098"
-                             answerLabels="AB,Anaemia,BN,CNS,Diarrhoea,FAT,Fatigue,Headache,Jaundice,Nausea,Rash"/>
+                        <obs id="br" conceptId="90227" answerConceptId="90100" answerLabel="AB"/>
+                        <obs id="br" conceptId="90227" answerConceptId="90099" answerLabel="Anaemia"/>
+                        <obs id="br" conceptId="90227" answerConceptId="90095" answerLabel="BN"/>
+                        <obs id="br" conceptId="90227" answerConceptId="90117" answerLabel="CNS"/>
+                        <obs id="br" conceptId="90227" answerConceptId="90092" answerLabel="Diarrhoea"/>
+                        <obs id="br" conceptId="90227" answerConceptId="90116" answerLabel="FAT"/>
+                        <obs id="br" conceptId="90227" answerConceptId="90093" answerLabel="Fatigue"/>
+                        <obs id="br" conceptId="90227" answerConceptId="90094" answerLabel="Headache"/>
+                        <obs id="br" conceptId="90227" answerConceptId="90115" answerLabel="Jaundice"/>
+                        <obs id="br" conceptId="90227" answerConceptId="90091" answerLabel="Nausea"/>
+                        <obs id="br" conceptId="90227" answerConceptId="90098" answerLabel="Rash"/>
                             <span class="enableDisable">
                                 <span id="trigger">
-                                    <obs conceptId="90227" answerConceptId="90002" answerLabel="Other specify:"/>
+                                    <obs id="br" conceptId="90227" answerConceptId="90002" answerLabel="Other specify:"/>
                                 </span>
                                 <span id="disabled">
                                     <obs conceptId="99113" size="17" labelText=""/>
@@ -659,36 +684,36 @@
                                 Why Poor/Fair:
                                 <br/>
                                 <obs id="br" conceptId="90223" answerConceptId="90040"
-                                     answerLabel="Toxicity"/>
+                                     answerLabel="1 - Toxicity"/>
                                 <obs id="br" conceptId="90223" answerConceptId="90146"
-                                     answerLabel="Shared"/>
+                                     answerLabel="2 - Share with others"/>
                                 <obs id="br" conceptId="90223" answerConceptId="90147"
-                                     answerLabel="Forgot"/>
+                                     answerLabel="3 - Forgot"/>
                                 <obs id="br" conceptId="90223" answerConceptId="90148"
-                                     answerLabel="Felt better"/>
+                                     answerLabel="4 - Felt better"/>
                                 <obs id="br" conceptId="90223" answerConceptId="90149"
-                                     answerLabel="Too ill"/>
+                                     answerLabel="5 - Too ill"/>
                                 <obs id="br" conceptId="90223" answerConceptId="90150"
-                                     answerLabel="Stigma"/>
+                                     answerLabel="6 - Stigma"/>
                                 <obs id="br" conceptId="90223" answerConceptId="90045"
-                                     answerLabel="Stock out"/>
+                                     answerLabel="7 - Drug Stock out"/>
                                 <obs id="br" conceptId="90223" answerConceptId="90151"
-                                     answerLabel="Lost pills"/>
+                                     answerLabel="8 - Lost pills"/>
                                 <obs id="br" conceptId="90223" answerConceptId="90152"
-                                     answerLabel="Travel problems"/>
+                                     answerLabel="9 - Travel problems"/>
                                 <obs id="br" conceptId="90223" answerConceptId="90051"
-                                     answerLabel="Inability to pay"/>
+                                     answerLabel="10 - Inability to pay"/>
                                 <obs id="br" conceptId="90223" answerConceptId="90153"
-                                     answerLabel="Alcohol"/>
+                                     answerLabel="11 - Alcohol"/>
                                 <obs id="br" conceptId="90223" answerConceptId="90154"
-                                     answerLabel="Depression"/>
+                                     answerLabel="12 - Depression"/>
                                 <obs id="br" conceptId="90223" answerConceptId="90155"
-                                     answerLabel="Pill burden"/>
+                                     answerLabel="13 - Pill burden"/>
                                 <obs id="br" conceptId="90223" answerConceptId="99049"
-                                     answerLabel="Lacked food"/>
+                                     answerLabel="14 - Lack of food"/>
                                 <span id="trigger">
                                     <obs id="br" conceptId="90223" answerConceptId="90002"
-                                         answerLabel="Other Specify:"/>
+                                         answerLabel="15 - Other Specify:"/>
                                 </span>
                                 <span id="disabled">
                                     <obs id="br" conceptId="99125" labelText="" size="21"/>
@@ -739,7 +764,7 @@
                         Viral Load Results
                         <br/>
                         <span class="ViralLoadEnableDisable1">
-                        <obs id="br" conceptId="1305" answerConceptIds="1306,1301"
+                        <obs id="br" conceptId="1305" answerConceptIds="1301,1306"
                              answerLabels="Detected,Not Detected"/>
                         </span>
                         <br/>
@@ -777,6 +802,15 @@
                                     <obs id="br" conceptId="99114" size="16" labelText=""/>
                                 </span>
                             </span>
+
+                        <div>Test results:</div>
+                        <obs id="br" conceptId="21" labelText="Hb:" dateLabel="Date:"/><br/>
+                        <obs id="br" conceptId="856" labelText="Viral load:" dateLabel="Date:"/><br/>
+
+                        <obsgroup groupingConceptId="99292">
+                            <obs conceptId="99290" answerConceptIds="1019,99152,12,307,99149" answerLabels="CBC,RPR,CXR,Sputums,PCR" labelText="Other Results:" dateLabel="Date:"/>
+                            <obs conceptId="99291" size="16" labelText=""/>
+                        </obsgroup>
                     </td>
                     <td class="lablex2">
                         <b>Referred for</b>
