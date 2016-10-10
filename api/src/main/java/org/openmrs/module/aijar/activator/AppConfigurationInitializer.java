@@ -1,6 +1,9 @@
 package org.openmrs.module.aijar.activator;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -35,7 +38,26 @@ public class AppConfigurationInitializer implements Initializer {
 			TaskDefinition autoCloseVisitsTask = (TaskDefinition) schedulerService.getTaskByName("Auto Close Visits Task");
 			autoCloseVisitsTask.setStartOnStartup(true);
 			schedulerService.saveTask(autoCloseVisitsTask);
-		}
+			
+			// check the Database Backup Task
+			TaskDefinition backupDatabase = (TaskDefinition) schedulerService.getTaskByName("Database Backup Task");
+			 if (backupDatabase != null) {
+				 // only execute if the task exists
+				 backupDatabase.setStartOnStartup(true);
+				 SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd HH:mm:ss");
+				 Calendar taskDefinitionCalendar = new GregorianCalendar(2016, 8, 28, 23, 59, 59);
+				 Calendar ugandaEMRCalendar = new GregorianCalendar(2016, 8, 28, 15, 59, 59);
+				 
+				 // change the start date
+				 if(sdf.format(taskDefinitionCalendar.getTime()).equals(sdf.format(backupDatabase.getStartTime()))) {
+					 // set it to the new time for Uganda
+					 backupDatabase.setStartTime(ugandaEMRCalendar.getTime());
+					 log.info("UgandaEMR backup time set");
+				 }
+				 schedulerService.saveTask(backupDatabase);
+				 log.info("Database Backup Task set to start on Startup");
+			 }
+ 		}
 		catch (Exception e) {
 			Module mod = ModuleFactory.getModuleById(AijarConstants.MODULE_ID);
 			ModuleFactory.stopModule(mod);

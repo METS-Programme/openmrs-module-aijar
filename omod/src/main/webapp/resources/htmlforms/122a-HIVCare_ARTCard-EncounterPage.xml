@@ -804,8 +804,7 @@
                             </span>
 
                         <div>Test results:</div>
-                        <obs id="br" conceptId="21" labelText="Hb:" dateLabel="Date:"/><br/>
-                        <obs id="br" conceptId="856" labelText="Viral load:" dateLabel="Date:"/><br/>
+                        <obs id="br" conceptId="21" labelText="Hb:" dateLabel="Date:"/><br/><br/>
 
                         <obsgroup groupingConceptId="99292">
                             <obs conceptId="99290" answerConceptIds="1019,99152,12,307,99149" answerLabels="CBC,RPR,CXR,Sputums,PCR" labelText="Other Results:" dateLabel="Date:"/>
