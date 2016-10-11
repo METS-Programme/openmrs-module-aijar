@@ -1,9 +1,14 @@
 package org.openmrs.module.aijar.page.controller;
 
+import static org.openmrs.module.referenceapplication.ReferenceApplicationWebConstants.COOKIE_NAME_LAST_SESSION_LOCATION;
+import static org.openmrs.module.referenceapplication.ReferenceApplicationWebConstants.REQUEST_PARAMETER_NAME_REDIRECT_URL;
+import static org.openmrs.module.referenceapplication.ReferenceApplicationWebConstants.SESSION_ATTRIBUTE_REDIRECT_URL;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Locale;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringEscapeUtils;
@@ -15,8 +20,12 @@ import org.openmrs.api.LocationService;
 import org.openmrs.api.context.Context;
 import org.openmrs.api.context.ContextAuthenticationException;
 import org.openmrs.module.appframework.service.AppFrameworkService;
+import org.openmrs.module.appui.AppUiConstants;
 import org.openmrs.module.appui.UiSessionContext;
+import org.openmrs.module.emrapi.EmrApiConstants;
 import org.openmrs.module.emrapi.utils.GeneralUtils;
+import org.openmrs.module.referenceapplication.ReferenceApplicationConstants;
+import org.openmrs.module.referenceapplication.ReferenceApplicationWebConstants;
 import org.openmrs.module.referenceapplication.page.controller.LoginPageController;
 import org.openmrs.ui.framework.UiUtils;
 import org.openmrs.ui.framework.annotation.SpringBean;
@@ -28,7 +37,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 
 /**
- * Created by ssmusoke on 18/02/2016.
+ * Login page copied from the Reference Application Module
  */
 @Controller
 public class AijarLoginPageController {
@@ -37,165 +46,248 @@ public class AijarLoginPageController {
 	private static final String VIEW_LOCATIONS = "View Locations";
 	protected final Log log = LogFactory.getLog(this.getClass());
 	
-	public AijarLoginPageController() {
+	/**
+	 * @should redirect the user to the home page if they are already authenticated
+	 * @should show the user the login page if they are not authenticated
+	 * @should set redirectUrl in the page model if any was specified in the request
+	 * @should set the referer as the redirectUrl in the page model if no redirect param exists
+	 * @should set redirectUrl in the page model if any was specified in the session
+	 * @should not set the referer as the redirectUrl in the page model if referer URL is outside context path
+	 * @should set the referer as the redirectUrl in the page model if referer URL is within context path
+	 */
+	public String get(PageModel model,
+	                  UiUtils ui,
+	                  PageRequest pageRequest,
+	                  @CookieValue(value = COOKIE_NAME_LAST_SESSION_LOCATION, required = false) String lastSessionLocationId,
+	                  @SpringBean("locationService") LocationService locationService,
+	                  @SpringBean("appFrameworkService") AppFrameworkService appFrameworkService) {
+		
+		String redirectUrl = getRedirectUrl(pageRequest);
+		
+		if (Context.isAuthenticated()) {
+			if(StringUtils.isNotBlank(redirectUrl)){
+				return "redirect:" + getRelativeUrl(redirectUrl, pageRequest);
+			}
+			return "redirect:" + ui.pageLink(ReferenceApplicationConstants.MODULE_ID, "home");
+		}
+		
+		model.addAttribute(REQUEST_PARAMETER_NAME_REDIRECT_URL, getRelativeUrl(redirectUrl, pageRequest));
+		
+		Location lastSessionLocation = null;
+		try {
+			Context.addProxyPrivilege(VIEW_LOCATIONS);
+			Context.addProxyPrivilege(GET_LOCATIONS);
+			model.addAttribute("locations", appFrameworkService.getLoginLocations());
+			lastSessionLocation = locationService.getLocation(Integer.valueOf(lastSessionLocationId));
+		}
+		catch (NumberFormatException ex) {
+			// pass
+		}
+		finally {
+			Context.removeProxyPrivilege(VIEW_LOCATIONS);
+			Context.removeProxyPrivilege(GET_LOCATIONS);
+		}
+		
+		model.addAttribute("lastSessionLocation", lastSessionLocation);
+		
+		return null;
 	}
 	
-	public String get(PageModel model, UiUtils ui, PageRequest pageRequest, @CookieValue(value = "referenceapplication.lastSessionLocation",required = false) String lastSessionLocationId, @SpringBean("locationService") LocationService locationService, @SpringBean("appFrameworkService") AppFrameworkService appFrameworkService) {
-		if(Context.isAuthenticated()) {
-			return "redirect:" + ui.pageLink("referenceapplication", "home");
-		} else {
-			String redirectUrl = this.getStringSessionAttribute("_REFERENCE_APPLICATION_REDIRECT_URL_", pageRequest.getRequest());
-			if(StringUtils.isBlank(redirectUrl)) {
-				redirectUrl = pageRequest.getRequest().getParameter("redirectUrl");
+	private boolean isUrlWithinOpenmrs(PageRequest pageRequest, String redirectUrl){
+		if (StringUtils.isNotBlank(redirectUrl)) {
+			if (redirectUrl.startsWith("http://") || redirectUrl.startsWith("https://")) {
+				try {
+					URL url = new URL(redirectUrl);
+					String urlPath = url.getFile();
+					String urlContextPath = urlPath.substring(0, urlPath.indexOf('/', 1));
+					if (StringUtils.equals(pageRequest.getRequest().getContextPath(), urlContextPath)) {
+						return true;
+					}
+				} catch (MalformedURLException e) {
+					log.error(e.getMessage());
+				}
+			} else if(redirectUrl.startsWith(pageRequest.getRequest().getContextPath())){
+				return true;
 			}
-			
-			if(StringUtils.isBlank(redirectUrl)) {
-				redirectUrl = this.getRedirectUrlFromReferer(pageRequest);
-			}
-			
-			if(redirectUrl == null) {
-				redirectUrl = "";
-			}
-			
-			model.addAttribute("redirectUrl", redirectUrl);
-			Location lastSessionLocation = null;
-			
-			try {
-				Context.addProxyPrivilege("View Locations");
-				Context.addProxyPrivilege("Get Locations");
-				model.addAttribute("locations", appFrameworkService.getLoginLocations());
-				lastSessionLocation = locationService.getLocation(Integer.valueOf(lastSessionLocationId));
-			} catch (NumberFormatException var13) {
-				;
-			} finally {
-				Context.removeProxyPrivilege("View Locations");
-				Context.removeProxyPrivilege("Get Locations");
-			}
-			
-			model.addAttribute("lastSessionLocation", lastSessionLocation);
-			return null;
 		}
+		return false;
 	}
 	
 	private String getRedirectUrlFromReferer(PageRequest pageRequest) {
-		String referer = pageRequest.getRequest().getHeader("Referer");
+		String manualLogout = pageRequest.getSession().getAttribute(AppUiConstants.SESSION_ATTRIBUTE_MANUAL_LOGOUT, String.class);
 		String redirectUrl = "";
-		if(referer != null) {
-			String manualLogout = (String)pageRequest.getSession().getAttribute("manual-logout", String.class);
-			if(!"true".equals(manualLogout)) {
-				if(!referer.contains("http://") && !referer.contains("https://")) {
-					redirectUrl = pageRequest.getRequest().getHeader("Referer");
-				} else {
-					try {
-						URL e = new URL(referer);
-						String refererPath = e.getFile();
-						String refererContextPath = refererPath.substring(0, refererPath.indexOf(47, 1));
-						if(StringUtils.equals(pageRequest.getRequest().getContextPath(), refererContextPath)) {
-							redirectUrl = refererPath;
-						}
-					} catch (MalformedURLException var8) {
-						this.log.error(var8.getMessage());
-					}
-				}
-			}
-			
-			pageRequest.getSession().setAttribute("manual-logout", (Object)null);
+		if(!Boolean.valueOf(manualLogout)){
+			redirectUrl = pageRequest.getRequest().getHeader("Referer");
+		} else {
+			Cookie cookie = new Cookie(ReferenceApplicationWebConstants.COOKIE_NAME_LAST_USER, null);
+			cookie.setMaxAge(0);
+			pageRequest.getResponse().addCookie(cookie);
 		}
-		
-		return StringEscapeUtils.escapeHtml(redirectUrl);
+		pageRequest.getSession().setAttribute(AppUiConstants.SESSION_ATTRIBUTE_MANUAL_LOGOUT, null);
+		return redirectUrl;
 	}
 	
-	public String post(@RequestParam(value = "username",required = false) String username, @RequestParam(value = "password",required = false) String password, @RequestParam(value = "sessionLocation",required = false) Integer sessionLocationId, @SpringBean("locationService") LocationService locationService, UiUtils ui, PageRequest pageRequest, UiSessionContext sessionContext) {
-		String redirectUrl = pageRequest.getRequest().getParameter("redirectUrl");
-		redirectUrl = this.getRelativeUrl(redirectUrl, pageRequest);
+	private String getRedirectUrlFromRequest(PageRequest pageRequest){
+		return pageRequest.getRequest().getParameter(REQUEST_PARAMETER_NAME_REDIRECT_URL);
+	}
+	
+	private String getRedirectUrl(PageRequest pageRequest) {
+		String redirectUrl = getRedirectUrlFromRequest(pageRequest);
+		if (StringUtils.isBlank(redirectUrl)) {
+			redirectUrl = getStringSessionAttribute(SESSION_ATTRIBUTE_REDIRECT_URL, pageRequest.getRequest());
+		}
+		if (StringUtils.isBlank(redirectUrl)) {
+			redirectUrl = getRedirectUrlFromReferer(pageRequest);
+		}
+		if (StringUtils.isNotBlank(redirectUrl) && isUrlWithinOpenmrs(pageRequest, redirectUrl)) {
+			return redirectUrl;
+		}
+		return "";
+	}
+	
+	/**
+	 * Processes requests to authenticate a user
+	 *
+	 * @param username
+	 * @param password
+	 * @param sessionLocationId
+	 * @param locationService
+	 * @param ui {@link UiUtils} object
+	 * @param pageRequest {@link PageRequest} object
+	 * @param sessionContext
+	 * @return
+	 * @should redirect the user back to the redirectUrl if any
+	 * @should redirect the user to the home page if the redirectUrl is the login page
+	 * @should send the user back to the login page if an invalid location is selected
+	 * @should send the user back to the login page when authentication fails
+	 */
+	public String post(@RequestParam(value = "username", required = false) String username,
+	                   @RequestParam(value = "password", required = false) String password,
+	                   @RequestParam(value = "sessionLocation", required = false) Integer sessionLocationId,
+	                   @SpringBean("locationService") LocationService locationService, UiUtils ui, PageRequest pageRequest,
+	                   UiSessionContext sessionContext) {
+		
+		String redirectUrl = pageRequest.getRequest().getParameter(REQUEST_PARAMETER_NAME_REDIRECT_URL);
+		redirectUrl = getRelativeUrl(redirectUrl, pageRequest);
 		Location sessionLocation = null;
-		if(sessionLocationId != null) {
+		if (sessionLocationId != null) {
 			try {
-				Context.addProxyPrivilege("View Locations");
-				Context.addProxyPrivilege("Get Locations");
+				// TODO as above, grant this privilege to Anonymous instead of using a proxy privilege
+				Context.addProxyPrivilege(VIEW_LOCATIONS);
+				Context.addProxyPrivilege(GET_LOCATIONS);
 				sessionLocation = locationService.getLocation(sessionLocationId);
-			} finally {
-				Context.removeProxyPrivilege("View Locations");
-				Context.removeProxyPrivilege("Get Locations");
+			}
+			finally {
+				Context.removeProxyPrivilege(VIEW_LOCATIONS);
+				Context.removeProxyPrivilege(GET_LOCATIONS);
 			}
 		}
 		
-		if(sessionLocation != null && sessionLocation.hasTag("Login Location").booleanValue()) {
-			pageRequest.setCookieValue("referenceapplication.lastSessionLocation", sessionLocationId.toString());
+		//TODO uncomment this to replace the if clause after it
+		if (sessionLocation != null && sessionLocation.hasTag(EmrApiConstants.LOCATION_TAG_SUPPORTS_LOGIN)) {
+			// Set a cookie, so next time someone logs in on this machine, we can default to that same location
+			pageRequest.setCookieValue(COOKIE_NAME_LAST_SESSION_LOCATION, sessionLocationId.toString());
 			
 			try {
 				Context.authenticate(username, password);
-				if(Context.isAuthenticated()) {
-					if(this.log.isDebugEnabled()) {
-						this.log.debug("User has successfully authenticated");
-					}
+				
+				if (Context.isAuthenticated()) {
+					if (log.isDebugEnabled())
+						log.debug("User has successfully authenticated");
 					
 					sessionContext.setSessionLocation(sessionLocation);
-					Locale ex = GeneralUtils.getDefaultLocale(Context.getUserContext().getAuthenticatedUser());
-					if(ex != null) {
-						Context.getUserContext().setLocale(ex);
-						pageRequest.getResponse().setLocale(ex);
-						(new CookieLocaleResolver()).setDefaultLocale(ex);
+					//we set the username value to check it new or old user is trying to log in
+					pageRequest.setCookieValue(ReferenceApplicationWebConstants.COOKIE_NAME_LAST_USER, String.valueOf(username.hashCode()));
+					
+					// set the locale based on the user's default locale
+					Locale userLocale = GeneralUtils.getDefaultLocale(Context.getUserContext().getAuthenticatedUser());
+					if (userLocale != null) {
+						Context.getUserContext().setLocale(userLocale);
+						pageRequest.getResponse().setLocale(userLocale);
+						new CookieLocaleResolver().setDefaultLocale(userLocale);
 					}
 					
-					if(StringUtils.isNotBlank(redirectUrl)) {
-						if(!redirectUrl.contains("login.")) {
-							if(this.log.isDebugEnabled()) {
-								this.log.debug("Redirecting user to " + redirectUrl);
+					if (StringUtils.isNotBlank(redirectUrl)) {
+						//don't redirect back to the login page on success nor an external url
+						if (isUrlWithinOpenmrs(pageRequest, redirectUrl)) {
+							if (!redirectUrl.contains("login.") && isSameUser(pageRequest, username)) {
+								if (log.isDebugEnabled())
+									log.debug("Redirecting user to " + redirectUrl);
+								return "redirect:" + redirectUrl;
+							} else {
+								if (log.isDebugEnabled())
+									log.debug("Redirect contains 'login.', redirecting to home page");
 							}
-							
-							return "redirect:" + redirectUrl;
-						}
-						
-						if(this.log.isDebugEnabled()) {
-							this.log.debug("Redirect contains \'login.\', redirecting to home page");
 						}
 					}
 					
-					return "redirect:" + ui.pageLink("referenceapplication", "home");
+					return "redirect:" + ui.pageLink(ReferenceApplicationConstants.MODULE_ID, "home");
 				}
-			} catch (ContextAuthenticationException var14) {
-				if(this.log.isDebugEnabled()) {
-					this.log.debug("Failed to authenticate user");
-				}
-				
-				pageRequest.getSession().setAttribute("_REFERENCE_APPLICATION_ERROR_MESSAGE_", ui.message("referenceapplication.error.login.fail", new Object[0]));
 			}
-		} else if(sessionLocation == null) {
-			pageRequest.getSession().setAttribute("_REFERENCE_APPLICATION_ERROR_MESSAGE_", ui.message("referenceapplication.login.error.locationRequired", new Object[0]));
+			catch (ContextAuthenticationException ex) {
+				if (log.isDebugEnabled())
+					log.debug("Failed to authenticate user");
+				
+				pageRequest.getSession().setAttribute(ReferenceApplicationWebConstants.SESSION_ATTRIBUTE_ERROR_MESSAGE,
+						ui.message(ReferenceApplicationConstants.MODULE_ID + ".error.login.fail"));
+			}
+			
+		} else if (sessionLocation == null) {
+			pageRequest.getSession().setAttribute(ReferenceApplicationWebConstants.SESSION_ATTRIBUTE_ERROR_MESSAGE,
+					ui.message("referenceapplication.login.error.locationRequired"));
 		} else {
-			pageRequest.getSession().setAttribute("_REFERENCE_APPLICATION_ERROR_MESSAGE_", ui.message("referenceapplication.login.error.invalidLocation", new Object[]{sessionLocation.getName()}));
+			// the UI shouldn't allow this, but protect against it just in case
+			pageRequest.getSession().setAttribute(ReferenceApplicationWebConstants.SESSION_ATTRIBUTE_ERROR_MESSAGE,
+					ui.message("referenceapplication.login.error.invalidLocation", sessionLocation.getName()));
 		}
 		
-		if(this.log.isDebugEnabled()) {
-			this.log.debug("Sending user back to login page");
-		}
+		if (log.isDebugEnabled())
+			log.debug("Sending user back to login page");
 		
-		pageRequest.getSession().setAttribute("_REFERENCE_APPLICATION_REDIRECT_URL_", redirectUrl);
-		return "redirect:" + ui.pageLink("referenceapplication", "login");
+		//TODO limit login attempts by IP Address
+		
+		pageRequest.getSession().setAttribute(SESSION_ATTRIBUTE_REDIRECT_URL, redirectUrl);
+		
+		return "redirect:" + ui.pageLink(ReferenceApplicationConstants.MODULE_ID, "login");
+	}
+	
+	private boolean isSameUser(PageRequest pageRequest, String username) {
+		String cookieValue = pageRequest.getCookieValue(ReferenceApplicationWebConstants.COOKIE_NAME_LAST_USER);
+		int storedUsername = 0;
+		if (StringUtils.isNotBlank(cookieValue)) {
+			storedUsername = Integer.parseInt(cookieValue);
+		}
+		return cookieValue == null || storedUsername == username.hashCode();
 	}
 	
 	private String getStringSessionAttribute(String attributeName, HttpServletRequest request) {
 		Object attributeValue = request.getSession().getAttribute(attributeName);
 		request.getSession().removeAttribute(attributeName);
-		return attributeValue != null?attributeValue.toString():null;
+		return attributeValue != null ? attributeValue.toString() : null;
 	}
 	
 	public String getRelativeUrl(String url, PageRequest pageRequest) {
-		if(url == null) {
+		if (url == null)
 			return null;
-		} else if(!url.startsWith("/") && (url.startsWith("http://") || url.startsWith("https://"))) {
-			int indexOfContextPath = url.indexOf(pageRequest.getRequest().getContextPath());
-			if(indexOfContextPath >= 0) {
-				url = url.substring(indexOfContextPath);
-				this.log.debug("Relative redirect:" + url);
-				return url;
-			} else {
-				return null;
-			}
-		} else {
+		
+		if (url.startsWith("/") || (!url.startsWith("http://") && !url.startsWith("https://"))) {
 			return url;
 		}
+		
+		//This is an absolute url, discard the protocal, domain name/host and port section
+		if(url.startsWith("http://")){
+			url = StringUtils.removeStart(url, "http://");
+		} else if(url.startsWith("https://")){
+			url = StringUtils.removeStart(url, "https://");
+		}
+		int indexOfContextPath = url.indexOf(pageRequest.getRequest().getContextPath());
+		if (indexOfContextPath >= 0) {
+			url = url.substring(indexOfContextPath);
+			log.debug("Relative redirect:" + url);
+			
+			return url;
+		}
+		
+		return null;
 	}
-
 }
