@@ -7,8 +7,10 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.openmrs.Patient;
 import org.openmrs.api.context.Context;
+import org.openmrs.module.dataintegrity.db.DataintegrityRule;
 import org.openmrs.module.dataintegrity.rule.RuleDefn;
 import org.openmrs.module.dataintegrity.rule.RuleResult;
+import org.springframework.stereotype.Component;
 
 /**
  * Data integrity rules for the ART Summary page which are:
@@ -17,7 +19,33 @@ import org.openmrs.module.dataintegrity.rule.RuleResult;
  *  <li>Patients With More Than One Summary Page</li>
  * </ol>
  */
-public class InvalidARTSummaryPage implements RuleDefn<Patient> {
+@Component
+public class InvalidARTSummaryPage extends DataintegrityRule implements RuleDefn<Patient>  {
+	
+	@Override
+	public String getRuleName() {
+		return "Invalid ART Summary Pages";
+	}
+	
+	@Override
+	public String getRuleCategory() {
+		return "patient";
+	}
+	
+	@Override
+	public String getHandlerConfig() {
+		return "java";
+	}
+	
+	@Override
+	public String getHandlerClassname() {
+		return getClass().getName();
+	}
+	
+	@Override
+	public String getUuid() {
+		return "c57c3b5a-9019-11e6-85aa-b75ca9392202";
+	}
 	
 	@Override
 	public List<RuleResult<Patient>> evaluate() {
