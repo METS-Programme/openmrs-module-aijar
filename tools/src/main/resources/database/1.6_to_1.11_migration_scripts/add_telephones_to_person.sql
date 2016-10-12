@@ -11,7 +11,7 @@ CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `add_telephones`()
 
     -- Selecting only valid numbers
 
-    INSERT INTO person_attribute(person_id, value, person_attribute_type_id, creator, date_created, voided, uuid) SELECT person_id,postal_code,telephone_attribute,creator,date_created, 0, UUID() FROM person_address where postal_code REGEXP '^[0-9]{10}$';
+    INSERT INTO person_attribute(person_id, value, person_attribute_type_id, creator, date_created, voided, uuid) SELECT person_id,postal_code,telephone_attribute,creator,date_created, 0, UUID() FROM person_address where postal_code is not null;
 
     -- TODO Process invalid numbers by splitting by either slash or space and validating each of the numbers
     -- TODO Process invalid numbers by removing all non numbers from it and then validating
