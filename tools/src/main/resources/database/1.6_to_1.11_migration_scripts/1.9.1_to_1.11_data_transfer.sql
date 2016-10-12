@@ -158,6 +158,12 @@ CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `transfer`()
     SELECT 'Updating the location information in the new database with values in the old database' as log;
 
     UPDATE openmrs.location  AS c1, openmrs_backup.location AS c2 SET c1.location_id = c1.location_id, c1.name= c2.name,c1.description = c2.description,c1.address1 = c2.address1,c1.address2 = c2.address2,c1.city_village = c2.city_village,c1.state_province = c2.state_province,c1.postal_code =c1.postal_code,c1.country = c2.country,c1.latitude = c2.latitude,c1.longitude = c2.longitude ,c1.date_created = c2.date_created,c1.county_district = c2.county_district,c1.retired = c2.retired,c1.date_retired =c1.date_retired,c1.retire_reason = c2.retire_reason WHERE c2.location_id = 1  AND c1.location_id = 2;
+
+    -- Import other address fields that are different from the earlier versions
+
+    UPDATE openmrs.person_address  AS c1, openmrs_backup.person_address AS c2 SET c1.address5 = c2.address3,c1.address4 = c2.address4,c1.address3 = c2.address5 WHERE c1.person_address_id = c2.person_address_id AND c1.person_id = c2.person_id ;
+
+
   END$$
 DELIMITER ;
 
