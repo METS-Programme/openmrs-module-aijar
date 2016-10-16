@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 # Turns off foreign key cheks to speed up script execution
-cat database/openmrs-platform.sql > upgrade/new-install.sql
+cat database/mysql_script_header.sql > upgrade/new-install.sql
 
-# Turns off foreign key cheks to speed up script execution
-cat database/mysql_script_header.sql >> upgrade/new-install.sql
+# Base platform from OpenMRS SDK
+cat database/openmrs-platform.sql >> upgrade/new-install.sql
 
 # adds the current concept dictionary
 cat database/concept_dictonary_ref.sql >> upgrade/new-install.sql
@@ -28,9 +28,6 @@ cat database/mysql_script_header.sql > upgrade/upgrade_1_9_x.sql
 cat database/concept_dictonary_ref.sql >> upgrade/upgrade_1_6_x.sql
 cat database/concept_dictonary_ref.sql >> upgrade/upgrade_1_9_x.sql
 
-# moved phone numbers from to new person attribute
-cat database/1.6_to_1.11_migration_scripts/add_telephones_to_person.sql >> upgrade/upgrade_1_6_x.sql;
-
 # transform encounters from pre-1.11
 cat database/1.6_to_1.11_migration_scripts/transform_encounters_from_old_to_new.sql >> upgrade/upgrade_1_6_x.sql
 cat database/1.6_to_1.11_migration_scripts/transform_encounters_from_old_to_new.sql >> upgrade/upgrade_1_9_x.sql
@@ -45,6 +42,9 @@ cat database/1.6_to_1.11_migration_scripts/1.9.1_to_1.11_data_transfer.sql >> up
 # add visits to encounters - which is required in 1.11.x
 cat database/1.6_to_1.11_migration_scripts/add_visit_to_encounter.sql >> upgrade/upgrade_1_6_x.sql
 cat database/1.6_to_1.11_migration_scripts/add_visit_to_encounter.sql >> upgrade/upgrade_1_9_x.sql
+
+# moved phone numbers from to new person attribute only after data has been moved
+cat database/1.6_to_1.11_migration_scripts/add_telephones_to_person.sql >> upgrade/upgrade_1_6_x.sql;
 
 # adds functions and procedures for BIRT reports
 cat database/enable_birt_report_function.sql >> upgrade/upgrade_1_6_x.sql
