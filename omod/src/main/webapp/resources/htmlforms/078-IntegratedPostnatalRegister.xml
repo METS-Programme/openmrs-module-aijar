@@ -10,7 +10,8 @@
           formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='e9bc61b5-69ff-414b-9cf0-0c22d6dfca2b'"
           formDisplayStyle="Standard"
           formLabel="PNC Register Form">
-    <redirectOnSave url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits"/>
+    <redirectOnSave
+            url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits"/>
     <macros>
         headerColor =#8fabc7
         fontOnHeaderColor = white
@@ -249,22 +250,22 @@
 
                     <td style="width:15%;">Mother's Name</td>
                     <td style="width: 15%;">
-                        <obs conceptId="99776"/>
+                        <obs conceptId="163142"/>
                     </td>
                     <td style="width:15%;">Father's Name</td>
                     <td colspan="3">
-                        <obs conceptId="99776"/>
+                        <obs conceptId="163143"/>
                     </td>
                 </tr>
 
                 <tr>
                     <td>Village</td>
                     <td>
-                        <obs conceptId="162887"/>
+                        <obs conceptId="99137"/>
                     </td>
                     <td>Parish</td>
                     <td>
-                        <obs conceptId="162888"/>
+                        <obs conceptId="99136"/>
                     </td>
                 </tr>
                 <tr>
@@ -323,15 +324,18 @@
                     </td>
                     <td>
                         <label>Weight(kg)</label>
-                        <obs conceptId="90236"/>
+                        <obs conceptId="5089"/>
                     </td>
                     <td rowspan="3">
-                        <obs conceptId="99317" answerConceptIds="99313,99314,99315,99316" answerLabels="C,TR,TRR, TRRDm"
-                             style="dropdown"/>
+                        <obs conceptId="99317" labelText="" id="ARVSEnableDisable1"
+                             answerConceptIds="99313,99734,99314,99315,99735,99736,99737,99738,99739,99741"
+                             answerLabels="C,T,TR,TRR,TR&#8730;,TRR&#8730;,TRK,TRRK,TR+,TRR+"/>
+
                     </td>
                     <td rowspan="3">
-                        <obs conceptId="99317" answerConceptIds="99313,99314,99315,99316" answerLabels="C,TR,TRR, TRRDm"
-                             style="dropdown"/>
+                        <obs conceptId="99342" labelText=""
+                             answerConceptIds="99313,99734,99314,99315,99735,99736,99737,99738,99739,99741"
+                             answerLabels="C,T,TR,TRR,TR&#8730;,TRR&#8730;,TRK,TRRK,TR+,TRR+"/>
                     </td>
                     <td rowspan="2" class="RegimenEnableDisable1" style="width:3%;">
                         <obs id="br" conceptId="90315" labelText="ARVs:"
@@ -390,7 +394,7 @@
                     <th colspan="4">Routine <br/>Administration</th>
                     <th rowspan="3">Diagnosis</th>
                     <th rowspan="3">WHO Clinical Stage/<br/>Viral Load/<br/>CD4</th>
-                    <th rowspan="3">Other <br/>treatments</th>
+                    <th rowspan="3">Other Treatments</th>
                 </tr>
                 <tr>
                     <th rowspan="2">
@@ -411,28 +415,29 @@
 
                 <tbody>
                 <tr>
+                        <td rowspan="3">
+                            <obs conceptId="162394" answerConceptId="5843" answerLabel="" />
+                        </td>
+                        <td rowspan="3">
+                            <obs conceptId="162394" answerConceptId="257" answerLabel="" />
+                        </td>
+                        <td rowspan="3">
+                            <obs conceptId="162394" answerConceptId="99356" answerLabel=""/>
+                        </td>
+                        <td rowspan="3">
+                            <obs conceptId="162394" answerConceptId="90168" answerLabel=""/>
+                        </td>
                     <td rowspan="3">
-                        <obs conceptId="99351" style="checkbox"/>
-                    </td>
-                    <td rowspan="3">
-                        <obs conceptId="99351" style="checkbox"/>
-                    </td>
-                    <td rowspan="3">
-                        <obs conceptId="99351" style="checkbox"/>
-                    </td>
-                    <td rowspan="3">
-                        <obs conceptId="99351" style="checkbox"/>
-                    </td>
-                    <td rowspan="3">
-                        <obs conceptId="99321"/>
+                        <obs conceptId="99321" style="textarea" rows="10" cols="40"/>
                     </td>
                     <td>
                         <obs id="br" conceptId="90203"
                              answerConceptIds="90033,90034,90035,90036,90293,90294,90295,90296"
                              answerLabels="1,2,3,4,T1,T2,T3,T4" labelText="WHo Clinic Stage"/>
                     </td>
+
                     <td rowspan="3">
-                        <obs style="textarea" rows="10" cols="50" conceptId="99648"/>
+                        <obs style="textarea" rows="10" cols="40" conceptId="99320"/>
                     </td>
                 </tr>
 
@@ -475,7 +480,7 @@
                         <div class="rotate-text">WT</div>
                     </th>
                     <th rowspan="3">
-                        <div class="rotate-text">Diagnosis</div>
+                        <div>Diagnosis</div>
                     </th>
                     <th>Infant Feeding Options</th>
                     <th colspan="5">Immunisation</th>
@@ -496,13 +501,13 @@
                 <tbody>
                 <tr>
                     <td rowspan="3">
-                        <obs conceptId="99354" answerConceptIds="99353,163031,163032" answerLabels="Alive,NND7,NND28"/>
+                        <obs conceptId="99354" answerConceptIds="99353,163140,163141" answerLabels="Alive,NND7,NND28"/>
                     </td>
                     <td rowspan="3">
                         <obs conceptId="90236"/>
                     </td>
                     <td rowspan="3">
-                        <obs conceptId="99321"/>
+                        <obs conceptId="99355" style="textarea" rows="10" cols="40"/>
                     </td>
                     <td>
                         <obs conceptId="1151" answerConceptIds="5526,99089,6046" answerLabels="EBF,RF,MF"/>
@@ -547,7 +552,7 @@
                 </thead>
                 <tbody>
                 <td>
-                    <obs conceptId="99320" style="textarea" rows="10" cols="50"/>
+                    <obs conceptId="99648" style="textarea" rows="10" cols="50"/>
                 </td>
                 <td>
                     <obs conceptId="99322" id="br" labelText="Reffered" answerConceptIds="99764,99763"
