@@ -1,6 +1,6 @@
 <htmlform formName="HMIS 078 Integrated Postnatal Register"
           formDescription="Entry form for patients enrolled for PNC services"
-          formEncounterType="83ec0462-87ea-4846-ae57-54f426471cf9"
+          formEncounterType="fa6f3ff5-b784-43fb-ab35-a08ab7dbf074"
           formUuid="a6c5a8c3-c414-449f-a077-c2f6acbdd8b1"
           formVersion="1.2"
           formAddMetadata="yes"
@@ -233,7 +233,7 @@
                     </td>
                     <td>
                         <label>Client No:</label>
-                        <patient field="identifier" identifierTypeId="b0cc255e-ef57-4266-839e-0df7f5099eb9"
+                        <patient field="identifier" identifierTypeId="758ef6e4-9ceb-4137-bc8d-9246dc7b41fe"
                                  required="true"/>
                     </td>
                 </tr>
