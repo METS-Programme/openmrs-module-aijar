@@ -25,7 +25,6 @@ import org.openmrs.module.Module;
 import org.openmrs.module.ModuleActivator;
 import org.openmrs.module.ModuleFactory;
 import org.openmrs.module.aijar.activator.AppConfigurationInitializer;
-import org.openmrs.module.aijar.activator.DataIntegrityRuleInitializer;
 import org.openmrs.module.aijar.activator.HtmlFormsInitializer;
 import org.openmrs.module.aijar.activator.Initializer;
 import org.openmrs.module.aijar.api.deploy.bundle.CommonMetadataBundle;
@@ -338,11 +337,10 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         log.info("aijar Module stopped");
     }
 
-    public List<Initializer> getInitializers() {
+    private List<Initializer> getInitializers() {
         List<Initializer> l = new ArrayList<Initializer>();
         l.add(new AppConfigurationInitializer());
         l.add(new HtmlFormsInitializer());
-        l.add(new DataIntegrityRuleInitializer());
         return l;
     }
 }
