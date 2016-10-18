@@ -66,6 +66,9 @@
         <require_module>
             org.openmrs.module.metadatadeploy
         </require_module>
+		<require_module>
+			org.openmrs.module.referenceapplication
+		</require_module>
         <require_module>
             org.openmrs.module.reporting
         </require_module>
@@ -87,12 +90,21 @@
 		<description>
 			Allows one to set the name of the health center for this installation
 		</description>
+    </globalProperty>
+    <globalProperty>
 		<property>ugandaemr.showARTPatientNumberIdentifier</property>
 		<defaultValue>false</defaultValue>
 		<description>
 			Whether or not to show the ART patient number identifier
 		</description>
 	</globalProperty>
+    <globalProperty>
+        <property>ugandaemr.showResearchPatientIdentifier</property>
+        <defaultValue>false</defaultValue>
+        <description>
+            Whether or not to show the research identifier
+        </description>
+    </globalProperty>
 
 </module>
 

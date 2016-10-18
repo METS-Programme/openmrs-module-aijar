@@ -267,4 +267,21 @@ public class PatientIdentifierTypes {
         }*/
     };
 
+    public static PatientIdentifierTypeDescriptor RESEARCH_PATIENT_ID = new PatientIdentifierTypeDescriptor() {
+
+        @Override
+        public String name() {
+            return "Research Identifier";
+        }
+
+        @Override
+        public String description() {
+            return "An identifier used for patients within research settings";
+        }
+
+        public String uuid() {
+            return "20653abb-689c-4975-bbfa-00de7b507a95";
+        }
+    };
+
 }

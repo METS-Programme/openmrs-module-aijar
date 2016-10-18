@@ -28,6 +28,9 @@ cat database/mysql_script_header.sql > upgrade/upgrade_1_9_x.sql
 cat database/concept_dictonary_ref.sql >> upgrade/upgrade_1_6_x.sql
 cat database/concept_dictonary_ref.sql >> upgrade/upgrade_1_9_x.sql
 
+# moved phone numbers from to new person attribute
+cat database/1.6_to_1.11_migration_scripts/add_telephones_to_person.sql >> upgrade/upgrade_1_6_x.sql;
+
 # transform encounters from pre-1.11
 cat database/1.6_to_1.11_migration_scripts/transform_encounters_from_old_to_new.sql >> upgrade/upgrade_1_6_x.sql
 cat database/1.6_to_1.11_migration_scripts/transform_encounters_from_old_to_new.sql >> upgrade/upgrade_1_9_x.sql

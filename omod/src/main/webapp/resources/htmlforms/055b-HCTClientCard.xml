@@ -184,7 +184,7 @@
                 <tr>
                     <td>
                         <label>Date:</label>
-                        <encounterDate default="today"/>
+                        <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
                         <span style="display: none;">
                         <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
                                            order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>

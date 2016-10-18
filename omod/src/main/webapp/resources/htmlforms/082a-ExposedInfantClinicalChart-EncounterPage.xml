@@ -650,7 +650,7 @@
                     <tr>
                         <td colspan="2">Date of Visit</td>
                         <td>
-                            <encounterDate default="today"/>
+                            <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
                         </td>
                     </tr>
                     <tr>

@@ -415,7 +415,7 @@
                                      required="true" placeholder="EXP"/>
                         </td>
                         <td><label>Date Chart Opened:</label>
-                            <encounterDate default="today" id="encounterDate"/>
+                            <encounterDate default="today" id="encounterDate" disallowMultipleEncountersOnDate="block"/>
                         </td>
                         <td><label>Entry Point (Clinic/Ward):</label>
                             <obs conceptId="90200"

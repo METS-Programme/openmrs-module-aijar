@@ -307,7 +307,7 @@
                 <tr>
                     <td>
                         <label>Encounter Date</label>
-                        <encounterDate default="today" required="true"/>
+                        <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
                     </td>
                     <td>
                         <label><span class="required">*</span>Service Provider:</label>

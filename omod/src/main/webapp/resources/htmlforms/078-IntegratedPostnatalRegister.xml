@@ -225,7 +225,7 @@
                 <tr>
                     <td>
                         <label>Date</label>
-                        <encounterDate default="today" required="true"/>
+                        <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
                     </td>
                     <td>
                         <label>Attending Clinician:</label>

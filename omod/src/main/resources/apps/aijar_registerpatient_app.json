@@ -76,6 +76,38 @@
                   "cssClasses": [
                     "number", "regex"
                   ]
+                },
+                {
+                  "type": "personAttribute",
+                  "label": "aijar.registrationapp.phonenumber2.question",
+                  "formFieldName": "phoneNumber2",
+                  "uuid": "8c44d411-285f-46c6-9f17-c2f919823b34",
+                  "widget": {
+                    "providerName": "uicommons",
+                    "fragmentId": "field/text",
+                    "config": {
+                      "regex": "^[0-9]{10}$|^$"
+                    }
+                  },
+                  "cssClasses": [
+                    "number", "regex"
+                  ]
+                },
+                {
+                  "type": "personAttribute",
+                  "label": "aijar.registrationapp.phonenumber3.question",
+                  "formFieldName": "phoneNumber3",
+                  "uuid": "a00eda65-2f66-4fda-a683-c1787eb626a9",
+                  "widget": {
+                    "providerName": "uicommons",
+                    "fragmentId": "field/text",
+                    "config": {
+                      "regex": "^[0-9]{10}$|^$"
+                    }
+                  },
+                  "cssClasses": [
+                    "number", "regex"
+                  ]
                 }
               ]
             }

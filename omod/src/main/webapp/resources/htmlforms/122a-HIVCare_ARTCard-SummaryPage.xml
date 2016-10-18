@@ -1651,7 +1651,7 @@
                 <tr>
                     <td>HIV enrolled</td>
                     <td class="HIVCareEnableDisable1">
-                        <encounterDate default="today"/>
+                        <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
                     </td>
                     <td class="checkboxGroup"><span class="enableDisable">
                         <p id="trigger">
