@@ -5,14 +5,12 @@ import org.openmrs.PatientIdentifierType;
 import org.openmrs.api.PatientService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
-import org.openmrs.module.dataintegrity.db.DataIntegrityRule;
 import org.openmrs.module.dataintegrity.rule.RuleDefinition;
-import org.openmrs.module.dataintegrity.rule.BaseRuleDefinition;
 
 /**
  * Base class for RuleDefinitions
  */
-public abstract class BasePatientRuleDefinition implements RuleDefinition<Patient>, BaseRuleDefinition {
+public abstract class BasePatientRuleDefinition implements RuleDefinition<Patient> {
 	
 	/**
 	 * Return the HIV Clinic number for the patient
