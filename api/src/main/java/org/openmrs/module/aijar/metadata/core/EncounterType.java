@@ -20,13 +20,5 @@ public class EncounterType {
         public String uuid() {
             return "fa6f3ff5-b784-43fb-ab35-a08ab7dbf074";
         }
-
-        /*public String format() {
-            return "[X][X][X][\\/][0-9][0-9][0-9][0-9][0-9]";
-        }*/
-
-        public String formatDescription() {
-            return " The first three letters of the facility, followed by / then 5 numbers with no spaces";
-        }
     };
 }
