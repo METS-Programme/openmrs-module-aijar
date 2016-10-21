@@ -1,6 +1,6 @@
 <htmlform formName="HMIS 078 Integrated Postnatal Register"
           formDescription="Entry form for patients enrolled for PNC services"
-          formEncounterType="83ec0462-87ea-4846-ae57-54f426471cf9"
+          formEncounterType="fa6f3ff5-b784-43fb-ab35-a08ab7dbf074"
           formUuid="a6c5a8c3-c414-449f-a077-c2f6acbdd8b1"
           formVersion="1.2"
           formAddMetadata="yes"
@@ -10,7 +10,8 @@
           formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='e9bc61b5-69ff-414b-9cf0-0c22d6dfca2b'"
           formDisplayStyle="Standard"
           formLabel="PNC Register Form">
-    <redirectOnSave url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits"/>
+    <redirectOnSave
+            url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits"/>
     <macros>
         headerColor =#8fabc7
         fontOnHeaderColor = white
@@ -196,7 +197,7 @@
                 });
 
                 jq('[class^="RegimenEnableDisable"]').each(function () {
-                    enable_disable(jq(this), "Regimen", 'selected_value == "oher"', "select");
+                    enable_disable(jq(this), "Regimen", 'selected_value == "other"', "select");
                 });
 
 
@@ -206,6 +207,14 @@
 
                 jq('[class^="ViralLoadEnableDisable"]').each(function () {
                     enable_disable(jq(this), "ViralLoad", 'selected_value != "not detected" &amp;&amp; selected_value!=""', "select");
+                });
+
+                jq('[class^="FamilyPlanningEnableDisable"]').change(function () {
+                    enable_disable(jq(this), "FamilyPlanning", 'selected_value == "other"', "select");
+                });
+
+                jq('[class^="FamilyPlanningEnableDisable"]').each(function () {
+                    enable_disable(jq(this), "FamilyPlanning", 'selected_value == "other"', "select");
                 });
 
             });
@@ -232,7 +241,7 @@
                     </td>
                     <td>
                         <label>Client No:</label>
-                        <patient field="identifier" identifierTypeId="b0cc255e-ef57-4266-839e-0df7f5099eb9"
+                        <patient field="identifier" identifierTypeId="758ef6e4-9ceb-4137-bc8d-9246dc7b41fe"
                                  required="true"/>
                     </td>
                 </tr>
@@ -249,22 +258,22 @@
 
                     <td style="width:15%;">Mother's Name</td>
                     <td style="width: 15%;">
-                        <obs conceptId="99776"/>
+                        <obs conceptId="163142"/>
                     </td>
                     <td style="width:15%;">Father's Name</td>
                     <td colspan="3">
-                        <obs conceptId="99776"/>
+                        <obs conceptId="163143"/>
                     </td>
                 </tr>
 
                 <tr>
                     <td>Village</td>
                     <td>
-                        <obs conceptId="162887"/>
+                        <obs conceptId="99137"/>
                     </td>
                     <td>Parish</td>
                     <td>
-                        <obs conceptId="162888"/>
+                        <obs conceptId="99136"/>
                     </td>
                 </tr>
                 <tr>
@@ -312,26 +321,34 @@
                 <tr>
                     <td rowspan="3">
                         <label></label>
-                        <obs conceptId="374" answerConceptIds="190,5275,5276,5277,5278,5279,5622,780,90089"
-                             answerLabels="Condoms,INTRAUTERINE DEVICE,FEMALE STERILIZATION ,NATURAL FAMILY PLANNING,DIAPHRAGM,INJECTABLE CONTRACEPTIVES,OTHER NON-CODED ,ORAL CONTRACEPTION,TUBAL LIGATION"/>
+                        <span class="FamilyPlanningEnableDisable1">
+                        <obs conceptId="374" answerConceptIds="163144,163145,163148,163147,780,163146,5275,5279,5277,5276,90088,162961,5622"
+                             answerLabels="Oral:Lo-Femenal,Oral: Microgynon,Oral: Ovrette,Oral:Others,Female Condoms,Male Condoms,IUDs,Injectable,Natual,Female Sterilization,Male Sterilization,Implant,Other"/>
+                        </span>
+                        <span class="FamilyPlanningEnableDisableChild1">
+                            <obs conceptId="5281"/>
+                            </span>
                     </td>
                     <td rowspan="3">
                         <obs conceptId="99349" answerConceptIds="99345,99346" answerLabels="FOM,SS"/>
                     </td>
                     <td rowspan="3">
-                        <obs conceptId="99350" answerConceptIds="99347,99348" answerLabels="FOM,SS"/>
+                        <obs conceptId="99350" answerConceptIds="99347,99348" answerLabels="FOM - Cervix is free of malignancy,S S- Cervix is suspicious of malignancy"/>
                     </td>
                     <td>
                         <label>Weight(kg)</label>
-                        <obs conceptId="90236"/>
+                        <obs conceptId="5089"/>
                     </td>
                     <td rowspan="3">
-                        <obs conceptId="99317" answerConceptIds="99313,99314,99315,99316" answerLabels="C,TR,TRR, TRRDm"
-                             style="dropdown"/>
+                        <obs conceptId="99317" labelText="" id="ARVSEnableDisable1"
+                             answerConceptIds="99313,99734,99314,99315,99735,99736,99737,99738,99739,99741"
+                             answerLabels="C,T,TR,TRR,TR&#8730;,TRR&#8730;,TRK,TRRK,TR+,TRR+"/>
+
                     </td>
                     <td rowspan="3">
-                        <obs conceptId="99317" answerConceptIds="99313,99314,99315,99316" answerLabels="C,TR,TRR, TRRDm"
-                             style="dropdown"/>
+                        <obs conceptId="99342" labelText=""
+                             answerConceptIds="99313,99734,99314,99315,99735,99736,99737,99738,99739,99741"
+                             answerLabels="C,T,TR,TRR,TR&#8730;,TRR&#8730;,TRK,TRRK,TR+,TRR+"/>
                     </td>
                     <td rowspan="2" class="RegimenEnableDisable1" style="width:3%;">
                         <obs id="br" conceptId="90315" labelText="ARVs:"
@@ -390,7 +407,7 @@
                     <th colspan="4">Routine <br/>Administration</th>
                     <th rowspan="3">Diagnosis</th>
                     <th rowspan="3">WHO Clinical Stage/<br/>Viral Load/<br/>CD4</th>
-                    <th rowspan="3">Other <br/>treatments</th>
+                    <th rowspan="3">Other Treatments</th>
                 </tr>
                 <tr>
                     <th rowspan="2">
@@ -411,28 +428,29 @@
 
                 <tbody>
                 <tr>
+                        <td rowspan="3">
+                            <obs conceptId="162394" answerConceptId="5843" answerLabel="" />
+                        </td>
+                        <td rowspan="3">
+                            <obs conceptId="162394" answerConceptId="257" answerLabel="" />
+                        </td>
+                        <td rowspan="3">
+                            <obs conceptId="162394" answerConceptId="99356" answerLabel=""/>
+                        </td>
+                        <td rowspan="3">
+                            <obs conceptId="162394" answerConceptId="90168" answerLabel=""/>
+                        </td>
                     <td rowspan="3">
-                        <obs conceptId="99351" style="checkbox"/>
-                    </td>
-                    <td rowspan="3">
-                        <obs conceptId="99351" style="checkbox"/>
-                    </td>
-                    <td rowspan="3">
-                        <obs conceptId="99351" style="checkbox"/>
-                    </td>
-                    <td rowspan="3">
-                        <obs conceptId="99351" style="checkbox"/>
-                    </td>
-                    <td rowspan="3">
-                        <obs conceptId="99321"/>
+                        <obs conceptId="99321" style="textarea" rows="10" cols="40"/>
                     </td>
                     <td>
                         <obs id="br" conceptId="90203"
                              answerConceptIds="90033,90034,90035,90036,90293,90294,90295,90296"
                              answerLabels="1,2,3,4,T1,T2,T3,T4" labelText="WHo Clinic Stage"/>
                     </td>
+
                     <td rowspan="3">
-                        <obs style="textarea" rows="10" cols="50" conceptId="99648"/>
+                        <obs style="textarea" rows="10" cols="40" conceptId="99320"/>
                     </td>
                 </tr>
 
@@ -475,7 +493,7 @@
                         <div class="rotate-text">WT</div>
                     </th>
                     <th rowspan="3">
-                        <div class="rotate-text">Diagnosis</div>
+                        <div>Diagnosis</div>
                     </th>
                     <th>Infant Feeding Options</th>
                     <th colspan="5">Immunisation</th>
@@ -496,13 +514,13 @@
                 <tbody>
                 <tr>
                     <td rowspan="3">
-                        <obs conceptId="99354" answerConceptIds="99353,163031,163032" answerLabels="Alive,NND7,NND28"/>
+                        <obs conceptId="99354" answerConceptIds="99353,163140,163141" answerLabels="Alive,NND7,NND28"/>
                     </td>
                     <td rowspan="3">
                         <obs conceptId="90236"/>
                     </td>
                     <td rowspan="3">
-                        <obs conceptId="99321"/>
+                        <obs conceptId="99355" style="textarea" rows="10" cols="40"/>
                     </td>
                     <td>
                         <obs conceptId="1151" answerConceptIds="5526,99089,6046" answerLabels="EBF,RF,MF"/>
@@ -547,7 +565,7 @@
                 </thead>
                 <tbody>
                 <td>
-                    <obs conceptId="99320" style="textarea" rows="10" cols="50"/>
+                    <obs conceptId="99648" style="textarea" rows="10" cols="50"/>
                 </td>
                 <td>
                     <obs conceptId="99322" id="br" labelText="Reffered" answerConceptIds="99764,99763"
@@ -558,6 +576,15 @@
                 </tbody>
             </table>
 
+
+        </section>
+        <section>
+            <table>
+                <tr><td>
+
+
+                </td></tr>
+            </table>
         </section>
     </div>
     <section>
