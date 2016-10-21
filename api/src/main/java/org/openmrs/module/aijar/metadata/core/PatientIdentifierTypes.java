@@ -189,6 +189,28 @@ public class PatientIdentifierTypes {
         }
     };
 
+    public static PatientIdentifierTypeDescriptor PNC_NUMBER = new PatientIdentifierTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Postnatal Care No.";
+        }
+
+        @Override
+        public String description() {
+            return "This is the unique serial number given to the child during postnatal visits";
+        }
+
+        public String uuid() {
+            return "758ef6e4-9ceb-4137-bc8d-9246dc7b41fe";
+        }
+
+        public String formatDescription() {
+            return "Begins with 1 at the beginning of the financial year (July)";
+        }
+    };
+
+
+
 
     public static PatientIdentifierTypeDescriptor HCT_NUMBER = new PatientIdentifierTypeDescriptor() {
         @Override

@@ -154,10 +154,6 @@
                         </span>
                     </td>
                     <td>
-                        <label><span class="required">*</span>Clinic Team Leader:</label>
-                        <encounterProvider role="Provider" style="autocomplete"/>
-                    </td>
-                    <td>
                         <label>IPD Number:</label>
                         <patient field="identifier" identifierTypeId="a6217c17-5012-4514-b9f2-5d02d3d04c44"
                                  required="true"/>
@@ -278,7 +274,7 @@
                     </td>
                     <td>
                         <label style="text-align: left">Vit A Suppliment</label>
-                        <obs conceptId="99356" style="checkbox"/>
+                        <obs conceptId="162933" style="checkbox"/>
                     </td>
                 </tr>
                 <tr>
