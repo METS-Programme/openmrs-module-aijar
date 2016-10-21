@@ -5,7 +5,7 @@ import org.openmrs.module.metadatadeploy.descriptor.EncounterTypeDescriptor;
 /**
  * Created by lubwamasamuel on 18/10/16.
  */
-public class EncounterType {
+public class EncounterTypes {
     public static EncounterTypeDescriptor PCN_ENCOUNTER_TYPE = new EncounterTypeDescriptor() {
         @Override
         public String name() {

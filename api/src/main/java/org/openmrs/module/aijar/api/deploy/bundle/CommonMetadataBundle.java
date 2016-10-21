@@ -1,10 +1,9 @@
 package org.openmrs.module.aijar.api.deploy.bundle;
 
-import org.openmrs.module.aijar.metadata.core.EncounterType;
+import org.openmrs.module.aijar.metadata.core.EncounterTypes;
 import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
 import org.openmrs.module.aijar.metadata.core.PersonAttributeTypes;
 import org.openmrs.module.metadatadeploy.bundle.AbstractMetadataBundle;
-import org.openmrs.module.metadatadeploy.descriptor.EncounterTypeDescriptor;
 import org.springframework.stereotype.Component;
 
 /**
@@ -47,6 +46,6 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
 
         //Install Encounter Type
         log.info("Installing EncounterTypes");
-        install(EncounterType.PCN_ENCOUNTER_TYPE);
+        install(EncounterTypes.PCN_ENCOUNTER_TYPE);
     }
 }
