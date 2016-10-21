@@ -197,7 +197,7 @@
                 });
 
                 jq('[class^="RegimenEnableDisable"]').each(function () {
-                    enable_disable(jq(this), "Regimen", 'selected_value == "oher"', "select");
+                    enable_disable(jq(this), "Regimen", 'selected_value == "other"', "select");
                 });
 
 
@@ -207,6 +207,14 @@
 
                 jq('[class^="ViralLoadEnableDisable"]').each(function () {
                     enable_disable(jq(this), "ViralLoad", 'selected_value != "not detected" &amp;&amp; selected_value!=""', "select");
+                });
+
+                jq('[class^="FamilyPlanningEnableDisable"]').change(function () {
+                    enable_disable(jq(this), "FamilyPlanning", 'selected_value == "other"', "select");
+                });
+
+                jq('[class^="FamilyPlanningEnableDisable"]').each(function () {
+                    enable_disable(jq(this), "FamilyPlanning", 'selected_value == "other"', "select");
                 });
 
             });
@@ -313,14 +321,19 @@
                 <tr>
                     <td rowspan="3">
                         <label></label>
-                        <obs conceptId="374" answerConceptIds="190,5275,5276,5277,5278,5279,5622,780,90089"
-                             answerLabels="Condoms,INTRAUTERINE DEVICE,FEMALE STERILIZATION ,NATURAL FAMILY PLANNING,DIAPHRAGM,INJECTABLE CONTRACEPTIVES,OTHER NON-CODED ,ORAL CONTRACEPTION,TUBAL LIGATION"/>
+                        <span class="FamilyPlanningEnableDisable1">
+                        <obs conceptId="374" answerConceptIds="163144,163145,163148,163147,780,163146,5275,5279,5277,5276,90088,162961,5622"
+                             answerLabels="Oral:Lo-Femenal,Oral: Microgynon,Oral: Ovrette,Oral:Others,Female Condoms,Male Condoms,IUDs,Injectable,Natual,Female Sterilization,Male Sterilization,Implant,Other"/>
+                        </span>
+                        <span class="FamilyPlanningEnableDisableChild1">
+                            <obs conceptId="5281"/>
+                            </span>
                     </td>
                     <td rowspan="3">
                         <obs conceptId="99349" answerConceptIds="99345,99346" answerLabels="FOM,SS"/>
                     </td>
                     <td rowspan="3">
-                        <obs conceptId="99350" answerConceptIds="99347,99348" answerLabels="FOM,SS"/>
+                        <obs conceptId="99350" answerConceptIds="99347,99348" answerLabels="FOM - Cervix is free of malignancy,S S- Cervix is suspicious of malignancy"/>
                     </td>
                     <td>
                         <label>Weight(kg)</label>
@@ -563,6 +576,15 @@
                 </tbody>
             </table>
 
+
+        </section>
+        <section>
+            <table>
+                <tr><td>
+
+
+                </td></tr>
+            </table>
         </section>
     </div>
     <section>
