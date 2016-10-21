@@ -50,6 +50,10 @@ cat database/1.6_to_1.11_migration_scripts/add_telephones_to_person.sql >> upgra
 cat database/enable_birt_report_function.sql >> upgrade/upgrade_1_6_x.sql
 cat database/enable_birt_report_function.sql >> upgrade/upgrade_1_9_x.sql
 
+# update report objects in the database to match the ones in the BIRT folder
+cat database/update_birt_report_objects.sql >> upgrade/upgrade_1_6_x.sql
+cat database/update_birt_report_objects.sql >> upgrade/upgrade_1_9_x.sql
+
 # cleans up the data integrity module which will be re-installed
 cat database/cleanup_data_integrity_module.sql >> upgrade/upgrade_1_6_x.sql
 cat database/cleanup_data_integrity_module.sql >> upgrade/upgrade_1_9_x.sql

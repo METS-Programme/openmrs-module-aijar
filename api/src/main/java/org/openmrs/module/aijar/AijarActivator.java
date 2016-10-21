@@ -216,7 +216,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         // set the HIV care number and EID number as additional identifiers that can be searched for
         properties.add(new GlobalProperty(EmrApiConstants.GP_EXTRA_PATIENT_IDENTIFIER_TYPES,
                 PatientIdentifierTypes.HIV_CARE_NUMBER.uuid() + "," + PatientIdentifierTypes.EXPOSED_INFANT_NUMBER.uuid()
-                        + "," + PatientIdentifierTypes.IPD_NUMBER.uuid() + "," + PatientIdentifierTypes.ANC_NUMBER.uuid()
+                        + "," + PatientIdentifierTypes.IPD_NUMBER.uuid() + "," + PatientIdentifierTypes.ANC_NUMBER.uuid()+ "," + PatientIdentifierTypes.PNC_NUMBER.uuid()
                         + "," + PatientIdentifierTypes.HCT_NUMBER.uuid() + ART_Patient_Number_Identifier + Research_Patient_Identifier));
 
         // set the name of the application
