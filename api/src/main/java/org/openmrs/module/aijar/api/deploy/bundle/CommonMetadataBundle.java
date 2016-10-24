@@ -3,6 +3,7 @@ package org.openmrs.module.aijar.api.deploy.bundle;
 import org.openmrs.module.aijar.metadata.core.EncounterTypes;
 import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
 import org.openmrs.module.aijar.metadata.core.PersonAttributeTypes;
+import org.openmrs.module.aijar.metadata.core.Roles;
 import org.openmrs.module.metadatadeploy.bundle.AbstractMetadataBundle;
 import org.springframework.stereotype.Component;
 
@@ -43,6 +44,11 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(PersonAttributeTypes.TELEPHONE_NUMBER_2);
         install(PersonAttributeTypes.TELEPHONE_NUMBER_3);
         log.info("Person AttributeTypes installed");
+        
+        // install roles
+        log.info("Installing roles");
+        install(Roles.MID_WIFE);
+        log.info("Roles installed");
 
         //Install Encounter Type
         log.info("Installing EncounterTypes");

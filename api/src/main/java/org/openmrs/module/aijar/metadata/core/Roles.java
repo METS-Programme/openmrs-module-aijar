@@ -60,5 +60,28 @@ public class Roles {
             return "f92705e3-6d34-4010-8ad3-b0ea80dab141";
         }
     };
+    
+    public static RoleDescriptor MID_WIFE = new RoleDescriptor() {
+    
+        @Override
+        public String role() {
+            return "Midwife";
+        }
+    
+        @Override
+        public String description() {
+            return "Midwife role for Maternity";
+        }
+    
+        @Override
+        public List<PrivilegeDescriptor> privileges() {
+            return null;
+        }
+    
+        @Override
+        public String uuid() {
+            return "28de5e93-5462-4e25-8a6a-a980b637dc61";
+        }
+    };
 
 }
