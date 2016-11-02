@@ -77,10 +77,6 @@ public class PatientIdentifierTypes {
                     + "the Birth "
                     + "Cohort number";
         }
-
-        /*public Class<? extends IdentifierValidator> validator() {
-            return EIDIdentifierValidator.class;
-        }*/
     };
 
 
@@ -160,10 +156,6 @@ public class PatientIdentifierTypes {
             return "a6217c17-5012-4514-b9f2-5d02d3d04c44";
         }
 
-        /*public String format() {
-            return "^\\d+$";
-        }*/
-
         public String formatDescription() {
             return "Begins with 1 at the beginning of the financial year (July)";
         }
@@ -189,6 +181,25 @@ public class PatientIdentifierTypes {
         }
     };
 
+    public static PatientIdentifierTypeDescriptor PNC_NUMBER = new PatientIdentifierTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Postnatal Care No.";
+        }
+
+        @Override
+        public String description() {
+            return "This is the unique serial number given to the child during postnatal visits";
+        }
+
+        public String uuid() {
+            return "758ef6e4-9ceb-4137-bc8d-9246dc7b41fe";
+        }
+
+        public String formatDescription() {
+            return "Begins with 1 at the beginning of the financial year (July)";
+        }
+    };
 
     public static PatientIdentifierTypeDescriptor HCT_NUMBER = new PatientIdentifierTypeDescriptor() {
         @Override
@@ -202,11 +213,7 @@ public class PatientIdentifierTypes {
         }
 
         public String uuid() { return "c9e42035-7112-45b3-bfcf-4b37e1091dd4"; }
-
-        /*public String format() {
-            return "[0-9]{4}[\\/][1][4-9]";
-        }*/
-
+        
         public String formatDescription() {
             return "Begins with 1 at the beginning of the financial year (July), has 4 "
                     + "digits followed by a / then 2 digits for the year";
@@ -229,13 +236,6 @@ public class PatientIdentifierTypes {
 			return "8110f2d2-1f98-4c38-aef3-11b19bb0a589";
 		}
 
-		// TODO: The current format of the district TB number has been limited to cases from 2010 to 2019, but this can be
-		// rectified
-		// later
-        /*public String format() {
-            return "[X][X][X][\\/][0-9][0-9][0-9][\\/][1][0-9]";
-		}*/
-
 		public String formatDescription() {
 			return " The first three letters of the district, followed by / then 3 digits of the case number then / then "
 					+ "two digits for the year";
@@ -257,14 +257,7 @@ public class PatientIdentifierTypes {
         public String uuid() {
             return "f0c16a6d-dc5f-4118-a803-616d0075d282";
         }
-
-        /*public String format() {
-            return "[C][M][0-9a-zA-Z]{12}";
-        }
-
-        public String formatDescription() {
-            return "No spaces mix of numbers and letters";
-        }*/
+        
     };
 
     public static PatientIdentifierTypeDescriptor RESEARCH_PATIENT_ID = new PatientIdentifierTypeDescriptor() {
@@ -281,6 +274,23 @@ public class PatientIdentifierTypes {
 
         public String uuid() {
             return "20653abb-689c-4975-bbfa-00de7b507a95";
+        }
+    };
+    
+    public static PatientIdentifierTypeDescriptor SMC_CLIENT_NUMBER = new PatientIdentifierTypeDescriptor() {
+        
+        @Override
+        public String name() {
+            return "Safe Male Circumcision Client Number";
+        }
+        
+        @Override
+        public String description() {
+            return "An identifier used for patients who undergo safe male circumcision";
+        }
+        
+        public String uuid() {
+            return "37601abe-2ee0-4493-8ac7-22b4972190cf";
         }
     };
 

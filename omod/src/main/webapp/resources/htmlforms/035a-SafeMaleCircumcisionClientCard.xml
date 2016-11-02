@@ -1,5 +1,5 @@
 <htmlform formName="HMIS 035a Safe Male Circumcision Client Card"
-          formDescription="Card for Capturing Patients undergoing circumcision"
+          formDescription="Captures clients undergoing safe male circumcision"
           formEncounterType="244da86d-f80e-48fe-aba9-067f241905ee"
           formUuid="9d9193e7-b038-4c44-a7a3-830baa288565"
           formVersion="1.2"
@@ -12,7 +12,6 @@
           formLabel="SMC Client Card">
     <redirectOnSave
             url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits"/>
-
     <style>
 
         form label, .form label {
@@ -338,6 +337,10 @@
                         <label>National ID:</label>
                         <patient field="identifier" identifierTypeId="f0c16a6d-dc5f-4118-a803-616d0075d282"
                                  required="false"/>
+                    </td>
+                    <td>
+                        <label>Serial ID:</label>
+                        <patient field="identifier" identifierTypeId="37601abe-2ee0-4493-8ac7-22b4972190cf"/>
                     </td>
                 </tr>
                 </tbody>
@@ -999,4 +1002,18 @@
             <submit/>
         </section>
     </div>
+<!-- End of HTML Form -->
+    <ifMode mode="EDIT" include="false">
+        <lookup complexExpression="
+            #set( $encounter = 0 )
+            #set( $encounter = $fn.latestEncounter('244da86d-f80e-48fe-aba9-067f241905ee'))
+            #if( $encounter != 0 )
+                &lt;script type=&quot;text/javascript&quot;>
+                        if (window.location.href.indexOf('/module/htmlformentry/htmlForm.form') == -1) {
+
+                           window.location.href = window.location.protocol + &quot;//&quot; + window.location.host + &quot;/&quot;+ OPENMRS_CONTEXT_PATH + &quot;/htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=$encounter.patientId&amp;visitId=$encounter.visit.visitId&amp;formUuid=9d9193e7-b038-4c44-a7a3-830baa288565&amp;encounterId=$encounter.encounterId&amp;returnUrl=%2F&quot; + OPENMRS_CONTEXT_PATH + &quot;%2Fcoreapps%2Fclinicianfacing%2Fpatient.page%3FpatientId%3D$encounter.patientId&quot;;
+                        }
+                &lt;/script>
+            #end"/>
+    </ifMode>
 </htmlform>

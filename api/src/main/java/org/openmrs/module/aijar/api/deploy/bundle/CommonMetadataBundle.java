@@ -1,7 +1,9 @@
 package org.openmrs.module.aijar.api.deploy.bundle;
 
+import org.openmrs.module.aijar.metadata.core.EncounterTypes;
 import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
 import org.openmrs.module.aijar.metadata.core.PersonAttributeTypes;
+import org.openmrs.module.aijar.metadata.core.Roles;
 import org.openmrs.module.metadatadeploy.bundle.AbstractMetadataBundle;
 import org.springframework.stereotype.Component;
 
@@ -26,11 +28,13 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(PatientIdentifierTypes.OPENMRS_IDENTIFICATION_NUMBER);
         install(PatientIdentifierTypes.EXPOSED_INFANT_NUMBER);
         install(PatientIdentifierTypes.ANC_NUMBER);
+        install(PatientIdentifierTypes.PNC_NUMBER);
         install(PatientIdentifierTypes.IPD_NUMBER);
         install(PatientIdentifierTypes.HCT_NUMBER);
         install(PatientIdentifierTypes.NATIONAL_ID);
         install(PatientIdentifierTypes.ART_PATIENT_NUMBER);
         install(PatientIdentifierTypes.RESEARCH_PATIENT_ID);
+        install(PatientIdentifierTypes.SMC_CLIENT_NUMBER);
         log.info("Patient IdentifierTypes installed");
 
         // install person attribute types
@@ -41,5 +45,14 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(PersonAttributeTypes.TELEPHONE_NUMBER_2);
         install(PersonAttributeTypes.TELEPHONE_NUMBER_3);
         log.info("Person AttributeTypes installed");
+        
+        // install roles
+        log.info("Installing roles");
+        install(Roles.MID_WIFE);
+        log.info("Roles installed");
+
+        //Install Encounter Type
+        log.info("Installing EncounterTypes");
+        install(EncounterTypes.PNC_ENCOUNTER_TYPE);
     }
 }

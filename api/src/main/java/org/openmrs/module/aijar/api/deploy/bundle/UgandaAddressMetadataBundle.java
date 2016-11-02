@@ -33,13 +33,12 @@ public class UgandaAddressMetadataBundle extends AddressMetadataBundle {
     @Override
     public List<String> getLineByLineFormat() {
         List<String> l = new ArrayList<String>();
-        l.add("address1");
-        l.add("address2");
-        l.add("address3");
-        l.add("address4, address5");
-        l.add("stateProvince");
-        l.add("countyDistrict");
         l.add("country");
+        l.add("countyDistrict");
+        l.add("stateProvince");
+        l.add("address3");
+        l.add("address4");
+        l.add("address5");
         return l;
     }
 
