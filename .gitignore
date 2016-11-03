@@ -2,6 +2,7 @@
 
 # Scripts for installer
 /tools/src/main/resources/upgrade/*.sql
+/tools/src/main/resources/new_install/*.sql
 
 # Created by .ignore support plugin (hsz.mobi)
 .DS_Store
@@ -94,3 +95,4 @@ local.properties
 .texlipse
 
 # Created by .ignore support plugin (hsz.mobi)
+omod/src/main/webapp/resources/js/Reserve.js

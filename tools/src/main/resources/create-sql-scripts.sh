@@ -2,21 +2,27 @@
 
 # Turns off foreign key cheks to speed up script execution
 cat database/openmrs-platform.sql > upgrade/new-install.sql
+cat database/openmrs-platform.sql > new_install/new-install.sql
 
 # Turns off foreign key cheks to speed up script execution
 cat database/mysql_script_header.sql >> upgrade/new-install.sql
+cat database/mysql_script_header.sql >> new_install/new-install.sql
 
 # adds the current concept dictionary
 cat database/concept_dictonary_ref.sql >> upgrade/new-install.sql
+cat database/concept_dictonary_ref.sql >> new_install/new-install.sql
 
 # adds functions and procedures for BIRT reports
 cat database/enable_birt_report_function.sql >> upgrade/new-install.sql
+cat database/enable_birt_report_function.sql >> new_install/new-install.sql
 
 # cleans up the data integrity module which will be re-installed
 cat database/cleanup_data_integrity_module.sql >> upgrade/new-install.sql
+cat database/cleanup_data_integrity_module.sql >> new_install/new-install.sql
 
 # Turns on foreign key checks
 cat database/mysql_script_footer.sql >> upgrade/new-install.sql
+cat database/mysql_script_footer.sql >> new_install/new-install.sql
 
 # Create an SQL script for an upgrade
 
