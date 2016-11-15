@@ -764,8 +764,8 @@
                         Viral Load Results
                         <br/>
                         <span class="ViralLoadEnableDisable1">
-                        <obs id="br" conceptId="1305" answerConceptIds="1301,1306"
-                             answerLabels="Detected,Not Detected"/>
+                        <obs id="br" conceptId="1305" answerConceptIds="1301,1306,1304"
+                             answerLabels="Detected,Not Detected, Sample Rejected"/>
                         </span>
                         <br/>
                         <span class="ViralLoadEnableDisableChild1">
