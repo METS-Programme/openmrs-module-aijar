@@ -32,11 +32,11 @@
 	    </li>
 		<li>
 			<div>
-				${ ui.message("ugandaemr.creator") }
+				Entered by
 				<strong class="creator">
 					{{- encounter.creator}}
 				</strong>
-				${ ui.message("ugandaemr.datecreated") }
+				on
 				<strong>{{- encounter.dateCreated }}</strong>
 			</div>
 		</li>
