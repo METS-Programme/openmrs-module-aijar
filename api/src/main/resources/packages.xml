@@ -3,13 +3,6 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
 -->
 <org.openmrs.module.emrapi.metadata.MetadataPackagesConfig>
 	<packages>
-
-		<!--<org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
-			<filenameBase>metadata/Uganda_Concepts</filenameBase>
-			<groupUuid>5e8a2a82-5485-465c-88a4-d9ff80556ac4</groupUuid>
-			<version>3</version>
-			<importMode>MIRROR</importMode>
-		</org.openmrs.module.emrapi.metadata.MetadataPackageConfig>-->
 		<org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 			<filenameBase>metadata/Location_and_Location_Tags</filenameBase>
 			<groupUuid>37eaf3e2-ad9d-47d3-902b-f3f2f3c50c30</groupUuid>
