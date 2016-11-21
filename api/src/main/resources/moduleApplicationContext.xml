@@ -18,7 +18,7 @@
   		    http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
 	<!-- Add here beans related to the API context -->
-
+	<context:component-scan base-package="${project.parent.groupId}.${project.parent.artifactId}"/>
 	
 	<!-- Services accessible via Context.getService() -->
 	<bean parent="serviceContext">

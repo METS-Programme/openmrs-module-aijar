@@ -36,4 +36,12 @@ jq(document).ready(function () {
     }, "Please specify a valid mobile number without any spaces like 0712345678" );
 });
 
+/**
+ * Changes a field date in the format yy-mm-dd to dd/mm/yy which eas
+ * @param dateValue
+ */
+function changeFieldDateToJavascriptDate(dateValue) {
+    return jq.datepicker.formatDate('dd/mm/yy', jq.datepicker.parseDate('yy-mm-dd', dateValue));
+}
+
 
