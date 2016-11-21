@@ -13,7 +13,7 @@ set Sec=%dt:~12,2%
 set stamp=%YYYY%-%MM%-%DD%_%HH%-%Min%-%Sec%
 ECO
 @echo Backingup exisiting openmrs database
-@mysqldump  -u openmrs -popenmrs --opt --routines openmrs > openmrs_reset_backup-%stamp%.sql
+@mysqldump  -u openmrs -popenmrs --opt --routines openmrs > openmrs_reset_backup_%stamp%.sql
 
 @REM Resetting openmrs database to default for UgandaEMR
 @echo Database backup done close this window
