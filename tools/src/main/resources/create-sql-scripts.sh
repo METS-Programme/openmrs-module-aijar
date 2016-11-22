@@ -18,7 +18,7 @@ cat database/cleanup_data_integrity_module.sql >> upgrade/new-install.sql
 # Turns on foreign key checks
 cat database/mysql_script_footer.sql >> upgrade/new-install.sql
 
-#Copying new-install to new_install directory
+#Copying new-install.sql to new_install directory
 cp upgrade/new-install.sql new_install/
 
 # Create an SQL script for an upgrade
