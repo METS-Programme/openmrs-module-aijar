@@ -10,7 +10,7 @@
         <option value ="dc96e101-30ab-102d-86b0-7a5022ba4115">2 - Living Together</option>
         <option value ="dcd70b18-30ab-102d-86b0-7a5022ba4115">3 - Married</option>
         <option value ="dcd743c3-30ab-102d-86b0-7a5022ba4115">4 - Divorced/Separated</option>
-        <option value ="dcd77876-30ab-102d-86b0-7a5022ba4115">6 - Widowed</option>
+        <option value ="dcd77876-30ab-102d-86b0-7a5022ba4115">5 - Widowed</option>
     </select>
     <span class="field-error"></span>
 </p>
