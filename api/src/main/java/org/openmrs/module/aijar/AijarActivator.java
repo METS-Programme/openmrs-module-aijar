@@ -36,7 +36,6 @@ import org.openmrs.module.emrapi.utils.MetadataUtil;
 import org.openmrs.module.idgen.IdentifierSource;
 import org.openmrs.module.idgen.service.IdentifierSourceService;
 import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
-import org.openmrs.module.reporting.common.ObjectUtil;
 import org.openmrs.notification.AlertService;
 import org.openmrs.ui.framework.resource.ResourceFactory;
 import org.openmrs.util.OpenmrsUtil;
@@ -315,7 +314,8 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 
     private void removeOldChangeLocksForDataIntegrityModule() {
         String gpVal = Context.getAdministrationService().getGlobalProperty("dataintegrity.database_version");
-        if (ObjectUtil.isNull(gpVal)) {
+        // remove data integrity locks for an version below 4
+        if ((gpVal == null) || Integer.parseInt(gpVal) < 4){
             AdministrationService as = Context.getAdministrationService();
             log.warn("Removing liquibase change log locks for previously installed data integrity instance");
             as.executeSQL("delete from liquibasechangelog WHERE ID like 'dataintegrity%';", false);

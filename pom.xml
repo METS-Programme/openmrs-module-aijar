@@ -55,19 +55,18 @@
 		<appframeworkVersion>2.9</appframeworkVersion>
 		<appuiVersion>1.7</appuiVersion>
 		<calculationVersion>1.2</calculationVersion>
-		<dataexchangeVersion>1.3.1</dataexchangeVersion>
+		<dataexchangeVersion>1.3.2</dataexchangeVersion>
 		<emrapiVersion>1.18</emrapiVersion>
-		<formentryappVersion>1.2</formentryappVersion>
+		<formentryappVersion>1.3</formentryappVersion>
 		<htmlformentryuiVersion>1.6.1</htmlformentryuiVersion>
 		<htmlformentryVersion>3.3.0</htmlformentryVersion>
 		<idgenVersion>4.4.0</idgenVersion>
 		<junitParamsVersion>1.0.4</junitParamsVersion>
 		<referenceapplicationVersion>2.5</referenceapplicationVersion>
-		<reportingVersion>0.10.4</reportingVersion>
 		<registrationcoreVersion>1.6</registrationcoreVersion>
 		<registrationappVersion>1.6</registrationappVersion>
 		<metadatadeployVersion>1.7</metadatadeployVersion>
-		<metadatamappingVersion>1.2.0</metadatamappingVersion>
+		<metadatamappingVersion>1.2.1</metadatamappingVersion>
 		<metadatasharingVersion>1.2.2</metadatasharingVersion>
 		<serializationxstreamVersion>0.2.12</serializationxstreamVersion>
 		<uiframeworkVersion>3.9</uiframeworkVersion>
@@ -103,13 +102,6 @@
 				<groupId>org.openmrs.web</groupId>
 				<artifactId>openmrs-web</artifactId>
 				<version>${openMRSVersion}</version>
-				<type>jar</type>
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.openmrs.module</groupId>
-				<artifactId>reporting-api</artifactId>
-				<version>${reportingVersion}</version>
 				<type>jar</type>
 				<scope>provided</scope>
 			</dependency>
