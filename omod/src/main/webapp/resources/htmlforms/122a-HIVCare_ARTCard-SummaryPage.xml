@@ -126,7 +126,6 @@
 
                 if (class_name.indexOf('Child') == -1) {
                     /*group.find("input").attr("value", ""); */
-                    group.find("input").attr("required", requires);
                     /* group.find('select').prop("selectedIndex", 0);*/
                     group.find("input").attr("disabled", disable);
                     group.find('select').attr("disabled", disable);
