@@ -315,7 +315,8 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
     private void removeOldChangeLocksForDataIntegrityModule() {
         String gpVal = Context.getAdministrationService().getGlobalProperty("dataintegrity.database_version");
         // remove data integrity locks for an version below 4
-        if ((gpVal == null) || Integer.parseInt(gpVal) < 4){
+        // some gymnastics to get the major version number from semver like 2.5.3
+        if ((gpVal == null) || new Integer(gpVal.substring(0, gpVal.indexOf("."))).intValue() < 4){
             AdministrationService as = Context.getAdministrationService();
             log.warn("Removing liquibase change log locks for previously installed data integrity instance");
             as.executeSQL("delete from liquibasechangelog WHERE ID like 'dataintegrity%';", false);
