@@ -48,6 +48,9 @@
         <require_module>
             org.openmrs.module.dataexchange
         </require_module>
+		<require_module>
+			org.openmrs.module.dataintegrity
+		</require_module>
         <require_module>
             org.openmrs.module.emrapi
         </require_module>
