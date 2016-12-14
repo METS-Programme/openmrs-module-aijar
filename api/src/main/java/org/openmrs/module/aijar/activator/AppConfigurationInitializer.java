@@ -37,7 +37,7 @@ public class AppConfigurationInitializer implements Initializer {
 			// set the AutoClose visits tasks to start automatically
 			TaskDefinition autoCloseVisitsTask = (TaskDefinition) schedulerService.getTaskByName("Auto Close Visits Task");
 			autoCloseVisitsTask.setStartOnStartup(true);
-			schedulerService.saveTask(autoCloseVisitsTask);
+			schedulerService.saveTaskDefinition(autoCloseVisitsTask);
 			
 			// check the Database Backup Task
 			TaskDefinition backupDatabase = (TaskDefinition) schedulerService.getTaskByName("Database Backup Task");
@@ -54,7 +54,7 @@ public class AppConfigurationInitializer implements Initializer {
 					 backupDatabase.setStartTime(ugandaEMRCalendar.getTime());
 					 log.info("UgandaEMR backup time set");
 				 }
-				 schedulerService.saveTask(backupDatabase);
+				 schedulerService.saveTaskDefinition(backupDatabase);
 				 log.info("Database Backup Task set to start on Startup");
 			 }
  		}

@@ -47,15 +47,15 @@
 	</modules>
 
 	<properties>
-		<openMRSVersion>1.11.7</openMRSVersion>
+		<openMRSVersion>1.11.5</openMRSVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<!-- module version defeinitions -->
-		<addresshierarchyVersion>2.9</addresshierarchyVersion>
-		<appframeworkVersion>2.9</appframeworkVersion>
+		<addresshierarchyVersion>2.7</addresshierarchyVersion>
+		<appframeworkVersion>2.4</appframeworkVersion>
 		<appuiVersion>1.7</appuiVersion>
 		<calculationVersion>1.2</calculationVersion>
-		<dataintegrityVersion>4.2.0</dataintegrityVersion>
+		<dataintegrityVersion>4.2.3</dataintegrityVersion>
 		<dataexchangeVersion>1.3.2</dataexchangeVersion>
 		<emrapiVersion>1.18</emrapiVersion>
 		<eventVersion>2.5</eventVersion>
@@ -70,12 +70,10 @@
 		<registrationappVersion>1.6</registrationappVersion>
 		<reportingVersion>0.10.2</reportingVersion>
 		<metadatadeployVersion>1.7</metadatadeployVersion>
-		<metadatamappingVersion>1.2.1</metadatamappingVersion>
-		<metadatasharingVersion>1.2.2</metadatasharingVersion>
-		<providermanagementVersion>2.4</providermanagementVersion>
-		<serializationxstreamVersion>0.2.12</serializationxstreamVersion>
-		<uiframeworkVersion>3.9</uiframeworkVersion>
-		<webservicesrestVersion>2.14</webservicesrestVersion>
+		<metadatamappingVersion>1.0.2</metadatamappingVersion>
+		<metadatasharingVersion>1.2</metadatasharingVersion>
+		<serializationxstreamVersion>0.2.9</serializationxstreamVersion>
+		<uiframeworkVersion>3.6</uiframeworkVersion>
 
 	</properties>
 
@@ -164,7 +162,7 @@
 			</dependency>
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
-				<artifactId>dataexchange-api</artifactId>
+				<artifactId>dataexchange-omod</artifactId>
 				<version>${dataexchangeVersion}</version>
 				<scope>provided</scope>
 			</dependency>
@@ -205,31 +203,10 @@
 				<version>${htmlformentryVersion}</version>
 				<scope>provided</scope>
 			</dependency>
-			
-			<dependency>
-				<groupId>org.openmrs.module</groupId>
-				<artifactId>htmlformentry-api-1.9</artifactId>
-				<version>${htmlformentryVersion}</version>
-				<scope>provided</scope>
-			</dependency>
-			
-			<dependency>
-				<groupId>org.openmrs.module</groupId>
-				<artifactId>htmlformentry-api-1.10</artifactId>
-				<version>${htmlformentryVersion}</version>
-				<scope>provided</scope>
-			</dependency>
-			
-			<dependency>
-				<groupId>org.openmrs.module</groupId>
-				<artifactId>htmlwidgets-api</artifactId>
-				<version>${htmlwidgetsVersion}</version>
-				<scope>test</scope>
-			</dependency>
 
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
-				<artifactId>idgen-api</artifactId>
+				<artifactId>idgen-omod</artifactId>
 				<version>${idgenVersion}</version>
 				<scope>provided</scope>
 			</dependency>
@@ -254,21 +231,7 @@
 				<version>${metadatasharingVersion}</version>
 				<scope>provided</scope>
 			</dependency>
-			
-			<dependency>
-				<groupId>org.openmrs.module</groupId>
-				<artifactId>providermanagement-api</artifactId>
-				<version>${providermanagementVersion}</version>
-				<scope>test</scope>
-			</dependency>
-			
-			<dependency>
-				<groupId>org.openmrs.module</groupId>
-				<artifactId>referenceapplication-api</artifactId>
-				<version>${referenceapplicationVersion}</version>
-				<scope>provided</scope>
-			</dependency>
-			
+
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>referenceapplication-omod</artifactId>
@@ -289,13 +252,6 @@
 				<version>${registrationappVersion}</version>
 				<scope>provided</scope>
 			</dependency>
-			
-			<dependency>
-				<groupId>org.openmrs.module</groupId>
-				<artifactId>reporting-api</artifactId>
-				<version>${reportingVersion}</version>
-				<scope>test</scope>
-			</dependency>
 
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
@@ -310,14 +266,6 @@
 				<version>${uiframeworkVersion}</version>
 				<type>jar</type>
 				<scope>provided</scope>
-			</dependency>
-			
-			<dependency>
-				<groupId>org.openmrs.module</groupId>
-				<artifactId>webservices.rest-api</artifactId>
-				<version>${webservicesrestVersion}</version>
-				<type>jar</type>
-				<scope>test</scope>
 			</dependency>
 
 			<dependency>
