@@ -15,7 +15,10 @@ import org.springframework.stereotype.Component;
  * Incomplete information for Exposed Infants
  *
  * <ol>
- * <li>No final outcome at 2 years</li>
+ *     <li>EID with Encounters and no summary page</li>
+ *     <li>EID with summary page and no encounters</li>
+ * <li>No final outcome at 2 years of age</li>
+ * <li>TODO: Missing PCR tests after enrollment</li>
  * </ol>
  *
  * */
@@ -28,6 +31,7 @@ public class IncompleteExposedInfantInformation extends BasePatientRuleDefinitio
 		
 		ruleResults.addAll(exposedInfantsWithEncountersAndNOSummaryPage());
 		ruleResults.addAll(exposedInfantsWithSummaryPageNoEncounters());
+		ruleResults.addAll(exposedInfantsOlderThan18MonthsWithNoFinalOutcome());
 		return ruleResults;
 	}
 	
@@ -88,6 +92,30 @@ public class IncompleteExposedInfantInformation extends BasePatientRuleDefinitio
 	 * @return
 	 */
 	private List<RuleResult<Patient>> exposedInfantsOlderThan18MonthsWithNoFinalOutcome() {
+		String queryString = "SELECT patient FROM Encounter e WHERE e.voided = false AND e.encounterType.uuid = '9fcfcc91-ad60-4d84-9710-11cc25258719' AND e.patient.age >= 2 AND e.patient.patientId NOT IN (SELECT o.patient.patientId FROM Obs o WHERE o.voided = false AND o.concept.conceptId = 99428))";
+		
+		Query query = getSession().createQuery(queryString);
+		
+		List<Patient> patientList = query.list();
+		
+		List<RuleResult<Patient>> ruleResults = new ArrayList<>();
+		for (Patient patient : patientList) {
+			RuleResult<Patient> ruleResult = new RuleResult<>();
+			ruleResult.setActionUrl("htmlformentryui/htmlform/enterHtmlFormWithStandardUi.page?formUuid=860c5f2f-cf3c-4c3f-b0c4-9958b6a5a938&patientId=" + patient.getUuid());
+			ruleResult.setNotes("Exposed Infant # " + getExposedInfantNumber(patient) + " is over 18 months with no final outcome");
+			ruleResult.setEntity(patient);
+			
+			ruleResults.add(ruleResult);
+		}
+		
+		return ruleResults;
+	}
+	
+	/**
+	 * Exposed infants missing 1st DNA PCR after 6 weeks of enrollment
+	 * @return
+	 */
+	private List<RuleResult<Patient>> exposedInfantsWithoutFirstDNAPCRWhenEnrolledBefore6Weeks() {
 		String queryString = "SELECT patient FROM Encounter e WHERE e.voided = false AND e.encounterType.uuid = '9fcfcc91-ad60-4d84-9710-11cc25258719' AND e.patient.age >= 2 AND e.patient.patientId NOT IN (SELECT o.patient.patientId FROM Obs o WHERE o.voided = false AND o.concept.conceptId = 99428))";
 		
 		Query query = getSession().createQuery(queryString);

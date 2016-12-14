@@ -65,7 +65,7 @@
 		<!-- End OpenMRS core -->
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
-			<artifactId>appframework-omod</artifactId>
+			<artifactId>appframework-api</artifactId>
 		</dependency>
 
 		<dependency>
@@ -80,12 +80,37 @@
 		
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
+			<artifactId>formentryapp-omod</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>htmlformentry-api</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>htmlformentryui-api</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>idgen-api</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>metadatadeploy-api</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
 			<artifactId>referenceapplication-omod</artifactId>
 		</dependency>
 
 		<dependency>
             <groupId>org.openmrs.module</groupId>
-            <artifactId>registrationapp-omod</artifactId>
+            <artifactId>registrationapp-api</artifactId>
         </dependency>
 
         <dependency>

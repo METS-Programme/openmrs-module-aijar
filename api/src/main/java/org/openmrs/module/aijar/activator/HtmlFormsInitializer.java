@@ -1,24 +1,24 @@
 package org.openmrs.module.aijar.activator;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.FormService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.aijar.AijarConstants;
+import org.openmrs.module.aijar.utils.ExtensionFormUtil;
 import org.openmrs.module.formentryapp.FormEntryAppService;
 import org.openmrs.module.formentryapp.FormManager;
 import org.openmrs.module.formentryapp.page.controller.forms.ExtensionForm;
 import org.openmrs.module.htmlformentry.HtmlForm;
 import org.openmrs.module.htmlformentry.HtmlFormEntryService;
 import org.openmrs.module.htmlformentryui.HtmlFormUtil;
-import org.openmrs.module.aijar.utils.ExtensionFormUtil;
 import org.openmrs.ui.framework.resource.ResourceFactory;
 import org.openmrs.ui.framework.resource.ResourceProvider;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Sets up the HFE forms

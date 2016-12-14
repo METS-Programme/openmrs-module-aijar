@@ -58,7 +58,7 @@
 
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
-			<artifactId>appframework-omod</artifactId>
+			<artifactId>appframework-api</artifactId>
 		</dependency>
 
 		<dependency>
@@ -68,12 +68,12 @@
 
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
-			<artifactId>dataexchange-omod</artifactId>
+			<artifactId>dataexchange-api</artifactId>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
-			<artifactId>dataintegrity-omod</artifactId>
+			<artifactId>dataintegrity-api</artifactId>
 		</dependency>
 
 		<dependency>
@@ -83,7 +83,7 @@
 		
 		<dependency>
 			<groupId>org.openmrs</groupId>
-			<artifactId>event-omod</artifactId>
+			<artifactId>event-api</artifactId>
 		</dependency>
 		
 		<dependency>
@@ -103,13 +103,12 @@
 		
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
-			<artifactId>htmlwidgets-omod</artifactId>
+			<artifactId>htmlwidgets-api</artifactId>
 		</dependency>
-		
 		
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
-			<artifactId>idgen-omod</artifactId>
+			<artifactId>idgen-api</artifactId>
 		</dependency>
 
 		<dependency>
@@ -140,16 +139,16 @@
 
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
-			<artifactId>registrationcore-omod</artifactId>
+			<artifactId>registrationcore-api</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
-			<artifactId>registrationapp-omod</artifactId>
+			<artifactId>registrationapp-api</artifactId>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
-			<artifactId>reporting-omod</artifactId>
+			<artifactId>reporting-api</artifactId>
 		</dependency>
 		
 		<dependency>
@@ -160,11 +159,6 @@
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>uiframework-api</artifactId>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.openmrs.module</groupId>
-			<artifactId>webservices.rest-omod</artifactId>
 		</dependency>
 
 	</dependencies>

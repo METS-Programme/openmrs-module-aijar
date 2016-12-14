@@ -18,6 +18,8 @@ import org.springframework.stereotype.Component;
  * <ol>
  *  <li>Patients Without An ART Summary Page yet have Health Education and Encounters</li>
  *  <li>Patients With More Than One Summary Page</li>
+ *  <li>Patients with ART summary page and no encounters</li>
+ *  <li>Patients with more than one encounter on the same date</li>
  * </ol>
  */
 @Component
