@@ -162,7 +162,7 @@
 			</dependency>
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
-				<artifactId>dataexchange-omod</artifactId>
+				<artifactId>dataexchange-api</artifactId>
 				<version>${dataexchangeVersion}</version>
 				<scope>provided</scope>
 			</dependency>
@@ -206,7 +206,7 @@
 
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
-				<artifactId>idgen-omod</artifactId>
+				<artifactId>idgen-api</artifactId>
 				<version>${idgenVersion}</version>
 				<scope>provided</scope>
 			</dependency>
