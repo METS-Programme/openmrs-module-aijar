@@ -43,7 +43,7 @@ public class IncompleteARTInformation extends BasePatientRuleDefinition {
 	 */
 	private List<RuleResult<Patient>> patientsOnARTWithoutARTStartDate() {
 		log.info("Executing rule to find patients on ART without ART start date");
-		String queryString = "SELECT Encounter from Obs o join o.person as patient WHERE o.voided = false AND o.concept.conceptId = 90315 AND o.person.personId NOT IN (SELECT oo.person.personId FROM Obs oo WHERE oo.voided = false AND oo.concept.conceptId = 99161) GROUP BY o.person.personId";
+		String queryString = "SELECT o.encounter from Obs o join o.person as patient WHERE o.voided = false AND o.concept.conceptId = 90315 AND o.person.personId NOT IN (SELECT oo.person.personId FROM Obs oo WHERE oo.voided = false AND oo.concept.conceptId = 99161) GROUP BY o.person.personId";
 		
 		Query query = getSession().createQuery(queryString);
 		
@@ -69,7 +69,7 @@ public class IncompleteARTInformation extends BasePatientRuleDefinition {
 	 */
 	private List<RuleResult<Patient>> patientsOnARTWithoutStartRegimen() {
 		log.info("Executing rule to find patients on ART without start regimen");
-		String queryString = "SELECT Encounter from Obs o join o.person as patient WHERE o.voided = false AND o.concept.conceptId = 90315 AND o.person.personId NOT IN (SELECT oo.person.personId FROM Obs oo WHERE oo.voided = false AND oo.concept.conceptId = 99161) GROUP BY o.person.personId";
+		String queryString = "SELECT o.encounter from Obs o join o.person as patient WHERE o.voided = false AND o.concept.conceptId = 90315 AND o.person.personId NOT IN (SELECT oo.person.personId FROM Obs oo WHERE oo.voided = false AND oo.concept.conceptId = 99161) GROUP BY o.person.personId";
 		
 		Query query = getSession().createQuery(queryString);
 		
@@ -95,7 +95,7 @@ public class IncompleteARTInformation extends BasePatientRuleDefinition {
 	 */
 	private List<RuleResult<Patient>> patientsOnARTWithOtherRegimen() {
 		log.info("Executing rule to find patients on ART with Other as a regimen");
-		String queryString = "SELECT encounter from Obs o WHERE o.voided = false AND o.concept.conceptId = 90315 AND o.valueCoded.conceptId = 90002";
+		String queryString = "SELECT o.encounter from Obs o WHERE o.voided = false AND o.concept.conceptId = 90315 AND o.valueCoded.conceptId = 90002";
 		
 		Query query = getSession().createQuery(queryString);
 		
