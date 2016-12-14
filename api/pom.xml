@@ -42,14 +42,7 @@
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>org.openmrs.web</groupId>
-			<artifactId>openmrs-web</artifactId>
-			<type>test-jar</type>
-			<scope>test</scope>
-		</dependency>
-
+		
 		<dependency>
 			<groupId>org.openmrs.test</groupId>
 			<artifactId>openmrs-test</artifactId>
@@ -85,9 +78,14 @@
 
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
-			<artifactId>emrapi-omod</artifactId>
+			<artifactId>emrapi-api</artifactId>
 		</dependency>
-
+		
+		<dependency>
+			<groupId>org.openmrs</groupId>
+			<artifactId>event-omod</artifactId>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>formentryapp-omod</artifactId>
@@ -102,7 +100,13 @@
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>htmlformentryui-api</artifactId>
 		</dependency>
-
+		
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>htmlwidgets-omod</artifactId>
+		</dependency>
+		
+		
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>idgen-omod</artifactId>
@@ -128,6 +132,11 @@
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>metadatasharing-api</artifactId>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>providermanagement-api</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
@@ -137,7 +146,12 @@
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>registrationapp-omod</artifactId>
 		</dependency>
-
+		
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>reporting-omod</artifactId>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>serialization.xstream-api</artifactId>
@@ -146,6 +160,11 @@
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>uiframework-api</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>webservices.rest-omod</artifactId>
 		</dependency>
 
 	</dependencies>
