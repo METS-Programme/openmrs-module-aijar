@@ -366,7 +366,7 @@
                             <obs conceptId="99612" id="br" answerConceptId="162897" 
                                  answerLabel="VHT"/>
                             <obs conceptId="99612" id="br" answerConceptId="162898" 
-                                 answerLabel="Megaphones/Community"/>
+                                 answerLabel="Megaphones/Community Radio"/>
                             <br/>
                              <span class="enableDisable">
                                  <span id="trigger">
@@ -388,11 +388,12 @@
                         <td>
                             <span class="SMCOtherEnableDisable2">
                             <obs conceptId="99619" answerConceptIds="162899,99620,90002"
-                                 answerLabels="SMC, HCT, Other"/>
+                                 answerLabels="SMC, HCT, Other Specify" style="radio" answerSeparator=""/>
                                 </span>
+                            <!-- TODO: @slubwama fix the JS for this field -->
                             <span class="SMCOtherEnableDisableChild2">
                             <br/>
-                            <obs conceptId="99622" labelText="Other Specify"/>
+                            <obs conceptId="99622"/>
                                 </span>
                         </td>
                     </obsgroup>
@@ -412,11 +413,11 @@
                     <tr>
                         <td>
                             <label>Sexually Active?</label>
-                            <obs conceptId="99624" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
+                            <obs conceptId="99624" answerConceptIds="90003,90004" answerLabels="Yes,No" style="radio" answerSeparator="" />
                         </td>
                         <td colspan="2">
                             <label>Client tested for HIV in the past 4 weeks?</label>
-                            <obs conceptId="99625" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
+                            <obs conceptId="99625" answerConceptIds="90003,90004" answerLabels="Yes,No" style="radio" answerSeparator=""/>
                         </td>
                     </tr>
 
@@ -424,26 +425,28 @@
                         <td>
                             <label>HCT offered to the Client?</label>
                             <obs conceptId="99627" answerConceptIds="90003,90004"
-                                 answerLabels="Yes,No"/>
+                                 answerLabels="Yes,No" style="radio" answerSeparator=""/>
                         </td>
                         <td colspan="2">
                             <label>Client tested for HIV during this appointment?</label>
-                            <obs conceptId="99631" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
+                            <obs conceptId="99631" answerConceptIds="90003,90004" answerLabels="Yes,No" style="radio" answerSeparator=""/>
                         </td>
                     </tr>
 
                     <tr>
                         <td class="SMCYesNoEnableDisable1">
                             <label>Client HIV test results:</label>
-                            <obs conceptId="99628" answerConceptIds="703,664" answerLabels="Positive,Negative"/>
+                            <obs conceptId="99628" answerConceptIds="703,664" answerLabels="Positive,Negative" style="radio" answerSeparator="" />
+                            <!-- TODO: @slubwama fix the JS for proceeding fields to use radio buttons instead of select -->
+
                         </td>
                         <td class="SMCYesNoEnableDisableChild1">
                             <label>If HIV+ In care?</label>
-                            <obs conceptId="162900" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
+                            <obs conceptId="162900" answerConceptIds="90003,90004" answerLabels="Yes,No" style="radio" answerSeparator=""/>
                         </td>
                         <td class="SMCYesNoEnableDisableGrandChild1">
-                            <label>Reffered?</label>
-                            <obs conceptId="162901" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
+                            <label>Referred?</label>
+                            <obs conceptId="162901" answerConceptIds="90003,90004" answerLabels="Yes,No" style="radio" answerSeparator=""/>
                         </td>
                     </tr>
 
@@ -472,44 +475,44 @@
                     <tr>
                         <td>
                             <label>Bleeding disorder?</label>
-                            <obs conceptId="99633" answerConceptIds="90003, 90004" answerLabels="Yes, No"/>
+                            <obs conceptId="99633" answerConceptIds="90003, 90004" answerLabels="Yes, No" style="radio" answerSeparator=""/>
                         </td>
                         <td>
                             <label>Genital ulcers?</label>
-                            <obs conceptId="99634" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                            <obs conceptId="99634" answerConceptIds="90003,90004" answerLabels="Yes, No" style="radio" answerSeparator=""/>
                         </td>
                     </tr>
 
                     <tr>
                         <td>
                             <label>Urethral discharge?</label>
-                            <obs conceptId="99635" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                            <obs conceptId="99635" answerConceptIds="90003,90004" answerLabels="Yes, No" style="radio" answerSeparator=""/>
                         </td>
                         <td>
                             <label>Penile warts?</label>
-                            <obs conceptId="99636" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                            <obs conceptId="99636" answerConceptIds="90003,90004" answerLabels="Yes, No" style="radio" answerSeparator=""/>
                         </td>
                     </tr>
 
                     <tr>
                         <td>
                             <label>Pain on Urination?</label>
-                            <obs conceptId="99637" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                            <obs conceptId="99637" answerConceptIds="90003,90004" answerLabels="Yes, No" style="radio" answerSeparator=""/>
                         </td>
                         <td>
                             <label>Difficult in retracting foreskin?</label>
-                            <obs conceptId="99638" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                            <obs conceptId="99638" answerConceptIds="90003,90004" answerLabels="Yes, No" style="radio" answerSeparator=""/>
                         </td>
                     </tr>
 
                     <tr>
                         <td>
                             <label>Swelling on scrotum?</label>
-                            <obs conceptId="99639" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                            <obs conceptId="99639" answerConceptIds="90003,90004" answerLabels="Yes, No" style="radio" answerSeparator=""/>
                         </td>
                         <td>
                             <label>Electile dysfunction?</label>
-                            <obs conceptId="99640" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                            <obs conceptId="99640" answerConceptIds="90003,90004" answerLabels="Yes, No" style="radio" answerSeparator=""/>
                         </td>
                     </tr>
 
@@ -532,22 +535,22 @@
                     <tr>
                         <td>
                             <label>Hypertension?</label>
-                            <obs conceptId="99644" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                            <obs conceptId="99644" answerConceptIds="90003,90004" answerLabels="Yes, No" style="radio" answerSeparator=""/>
                         </td>
                         <td>
                             <label>Anaemia?</label>
-                            <obs conceptId="99645" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                            <obs conceptId="99645" answerConceptIds="90003,90004" answerLabels="Yes, No" style="radio" answerSeparator=""/>
                         </td>
                     </tr>
 
                     <tr>
                         <td>
                             <label>Diabetes?</label>
-                            <obs conceptId="99646" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                            <obs conceptId="99646" answerConceptIds="90003,90004" answerLabels="Yes, No" style="radio" answerSeparator=""/>
                         </td>
                         <td>
                             <label>HIV/AIDS?</label>
-                            <obs conceptId="99647" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                            <obs conceptId="99647" answerConceptIds="90003,90004" answerLabels="Yes, No" style="radio" answerSeparator=""/>
                         </td>
                     </tr>
 
@@ -570,11 +573,11 @@
                     <tr>
                         <td>
                             <label>Local Anesthetics?</label>
-                            <obs conceptId="99650" answerConceptIds="90003, 90004" answerLabels="Yes, No"/>
+                            <obs conceptId="99650" answerConceptIds="90003, 90004" answerLabels="Yes, No" style="radio" answerSeparator=""/>
                         </td>
                         <td>
                             <label>Antiseptics?</label>
-                            <obs conceptId="99651" answerConceptIds="90003, 90004" answerLabels="Yes, No"/>
+                            <obs conceptId="99651" answerConceptIds="90003, 90004" answerLabels="Yes, No" style="radio" answerSeparator=""/>
                         </td>
                     </tr>
                     <tr>
@@ -611,55 +614,55 @@
                     <tr>
                         <td>
                             <label>Urethra Discharge?</label>
-                            <obs conceptId="99656" answerConceptIds="90003,90004" answerLabel="Yes, No"/>
+                            <obs conceptId="99656" answerConceptIds="90003,90004" answerLabel="Yes, No" style="radio" answerSeparator=""/>
                         </td>
                         <td colspan="4">
                             <label>Adhesions?</label>
-                            <obs conceptId="99657" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                            <obs conceptId="99657" answerConceptIds="90003,90004" answerLabels="Yes, No" style="radio" answerSeparator=""/>
                         </td>
                     </tr>
 
                     <tr>
                         <td>
                             <label>Anatomical abnormalities?</label>
-                            <obs conceptId="99658" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                            <obs conceptId="99658" answerConceptIds="90003,90004" answerLabels="Yes, No" style="radio" answerSeparator=""/>
                         </td>
 
                         <td colspan="4">
                             <label>GUD?</label>
-                            <obs conceptId="99659" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                            <obs conceptId="99659" answerConceptIds="90003,90004" answerLabels="Yes, No" style="radio" answerSeparator=""/>
                         </td>
                     </tr>
 
                     <tr>
                         <td>
                             <label>Balanitis?</label>
-                            <obs conceptId="99660" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                            <obs conceptId="99660" answerConceptIds="90003,90004" answerLabels="Yes, No" style="radio" answerSeparator=""/>
                         </td>
                         <td colspan="4">
                             <label>Genital warts</label>
-                            <obs conceptId="99661" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                            <obs conceptId="99661" answerConceptIds="90003,90004" answerLabels="Yes, No" style="radio" answerSeparator=""/>
                         </td>
                     </tr>
 
                     <tr>
                         <td>
                             <label>Surgical disorders?</label>
-                            <obs conceptId="99662" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                            <obs conceptId="99662" answerConceptIds="90003,90004" answerLabels="Yes, No" style="radio" answerSeparator=""/>
                         </td>
                         <td colspan="4">
                             <label>Other STI/abnormality?</label>
-                            <obs conceptId="99663" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                            <obs conceptId="99663" answerConceptIds="90003,90004" answerLabels="Yes, No" style="radio" answerSeparator=""/>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <label>Open Wounds/recent healed scars?</label>
-                            <obs conceptId="162905" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                            <obs conceptId="162905" answerConceptIds="90003,90004" answerLabels="Yes, No" style="radio" answerSeparator=""/>
                         </td>
                         <td>
                             <label>Jiggers</label>
-                            <obs conceptId="162906" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                            <obs conceptId="162906" answerConceptIds="90003,90004" answerLabels="Yes, No" style="radio" answerSeparator=""/>
                         </td>
                         <td colspan="3">
                             <obs conceptId="99664" labelText="Other Specify:"/>
@@ -668,7 +671,7 @@
                     <tr>
                         <td colspan="5">
                             <label>TT given during this appointment</label>
-                            <obs conceptId="162907" answerConceptIds="90003,90004" answerLabels="Yes, No"/>
+                            <obs conceptId="162907" answerConceptIds="90003,90004" answerLabels="Yes, No" style="radio" answerSeparator=""/>
                         </td>
 
                     </tr>
@@ -685,27 +688,27 @@
                     <tr>
                         <td>
                             <label>Client in good general health?</label>
-                            <obs conceptId="99669" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
+                            <obs conceptId="99669" answerConceptIds="90003,90004" answerLabels="Yes,No" style="radio" answerSeparator=""/>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <label>Client counseled about SMC?</label>
-                            <obs conceptId="99666" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
+                            <obs conceptId="99666" answerConceptIds="90003,90004" answerLabels="Yes,No" style="radio" answerSeparator=""/>
                         </td>
                     </tr>
 
                     <tr>
                         <td>
                             <label>Informed consent/assent for SMC given?</label>
-                            <obs conceptId="99667" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
+                            <obs conceptId="99667" answerConceptIds="90003,90004" answerLabels="Yes,No" style="radio" answerSeparator=""/>
                         </td>
                     </tr>
 
                     <tr>
                         <td>
                             <label>Client eligible for circumcision after history/physical exam?</label>
-                            <obs conceptId="99668" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
+                            <obs conceptId="99668" answerConceptIds="90003,90004" answerLabels="Yes,No" style="radio" answerSeparator=""/>
                         </td>
                     </tr>
                 </obsgroup>
@@ -759,26 +762,26 @@
                         <td>
                             <span class="SMCOtherEnableDisable3">
                             <obs conceptId="99674" answerConceptIds="99676,99675,99677, 90002"
-                                 answerLabels="Dorsal slit,Forceps guided,Sleeve, Others "/>
+                                 answerLabels="Dorsal slit,Forceps guided,Sleeve, Other Specify" style="radio" answerSeparator=""/>
                                 </span>
                             <br/>
-                            <label>Specify</label>
                             <span class="SMCOtherEnableDisableChild3">
                             <obs conceptId="99678" labelText=""/>
                             </span>
                         </td>
                         <td>
                             <label>PrePex</label>
-                            <obs conceptId="162908" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
+                            <obs conceptId="162908" answerConceptIds="90003,90004" answerLabels="Yes,No"  style="radio" answerSeparator=""/>
                             <obs conceptId="162909" labelText="size"/>
                             <br/>
                             <label>Shang Ring</label>
-                            <obs conceptId="162911" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
+                            <obs conceptId="162911" answerConceptIds="90003,90004" answerLabels="Yes,No"  style="radio" answerSeparator=""/><br />
                             <obs conceptId="162910" labelText="size"/>
                         </td>
 
                     </tr>
 
+                    <!-- TODO: @slubwama Circumciser should be the encounter Provider, so is the Assistant -->
                     <tr>
                         <td>
                             <obs conceptId="99679" labelText="Name of Circumciser:"/>
@@ -798,7 +801,7 @@
                     <tr>
                         <td colspan="3">
                             <label>Adverse events during procedure?</label>
-                            <obs conceptId="99684" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
+                            <obs conceptId="99684" answerConceptIds="90003,90004" answerLabels="Yes,No"  style="radio" answerSeparator=""/>
                         </td>
                     </tr>
                     <tr>
@@ -811,7 +814,7 @@
                     <tr>
                         <td colspan="3">
                             <label>Severity:</label>
-                            <obs conceptId="99691" answerConceptIds="99562,99561" answerLabels="Moderate, Severe"/>
+                            <obs conceptId="99691" answerConceptIds="99562,99561" answerLabels="Moderate, Severe"  style="radio" answerSeparator=""/>
                         </td>
                     </tr>
 
@@ -850,18 +853,21 @@
                 </tbody>
             </table>
         </section>
+        <!-- TODO: @slubwama Consider using the repeat tag for the followup visits https://wiki.openmrs.org/display/docs/HTML+Form+Entry+Module+HTML+Reference#HTMLFormEntryModuleHTMLReference-<template> -->
         <section>
             <h3>F: Circumcision Follow Up Visits</h3>
             <h4>F1: First Follow up Visit</h4>
             <table class="section-b">
                 <obsgroup groupingConceptId="99700">
                     <tr>
-                        <td>
-                            <obs id="br" conceptId="90069" labelText=" Misssed Apt?" style="checkbox"/>
-                        </td>
-                        <td>
+                        <td colspan="2">
+                            <label>Date:</label>
+                            <obs conceptId="99701"/>
                             <label>Wound status</label>
                             <obs conceptId="162912" labelText=""/>
+                            <obs id="br" conceptId="90069" labelText=" Misssed Apt?" style="checkbox"/>
+
+
                         </td>
                     </tr>
 
@@ -869,7 +875,7 @@
                         <td colspan="2">
                             <label>Type of Visit:</label>
                             <obs conceptId="99702" answerConceptIds="99703,99704,99705"
-                                 answerLabels="Routine, Client initiated/unscheduled,recommended by physician"/>
+                                 answerLabels="Routine, Client initiated/unscheduled,recommended by physician" style="radio" answerSeparator=""/>
                         </td>
                     </tr>
 
@@ -879,6 +885,7 @@
                             <obs conceptId="99706"
                                  answerConceptIds="99687,99688,99707,99708,99709,162913,162914,162915,90002"
                                  answerLabels="Damage to penis/Urethra,Excessive bleeding,Pus discharge,Excessive Swelling,Infection,Smell,Device displacement,Failure to pass urine, Other Specify "/>
+                            <!-- TODO: Change to checkboxes -->
 
                         </td>
                         <td class="SMCOtherEnableDisableChild4">
@@ -889,7 +896,7 @@
                     <tr>
                         <td colspan="2">
                             <label>Severity:</label>
-                            <obs conceptId="99711" answerConceptIds="99562,99561" answerLabels="Moderate, Severe"/>
+                            <obs conceptId="99711" answerConceptIds="99562,99561" answerLabels="Moderate, Severe"  style="radio" answerSeparator=""/>
                         </td>
                     </tr>
                     <tr>
@@ -902,6 +909,7 @@
                 </obsgroup>
             </table>
         </section>
+        <!-- TODO: @slubwama add missed appointment -->
         <section>
             <h4>F2: Second Follow up Visit</h4>
             <table class="section-b">
@@ -917,7 +925,7 @@
                         <td colspan="2">
                             <label>Type of Visit:</label>
                             <obs conceptId="99714" answerConceptIds="99703,99704,99705"
-                                 answerLabels="Routine, Client initiated/unscheduled,recommended by physician"/>
+                                 answerLabels="Routine, Client initiated/unscheduled,recommended by physician"  style="radio" answerSeparator=""/>
                         </td>
                     </tr>
 
@@ -925,7 +933,7 @@
                         <td class="SMCOtherEnableDisable5">
                             <label>Presence of AE:</label>
                             <obs conceptId="99715" answerConceptIds="99687,99688,99707,99708,99709,90002"
-                                 answerLabels="Damage to penis/Urethra,Excessive bleeding,Pus discharge,Excessive Swelling,Infection, Other Specify "/>
+                                 answerLabels="Damage to penis/Urethra,Excessive bleeding,Pus discharge,Excessive Swelling,Infection, Other Specify "  style="radio" answerSeparator=""/>
 
                         </td>
                         <td class="SMCOtherEnableDisableChild5">
@@ -936,7 +944,7 @@
                     <tr>
                         <td colspan="2">
                             <label>Severity:</label>
-                            <obs conceptId="99717" answerConceptIds="99562,99561" answerLabels="Moderate, Severe"/>
+                            <obs conceptId="99717" answerConceptIds="99562,99561" answerLabels="Moderate, Severe"  style="radio" answerSeparator=""/>
                         </td>
                     </tr>
                     <tr>
@@ -949,6 +957,7 @@
                 </obsgroup>
             </table>
         </section>
+        <!-- TODO: @slubwama add missed appointment -->
         <section>
             <h4>F3: Third Follow up Visit</h4>
             <table class="section-b">
@@ -964,7 +973,7 @@
                         <td colspan="2">
                             <label>Type of Visit:</label>
                             <obs conceptId="99720" answerConceptIds="99703,99704,99705"
-                                 answerLabels="Routine, Client initiated/unscheduled,recommended by physician"/>
+                                 answerLabels="Routine, Client initiated/unscheduled,recommended by physician" style="radio" answerSeparator=""/>
                         </td>
                     </tr>
 
@@ -972,7 +981,7 @@
                         <td class="SMCOtherEnableDisable6">
                             <label>Presence of AE:</label>
                             <obs conceptId="99721" answerConceptIds="99687,99688,99707,99708,99709,90002"
-                                 answerLabels="Damage to penis/Urethra,Excessive bleeding,Pus discharge,Excessive Swelling,Infection, Other Specify "/>
+                                 answerLabels="Damage to penis/Urethra,Excessive bleeding,Pus discharge,Excessive Swelling,Infection, Other Specify " style="radio" answerSeparator=""/>
 
                         </td>
                         <td class="SMCOtherEnableDisableChild6">
@@ -983,7 +992,7 @@
                     <tr>
                         <td colspan="2">
                             <label>Severity:</label>
-                            <obs conceptId="99723" answerConceptIds="99562,99561" answerLabels="Moderate, Severe"/>
+                            <obs conceptId="99723" answerConceptIds="99562,99561" answerLabels="Moderate, Severe" style="radio" answerSeparator=""/>
                         </td>
                     </tr>
                     <tr>
