@@ -1,3 +1,5 @@
+DROP PROCEDURE IF EXISTS add_telephones;
+
 DELIMITER $$
 CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `add_telephones`()
   BEGIN

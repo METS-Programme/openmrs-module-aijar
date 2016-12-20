@@ -42,14 +42,7 @@
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>org.openmrs.web</groupId>
-			<artifactId>openmrs-web</artifactId>
-			<type>test-jar</type>
-			<scope>test</scope>
-		</dependency>
-
+		
 		<dependency>
 			<groupId>org.openmrs.test</groupId>
 			<artifactId>openmrs-test</artifactId>
@@ -65,7 +58,7 @@
 
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
-			<artifactId>appframework-omod</artifactId>
+			<artifactId>appframework-api</artifactId>
 		</dependency>
 
 		<dependency>
@@ -75,14 +68,24 @@
 
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
-			<artifactId>dataexchange-omod</artifactId>
+			<artifactId>dataexchange-api</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>dataintegrity-api</artifactId>
 		</dependency>
 
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
-			<artifactId>emrapi-omod</artifactId>
+			<artifactId>emrapi-api</artifactId>
 		</dependency>
-
+		
+		<dependency>
+			<groupId>org.openmrs</groupId>
+			<artifactId>event-api</artifactId>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>formentryapp-omod</artifactId>
@@ -97,10 +100,10 @@
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>htmlformentryui-api</artifactId>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
-			<artifactId>idgen-omod</artifactId>
+			<artifactId>idgen-api</artifactId>
 		</dependency>
 
 		<dependency>
@@ -126,18 +129,13 @@
 
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
-			<artifactId>registrationcore-omod</artifactId>
+			<artifactId>registrationcore-api</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
-			<artifactId>registrationapp-omod</artifactId>
+			<artifactId>registrationapp-api</artifactId>
 		</dependency>
-
-		<dependency>
-			<groupId>org.openmrs.module</groupId>
-			<artifactId>reporting-api</artifactId>
-		</dependency>
-
+		
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>serialization.xstream-api</artifactId>

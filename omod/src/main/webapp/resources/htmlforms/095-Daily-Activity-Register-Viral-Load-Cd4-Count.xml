@@ -11,8 +11,6 @@
           formDisplayStyle="Standard"
           formLabel="HMIS 095 Daily Activity Register Viral Load Cd4 Count (Immunology) ">
     <!-- TODO: Fix the url of all the forms to display their contents once done -->
-    <redirectOnSave
-            url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits"/>
 
     <style>
 
