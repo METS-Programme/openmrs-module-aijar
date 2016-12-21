@@ -235,6 +235,8 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         // the RegeX and Search patterns should be empty so that the prefix and suffix matching above can work
         properties.add(new GlobalProperty("patient.identifierRegex", ""));
         properties.add(new GlobalProperty("patient.identifierSearchPattern", ""));
+        // add telephone number and Marital status to the search widget
+        properties.add(new GlobalProperty("patient.listingAttributeTypes", "Telephone Number,Marital Status"));
 
         // Form Entry Settings
         properties.add(new GlobalProperty("FormEntry.enableDashboardTab", "true"));     // show as a tab on the patient dashboard
