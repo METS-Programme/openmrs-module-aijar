@@ -41,3 +41,9 @@ form label, .form label {
 #noVisitShowVisitCreationDialog {
     display:none;
 }
+
+/* Color for the HTML Form values displayed in the view  */
+span.value {
+    color: blue;
+    font-weight: bold;
+}
