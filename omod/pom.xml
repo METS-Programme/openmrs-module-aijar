@@ -87,21 +87,19 @@
             <groupId>org.openmrs.module</groupId>
             <artifactId>emrapi-api</artifactId>
         </dependency>
+    
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>emrapi-api-1.11</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.openmrs.module</groupId>
             <artifactId>formentryapp-omod</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.openmrs.module</groupId>
-            <artifactId>htmlformentry-api</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.openmrs.module</groupId>
-            <artifactId>htmlformentryui-api</artifactId>
-        </dependency>
+        
+       
 
         <dependency>
             <groupId>org.openmrs.module</groupId>
@@ -111,6 +109,11 @@
         <dependency>
             <groupId>org.openmrs.module</groupId>
             <artifactId>metadatadeploy-api</artifactId>
+        </dependency>
+    
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>metadatasharing-api</artifactId>
         </dependency>
 
         <dependency>
@@ -132,18 +135,33 @@
             <groupId>org.openmrs.module</groupId>
             <artifactId>reporting-api</artifactId>
         </dependency>
-
+    
         <dependency>
             <groupId>org.openmrs.module</groupId>
-            <artifactId>serialization.xstream-api</artifactId>
+            <artifactId>reporting-api-1.9</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>org.openmrs.module</groupId>
-            <artifactId>uiframework-api</artifactId>
-        </dependency>
-
-    </dependencies>
+	
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>serialization.xstream-api</artifactId>
+		</dependency>
+	
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>serialization.xstream-api-1.9</artifactId>
+		</dependency>
+	
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>uiframework-api</artifactId>
+		</dependency>
+	
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>webservices.rest-omod-common</artifactId>
+		</dependency>
+        
+	</dependencies>
 
     <build>
         <finalName>${project.parent.artifactId}-${project.parent.version}</finalName>
@@ -246,26 +264,6 @@
                         <goals>
                             <goal>package-module</goal>
                         </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>Expand moduleApplicationContext and messages</id>
-                        <goals>
-                            <goal>unpack-dependencies</goal>
-                        </goals>
-                        <phase>generate-resources</phase>
-                        <configuration>
-                            <includeGroupIds>${project.parent.groupId}</includeGroupIds>
-                            <includeArtifactIds>${project.parent.artifactId}-api</includeArtifactIds>
-                            <excludeTransitive>true</excludeTransitive>
-                            <includes>**/*</includes>
-                            <outputDirectory>${project.build.directory}/classes</outputDirectory>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>

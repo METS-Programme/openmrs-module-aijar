@@ -1,43 +1,35 @@
 package org.openmrs.module.aijar.page.controller;
 
+import java.util.Date;
+
+import org.junit.Before;
 import org.junit.Test;
+import org.openmrs.Concept;
 import org.openmrs.Patient;
+import org.openmrs.api.ConceptService;
 import org.openmrs.api.PatientService;
 import org.openmrs.api.context.Context;
 import org.openmrs.api.impl.PatientServiceImpl;
-import org.openmrs.module.aijar.page.UgandaEMRLoginPageRequestMapper;
-import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
-import org.openmrs.module.metadatadeploy.api.impl.MetadataDeployServiceImpl;
-import org.openmrs.ui.framework.page.PageRequest;
-import org.openmrs.ui.framework.session.Session;
 import org.openmrs.web.test.BaseModuleWebContextSensitiveTest;
 import org.openmrs.web.test.BaseWebContextSensitiveTest;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mock.web.MockHttpServletRequest;
-import org.springframework.mock.web.MockHttpServletResponse;
-import org.springframework.mock.web.MockHttpSession;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import java.util.Date;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Created by lubwamasamuel on 19/15/2016.
  */
-public class MarkPatientDeadTest extends BaseWebContextSensitiveTest {
+public class MarkPatientDeadTest extends BaseModuleWebContextSensitiveTest {
+
 
     @Test
-    public void markPatientDead() {
+    public void shouldMarkPatientDeadSuccessfully() {
         MarkPatientDeadPageController markPatientDeadPageController = new MarkPatientDeadPageController();
         Date date = new Date();
-        PatientService patientService = new PatientServiceImpl();
+        PatientService patientService = Context.getPatientService();
         Patient patient = new Patient();
+        Concept concept=new Concept();
+        concept=Context.getConceptService().getConcept("unknown");
         patient = patientService.getPatient(2);
-        markPatientDeadPageController.post("unknown", true, date, patient.getUuid().toString());
-
+        markPatientDeadPageController.post(concept.getUuid(), true, date, patient.getUuid().toString());
+        assert patient.getDead().equals(true);
+        assert patient.getCauseOfDeath().equals(concept);
     }
 }
