@@ -40,6 +40,21 @@
               ]
             },
             {
+              "legend": "aijar.registrationapp.occupation",
+              "fields": [
+                {
+                  "type": "personAttribute",
+                  "label": "aijar.registrationapp.occupation.question",
+                  "formFieldName": "occupation",
+                  "uuid": "b0868a16-4f8e-43da-abfc-6338c9d8f56a",
+                  "widget": {
+                    "providerName": "uicommons",
+                    "fragmentId": "field/text"
+                  }
+                }
+              ]
+            },
+            {
               "legend": "aijar.registrationapp.currentaddress",
               "fields": [
                 {
