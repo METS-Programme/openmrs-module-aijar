@@ -10,8 +10,6 @@
           formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false"
           formDisplayStyle="Standard"
           formLabel="HCT Client Card">
-    <redirectOnSave
-            url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits"/>
 
     <style>
 

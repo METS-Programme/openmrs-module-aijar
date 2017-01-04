@@ -8,5 +8,10 @@
         See http://www.liquibase.org/manual/home#available_database_refactorings
         for a list of supported elements and attributes
     -->
-    
+    <changeSet id="ugandaemr-12162016-1052" author="ssmusoke">
+		<comment>Stop scheduled tasks that are not used from starting up</comment>
+		<sql>
+			UPDATE scheduler_task_config SET start_on_startup = 0 WHERE schedulable_class IN ('org.openmrs.module.formentry.ProcessFormEntryQueueTask', 'org.openmrs.scheduler.tasks.ProcessHL7InQueueTask')
+		</sql>
+	</changeSet>
 </databaseChangeLog>

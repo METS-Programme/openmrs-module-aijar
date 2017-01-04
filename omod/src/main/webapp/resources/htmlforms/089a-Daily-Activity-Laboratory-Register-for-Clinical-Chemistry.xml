@@ -11,8 +11,6 @@
           formDisplayStyle="Standard"
           formLabel="LAB - Clinical Chemistry">
     <!-- TODO: Fix the url of all the forms to display their contents once done -->
-    <redirectOnSave
-            url="/coreapps/patientdashboard/patientDashboard.page?patientId={{patient.id}}&amp;encounterId={{encounter.id}}#visits"/>
 
     <style>
 
