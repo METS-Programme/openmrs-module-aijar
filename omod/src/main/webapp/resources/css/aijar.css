@@ -36,3 +36,8 @@ form label, .form label {
 #visits-list span.menu-title {
     display: none;
 }
+
+/* Hide the start visit button on the visits page */
+#noVisitShowVisitCreationDialog {
+    display:none;
+}

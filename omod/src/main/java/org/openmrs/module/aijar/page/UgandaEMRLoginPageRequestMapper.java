@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
 public class UgandaEMRLoginPageRequestMapper implements PageRequestMapper {
 
 	protected final Log log = LogFactory.getLog(getClass());
-	
 	/**
 	 * Implementations should call {@link PageRequest#setProviderNameOverride(String)} and
 	 * {@link PageRequest#setPageNameOverride(String)}, and return true if they want to remap a request,
