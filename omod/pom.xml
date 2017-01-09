@@ -260,7 +260,6 @@
 							<dir>${project.build.directory}/docker</dir>
 							<bundled>true</bundled>
 							<distro>${project.build.directory}/classes/openmrs-distro.properties</distro>
-							<batchAnswers>n</batchAnswers>
 						</configuration>
 					</execution>
 				</executions>
