@@ -130,8 +130,29 @@ public class PersonAttributeTypes {
         public String uuid() {
             return "a00eda65-2f66-4fda-a683-c1787eb626a9";
         }
-    
+        
         @Override
         public boolean searchable() {return true;}
+    };
+    
+    public static PersonAttributeTypeDescriptor OCCUPATION = new PersonAttributeTypeDescriptor() {
+        @Override
+        public double sortWeight() {
+            return 12;
+        }
+        
+        @Override
+        public String name() {
+            return "Occupation";
+        }
+        
+        @Override
+        public String description() {
+            return "Occupation";
+        }
+        
+        public String uuid() {
+            return "b0868a16-4f8e-43da-abfc-6338c9d8f56a";
+        }
     };
 }
