@@ -52,6 +52,7 @@ ${ui.includeFragment("coreapps", "patientHeader", [patient: patient])}
                     initialValue : new Date(),
                     minYear      : minAgeYear,
                     maxYear      : maxAgeYear,
+                    id:'death-date'
             ])}
         </p>
 
