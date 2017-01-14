@@ -19,6 +19,24 @@
             link: '${ ui.urlBind("/" + contextPath + "coreapps/clinicianfacing/patient.page?patientId="+patientId, [ patientId: patient ] ) }'
         }
     ];
+
+    jq(function() {
+        enable_disable_mark_patient_dead();
+        jq("#checkbox-deceased").change(enable_disable_mark_patient_dead);
+        jq("#checkbox-deceased").each(enable_disable_mark_patient_dead);
+    });
+
+    function enable_disable_mark_patient_dead() {
+        if (this.checked) {
+            jq("#death-date-display").attr('disabled', false);
+            jq("#cause-of-death").prop('disabled', false);
+            jq("#death-date-display").fadeTo(250, 1);
+        } else {
+            jq("#death-date-display").attr('disabled', true);
+            jq("#cause-of-death").prop('disabled', true);
+            jq("#death-date-display").fadeTo(250, 0.25);
+        }
+    }
 </script>
 ${ui.includeFragment("coreapps", "patientHeader", [patient: patient])}
 <h3>${ui.message("aijar.markpatientdeceased.label")}</h3>

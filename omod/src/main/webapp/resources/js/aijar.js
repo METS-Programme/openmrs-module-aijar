@@ -45,22 +45,23 @@ function changeFieldDateToJavascriptDate(dateValue) {
 }
 
 
-jq(function() {
-    enable_disable_mark_patient_dead();
-    jq("#checkbox-deceased").change(enable_disable_mark_patient_dead);
-    jq("#checkbox-deceased").each(enable_disable_mark_patient_dead);
-});
-
-function enable_disable_mark_patient_dead() {
-    if (this.checked) {
-        jq("#death-date-display").attr('disabled', false);
-        jq("#cause-of-death").prop('disabled', false);
-        jq("#death-date-display").fadeTo(250, 1);
-    } else {
-        jq("#eath-date-display").attr('disabled', true);
-        jq("#cause-of-death").prop('disabled', true);
-        jq("#death-date-display").fadeTo(250, 0.25);
-    }
+/*
+* Hide the container, and disable all elements in it
+*
+* @param the Id of the container
+*/
+function hideContainer(container) {
+    jq(container).addClass('hidden');
+    jq(container + ' :input').attr('disabled', true);
+    jq(container + ' :input').prop('checked', false);
 }
-
-
+/*
+ * Show the container, and enable all elements in it
+ *
+ * @param the Id of the container
+ */
+function showContainer(container) {
+    jq(container).removeClass('hidden');
+    jq(container + ' :input').attr('disabled', false);
+    jq(container + ' :input').prop('checked', false);
+}
