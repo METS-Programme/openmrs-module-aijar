@@ -149,8 +149,13 @@
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>webservices.rest-omod-common</artifactId>
 		</dependency>
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>metadatadeploy-api</artifactId>
+            <version>1.8-SNAPSHOT</version>
+        </dependency>
 
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<resources>
