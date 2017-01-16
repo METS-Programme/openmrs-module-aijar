@@ -19,6 +19,24 @@
             link: '${ ui.urlBind("/" + contextPath + "coreapps/clinicianfacing/patient.page?patientId="+patientId, [ patientId: patient ] ) }'
         }
     ];
+
+    jq(function() {
+        enable_disable_mark_patient_dead();
+        jq("#checkbox-deceased").change(enable_disable_mark_patient_dead);
+        jq("#checkbox-deceased").each(enable_disable_mark_patient_dead);
+    });
+
+    function enable_disable_mark_patient_dead() {
+        if (this.checked) {
+            jq("#death-date-display").attr('disabled', false);
+            jq("#cause-of-death").prop('disabled', false);
+            jq("#death-date-display").fadeTo(250, 1);
+        } else {
+            jq("#death-date-display").attr('disabled', true);
+            jq("#cause-of-death").prop('disabled', true);
+            jq("#death-date-display").fadeTo(250, 0.25);
+        }
+    }
 </script>
 ${ui.includeFragment("coreapps", "patientHeader", [patient: patient])}
 <h3>${ui.message("aijar.markpatientdeceased.label")}</h3>
@@ -52,6 +70,7 @@ ${ui.includeFragment("coreapps", "patientHeader", [patient: patient])}
                     initialValue : new Date(),
                     minYear      : minAgeYear,
                     maxYear      : maxAgeYear,
+                    id:'death-date'
             ])}
         </p>
 
@@ -60,7 +79,7 @@ ${ui.includeFragment("coreapps", "patientHeader", [patient: patient])}
                 <span>${ui.message("aijar.markpatientdeceased.causeofdeath")} (${ui.message("emr.formValidation.messages.requiredField.label")})</span>
             </label>
             <select name="causeOfDeath" id="cause-of-death">
-                <option>Select Cause Of Death</option>
+                <option value="null">Select Cause Of Death</option>
                 <% if (!conceptAnswers.isEmpty()) {
                     conceptAnswers.each {
                 %>
