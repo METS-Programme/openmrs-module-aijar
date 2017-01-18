@@ -8,6 +8,7 @@ import org.openmrs.Patient;
 import org.openmrs.api.context.Context;
 import org.openmrs.web.test.BaseModuleWebContextSensitiveTest;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -24,6 +25,15 @@ public class MarkPatientDeadTest extends BaseModuleWebContextSensitiveTest {
     public void setRequirementsForTest() {
         patient = Context.getPatientService().getPatient(2);
         concept = Context.getConceptService().getConcept("unknown");
+    }
+
+
+    private Date modifyPatientBirthDate(int daysOff,Date date){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, daysOff);
+        Date modifiedDated = cal.getTime();
+        return modifiedDated;
     }
 
 
@@ -91,5 +101,26 @@ public class MarkPatientDeadTest extends BaseModuleWebContextSensitiveTest {
     public void shouldNotMarkPatientDeadWhenNoParameter() {
         MarkPatientDeadPageController markPatientDeadPageController = new MarkPatientDeadPageController();
         Assert.assertEquals(markPatientDeadPageController.post("null", false, null, null),null);
+    }
+
+    /**
+     * This tests if the patient is marked as dead when checkbox dead is not checked ie false
+     */
+    @Test
+    public void deathDateShouldNotBeLessThanBirthDate() {
+        MarkPatientDeadPageController markPatientDeadPageController = new MarkPatientDeadPageController();
+        markPatientDeadPageController.post(concept.getUuid(), true, modifyPatientBirthDate(-30,patient.getBirthdate()), patient.getUuid().toString());
+        Assert.assertNull(patient.getDeathDate());
+    }
+
+
+    /**
+     * This tests if the death Death is not greater than today's Date
+     */
+    @Test
+    public void deathDateShouldNotBeGreaterThanToday() {
+        MarkPatientDeadPageController markPatientDeadPageController = new MarkPatientDeadPageController();
+        markPatientDeadPageController.post(concept.getUuid(), true, modifyPatientBirthDate(30,date), patient.getUuid().toString());
+        Assert.assertNull(patient.getDeathDate());
     }
 }
