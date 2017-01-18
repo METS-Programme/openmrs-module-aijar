@@ -51,7 +51,9 @@ public class MarkPatientDeadPageController extends PatientServiceImpl{
 
 
             Person person = personService.getPerson(patient.getPatientId());
-            if (dead!=null && !causeOfDeath.equals("null") && deathDate != null) {
+            Date date=new Date();
+
+            if (dead!=null && !causeOfDeath.equals("null") && deathDate != null  && !deathDate.before(person.getBirthdate()) && !deathDate.after(date)) {
                 person.setDead(dead);
                 person.setCauseOfDeath(getConceptByUUId(causeOfDeath));
                 person.setDeathDate(deathDate);
