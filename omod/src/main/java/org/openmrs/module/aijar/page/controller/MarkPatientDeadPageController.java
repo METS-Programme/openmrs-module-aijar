@@ -34,6 +34,7 @@ public class MarkPatientDeadPageController extends PatientServiceImpl{
         Patient patient = patientService.getPatientByUuid(patientId);
         Person person = personService.getPerson(patient.getPatientId());
         pageModel.put("person", person);
+        pageModel.put("birthDate",person.getBirthdate());
         pageModel.put("patient", patient);
         pageModel.put("patientId", patientId);
         pageModel.put("breadcrumbOverride", breadcrumbOverride);
