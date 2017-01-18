@@ -37,6 +37,7 @@
             jq("#death-date-display").fadeTo(250, 0.25);
         }
     }
+
 </script>
 ${ui.includeFragment("coreapps", "patientHeader", [patient: patient])}
 <h3>${ui.message("aijar.markpatientdeceased.label")}</h3>
@@ -68,6 +69,8 @@ ${ui.includeFragment("coreapps", "patientHeader", [patient: patient])}
                     useTime      : false,
                     showEstimated: false,
                     initialValue : new Date(),
+                    startDate: birthDate,
+                    endDate: new Date(),
                     minYear      : minAgeYear,
                     maxYear      : maxAgeYear,
                     id:'death-date'
