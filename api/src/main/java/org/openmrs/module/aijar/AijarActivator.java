@@ -264,6 +264,15 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 
         // Exclude temporary reporting tables by database backup module
         properties.add(new GlobalProperty("databasebackup.tablesExcluded", "aijar_105_eid,aijar_106a1a"));
+    
+        // the name of the custom registration app
+        properties.add(new GlobalProperty("registrationapp.customRegistrationAppId", "aijar.registrationapp.registerPatient"));
+    
+        // enable the register patient button to appear on the search widget
+        properties.add(new GlobalProperty("coreapps.showRegisterPatientOnSearchWidget", "true"));
+    
+        // mapping for creating visits without encounters to the default facility visit type
+        properties.add(new GlobalProperty("emrapi.EmrApiVisitAssignmentHandler.encounterTypeToNewVisitTypeMap", "default:7b0f5697-27e3-40c4-8bae-f4049abfb4ed"));
 
         return properties;
     }
