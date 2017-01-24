@@ -21,20 +21,18 @@ import java.util.regex.Pattern;
 /**
  * Created by lubwamasamuel on 15/06/2016.
  */
-public class MarkPatientDeadPageController extends PatientServiceImpl{
+public class MarkPatientDeadPageController{
     public void controller(UiSessionContext sessionContext, PageModel model) {
     }
 
     public void get(@SpringBean PageModel pageModel, @RequestParam(value = "breadcrumbOverride",required = false) String breadcrumbOverride, @RequestParam("patientId") String patientId) {
-        PersonService personService = Context.getPersonService();
         PatientService patientService = Context.getPatientService();
 
         String conceptId = Context.getAdministrationService().getGlobalProperty("concept.causeOfDeath");
 
         Patient patient = patientService.getPatientByUuid(patientId);
-        Person person = personService.getPerson(patient.getPatientId());
-        pageModel.put("person", person);
-        pageModel.put("birthDate",person.getBirthdate());
+        pageModel.put("person", patient.getPerson());
+        pageModel.put("birthDate",patient.getBirthdate());
         pageModel.put("patient", patient);
         pageModel.put("patientId", patientId);
         pageModel.put("breadcrumbOverride", breadcrumbOverride);
