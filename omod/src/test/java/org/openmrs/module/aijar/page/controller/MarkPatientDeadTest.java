@@ -102,25 +102,4 @@ public class MarkPatientDeadTest extends BaseModuleWebContextSensitiveTest {
         MarkPatientDeadPageController markPatientDeadPageController = new MarkPatientDeadPageController();
         Assert.assertEquals(markPatientDeadPageController.post("null", false, null, null),null);
     }
-
-    /**
-     * This tests if the patient is marked as dead when checkbox dead is not checked ie false
-     */
-    @Test
-    public void deathDateShouldNotBeLessThanBirthDate() {
-        MarkPatientDeadPageController markPatientDeadPageController = new MarkPatientDeadPageController();
-        markPatientDeadPageController.post(concept.getUuid(), true, modifyPatientBirthDate(-30,patient.getBirthdate()), patient.getUuid().toString());
-        Assert.assertNull(patient.getDeathDate());
-    }
-
-
-    /**
-     * This tests if the death Death is not greater than today's Date
-     */
-    @Test
-    public void deathDateShouldNotBeGreaterThanToday() {
-        MarkPatientDeadPageController markPatientDeadPageController = new MarkPatientDeadPageController();
-        markPatientDeadPageController.post(concept.getUuid(), true, modifyPatientBirthDate(30,date), patient.getUuid().toString());
-        Assert.assertNull(patient.getDeathDate());
-    }
 }

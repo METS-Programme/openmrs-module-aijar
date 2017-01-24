@@ -44,27 +44,24 @@ public class MarkPatientDeadPageController extends PatientServiceImpl{
     }
 
     public String post(@RequestParam(value = "causeOfDeath",required = false) String causeOfDeath, @RequestParam(value = "dead",required = false) Boolean dead, @RequestParam(value = "deathDate",required = false) Date deathDate, @RequestParam("patientId") String patientId) {
-        PersonService personService = Context.getPersonService();
 
         try {
             PatientService patientService = Context.getPatientService();
             Patient patient = patientService.getPatientByUuid(patientId);
 
-
-            Person person = personService.getPerson(patient.getPatientId());
             Date date=new Date();
 
-            if (dead!=null && !causeOfDeath.equals("null") && deathDate != null  && !deathDate.before(person.getBirthdate()) && !deathDate.after(date)) {
-                person.setDead(dead);
-                person.setCauseOfDeath(getConceptByUUId(causeOfDeath));
-                person.setDeathDate(deathDate);
+            if (dead!=null && !causeOfDeath.equals("null") && deathDate != null  && !deathDate.before(patient.getPerson().getBirthdate()) && !deathDate.after(date)) {
+                patient.getPerson().setDead(dead);
+                patient.getPerson().setCauseOfDeath(getConceptByUUId(causeOfDeath));
+                patient.getPerson().setDeathDate(deathDate);
             } else {
-                person.setDeathDate(null);
-                person.setDead(false);
-                person.setCauseOfDeath(null);
+                patient.getPerson().setDeathDate(null);
+                patient.getPerson().setDead(false);
+                patient.getPerson().setCauseOfDeath(null);
             }
 
-            personService.savePerson(person);
+            patientService.savePatient(patient);
             return "redirect:/coreapps/clinicianfacing/patient.page?patientId=" + patient.getUuid() + "";
         } catch (Exception e) {
             System.out.println(e);
