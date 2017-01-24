@@ -1,5 +1,7 @@
 package org.openmrs.module.aijar.page.controller;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.openmrs.Concept;
 import org.openmrs.ConceptAnswer;
 import org.openmrs.Patient;
@@ -21,18 +23,19 @@ import java.util.regex.Pattern;
 /**
  * Created by lubwamasamuel on 15/06/2016.
  */
-public class MarkPatientDeadPageController{
+public class MarkPatientDeadPageController {
+    protected final Log log = LogFactory.getLog(this.getClass());
+
     public void controller(UiSessionContext sessionContext, PageModel model) {
     }
 
-    public void get(@SpringBean PageModel pageModel, @RequestParam(value = "breadcrumbOverride",required = false) String breadcrumbOverride, @RequestParam("patientId") String patientId) {
+    public void get(@SpringBean PageModel pageModel, @RequestParam(value = "breadcrumbOverride", required = false) String breadcrumbOverride, @RequestParam("patientId") String patientId) {
         PatientService patientService = Context.getPatientService();
 
         String conceptId = Context.getAdministrationService().getGlobalProperty("concept.causeOfDeath");
 
         Patient patient = patientService.getPatientByUuid(patientId);
-        pageModel.put("person", patient.getPerson());
-        pageModel.put("birthDate",patient.getBirthdate());
+        pageModel.put("birthDate", patient.getBirthdate());
         pageModel.put("patient", patient);
         pageModel.put("patientId", patientId);
         pageModel.put("breadcrumbOverride", breadcrumbOverride);
@@ -41,28 +44,28 @@ public class MarkPatientDeadPageController{
         }
     }
 
-    public String post(@RequestParam(value = "causeOfDeath",required = false) String causeOfDeath, @RequestParam(value = "dead",required = false) Boolean dead, @RequestParam(value = "deathDate",required = false) Date deathDate, @RequestParam("patientId") String patientId) {
+    public String post(@RequestParam(value = "causeOfDeath", required = false) String causeOfDeath, @RequestParam(value = "dead", required = false) Boolean dead, @RequestParam(value = "deathDate", required = false) Date deathDate, @RequestParam("patientId") String patientId) {
 
         try {
             PatientService patientService = Context.getPatientService();
             Patient patient = patientService.getPatientByUuid(patientId);
 
-            Date date=new Date();
+            Date date = new Date();
 
-            if (dead!=null && !causeOfDeath.equals("null") && deathDate != null  && !deathDate.before(patient.getPerson().getBirthdate()) && !deathDate.after(date)) {
-                patient.getPerson().setDead(dead);
-                patient.getPerson().setCauseOfDeath(getConceptByUUId(causeOfDeath));
-                patient.getPerson().setDeathDate(deathDate);
+            if (dead != null && !causeOfDeath.equals("") && deathDate != null && !deathDate.before(patient.getBirthdate()) && !deathDate.after(date)) {
+                patient.setDead(dead);
+                patient.setCauseOfDeath(getConceptByUUId(causeOfDeath));
+                patient.setDeathDate(deathDate);
             } else {
-                patient.getPerson().setDeathDate(null);
-                patient.getPerson().setDead(false);
-                patient.getPerson().setCauseOfDeath(null);
+                patient.setDeathDate(null);
+                patient.setDead(false);
+                patient.setCauseOfDeath(null);
             }
 
             patientService.savePatient(patient);
             return "redirect:/coreapps/clinicianfacing/patient.page?patientId=" + patient.getUuid() + "";
         } catch (Exception e) {
-            System.out.println(e);
+            log.error(e);
             return null;
         }
 
