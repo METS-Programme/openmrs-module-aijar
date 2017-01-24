@@ -7,7 +7,7 @@
 
     Calendar cal = Calendar.getInstance()
     def maxAgeYear = cal.get(Calendar.YEAR)
-    def minAgeYear = maxAgeYear - person.getAge()
+    def minAgeYear = maxAgeYear - patient.getAge()
     def breadcrumbMiddle = breadcrumbOverride ?: '';
 %>
 <script type="text/javascript">
@@ -54,7 +54,7 @@ ${ui.includeFragment("coreapps", "patientHeader", [patient: patient])}
 <form method="post">
     <fieldset style="min-width: 40%">
         <span id="deceased-container">
-            <% if (person?.getDead() == true) {
+            <% if (patient?.getDead() == true) {
 
             %>
             <input checked="checked" id="deceased" name="dead" type="checkbox"/>
@@ -75,7 +75,7 @@ ${ui.includeFragment("coreapps", "patientHeader", [patient: patient])}
                         label        : "aijar.markpatientdeceased.dateofdeath",
                         formFieldName: "deathDate",
                         left         : true,
-                        defaultDate  : person?.getDeathDate() ?: null,
+                        defaultDate  : patient?.getDeathDate() ?: null,
                         useTime      : false,
                         showEstimated: false,
                         initialValue : new Date(),
@@ -98,7 +98,7 @@ ${ui.includeFragment("coreapps", "patientHeader", [patient: patient])}
                     <% if (!conceptAnswers.isEmpty()) {
                         conceptAnswers.each {
                     %>
-                    <% if (person?.getCauseOfDeath()?.getUuid() == it.getAnswerConcept().getUuid()) { %>
+                    <% if (patient?.getCauseOfDeath()?.getUuid() == it.getAnswerConcept().getUuid()) { %>
                     <option selected="selected"
                             value="${it.getAnswerConcept().getUuid()}">${it.getAnswerConcept().getName()}</option>
                     <% } else { %>
