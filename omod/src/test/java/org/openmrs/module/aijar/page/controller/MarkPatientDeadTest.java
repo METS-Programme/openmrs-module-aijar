@@ -8,6 +8,7 @@ import org.openmrs.Patient;
 import org.openmrs.api.context.Context;
 import org.openmrs.web.test.BaseModuleWebContextSensitiveTest;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -24,6 +25,15 @@ public class MarkPatientDeadTest extends BaseModuleWebContextSensitiveTest {
     public void setRequirementsForTest() {
         patient = Context.getPatientService().getPatient(2);
         concept = Context.getConceptService().getConcept("unknown");
+    }
+
+
+    private Date modifyDate(int daysOff, Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, daysOff);
+        Date modifiedDated = cal.getTime();
+        return modifiedDated;
     }
 
     /**
@@ -69,4 +79,25 @@ public class MarkPatientDeadTest extends BaseModuleWebContextSensitiveTest {
         Assert.assertEquals(patient.getDead(), false);
         Assert.assertNotEquals(patient.getCauseOfDeath(), concept);
     }
+
+
+    /**
+     * This tests scenarios when date of death is less than birth date
+     */
+    @Test
+    public void deathDateShouldNotBeLessThanBirthDate() {
+        MarkPatientDeadPageController markPatientDeadPageController = new MarkPatientDeadPageController();
+        markPatientDeadPageController.post(concept.getUuid(), true, modifyDate(-30, patient.getBirthdate()), patient.getUuid());
+        Assert.assertNull(patient.getDeathDate());
+    }
+    /**
+     * This tests scenarios when date of death is greater than today
+     */
+    @Test
+    public void deathDateShouldNotBeGreaterThanToday() {
+        MarkPatientDeadPageController markPatientDeadPageController = new MarkPatientDeadPageController();
+        markPatientDeadPageController.post(concept.getUuid(), true, modifyDate(30, dateOfDeath), patient.getUuid());
+        Assert.assertNull(patient.getDeathDate());
+    }
+
 }
