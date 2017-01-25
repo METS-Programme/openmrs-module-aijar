@@ -38,7 +38,7 @@ public class MarkPatientDeadTest extends BaseModuleWebContextSensitiveTest {
     }
 
     /**
-     * This tests if the patient is marked as dead when dateofDeath is null
+     * This tests scenarios where date of death is not given.
      */
     @Test
     public void shouldNotMarkPatientDeadWhenDateIsNull() {
@@ -49,7 +49,7 @@ public class MarkPatientDeadTest extends BaseModuleWebContextSensitiveTest {
 
 
     /**
-     * This tests if the patient is marked as dead when cause of death is null
+     * This is to test scenarios where a cause of death is not given.
      */
     @Test
     public void shouldNotMarkPatientDeadWhenCauseOfDeathIsNull() {
