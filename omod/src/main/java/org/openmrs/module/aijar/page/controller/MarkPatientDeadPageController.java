@@ -66,11 +66,7 @@ public class MarkPatientDeadPageController {
             return "redirect:/coreapps/clinicianfacing/patient.page?patientId=" + patient.getUuid() + "";
         } catch (Exception e) {
             log.error(e.getMessage());
-            if (patient != null) {
                 return "redirect:/aijar/markPatientDead.page?patientId={{" + patient.getUuid() + "}}";
-            } else {
-                return "redirect:/referenceapplication/home.page";
-            }
         }
 
     }
