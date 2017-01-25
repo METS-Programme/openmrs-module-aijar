@@ -46,10 +46,10 @@ public class MarkPatientDeadPageController {
 
     public String post(@RequestParam(value = "causeOfDeath", required = false) String causeOfDeath, @RequestParam(value = "dead", required = false) Boolean dead, @RequestParam(value = "deathDate", required = false) Date deathDate, @RequestParam("patientId") String patientId) {
 
-        try {
-            PatientService patientService = Context.getPatientService();
-            Patient patient = patientService.getPatientByUuid(patientId);
 
+        PatientService patientService = Context.getPatientService();
+        Patient patient = patientService.getPatientByUuid(patientId);
+        try {
             Date date = new Date();
 
             if (dead != null && !causeOfDeath.equals("") && deathDate != null && !deathDate.before(patient.getBirthdate()) && !deathDate.after(date)) {
@@ -65,8 +65,12 @@ public class MarkPatientDeadPageController {
             patientService.savePatient(patient);
             return "redirect:/coreapps/clinicianfacing/patient.page?patientId=" + patient.getUuid() + "";
         } catch (Exception e) {
-            log.error(e);
-            return null;
+            log.error(e.getMessage());
+            if (patient != null) {
+                return "redirect:/aijar/markPatientDead.page?patientId={{" + patient.getUuid() + "}}";
+            } else {
+                return "redirect:/referenceapplication/home.page";
+            }
         }
 
     }
@@ -79,5 +83,4 @@ public class MarkPatientDeadPageController {
         Concept concept = Context.getConceptService().getConcept(conceptId);
         return concept.getAnswers();
     }
-
 }
