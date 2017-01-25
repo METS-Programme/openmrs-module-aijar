@@ -90,7 +90,7 @@ public class MarkPatientDeadTest extends BaseModuleWebContextSensitiveTest {
     @Test
     public void shouldNotMarkPatientDeadWhenDPatientIsNull() {
         MarkPatientDeadPageController markPatientDeadPageController = new MarkPatientDeadPageController();
-        Assert.assertEquals(markPatientDeadPageController.post("", false, null, null),null);
+        Assert.assertEquals(markPatientDeadPageController.post("", false, null, null),"redirect:/referenceapplication/home.page");
     }
 
 
@@ -100,6 +100,6 @@ public class MarkPatientDeadTest extends BaseModuleWebContextSensitiveTest {
     @Test
     public void shouldNotMarkPatientDeadWhenNoParameter() {
         MarkPatientDeadPageController markPatientDeadPageController = new MarkPatientDeadPageController();
-        Assert.assertEquals(markPatientDeadPageController.post("", false, null, null),null);
+        Assert.assertEquals(markPatientDeadPageController.post("", false, null, null),"redirect:/referenceapplication/home.page");
     }
 }
