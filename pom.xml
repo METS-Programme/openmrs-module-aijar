@@ -47,6 +47,8 @@
 	</modules>
 
 	<properties>
+		<openMRSVersion>1.11.6</openMRSVersion>
+		<openmrsTestutilsVersion>1.3</openmrsTestutilsVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<openMRSVersion>1.11.7</openMRSVersion>
 		<webservices.restModuleVersion>2.14</webservices.restModuleVersion>
@@ -78,6 +80,7 @@
 		<htmlformentryVersion>3.3.1</htmlformentryVersion>
 		<htmlwidgetsVersion>1.7.2</htmlwidgetsVersion>
 		<idgenVersion>4.4.0</idgenVersion>
+		<jacksonVersion>1.8.3</jacksonVersion>
 		<junitParamsVersion>1.0.4</junitParamsVersion>
 		<metadatadeployVersion>1.7</metadatadeployVersion>
 		<metadatamappingVersion>1.2.0</metadatamappingVersion>
@@ -99,7 +102,7 @@
 		<uiframeworkVersion>3.9</uiframeworkVersion>
 		<uilibraryVersion>2.0.4</uilibraryVersion>
 		<xformsVersion>4.3.9</xformsVersion>
-		
+
 		<!-- core configuration library -->
 		<ugandaemrReportsVersion>1.0.3</ugandaemrReportsVersion>
 
@@ -161,6 +164,20 @@
 				<type>pom</type>
 				<scope>test</scope>
 			</dependency>
+
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-core-asl</artifactId>
+				<version>${jacksonVersion}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-mapper-asl</artifactId>
+				<version>${jacksonVersion}</version>
+				<scope>provided</scope>
+			</dependency>
+
 			<!-- End OpenMRS core -->
 
 			<!-- custom module -->
@@ -188,6 +205,7 @@
 				<version>${calculationVersion}</version>
 				<scope>provided</scope>
 			</dependency>
+
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>dataexchange-api</artifactId>
@@ -205,6 +223,12 @@
 				<artifactId>emrapi-api</artifactId>
 				<version>${emrapiVersion}</version>
 				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>emrapi-api-1.11</artifactId>
+				<version>${emrapiVersion}</version>
+				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.openmrs</groupId>
@@ -230,6 +254,13 @@
 				<artifactId>htmlformentry-api</artifactId>
 				<version>${htmlformentryVersion}</version>
 				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>htmlformentry-api-1.10</artifactId>
+				<version>${htmlformentryVersion}</version>
+				<scope>test</scope>
 			</dependency>
 
 			<dependency>
@@ -262,6 +293,13 @@
 
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
+				<artifactId>providermanagement-api</artifactId>
+				<version>${providermanagementVersion}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
 				<artifactId>referenceapplication-omod</artifactId>
 				<version>${referenceapplicationVersion}</version>
 				<scope>provided</scope>
@@ -283,9 +321,37 @@
 
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
+				<artifactId>reporting-api</artifactId>
+				<version>${reportingVersion}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>reporting-api-1.9</artifactId>
+				<version>${reportingVersion}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
 				<artifactId>serialization.xstream-api</artifactId>
 				<version>${serializationxstreamVersion}</version>
 				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>serialization.xstream-api-1.9</artifactId>
+				<version>${serializationxstreamVersion}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openmrs.contrib</groupId>
+				<artifactId>testutils</artifactId>
+				<version>${openmrsTestutilsVersion}</version>
+				<scope>test</scope>
 			</dependency>
 
 			<dependency>
@@ -300,6 +366,13 @@
 				<groupId>pl.pragmatists</groupId>
 				<artifactId>JUnitParams</artifactId>
 				<version>${junitParamsVersion}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>webservices.rest-omod-common</artifactId>
+				<version>${webservices.restModuleVersion}</version>
 				<scope>test</scope>
 			</dependency>
 
