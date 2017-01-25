@@ -17,7 +17,7 @@ public class MarkPatientDeadTest extends BaseModuleWebContextSensitiveTest {
 
     Patient patient = new Patient();
     Concept concept = new Concept();
-    Date dateofDeath = new Date();
+    Date dateOfDeath = new Date();
 
 
     @Before
@@ -32,7 +32,7 @@ public class MarkPatientDeadTest extends BaseModuleWebContextSensitiveTest {
     @Test
     public void shouldMarkPatientDeadSuccessfully() {
         MarkPatientDeadPageController markPatientDeadPageController = new MarkPatientDeadPageController();
-        markPatientDeadPageController.post(concept.getUuid(), true, dateofDeath, patient.getUuid().toString());
+        markPatientDeadPageController.post(concept.getUuid(), true, dateOfDeath, patient.getUuid().toString());
         Assert.assertEquals(patient.getDead(), true);
         Assert.assertEquals(patient.getCauseOfDeath(), concept);
     }
@@ -54,7 +54,7 @@ public class MarkPatientDeadTest extends BaseModuleWebContextSensitiveTest {
     @Test
     public void shouldNotMarkPatientDeadWhenCauseOfDeathIsNull() {
         MarkPatientDeadPageController markPatientDeadPageController = new MarkPatientDeadPageController();
-        markPatientDeadPageController.post("", true, dateofDeath, patient.getUuid().toString());
+        markPatientDeadPageController.post("", true, dateOfDeath, patient.getUuid().toString());
         Assert.assertEquals(patient.getDead(), false);
         Assert.assertNotEquals(patient.getCauseOfDeath(), concept);
     }
@@ -65,7 +65,7 @@ public class MarkPatientDeadTest extends BaseModuleWebContextSensitiveTest {
     @Test
     public void shouldNotMarkPatientDeadWhenDeadIsFalse() {
         MarkPatientDeadPageController markPatientDeadPageController = new MarkPatientDeadPageController();
-        markPatientDeadPageController.post(concept.getUuid(), false, dateofDeath, patient.getUuid().toString());
+        markPatientDeadPageController.post(concept.getUuid(), false, dateOfDeath, patient.getUuid().toString());
         Assert.assertEquals(patient.getDead(), false);
         Assert.assertNotEquals(patient.getCauseOfDeath(), concept);
     }
