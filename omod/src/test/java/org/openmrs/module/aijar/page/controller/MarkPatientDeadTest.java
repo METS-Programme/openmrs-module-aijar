@@ -8,7 +8,6 @@ import org.openmrs.Patient;
 import org.openmrs.api.context.Context;
 import org.openmrs.web.test.BaseModuleWebContextSensitiveTest;
 
-import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -18,7 +17,7 @@ public class MarkPatientDeadTest extends BaseModuleWebContextSensitiveTest {
 
     Patient patient = new Patient();
     Concept concept = new Concept();
-    Date date = new Date();
+    Date dateofDeath = new Date();
 
 
     @Before
@@ -33,13 +32,13 @@ public class MarkPatientDeadTest extends BaseModuleWebContextSensitiveTest {
     @Test
     public void shouldMarkPatientDeadSuccessfully() {
         MarkPatientDeadPageController markPatientDeadPageController = new MarkPatientDeadPageController();
-        markPatientDeadPageController.post(concept.getUuid(), true, date, patient.getUuid().toString());
+        markPatientDeadPageController.post(concept.getUuid(), true, dateofDeath, patient.getUuid().toString());
         Assert.assertEquals(patient.getDead(), true);
         Assert.assertEquals(patient.getCauseOfDeath(), concept);
     }
 
     /**
-     * This tests if the patient is marked as dead when date is null
+     * This tests if the patient is marked as dead when dateofDeath is null
      */
     @Test
     public void shouldNotMarkPatientDeadWhenDateIsNull() {
@@ -55,7 +54,7 @@ public class MarkPatientDeadTest extends BaseModuleWebContextSensitiveTest {
     @Test
     public void shouldNotMarkPatientDeadWhenCauseOfDeathIsNull() {
         MarkPatientDeadPageController markPatientDeadPageController = new MarkPatientDeadPageController();
-        markPatientDeadPageController.post("", true, date, patient.getUuid().toString());
+        markPatientDeadPageController.post("", true, dateofDeath, patient.getUuid().toString());
         Assert.assertEquals(patient.getDead(), false);
         Assert.assertNotEquals(patient.getCauseOfDeath(), concept);
     }
@@ -66,7 +65,7 @@ public class MarkPatientDeadTest extends BaseModuleWebContextSensitiveTest {
     @Test
     public void shouldNotMarkPatientDeadWhenDeadIsFalse() {
         MarkPatientDeadPageController markPatientDeadPageController = new MarkPatientDeadPageController();
-        markPatientDeadPageController.post(concept.getUuid(), false, date, patient.getUuid().toString());
+        markPatientDeadPageController.post(concept.getUuid(), false, dateofDeath, patient.getUuid().toString());
         Assert.assertEquals(patient.getDead(), false);
         Assert.assertNotEquals(patient.getCauseOfDeath(), concept);
     }
