@@ -27,16 +27,6 @@ public class MarkPatientDeadTest extends BaseModuleWebContextSensitiveTest {
         concept = Context.getConceptService().getConcept("unknown");
     }
 
-
-    private Date modifyPatientBirthDate(int daysOff,Date date){
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        cal.add(Calendar.DATE, daysOff);
-        Date modifiedDated = cal.getTime();
-        return modifiedDated;
-    }
-
-
     /**
      * This tests if the patient is marked as dead when given the right params
      */
@@ -55,8 +45,7 @@ public class MarkPatientDeadTest extends BaseModuleWebContextSensitiveTest {
     public void shouldNotMarkPatientDeadWhenDateIsNull() {
         MarkPatientDeadPageController markPatientDeadPageController = new MarkPatientDeadPageController();
         markPatientDeadPageController.post(concept.getUuid(), true, null, patient.getUuid().toString());
-        Assert.assertEquals(patient.getDead(), false);
-        Assert.assertNotEquals(patient.getCauseOfDeath(), concept);
+        Assert.assertEquals(patient.getDeathDate(), null);
     }
 
 
@@ -80,26 +69,5 @@ public class MarkPatientDeadTest extends BaseModuleWebContextSensitiveTest {
         markPatientDeadPageController.post(concept.getUuid(), false, date, patient.getUuid().toString());
         Assert.assertEquals(patient.getDead(), false);
         Assert.assertNotEquals(patient.getCauseOfDeath(), concept);
-    }
-
-
-
-    /**
-     * This tests if the patient is marked as dead when patient is null
-     */
-    @Test
-    public void shouldNotMarkPatientDeadWhenDPatientIsNull() {
-        MarkPatientDeadPageController markPatientDeadPageController = new MarkPatientDeadPageController();
-        Assert.assertEquals(markPatientDeadPageController.post("", false, null, null),"redirect:/referenceapplication/home.page");
-    }
-
-
-    /**
-     * This tests if the patient is marked as dead when checkbox dead is not checked ie false
-     */
-    @Test
-    public void shouldNotMarkPatientDeadWhenNoParameter() {
-        MarkPatientDeadPageController markPatientDeadPageController = new MarkPatientDeadPageController();
-        Assert.assertEquals(markPatientDeadPageController.post("", false, null, null),"redirect:/referenceapplication/home.page");
     }
 }
