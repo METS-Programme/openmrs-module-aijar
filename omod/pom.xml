@@ -16,16 +16,16 @@
 	<dependencies>
 
 		<!-- Begin OpenMRS modules -->
-
+		
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
 			<artifactId>${project.parent.artifactId}-api</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
-
-
+		
+				
 		<!-- End OpenMRS modules -->
-
+		
 
 		<!-- Begin OpenMRS core -->
 
@@ -35,18 +35,17 @@
 			<type>jar</type>
 		</dependency>
 
-
+		<dependency>
+			<groupId>org.openmrs.web</groupId>
+			<artifactId>openmrs-web</artifactId>
+			<type>jar</type>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.openmrs.api</groupId>
 			<artifactId>openmrs-api</artifactId>
 			<type>test-jar</type>
 			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.openmrs.web</groupId>
-			<artifactId>openmrs-web</artifactId>
-			<type>jar</type>
 		</dependency>
 
 		<dependency>
@@ -62,7 +61,7 @@
 			<type>pom</type>
 			<scope>test</scope>
 		</dependency>
-
+		
 		<!-- End OpenMRS core -->
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
@@ -74,75 +73,36 @@
 			<artifactId>appui-omod</artifactId>
 		</dependency>
 
-        <dependency>
-			<groupId>org.openmrs.module</groupId>
-			<artifactId>calculation-api</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.openmrs.module</groupId>
-			<artifactId>dataintegrity-api</artifactId>
-		</dependency>
-
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>emrapi-api</artifactId>
 		</dependency>
-
-		<dependency>
-			<groupId>org.openmrs.module</groupId>
-			<artifactId>emrapi-api-1.11</artifactId>
-		</dependency>
-
+		
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>formentryapp-omod</artifactId>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>htmlformentry-api</artifactId>
 		</dependency>
-
-		<dependency>
-			<groupId>org.openmrs.module</groupId>
-			<artifactId>htmlformentry-api-1.10</artifactId>
-		</dependency>
-
+		
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>htmlformentryui-api</artifactId>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>idgen-api</artifactId>
 		</dependency>
-
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-core-asl</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
-		</dependency>
-
+		
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>metadatadeploy-api</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.openmrs.module</groupId>
-			<artifactId>metadatasharing-api</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.openmrs.module</groupId>
-			<artifactId>providermanagement-api</artifactId>
-		</dependency>
-
+		
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>referenceapplication-omod</artifactId>
@@ -155,34 +115,8 @@
 
         <dependency>
             <groupId>org.openmrs.module</groupId>
-            <artifactId>reporting-api</artifactId>
+            <artifactId>uiframework-api</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>org.openmrs.module</groupId>
-            <artifactId>reporting-api-1.9</artifactId>
-        </dependency>
-
-		<dependency>
-			<groupId>org.openmrs.module</groupId>
-			<artifactId>serialization.xstream-api</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.openmrs.module</groupId>
-			<artifactId>serialization.xstream-api-1.9</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.openmrs.module</groupId>
-			<artifactId>uiframework-api</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.openmrs.module</groupId>
-			<artifactId>webservices.rest-omod-common</artifactId>
-		</dependency>
 
 	</dependencies>
 
@@ -226,7 +160,7 @@
 						<includeEmptyDirs>true</includeEmptyDirs>
 					</configuration>
 				</plugin>
-				<!--This plugin's configuration is used to store Eclipse m2e settings
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
 					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
@@ -310,7 +244,7 @@
 					</execution>
 				</executions>
 			</plugin>
-
+			
 			<plugin>
 				<groupId>org.openmrs.maven.plugins</groupId>
 				<artifactId>openmrs-sdk-maven-plugin</artifactId>
