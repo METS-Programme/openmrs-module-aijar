@@ -95,6 +95,8 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 
             // form entry app on the home page
             appFrameworkService.disableApp("xforms.formentry");
+            // disable the default find patient app to provide one which allows searching for patients at the footer of the search for patients page
+            appFrameworkService.disableApp("coreapps.findPatient");
             // form entry extension in active visits
             appFrameworkService.disableExtension("xforms.formentry.cfpd");
 
