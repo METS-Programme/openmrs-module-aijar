@@ -97,7 +97,7 @@ public class MarkPatientDeadTest extends BaseModuleWebContextSensitiveTest {
     @Test
     public void deathDateShouldNotBeGreaterThanToday() {
         MarkPatientDeadPageController markPatientDeadPageController = new MarkPatientDeadPageController();
-        markPatientDeadPageController.post(concept.getUuid(), true, modifyDate(30,dateOfDeath), patient.getUuid());
+        markPatientDeadPageController.post(concept.getUuid(), true, modifyDate(60,dateOfDeath), patient.getUuid());
         Assert.assertNull(patient.getDeathDate());
     }
 

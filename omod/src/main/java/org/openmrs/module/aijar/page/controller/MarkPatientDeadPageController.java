@@ -46,7 +46,6 @@ public class MarkPatientDeadPageController {
 
     public String post(@RequestParam(value = "causeOfDeath", required = false) String causeOfDeath, @RequestParam(value = "dead", required = false) Boolean dead, @RequestParam(value = "deathDate", required = false) Date deathDate, @RequestParam("patientId") String patientId) {
 
-
         PatientService patientService = Context.getPatientService();
         Patient patient = patientService.getPatientByUuid(patientId);
         try {

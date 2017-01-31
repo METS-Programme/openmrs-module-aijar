@@ -87,7 +87,6 @@ ${ui.includeFragment("coreapps", "patientHeader", [patient: patient])}
                 ])}
             </span>
         </p>
-
         <p>
             <span id="cause-of-death-container">
                 <label for="cause-of-death">
@@ -112,7 +111,6 @@ ${ui.includeFragment("coreapps", "patientHeader", [patient: patient])}
                 <span class="field-error"></span>
             </span>
         </p>
-
         <p>
             <span>
                 <input type="submit" value="Submit">
