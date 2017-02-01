@@ -1,0 +1,212 @@
+<htmlform formName="Form 096a - Health Unit TB Register - Summary"
+          formDescription="HMIS Form 096a - Health Unit TB Register - Initial Visit"
+          formEncounterType="334bf97e-28e2-4a27-8727-a5ce31c7cd66"
+          formUuid="b609b3f0-6fa8-4764-976e-625f0683b690"
+          formVersion="1.0"
+          formAddMetadata="yes"
+          formUILocation="patientDashboard.visitActions"
+          formOrder="1"
+          formIcon="icon-medkit"
+          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='8ab22b55-9a17-4121-bf08-6134a9a2439f'"
+          formDisplayStyle="Standard"
+          formLabel="Form 096a - Health Unit TB Register - Summary">
+    <style>
+
+        form label, .form label {
+            float: left;
+            padding: 0px 10px 0 0;
+        }
+
+        form input[type="checkbox"], form input[type="radio"], .form input[type="checkbox"], .form input[type="radio"] {
+            margin: 10px 15px;
+        }
+
+        table td {
+            background: #FFFFFF;
+            color: #404040;
+        }
+
+        form select, .form select {
+            min-width: 0px;
+        }
+
+        form input, form select, form textarea, form ul.select, .form input, .form select, .form textarea, .form
+        ul.select {
+            background-color: #FBFBFB;
+            border: 1px solid #CEC9C9;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 10px;
+            min-width: 20%;
+        }
+
+        .row {
+            width: 100%;
+            float: left;
+            display: inline-flex;
+            clear: both;
+        }
+
+        .row .row-col2 {
+            float: left;
+            width: 50%;
+        }
+
+        table th, table td {
+            border: 1px solid #AFAFAF;
+        }
+    </style>
+    <div class="ai-page-frame">
+        <div class="headers" style="text-align: center;">
+            <h3 style="background: #FFFF7D; padding: 10px;">096a - TB Register Summary Page</h3>
+        </div>
+      <section>
+            <table>
+                <tbody>
+                <tr>
+                    <td>
+                        Request date:
+                        <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
+                     <span style="display: none;">
+                        <encounterLocation default="8ab22b55-9a17-4121-bf08-6134a9a2439f"
+                                           order="8ab22b55-9a17-4121-bf08-6134a9a2439f"/>
+                      </span>
+                    </td>
+                    <td>
+                        <label><span class="required">*</span> Provider:</label>
+                        <encounterProvider role="Provider" style="autocomplete" required="required"/>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </section>
+		<section>
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			  <tr>
+				<td style="width:33%"><p>Unit TB No.</p>
+				    <p><patient  field="identifier" identifierTypeId="8fd5e225-f91a-44af-ba04-3b41428d2164" id="unit-tb-no" required="true" /></p>
+				</td>
+				<td style="width:33%"><p>HSD TB No. </p>
+				    <p><patient  field="identifier" identifierTypeId="2a6f1f82-2b70-4a51-8507-3a849bc637c3" id="hsd-tb-no" required="false" /></p>
+				</td>
+				<td style="width:33%"><p>District TB No </p>
+				    <p><patient  field="identifier" identifierTypeId="8110f2d2-1f98-4c38-aef3-11b19bb0a589" id="district-tb-no" required="false" /></p>
+				</td>
+			  </tr>
+			  <tr>
+				<td><p>Name of contact person </p>
+			    <p><obs conceptId="163258AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></p></td>
+				<td><p>Is Health worker? </p>
+			    	<p><obs conceptId="5619AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+				</p>
+				</td>
+				<td><p>Cadre of health worker </p>
+			    <p>missing</p></td>
+			  </tr>
+			  <tr>
+				<td>Date treatment started </td>
+				<td>Regimen</td>
+				<td>Disease clasification </td>
+			  </tr>
+			  <tr>
+				<td>Type of patient </td>
+				<td>Transfer in facility Name </td>
+				<td>Unit TB No. (Of trnsfer in facility) </td>
+			  </tr>
+			</table>
+		</section>
+		<section>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td valign="top" style="width:33%">Patient received HIV Results </td>
+    <td valign="top" style="width:33%">HIV Counselling and testing </td>
+    <td style="width:33%"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td style="width:50%">CPT</td>
+        <td style="width:50%">Date</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>      </td>
+  </tr>
+  <tr>
+    <td colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td style="width:33%">ART</td>
+        <td style="width:33%">ART No. </td>
+        <td style="width:33%">ART Start Date </td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+    </table></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>No. of children &lt;5yrs in contact </td>
+    <td>No. of children with IPT </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>Treatment Model </td>
+    <td>Date for treatment model </td>
+    <td>Name of treatment supporter </td>
+  </tr>
+</table>
+
+		</section>
+        <section>
+            <table>
+                <tbody>
+
+                <tr>
+                    <td colspan="3"><b>HIV DNA PCR, QUAL:</b>
+                        <obs id="br" conceptId="1030" labelText="" answerConceptIds="1138,664,703"
+                             answerLabels="Intermediate, Negative, Positive" style="radio"/>
+                    </td>
+                    <td><b>Chlamydia Trachomatis DNA PCR </b>:
+                        <obs id="br" conceptId="1034" labelText="" answerConceptIds="1300,664,703,1304"
+                             answerLabels="Equivocal,Negative, Positive, Poor sample" style="radio"/>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td><b>HIV Viral Load:</b>
+                        <obs id="br" conceptId="99093" answerConceptIds="99090,99091,99092" answerLabels="&#61;,&#60;,&#62;"
+                             style="radio"/>
+                    </td>
+                    <td>
+                        <obs conceptId="856"/>
+                    </td>
+                    <td>copies/ml</td>
+                    <td><b> GONORRHEA PCR: </b>
+                        <obs id="br" conceptId="1038" labelText="" answerConceptIds="1300,664,703,1304"
+                             answerLabels="Equivocal,Negative, Positive, Poor sample" style="radio"/>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td colspan="3"><b>HERPES PCR: </b>
+                        <obs id="br" conceptId="1046" labelText="" answerConceptIds="1300,664,703,1304"
+                             answerLabels="Equivocal,Negative, Positive, Poor sample" style="radio"/>
+                    </td>
+                    <td><b>TRICHOMONAS PCR:</b>
+                        <obs id="br" conceptId="1039" labelText="" answerConceptIds="1300,664,703,1304"
+                             answerLabels="Equivocal,Negative, Positive, Poor sample" style="radio"/>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <br/>
+        <submit/>
+    </div>
+</htmlform>
