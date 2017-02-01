@@ -237,6 +237,8 @@
             beforeSubmit.push(function() {
                 <!-- clear the previous errors -->
                 setValue('returndate.error', '');
+                setValue('viral-load-results-copies.error', '');
+                setValue('date-viral-load-taken.error', '');
 
                 var encounterDate = getValue('encounterDate.value');
                 var returnDate = getValue('returndate.value');
@@ -244,6 +246,31 @@
                 if (encounterDate &gt;= returnDate) {
                     getField('returndate.error').html('The return date must be after the date of this visit ' +
                                                       encounterDate).show();
+                    return false;
+                }
+
+                var viral_load_qualitative = getValue('viral-load-results-qualitative.value');
+                var date_viral_load_taken = getValue('date-viral-load-taken.value');
+                /* The date that the viral load was taken is required if a qualitative result is selected */
+                if (viral_load_qualitative != "") {
+                    if (date_viral_load_taken == "") {
+                        getField('date-viral-load-taken.error').html('Please enter the date when the viral load sample was taken').show();
+                        return false;
+                    }
+                }
+
+                /** The date the viral load was taken cannot be after the encounter date */
+                if (date_viral_load_taken != "") {
+                    if (encounterDate &lt; date_viral_load_taken) {
+                        getField('date-viral-load-taken.error').html('The date the viral load sample was taken cannot be after the date of this visit ' + encounterDate).show();
+                        return false;
+                    }
+                }
+
+                /* If the viral load is detected, the number of copies must be greater than 20 which is the lowest detectable level for a machine */
+                if ((viral_load_qualitative == 1301) &amp;&amp; (getValue('viral-load-results-copies.value') &lt; 20)) {
+                    getField('viral-load-results-copies.error').html('Please enter the number of virus copies per ml. the minimum number of copies is 20').show();
+
                     return false;
                 }
 
@@ -255,6 +282,30 @@
                         jq(this).change();
                     });
                 }
+
+                /* Handle viral load results */
+                jq("#viral-load-results-copies").attr("disabled", true);
+                jq("#viral-load-results-qualitative").change(function(){
+                    var viral_load_status = getValue('viral-load-results-qualitative.value');
+                    if (viral_load_status == 1301) {
+                        /* Detected */
+                        jq("#viral-load-results-copies").attr("disabled", false).attr("readonly", false).fadeTo(250, 1);
+                        setValue('viral-load-results-copies.value', '');
+                    }
+                    if (viral_load_status == 1306) {
+                        /* Not Detected */
+                        jq("#viral-load-results-copies").attr("disabled", false).attr("readonly", true).fadeTo(250, 0.25);
+                        setValue('viral-load-results-copies.value', 1);
+                    }
+                    if (viral_load_status == "" || viral_load_status == 1304 ) {
+                        /* Sample Rejected and no data */
+                        jq("#viral-load-results-copies").attr("disabled", true).attr("readonly", true).fadeTo(250, 0.25);
+                        setValue('viral-load-results-copies.value', '');
+                    }
+                });
+                // trigger a change when the form loads
+                jq("#viral-load-results-qualitative").change();
+
 
                 jq('[class^="ARTYesNoEnableDisable"]').change(function () {
                     enable_disable(jq(this), "ARTYesNo", 'selected_value == "yes" &amp;&amp; selected_value!=""', "select");
@@ -288,16 +339,6 @@
                 jq('[class^="AdherenceEnableDisable"]').each(function () {
                     enable_disable(jq(this), "Adherence", 'selected_value == "poor" || selected_value=="fair"', "select");
                 });
-
-
-                jq('[class^="ViralLoadEnableDisable"]').change(function () {
-                    enable_disable(jq(this), "ViralLoad", 'selected_value != "not detected" &amp;&amp; selected_value!=""', "select");
-                });
-
-                jq('[class^="ViralLoadEnableDisable"]').each(function () {
-                    enable_disable(jq(this), "ViralLoad", 'selected_value != "not detected" &amp;&amp; selected_value!=""', "select");
-                });
-
 
                 jq(".enableDisable").each(function () {
                     var group = jq(this);
@@ -757,20 +798,16 @@
                         <br/><b>Viral Load</b>
                         <br/>
                         Date Viral Load Taken
-                        <obs conceptId="163023" allowFutureDates="false"/>
+                        <obs id="date-viral-load-taken" conceptId="163023" allowFutureDates="false"/>
                         <br/>
                         Viral Load Results
                         <br/>
-                        <span class="ViralLoadEnableDisable1">
-                        <obs id="br" conceptId="1305" answerConceptIds="1301,1306,1304"
+                        <obs id="viral-load-results-qualitative" conceptId="1305" answerConceptIds="1301,1306,1304"
                              answerLabels="Detected,Not Detected, Sample Rejected"/>
-                        </span>
                         <br/>
-                        <span class="ViralLoadEnableDisableChild1">
                         Viral Load (copies/ml)
 
-                        <obs id="br" conceptId="856"/>
-                        </span>
+                        <obs id="viral-load-results-copies" conceptId="856"/>
                     </td>
                     <td class="lablex2">
                         <b>Tests ordered:</b>
