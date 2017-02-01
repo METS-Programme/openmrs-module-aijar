@@ -35,6 +35,9 @@ public class PersonAttributeTypes {
         public String uuid() {
             return "8d871f2a-c2cc-11de-8d13-0010c6dffd0f";
         }
+    
+        @Override
+        public boolean searchable() {return true;}
     };
 
     public static PersonAttributeTypeDescriptor HEALTH_CENTER = new PersonAttributeTypeDescriptor() {
@@ -103,6 +106,9 @@ public class PersonAttributeTypes {
         public String uuid() {
             return "8c44d411-285f-46c6-9f17-c2f919823b34";
         }
+    
+        @Override
+        public boolean searchable() {return true;}
     };
     
     public static PersonAttributeTypeDescriptor TELEPHONE_NUMBER_3 = new PersonAttributeTypeDescriptor() {
@@ -123,6 +129,30 @@ public class PersonAttributeTypes {
         
         public String uuid() {
             return "a00eda65-2f66-4fda-a683-c1787eb626a9";
+        }
+        
+        @Override
+        public boolean searchable() {return true;}
+    };
+    
+    public static PersonAttributeTypeDescriptor OCCUPATION = new PersonAttributeTypeDescriptor() {
+        @Override
+        public double sortWeight() {
+            return 12;
+        }
+        
+        @Override
+        public String name() {
+            return "Occupation";
+        }
+        
+        @Override
+        public String description() {
+            return "Occupation";
+        }
+        
+        public String uuid() {
+            return "b0868a16-4f8e-43da-abfc-6338c9d8f56a";
         }
     };
 }
