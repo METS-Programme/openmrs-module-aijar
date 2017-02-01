@@ -207,6 +207,12 @@
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>emrapi-api-1.11</artifactId>
+				<version>${emrapiVersion}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
 				<groupId>org.openmrs</groupId>
 				<artifactId>event-api</artifactId>
 				<version>${eventVersion}</version>
@@ -230,6 +236,13 @@
 				<artifactId>htmlformentry-api</artifactId>
 				<version>${htmlformentryVersion}</version>
 				<scope>provided</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>htmlformentry-api-1.10</artifactId>
+				<version>${htmlformentryVersion}</version>
+				<scope>test</scope>
 			</dependency>
 
 			<dependency>
@@ -259,7 +272,14 @@
 				<version>${metadatasharingVersion}</version>
 				<scope>provided</scope>
 			</dependency>
-
+			
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>providermanagement-api</artifactId>
+				<version>${providermanagementVersion}</version>
+				<scope>test</scope>
+			</dependency>
+			
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>referenceapplication-omod</artifactId>
@@ -273,7 +293,14 @@
 				<version>${registrationcoreVersion}</version>
 				<scope>provided</scope>
 			</dependency>
-
+			
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>reporting-api</artifactId>
+				<version>${reportingVersion}</version>
+				<scope>test</scope>
+			</dependency>
+			
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>registrationapp-api</artifactId>
@@ -286,6 +313,13 @@
 				<artifactId>serialization.xstream-api</artifactId>
 				<version>${serializationxstreamVersion}</version>
 				<scope>provided</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>serialization.xstream-api-1.9</artifactId>
+				<version>${serializationxstreamVersion}</version>
+				<scope>test</scope>
 			</dependency>
 
 			<dependency>

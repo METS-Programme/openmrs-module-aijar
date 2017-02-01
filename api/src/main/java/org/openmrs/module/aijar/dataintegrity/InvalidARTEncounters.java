@@ -3,10 +3,7 @@ package org.openmrs.module.aijar.dataintegrity;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.hibernate.Query;
-import org.openmrs.Encounter;
 import org.openmrs.Patient;
 import org.openmrs.Visit;
 import org.openmrs.module.dataintegrity.DataIntegrityRule;

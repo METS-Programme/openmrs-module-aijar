@@ -1,11 +1,16 @@
 package org.openmrs.module.aijar.dataintegrity;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.hibernate.Query;
+import org.joda.time.DateTime;
+import org.joda.time.Months;
+import org.joda.time.Period;
+import org.openmrs.Encounter;
 import org.openmrs.Patient;
 import org.openmrs.module.dataintegrity.DataIntegrityRule;
 import org.openmrs.module.dataintegrity.rule.RuleResult;
@@ -39,9 +44,10 @@ public class IncompleteExposedInfantInformation extends BasePatientRuleDefinitio
 	 * Exposed infants with Encounters but no summary page
 	 * @return
 	 */
-	private List<RuleResult<Patient>> exposedInfantsWithEncountersAndNOSummaryPage() {
+	public List<RuleResult<Patient>> exposedInfantsWithEncountersAndNOSummaryPage() {
 		log.info("Executing rule to find exposed infants with encounters but no summary page");
-		String queryString = "SELECT patient FROM Encounter e WHERE e.voided = false AND ( e.encounterType.uuid = '4345dacb-909d-429c-99aa-045f2db77e2b') AND e.patient.patientId NOT IN (SELECT ee.patient.patientId FROM Encounter ee WHERE ee.encounterType.uuid = '9fcfcc91-ad60-4d84-9710-11cc25258719') GROUP BY e.patient.patientId";
+		String queryString = "SELECT patient FROM Encounter e WHERE e.voided = false AND e.encounterType.uuid = '4345dacb-909d-429c-99aa-045f2db77e2b'"
+				+ " AND e.patient.patientId NOT IN (SELECT ee.patient.patientId FROM Encounter ee WHERE ee.encounterType.uuid = '9fcfcc91-ad60-4d84-9710-11cc25258719') GROUP BY e.patient.patientId";
 		
 		Query query = getSession().createQuery(queryString);
 		
@@ -65,9 +71,9 @@ public class IncompleteExposedInfantInformation extends BasePatientRuleDefinitio
 	 * Exposed infants with Summary page but no encounters
 	 * @return
 	 */
-	private List<RuleResult<Patient>> exposedInfantsWithSummaryPageNoEncounters() {
+	public List<RuleResult<Patient>> exposedInfantsWithSummaryPageNoEncounters() {
 		log.info("Executing rule to find exposed infants a summary page and no encounters");
-		String queryString = "SELECT patient FROM Encounter e WHERE e.voided = false AND ( e.encounterType.uuid = '9fcfcc91-ad60-4d84-9710-11cc25258719') AND e.patient.patientId NOT IN (SELECT ee.patient.patientId FROM Encounter ee WHERE ee.encounterType.uuid =  '4345dacb-909d-429c-99aa-045f2db77e2b') GROUP BY e.patient.patientId";
+		String queryString = "SELECT patient FROM Encounter e WHERE e.voided = false AND e.encounterType.uuid = '9fcfcc91-ad60-4d84-9710-11cc25258719' AND e.patient.patientId NOT IN (SELECT ee.patient.patientId FROM Encounter ee WHERE ee.encounterType.uuid =  '4345dacb-909d-429c-99aa-045f2db77e2b') GROUP BY e.patient.patientId";
 		
 		Query query = getSession().createQuery(queryString);
 		
@@ -91,45 +97,29 @@ public class IncompleteExposedInfantInformation extends BasePatientRuleDefinitio
 	 * Exposed infants older than 2 years with Summary page but no final outcome
 	 * @return
 	 */
-	private List<RuleResult<Patient>> exposedInfantsOlderThan18MonthsWithNoFinalOutcome() {
-		String queryString = "SELECT patient FROM Encounter e WHERE e.voided = false AND e.encounterType.uuid = '9fcfcc91-ad60-4d84-9710-11cc25258719' AND e.patient.age >= 2 AND e.patient.patientId NOT IN (SELECT o.patient.patientId FROM Obs o WHERE o.voided = false AND o.concept.conceptId = 99428))";
+	public List<RuleResult<Patient>> exposedInfantsOlderThan18MonthsWithNoFinalOutcome() {
+		String queryString = "SELECT encounter FROM Obs o WHERE o.voided = false AND o.encounter.voided = false AND o.encounter.encounterType.uuid = '9fcfcc91-ad60-4d84-9710-11cc25258719' AND o.person.personId NOT IN (SELECT o.person.personId FROM Obs o WHERE o.voided = false AND o.concept.conceptId = 99428)";
 		
 		Query query = getSession().createQuery(queryString);
 		
-		List<Patient> patientList = query.list();
+		List<Encounter> encounterList = query.list();
 		
 		List<RuleResult<Patient>> ruleResults = new ArrayList<>();
-		for (Patient patient : patientList) {
-			RuleResult<Patient> ruleResult = new RuleResult<>();
-			ruleResult.setActionUrl("htmlformentryui/htmlform/enterHtmlFormWithStandardUi.page?formUuid=860c5f2f-cf3c-4c3f-b0c4-9958b6a5a938&patientId=" + patient.getUuid());
-			ruleResult.setNotes("Exposed Infant # " + getExposedInfantNumber(patient) + " is over 18 months with no final outcome");
-			ruleResult.setEntity(patient);
-			
-			ruleResults.add(ruleResult);
-		}
-		
-		return ruleResults;
-	}
-	
-	/**
-	 * Exposed infants missing 1st DNA PCR after 6 weeks of enrollment
-	 * @return
-	 */
-	private List<RuleResult<Patient>> exposedInfantsWithoutFirstDNAPCRWhenEnrolledBefore6Weeks() {
-		String queryString = "SELECT patient FROM Encounter e WHERE e.voided = false AND e.encounterType.uuid = '9fcfcc91-ad60-4d84-9710-11cc25258719' AND e.patient.age >= 2 AND e.patient.patientId NOT IN (SELECT o.patient.patientId FROM Obs o WHERE o.voided = false AND o.concept.conceptId = 99428))";
-		
-		Query query = getSession().createQuery(queryString);
-		
-		List<Patient> patientList = query.list();
-		
-		List<RuleResult<Patient>> ruleResults = new ArrayList<>();
-		for (Patient patient : patientList) {
-			RuleResult<Patient> ruleResult = new RuleResult<>();
-			ruleResult.setActionUrl("htmlformentryui/htmlform/enterHtmlFormWithStandardUi.page?formUuid=860c5f2f-cf3c-4c3f-b0c4-9958b6a5a938&patientId=" + patient.getUuid());
-			ruleResult.setNotes("Exposed Infant # " + getExposedInfantNumber(patient) + " is over 18 months with no final outcome");
-			ruleResult.setEntity(patient);
-			
-			ruleResults.add(ruleResult);
+		Calendar today = new GregorianCalendar();
+		for (Encounter encounter : encounterList) {
+			// this rule only applies to infants below 18 months
+			if (Months.monthsBetween(new DateTime(encounter.getPatient().getBirthdate().getTime()), new DateTime()).getMonths() > 18) {
+				RuleResult<Patient> ruleResult = new RuleResult<>();
+				ruleResult.setActionUrl(
+						"htmlformentryui/htmlform/enterHtmlFormWithStandardUi.page?formUuid=860c5f2f-cf3c-4c3f-b0c4-9958b6a5a938&patientId="
+								+ encounter.getPatient().getUuid() + "&encounterId=" + encounter.getEncounterId()
+								+ "&visitId=" + encounter.getVisit().getId());
+				ruleResult.setNotes("Exposed Infant # " + getExposedInfantNumber(encounter.getPatient())
+						+ " is over 18 months with no final outcome");
+				ruleResult.setEntity(encounter.getPatient());
+				
+				ruleResults.add(ruleResult);
+			}
 		}
 		
 		return ruleResults;
