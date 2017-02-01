@@ -265,13 +265,6 @@
 
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
-				<artifactId>htmlformentry-api-1.10</artifactId>
-				<version>${htmlformentryVersion}</version>
-				<scope>test</scope>
-			</dependency>
-
-			<dependency>
-				<groupId>org.openmrs.module</groupId>
 				<artifactId>idgen-api</artifactId>
 				<version>${idgenVersion}</version>
 				<scope>provided</scope>
@@ -302,13 +295,6 @@
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>providermanagement-api</artifactId>
 				<version>${providermanagementVersion}</version>
-				<scope>test</scope>
-			</dependency>
-			
-			<dependency>
-				<groupId>org.openmrs.module</groupId>
-				<artifactId>providermanagement-api</artifactId>
-				<version>${providermanagementVersion}</version>
 				<scope>provided</scope>
 			</dependency>
 
@@ -324,13 +310,6 @@
 				<artifactId>registrationcore-api</artifactId>
 				<version>${registrationcoreVersion}</version>
 				<scope>provided</scope>
-			</dependency>
-			
-			<dependency>
-				<groupId>org.openmrs.module</groupId>
-				<artifactId>reporting-api</artifactId>
-				<version>${reportingVersion}</version>
-				<scope>test</scope>
 			</dependency>
 			
 			<dependency>
@@ -361,13 +340,6 @@
 				<scope>provided</scope>
 			</dependency>
 			
-			<dependency>
-				<groupId>org.openmrs.module</groupId>
-				<artifactId>serialization.xstream-api-1.9</artifactId>
-				<version>${serializationxstreamVersion}</version>
-				<scope>test</scope>
-			</dependency>
-
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>serialization.xstream-api-1.9</artifactId>

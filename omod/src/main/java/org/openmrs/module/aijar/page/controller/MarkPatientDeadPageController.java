@@ -1,27 +1,23 @@
 package org.openmrs.module.aijar.page.controller;
 
+import java.util.Collection;
+import java.util.Date;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Concept;
 import org.openmrs.ConceptAnswer;
 import org.openmrs.Patient;
-import org.openmrs.Person;
 import org.openmrs.api.PatientService;
-import org.openmrs.api.PersonService;
 import org.openmrs.api.context.Context;
-import org.openmrs.api.impl.PatientServiceImpl;
 import org.openmrs.module.appui.UiSessionContext;
-import org.openmrs.ui.framework.UiUtils;
 import org.openmrs.ui.framework.annotation.SpringBean;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Collection;
-import java.util.Date;
-import java.util.regex.Pattern;
-
 /**
- * Created by lubwamasamuel on 15/06/2016.
+ * Marking a patient as dead
+ *
  */
 public class MarkPatientDeadPageController {
     protected final Log log = LogFactory.getLog(this.getClass());
@@ -29,9 +25,7 @@ public class MarkPatientDeadPageController {
     public void controller(UiSessionContext sessionContext, PageModel model) {
     }
 
-    public void get(@SpringBean PageModel pageModel, @RequestParam(value = "breadcrumbOverride", required = false) String breadcrumbOverride, @RequestParam("patientId") String patientId) {
-        PatientService patientService = Context.getPatientService();
-
+    public void get(@SpringBean PageModel pageModel, @RequestParam(value = "breadcrumbOverride", required = false) String breadcrumbOverride, @SpringBean("patientService") PatientService patientService, @RequestParam("patientId") String patientId) {
         String conceptId = Context.getAdministrationService().getGlobalProperty("concept.causeOfDeath");
 
         Patient patient = patientService.getPatientByUuid(patientId);
@@ -65,7 +59,7 @@ public class MarkPatientDeadPageController {
             return "redirect:/coreapps/clinicianfacing/patient.page?patientId=" + patient.getUuid() + "";
         } catch (Exception e) {
             log.error(e.getMessage());
-                return "redirect:/aijar/markPatientDead.page?patientId={{" + patient.getUuid() + "}}";
+                return "redirect:/aijar/markPatientDead.page?patientId=" + patient.getUuid();
         }
 
     }
