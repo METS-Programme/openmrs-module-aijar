@@ -8,7 +8,7 @@
 	</parent>
 
 	<artifactId>aijar-omod</artifactId>
-  <version>1.0.15-SNAPSHOT</version>
+	<version>1.0.15-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>aijar Module OMOD</name>
 	<description>OMOD project for aijar</description>
@@ -74,7 +74,7 @@
 			<artifactId>appui-omod</artifactId>
 		</dependency>
 
-        <dependency>
+		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>calculation-api</artifactId>
 		</dependency>
@@ -149,19 +149,19 @@
 		</dependency>
 
 		<dependency>
-            <groupId>org.openmrs.module</groupId>
-            <artifactId>registrationapp-api</artifactId>
-        </dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>registrationapp-api</artifactId>
+		</dependency>
 
-        <dependency>
-            <groupId>org.openmrs.module</groupId>
-            <artifactId>reporting-api</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>reporting-api</artifactId>
+		</dependency>
 
-        <dependency>
-            <groupId>org.openmrs.module</groupId>
-            <artifactId>reporting-api-1.9</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>reporting-api-1.9</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
