@@ -7,7 +7,6 @@ import org.openmrs.Person;
 import org.openmrs.api.PatientService;
 import org.openmrs.api.PersonService;
 import org.openmrs.api.context.Context;
-import org.openmrs.api.impl.PatientServiceImpl;
 import org.openmrs.module.appui.UiSessionContext;
 import org.openmrs.ui.framework.UiUtils;
 import org.openmrs.ui.framework.annotation.SpringBean;
@@ -21,7 +20,7 @@ import java.util.regex.Pattern;
 /**
  * Created by lubwamasamuel on 15/06/2016.
  */
-public class MarkPatientDeadPageController extends PatientServiceImpl{
+public class MarkPatientDeadPageController {
     public void controller(UiSessionContext sessionContext, PageModel model) {
     }
 
@@ -42,16 +41,14 @@ public class MarkPatientDeadPageController extends PatientServiceImpl{
         }
     }
 
-    public String post(@RequestParam(value = "causeOfDeath",required = false) String causeOfDeath, @RequestParam(value = "dead",required = false) Boolean dead, @RequestParam(value = "deathDate",required = false) Date deathDate, @RequestParam("patientId") String patientId) {
+    public String post(@RequestParam(value = "causeOfDeath",required = false) String causeOfDeath, @RequestParam(value = "dead",required = false) Boolean dead, @RequestParam(value = "deathDate",required = false) Date deathDate, @RequestParam("patientId") String patientId, UiUtils
+            uiUtils) {
         PersonService personService = Context.getPersonService();
-
         try {
             PatientService patientService = Context.getPatientService();
             Patient patient = patientService.getPatientByUuid(patientId);
-
-
             Person person = personService.getPerson(patient.getPatientId());
-            if (dead!=null && !causeOfDeath.equals("null") && deathDate != null) {
+            if (dead!=null && causeOfDeath != null && deathDate != null) {
                 person.setDead(dead);
                 person.setCauseOfDeath(getConceptByUUId(causeOfDeath));
                 person.setDeathDate(deathDate);

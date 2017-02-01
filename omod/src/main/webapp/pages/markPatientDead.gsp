@@ -79,7 +79,7 @@ ${ui.includeFragment("coreapps", "patientHeader", [patient: patient])}
                 <span>${ui.message("aijar.markpatientdeceased.causeofdeath")} (${ui.message("emr.formValidation.messages.requiredField.label")})</span>
             </label>
             <select name="causeOfDeath" id="cause-of-death">
-                <option value="null">Select Cause Of Death</option>
+                <option>Select Cause Of Death</option>
                 <% if (!conceptAnswers.isEmpty()) {
                     conceptAnswers.each {
                 %>
