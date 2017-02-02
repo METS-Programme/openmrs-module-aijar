@@ -8,7 +8,6 @@
 	</parent>
 
 	<artifactId>aijar-omod</artifactId>
-	<version>1.0.15-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>aijar Module OMOD</name>
 	<description>OMOD project for aijar</description>
@@ -16,16 +15,16 @@
 	<dependencies>
 
 		<!-- Begin OpenMRS modules -->
-
+		
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
 			<artifactId>${project.parent.artifactId}-api</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
-
-
+		
+				
 		<!-- End OpenMRS modules -->
-
+		
 
 		<!-- Begin OpenMRS core -->
 
@@ -35,18 +34,17 @@
 			<type>jar</type>
 		</dependency>
 
-
+		<dependency>
+			<groupId>org.openmrs.web</groupId>
+			<artifactId>openmrs-web</artifactId>
+			<type>jar</type>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.openmrs.api</groupId>
 			<artifactId>openmrs-api</artifactId>
 			<type>test-jar</type>
 			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.openmrs.web</groupId>
-			<artifactId>openmrs-web</artifactId>
-			<type>jar</type>
 		</dependency>
 
 		<dependency>
@@ -62,7 +60,7 @@
 			<type>pom</type>
 			<scope>test</scope>
 		</dependency>
-
+		
 		<!-- End OpenMRS core -->
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
@@ -98,7 +96,7 @@
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>formentryapp-omod</artifactId>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>htmlformentry-api</artifactId>
@@ -113,7 +111,7 @@
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>htmlformentryui-api</artifactId>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>idgen-api</artifactId>
@@ -149,9 +147,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.openmrs.module</groupId>
-			<artifactId>registrationapp-api</artifactId>
-		</dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>registrationapp-api</artifactId>
+        </dependency>
 
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
@@ -226,7 +224,7 @@
 						<includeEmptyDirs>true</includeEmptyDirs>
 					</configuration>
 				</plugin>
-				<!--This plugin's configuration is used to store Eclipse m2e settings
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
 					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
@@ -310,11 +308,11 @@
 					</execution>
 				</executions>
 			</plugin>
-
+			
 			<plugin>
 				<groupId>org.openmrs.maven.plugins</groupId>
 				<artifactId>openmrs-sdk-maven-plugin</artifactId>
-				<version>3.6.1</version>
+				<version>3.7.0</version>
 				<executions>
 					<execution>
 						<id>build-distro</id>
