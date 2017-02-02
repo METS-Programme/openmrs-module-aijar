@@ -95,6 +95,8 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 
             // form entry app on the home page
             appFrameworkService.disableApp("xforms.formentry");
+            // disable the default find patient app to provide one which allows searching for patients at the footer of the search for patients page
+            appFrameworkService.disableApp("coreapps.findPatient");
             // form entry extension in active visits
             appFrameworkService.disableExtension("xforms.formentry.cfpd");
 
@@ -264,6 +266,15 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 
         // Exclude temporary reporting tables by database backup module
         properties.add(new GlobalProperty("databasebackup.tablesExcluded", "aijar_105_eid,aijar_106a1a"));
+    
+        // the name of the custom registration app
+        properties.add(new GlobalProperty("registrationapp.customRegistrationAppId", "aijar.registrationapp.registerPatient"));
+    
+        // enable the register patient button to appear on the search widget
+        properties.add(new GlobalProperty("coreapps.showRegisterPatientOnSearchWidget", "true"));
+    
+        // mapping for creating visits without encounters to the default facility visit type
+        properties.add(new GlobalProperty("emrapi.EmrApiVisitAssignmentHandler.encounterTypeToNewVisitTypeMap", "default:7b0f5697-27e3-40c4-8bae-f4049abfb4ed"));
 
         return properties;
     }
