@@ -294,4 +294,48 @@ public class PatientIdentifierTypes {
         }
     };
 
+	public static PatientIdentifierTypeDescriptor UNIT_TB_NUMBER = new PatientIdentifierTypeDescriptor() {
+
+		@Override
+		public String name() {
+			return "Unit TB No.";
+		}
+
+		@Override
+		public String description() {
+			return "The patient identifier assigned to a tuberculosis case by the Health unit providing care";
+		}
+
+		public String uuid() {
+			return "8fd5e225-f91a-44af-ba04-3b41428d2164";
+		}
+
+		public String formatDescription() {
+			return " The first 3 digits of the case number then / then "
+					+ "two digits for the year";
+		}
+	};    
+
+	public static PatientIdentifierTypeDescriptor HSD_TB_NUMBER = new PatientIdentifierTypeDescriptor() {
+
+		@Override
+		public String name() {
+			return "Health Sub-District TB No.";
+		}
+
+		@Override
+		public String description() {
+			return "The patient identifier assigned to a tuberculosis case by a health sub-district focal person "
+					+ "when being registered in the HSD register";
+		}
+
+		public String uuid() {
+			return "2a6f1f82-2b70-4a51-8507-3a849bc637c3";
+		}
+
+		public String formatDescription() {
+			return "";
+		}
+	};    	
+	
 }
