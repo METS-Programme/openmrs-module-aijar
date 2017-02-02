@@ -419,34 +419,57 @@
                         <obs id="br" conceptId="99025" labelText="Duration:(Months on current regimen)"/>
                     </td>
                     <td>
-                        <obs conceptId="90236" labelText="Wt"/>
+                        <obs class="horizontal" conceptId="90236" labelText="Weight" showUnits="uicommons.units.kilograms" unitsCssClass="append-to-value"/>
                         <br/>
-                        <obs id="br" conceptId="5090" labelText="Ht"/>
+                        <obs class="horizontal" conceptId="5090" labelText="Height" showUnits="uicommons.units.centimeters" unitsCssClass="append-to-value"/>
                         <br/>
                         <includeIf velocityTest="$patient.age &lt; 5">
-                            <obs id="br" conceptId="99030" answerConceptIds="99028,99029,99027"
+                            <obs conceptId="99030" answerConceptIds="99028,99029,99027"
                                  answerLabels="Red &lt; 11.5cm, Yellow 11.5cm - &lt;12.5cm,Green &gt;= 12.5cm"
                                  labelText="MUAC"/>
                         </includeIf>
                         <includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
-                            <obs id="br" conceptId="99030" answerConceptIds="99028,99029,99027"
+                            <obs conceptId="99030" answerConceptIds="99028,99029,99027"
                                  answerLabels="Red &lt; 13.5cm,Yellow 13.5cm - &lt;14.5cm,Green &gt;=14.5cm"
                                  labelText="MUAC"/>
                         </includeIf>
                         <includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
-                            <obs id="br" conceptId="99030" answerConceptIds="99028,99029,99027"
+                            <obs conceptId="99030" answerConceptIds="99028,99029,99027"
                                  answerLabels="Red &lt; 16.5cm, Yellow 16.5cm - &lt;19.0cm,Green &gt;=19.0cm"
                                  labelText="MUAC"/>
                         </includeIf>
 
                         <includeIf velocityTest="$patient.age &gt;=18">
-                            <obs id="br" conceptId="99030" answerConceptIds="99028,99029,99027"
+                            <obs conceptId="99030" answerConceptIds="99028,99029,99027"
                                  answerLabels="Red &lt;19.0cm , Yellow 19.0cm - &lt;22.0cm,Green &gt;=22.0cm"
                                  labelText="MUAC"/>
                         </includeIf>
                         <br/>
-                        <obs id="br" conceptId="460" labelText="oedema:" answerConceptIds="90003,90004"
+                        <obs conceptId="460" labelText="oedema:" answerConceptIds="90003,90004"
                              answerLabels="Oedema +,-" style="dropdown"/>
+                        <br/>
+
+                                <obs class="horizontal" conceptId="CIEL:5088" id="temperature" showUnits="uicommons.units.degreesCelsius" unitsCssClass="append-to-value" labelText="Temperature"/>
+                            <br />
+                                <obs class="horizontal" conceptId="CIEL:5087" id="heart_rate" showUnits="uicommons.units.perMinute" unitsCssClass="append-to-value" labelText="Heart Rate"/>
+                        <br />
+                                <obs class="horizontal" conceptId="CIEL:5242" id="respiratory_rate" showUnits="uicommons.units.perMinute" unitsCssClass="append-to-value" labelText="Respiratory Rate"/>
+                        <br />
+                            Blood Pressure<br />
+                            <p class="left">
+                                <obs conceptId="CIEL:5085" id="bp_systolic" labelText="Systolic"/>
+                            </p>
+                            <p class="left" style="margin-left: 5px; margin-right: 5px;">
+                                   /
+                            </p>
+                            <p class="left">
+                                <obs conceptId="CIEL:5086" id="bp_diastolic" labelText="Diastolic"/>
+                            </p>
+                        <excludeIf velocityTest="$patient.age &gt; 11">
+                        <br style="clear: both;" />
+                        <obs labelText="Z-Scores" conceptId="99800" answerConceptIds="99803,99804,99805,99806,99807"
+                             answerLabels="&#60;-3,-3_&#60;-1,-1_1,&#62;1_3,&#62;3"/>
+                        </excludeIf>
                     </td>
                     <td>
                         <excludeIf velocityTest="$patient.gender =='M' || $patient.age &lt; 9">
