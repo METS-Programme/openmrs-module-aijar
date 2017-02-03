@@ -58,7 +58,7 @@
     </style>
     <div class="ai-page-frame">
         <div class="headers" style="text-align: center;">
-            <h3 style="background: #FFFF7D; padding: 10px;">096a - TB Register Summary Page</h3>
+            <h3 style="background: #FFFF7D; padding: 10px;">096a - Health Unit TB Register Summary Page</h3>
         </div>
       <section>
             <table>
@@ -80,133 +80,90 @@
 
                 </tbody>
             </table>
-        </section>
-		<section>
-			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+      </section>
+<fieldset>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
 			  <tr>
-				<td style="width:33%"><p>Unit TB No.</p>
-				    <p><patient  field="identifier" identifierTypeId="8fd5e225-f91a-44af-ba04-3b41428d2164" id="unit-tb-no" required="true" /></p>
-				</td>
-				<td style="width:33%"><p>HSD TB No. </p>
-				    <p><patient  field="identifier" identifierTypeId="2a6f1f82-2b70-4a51-8507-3a849bc637c3" id="hsd-tb-no" required="false" /></p>
-				</td>
-				<td style="width:33%"><p>District TB No </p>
-				    <p><patient  field="identifier" identifierTypeId="8110f2d2-1f98-4c38-aef3-11b19bb0a589" id="district-tb-no" required="false" /></p>
-				</td>
+				<td style="width:25%"><p>Unit TB No.</p>
+				    <p><patient  field="identifier" identifierTypeId="8fd5e225-f91a-44af-ba04-3b41428d2164" id="unit-tb-no" required="true" /></p>				</td>
+				<td style="width:25%"><p>HSD TB No. </p>
+				    <p><patient  field="identifier" identifierTypeId="2a6f1f82-2b70-4a51-8507-3a849bc637c3" id="hsd-tb-no" required="false" /></p>				</td>
+				<td style="width:25%"><p>District TB No </p>
+				    <p><patient  field="identifier" identifierTypeId="8110f2d2-1f98-4c38-aef3-11b19bb0a589" id="district-tb-no" required="false" /></p>				</td>
+			    <td style="width:25%"><p>Name of contact person </p>
+			    <p><obs conceptId="163258AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></p></td>
 			  </tr>
 			  <tr>
-				<td><p>Name of contact person </p>
-			    <p><obs conceptId="163258AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></p></td>
 				<td><p>Is Health worker? </p>
 			    	<p><obs conceptId="5619AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
-				</p>
-				</td>
+				</p>				</td>
 				<td><p>Cadre of health worker </p>
-			    <p>missing</p></td>
-			  </tr>
-			  <tr>
-				<td>Date treatment started </td>
-				<td>Regimen</td>
-				<td>Disease clasification </td>
-			  </tr>
-			  <tr>
-				<td>Type of patient </td>
-				<td>Transfer in facility Name </td>
-				<td>Unit TB No. (Of trnsfer in facility) </td>
+			    <p>missing</p></td>			
+				<td><p>Date treatment started </p>
+			    <p><obs conceptId="163526AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" allowFutureDate="false" /></p></td>
+				<td><p>Regimen</p>
+			    <p><obs conceptId="159909AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="" />
+			    Get concept answers (Coutercheck concept)</p></td>
+			</tr>
+			<tr>
+				<td><p>Disease clasification</p>
+			    <p><obs conceptId="161356AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="113491AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,,5042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Pulmonary bacteriologically confirmed TB treatment,Pulmonary clinically diagnosed TB,Extra pulmonary TB" />Missing 1 concept answer</p></td>
+				<td><p>Type of patient </p>
+			    <p><obs conceptId="159871" answerConceptIds="159878,,159874,159873,1067" answerLabels="New,Relapse,Failure,Lost to follow up,treatment history unknown" /></p></td>
+				<td><p>Transfer in from </p>
+			      <p>&nbsp; Locate concept</p></td>
+				<td><p>Transfer in -Unit TB No.</p>
+			      <p>Locate Patient Identifier </p></td>
+			    <td>&nbsp;</td>
 			  </tr>
 			</table>
-		</section>
-		<section>
-		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+</fieldset>
+
+<fieldset>
+<legend>TB/HIV Activities</legend>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td valign="top" style="width:33%">Patient received HIV Results </td>
-    <td valign="top" style="width:33%">HIV Counselling and testing </td>
-    <td style="width:33%"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td style="width:50%">CPT</td>
-        <td style="width:50%">Date</td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-    </table>      </td>
+    <td valign="top" style="width:33%"><p>Patient received HIV Results </p>
+      <p>Missing </p></td>
+    <td valign="top" style="width:33%"><p>HIV Counselling and testing </p>
+      <p>Missing</p></td>
+    <td valign="top" style="width:33%"><p>On CPT</p>
+      <p><obs conceptId="160434" answerConceptIds="1065,1066" answerLabels="Yes,No" showDate="true" dateLabel="CPT Date"/> </p>      </td>
   </tr>
   <tr>
-    <td colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td style="width:33%">ART</td>
-        <td style="width:33%">ART No. </td>
-        <td style="width:33%">ART Start Date </td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-    </table></td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>No. of children &lt;5yrs in contact </td>
-    <td>No. of children with IPT </td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>Treatment Model </td>
-    <td>Date for treatment model </td>
-    <td>Name of treatment supporter </td>
+    <td><p>On ART</p>
+      <p><obs conceptId="160119" answerConceptIds="1065,1066" answerLabels="Yes,No" /> </p></td>
+    <td><p>Art No</p>
+      <p><obs conceptId="164402" /> </p></td>
+    <td><p>Art Start Date</p>
+      <p><obs conceptId="159599" allowFutureDates="false" /> </p></td>
   </tr>
 </table>
-
-		</section>
-        <section>
-            <table>
-                <tbody>
-
-                <tr>
-                    <td colspan="3"><b>HIV DNA PCR, QUAL:</b>
-                        <obs id="br" conceptId="1030" labelText="" answerConceptIds="1138,664,703"
-                             answerLabels="Intermediate, Negative, Positive" style="radio"/>
-                    </td>
-                    <td><b>Chlamydia Trachomatis DNA PCR </b>:
-                        <obs id="br" conceptId="1034" labelText="" answerConceptIds="1300,664,703,1304"
-                             answerLabels="Equivocal,Negative, Positive, Poor sample" style="radio"/>
-                    </td>
-                </tr>
-
-
-                <tr>
-                    <td><b>HIV Viral Load:</b>
-                        <obs id="br" conceptId="99093" answerConceptIds="99090,99091,99092" answerLabels="&#61;,&#60;,&#62;"
-                             style="radio"/>
-                    </td>
-                    <td>
-                        <obs conceptId="856"/>
-                    </td>
-                    <td>copies/ml</td>
-                    <td><b> GONORRHEA PCR: </b>
-                        <obs id="br" conceptId="1038" labelText="" answerConceptIds="1300,664,703,1304"
-                             answerLabels="Equivocal,Negative, Positive, Poor sample" style="radio"/>
-                    </td>
-                </tr>
-
-
-                <tr>
-                    <td colspan="3"><b>HERPES PCR: </b>
-                        <obs id="br" conceptId="1046" labelText="" answerConceptIds="1300,664,703,1304"
-                             answerLabels="Equivocal,Negative, Positive, Poor sample" style="radio"/>
-                    </td>
-                    <td><b>TRICHOMONAS PCR:</b>
-                        <obs id="br" conceptId="1039" labelText="" answerConceptIds="1300,664,703,1304"
-                             answerLabels="Equivocal,Negative, Positive, Poor sample" style="radio"/>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <br/>
+</fieldset>
+<fieldset>
+<legend>Contact with chldren under 5 years</legend>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td style="width:50%"><p>No. of children &lt;5yrs in contact </p>
+      <p><obs conceptId="164419AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></p></td>
+    <td style="width:50%"><p>No. of children with IPT </p>
+      <p><obs conceptId="164421AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></p></td>
+  </tr>
+</table>
+</fieldset>
+<fieldset>
+<legend>Treatment model</legend>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td style="width:33%"><p>Treatment Model (DOTS) </p>
+      <p>Missing </p></td>
+    <td style="width:33%"><p>DOTS Date </p>
+      <p>Missing</p></td>
+    <td style="width:33%"><p>Name of treatment supporter </p>
+      <p><obs conceptId="160638AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></p></td>
+  </tr>
+</table>
+</fieldset>
         <submit/>
     </div>
 </htmlform>
