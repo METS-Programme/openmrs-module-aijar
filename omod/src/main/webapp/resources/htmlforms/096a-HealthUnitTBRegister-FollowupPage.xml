@@ -5,44 +5,44 @@
           formVersion="1.0"
           formAddMetadata="yes"
           formUILocation="patientDashboard.visitActions"
-          formOrder="1"
+          formOrder="2"
           formIcon="icon-medkit"
           formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='8ab22b55-9a17-4121-bf08-6134a9a2439f'"
           formDisplayStyle="Standard"
           formLabel="Form 096a - Health Unit TB Register - Summary">
 
-    <ifMode mode="ENTER">
-        <includeIf velocityTest="$fn.allEncounters('9fcfcc91-ad60-4d84-9710-11cc25258719').size() == 0">
-            <script>
-                jq(function() {
-                    alert('This patient has no Summary page, you will now be forwarded to the patient dashboard');
-
-                    /*
-                     * queryParameters -> handles the query string parameters
-                     * queryString -> the query string without the fist '?' character
-                     * re -> the regular expression
-                     * m -> holds the string matching the regular expression
-                     */
-                    var queryParameters = {}, queryString = location.search.substring(1),
-                            re = /([^&amp;=]+)=([^&amp;]*)/g, m;
-
-                    // Creates a map with the query string parameters
-                    while (m = re.exec(queryString)) {
-                        queryParameters[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
-                    }
-
-                    /*
-                     * Replace the query portion of the URL.
-                     * jQuery.param() -> create a serialized representation of an array or
-                     *     object, suitable for use in a URL query string or Ajax request.
-                     */
-                    location.href = window.location.protocol + "//" + window.location.host +
-                                    '/' + OPENMRS_CONTEXT_PATH + '/coreapps/clinicianfacing/patient.page?patientId='
-                                    + queryParameters['patientId']; // Causes page to reload
-                });
-            </script>
-        </includeIf>
-    </ifMode>
+		<ifMode mode="ENTER">
+			<includeIf velocityTest="$fn.allEncounters('334bf97e-28e2-4a27-8727-a5ce31c7cd66').size() == 0">
+				<script>
+					jq(function() {
+						alert('This patient has no Summary page, you will now be forwarded to the patient dashboard');
+	
+						/*
+						 * queryParameters -> handles the query string parameters
+						 * queryString -> the query string without the fist '?' character
+						 * re -> the regular expression
+						 * m -> holds the string matching the regular expression
+						 */
+						var queryParameters = {}, queryString = location.search.substring(1),
+								re = /([^&amp;=]+)=([^&amp;]*)/g, m;
+	
+						// Creates a map with the query string parameters
+						while (m = re.exec(queryString)) {
+							queryParameters[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+						}
+	
+						/*
+						 * Replace the query portion of the URL.
+						 * jQuery.param() -> create a serialized representation of an array or
+						 *     object, suitable for use in a URL query string or Ajax request.
+						 */
+						location.href = window.location.protocol + "//" + window.location.host +
+										'/' + OPENMRS_CONTEXT_PATH + '/coreapps/clinicianfacing/patient.page?patientId='
+										+ queryParameters['patientId']; // Causes page to reload
+					});
+				</script>
+			</includeIf>
+		</ifMode>
 
     <style>
 
