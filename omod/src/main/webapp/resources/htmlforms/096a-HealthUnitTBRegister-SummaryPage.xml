@@ -65,7 +65,7 @@
                 <tbody>
                 <tr>
                     <td>
-                        Request date:
+                        Encounter date:
                         <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
                      <span style="display: none;">
                         <encounterLocation default="8ab22b55-9a17-4121-bf08-6134a9a2439f"
@@ -90,31 +90,39 @@
 				    <p><patient  field="identifier" identifierTypeId="2a6f1f82-2b70-4a51-8507-3a849bc637c3" id="hsd-tb-no" required="false" /></p>				</td>
 				<td style="width:25%"><p>District TB No </p>
 				    <p><patient  field="identifier" identifierTypeId="8110f2d2-1f98-4c38-aef3-11b19bb0a589" id="district-tb-no" required="false" /></p>				</td>
-			    <td style="width:25%"><p>Name of contact person </p>
-			    <p><obs conceptId="163258AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></p></td>
+			    <td style="width:25%"></td>
 			  </tr>
 			  <tr>
-				<td><p>Is Health worker? </p>
-			    	<p><obs conceptId="5619AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
-				</p>				</td>
+				<td valign="top"><p>Is patient a Health worker? <obs conceptId="5619AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+				</p>
+		    	</td>
 				<td><p>Cadre of health worker </p>
-			    <p>missing</p></td>			
+			    <p><obs conceptId="164800" />missing</p></td>	
+				<td><p>Name of contact person </p>
+			    <p><obs conceptId="163258AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></p>
+				</td>
+				<td></td>
+			</tr>
+			<tr>	
+				<td><p>Disease clasification</p>
+			    <p><obs conceptId="161356AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="113491AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,113489AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Pulmonary bacteriologically confirmed TB treatment,Pulmonary clinically diagnosed TB,Extra pulmonary TB" />
+			    Missing 1 concept answer(Pulmonary clinically diagnosed TB(missing))</p>				
+				</td>	
 				<td><p>Date treatment started </p>
 			    <p><obs conceptId="163526AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" allowFutureDate="false" /></p></td>
 				<td><p>Regimen</p>
-			    <p><obs conceptId="159909AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="" />
-			    Get concept answers (Coutercheck concept)</p></td>
+			    <p><standardRegimen regimenCodes="standardTri30,standardTri40" />
+			    TB Regimens missing - need to be provided </p></td>
+				<td></td>
 			</tr>
 			<tr>
-				<td><p>Disease clasification</p>
-			    <p><obs conceptId="161356AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="113491AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,,5042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Pulmonary bacteriologically confirmed TB treatment,Pulmonary clinically diagnosed TB,Extra pulmonary TB" />Missing 1 concept answer</p></td>
 				<td><p>Type of patient </p>
 			    <p><obs conceptId="159871" answerConceptIds="159878,,159874,159873,1067" answerLabels="New,Relapse,Failure,Lost to follow up,treatment history unknown" /></p></td>
 				<td><p>Transfer in from </p>
-			      <p>&nbsp; Locate concept</p></td>
+			      <p><obs conceptId="160535AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></p></td>
 				<td><p>Transfer in -Unit TB No.</p>
-			      <p>Locate Patient Identifier </p></td>
-			    <td>&nbsp;</td>
+			      <p><patient  field="identifier" identifierTypeId="1d2be2a3-7d90-42a6-aasa5-a04b684a365b" id="district-tb-no" required="false" /> </p></td>
+			    <td></td>
 			  </tr>
 			</table>
 </fieldset>
@@ -123,31 +131,55 @@
 <legend>TB/HIV Activities</legend>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td valign="top" style="width:33%"><p>Patient received HIV Results </p>
+    <td valign="top" style="width:25%"><p>HIV Counselling and testing </p>
+	<obs conceptId="164805" style="dropdown" />
+     <!-- <p> <obs conceptId="161595" answerConceptId="1914" style="checkbox" /> C - Counselled</p>
+      <p> <obs conceptId="161595" answerConceptId="164163" style="checkbox" />CT - Counselled and Tested</p>
+      <p> <obs conceptId="159427" answerConceptId="703" style="checkbox" />CT1 - Counselled, Tested and HIV positive</p>
+      <p> <obs conceptId="159427" answerConceptId="664" style="checkbox" />CT2 - Counselled, Tested and HIV negative</p>-->
+      <p>Missing</p>	
+	</td>
+    <td valign="top" style="width:25%"><p>HIV Testing Date </p>
+      <p><obs conceptId="164400" />
+      </p>
+	</td>
+    <td valign="top" style="width:25%"><p>Patient received HIV Results <obs conceptId="164799" style="radio" answerConceptIds="1065,1066" answerLabels="Yes, No" answerSeparator="&lt;br/&gt;"> 
+    </p>
       <p>Missing </p></td>
-    <td valign="top" style="width:33%"><p>HIV Counselling and testing </p>
-      <p>Missing</p></td>
-    <td valign="top" style="width:33%"><p>On CPT</p>
+	 <td></td>
+	</tr>
+	<tr>
+    <td valign="top" style="width:25%"><p>Is Patient On CPT</p>
       <p><obs conceptId="160434" answerConceptIds="1065,1066" answerLabels="Yes,No" showDate="true" dateLabel="CPT Date"/> </p>      </td>
-  </tr>
-  <tr>
-    <td><p>On ART</p>
-      <p><obs conceptId="160119" answerConceptIds="1065,1066" answerLabels="Yes,No" /> </p></td>
-    <td><p>Art No</p>
-      <p><obs conceptId="164402" /> </p></td>
+    <td valign="top" style="width:25%"><p>CPT Start Date </p>
+      <p><obs conceptId="164804" />Missing</p>
+	</td>
+	<td></td>
+	<td></td>
+	<tr>
+    <td><p>Is Patient On ART</p>
+      <p><obs conceptId="160119" answerConceptIds="1065,1066" answerLabels="Yes,No" /> </p>
+	</td>
     <td><p>Art Start Date</p>
-      <p><obs conceptId="159599" allowFutureDates="false" /> </p></td>
+      <p><obs conceptId="159599" allowFutureDates="false" /> </p>
+	</td>
+    <td><p>Art No</p>
+      <p><obs conceptId="164402" /> </p>
+	</td>
+	<td></td>
   </tr>
 </table>
 </fieldset>
 <fieldset>
-<legend>Contact with chldren under 5 years</legend>
+<legend>Contact with chlidren under 5 years</legend>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td style="width:50%"><p>No. of children &lt;5yrs in contact </p>
+    <td style="width:25%"><p>No. of children &lt;5yrs in contact </p>
       <p><obs conceptId="164419AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></p></td>
-    <td style="width:50%"><p>No. of children with IPT </p>
+    <td style="width:25%"><p>No. of children with IPT </p>
       <p><obs conceptId="164421AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></p></td>
+    <td style="width:25%"></td>
+    <td style="width:25%"></td>
   </tr>
 </table>
 </fieldset>
@@ -155,15 +187,17 @@
 <legend>Treatment model</legend>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td style="width:33%"><p>Treatment Model (DOTS) </p>
-      <p>Missing </p></td>
-    <td style="width:33%"><p>DOTS Date </p>
+    <td valign="top" style="width:25%"><p>Treatment Model (DOTS) <obs conceptId="164801" answerConceptIds="164802,164803" answerLabels="Facility-based DOTS, Community-based DOTS" showDate="true" dateLabel="DOTS Date" style="radio"/>Missing </p>
+      </td>
+    <td style="width:25%"><p>DOTS Date </p>
       <p>Missing</p></td>
-    <td style="width:33%"><p>Name of treatment supporter </p>
+    <td style="width:25%"><p>Name of treatment supporter </p>
       <p><obs conceptId="160638AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></p></td>
+    <td style="width:25%"></td>
   </tr>
 </table>
 </fieldset>
+<enrollInProgram programId="TB program"/>
         <submit/>
     </div>
 </htmlform>
