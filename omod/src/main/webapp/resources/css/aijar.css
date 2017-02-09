@@ -47,3 +47,18 @@ span.value {
     color: blue;
     font-weight: bold;
 }
+
+/* Align the radio buttons to be placed horizontally on forms */
+.horizontal input[type="checkbox"], .horizontal input[type="radio"], .horizontal input[type="text"] {
+    float: none;
+    display: inline-block;
+}
+
+.horizontal label {
+    display: inline-block;
+}
+
+.horizontal span.append-to-value {
+    display: inline-block;
+    margin-left: 10px;
+}

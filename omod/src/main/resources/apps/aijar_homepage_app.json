@@ -89,7 +89,7 @@
       }
     ],
     "config": {
-      "showRegistrationLink": "aijar.registrationapp.registerPatient"
+      "registrationAppLink": "registrationapp/registerPatient.page?appId=aijar.registrationapp.registerPatient"
     }
   }
 ]
