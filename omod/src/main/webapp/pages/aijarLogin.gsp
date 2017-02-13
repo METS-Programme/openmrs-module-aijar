@@ -292,7 +292,7 @@
                                                   title="Ministry of Health Uganda">Ministry of Health - Republic of Uganda</a>
         </div>
         <div class="right_al">
-            Ver ${project.parent.version} powered by <a href="http://www.mets.or.ug" target="_blank"
+${ui.message("aijar.build.info")} powered by <a href="http://www.mets.or.ug" target="_blank"
                                                         title="Makerere University School of Public Health METS Programme">METS Programme</a>
         </div>
     </div>

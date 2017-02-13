@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+	
+	<!-- Exposed infant with summary but no Encounters -->
+	<encounter encounter_id="10001" encounter_type="19" patient_id="10001" location_id="1" form_id="1" encounter_datetime="2017-01-08 00:00:00.0" creator="1" date_created="2017-01-08 14:09:05.0" voided="false" uuid="2dc35050-36c3-438c-8a13-66571ba6920d"/>
+	
+	<!-- Exposed infant with encounters but no Summary Page -->
+	<encounter encounter_id="10002" encounter_type="20" patient_id="10002" location_id="1" form_id="1" encounter_datetime="2017-01-09 00:00:00.0" creator="1" date_created="2017-01-08 14:09:05.0" voided="false" uuid="ecfdd33c-ed7a-48e5-8463-90fc7cf040f2"/>
+	
+	<!-- Exposed infant with no final outcome after 18 months -->
+	<encounter encounter_id="10003" visit_id="10000"  encounter_type="19" patient_id="10000" location_id="1" form_id="1" encounter_datetime="2014-01-08 00:00:00.0" creator="1" date_created="2014-01-08 14:09:05.0" voided="false" uuid="456ebc12-18b0-4774-bc6a-c4a42528105b"/>
+	<obs obs_id="10003" person_id="10000" concept_id="90200" encounter_id="10003" obs_datetime="2014-01-08 00:00:00.0" location_id="1" value_coded="90012" comments="" creator="1" date_created="2014-01-08 14:11:13.0" voided="false" uuid="f9aec34c-c7a8-4cad-9420-bd6ba34ad1ad"/>
+	
+	<encounter encounter_id="10004" encounter_type="20" patient_id="10000" location_id="1" form_id="1" encounter_datetime="2014-01-08 00:00:00.0" creator="1" date_created="2014-01-08 14:09:05.0" voided="false" uuid="074b46a9-b136-4114-b766-883a84af2587"/>
+</dataset>

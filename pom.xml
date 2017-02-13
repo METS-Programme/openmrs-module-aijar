@@ -104,7 +104,7 @@
 		<xformsVersion>4.3.9</xformsVersion>
 
 		<!-- core configuration library -->
-		<ugandaemrReportsVersion>1.0.3</ugandaemrReportsVersion>
+		<ugandaemrReportsVersion>1.0.4-SNAPSHOT</ugandaemrReportsVersion>
 
 	</properties>
 
@@ -255,7 +255,7 @@
 				<version>${htmlformentryVersion}</version>
 				<scope>provided</scope>
 			</dependency>
-
+			
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>htmlformentry-api-1.10</artifactId>
@@ -290,7 +290,7 @@
 				<version>${metadatasharingVersion}</version>
 				<scope>provided</scope>
 			</dependency>
-
+			
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>providermanagement-api</artifactId>
@@ -311,7 +311,7 @@
 				<version>${registrationcoreVersion}</version>
 				<scope>provided</scope>
 			</dependency>
-
+			
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>registrationapp-api</artifactId>
@@ -339,7 +339,7 @@
 				<version>${serializationxstreamVersion}</version>
 				<scope>provided</scope>
 			</dependency>
-
+			
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>serialization.xstream-api-1.9</artifactId>
