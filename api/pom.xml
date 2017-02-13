@@ -8,7 +8,6 @@
 	</parent>
 
 	<artifactId>aijar-api</artifactId>
-  <version>1.0.15-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>aijar Module API</name>
 	<description>API project for aijar</description>
@@ -82,6 +81,11 @@
 		</dependency>
 		
 		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>emrapi-api-1.11</artifactId>
+		</dependency>
+		
+		<dependency>
 			<groupId>org.openmrs</groupId>
 			<artifactId>event-api</artifactId>
 		</dependency>
@@ -94,6 +98,11 @@
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>htmlformentry-api</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>htmlformentry-api-1.10</artifactId>
 		</dependency>
 
 		<dependency>
@@ -126,11 +135,17 @@
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>metadatasharing-api</artifactId>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>providermanagement-api</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>registrationcore-api</artifactId>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>registrationapp-api</artifactId>
@@ -138,7 +153,17 @@
 		
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
+			<artifactId>reporting-api</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
 			<artifactId>serialization.xstream-api</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>serialization.xstream-api-1.9</artifactId>
 		</dependency>
 
 		<dependency>
