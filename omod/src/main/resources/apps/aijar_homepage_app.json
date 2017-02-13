@@ -71,5 +71,25 @@
         "requiredPrivilege": "Manage Reports"
       }
     ]
+  },
+  {
+    "id": "ugandaemr.findPatient",
+    "instanceOf": "coreapps.template.findPatient",
+    "description": "Basic patient search that goes to the patient dashboard",
+    "order": 2,
+    "extensions": [
+      {
+        "id": "ugandaemr.findPatientLink",
+        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+        "type": "link",
+        "label": "coreapps.findPatient.app.label",
+        "url": "coreapps/findpatient/findPatient.page?app=ugandaemr.findPatient",
+        "icon": "icon-search",
+        "requiredPrivilege": "App: coreapps.findPatient"
+      }
+    ],
+    "config": {
+      "registrationAppLink": "registrationapp/registerPatient.page?appId=aijar.registrationapp.registerPatient"
+    }
   }
 ]

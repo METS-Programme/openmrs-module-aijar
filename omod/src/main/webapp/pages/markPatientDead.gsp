@@ -41,18 +41,47 @@
                 hideContainer('#cause-of-death-container');
             }
         });
+
+        jq('#mark-patient-dead').submit(function(){
+            jq(".field-error").html("");
+
+            var hasError = false;
+            // check if the deceased checkbox is selected
+            if (jq('#deceased').is(":checked")) {
+                // validate that the date of death and cause of death are not empty
+                if (jq('#death-date-display').is(":blank")) {
+                    jq("#death-date > .field-error").append("Please select the date of death").show();
+                    hasError = true;
+                }
+                if (jq('#cause-of-death').is(":blank")) {
+                    jq("#cause-of-death-container > .field-error").append("Please select the cause of death").show();
+                    hasError = true;
+                }
+                return !hasError;
+            }
+            return !hasError;
+        });
+
     });
 </script>
 <style type="text/css">
 #death-date-display {
     min-width: 35%;
 }
+span.field-error {
+    padding: 1px 6px 1px 6px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    color: red;
+}
 </style>
 ${ui.includeFragment("coreapps", "patientHeader", [patient: patient])}
 <h3>${ui.message("aijar.markpatientdeceased.label")}</h3>
 
-<form method="post">
+<form method="post" id="mark-patient-dead">
     <fieldset style="min-width: 40%">
+
         <span id="deceased-container">
             <% if (patient?.getDead() == true) {
 
@@ -91,7 +120,7 @@ ${ui.includeFragment("coreapps", "patientHeader", [patient: patient])}
         <p>
             <span id="cause-of-death-container">
                 <label for="cause-of-death">
-                    <span>${ui.message("aijar.markpatientdeceased.causeofdeath")} (${ui.message("emr.formValidation.messages.requiredField.label")})</span>
+                    <span>${ui.message("aijar.markpatientdeceased.causeofdeath")}</span>
                 </label>
                 <select name="causeOfDeath" id="cause-of-death">
                     <option value="">Select Cause Of Death</option>
@@ -109,7 +138,7 @@ ${ui.includeFragment("coreapps", "patientHeader", [patient: patient])}
                         }
                     %>
                 </select>
-                <span class="field-error"></span>
+                <span class="field-error" style="display: none;"></span>
             </span>
         </p>
 
