@@ -66,7 +66,8 @@
                     "fragmentId": "field/personAddressWithHierarchy",
                     "config": {
                       "manualFields": [
-                        "address4","address5"
+                        "address4",
+                        "address5"
                       ]
                     }
                   }
@@ -89,7 +90,8 @@
                     }
                   },
                   "cssClasses": [
-                    "number", "regex"
+                    "number",
+                    "regex"
                   ]
                 },
                 {
@@ -105,7 +107,8 @@
                     }
                   },
                   "cssClasses": [
-                    "number", "regex"
+                    "number",
+                    "regex"
                   ]
                 },
                 {
@@ -121,8 +124,24 @@
                     }
                   },
                   "cssClasses": [
-                    "number", "regex"
+                    "number",
+                    "regex"
                   ]
+                }
+              ]
+            },
+            {
+              "legend": "FingerPrint",
+              "fields": [
+                {
+                  "type": "personAttribute",
+                  "label": "FingerPrint",
+                  "formFieldName": "fingerPrintTextbox",
+                  "uuid": "a41339f9-5014-45f4-91d6-bab84c6c62f1",
+                  "widget": {
+                    "providerName": "fingerprint",
+                    "fragmentId": "field/fingerprint"
+                  }
                 }
               ]
             }
