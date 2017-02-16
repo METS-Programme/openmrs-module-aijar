@@ -1,6 +1,10 @@
 package org.openmrs.module.aijar.metadata.core;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.openmrs.module.metadatadeploy.descriptor.LocationDescriptor;
+import org.openmrs.module.metadatadeploy.descriptor.LocationTagDescriptor;
 
 public class Locations {
 	
@@ -19,6 +23,16 @@ public class Locations {
 		@Override
 		public String name() {
 			return "TB Clinic";
+		}
+		
+		@Override
+		public List<LocationTagDescriptor> tags() {			
+			
+			return Arrays.asList(
+					LocationTags.LOGIN_LOCATION,
+					LocationTags.VISIT_LOCATION
+					);
+			
 		}
 		
 	};
