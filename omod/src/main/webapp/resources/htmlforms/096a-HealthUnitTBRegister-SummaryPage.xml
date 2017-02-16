@@ -103,23 +103,23 @@
 				</td>
 				<td></td>
 			</tr>
-			<tr>	
-				<td><p>Disease clasification</p>
-			    <p><obs conceptId="161356AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="113491AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,113489AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Pulmonary bacteriologically confirmed TB treatment,Pulmonary clinically diagnosed TB,Extra pulmonary TB" />
-			    Missing 1 concept answer(Pulmonary clinically diagnosed TB(missing))</p>				
-				</td>	
+			<tr>					
 				<td><p>Date treatment started </p>
-			    <p><obs conceptId="163526AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" allowFutureDate="false" /></p></td>
+			    <p><obs conceptId="90217" allowFutureDate="false" /></p></td>
 				<td><p>Regimen</p>
-			    <p><standardRegimen regimenCodes="standardTri30,standardTri40" />
-			    TB Regimens missing - need to be provided </p></td>
+			    <p><obs conceptId="99374" style="dropdown" answerConceptIds="99373,99372,99371" />
+			    </p></td>
+<td><p>Disease clasification</p>
+			    <p><obs conceptId="99379" answerConceptIds="113491AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,113489AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5042" answerLabels="Pulmonary bacteriologically confirmed TB treatment,Pulmonary clinically diagnosed TB,Extra pulmonary TB" />
+			    Provide proper concept mappings for the UgandaEMR </p>				
+				</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td><p>Type of patient </p>
-			    <p><obs conceptId="159871" answerConceptIds="159878,,159874,159873,1067" answerLabels="New,Relapse,Failure,Lost to follow up,treatment history unknown" /></p></td>
+			    <p><obs conceptId="99386" answerConceptIds="99380,99381,99382,99386,1067" answerLabels="New,Relapse,Failure,Lost to follow up,treatment history unknown" /></p></td>
 				<td><p>Transfer in from </p>
-			      <p><obs conceptId="160535AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></p></td>
+			      <p><obs conceptId="99109" /></p></td>
 				<td><p>Transfer in -Unit TB No.</p>
 			      <p><patient  field="identifier" identifierTypeId="1d2be2a3-7d90-42a6-aasa5-a04b684a365b" id="district-tb-no" required="false" /> </p></td>
 			    <td></td>
@@ -149,23 +149,23 @@
 	 <td></td>
 	</tr>
 	<tr>
-    <td valign="top" style="width:25%"><p>Is Patient On CPT</p>
-      <p><obs conceptId="160434" answerConceptIds="1065,1066" answerLabels="Yes,No" showDate="true" dateLabel="CPT Date"/> </p>      </td>
+    <td valign="top" style="width:25%"><p>Is Patient On CPT? 
+        <obs conceptId="160434" answerConceptIds="1065,1066" answerLabels="Yes,No" showDate="true" dateLabel="CPT Date"/> </p>
+      </td>
     <td valign="top" style="width:25%"><p>CPT Start Date </p>
       <p><obs conceptId="164804" />Missing</p>
 	</td>
-	<td></td>
-	<td></td>
-	<tr>
-    <td><p>Is Patient On ART</p>
+    <td><p>Is Patient On ART?</p>
       <p><obs conceptId="160119" answerConceptIds="1065,1066" answerLabels="Yes,No" /> </p>
 	</td>
     <td><p>Art Start Date</p>
       <p><obs conceptId="159599" allowFutureDates="false" /> </p>
-	</td>
+	</td>	<tr>
     <td><p>Art No</p>
       <p><obs conceptId="164402" /> </p>
 	</td>
+	<td></td>
+	<td></td>
 	<td></td>
   </tr>
 </table>
@@ -187,8 +187,9 @@
 <legend>Treatment model</legend>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td valign="top" style="width:25%"><p>Treatment Model (DOTS) <obs conceptId="164801" answerConceptIds="164802,164803" answerLabels="Facility-based DOTS, Community-based DOTS" showDate="true" dateLabel="DOTS Date" style="radio"/>Missing </p>
-      </td>
+    <td valign="top" style="width:25%"><p>Treatment Model (DOTS) <obs conceptId="164801" answerConceptIds="164802,164803" answerLabels="Facility-based DOTS, Community-based DOTS" showDate="true" dateLabel="DOTS Date" style="radio"/>
+    </p>
+      <p>Missing </p></td>
     <td style="width:25%"><p>DOTS Date </p>
       <p>Missing</p></td>
     <td style="width:25%"><p>Name of treatment supporter </p>
@@ -196,6 +197,24 @@
     <td style="width:25%"></td>
   </tr>
 </table>
+</fieldset>
+<fieldset>
+<legend>Treatment outcome and date when outcome determined</legend>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			  <tr>
+				<td style="width:25%"><p>Treatment Outcome </p>
+			      <p><obs conceptId="159786" answerConceptIds="159791,159492,159874,160034,5240" answerLabels="Cured, Transferred out,Treatment failure,Died,Lost to follow up" style="dropdown" answerSeparator="&lt;br/&gt;" showDate="true" dateLabel="Examination Date"/></p></td>
+				<td style="width:25%"><p>Date when outcome determined</p>
+			    <p><obs conceptId="159787" /></p></td>
+				<td style="width:25%"><p>Transfer out to (Name of unit)</p>
+			    <p><obs conceptId="159495" /></p></td>
+			    <td style="width:25%"><p></p>		        </td>
+			  </tr>
+			  <tr>
+			    <td colspan="4" style="width:25%"><p>Remarks</p>
+		        <p>Missing</p></td>
+    </tr>
+			</table>
 </fieldset>
 <enrollInProgram programId="TB program"/>
         <submit/>
