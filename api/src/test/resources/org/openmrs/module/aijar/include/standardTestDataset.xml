@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+	
+	<!-- Encounter Types -->
+	<encounter_type encounter_type_id="1" name="ART Card - Summary" description="Outpatient Adult Initial Visit" creator="1" date_created="2016-04-05 16:43:19.0" retired="false" uuid="8d5b27bc-c2cc-11de-8d13-0010c6dffd0f"/>
+	<encounter_type encounter_type_id="2" name="ART Card - Encounter" description="Outpatient Adult &amp; Child Return Visit" creator="1" date_created="2016-04-05 16:43:20.0" retired="false" uuid="8d5b2be0-c2cc-11de-8d13-0010c6dffd0f"/>
+	<encounter_type encounter_type_id="10" name="LAB Encounter" description="Lab Encounter" creator="1" date_created="2016-04-05 16:43:20.0" retired="false" uuid="214e27a1-606a-4b1e-a96e-d736c87069d5"/>
+	<encounter_type encounter_type_id="11" name="ART Card - Health Education Encounter" description="An Health education encounter created when a patient gets health education" creator="1" date_created="2016-04-05 16:43:20.0" retired="false" uuid="6d88e370-f2ba-476b-bf1b-d8eaf3b1b67e"/>
+	<encounter_type encounter_type_id="19" name="EID Card - Summary" description="Outpatient Children Initial Visit" creator="1" date_created="2016-04-05 16:43:20.0" retired="false" uuid="9fcfcc91-ad60-4d84-9710-11cc25258719"/>
+	<encounter_type encounter_type_id="20" name="EID Card - Encounter" description="Outpatient Child Return Visit" creator="1" date_created="2016-04-05 16:43:20.0" retired="false" uuid="4345dacb-909d-429c-99aa-045f2db77e2b"/>
+	<encounter_type encounter_type_id="21" name="SMC - Encounter" description="An encounter when a patient gets SMC services" creator="1" date_created="2016-04-05 16:43:20.0" retired="false" uuid="244da86d-f80e-48fe-aba9-067f241905ee"/>
+	<encounter_type encounter_type_id="22" name="ANC - Encounter" description="An encounter when a patient gets ANC services" creator="1" date_created="2016-04-05 16:43:20.0" retired="false" uuid="044daI6d-f80e-48fe-aba9-037f241905Pe"/>
+	<encounter_type encounter_type_id="23" name="Maternity - Encounter" description="When a mother comes to a health facility to deliver" creator="1" date_created="2016-04-05 16:43:20.0" retired="false" uuid="a9f11592-22e7-45fc-904d-dfe24cb1fc67"/>
+	<encounter_type encounter_type_id="24" name="HTC - Encounter" description="An encounter when a patient gets HCT services" creator="1" date_created="2016-04-05 16:43:20.0" retired="false" uuid="264daIZd-f80e-48fe-nba9-P37f2W1905Pv"/>
+	<encounter_type encounter_type_id="25" name="PNC - Encounter" description="An encounter when a patient gets PNC services" creator="1" date_created="2016-12-07 14:45:59.0" retired="false" uuid="fa6f3ff5-b784-43fb-ab35-a08ab7dbf074"/>
+	
+	<!-- Patient Identifiers -->
+	<patient_identifier_type patient_identifier_type_id="4" name="HIV Clinic No." description="This is the patient's identifier used at the treating facility" check_digit="false" creator="1" date_created="2017-01-31 10:59:34.0" required="false" format_description="The first three letters of the facility, followed by / then 5 numbers with no spaces" retired="false" uuid="e1731641-30ab-102d-86b0-7a5022ba4115" location_behavior="NOT_USED"/>
+	<patient_identifier_type patient_identifier_type_id="8" name="Exposed Infant No." description="This is the exposed infant clinic number used at the treating facility" check_digit="false" creator="1" date_created="2017-01-31 10:59:35.0" required="false" format_description="Birth Cohort number" retired="false" uuid="2c5b695d-4bf3-452f-8a7c-fe3ee3432ffe" location_behavior="NOT_USED"/>
+	<patient_identifier_type patient_identifier_type_id="9" name="Antenatal Care No." description="This is the unique serial number given to the mother during antenatal visits" check_digit="false" creator="1" date_created="2017-01-31 10:59:35.0" required="false" format_description="Begins with 1 at the beginning of the financial year (July)" retired="false" uuid="b0cc255e-ef57-4266-839e-0df7f5099eb9" location_behavior="NOT_USED"/>
+	<patient_identifier_type patient_identifier_type_id="10" name="InPatient Department No." description="This is the unique serial number given to the mother during her stay in the maternity ward" check_digit="false" creator="1" date_created="2017-01-31 10:59:36.0" required="false" format_description="Begins with 1 at the beginning of the financial year (July)" retired="false" uuid="a6217c17-5012-4514-b9f2-5d02d3d04c44" location_behavior="NOT_USED"/>
+	<patient_identifier_type patient_identifier_type_id="11" name="TB No." description="The district tuberculosis number assigned to a case" check_digit="false" creator="1" date_created="2017-01-31 10:59:34.0" required="false" format_description="The first three letters of the district, followed by / then 3 digits of the case number then / then two digits for the year" retired="false" uuid="8110f2d2-1f98-4c38-aef3-11b19bb0a589" location_behavior="NOT_USED"/>
+	<patient_identifier_type patient_identifier_type_id="12" name="HCT No." description="This is the unique serial number given to a client during HCT visits" check_digit="false" creator="1" date_created="2017-01-31 10:59:36.0" required="false" format_description="Begins with 1 at the beginning of the financial year (July), has 4 digits followed by a / then 2 digits for the year" retired="false" uuid="c9e42035-7112-45b3-bfcf-4b37e1091dd4" location_behavior="NOT_USED"/>
+	<patient_identifier_type patient_identifier_type_id="13" name="National ID No." description="The Uganda National ID number" check_digit="false" creator="1" date_created="2017-01-31 10:59:36.0" required="false" retired="false" uuid="f0c16a6d-dc5f-4118-a803-616d0075d282" location_behavior="NOT_USED"/>
+	<patient_identifier_type patient_identifier_type_id="14" name="ART Patient No." description="This is the ART number that is given to clients who have started ART" check_digit="false" creator="1" date_created="2017-01-31 10:59:36.0" required="false" format_description="No specific format required as it varies from facility to facility" retired="false" uuid="3c76abfd-5e2d-4194-b0d4-00b73c7fc1ac" location_behavior="NOT_USED"/>
+	<patient_identifier_type patient_identifier_type_id="15" name="Research Identifier" description="An identifier used for patients within research settings" check_digit="false" creator="1" date_created="2017-01-31 10:59:36.0" required="false" retired="false" uuid="20653abb-689c-4975-bbfa-00de7b507a95" location_behavior="NOT_USED"/>
+	<patient_identifier_type patient_identifier_type_id="16" name="Postnatal Care No." description="This is the unique serial number given to the child during postnatal visits" check_digit="false" creator="1" date_created="2017-01-31 10:59:35.0" required="false" format_description="Begins with 1 at the beginning of the financial year (July)" retired="false" uuid="758ef6e4-9ceb-4137-bc8d-9246dc7b41fe" location_behavior="NOT_USED"/>
+	<patient_identifier_type patient_identifier_type_id="17" name="Safe Male Circumcision Client Number" description="An identifier used for patients who undergo safe male circumcision" check_digit="false" creator="1" date_created="2017-01-31 10:59:36.0" required="false" retired="false" uuid="37601abe-2ee0-4493-8ac7-22b4972190cf" location_behavior="NOT_USED"/>
+	
+	
+	<!-- Exposed infants -->
+	<person person_id="10000" gender="F" birthdate="2014-01-01 00:00:00.0" birthdate_estimated="0" dead="false" creator="1" date_created="2014-01-01 00:00:00.0" voided="false" uuid="0d9cf3c4-ec6c-4752-bd25-b2d14d596e39"/>
+	<person_name person_name_id="100010" preferred="true" person_id="10000" prefix="" given_name="Sara" middle_name="Nakamya" family_name="Mukasa" family_name_suffix="" creator="1" date_created="2014-01-01 00:00:00.0" voided="false" void_reason="" uuid="77d20a6f-cb1e-4110-a714-d0311227bdf0"/>
+	<patient patient_id="10000" creator="1" date_created="2014-01-01 00:00:00.0" voided="false"/>
+	<patient_identifier patient_identifier_id="10000" patient_id="10000" identifier="EXP-10000" identifier_type="8" preferred="0" location_id="1" creator="1" date_created="2014-01-01 00:00:00.0" voided="false" void_reason="" uuid="5ed3149d-e138-4966-af76-09263b034381"/>
+	
+	<person person_id="10001" gender="M" birthdate="2017-01-01 00:00:00.0" birthdate_estimated="0" dead="false" creator="1" date_created="2017-01-01 00:00:00.0" voided="false" uuid="0182cad7-cd18-49ce-8d4a-568205ee07fd"/>
+	<person_name person_name_id="100011" preferred="true" person_id="10001" prefix="" given_name="James" middle_name="Senkubuge" family_name="Kiwanuuka" family_name_suffix="" creator="1" date_created="2017-01-01 00:00:00.0" voided="false" void_reason="" uuid="b8cf72b4-f356-4731-9ee5-35713f6db57a"/>
+	<patient patient_id="10001" creator="1" date_created="2017-01-01 00:00:00.0" voided="false"/>
+	<patient_identifier patient_identifier_id="10001" patient_id="10001" identifier="EXP-10001" identifier_type="8" preferred="0" location_id="1" creator="1" date_created="2017-01-01 00:00:00.0" voided="false" void_reason="" uuid="525b65f6-9f5b-45ef-9303-f57a9194e6ea"/>
+	
+	<person person_id="10002" gender="F" birthdate="2017-01-02 00:00:00.0" birthdate_estimated="0" dead="false" creator="1" date_created="2017-01-02 00:00:00.0" voided="false" uuid="83bf5a97-2bfb-4672-81ee-dbbdcf2b367b"/>
+	<person_name person_name_id="100012" preferred="true" person_id="10002" prefix="" given_name="Jane" middle_name="Nankya" family_name="Namugambe" family_name_suffix="" creator="1" date_created="2017-01-02 00:00:00.0" voided="false" void_reason="" uuid="20c8521f-21db-40aa-b48a-64b5ff4b0bab"/>
+	<patient patient_id="10002" creator="1" date_created="2017-01-02 00:00:00.0" voided="false"/>
+	<patient_identifier patient_identifier_id="10002" patient_id="10002" identifier="EXP-10002" identifier_type="8" preferred="0" location_id="1" creator="1" date_created="2017-01-02 00:00:00.0" voided="false" void_reason="" uuid="9a8aac55-4b98-4e43-bd31-cae2c7ec3455"/>
+	
+	<person person_id="10003" gender="M" birthdate="2017-01-03 00:00:00.0" birthdate_estimated="0" dead="false" creator="1" date_created="2017-01-03 00:00:00.0" voided="false" uuid="8b488d90-4c7c-4a79-aa9e-77a9c711f8f5"/>
+	<person_name person_name_id="100013" preferred="true" person_id="10003" prefix="" given_name="Andrew" middle_name="Malundi" family_name="Kalinaki" family_name_suffix="" creator="1" date_created="2017-01-03 00:00:00.0" voided="false" void_reason="" uuid="2433f7be-4d99-411f-ba37-86f421646b4b"/>
+	<patient patient_id="10003" creator="1" date_created="2017-01-03 00:00:00.0" voided="false"/>
+	<patient_identifier patient_identifier_id="10003" patient_id="10003" identifier="EXP-10003" identifier_type="8" preferred="0" location_id="1" creator="1" date_created="2017-01-03 00:00:00.0" voided="false" void_reason="" uuid="d3ca1de0-7144-4a5d-8c42-3f69afc028fc"/>
+	
+	<!-- Concepts -->
+	<concept concept_id="90200" retired="false" datatype_id="2" class_id="7" is_set="false" creator="1" date_created="2008-08-15 15:51:57.0" version="" uuid="dcdfe3ce-30ab-102d-86b0-7a5022ba4115"/>
+	<concept concept_id="90012" retired="false" datatype_id="2" class_id="5" is_set="false" creator="1" date_created="2008-08-15 15:51:57.0" version="" uuid="dcd7e8e5-30ab-102d-86b0-7a5022ba4115"/>
+	
+	<!-- visits -->
+	<visit visit_id="10000" patient_id="10000" visit_type_id="1" date_started="2014-01-08 00:00:00.0" location_id="1" creator="1" date_created="2014-01-08 00:00:00.0" voided="false" uuid="d1e83a75-2841-43bc-8684-d2a1f9fb28d9" />
+	<visit visit_id="10001" patient_id="10001" visit_type_id="1" date_started="2017-01-01 00:00:00.0" location_id="1" creator="1" date_created="2017-01-01 00:00:00.0" voided="false" uuid="d8508593-fc33-45e3-89b2-4a0528a99b64" />
+	<visit visit_id="10002" patient_id="10002" visit_type_id="1" date_started="2017-01-02 00:00:00.0" location_id="1" creator="1" date_created="2017-01-02 00:00:00.0" voided="false" uuid="c4fa7456-7458-44e3-bde9-d5d6d5466119" />
+	
+</dataset>
