@@ -1,15 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
-  <concept_datatype concept_datatype_id="1" name="Numeric" hl7_abbreviation="NM" description="Numeric value, including integer or float (e.g., creatinine, weight)" creator="1" date_created="2004-02-02 00:00:00.0" retired="false" 
-retired_by="1" uuid="8d4a4488-c2cc-11de-8d13-0010c6dffd0f"/>
-  <concept_datatype concept_datatype_id="2" name="Coded" hl7_abbreviation="CWE" description="Value determined by term dictionary lookup (i.e., term identifier)" creator="1" date_created="2004-02-02 00:00:00.0" retired="false" 
-retired_by="1" uuid="8d4a48b6-c2cc-11de-8d13-0010c6dffd0f"/>
+  <concept_datatype concept_datatype_id="1" name="Numeric" hl7_abbreviation="NM" description="Numeric value, including integer or float (e.g., creatinine, weight)" creator="1" date_created="2004-02-02 00:00:00.0" retired="false" retired_by="1" uuid="8d4a4488-c2cc-11de-8d13-0010c6dffd0f"/>
+  <concept_datatype concept_datatype_id="2" name="Coded" hl7_abbreviation="CWE" description="Value determined by term dictionary lookup (i.e., term identifier)" creator="1" date_created="2004-02-02 00:00:00.0" retired="false" retired_by="1" uuid="8d4a48b6-c2cc-11de-8d13-0010c6dffd0f"/>
   <concept_datatype concept_datatype_id="3" name="Text" hl7_abbreviation="ST" description="Free text" creator="1" date_created="2004-02-02 00:00:00.0" retired="false" retired_by="1" uuid="8d4a4ab4-c2cc-11de-8d13-0010c6dffd0f"/>
-  <concept_datatype concept_datatype_id="4" name="N/A" hl7_abbreviation="ZZ" description="Not associated with a datatype (e.g., term answers, sets)" creator="1" date_created="2004-02-02 00:00:00.0" retired="false" retired_by="1" 
-uuid="8d4a4c94-c2cc-11de-8d13-0010c6dffd0f"/>
+  <concept_datatype concept_datatype_id="4" name="N/A" hl7_abbreviation="ZZ" description="Not associated with a datatype (e.g., term answers, sets)" creator="1" date_created="2004-02-02 00:00:00.0" retired="false" retired_by="1" uuid="8d4a4c94-c2cc-11de-8d13-0010c6dffd0f"/>
   <concept_datatype concept_datatype_id="6" name="Date" hl7_abbreviation="DT" description="Absolute date" creator="1" date_created="2004-07-22 00:00:00.0" retired="false" retired_by="1" uuid="8d4a505e-c2cc-11de-8d13-0010c6dffd0f"/>
-  <concept_class concept_class_id="1" name="Test" description="Acq. during patient encounter (vitals, labs, etc.)" creator="1" date_created="2004-02-02 00:00:00.0" retired="false" retired_by="1" uuid="8d4907b2-c2cc-11de-8d13-
-0010c6dffd0f"/>
+  <concept_class concept_class_id="1" name="Test" description="Acq. during patient encounter (vitals, labs, etc.)" creator="1" date_created="2004-02-02 00:00:00.0" retired="false" retired_by="1" uuid="8d4907b2-c2cc-11de-8d13-0010c6dffd0f"/>
   <concept_class concept_class_id="3" name="Drug" description="Drug" creator="1" date_created="2004-02-02 00:00:00.0" retired="false" retired_by="1" uuid="8d490dfc-c2cc-11de-8d13-0010c6dffd0f"/>
   <concept_class concept_class_id="4" name="Diagnosis" description="Conclusion drawn through findings" creator="1" date_created="2004-02-02 00:00:00.0" retired="false" retired_by="1" uuid="8d4918b0-c2cc-11de-8d13-0010c6dffd0f"/>
   <concept_class concept_class_id="5" name="Finding" description="Practitioner observation/finding" creator="1" date_created="2004-03-02 00:00:00.0" retired="false" retired_by="1" uuid="8d491a9a-c2cc-11de-8d13-0010c6dffd0f"/>
@@ -17,55 +13,35 @@ uuid="8d4a4c94-c2cc-11de-8d13-0010c6dffd0f"/>
   <concept_class concept_class_id="10" name="ConvSet" description="Term to describe convenience sets" creator="1" date_created="2004-03-02 00:00:00.0" retired="false" retired_by="1" uuid="8d492594-c2cc-11de-8d13-0010c6dffd0f"/>
   <concept_class concept_class_id="11" name="Misc" description="Terms which don&apos;t fit other categories" creator="1" date_created="2004-03-02 00:00:00.0" retired="false" retired_by="1" uuid="8d492774-c2cc-11de-8d13-0010c6dffd0f"/>
   <concept_class concept_class_id="12" name="Symptom" description="Patient-reported observation" creator="1" date_created="2004-10-04 00:00:00.0" retired="false" retired_by="1" uuid="8d492954-c2cc-11de-8d13-0010c6dffd0f"/>
-  <concept_class concept_class_id="13" name="Symptom/Finding" description="Observation that can be reported from patient or found on exam" creator="1" date_created="2004-10-04 00:00:00.0" retired="false" retired_by="1" uuid="8d492b2a-
-c2cc-11de-8d13-0010c6dffd0f"/>
-  <concept_class concept_class_id="24" name="Pharmacologic Drug Class" description="Class of medications based on pharmacologic properties as opposed to therapeutic properties" creator="1" date_created="2014-02-07 22:16:02.0" 
-retired="false" retired_by="1" uuid="b4535251-9183-4175-959e-9ee67dc71e78"/>
+  <concept_class concept_class_id="13" name="Symptom/Finding" description="Observation that can be reported from patient or found on exam" creator="1" date_created="2004-10-04 00:00:00.0" retired="false" retired_by="1" uuid="8d492b2a-c2cc-11de-8d13-0010c6dffd0f"/>
+  <concept_class concept_class_id="24" name="Pharmacologic Drug Class" description="Class of medications based on pharmacologic properties as opposed to therapeutic properties" creator="1" date_created="2014-02-07 22:16:02.0" retired="false" retired_by="1" uuid="b4535251-9183-4175-959e-9ee67dc71e78"/>
   
-  <concept concept_id="163149" retired="false" datatype_id="4" class_id="4" is_set="false" creator="1" date_created="2017-02-23 00:00:00.0" version="" changed_by="1" date_changed="2015-11-05 01:34:22.0" retired_by="1" uuid="69b722b2-
-fca9-444d-a288-575593a1e1a5"/>
-  <concept_name concept_id="163149" name="Malaria in pregnancy" locale="en" creator="1" date_created="2017-02-23 00:00:00.0" concept_name_id="200001" voided="false" voided_by="1" uuid="5b8d7005-3e53-42ab-b892-21db36e9cf37" 
-concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+  <concept concept_id="163149" retired="false" datatype_id="4" class_id="4" is_set="false" creator="1" date_created="2017-02-23 00:00:00.0" version="" changed_by="1" date_changed="2015-11-05 01:34:22.0" retired_by="1" uuid="69b722b2-fca9-444d-a288-575593a1e1a5"/>
+  <concept_name concept_id="163149" name="Malaria in pregnancy" locale="en" creator="1" date_created="2017-02-23 00:00:00.0" concept_name_id="200001" voided="false" voided_by="1" uuid="5b8d7005-3e53-42ab-b892-21db36e9cf37" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
   
-  <concept concept_id="163150" retired="false" datatype_id="4" class_id="4" is_set="false" creator="1" date_created="2017-02-23 00:00:00.0" version="" changed_by="1" date_changed="2017-02-23 00:00:00.0" retired_by="1" uuid="f35374b1-
-b391-41e0-bdb7-4d2e4cf40153"/>
-  <concept_name concept_id="163150" name="Obstructed labour" locale="en" creator="1" date_created="2017-02-23 00:00:00.0" concept_name_id="200002" voided="false" voided_by="1" uuid="163149" concept_name_type="FULLY_SPECIFIED" 
-locale_preferred="true"/>  
+  <concept concept_id="163150" retired="false" datatype_id="4" class_id="4" is_set="false" creator="1" date_created="2017-02-23 00:00:00.0" version="" changed_by="1" date_changed="2017-02-23 00:00:00.0" retired_by="1" uuid="f35374b1-b391-41e0-bdb7-4d2e4cf40153"/>
+  <concept_name concept_id="163150" name="Obstructed labour" locale="en" creator="1" date_created="2017-02-23 00:00:00.0" concept_name_id="200002" voided="false" voided_by="1" uuid="163149" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>  
   
-  <concept concept_id="163152" retired="false" datatype_id="4" class_id="4" is_set="false" creator="1" date_created="2017-02-23 00:00:00.0" version="" changed_by="1" date_changed="2017-02-23 00:00:00.0" retired_by="1" uuid="0f57b679-
-a85b-440e-a1f1-6de274a54783"/>
-  <concept_name concept_id="163152" name="Anaemia in pregnancy" locale="en" creator="1" date_created="2017-02-23 00:00:00.0" concept_name_id="200003" voided="false" voided_by="1" uuid="699a6552-0321-4989-aaaf-9961371ffa22" 
-concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>   
+  <concept concept_id="163152" retired="false" datatype_id="4" class_id="4" is_set="false" creator="1" date_created="2017-02-23 00:00:00.0" version="" changed_by="1" date_changed="2017-02-23 00:00:00.0" retired_by="1" uuid="0f57b679-a85b-440e-a1f1-6de274a54783"/>
+  <concept_name concept_id="163152" name="Anaemia in pregnancy" locale="en" creator="1" date_created="2017-02-23 00:00:00.0" concept_name_id="200003" voided="false" voided_by="1" uuid="699a6552-0321-4989-aaaf-9961371ffa22" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>   
   
-  <concept concept_id="163153" retired="false" datatype_id="4" class_id="4" is_set="false" creator="1" date_created="2017-02-23 00:00:00.0" version="" changed_by="1" date_changed="2017-02-23 00:00:00.0" retired_by="1" uuid="d135d3e4-
-8ab2-43e6-a841-dae032ef5c48"/>
-  <concept_name concept_id="163153" name="Raptured uterus" locale="en" creator="1" date_created="2017-02-23 00:00:00.0" concept_name_id="200004" voided="false" voided_by="1" uuid="5b03469f-c675-477f-8ea6-1cefddf5133c" 
-concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+  <concept concept_id="163153" retired="false" datatype_id="4" class_id="4" is_set="false" creator="1" date_created="2017-02-23 00:00:00.0" version="" changed_by="1" date_changed="2017-02-23 00:00:00.0" retired_by="1" uuid="d135d3e4-8ab2-43e6-a841-dae032ef5c48"/>
+  <concept_name concept_id="163153" name="Raptured uterus" locale="en" creator="1" date_created="2017-02-23 00:00:00.0" concept_name_id="200004" voided="false" voided_by="1" uuid="5b03469f-c675-477f-8ea6-1cefddf5133c" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
  
-  <concept concept_id="163154" retired="false" datatype_id="6" class_id="7" is_set="false" creator="1" date_created="2017-02-23 00:00:00.0" version="" changed_by="1" date_changed="2017-02-23 00:00:00.0" retired_by="1" uuid="e43ca5a9-
-f7a3-49f7-aa52-14b0ab38c516"/>  
-  <concept_name concept_id="163154" name="cd4 date" locale="en" creator="1" date_created="2017-02-23 00:00:00.0" concept_name_id="200005" voided="false" voided_by="1" uuid="6f2c6db1-e526-4e9e-a6b0-c285f875835b" 
-concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+  <concept concept_id="163154" retired="false" datatype_id="6" class_id="7" is_set="false" creator="1" date_created="2017-02-23 00:00:00.0" version="" changed_by="1" date_changed="2017-02-23 00:00:00.0" retired_by="1" uuid="e43ca5a9-f7a3-49f7-aa52-14b0ab38c516"/>  
+  <concept_name concept_id="163154" name="cd4 date" locale="en" creator="1" date_created="2017-02-23 00:00:00.0" concept_name_id="200005" voided="false" voided_by="1" uuid="6f2c6db1-e526-4e9e-a6b0-c285f875835b" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
 
-  <concept concept_id="163155" retired="false" datatype_id="6" class_id="7" is_set="false" creator="1" date_created="2017-02-23 00:00:00.0" version="" changed_by="1" date_changed="2017-02-23 00:00:00.0" retired_by="1" uuid="c383e002-
-2ab0-4777-9b51-2a7ac9a5a22e"/>  
-  <concept_name concept_id="163155" name="Viral Load date" locale="en" creator="1" date_created="2017-02-23 00:00:00.0" concept_name_id="200006" voided="false" voided_by="1" uuid="db410f51-a313-4bcf-b8b3-73d156ddae71" 
-concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+  <concept concept_id="163155" retired="false" datatype_id="6" class_id="7" is_set="false" creator="1" date_created="2017-02-23 00:00:00.0" version="" changed_by="1" date_changed="2017-02-23 00:00:00.0" retired_by="1" uuid="c383e002-2ab0-4777-9b51-2a7ac9a5a22e"/>  
+  <concept_name concept_id="163155" name="Viral Load date" locale="en" creator="1" date_created="2017-02-23 00:00:00.0" concept_name_id="200006" voided="false" voided_by="1" uuid="db410f51-a313-4bcf-b8b3-73d156ddae71" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
 
-  <concept concept_id="163156" retired="false" datatype_id="2" class_id="5" is_set="false" creator="1" date_created="2017-02-23 00:00:00.0" version="" changed_by="1" date_changed="2017-02-23 00:00:00.0" retired_by="1" uuid="16fa1cfc-
-255b-4bd6-ac48-5eed265c4a76"/>
-  <concept_name concept_id="163156" name="Pregnancy outcome" locale="en" creator="1" date_created="2017-02-23 00:00:00.0" concept_name_id="200007" voided="false" voided_by="1" uuid="a5d03316-2b7e-4688-855b-8d6253149363" 
-concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+  <concept concept_id="163156" retired="false" datatype_id="2" class_id="5" is_set="false" creator="1" date_created="2017-02-23 00:00:00.0" version="" changed_by="1" date_changed="2017-02-23 00:00:00.0" retired_by="1" uuid="16fa1cfc-255b-4bd6-ac48-5eed265c4a76"/>
+  <concept_name concept_id="163156" name="Pregnancy outcome" locale="en" creator="1" date_created="2017-02-23 00:00:00.0" concept_name_id="200007" voided="false" voided_by="1" uuid="a5d03316-2b7e-4688-855b-8d6253149363" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
   
-  <concept concept_id="163157" retired="false" datatype_id="4" class_id="4" is_set="false" creator="1" date_created="2017-02-23 00:00:00.0" version="" changed_by="1" date_changed="2017-02-23 00:00:00.0" retired_by="1" uuid="f430abaf-
-b11b-4b33-b2a9-a0f14d7280b9"/>
-  <concept_name concept_id="163157" name="Term birth of new born" locale="en" creator="1" date_created="2017-02-23 00:00:00.0" concept_name_id="200008" voided="false" voided_by="1" uuid="998ba450-3caa-4c8d-80e5-316b5c000960" 
-concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+  <concept concept_id="163157" retired="false" datatype_id="4" class_id="4" is_set="false" creator="1" date_created="2017-02-23 00:00:00.0" version="" changed_by="1" date_changed="2017-02-23 00:00:00.0" retired_by="1" uuid="f430abaf-b11b-4b33-b2a9-a0f14d7280b9"/>
+  <concept_name concept_id="163157" name="Term birth of new born" locale="en" creator="1" date_created="2017-02-23 00:00:00.0" concept_name_id="200008" voided="false" voided_by="1" uuid="998ba450-3caa-4c8d-80e5-316b5c000960" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
   
-  <concept concept_id="163158" retired="false" datatype_id="4" class_id="4" is_set="false" creator="1" date_created="2017-02-23 00:00:00.0" version="" changed_by="1" date_changed="2017-02-23 00:00:00.0" retired_by="1" uuid="1d6dfa2e-
-9206-44bc-bd92-777398460de6"/>
-  <concept_name concept_id="163158" name="Preterm delivery" locale="en" creator="1" date_created="2017-02-23 00:00:00.0" concept_name_id="200009" voided="false" voided_by="1" uuid="4d85d99b-601e-43f2-8204-1545e748e90d" 
-concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>  
+  <concept concept_id="163158" retired="false" datatype_id="4" class_id="4" is_set="false" creator="1" date_created="2017-02-23 00:00:00.0" version="" changed_by="1" date_changed="2017-02-23 00:00:00.0" retired_by="1" uuid="1d6dfa2e-9206-44bc-bd92-777398460de6"/>
+  <concept_name concept_id="163158" name="Preterm delivery" locale="en" creator="1" date_created="2017-02-23 00:00:00.0" concept_name_id="200009" voided="false" voided_by="1" uuid="4d85d99b-601e-43f2-8204-1545e748e90d" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>  
   <concept_answer concept_answer_id="10001" concept_id="163156" answer_concept="163157" creator="1" date_created="2017-02-23 00:00:00.0" uuid="9437e8c1-2e3e-4dad-9459-eca11cb8c092" sort_weight="1908.0"/>
   <concept_answer concept_answer_id="10002" concept_id="163156" answer_concept="163158" creator="1" date_created="2017-02-23 00:00:00.0" uuid="de6cd828-72c6-4b02-9e07-7c03b3d0a59b" sort_weight="1909.0"/>
 
