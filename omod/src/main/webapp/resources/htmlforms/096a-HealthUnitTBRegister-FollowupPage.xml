@@ -1,49 +1,15 @@
-<htmlform formName="Form 096a - Health Unit TB Register - Summary"
-          formDescription="HMIS Form 096a - Health Unit TB Register - Initial Visit"
+<htmlform formName="Form 096a - Health Unit TB Register - Follow up"
+          formDescription="HMIS Form 096a - Health Unit TB Register - Follow up"
           formEncounterType="334bf97e-28e2-4a27-8727-a5ce31c7cd66"
-          formUuid="0fd17421-c06c-400f-81f6-6b7cb28a13d8"
+          formUuid="b609b3f0-6fa8-4764-976e-625f0683b690"
           formVersion="1.0"
           formAddMetadata="yes"
           formUILocation="patientDashboard.visitActions"
-          formOrder="2"
+          formOrder="1"
           formIcon="icon-medkit"
           formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='8ab22b55-9a17-4121-bf08-6134a9a2439f'"
           formDisplayStyle="Standard"
           formLabel="Form 096a - Health Unit TB Register - Summary">
-
-		<ifMode mode="ENTER">
-			<includeIf velocityTest="$fn.allEncounters('334bf97e-28e2-4a27-8727-a5ce31c7cd66').size() == 0">
-				<script>
-					jq(function() {
-						alert('This patient has no Summary page, you will now be forwarded to the patient dashboard');
-	
-						/*
-						 * queryParameters -> handles the query string parameters
-						 * queryString -> the query string without the fist '?' character
-						 * re -> the regular expression
-						 * m -> holds the string matching the regular expression
-						 */
-						var queryParameters = {}, queryString = location.search.substring(1),
-								re = /([^&amp;=]+)=([^&amp;]*)/g, m;
-	
-						// Creates a map with the query string parameters
-						while (m = re.exec(queryString)) {
-							queryParameters[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
-						}
-	
-						/*
-						 * Replace the query portion of the URL.
-						 * jQuery.param() -> create a serialized representation of an array or
-						 *     object, suitable for use in a URL query string or Ajax request.
-						 */
-						location.href = window.location.protocol + "//" + window.location.host +
-										'/' + OPENMRS_CONTEXT_PATH + '/coreapps/clinicianfacing/patient.page?patientId='
-										+ queryParameters['patientId']; // Causes page to reload
-					});
-				</script>
-			</includeIf>
-		</ifMode>
-
     <style>
 
         form label, .form label {
@@ -98,9 +64,7 @@
             <table>
                 <tbody>
                 <tr>
-                    <td>
-                        Encounter date:
-                          <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
+                    <td>   
                      <span style="display: none;">
                         <encounterLocation default="8ab22b55-9a17-4121-bf08-6134a9a2439f"
                                            order="8ab22b55-9a17-4121-bf08-6134a9a2439f"/>
@@ -117,65 +81,66 @@
       </section>
 <fieldset>
 <legend>Results of sputum and other examinations</legend>
-	<table width="100%" border="0" cellspacing="0" cellpadding="0">
-		<tr>
-			<td style="width:25%"><p>Sputum smear results</p>
-			<p><obs conceptId="307" answerConceptIds="1118,664,1362,1363,1364" answerLabels="ND - Not Done, NEG- Negative, +, ++, +++" style="dropdown" answerSeparator="&lt;br/&gt;" showDate="true" dateLabel="Examination Date"/></p></td>
-			<td style="width:25%"><p>Examination Date</p>
-			<p><!--<obs conceptId="159964" />--></p></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td style="width:25%"><p>DST Results</p>
-			<p><obs conceptId="159984" style="dropdown" showDate="true" dateLabel="Date of results"/></p></td>
-			<td style="width:25%"><p>Date of DST results </p>
-			<p>Missing</p></td>
-			<td></td>
-			<td></td>
-		</tr>
-	</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			  <tr>
+			    <td style="width:25%"><p>Follow up visit date:</p>
+		        <p><encounterDate default="today" disallowMultipleEncountersOnDate="block"/> </p></td>
+			    <td style="width:25%">&nbsp;</td>
+			    <td></td>
+			    <td></td>
+    </tr>
+			  <tr>
+				<td style="width:25%"><p>Sputum smear results</p>
+			    <p><obs conceptId="307" answerConceptIds="1118,664,1362,1363,1364" answerLabels="ND - Not Done, NEG- Negative, +, ++, +++" style="dropdown" answerSeparator="&lt;br/&gt;"/>
+			    Missing other options </p></td>
+				<td style="width:25%"><p>Examination Date</p>
+			    <p><obs conceptId="99392" /></p></td>
+				<td style="width:25%"><p>DST Results</p>
+			    <p><obs conceptId="159984" style="dropdown"/>
+			    Missing - Responses not very clear </p></td>
+			    <td style="width:25%"><p>Date of DST results </p>
+		        <p>Missing</p></td>
+				<td></td>
+				<td></td>
+			  </tr>
+			</table>
 </fieldset>
 
 <fieldset>
 <legend>MUAC/z-score</legend>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td colspan="2" valign="top" style="width:50%"><p>Weight for age z-score<obs conceptId="1854" answerConceptIds="115,134722,126598" answerLabels="N-Normal,MAM-Moderate Acute Mulnutrition,SAM-Severe Acute Mulnutrition" style="radio" answerSeparator="&lt;br/&gt;" /></p>      </td>
-	<td style="width:25%"></td>
-	<td style="width:25%"></td>
-	<tr>
-    <td colspan="2" valign="top" style="width:50%"><p>Height/Length for age z-score</p>
-      <p><obs conceptId="164088" answerConceptIds="1115,164085" answerLabels="N-Normal,S-Stunting" /></p></td>
-	<td style="width:25%"></td>
-	<td style="width:25%"></td>
-	<tr>
-	<td><p>MUAC Colour Code</p>
-	  <p><obs conceptId="160908" style="dropdown" /></p></td>
-	<td><p>MUAC Measurement</p>
-	  <p><obs conceptId="1343" /></p></td>
+    <td colspan="2" valign="top" style="width:25%"><p>Weight for age z-score <obs conceptId="1854" answerConceptIds="115,99271,99272" answerLabels="N-Normal,MAM-Moderate Acute Mulnutrition,SAM-Severe Acute Mulnutrition" style="radio" answerSeparator="&lt;br/&gt;" /></p>
+      <p>Confirm ugandaemr equivalent (Missing) </p></td>
+    <td colspan="2" valign="top" style="width:25%"><p>Height/Length for age z-score<obs conceptId="164088" answerConceptIds="1115,164085" answerLabels="N-Normal,S-Stunting" /></p>
+      <p>confirm ugamdaemr equivalent (Missing) </p></td>
+	<td valign="top"><p>MUAC Colour Code 
+	    <obs conceptId="99030" style="radio" answerConceptIds="99028,99027,99029" /></p>
+	  </td>
     <td valign="top" style="width:25%"><p>INR No</p>
       <p><patient  field="identifier" identifierTypeId="d4b21726-e908-4b1a-abab-b5f87cd01c18" id="inr-no" required="true" /></p></td>
-	<td></td>
   </tr>
 </table>
 </fieldset>
 
 <fieldset>
-<legend>Issue of  anti-TB drug </legend>
+<legend>Issue of  anti-TB drug (Missing grouping concept)</legend>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 <repeat>
 	<template>
 		<obsgroup groupingConceptId="163711">
 		  <tr>
+			<td style="width:25%"><p>TB Treatment phase </p>
+			  <p>Missing</p></td>
 			<td style="width:25%"><p>Name of drug</p>
-			  <p><obs conceptId="1282" answerConceptSetIds="160021" showDate="True" dateLabel="Date Dispensed"/></p></td>
+			  <p><obs conceptId="1282" answerConceptSetIds="160021" />
+			  Missing</p></td>
+			<td style="width:25%">
+			  <p>Date Dispensed</p>
+			  <p>Missing </p></td>
+
 			<td style="width:25%"><p>No. of days for which Treatment is dispensed </p>
-		    <p><obs conceptId="1443" /></p></td>
-			<td style="width:25%"><p></p>
-			  <p></p></td>
-			<td style="width:25%"><!--<p>Date dispensed</p>-->
-			  <p></p></td>
+		    <p>Missing</p></td>
 		  </tr>
 		</obsgroup>
 	</template>
