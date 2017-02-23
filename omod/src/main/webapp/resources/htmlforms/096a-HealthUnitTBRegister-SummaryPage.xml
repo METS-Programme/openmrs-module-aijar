@@ -109,9 +109,9 @@
 				<td><p>Regimen</p>
 			    <p><obs conceptId="99374" style="dropdown" answerConceptIds="99373,99372,99371" />
 			    </p></td>
-<td><p>Disease clasification</p>
+<td><p>Disease classification</p>
 			    <p><obs conceptId="99379" answerConceptIds="113491AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,113489AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5042" answerLabels="Pulmonary bacteriologically confirmed TB treatment,Pulmonary clinically diagnosed TB,Extra pulmonary TB" />
-			    Provide proper concept mappings for the UgandaEMR </p>				
+			    Provide proper concept mappings from UgandaEMR </p>				
 				</td>
 				<td></td>
 			</tr>
@@ -132,38 +132,36 @@
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td valign="top" style="width:25%"><p>HIV Counselling and testing </p>
-	<obs conceptId="164805" style="dropdown" />
-     <!-- <p> <obs conceptId="161595" answerConceptId="1914" style="checkbox" /> C - Counselled</p>
-      <p> <obs conceptId="161595" answerConceptId="164163" style="checkbox" />CT - Counselled and Tested</p>
-      <p> <obs conceptId="159427" answerConceptId="703" style="checkbox" />CT1 - Counselled, Tested and HIV positive</p>
-      <p> <obs conceptId="159427" answerConceptId="664" style="checkbox" />CT2 - Counselled, Tested and HIV negative</p>-->
-      <p>Missing</p>	
-	</td>
+	<obs conceptId="99409" style="dropdown" answerConceptIds="99405,99406,99407,99408" answerLabels="Counselling done,Counselling and testing done,Counselling and testing done for HIV Positive,Counselling ans Testing done for HIV Negative"/>
+	<p>Countercheck to confirm if this concept is appropriate </p></td>
     <td valign="top" style="width:25%"><p>HIV Testing Date </p>
       <p><obs conceptId="164400" />
       </p>
 	</td>
-    <td valign="top" style="width:25%"><p>Patient received HIV Results <obs conceptId="164799" style="radio" answerConceptIds="1065,1066" answerLabels="Yes, No" answerSeparator="&lt;br/&gt;"> 
+    <td valign="top" style="width:25%"><p>Patient received HIV Results <obs conceptId="99411" style="radio" answerConceptIds="1065,1066" answerLabels="Yes, No" answerSeparator="&lt;br/&gt;"> 
     </p>
-      <p>Missing </p></td>
+      <p>&nbsp;</p></td>
 	 <td></td>
 	</tr>
 	<tr>
     <td valign="top" style="width:25%"><p>Is Patient On CPT? 
-        <obs conceptId="160434" answerConceptIds="1065,1066" answerLabels="Yes,No" showDate="true" dateLabel="CPT Date"/> </p>
-      </td>
+        <obs conceptId="163149" answerConceptIds="1065,1066" answerLabels="Yes,No" showDate="true" dateLabel="CPT Date"/> </p>
+      <p>Missing</p></td>
     <td valign="top" style="width:25%"><p>CPT Start Date </p>
-      <p><obs conceptId="164804" />Missing</p>
+      <p><obs conceptId="163150" />Missing</p>
 	</td>
     <td><p>Is Patient On ART?</p>
-      <p><obs conceptId="160119" answerConceptIds="1065,1066" answerLabels="Yes,No" /> </p>
+      <p><obs conceptId="1367" answerConceptIds="1065,1066" answerLabels="Yes,No" /> </p>
 	</td>
-    <td><p>Art Start Date</p>
-      <p><obs conceptId="159599" allowFutureDates="false" /> </p>
-	</td>	<tr>
+    <td><p>Art Start Date
+      <p> 
+        <obs conceptId="99161" allowFutureDates="false" />
+      </td>	<tr>
     <td><p>Art No</p>
-      <p><obs conceptId="164402" /> </p>
-	</td>
+      <p><obs conceptId="99431" /> </p>
+      
+      
+      </td>
 	<td></td>
 	<td></td>
 	<td></td>
@@ -174,10 +172,13 @@
 <legend>Contact with chlidren under 5 years</legend>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td style="width:25%"><p>No. of children &lt;5yrs in contact </p>
-      <p><obs conceptId="164419AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></p></td>
-    <td style="width:25%"><p>No. of children with IPT </p>
-      <p><obs conceptId="164421AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></p></td>
+    <td valign="top" style="width:25%"><p>No. of children &lt;5yrs in contact</p>
+      <p><obs conceptId="164419" /> </p>
+      </td>
+    <td style="width:25%"><p>No. of children &lt; 5yrs on IPT</p>
+      <p> 
+        <obs conceptId="164421" />
+      </p></td>
     <td style="width:25%"></td>
     <td style="width:25%"></td>
   </tr>
@@ -187,13 +188,17 @@
 <legend>Treatment model</legend>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td valign="top" style="width:25%"><p>Treatment Model (DOTS) <obs conceptId="164801" answerConceptIds="164802,164803" answerLabels="Facility-based DOTS, Community-based DOTS" showDate="true" dateLabel="DOTS Date" style="radio"/>
-    </p>
-      <p>Missing </p></td>
-    <td style="width:25%"><p>DOTS Date </p>
-      <p>Missing</p></td>
-    <td style="width:25%"><p>Name of treatment supporter </p>
-      <p><obs conceptId="160638AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></p></td>
+    <td valign="top" style="width:25%"><p>Treatment Model (DOTS) 
+      <obs conceptId="99418" answerConceptIds="99416,99417" answerLabels="Facility-based DOTS, Community-based DOTS" showDate="true" dateLabel="DOTS Date" style="radio"/>
+      </td>
+    <td style="width:25%"><p>DOTS Date    
+      <p> 
+        <obs conceptId="90217" allowFutureDates="false" />
+      </td>
+    <td style="width:25%"><p>Name of treatment supporter</p>
+      <p>&nbsp; </p>
+      <obs conceptId="99142" />
+      </td>
     <td style="width:25%"></td>
   </tr>
 </table>
@@ -202,19 +207,26 @@
 <legend>Treatment outcome and date when outcome determined</legend>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 			  <tr>
-				<td style="width:25%"><p>Treatment Outcome </p>
-			      <p><obs conceptId="159786" answerConceptIds="159791,159492,159874,160034,5240" answerLabels="Cured, Transferred out,Treatment failure,Died,Lost to follow up" style="dropdown" answerSeparator="&lt;br/&gt;" showDate="true" dateLabel="Examination Date"/></p></td>
+				<td style="width:25%"><p>Treatment Outcome</p>
+				  <p> 
+				    <obs conceptId="99423" answerConceptIds="159791,90306,159874,1366,5240" answerLabels="Cured, Transferred out,Treatment failure,Died,Lost to follow up" style="dropdown" answerSeparator="&lt;br/&gt;" showDate="true" dateLabel="Examination Date"/>
+			      </p></td>
 				<td style="width:25%"><p>Date when outcome determined</p>
-			    <p><obs conceptId="159787" /></p></td>
+				  <p>
+				    <obs conceptId="159787" />
+			      </p></td>
 				<td style="width:25%"><p>Transfer out to (Name of unit)</p>
-			    <p><obs conceptId="159495" /></p></td>
+				  <p> 
+				    <obs conceptId="159495" />
+			      </p></td>
 			    <td style="width:25%"><p></p>		        </td>
 			  </tr>
 			  <tr>
 			    <td colspan="4" style="width:25%"><p>Remarks</p>
-		        <p>Missing</p></td>
+			      <p><obs conceptId="163151" rows="15" cols="60"/></p>
+			      <p>Missing</p></td>
     </tr>
-			</table>
+  </table>
 </fieldset>
 <enrollInProgram programId="TB program"/>
         <submit/>
