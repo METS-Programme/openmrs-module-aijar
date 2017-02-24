@@ -491,7 +491,7 @@
                         <p><label>Pre-ART number</label> </p>
                         <span id="pre-art-number">
                             <patient field="identifier" identifierTypeId="e1731641-30ab-102d-86b0-7a5022ba4115"
-                                     required="true" />
+                                     required="false" />
                         </span>
                     </td>
                     <td>
@@ -525,7 +525,9 @@
                                                     answerLabels="SS,BM,BMD" style="radio" />
                     </td>
                     <td>
-                        <label>Immediate skin to skin contact?</label> <obs conceptId="162944" answerConceptIds="1065,1066" answerLabels="Yes, No" style="radio" />
+                        <label>Immediate skin to <br />
+                        skin contact?</label> 
+                        <obs conceptId="162944" answerConceptIds="1065,1066" answerLabels="Yes, No" style="radio" />
                     </td>
                 </tr>
                 <tr>
@@ -557,17 +559,24 @@
                 </tr>
                 <tr>
                     <td>
-                        <label>Counselling at discharge</label> <obs conceptId="162938" answerConceptIds="162936,162937" answerLabels="C, NC" style="radio" />
+                        <label>Counselling at <br />
+                        discharge</label> 
+                        <obs conceptId="162938" answerConceptIds="162936,162937" answerLabels="C, NC" style="radio" />
                     </td>
                     <td>
-                        <label>Maternal nutitional couselling at discharge</label> <obs conceptId="162939" answerConceptIds="1065,1066" answerLabels="Yes, No" style="radio" />
+                        <label>Maternal nutritional <br />
+                        couselling at discharge</label> 
+                        <obs conceptId="162939" answerConceptIds="1065,1066" answerLabels="Yes, No" style="radio" />
                     </td>
                     <td>
-                        <label>Infant and young chiild feeding (IYCF)</label> <obs conceptId="99749" answerConceptIds="1065,1066" answerLabels="Yes, No" id="iycf" style="radio" />
+                        <label>Infant and young <br />
+                        child feeding (IYCF)</label> 
+                        <obs conceptId="99749" answerConceptIds="1065,1066" answerLabels="Yes, No" id="iycf" style="radio" />
                     </td>
                     <td>
                         <p>
-                            <label>Infant feeding option</label>
+                            <label>Infant feeding<br /> 
+                            option</label>
                         </p>
                         <p>
                             <obs conceptId="1151" answerConceptIds="5526,99089,6046" answerLabels="EBF-Exclusive Breast Feeding, RP-Replacement feeding,MF-Mixed feeding" id="infant-feeding-option" />
@@ -618,11 +627,10 @@
                         </p>
                     </td>
                     <td>
-                        <p><label>Delivered by</label> </p>
-                        <p>
-                            <encounterProvider role="Midwife" style="autocomplete" />
+                      <p><label>Delivered by</label>
+                          <br /><encounterProviderAndRole count="1"/>  
                         </p>
-                    </td>
+                        </td>
                 </tr>
                 <tr>
                     <td>
@@ -644,11 +652,11 @@
                         </p>
                     </td>
                     <td>
-                        <p><label>Name of person discharging</label> </p>
-                        <p>
-                            <encounterProvider style="autocomplete" />
-                        </p>
-                    </td>
+                      <p><label>Name of person discharging</label>
+                          <br />
+                          <encounterProviderAndRole count="1"/>
+                      </p>
+                  </td>
                 </tr>
             </table>
         </fieldset>
