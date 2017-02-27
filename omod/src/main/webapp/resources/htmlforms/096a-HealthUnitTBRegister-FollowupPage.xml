@@ -56,6 +56,244 @@
             border: 1px solid #AFAFAF;
         }
     </style>
+
+	<script type="text/javascript">
+		/*
+		Transfer in Unit-TB Number	Only applicable if Transfer In - done - 
+		CPT Start Date	Required/Enabled if patient is on CPT -done
+		ART Start Date	Required/Enabled if patient is on ART -done -
+		ART Number	Required/Enabled if patient is on ART -done-
+		No of children in contact	should always be greater than no of children on IPT -done-
+		INR No.	should only be enabled/Reqired if MUAC Colour Code is red or yellow -done
+		Transfer out to	Required/Enabled if treatment outcome is 'transfer out' -done -
+		MUAC/z-score section	applicable for clients aged 6months and above and below 15 years -done -
+		*/
+		
+		if (jQuery) {
+			jq(document).ready(function () {
+				if (jq.browser.msie) {
+					jq(":checkbox").click(function () {
+						jq(this).change();
+					});
+				}
+			});
+		}
+		
+		JQuery().ready(function(jq){
+			var common = {
+				disableField: function(args) {
+					if (args instanceof jQuery) {
+						args.attr('disabled', true);
+					} else if (args typeof args === 'string' ){
+						jq(args).attr('disabled', true);        		
+					}
+				},
+				enableField: function(args) {
+					if (args instanceof jQuery) {
+						args.removeattr('disabled');
+					} else if (args typeof args === 'string' ){
+						jq(args).removeattr('disabled');        		
+					}
+				},
+				makeReadonly: function(args) {
+					if (args instanceof jQuery) {
+						args.attr('readonly', true).fadeTo(250, 0.5);
+					} else if (args typeof args === 'string' ){
+						jq(args).attr('readonly', true).fadeTo(250, 0.5);        		
+					}
+				},
+				removeReadOnly: function(args) {
+					if (args instanceof jQuery) {
+						args.removeattr('readonly').fadeTo(250, 1);
+					} else if (args typeof args === 'string' ){
+						jq(args).removeattr('readonly').fadeTo(250, 1);        		
+					}
+				}
+			};
+		
+			const YES_CONCEPT_ID = 1065;
+			const NO_CONCEPT_ID = 1066;
+			const RED_CONCEPT_ID = 99028;
+			const YELLOW_CONCEPT_ID = 99029;
+			const TRANSFER_OUT_CONCEPT_ID = 90306;
+		
+			const TRANSFER_IN_FROM_FIELD = ''
+		
+			var $transferInFromField = jq(TRANSFER_IN_FROM_FIELD);
+			var $transferInUnitTbNumberField = getField('transfer-in-unit-tb-number.value');
+			var $onCptField = jq('#on-cpt').find('input');
+			var $cptStartDateField = getField('cpt-start-date.value');
+			var $onArtField = jq('#on-art').find('input');
+			var $artStartDateField = getField('art-start-date.value');
+			var $artNumberField = getField('art-number.value');
+			var $muacColorCodeField = jq('#muac-color-code').find('input');
+			var $inrNumberField = jq('#inr-number').find('input');
+			var $treatmentOutcomeField = getField('treatment-outcome.value');
+			var $transferOutToField = getField('transfer-out-to.value');
+			var $noOfChildrenInContactField = getField('no-of-children-in-contact.value');
+			var $noOfChildrenInContactOnIptField = getField('no-of-children-in-contact-n-ipt.value');
+			var $muacSection = ('#muac');
+			var patientAge = <lookup expression="$patient.age" />;
+		
+			var transferInFromChange = function() {
+				var transferInFromValue = getValue('transfer-in-from.value');
+				if (transferInFromValue == '') {
+					common.disableField($transferInUnitTbNumberField);
+				} else {
+					common.enableField($transferInUnitTbNumberField);
+				}
+			};  
+			
+			var onCptChange = function() {
+				var onCptValue = getValue('on-cpt.value');
+				if (onCptValue == YES_CONCEPT_ID) {
+					common.enableField($cptStartDateField);
+				} else {
+					common.disableField($cptStartDateField);
+				}
+			};  
+		
+			var onArtChange = function() {
+				var onArtValue = getValue('on-art.value');
+				if (onArtValue == YES_CONCEPT_ID) {
+					common.enableField($artStartDateField);
+					common.enableField($artNumberField);
+				} else {
+					common.disableField($artStartDateField);
+					common.disableField($artNumberField);
+				}
+			};
+		
+			var muacColorCodeChange = function() {
+				var muacColorCodeValue = getValue('muac-color-code.value');
+				if (muacColorCodeValue == YELLOW_CONCEPT_ID || muacColorCodeValue == RED_CONCEPT_ID) {
+					common.enableField($inrNumberField);
+				} else {
+					common.disableField($inrNumberField);
+				}		
+			};
+		
+			var treatmentOutcomeChange = function() {
+				var treatmentOutcomeValue = getValue('treatment-outcome.value');
+				if (treatmentOutcomeValue == TRANSFER_OUT_CONCEPT_ID) {
+					common.enableField($transferOutToField);
+				} else {
+					common.disableField($transferOutToField);
+				}		
+			};
+		
+			var noOfChildrenInContactChange = function() {
+				var noOfChildrenInContactValue = jq('no-of-children-in-contact.value');
+				var noOfChildrenInContactOnIptValue = jq('no-of-children-in-contact-on-ipt.value');
+				
+				if (noOfChildrenInContactValue &lt; noOfChildrenInContactOnIptValue) {
+					getField('no-of-children-in-contact-on-ipt.error').html('Number of children in contact cannot be less than Number of children in contact on IPT');
+				} else {
+					getField('no-of-children-in-contact-on-ipt.error').html('');
+				} 				
+			};
+		
+			var childrenSectionToggle = function() {
+				if (patientAge &gt;> 6 &amp;&amp; patientAge &lt; = 180) {
+					common.enableField($muacSection.find('input,select'));
+				} else {
+					common.disableField($muacSection.find('input,select'));
+				}
+		
+			};
+		
+			var noOfChildrenValidate = function() {
+				var noOfChildrenInContactValue = jq('no-of-children-in-contact.value');
+				var noOfChildrenInContactOnIptValue = jq('no-of-children-in-contact-on-ipt.value');
+				if (noOfChildrenInContactValue &lt; noOfChildrenInContactOnIptValue) {
+					getField('no-of-children-in-contact-on-ipt.error').html('Number of children in contact cannot be less than Number of children in contact on IPT');
+					return false;
+				} else {
+					return true;
+				} 
+			};
+		
+			var onCptValidate = function() {
+				if (getValue('on-cpt.value') == YES_CONCEPT_ID &amp;&amp; getValue('cpt-start-date'.value) == '') {
+					getField('cpt-start-date.error').html('CPT start date is required');
+					return false;
+				} else {
+					return true;
+				}
+			};
+		
+			var onArtValidate = function() {
+				if (getValue('on-art.value') == YES_CONCEPT_ID &amp;&amp; getValue('art-start-date'.value) == '') {
+					getField('art-start-date.error').html('ART start date is required');
+					return false;
+				} else {
+					return true;
+				}
+			};
+		
+			var transferOutValidate = function() {
+				if (getValue('treatment-outcome.value') == TRANSFER_OUT_CONCEPT_ID &amp;&amp; getValue('transfer-out-to'.value) == '') {
+					getField('transfer-out-to.error').html('The Transfer out to Unit required');
+					return false;
+				} else {
+					return true;
+				}
+			};
+		
+			$transferInFromField.change(transferInFromChange);
+			$onCptField.change(onCptChange());
+			$onArtField.change(onArtChange());
+			$muacColorCodeField.change(muacColorCodeChange());
+			$treatmentOutcomeField.change(treatmentOutcomeChange);
+			$noOfChildrenInContactField.change(noOfChildrenInContactChange());
+			$noOfChildrenInContactOnIptField.change(noOfChildrenInContactOnIptChange());
+		
+			transferInFromChange();
+			onCptChange();
+			onArtChange();
+			muacColorCodeChange()
+			treatmentOutcomeChange();
+			childrenSectionToggle();
+		
+			beforeSubmit.push(function(){
+				var valid = true;
+				if (onCptValidate()) {
+					valid = true;
+				} else {
+					valid = false;
+				}
+		
+				if (onArtValidate()) {
+					valid = true;
+				} else {
+					valid = false;
+				}
+		
+				if (noOfChildrenValidate()) {
+					valid = true;
+				} else {
+					valid = false;
+				}
+		
+				if (transferOutValidate()) {
+					valid = true;
+				} else {
+					valid = false;
+				}
+		
+				if (noOfChildrenValidate()) {
+					valid = true;
+				} else {
+					valid = false;
+				}
+		
+				return valid;
+			});
+		
+		});	
+	
+	</script>
+
     <div class="ai-page-frame">
         <div class="headers" style="text-align: center;">
             <h3 style="background: #FFFF7D; padding: 10px;">096a - Health Unit TB Register - Follow up Page</h3>
@@ -108,17 +346,17 @@
 
 <fieldset>
 <legend>MUAC/z-score</legend>
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" id="muac">
   <tr>
     <td colspan="2" valign="top" style="width:25%"><p>Weight for age z-score <obs conceptId="1854" answerConceptIds="115,99271,99272" answerLabels="N-Normal,MAM-Moderate Acute Mulnutrition,SAM-Severe Acute Mulnutrition" style="radio" answerSeparator="&lt;br/&gt;" /></p>
       <p>Confirm ugandaemr equivalent (Missing) </p></td>
     <td colspan="2" valign="top" style="width:25%"><p>Height/Length for age z-score<obs conceptId="164088" answerConceptIds="1115,164085" answerLabels="N-Normal,S-Stunting" /></p>
       <p>confirm ugamdaemr equivalent (Missing) </p></td>
 	<td valign="top"><p>MUAC Colour Code 
-	    <obs conceptId="99030" style="radio" answerConceptIds="99028,99027,99029" /></p>
+	    <obs conceptId="99030" style="radio" answerConceptIds="99028,99027,99029" id="muac-color-code" /></p>
 	  </td>
     <td valign="top" style="width:25%"><p>INR No</p>
-      <p><patient  field="identifier" identifierTypeId="d4b21726-e908-4b1a-abab-b5f87cd01c18" id="inr-no" required="true" /></p></td>
+      <p><span id="inr-number"><patient  field="identifier" identifierTypeId="d4b21726-e908-4b1a-abab-b5f87cd01c18" id="inr-no" required="true" /></span></p></td>
   </tr>
 </table>
 </fieldset>
