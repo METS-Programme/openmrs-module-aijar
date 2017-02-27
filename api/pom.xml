@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.openmrs.module</groupId>
 		<artifactId>aijar</artifactId>
-		<version>1.0.15-SNAPSHOT</version>
+		<version>1.0.16-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>aijar-api</artifactId>
@@ -41,7 +41,7 @@
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.openmrs.test</groupId>
 			<artifactId>openmrs-test</artifactId>
@@ -69,7 +69,7 @@
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>dataexchange-api</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>dataintegrity-api</artifactId>
@@ -79,17 +79,17 @@
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>emrapi-api</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>emrapi-api-1.11</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.openmrs</groupId>
 			<artifactId>event-api</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>formentryapp-omod</artifactId>
@@ -99,7 +99,7 @@
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>htmlformentry-api</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>htmlformentry-api-1.10</artifactId>
@@ -109,7 +109,7 @@
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>htmlformentryui-api</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>idgen-api</artifactId>
@@ -135,7 +135,7 @@
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>metadatasharing-api</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>providermanagement-api</artifactId>
@@ -145,22 +145,22 @@
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>registrationcore-api</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>registrationapp-api</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>reporting-api</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>serialization.xstream-api</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>serialization.xstream-api-1.9</artifactId>
