@@ -94,13 +94,16 @@
 		select.hfe-hours, select.hfe-minutes, select.hfe-seconds {
 			 width: 28px;
 			 min-width: 65px;
-			 float: left
+			 float: left;
+			 position: relative;
+			 top: -58px;
+			 left: 244px;
 		}
 		
 		
     </style>
 
-<script type="text/javascript">
+	<script type="text/javascript">
         jQuery(document).ready(function(jq){
             const VIRAL_LOAD_RESULTS_CONCEPT_ID = 1305;
             const VIRAL_LOAD_DETECTED_CONCEPT_ID = 1301;
@@ -194,475 +197,470 @@
 
         });
 
-
-        function enable_disable_inr(selected_option) {
-
-            var class_name = jq(selected_option).attr("class");
-
-            var length = class_name.length;
-
-            var class_id = parseInt(class_name.substring(length - 1, length))
-
-            var row_id = class_id;
-
-            var disable = true;
-
-            var row_1 = '[class^="INR"][class*="Child1"]';
-
-            var xx = row_1;
-            var selected_value = jq(selected_option).find(":selected").text();
-
-            selected_value = selected_value.trim().toLowerCase();
-
-            if (selected_value == "yellow" || selected_value == "red") {
-                disable = false;
-            }
-
-            switch (row_id) {
-            case 1:
-                xx = row_1;
-                break;
-            }
-
-            jq(xx).each(function () {
-                var group = jq(this);
-                if (class_name.indexOf('Child') == -1) {
-                    group.find("input").attr("disabled", disable);
-                    group.find('select').attr("disabled", disable);
-                }
-                if (disable) {
-                    /* fade out the fields that are disabled */
-                    group.find("input").fadeTo(250, 0.25);
-                    group.find("select").fadeTo(250, 0.25);
-                } else {
-                    /* remove the fade on the fields */
-                    group.find("input").fadeTo(250, 1);
-                    group.find("select").fadeTo(250, 1);
-                }
-            });
-        }
-
         if (jQuery) {
             jQuery(document).ready(function (jq) {
-            if (jq.browser.msie) {
-                jq(":checkbox").click(function () {
-                jq(this).change();
-                });
-            }
-
-            jq('[class^="INREnableDisable"]').change(function () {
-                enable_disable_inr(jq(this));
-            });
-
-            jq('[class^="INREnableDisable"]').each(function () {
-                enable_disable_inr(jq(this));
-            });
+	            if (jq.browser.msie) {
+	                jq(":checkbox").click(function () {
+	                jq(this).change();
+	                });
+	            }
 
             });
         }
-    </script>    
+    </script>
 
 
-    <div class="ai-page-frame">
-        <div class="headers" style="text-align: center;">
-            <h3 style="background: #FFFF7D; padding: 10px;">INTEGRATED MATERNITY REGISTER (HMIS FORM 072)</h3>
-        </div>
-        <fieldset>
-            <legend>Admission Information</legend>
-            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                    <td>
-                        <p><label>Date</label></p>
-                        <p>
-                            <encounterDate default="today" disallowMultipleEncountersOnDate="block" />
-
-                            <span style="display: none;">
-
-                                <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
-                                                   order="629d78e9-93e5-43b0-ad8a-48313fd99117" />
-                            </span>
-                        </p>
-                    </td>
-                    <td>
-                        <p><label>IPD Number</label></p>
-                        <p>
-                            <patient field="identifier" identifierTypeId="a6217c17-5012-4514-b9f2-5d02d3d04c44"
-                                     required="true" />
-                        </p>
-                    </td>
-                    <td>
-                        <p><label>ANC Number</label></p>
-                        <p>
-                            <patient field="identifier" identifierTypeId="b0cc255e-ef57-4266-839e-0df7f5099eb9"
-                                     required="true" />
-                        </p>
-                    </td>
-                    <td>
-                        <p><label>REF Number</label></p>
-                        <p>
-                            <obs conceptId="99767" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p><label>Gravida</label></p>
-                        <p>
-                            <obs conceptId="5624" />
-                        </p>
-                    </td>
-                    <td>
-                        <p><label>Parity</label></p>
-                        <p>
-                            <obs conceptId="1053" />
-                        </p>
-                    </td>
-                    <td>
-                        <p><label>Weeks of gestation</label></p>
-                        <p>
-                            <obs conceptId="162929" />
-                        </p>
-                    </td>
-                    <td>
-                        <p>
-                            <label>Delivery</label><obs conceptId="163156" answerConceptIds="163157,163158" answerLabels="Term,Preterm" style="radio" />
-                        </p>
-                    </td>
-                </tr>
-            </table>
-        </fieldset>
-        <fieldset>
-            <legend>Final Diagnosis</legend>
-            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                    <td>
-                        <obs conceptId="1284" answerConceptId="50" answerLabel="Abortions" style="checkbox" />
-                    </td>
-                    <td>
-                        <obs conceptId="1284" answerConceptId="228" answerLabel="Antepartum Haemorrhage(APH)" style="checkbox" />
-                    </td>
-                    <td>
-                        <obs conceptId="1284" answerConceptId="49" answerLabel="Postpartum Hemorrhage (PPH)" style="checkbox" />
-                    </td>
-                    <td>
-                        <obs conceptId="1284" answerConceptId="163149" answerLabel="Malaria in pregnancy" style="checkbox" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <obs conceptId="1284" answerConceptId="47" answerLabel="High blood pressure in pregnancy" style="checkbox" />
-                    </td>
-                    <td>
-                        <obs conceptId="1284" answerConceptId="163150" answerLabel="Obstructed Labour" style="checkbox" />
-                    </td>
-                    <td>
-                        <obs conceptId="1284" answerConceptId="130" answerLabel="Puerperal sepsis" style="checkbox" />
-                    </td>
-                    <td>
-                        <obs conceptId="1284" answerConceptId="226" answerLabel="Sepsis related to pregnancy" style="checkbox" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <obs conceptId="1284" answerConceptId="163152" answerLabel="Anaemia in pregnancy" style="checkbox" />
-                    </td>
-                    <td>
-                        <obs conceptId="1284" answerConceptId="163153" answerLabel="Ruptured uterus" style="checkbox" />
-                    </td>
-                    <td>
-                        <obs conceptId="1284" answerConceptId="46" answerLabel="Ectopic pregnancy" style="checkbox" />
-                    </td>
-                    <td>
-                        <obs conceptId="1284" answerConceptId="5622" answerLabel="Other Complication" showCommentField="true" commentFieldLabel="&lt;label&gt;Specify&lt;/label&gt;" style="checkbox" />
-                    </td>
-                </tr>
-            </table>
-        </fieldset>
-        <fieldset>
-            <legend>HIV Information</legend>
-            <table width="100%" border="0" cellspacing="0" cellpadding="0" id="hiv-information-section">
-                <tr>
-                    <td>
-                        <p><label>HIV Status</label> </p>
-
-                        <p>
-                            <obs conceptId="90253" answerConceptIds="90166,90167,90001" style="dropdown" id="hiv-status" />
-                        </p>
-                    </td>
-                    <td>
-                        <p><label>WHO Clinical Stage</label> </p>
-                        <p>
-                            <obs conceptId="90203"
-                                 answerConceptIds="90033,90034,90035,90036,90293,90294,90295,90296"
-                                 answerLabels="1,2,3,4,T1,T2,T3,T4" style="dropdown" />
-                        </p>
-                    </td>
-                    <td>
-                        <p><label>CD4 Date</label> </p>
-                        <p>
-                            <obs conceptId="163154" />
-                        </p>
-                    </td>
-                    <td>
-                        <p><label>CD4 Count</label> </p>
-                        <p>
-                            <obs conceptId="5497" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p><label>Viral Load Date</label> </p>
-                        <p>
-                            <obs conceptId="163155" />
-                        </p>
-                    </td>
-                    <td>
-                        <p><label>Viral Load Results</label> </p>
-                        <p>
-                            <obs conceptId="1305" answerConceptIds="1306,1301,1304" answerLabels="Not Detected,Detected,Sample Rejected" style="dropdown" id="viral-load-results" />
-                        </p>
-                    </td>
-                    <td>
-                        <p><label>Viral Load (copies/ml)</label></p>
-                        <p>
-                            <obs conceptId="856" id="viral-load" />
-                        </p>
-                    </td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>
-                            <label>eMTCT Code - Woman</label> <obs conceptId="99317" answerConceptIds="99313,99314,99315" answerLabels="C,TR,TRR"
-                                                    style="dropdown" />
-                        </p>
-                    </td>
-                    <td>
-                        <p>
-                            <label>eMTCT Code - Partner</label> <obs conceptId="99342" answerConceptIds="99313,99314,99315" answerLabels="C,TR,TRR"
-                                                      style="dropdown" />
-                        </p>
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-        </fieldset><fieldset>
-            <legend>Delivery Information</legend>
-            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                    <td>
-                        <p><label>Mode of delivery</label> </p>
-                        <p>
-                            <obs conceptId="5630" answerConceptIds="1170,1171,1172,5622"
-                                 answerLabels="SPONTANEOUS VAGINAL DELIVERY,CESAREAN SECTION,BREECH DELIVERY,OTHER NON-CODE" style="dropdown" />
-                        </p>
-                    </td>
-                    <td>
-                        <p><label>Date and time of delivery</label> </p>
-                        <p>
-                            <obs conceptId="99340" showTime="true" />
-                        </p>
-                    </td>
-                    <td>
-                        <p><label>Management of 3rd stage labour</label> </p>
-                        <p>
-                            <obs conceptId="99336" answerConceptIds="99337,99338,99339"
-                                 answerLabels="Ergometrine,Pitocin,Misoprostol" />
-                        </p>
-                    </td>
-                    <td>
-                        <p><label>Other treatment given</label> </p>
-                        <p>
-                            <obs conceptId="99341" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p><label>ARVs to mother</label> </p>
-                        <p>
-                            <obs conceptId="99344" answerConceptIds="1175,631,99343,630"
-                                 answerLabels="NA,NVP Only,AZT and NVP,AZT and 3TC" style="dropdown" id="arvs-to-mother" />
-                        </p>
-                    </td>
-                    <td>
-                        <p><label>Pre-ART number</label> </p>
-                        <span id="pre-art-number">
-                            <patient field="identifier" identifierTypeId="e1731641-30ab-102d-86b0-7a5022ba4115"
-                                     required="false" />
-                        </span>
-                    </td>
-                    <td>
-                        <p></p>
-                        <p></p>
-                    </td>
-                    <td>
-                        <p></p>
-                        <p></p>
-                    </td>
-                </tr>
-            </table>
-        </fieldset><fieldset>
-            <legend>Child Information</legend>
-            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                    <td>
-                        <label>Agpar score</label>
-                        <p>
-                            <obs conceptId="99326" />
-                        </p>
-                    </td>
-                    <td>
-                        <p>
-                            <label>Sex</label>
-                            <obs conceptId="90252" answerConceptIds="90164,90165" answerLabels="F,M" style="radio" />
-                        </p>
-                    </td>
-                    <td>
-                        <label>Not breathing at birth</label> <obs conceptId="162943" answerConceptIds="162940,162941,162942"
-                                                    answerLabels="SS,BM,BMD" style="radio" />
-                    </td>
-                    <td>
-                        <label>Immediate skin to <br />
-                        skin contact?</label> 
-                        <obs conceptId="162944" answerConceptIds="1065,1066" answerLabels="Yes, No" style="radio" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label>Breastfed within 1 hour?</label> <obs conceptId="162945" answerConceptIds="1065,1066" answerLabels="Yes, No" style="radio" />
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td rowspan="2"><p><label>Routine medication</label> </p>          </td>
-                    <td>
-                        <obs conceptId="162948" answerConceptId="270" answerLabel="TEO - Tetracycline Eye Ointment" style="checkbox" />
-                    </td>
-                    <td>
-                        <obs conceptId="162948" answerConceptId="162946" answerLabel="Vitamin K" style="checkbox" />
-                    </td>
-                    <td>
-                        <obs conceptId="162948" answerConceptId="162947" answerLabels="Chlorhexidine" style="checkbox" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <obs conceptId="162948" answerConceptId="5622" answerLabels="Other" style="checkbox" showCommentField="true" commentFieldLabel="&lt;label&gt;Specify&lt;/label&gt;" />
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>
-                        <label>Counselling at <br />
-                        discharge</label> 
-                        <obs conceptId="162938" answerConceptIds="162936,162937" answerLabels="C, NC" style="radio" />
-                    </td>
-                    <td>
-                        <label>Maternal nutritional <br />
-                        couselling at discharge</label> 
-                        <obs conceptId="162939" answerConceptIds="1065,1066" answerLabels="Yes, No" style="radio" />
-                    </td>
-                    <td>
-                        <label>Infant and young <br />
-                        child feeding (IYCF)</label> 
-                        <obs conceptId="99749" answerConceptIds="1065,1066" answerLabels="Yes, No" id="iycf" style="radio" />
-                    </td>
-                    <td>
-                        <p>
-                            <label>Infant feeding<br /> 
-                            option</label>
-                        </p>
-                        <p>
-                            <obs conceptId="1151" answerConceptIds="5526,99089,6046" answerLabels="EBF-Exclusive Breast Feeding, RP-Replacement feeding,MF-Mixed feeding" id="infant-feeding-option" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>
-                            <label>ARVs administered to baby</label> <obs conceptId="162935" answerConceptIds="1175,162934" answerLabels="NA, NVP Syrup" id="arvs-administered-to-baby" style="radio" />
-                        </p>
-                    </td>
-                    <td>
-                        <p><label>Baby weight</label></p>
-                        <obs conceptId="5916" />
-                    </td>
-                    <td>
-                        <label>Immunization - Polio</label><obs conceptId="984" answerConceptId="783" style="checkbox" answerLabel="" />
-                    </td>
-                    <td>
-                        <label>Immunization - BCG</label><obs conceptId="984" answerConceptId="886" style="checkbox" answerLabel="" />
-                    </td>
-                </tr>
-            </table>
-        </fieldset><fieldset>
-            <legend>Discharge Information</legend>
-            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                    <td>
-                        <p><label>Family planning method</label></p>
-                        <p>
-                            <obs conceptId="99330" answerConceptIds="5276,162959,162960,162961,162962,162963,162964,5622"
-                                 answerLabels="Post Partum female sterilization,IUD as part of post abortion care,Post Partum IUD,Implant as part of post abortion care,Oral pills as part of post abortion care,Depo as part of post abortion care,Not Given,Other" style="dropdown" />
-                        </p>
-                    </td>
-                    <td>
-                        <p><label>Condition of mother on discharge</label> </p>
-                        <p>
-                            <obs conceptId="99330" answerConceptIds="99327,99328,99329,90306,162949,162950,162951,162952"
-                                 answerLabels="D - Woman discharged alive,DD- Woman died,R - If the woman ran away or left before being discharged,T- Woman transferred to another facility,DF - Woman discharged alive with fistula,DDF - Woman died with fistula,RF- Woman ran away with fistula,TF - Woman transferred with fistula" style="dropdown" />
-                        </p>
-                    </td>
-                    <td>
-                        <p><label>Condition of baby on discharge</label> </p>
-                        <p>
-                            <obs conceptId="99334" answerConceptIds="99331,162953,99332,99333,162954"
-                                 answerLabels="MSB - Macerated still birth,FSB - Fresh still birth,NND - Immediate neonatal death (Death within 24 hours),AL - Alive baby,BDF - Baby born with defect" />
-                        </p>
-                    </td>
-                    <td>
-                      <p><label>Delivered by</label>
-                          <br /><encounterProviderAndRole count="1"/>  
-                        </p>
-                        </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p><label>PNC at 6H for mother</label> </p>
-                        <p>
-                            <obs conceptId="162955" />
-                        </p>
-                    </td>
-                    <td>
-                        <p><label>PNC at 6H for child</label> </p>
-                        <p>
-                            <obs conceptId="162956" />
-                        </p>
-                    </td>
-                    <td>
-                        <p><label>Date of discharge</label> </p>
-                        <p>
-                            <obs conceptId="162958" />
-                        </p>
-                    </td>
-                    <td>
-                      <p><label>Name of person discharging</label>
-                          <br />
-                          <encounterProviderAndRole count="1"/>
-                      </p>
-                  </td>
-                </tr>
-            </table>
-        </fieldset>
-        <section></section>
-        <section>
-            <submit />
-        </section>
+  <div class="ai-page-frame">
+    <div class="headers" style="text-align: center;">
+      <h3 style="background: #FFFF7D; padding: 10px;">INTEGRATED MATERNITY REGISTER (HMIS FORM 072)</h3>
     </div>
+    <fieldset>
+      <legend>Admission Information</legend>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <p>
+              <label>Date</label>
+              <br/>
+              <encounterDate default="today" disallowMultipleEncountersOnDate="block" />
+              <span style="display: none;">
+                <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117" order="629d78e9-93e5-43b0-ad8a-48313fd99117" />
+              </span>
+            </p>
+          </td>
+
+          <td>
+            <p>
+              <label>IPD Number</label>
+              <br/>
+              <patient field="identifier" identifierTypeId="a6217c17-5012-4514-b9f2-5d02d3d04c44" required="true" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>ANC Number</label>
+              <br/>
+              <patient field="identifier" identifierTypeId="b0cc255e-ef57-4266-839e-0df7f5099eb9"
+                       required="true" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>REF Number</label>
+              <br/>
+              <obs conceptId="99767" />
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>
+              <label>Gravida</label>
+              <br/>
+              <obs conceptId="5624" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Parity</label>
+              <br/>
+              <obs conceptId="1053" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Weeks of gestation</label>
+              <br/>
+              <obs conceptId="162929" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Delivery</label>
+              <obs conceptId="163156" answerConceptIds="163157,163158" answerLabels="Term,Preterm" style="radio" />
+            </p>
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+    <fieldset>
+      <legend>Final Diagnosis</legend>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <obs conceptId="1284" answerConceptId="50" answerLabel="Abortions" style="checkbox" />
+          </td>
+          <td>
+            <obs conceptId="1284" answerConceptId="228" answerLabel="Antepartum Haemorrhage(APH)" style="checkbox" />
+          </td>
+          <td>
+            <obs conceptId="1284" answerConceptId="49" answerLabel="Postpartum Hemorrhage (PPH)" style="checkbox" />
+          </td>
+          <td>
+            <obs conceptId="1284" answerConceptId="163149" answerLabel="Malaria in pregnancy" style="checkbox" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <obs conceptId="1284" answerConceptId="47" answerLabel="High blood pressure in pregnancy" style="checkbox" />
+          </td>
+          <td>
+            <obs conceptId="1284" answerConceptId="163150" answerLabel="Obstructed Labour" style="checkbox" />
+          </td>
+          <td>
+            <obs conceptId="1284" answerConceptId="130" answerLabel="Puerperal sepsis" style="checkbox" />
+          </td>
+          <td>
+            <obs conceptId="1284" answerConceptId="226" answerLabel="Sepsis related to pregnancy" style="checkbox" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <obs conceptId="1284" answerConceptId="163152" answerLabel="Anaemia in pregnancy" style="checkbox" />
+          </td>
+          <td>
+            <obs conceptId="1284" answerConceptId="163153" answerLabel="Ruptured uterus" style="checkbox" />
+          </td>
+          <td>
+            <obs conceptId="1284" answerConceptId="46" answerLabel="Ectopic pregnancy" style="checkbox" />
+          </td>
+          <td>
+            <obs conceptId="1284" answerConceptId="5622" answerLabel="Other Complication" showCommentField="true" commentFieldLabel="&lt;label&gt;Specify&lt;/label&gt;" style="checkbox" />
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+    <fieldset>
+      <legend>HIV Information</legend>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" id="hiv-information-section">
+        <tr>
+          <td>
+            <p>
+              <label>HIV Status</label>
+              <br/>
+
+              <obs conceptId="90253" answerConceptIds="90166,90167,90001" style="dropdown" id="hiv-status" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>WHO Clinical Stage</label>
+              <br/>
+              <obs conceptId="90203"
+                   answerConceptIds="90033,90034,90035,90036,90293,90294,90295,90296"
+                   answerLabels="1,2,3,4,T1,T2,T3,T4" style="dropdown" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>CD4 Date</label>
+              <br/>
+              <obs conceptId="163154" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>CD4 Count</label>
+              <obs conceptId="5497" />
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>
+              <label>Viral Load Date</label>
+              <obs conceptId="163155" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Viral Load Results</label>
+              <obs conceptId="1305" answerConceptIds="1306,1301,1304" answerLabels="Not Detected,Detected,Sample Rejected" style="dropdown" id="viral-load-results" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Viral Load (copies/ml)</label>
+              <obs conceptId="856" id="viral-load" />
+            </p>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <p>
+              <label>eMTCT Code - Woman</label>
+              <br/>
+              <obs conceptId="99317" answerConceptIds="99313,99314,99315" answerLabels="C,TR,TRR"
+                                      style="dropdown" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>eMTCT Code - Partner</label>
+              <br/>
+              <obs conceptId="99342" answerConceptIds="99313,99314,99315" answerLabels="C,TR,TRR"
+                                        style="dropdown" />
+            </p>
+          </td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+    </fieldset>
+    <fieldset>
+      <legend>Delivery Information</legend>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <p>
+              <label>Mode of delivery</label>
+              <br/>
+              <obs conceptId="5630" answerConceptIds="1170,1171,1172,5622"
+                   answerLabels="SPONTANEOUS VAGINAL DELIVERY,CESAREAN SECTION,BREECH DELIVERY,OTHER NON-CODE" style="dropdown" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Date and time of delivery</label>
+              <br/>
+              <obs conceptId="99340" allowTime="true" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Management of 3rd stage labour</label>
+              <br/>
+              <obs conceptId="99336" answerConceptIds="99337,99338,99339"
+                   answerLabels="Ergometrine,Pitocin,Misoprostol" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Other treatment given</label>
+              <br/>
+              <obs conceptId="99341" />
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>
+              <label>ARVs to mother</label>
+              <br/>
+              <obs conceptId="99344" answerConceptIds="1175,631,99343,630"
+                   answerLabels="NA,NVP Only,AZT and NVP,AZT and 3TC" style="dropdown" id="arvs-to-mother" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Pre-ART number</label>
+              <br/>
+              <span id="pre-art-number">
+                <patient field="identifier" identifierTypeId="e1731641-30ab-102d-86b0-7a5022ba4115"
+                         required="false" />
+              </span>
+            </p>
+          </td>
+          <td>
+          </td>
+          <td>
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+    <fieldset>
+      <legend>Child Information</legend>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <p>
+              <label>Agpar score</label>
+              <br/>
+              <obs conceptId="99326" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Sex</label>
+              <obs conceptId="90252" answerConceptIds="90164,90165" answerLabels="F,M" style="radio" />
+            </p>
+          </td>
+          <td>
+            <label>Not breathing at birth</label>
+            <obs conceptId="162943" answerConceptIds="162940,162941,162942"
+                                        answerLabels="SS,BM,BMD" style="radio" />
+          </td>
+          <td>
+            <p>
+              <label>
+                Immediate skin to <br />
+                skin contact?
+              </label>
+              <obs conceptId="162944" answerConceptIds="1065,1066" answerLabels="Yes, No" style="radio" />
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label>Breastfed within 1 hour?</label>
+            <obs conceptId="162945" answerConceptIds="1065,1066" answerLabels="Yes, No" style="radio" />
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td rowspan="2">
+            <p>
+              <label>Routine medication</label>
+            </p>
+          </td>
+          <td>
+            <obs conceptId="162948" answerConceptId="270" answerLabel="TEO - Tetracycline Eye Ointment" style="checkbox" />
+          </td>
+          <td>
+            <obs conceptId="162948" answerConceptId="162946" answerLabel="Vitamin K" style="checkbox" />
+          </td>
+          <td>
+            <obs conceptId="162948" answerConceptId="162947" answerLabels="Chlorhexidine" style="checkbox" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <obs conceptId="162948" answerConceptId="5622" answerLabels="Other" style="checkbox" showCommentField="true" commentFieldLabel="&lt;label&gt;Specify&lt;/label&gt;" />
+          </td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <label>
+              Counselling at <br />
+              discharge
+            </label>
+            <obs conceptId="162938" answerConceptIds="162936,162937" answerLabels="C, NC" style="radio" />
+          </td>
+          <td>
+            <label>
+              Maternal nutritional <br />
+              couselling at discharge
+            </label>
+            <obs conceptId="162939" answerConceptIds="1065,1066" answerLabels="Yes, No" style="radio" />
+          </td>
+          <td>
+            <label>
+              Infant and young <br />
+              child feeding (IYCF)
+            </label>
+            <obs conceptId="99749" answerConceptIds="1065,1066" answerLabels="Yes, No" id="iycf" style="radio" />
+          </td>
+          <td>
+			<p>
+	            <label>
+	              Infant feeding<br />
+	              option
+	            </label>
+	            <br/>
+	            <obs conceptId="1151" answerConceptIds="5526,99089,6046" answerLabels="EBF-Exclusive Breast Feeding, RP-Replacement feeding,MF-Mixed feeding" id="infant-feeding-option" />
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>
+              <label>ARVs administered to baby</label>
+              <obs conceptId="162935" answerConceptIds="1175,162934" answerLabels="NA, NVP Syrup" id="arvs-administered-to-baby" style="radio" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Baby weight</label>
+            </p>
+            <obs conceptId="5916" />
+          </td>
+          <td>
+            <label>Immunization - Polio</label>
+            <obs conceptId="984" answerConceptId="783" style="checkbox" answerLabel="" />
+          </td>
+          <td>
+            <label>Immunization - BCG</label>
+            <obs conceptId="984" answerConceptId="886" style="checkbox" answerLabel="" />
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+    <fieldset>
+      <legend>Discharge Information</legend>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <p>
+              <label>Family planning method</label>
+              <br/>
+              <obs conceptId="99330" answerConceptIds="5276,162959,162960,162961,162962,162963,162964,5622"
+                   answerLabels="Post Partum female sterilization,IUD as part of post abortion care,Post Partum IUD,Implant as part of post abortion care,Oral pills as part of post abortion care,Depo as part of post abortion care,Not Given,Other" style="dropdown" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Condition of mother on discharge</label>
+              <br/>
+              <obs conceptId="99330" answerConceptIds="99327,99328,99329,90306,162949,162950,162951,162952"
+                   answerLabels="D - Woman discharged alive,DD- Woman died,R - If the woman ran away or left before being discharged,T- Woman transferred to another facility,DF - Woman discharged alive with fistula,DDF - Woman died with fistula,RF- Woman ran away with fistula,TF - Woman transferred with fistula" style="dropdown" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Condition of baby on discharge</label>
+              <br/>
+              <obs conceptId="99334" answerConceptIds="99331,162953,99332,99333,162954"
+                   answerLabels="MSB - Macerated still birth,FSB - Fresh still birth,NND - Immediate neonatal death (Death within 24 hours),AL - Alive baby,BDF - Baby born with defect" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Delivered by</label>
+              <br />
+              <encounterProviderAndRole count="1"/>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>
+              <label>PNC at 6H for mother</label>
+              <br/>
+              <obs conceptId="162955" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>PNC at 6H for child</label>
+              <br/>
+              <obs conceptId="162956" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Date of discharge</label>
+              <br/>
+              <obs conceptId="162958" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Name of person discharging</label>
+              <br />
+              <encounterProviderAndRole count="1"/>
+            </p>
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+    <section></section>
+    <section>
+      <submit />
+    </section>
+  </div>
 </htmlform>
