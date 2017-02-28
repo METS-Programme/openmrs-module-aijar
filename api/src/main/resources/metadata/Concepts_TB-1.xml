@@ -1,3 +1,63 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
+  <concept_datatype concept_datatype_id="1" name="Numeric" hl7_abbreviation="NM" description="Numeric value, including integer or float (e.g., creatinine, weight)" creator="1" date_created="2004-02-02 00:00:00.0" retired="false" retired_by="1" uuid="8d4a4488-c2cc-11de-8d13-0010c6dffd0f"/>
+  <concept_datatype concept_datatype_id="2" name="Coded" hl7_abbreviation="CWE" description="Value determined by term dictionary lookup (i.e., term identifier)" creator="1" date_created="2004-02-02 00:00:00.0" retired="false" retired_by="1" uuid="8d4a48b6-c2cc-11de-8d13-0010c6dffd0f"/>
+  <concept_datatype concept_datatype_id="3" name="Text" hl7_abbreviation="ST" description="Free text" creator="1" date_created="2004-02-02 00:00:00.0" retired="false" retired_by="1" uuid="8d4a4ab4-c2cc-11de-8d13-0010c6dffd0f"/>
+  <concept_datatype concept_datatype_id="4" name="N/A" hl7_abbreviation="ZZ" description="Not associated with a datatype (e.g., term answers, sets)" creator="1" date_created="2004-02-02 00:00:00.0" retired="false" retired_by="1" uuid="8d4a4c94-c2cc-11de-8d13-0010c6dffd0f"/>
+  <concept_datatype concept_datatype_id="6" name="Date" hl7_abbreviation="DT" description="Absolute date" creator="1" date_created="2004-07-22 00:00:00.0" retired="false" retired_by="1" uuid="8d4a505e-c2cc-11de-8d13-0010c6dffd0f"/>
+  <concept_class concept_class_id="1" name="Test" description="Acq. during patient encounter (vitals, labs, etc.)" creator="1" date_created="2004-02-02 00:00:00.0" retired="false" retired_by="1" uuid="8d4907b2-c2cc-11de-8d13-0010c6dffd0f"/>
+  <concept_class concept_class_id="3" name="Drug" description="Drug" creator="1" date_created="2004-02-02 00:00:00.0" retired="false" retired_by="1" uuid="8d490dfc-c2cc-11de-8d13-0010c6dffd0f"/>
+  <concept_class concept_class_id="4" name="Diagnosis" description="Conclusion drawn through findings" creator="1" date_created="2004-02-02 00:00:00.0" retired="false" retired_by="1" uuid="8d4918b0-c2cc-11de-8d13-0010c6dffd0f"/>
+  <concept_class concept_class_id="5" name="Finding" description="Practitioner observation/finding" creator="1" date_created="2004-03-02 00:00:00.0" retired="false" retired_by="1" uuid="8d491a9a-c2cc-11de-8d13-0010c6dffd0f"/>
+  <concept_class concept_class_id="7" name="Question" description="Question (eg, patient history, SF36 items)" creator="1" date_created="2004-03-02 00:00:00.0" retired="false" retired_by="1" uuid="8d491e50-c2cc-11de-8d13-0010c6dffd0f"/>
+  <concept_class concept_class_id="10" name="ConvSet" description="Term to describe convenience sets" creator="1" date_created="2004-03-02 00:00:00.0" retired="false" retired_by="1" uuid="8d492594-c2cc-11de-8d13-0010c6dffd0f"/>
+  <concept_class concept_class_id="11" name="Misc" description="Terms which don&apos;t fit other categories" creator="1" date_created="2004-03-02 00:00:00.0" retired="false" retired_by="1" uuid="8d492774-c2cc-11de-8d13-0010c6dffd0f"/>
+  <concept_class concept_class_id="12" name="Symptom" description="Patient-reported observation" creator="1" date_created="2004-10-04 00:00:00.0" retired="false" retired_by="1" uuid="8d492954-c2cc-11de-8d13-0010c6dffd0f"/>
+  <concept_class concept_class_id="13" name="Symptom/Finding" description="Observation that can be reported from patient or found on exam" creator="1" date_created="2004-10-04 00:00:00.0" retired="false" retired_by="1" uuid="8d492b2a-c2cc-11de-8d13-0010c6dffd0f"/>
+  <concept_class concept_class_id="24" name="Pharmacologic Drug Class" description="Class of medications based on pharmacologic properties as opposed to therapeutic properties" creator="1" date_created="2014-02-07 22:16:02.0" retired="false" retired_by="1" uuid="b4535251-9183-4175-959e-9ee67dc71e78"/>
+
+  <concept concept_id="5619" retired="false" datatype_id="2" class_id="7" is_set="false" creator="1" date_created="2004-08-12 00:00:00.0" version="1.1" changed_by="1" date_changed="2017-28-02 05:52:00.0" retired_by="1" uuid="dcc37b01-30ab-102d-86b0-7a5022ba4115"/>
+  <concept_answer concept_answer_id="10101" concept_id="5619" answer_concept="1065" creator="1" date_created="2017-02-23 00:00:00.0" uuid="c83d846c-c111-41b7-8230-2292a38ca2f4" sort_weight="1908.0"/>
+  <concept_answer concept_answer_id="10102" concept_id="5619" answer_concept="1066" creator="1" date_created="2017-02-23 00:00:00.0" uuid="3d79eaa6-739e-482a-abaa-34060d5bf2a6" sort_weight="1909.0"/>
+  <concept_answer concept_answer_id="10103" concept_id="5619" answer_concept="1067" creator="1" date_created="2017-02-23 00:00:00.0" uuid="dfe060d4-95da-4b43-b5bc-68b95e8705c8" sort_weight="1910.0"/>
+
+  <concept concept_id="1574" retired="false" datatype_id="2" class_id="7" is_set="false" creator="1" date_created="2017-02-28 00:00:00.0" version="1" changed_by="1" date_changed="2017-02-28 00:00:00.0" retired_by="1" uuid="1574AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+  <concept_name concept_id="1574" name="CLINICAL OFFICER/DOCTOR" locale="en" creator="1" date_created="2017-02-28 00:00:00.0" concept_name_id="200101" voided="false" voided_by="1" uuid="1574BBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+
+  <concept concept_id="1574" retired="false" datatype_id="4" class_id="11" is_set="false" creator="1" date_created="2017-02-28 00:00:00.0" version="1" changed_by="1" date_changed="2017-02-28 00:00:00.0" retired_by="1" uuid="1574AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+  <concept_name concept_id="1574" name="CLINICAL OFFICER/DOCTOR" locale="en" creator="1" date_created="2017-02-28 00:00:00.0" concept_name_id="200101" voided="false" voided_by="1" uuid="1574BBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+
+  <concept concept_id="1578" retired="false" datatype_id="4" class_id="11" is_set="false" creator="1" date_created="2017-02-28 00:00:00.0" version="1" changed_by="1" date_changed="2017-02-28 00:00:00.0" retired_by="1" uuid="1578AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+  <concept_name concept_id="1578" name="MIDWIFE" locale="en" creator="1" date_created="2017-02-28 00:00:00.0" concept_name_id="200102" voided="false" voided_by="1" uuid="1578BBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+
+  <concept concept_id="1577" retired="false" datatype_id="4" class_id="11" is_set="false" creator="1" date_created="2017-02-28 00:00:00.0" version="1" changed_by="1" date_changed="2017-02-28 00:00:00.0" retired_by="1" uuid="1577AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+  <concept_name concept_id="1577" name="NURSE" locale="en" creator="1" date_created="2017-02-28 00:00:00.0" concept_name_id="200103" voided="false" voided_by="1" uuid="1577BBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+
+  <concept concept_id="113491" retired="false" datatype_id="4" class_id="4" is_set="false" creator="1" date_created="2017-02-28 00:00:00.0" version="1" changed_by="1" date_changed="2017-02-28 00:00:00.0" retired_by="1" uuid="113491AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+  <concept_name concept_id="113491" name="Pulmonary Tuberculosis, Bacteriological or Histological Examination not Done" locale="en" creator="1" date_created="2017-02-28 00:00:00.0" concept_name_id="200104" voided="false" voided_by="1" uuid="113491BBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+
+  <concept concept_id="113489" retired="false" datatype_id="4" class_id="4" is_set="false" creator="1" date_created="2017-02-28 00:00:00.0" version="1" changed_by="1" date_changed="2017-02-28 00:00:00.0" retired_by="1" uuid="113489AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+  <concept_name concept_id="113489" name="Pulmonary Tuberculosis, Tubercle Bacilli Found (in Sputum) by Microscopy" locale="en" creator="1" date_created="2017-02-28 00:00:00.0" concept_name_id="200104" voided="false" voided_by="1" uuid="113489BBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+
+  <concept concept_id="1783" retired="false" datatype_id="2" class_id="7" is_set="false" creator="1" date_created="2017-02-28 00:00:00.0" version="1" changed_by="1" date_changed="2017-02-28 00:00:00.0" retired_by="1" uuid="1783AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+  <concept_name concept_id="1783" name="HEALTH POST/CLINIC CARE PROVIDER(S)" locale="en" creator="1" date_created="2017-02-28 00:00:00.0" concept_name_id="200105" voided="false" voided_by="1" uuid="1783BBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+  <concept_answer concept_answer_id="10104" concept_id="1783" answer_concept="1107" creator="1" date_created="2017-02-28 00:00:00.0" uuid="dd84565f-3c39-446b-86b7-aefab4c00447" sort_weight="1908.0"/>
+  <concept_answer concept_answer_id="10105" concept_id="1783" answer_concept="1574" creator="1" date_created="2017-02-28 00:00:00.0" uuid="38c94450-ae7a-4129-8de9-29c0463aca2d" sort_weight="1909.0"/>
+  <concept_answer concept_answer_id="10106" concept_id="1783" answer_concept="1578" creator="1" date_created="2017-02-28 00:00:00.0" uuid="69a42d88-ddda-41c5-a14f-682c50ab1efe" sort_weight="1910.0"/>
+  <concept_answer concept_answer_id="10107" concept_id="1783" answer_concept="1067" creator="1" date_created="2017-02-28 00:00:00.0" uuid="5bd2d51d-0934-4de0-bedb-6e56e99fbd69" sort_weight="1910.0"/>
+  <concept_answer concept_answer_id="10108" concept_id="1783" answer_concept="1555" creator="1" date_created="2017-02-28 00:00:00.0" uuid="e539f9c0-83b2-4f30-a65e-1a43ef8359c0" sort_weight="1911.0"/>
+  <concept_answer concept_answer_id="10109" concept_id="1783" answer_concept="1577" creator="1" date_created="2017-02-28 00:00:00.0" uuid="e186c5cb-33e6-4cab-91b5-108f1e433374" sort_weight="1912.0"/>
+
+  <concept concept_id="160434" retired="false" datatype_id="2" class_id="7" is_set="false" creator="1" date_created="2004-08-12 00:00:00.0" version="1.1" changed_by="1" date_changed="2017-28-02 05:52:00.0" retired_by="1" uuid="160434AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+  <concept_name concept_id="160434" name="Taking Co-trimoxazole, preventive therapy" locale="en" creator="1" date_created="2017-02-28 00:00:00.0" concept_name_id="200106" voided="false" voided_by="1" uuid="160434BBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+  <concept_answer concept_answer_id="10110" concept_id="160434" answer_concept="1065" creator="1" date_created="2017-02-23 00:00:00.0" uuid="661eb999-618d-4caa-ad40-f8676f2d9d58" sort_weight="1908.0"/>
+  <concept_answer concept_answer_id="10111" concept_id="160434" answer_concept="1066" creator="1" date_created="2017-02-23 00:00:00.0" uuid="fc9ae0a0-c46c-46e5-b7d3-516a8fa34a69" sort_weight="1909.0"/>
+
+  <concept concept_id="164361" retired="false" datatype_id="6" class_id="7" is_set="false" creator="1" date_created="2004-08-12 00:00:00.0" version="1.1" changed_by="1" date_changed="2017-28-02 05:52:00.0" retired_by="1" uuid="164361AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+  <concept_name concept_id="164361" name="Cotrimoxazole prophylaxis start date" locale="en" creator="1" date_created="2017-02-28 00:00:00.0" concept_name_id="200107" voided="false" voided_by="1" uuid="164361BBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+
+  <concept concept_id="159395" retired="false" datatype_id="3" class_id="5" is_set="false" creator="1" date_created="2004-08-12 00:00:00.0" version="1.1" changed_by="1" date_changed="2017-28-02 05:52:00.0" retired_by="1" uuid="159395AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+  <concept_name concept_id="159395" name="Clinical impression comment" locale="en" creator="1" date_created="2017-02-28 00:00:00.0" concept_name_id="200107" voided="false" voided_by="1" uuid="159395BBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+
+
 </dataset>
