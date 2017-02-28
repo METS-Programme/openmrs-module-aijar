@@ -403,7 +403,7 @@
                             <label>Cadre of health worker</label>
                         </p>
                         <p>
-                            <obs conceptId="164800" />missing
+                            <obs conceptId="1783AAAAAAAAAAAAAAAAAAAAAAAAAAAA" />missing
                         </p>
                     </td>
                     <td>
@@ -483,7 +483,6 @@
                             <label>HIV Counselling and testing</label>
                         </p>
                         <obs conceptId="99409" style="dropdown" answerConceptIds="99405,99406,99407,99408" answerLabels="Counselling done,Counselling and testing done,Counselling and testing done for HIV Positive,Counselling ans Testing done for HIV Negative" />
-                        <p>Countercheck to confirm if this concept is appropriate </p>
                     </td>
                     <td valign="top" style="width:25%">
                         <p>
@@ -504,16 +503,15 @@
                     <td valign="top" style="width:25%">
                         <p>
                             <label>Is Patient On CPT?</label>
-                            <obs conceptId="163149" answerConceptIds="1065,1066" answerLabels="Yes,No" showDate="true" dateLabel="CPT Date" id="on-cpt" />
+                            <obs conceptId="160434AAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1065,1066" answerLabels="Yes,No" showDate="true" dateLabel="CPT Date" id="on-cpt" />
                         </p>
-                        <p>Missing</p>
                     </td>
                     <td valign="top" style="width:25%">
                         <p>
                             <label>CPT Start Date</label>
                         </p>
-                        <p>
-                            <obs conceptId="163150" id="cpt-start-date" />Missing
+                      <p>
+                            <obs conceptId="164361AAAAAAAAAAAAAAAAAAAAAAAAAA" id="cpt-start-date" />
                         </p>
                     </td>
                     <td>
@@ -636,9 +634,8 @@
                             <label>Remarks</label>
                         </p>
                         <p>
-                            <obs conceptId="163151" rows="15" cols="60" />
+                            <obs conceptId="160029AAAAAAAAAAAAAAAAAAAAAAAAAA" rows="15" cols="60" />
                         </p>
-                        <p>Missing</p>
                     </td>
                 </tr>
             </table>
