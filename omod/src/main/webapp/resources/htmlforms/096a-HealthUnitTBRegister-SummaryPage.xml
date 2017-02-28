@@ -20,11 +20,6 @@
             margin: 10px 15px;
         }
 
-        table td {
-            background: #FFFFFF;
-            color: #404040;
-        }
-
         form select, .form select {
             min-width: 0px;
         }
@@ -50,19 +45,6 @@
                 width: 50%;
             }
 
-        table th, table td {
-            border: 1px solid #C7C7C7;
-            min-width: 10%;
-        }
-
-        table {
-            margin: 20px 0px;
-        }
-
-        table th, table td {
-            border: 1px solid #AFAFAF;
-        }
-
 		fieldset{
 			width:97%;
 			margin:0 0 30px 0
@@ -75,11 +57,25 @@
 		fieldset table {
 			width:100%;
 			margin: 0px;
+            margin: 20px 0px;
+
 		}
 
         fieldset table td {
+            background: #FFFFFF;
+            color: #404040;
+
             width: 25%;
             vertical-align: top;
+        }
+
+        fieldset table th, fieldset table td {
+            border: 1px solid #C7C7C7;
+            min-width: 10%;
+        }
+
+        fieldset table th, fieldset table td {
+            border: 1px solid #AFAFAF;
         }
 
 		fieldset table td > p {
@@ -164,7 +160,7 @@
 		
 			const TRANSFER_IN_FROM_FIELD = ''
 		
-			var $transferInFromField = jq(TRANSFER_IN_FROM_FIELD);
+			var $transferInFromField = getField('transfer-in-from.value');
 			var $transferInUnitTbNumberField = getField('transfer-in-unit-tb-number.value');
 			var $onCptField = jq('#on-cpt').find('input');
 			var $cptStartDateField = getField('cpt-start-date.value');
@@ -239,7 +235,7 @@
 			};
 		
 			var childrenSectionToggle = function() {
-				if (patientAge &gt;> 6 &amp;&amp; patientAge &lt; = 180) {
+				if (patientAge &gt;> 6 &amp; patientAge &lt; = 180) {
 					common.enableField($muacSection.find('input,select'));
 				} else {
 					common.disableField($muacSection.find('input,select'));
@@ -259,7 +255,7 @@
 			};
 		
 			var onCptValidate = function() {
-				if (getValue('on-cpt.value') == YES_CONCEPT_ID &amp;&amp; getValue('cpt-start-date'.value) == '') {
+				if (getValue('on-cpt.value') == YES_CONCEPT_ID &amp; getValue('cpt-start-date'.value) == '') {
 					getField('cpt-start-date.error').html('CPT start date is required');
 					return false;
 				} else {
@@ -268,7 +264,7 @@
 			};
 		
 			var onArtValidate = function() {
-				if (getValue('on-art.value') == YES_CONCEPT_ID &amp;&amp; getValue('art-start-date'.value) == '') {
+				if (getValue('on-art.value') == YES_CONCEPT_ID &amp; getValue('art-start-date'.value) == '') {
 					getField('art-start-date.error').html('ART start date is required');
 					return false;
 				} else {
@@ -277,7 +273,7 @@
 			};
 		
 			var transferOutValidate = function() {
-				if (getValue('treatment-outcome.value') == TRANSFER_OUT_CONCEPT_ID &amp;&amp; getValue('transfer-out-to'.value) == '') {
+				if (getValue('treatment-outcome.value') == TRANSFER_OUT_CONCEPT_ID &amp; getValue('transfer-out-to'.value) == '') {
 					getField('transfer-out-to.error').html('The Transfer out to Unit required');
 					return false;
 				} else {
@@ -462,7 +458,7 @@
                             <label>Transfer in from</label>
                         </p>
                         <p>
-                            <obs conceptId="99109" />
+                            <obs conceptId="99109" id="transfer-in-from"/>
                         </p>
                     </td>
                     <td>
