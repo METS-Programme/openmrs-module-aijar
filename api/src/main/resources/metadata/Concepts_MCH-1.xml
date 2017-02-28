@@ -1,21 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<dataset>
-  <concept_datatype concept_datatype_id="1" name="Numeric" hl7_abbreviation="NM" description="Numeric value, including integer or float (e.g., creatinine, weight)" creator="1" date_created="2004-02-02 00:00:00.0" retired="false" retired_by="1" uuid="8d4a4488-c2cc-11de-8d13-0010c6dffd0f"/>
-  <concept_datatype concept_datatype_id="2" name="Coded" hl7_abbreviation="CWE" description="Value determined by term dictionary lookup (i.e., term identifier)" creator="1" date_created="2004-02-02 00:00:00.0" retired="false" retired_by="1" uuid="8d4a48b6-c2cc-11de-8d13-0010c6dffd0f"/>
-  <concept_datatype concept_datatype_id="3" name="Text" hl7_abbreviation="ST" description="Free text" creator="1" date_created="2004-02-02 00:00:00.0" retired="false" retired_by="1" uuid="8d4a4ab4-c2cc-11de-8d13-0010c6dffd0f"/>
-  <concept_datatype concept_datatype_id="4" name="N/A" hl7_abbreviation="ZZ" description="Not associated with a datatype (e.g., term answers, sets)" creator="1" date_created="2004-02-02 00:00:00.0" retired="false" retired_by="1" uuid="8d4a4c94-c2cc-11de-8d13-0010c6dffd0f"/>
-  <concept_datatype concept_datatype_id="6" name="Date" hl7_abbreviation="DT" description="Absolute date" creator="1" date_created="2004-07-22 00:00:00.0" retired="false" retired_by="1" uuid="8d4a505e-c2cc-11de-8d13-0010c6dffd0f"/>
-  <concept_class concept_class_id="1" name="Test" description="Acq. during patient encounter (vitals, labs, etc.)" creator="1" date_created="2004-02-02 00:00:00.0" retired="false" retired_by="1" uuid="8d4907b2-c2cc-11de-8d13-0010c6dffd0f"/>
-  <concept_class concept_class_id="3" name="Drug" description="Drug" creator="1" date_created="2004-02-02 00:00:00.0" retired="false" retired_by="1" uuid="8d490dfc-c2cc-11de-8d13-0010c6dffd0f"/>
-  <concept_class concept_class_id="4" name="Diagnosis" description="Conclusion drawn through findings" creator="1" date_created="2004-02-02 00:00:00.0" retired="false" retired_by="1" uuid="8d4918b0-c2cc-11de-8d13-0010c6dffd0f"/>
-  <concept_class concept_class_id="5" name="Finding" description="Practitioner observation/finding" creator="1" date_created="2004-03-02 00:00:00.0" retired="false" retired_by="1" uuid="8d491a9a-c2cc-11de-8d13-0010c6dffd0f"/>
-  <concept_class concept_class_id="7" name="Question" description="Question (eg, patient history, SF36 items)" creator="1" date_created="2004-03-02 00:00:00.0" retired="false" retired_by="1" uuid="8d491e50-c2cc-11de-8d13-0010c6dffd0f"/>
-  <concept_class concept_class_id="10" name="ConvSet" description="Term to describe convenience sets" creator="1" date_created="2004-03-02 00:00:00.0" retired="false" retired_by="1" uuid="8d492594-c2cc-11de-8d13-0010c6dffd0f"/>
-  <concept_class concept_class_id="11" name="Misc" description="Terms which don&apos;t fit other categories" creator="1" date_created="2004-03-02 00:00:00.0" retired="false" retired_by="1" uuid="8d492774-c2cc-11de-8d13-0010c6dffd0f"/>
-  <concept_class concept_class_id="12" name="Symptom" description="Patient-reported observation" creator="1" date_created="2004-10-04 00:00:00.0" retired="false" retired_by="1" uuid="8d492954-c2cc-11de-8d13-0010c6dffd0f"/>
-  <concept_class concept_class_id="13" name="Symptom/Finding" description="Observation that can be reported from patient or found on exam" creator="1" date_created="2004-10-04 00:00:00.0" retired="false" retired_by="1" uuid="8d492b2a-c2cc-11de-8d13-0010c6dffd0f"/>
-  <concept_class concept_class_id="24" name="Pharmacologic Drug Class" description="Class of medications based on pharmacologic properties as opposed to therapeutic properties" creator="1" date_created="2014-02-07 22:16:02.0" retired="false" retired_by="1" uuid="b4535251-9183-4175-959e-9ee67dc71e78"/>
-  
+<dataset> 
   <concept concept_id="163149" retired="false" datatype_id="4" class_id="4" is_set="false" creator="1" date_created="2017-02-23 00:00:00.0" version="" changed_by="1" date_changed="2015-11-05 01:34:22.0" retired_by="1" uuid="69b722b2-fca9-444d-a288-575593a1e1a5"/>
   <concept_name concept_id="163149" name="Malaria in pregnancy" locale="en" creator="1" date_created="2017-02-23 00:00:00.0" concept_name_id="200001" voided="false" voided_by="1" uuid="5b8d7005-3e53-42ab-b892-21db36e9cf37" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
   
