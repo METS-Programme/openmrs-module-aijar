@@ -106,6 +106,10 @@
             <h3 style="background: #FFFF7D; padding: 10px;">HMIS FORM 078 - INTEGRATED POSTNATAL ENCOUNTER</h3>
         </div>
         <fieldset>
+            <span style="display: none;">
+                <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
+                                   order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
+            </span>
             <legend>Admission Information</legend>
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
@@ -115,12 +119,6 @@
                         </p>
                         <p>
                             <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
-
-                            <span style="display: none;">
-
-                                <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
-                                                   order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
-                            </span>
                         </p>
                     </td>
                     <td>
@@ -128,7 +126,8 @@
                             <label>Serial Number</label>
                         </p>
                         <p>
-                            <obs conceptId="99767"/>
+                            Missing
+                            <obs conceptId=""/>
                         </p>
                     </td>
                     <td>
@@ -136,7 +135,8 @@
                             <label>Client Number</label>
                         </p>
                         <p>
-                            <obs conceptId="99767"/>
+                            <patient field="identifier" identifierTypeId="758ef6e4-9ceb-4137-bc8d-9246dc7b41fe"
+                                     required="true"/>
                         </p>
                     </td>
                     <td>
@@ -144,9 +144,11 @@
                             <label>Timing for PNC Visit</label>
                         </p>
                         <p>
-                            <obs conceptId="163156" answerConceptIds="163157,163158,163158,163158"
-                                 answerLabels="6 Hours,6 Days, 6 Weeks, 6 Months"
-                                 style="radio"/>
+
+                            Missing
+                            <!--<obs conceptId="Missing" answerConceptIds="Missing"-->
+                            <!--answerLabels="6 Hours,6 Days, 6 Weeks, 6 Months"-->
+                            <!--style="radio"/>-->
                         </p>
                     </td>
                 </tr>
@@ -163,9 +165,14 @@
                             <label>Family Planning Given</label>
                         </p>
                         <p>
-                            <obs conceptId="163156" answerConceptIds="163157,163158,163158,163158"
-                                 answerLabels="6 Hours,6 Days, 6 Weeks, 6 Months"
+                            <obs conceptId="374"
+                                 answerConceptIds="163144,163145,163148,163147,780,163146,5275,5279,5277,5276,90088,162961,5622"
+                                 answerLabels="Oral:Lo-Femenal,Oral: Microgynon,Oral: Ovrette,Oral:Others,Female Condoms,Male Condoms,
+                                 IUDs,Injectable,Natual,Female Sterilization,Male Sterilization,Implant,Other"
                                  style="dropdown"/>
+                            <span class="familyPlanningOtherSpecify" style="display:none">
+                                <obs conceptId="5281"/>
+                            </span>
                         </p>
                     </td>
                     <td>
@@ -173,8 +180,8 @@
                             <label>Status Of The Breast</label>
                         </p>
                         <p>
-                            <obs conceptId="163156" answerConceptIds="163157,163158,163158,163158"
-                                 answerLabels="6 Hours,6 Days, 6 Weeks, 6 Months"
+                            <obs conceptId="99349" answerConceptIds="99345,99346"
+                                 answerLabels="FOM - No swellings pain or discharge,SS - Have discharge blood or pus"
                                  style="dropdown"/>
                         </p>
                     </td>
@@ -183,17 +190,16 @@
                             <label>Status Of The Cervix</label>
                         </p>
                         <p>
-                            <obs conceptId="163156" answerConceptIds="163157,163158,163158,163158"
-                                 answerLabels="6 Hours,6 Days, 6 Weeks, 6 Months"
-                                 style="dropdown"/>
+                            <obs conceptId="99350" answerConceptIds="99347,99348"
+                                 answerLabels="FOM - Cervix is free of malignancy,SS- Cervix is suspicious of malignancy"/>
                         </p>
                     </td>
                     <td>
                         <p>
-                            <label>Weight</label>
+                            <label>Weight(Kgs)</label>
                         </p>
                         <p>
-                            <obs conceptId="163155"/>
+                            <obs conceptId="5089"/>
                         </p>
                     </td>
                 </tr>
@@ -203,8 +209,23 @@
                             <label>M.U.A.C</label>
                         </p>
                         <p>
-                            <obs conceptId="99342" answerConceptIds="99313,99314,99315" answerLabels="C,TR,TRR"
-                                 style="dropdown"/>
+                            <includeIf velocityTest="$patient.age &lt; 5">
+                                <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                                     answerLabels="Red &lt; 11.5cm, Yellow 11.5cm - &lt;12.5cm,Green &gt;= 12.5cm"/>
+                            </includeIf>
+                            <includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
+                                <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                                     answerLabels="Red &lt; 13.5cm,Yellow 13.5cm - &lt;14.5cm,Green &gt;=14.5cm"/>
+                            </includeIf>
+                            <includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
+                                <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                                     answerLabels="Red &lt; 16.5cm, Yellow 16.5cm - &lt;19.0cm,Green &gt;=19.0cm"/>
+                            </includeIf>
+
+                            <includeIf velocityTest="$patient.age &gt;=18">
+                                <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                                     answerLabels="Red &lt;19.0cm , Yellow 19.0cm - &lt;22.0cm,Green &gt;=22.0cm"/>
+                            </includeIf>
                         </p>
                     </td>
                     <td>
@@ -212,7 +233,7 @@
                             <label>I.N.R Number</label>
                         </p>
                         <p>
-                            <obs conceptId="163155"/>
+                            <obs conceptId="99733" id="inrNumber"/>
                         </p>
                     </td>
                     <td>
@@ -220,8 +241,9 @@
                             <label>eMTCT Code - Woman</label>
                         </p>
                         <p>
-                            <obs conceptId="99317" answerConceptIds="99313,99314,99315" answerLabels="C,TR,TRR"
-                                 style="dropdown"/>
+                            <obs conceptId="99317" labelText="" id="ARVSEnableDisable1"
+                                 answerConceptIds="99313,99734,99314,99315,99735,99736,99737,99738,99739,99741"
+                                 answerLabels="C,T,TR,TRR,TR&#8730;,TRR&#8730;,TRK,TRRK,TR+,TRR+" style="dropdown"/>
                         </p>
                     </td>
                     <td>
@@ -229,8 +251,9 @@
                             <label>eMTCT Code - Partner</label>
                         </p>
                         <p>
-                            <obs conceptId="99342" answerConceptIds="99313,99314,99315" answerLabels="C,TR,TRR"
-                                 style="dropdown"/>
+                            <obs conceptId="99342" labelText=""
+                                 answerConceptIds="99313,99734,99314,99315,99735,99736,99737,99738,99739,99741"
+                                 answerLabels="C,T,TR,TRR,TR&#8730;,TRR&#8730;,TRK,TRRK,TR+,TRR+" style="dropdown"/>
                         </p>
                     </td>
                 </tr>
@@ -245,8 +268,14 @@
                                 <label>ARVs</label>
                             </p>
                             <p>
-                                <obs conceptId="99317" answerConceptIds="99313,99314,99315" answerLabels="C,TR,TRR"
-                                     style="dropdown"/>
+                                <obs id="arvs" conceptId="90315"
+                                     answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99007,99008,99044,
+                                     99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99884,99885,99888,163017,99887,90002"
+                                     answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,
+                                     TDF-FTC-NVP,TDF-FTC-EFV,ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,AZT-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,AZT-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-ATV/r,ABC-3TC-LPV/r,TDF-3TC-ATV/r,Other"/>
+                                <span class="RegimenEnableDisableChild1">
+                                    <obs id="arvSpecify" conceptId="99126" labelText="Specify"/>
+                                </span>
                             </p>
                         </td>
                         <td>
@@ -254,7 +283,8 @@
                                 <label>Pre-ART Number</label>
                             </p>
                             <p>
-                                <obs conceptId="163155"/>
+                                <patient field="identifier" identifierTypeId="e1731641-30ab-102d-86b0-7a5022ba4115"
+                                         required="true"/>
                             </p>
                         </td>
                         <td>
@@ -265,7 +295,7 @@
                         </td>
                         <td>
                             <p>
-                                <obs conceptId="1284,1284,1284,1284,1284" answerConceptId="50"
+                                <obs conceptId="99318,99319,162933,99351" answerConceptIds="1065, 1066"
                                      answerLabel="Iron, Folic Acid,Vitamin A, CTX" style="checkbox"/>
                             </p>
                         </td>
@@ -275,15 +305,12 @@
                         <td>
                             <p>
                                 <label>Diagnosis</label>
-                                <obs conceptId="90253" answerConceptIds="90166,90167,90001" style="dropdown"
-                                     id="hiv-status"/>
+                                <obs conceptId="99321" style="textarea"/>
                             </p>
                         </td>
                         <td>
                             <p>
-                                <label>HIV Status</label>
-                                <obs conceptId="90253" answerConceptIds="90166,90167,90001" style="dropdown"
-                                     id="hiv-status"/>
+
                             </p>
                         </td>
                         <td>
@@ -297,7 +324,7 @@
                         <td>
                             <p>
                                 <label>WHO Date</label>
-                                <obs conceptId="5497"/>
+                                Missing
                             </p>
                         </td>
                     </tr>
@@ -338,7 +365,7 @@
                             <p>
                                 <label>Viral Load Date</label>
                                 <p>
-                                    <obs conceptId="163155"/>
+                                    <obs conceptId="163155" allowFutureDates="false"/>
                                 </p>
                             </p>
 
@@ -352,7 +379,7 @@
                         <td>
                             <p>
                                 <label>Other Treatments</label>
-                                <obs conceptId="856" id="other-treatments"/>
+                                <obs conceptId="99320" id="other-treatments"/>
                             </p>
                         </td>
                     </tr>
@@ -367,10 +394,28 @@
                 <tr>
                     <td>
                         <p>
+                            <label>Status Of The Baby</label>
+                        </p>
+                        <p>
+                            <obs conceptId="99354" answerConceptIds="99353,163140,163141"
+                                 answerLabels="Alive,NND7,NND28"/>
+                        </p>
+
+                    </td>
+                    <td>
+                        <p>
+                            <label>Age (Wks)</label>
+                        </p>
+                        <p>
+                            Missing
+                        </p>
+                    </td>
+                    <td>
+                        <p>
                             <label>Weight(Kg)</label>
                         </p>
                         <p>
-                            <obs conceptId="90253"/>
+                            <obs conceptId="5089"/>
                         </p>
                     </td>
                     <td>
@@ -378,17 +423,35 @@
                             <label>M.U.A.C</label>
                         </p>
                         <p>
-                            <obs conceptId="99342" answerConceptIds="99313,99314,99315" answerLabels="C,TR,TRR"
-                                 style="dropdown"/>
+                            <includeIf velocityTest="$patient.age &lt; 5">
+                                <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                                     answerLabels="Red &lt; 11.5cm, Yellow 11.5cm - &lt;12.5cm,Green &gt;= 12.5cm"/>
+                            </includeIf>
+                            <includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
+                                <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                                     answerLabels="Red &lt; 13.5cm,Yellow 13.5cm - &lt;14.5cm,Green &gt;=14.5cm"/>
+                            </includeIf>
+                            <includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
+                                <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                                     answerLabels="Red &lt; 16.5cm, Yellow 16.5cm - &lt;19.0cm,Green &gt;=19.0cm"/>
+                            </includeIf>
+
+                            <includeIf velocityTest="$patient.age &gt;=18">
+                                <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                                     answerLabels="Red &lt;19.0cm , Yellow 19.0cm - &lt;22.0cm,Green &gt;=22.0cm"/>
+                            </includeIf>
                         </p>
                     </td>
+
+
+                </tr>
+                <tr>
                     <td>
                         <p>
                             <label>I.N.R Number</label>
                         </p>
                         <p>
-                            <obs conceptId="90253" answerConceptIds="90166,90167,90001" style="dropdown"
-                                 id="hiv-status"/>
+                            <obs conceptId="99733"/>
                         </p>
                     </td>
                     <td>
@@ -396,61 +459,55 @@
                             <label>Diagnosis</label>
                         </p>
                         <p>
-                            <obs conceptId="163154"/>
+                            <obs conceptId="99355" style="textarea"/>
                         </p>
                     </td>
-                </tr>
-                <tr>
                     <td>
                         <p>
                             <label>Infant Feeding Option</label>
                         </p>
                         <p>
-                            <obs conceptId="99342" answerConceptIds="99313,99314,99315" answerLabels="C,TR,TRR"
+                            <obs conceptId="1151" answerConceptIds="5526,99089,6046" answerLabels="EBF,RF,MF"
                                  style="dropdown"/>
                         </p>
                     </td>
                     <td>
                         <p>
                             <label>Infant Feeding Counseling Done</label>
-                            <obs conceptId="99342" answerConceptIds="99313,99314" answerLabels="Yes, No"
+                            <obs conceptId="99749" answerConceptIds="1065,1066" answerLabels="Yes, No"
                                  style="radio"/>
                         </p>
                     </td>
-                    <td>
-                        <p>
-                            <label>Maternal Nutrition Counseling Done?</label>
-                        </p>
-                    </td>
-                    <td>
-                        <p>
-                            <obs conceptId="99342" answerConceptIds="99313,99314" answerLabels="Yes, No"
-                                 style="radio"/>
-                        </p>
 
-                    </td>
+
                 </tr>
 
                 <tr>
-                    <td colspan="2">
+                    <td>
+                        <p>
+                            <label>Maternal Nutrition Counseling Done?</label>
+                            <obs conceptId="99750" answerConceptIds="1065,1066" answerLabels="Yes, No"
+                                 style="radio"/>
+                        </p>
+                    </td>
+                    <td>
                         <p>
                             <label>Immunization</label>
                         </p>
                         <p>
-                            <obs conceptId="99342" answerConceptIds="99313,99314,99315,99315,99315"
+                            <obs conceptId="162839" answerConceptIds="886,162831,781,99356,163014"
                                  answerLabels="BCG,OPV,DPT-HepB+Hi,Vitamin A, PCV"
                                  style="checkbox"/>
                         </p>
                     </td>
+
                     <td>
                         <p>
                             <label>Other Treatments</label>
                         </p>
                     </td>
                     <td>
-                        <obs conceptId="99342" answerConceptIds="99313,99314,99315,99315,99315"
-                             answerLabels="BCG,OPV,DPT-HepB+Hi,Vitamin A, PCV"
-                             style="checkbox"/>
+                        Missing
                     </td>
                 </tr>
             </table>
