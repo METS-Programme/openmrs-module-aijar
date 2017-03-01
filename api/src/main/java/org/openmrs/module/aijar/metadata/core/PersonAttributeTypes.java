@@ -155,4 +155,25 @@ public class PersonAttributeTypes {
             return "b0868a16-4f8e-43da-abfc-6338c9d8f56a";
         }
     };
+
+    public static PersonAttributeTypeDescriptor FINGER_PRINT = new PersonAttributeTypeDescriptor() {
+        @Override
+        public double sortWeight() {
+            return 12;
+        }
+
+        @Override
+        public String name() {
+            return "FingerPrint";
+        }
+
+        @Override
+        public String description() {
+            return "This attribute is the type for person attributed which stores the fingerprint template";
+        }
+
+        public String uuid() {
+            return "a41339f9-5014-45f4-91d6-bab84c6c62f1";
+        }
+    };
 }
