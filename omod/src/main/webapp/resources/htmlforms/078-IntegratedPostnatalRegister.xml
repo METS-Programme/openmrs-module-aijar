@@ -127,7 +127,6 @@
                         </p>
                         <p>
                             Missing
-                            <obs conceptId=""/>
                         </p>
                     </td>
                     <td>
@@ -295,7 +294,7 @@
                         </td>
                         <td>
                             <p>
-                                <obs conceptId="99318,99319,162933,99351" answerConceptIds="1065, 1066"
+                                <obs conceptId="162394" answerConceptIds="99318,99319,162933,99351"
                                      answerLabel="Iron, Folic Acid,Vitamin A, CTX" style="checkbox"/>
                             </p>
                         </td>
@@ -364,9 +363,7 @@
                         <td>
                             <p>
                                 <label>Viral Load Date</label>
-                                <p>
-                                    <obs conceptId="163155" allowFutureDates="false"/>
-                                </p>
+                                <obs conceptId="163155" allowFutureDates="false"/>
                             </p>
 
                         </td>
@@ -522,8 +519,7 @@
                             <label>Referred From?</label>
                         </p>
                         <p>
-                            <obs conceptId="90253" answerConceptIds="90166,90167,90001" style="dropdown"
-                                 id="hiv-status"/>
+                            <obs conceptId="99770" answerConceptIds="99360,99361,99267" style="dropdown"/>
                         </p>
                     </td>
                     <td>
@@ -531,7 +527,7 @@
                             <label>Clinic/Facility</label>
                         </p>
                         <p>
-                            <obs conceptId="163154"/>
+                            Missing
                         </p>
                     </td>
                     <td>
@@ -539,8 +535,7 @@
                             <label>Referred To?</label>
                         </p>
                         <p>
-                            <obs conceptId="90253" answerConceptIds="90166,90167,90001" style="dropdown"
-                                 id="hiv-status"/>
+                            <obs conceptId="99362" answerConceptIds="99360,99361,99267" style="dropdown"/>
                         </p>
                     </td>
                     <td>
@@ -548,7 +543,7 @@
                             <label>Clinic/Facility</label>
                         </p>
                         <p>
-                            <obs conceptId="163154"/>
+                            Missing
                         </p>
                     </td>
                 </tr>
