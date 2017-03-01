@@ -98,17 +98,6 @@
     </style>
 
 	<script type="text/javascript">
-		/*
-		Transfer in Unit-TB Number	Only applicable if Transfer In - done - 
-		CPT Start Date	Required/Enabled if patient is on CPT -done
-		ART Start Date	Required/Enabled if patient is on ART -done -
-		ART Number	Required/Enabled if patient is on ART -done-
-		No of children in contact	should always be greater than no of children on IPT -done-
-		INR No.	should only be enabled/Reqired if MUAC Colour Code is red or yellow -done
-		Transfer out to	Required/Enabled if treatment outcome is 'transfer out' -done -
-		MUAC/z-score section	applicable for clients aged 6months and above and below 15 years -done -
-		*/
-		
 		if (jQuery) {
 			jq(document).ready(function () {
 				if (jq.browser.msie) {
@@ -157,9 +146,7 @@
 			const RED_CONCEPT_ID = 99028;
 			const YELLOW_CONCEPT_ID = 99029;
 			const TRANSFER_OUT_CONCEPT_ID = 90306;
-		
-			const TRANSFER_IN_FROM_FIELD = ''
-		
+				
 			var $transferInFromField = getField('transfer-in-from.value');
 			var $transferInUnitTbNumberField = getField('transfer-in-unit-tb-number.value');
 			var $onCptField = jq('#on-cpt').find('input');
