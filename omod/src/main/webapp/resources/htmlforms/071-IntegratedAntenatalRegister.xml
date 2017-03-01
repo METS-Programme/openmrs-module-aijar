@@ -117,7 +117,6 @@
                             <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
 
                             <span style="display: none;">
-
                                 <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
                                                    order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
                             </span>
@@ -128,7 +127,7 @@
                             <label>Serial Number</label>
                         </p>
                         <p>
-                            <obs conceptId="99767"/>
+                            Missing
                         </p>
                     </td>
                     <td>
@@ -136,7 +135,7 @@
                             <label>Client Number</label>
                         </p>
                         <p>
-                            <obs conceptId="99767"/>
+                            <obs conceptId="99026"/>
                         </p>
                     </td>
                     <td>
@@ -144,7 +143,7 @@
                             <label>ANC Visit</label>
                         </p>
                         <p>
-                            <obs conceptId="99767"/>
+                            <obs conceptId="99324"/>
                         </p>
                     </td>
                 </tr>
@@ -177,14 +176,13 @@
                             <label>L.M.P</label>
                         </p>
                         <p>
-                            <obs conceptId="162929"/>
+                            <obs conceptId="99325"/>
                         </p>
                     </td>
                     <td>
                         <p>
                             <label>Gestational Age</label>
-                            <obs conceptId="163156" answerConceptIds="163157,163158" answerLabels="Term,Preterm"
-                                 style="radio"/>
+                            <obs conceptId="1279"/>
                         </p>
                     </td>
                 </tr>
@@ -194,7 +192,8 @@
                             <label>ANC Timing</label>
                         </p>
                         <p>
-                            <obs conceptId="163155"/>
+                            <obs conceptId="99732" labelText="" answerConceptIds="90003,90004,1175"
+                                 answerLabels="&#8730;,X,N/A"/>
                         </p>
                     </td>
                     <td>
@@ -202,9 +201,7 @@
                             <label>Expected Date Of Delivery</label>
                         </p>
                         <p>
-                            <obs conceptId="1305" answerConceptIds="1306,1301,1304"
-                                 answerLabels="Not Detected,Detected,Sample Rejected" style="dropdown"
-                                 id="viral-load-results"/>
+                            <obs conceptId="5596" id="edd"/>
                         </p>
                     </td>
                     <td></td>
@@ -221,8 +218,7 @@
                                 <label>Weight</label>
                             </p>
                             <p>
-                                <obs conceptId="99317" answerConceptIds="99313,99314,99315" answerLabels="C,TR,TRR"
-                                     style="dropdown"/>
+                                <obs conceptId="5089"/>
                             </p>
                         </td>
                         <td>
@@ -230,8 +226,7 @@
                                 <label>Height</label>
                             </p>
                             <p>
-                                <obs conceptId="99342" answerConceptIds="99313,99314,99315" answerLabels="C,TR,TRR"
-                                     style="dropdown"/>
+                                <obs conceptId="5090"/>
                             </p>
                         </td>
                         <td>
@@ -239,8 +234,23 @@
                                 <label>M.U.A.C</label>
                             </p>
                             <p>
-                                <obs conceptId="99342" answerConceptIds="99313,99314,99315" answerLabels="C,TR,TRR"
-                                     style="dropdown"/>
+                                <includeIf velocityTest="$patient.age &lt; 5">
+                                    <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                                         answerLabels="Red &lt; 11.5cm, Yellow 11.5cm - &lt;12.5cm,Green &gt;= 12.5cm"/>
+                                </includeIf>
+                                <includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
+                                    <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                                         answerLabels="Red &lt; 13.5cm,Yellow 13.5cm - &lt;14.5cm,Green &gt;=14.5cm"/>
+                                </includeIf>
+                                <includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
+                                    <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                                         answerLabels="Red &lt; 16.5cm, Yellow 16.5cm - &lt;19.0cm,Green &gt;=19.0cm"/>
+                                </includeIf>
+
+                                <includeIf velocityTest="$patient.age &gt;=18">
+                                    <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                                         answerLabels="Red &lt;19.0cm , Yellow 19.0cm - &lt;22.0cm,Green &gt;=22.0cm"/>
+                                </includeIf>
                             </p>
                         </td>
                         <td>
@@ -248,7 +258,7 @@
                                 <label>I.N.R Number</label>
                             </p>
                             <p>
-                                <obs conceptId="163155"/>
+                                <obs conceptId="99733" id="inrNumber"/>
                             </p>
                         </td>
                     </tr>
@@ -259,8 +269,7 @@
                                 <label>Diastolic B.P</label>
                             </p>
                             <p>
-                                <obs conceptId="99317" answerConceptIds="99313,99314,99315" answerLabels="C,TR,TRR"
-                                     style="dropdown"/>
+                                <obs conceptId="5086"/>
                             </p>
                         </td>
                         <td>
@@ -268,8 +277,7 @@
                                 <label>Systolic B.P</label>
                             </p>
                             <p>
-                                <obs conceptId="99342" answerConceptIds="99313,99314,99315" answerLabels="C,TR,TRR"
-                                     style="dropdown"/>
+                                <obs conceptId="5085"/>
                             </p>
                         </td>
                         <td></td>
@@ -282,8 +290,9 @@
                                 <label>eMTCT Code - Woman</label>
                             </p>
                             <p>
-                                <obs conceptId="99317" answerConceptIds="99313,99314,99315" answerLabels="C,TR,TRR"
-                                     style="dropdown"/>
+                                <obs conceptId="99317" labelText="" id="ARVSEnableDisable1"
+                                     answerConceptIds="99313,99734,99314,99315,99735,99736,99737,99738,99739,99741"
+                                     answerLabels="C,T,TR,TRR,TR&#8730;,TRR&#8730;,TRK,TRRK,TR+,TRR+" style="dropdown"/>
                             </p>
                         </td>
                         <td>
@@ -291,29 +300,20 @@
                                 <label>eMTCT Code - Partner</label>
                             </p>
                             <p>
-                                <obs conceptId="99342" answerConceptIds="99313,99314,99315" answerLabels="C,TR,TRR"
-                                     style="dropdown"/>
+                                <obs conceptId="99342" labelText=""
+                                     answerConceptIds="99313,99734,99314,99315,99735,99736,99737,99738,99739,99741"
+                                     answerLabels="C,T,TR,TRR,TR&#8730;,TRR&#8730;,TRK,TRRK,TR+,TRR+" style="dropdown"/>
                             </p>
                         </td>
                         <td>
                             <p>
                                 <label>Diagnosis</label>
+                                <obs conceptId="99321" style="textarea"/>
                             </p>
                         </td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td>
-                            <p>
-                                <label>HIV Status</label>
-                            </p>
-                        </td>
-                        <td>
-                            <p>
-                                <obs conceptId="90253" answerConceptIds="90166,90167,90001" style="dropdown"
-                                     id="hiv-status"/>
-                            </p>
-                        </td>
                         <td>
                             <p>
                                 <label>WHO Clinical Stage</label>
@@ -322,8 +322,19 @@
                         <td>
                             <p>
                                 <obs conceptId="90203"
-                                     answerConceptIds="90033,90034,90035,90036,90293,90294,90295,90296"
-                                     answerLabels="1,2,3,4,T1,T2,T3,T4" style="dropdown"/>
+                                     answerConceptIds="1204,1205,1206,1207"
+                                     answerLabels="WHO STAGE 1 ADULT, WHO STAGE 2 ADULT,WHO STAGE 3 ADULT,WHO STAGE 4 ADULT"
+                                     style="dropdown"/>
+                            </p>
+                        </td>
+                        <td>
+                            <p>
+                                <label>WHO Date</label>
+                            </p>
+                        </td>
+                        <td>
+                            <p>
+                                Missing
                             </p>
                         </td>
                     </tr>
@@ -345,7 +356,7 @@
                         </td>
                         <td>
                             <p>
-                                <obs conceptId="163154"/>
+                                Missing
                             </p>
                         </td>
                     </tr>
@@ -358,7 +369,7 @@
                         </td>
                         <td>
                             <p>
-                                <obs conceptId="1305" answerConceptIds="1306,1301,1304"
+                                <obs conceptId="1305" answerConceptIds="1302,1301,1304"
                                      answerLabels="Not Detected,Detected,Sample Rejected" style="dropdown"
                                      id="viral-load-results"/>
                             </p>
@@ -372,7 +383,7 @@
                         </td>
                         <td>
                             <p>
-                                <obs conceptId="163155"/>
+                                <obs conceptId="163023"/>
                             </p>
                         </td>
                     </tr>
@@ -403,7 +414,8 @@
                                 <label>ARVs Given</label>
                             </p>
                             <p>
-                                <obs conceptId="99317" answerConceptIds="99313,99314,99315" answerLabels="C,TR,TRR"
+                                <obs conceptId="99744" answerConceptIds="99745,99746,99747,99748,1175"
+                                     answerLabels="ART,ARTK,ART✔,ARTK✔,NA"
                                      style="dropdown"/>
                             </p>
                         </td>
@@ -412,8 +424,7 @@
                                 <label>Pre-ART Number</label>
                             </p>
                             <p>
-                                <obs conceptId="99342" answerConceptIds="99313,99314,99315" answerLabels="C,TR,TRR"
-                                     style="dropdown"/>
+                                <obs conceptId="99751"/>
                             </p>
                         </td>
                         <td>
@@ -423,7 +434,8 @@
                         </td>
                         <td>
                             <p>
-                                <obs conceptId="163155"/>
+                                <obs conceptId="99749" answerConceptIds="1065,1066" answerLabels="Yes, No"
+                                     style="radio"/>
                             </p>
                         </td>
                     </tr>
@@ -436,7 +448,7 @@
                         </td>
                         <td>
                             <p>
-                                <obs conceptId="162944" answerConceptIds="1065,1066" answerLabels="Yes, No"
+                                <obs conceptId="99750" answerConceptIds="1065,1066" answerLabels="Yes, No"
                                      style="radio"/>
                             </p>
                         </td>
@@ -445,7 +457,8 @@
                                 <label>TB Status</label>
                             </p>
                             <p>
-                                <obs conceptId="99342" answerConceptIds="99313,99314,99315" answerLabels="C,TR,TRR"
+                                <obs conceptId="90216" answerConceptIds="90079,90073,90078,90071"
+                                     answerLabels="No Signs,Suspect,Diagnosed,TB Rx"
                                      style="dropdown"/>
                             </p>
                         </td>
@@ -454,8 +467,7 @@
                                 <label>Haemoglobin</label>
                             </p>
                             <p>
-                                <obs conceptId="99342" answerConceptIds="99313,99314,99315" answerLabels="C,TR,TRR"
-                                     style="dropdown"/>
+                                <obs conceptId="21"/>
                             </p>
                         </td>
                     </tr>
@@ -466,7 +478,8 @@
                                 <label>Syphilis Test - Woman</label>
                             </p>
                             <p>
-                                <obs conceptId="99317" answerConceptIds="99313,99314,99315" answerLabels="C,TR,TRR"
+                                <obs conceptId="99752" answerConceptIds="99754,99755,99756,99757"
+                                     answerLabels="RX,Positive,NR,NT"
                                      style="dropdown"/>
                             </p>
                         </td>
@@ -475,7 +488,8 @@
                                 <label>Syphilis Test - Partner</label>
                             </p>
                             <p>
-                                <obs conceptId="99342" answerConceptIds="99313,99314,99315" answerLabels="C,TR,TRR"
+                                <obs conceptId="99753" answerConceptIds="99754,99755,99756,99757"
+                                     answerLabels="RX,Positive,NR,NT"
                                      style="dropdown"/>
                             </p>
                         </td>
@@ -485,8 +499,8 @@
                             </p>
                         </td>
                         <td>
-                            <p>
-                                <obs conceptId="162944" answerConceptIds="1065,1066" answerLabels="C, C/D"
+                            <p>99294
+                                <obs conceptId="99296" answerConceptIds="99294,99295" answerLabels="C, C/D"
                                      style="radio"/>
                             </p>
                         </td>
@@ -497,7 +511,8 @@
                                 <label>Tetanus Dose</label>
                             </p>
                             <p>
-                                <obs conceptId="99342" answerConceptIds="99313,99314,99315" answerLabels="C,TR,TRR"
+                                <obs conceptId="99303" answerConceptIds="99298,99299,99300,99301,99302,1267"
+                                     answerLabels="1st,2nd,3rd,4th,5th,Completed"
                                      style="dropdown"/>
                             </p>
                         </td>
@@ -506,7 +521,8 @@
                                 <label>IPT Dose</label>
                             </p>
                             <p>
-                                <obs conceptId="99342" answerConceptIds="99313,99314,99315" answerLabels="C,TR,TRR"
+                                <obs conceptId="99306" answerConceptIds="99298,99299,99305,1267,99758,99759"
+                                     answerLabels="1,2,ND,C,CTX,CTX✔"
                                      style="dropdown"/>
                             </p>
                         </td>
@@ -517,7 +533,7 @@
                         </td>
                         <td>
                             <p>
-                                <obs conceptId="162944" answerConceptIds="1065,1066" answerLabels="Yes, No"
+                                <obs conceptId="99760" answerConceptIds="90003,90004" answerLabels="Yes, No"
                                      style="radio"/>
                             </p>
                         </td>
@@ -528,22 +544,22 @@
                                 <label>Mebendazole Dose</label>
                             </p>
                             <p>
-                                <obs conceptId="99330"
-                                     answerConceptIds="5276,162959,162960,162961,162962,162963,162964,5622"
-                                     answerLabels="Post Partum female sterilization,IUD as part of post abortion care,Post Partum IUD,Implant as part of post abortion care,Oral pills as part of post abortion care,Depo as part of post abortion care,Not Given,Other"
+                                <obs conceptId="99312"
+                                     answerConceptIds="99309,99310,99311,1267"
+                                     answerLabels="✔,X,NA,C"
                                      style="dropdown"/>
                             </p>
                         </td>
                         <td>
                             <p>
-                                <obs conceptId="1284" answerConceptId="50" answerLabel="Iron" style="checkbox"/>
-                                <obs conceptId="5497"/>
+                                <obs conceptId="99318" answerLabel="Iron" style="checkbox"/>
+                                <obs conceptId="99761"/>
                             </p>
                         </td>
                         <td>
                             <p>
-                                <obs conceptId="1284" answerConceptId="50" answerLabel="Folic" style="checkbox"/>
-                                <obs conceptId="5497"/>
+                                <obs conceptId="99319"  answerLabel="Folic Acid" style="checkbox"/>
+                                <obs conceptId="99762"/>
                             </p>
                         </td>
                         <td>
@@ -551,7 +567,7 @@
                                 <label>Other Treatments</label>
                             </p>
                             <p>
-                                <obs conceptId="5497"/>
+                                <obs conceptId="99320" style="textarea"/>
                             </p>
                         </td>
                     </tr>
@@ -565,51 +581,33 @@
                 <tr>
                     <td>
                         <p>
-                            <label>Referred From?</label>
+                            <label>Referal</label>
                         </p>
                         <p>
-                            <obs conceptId="90253" answerConceptIds="90166,90167,90001" style="dropdown"
+                            <obs conceptId="99322" answerConceptIds="99763,99764,99765,99766"
+                                 answerLabels="REFOUT,REF IN,C/REF IN,FSG" style="dropdown"
                                  id="hiv-status"/>
                         </p>
                     </td>
                     <td>
                         <p>
-                            <label>Referral Note</label>
+                            <label>Referral Number</label>
                         </p>
                         <p>
-                            <obs conceptId="163154"/>
+                            <obs conceptId="99767"/>
                         </p>
                     </td>
-                    <td>
-                        <p>
-                            <label>Referred To?</label>
-                        </p>
-                        <p>
-                            <obs conceptId="90253" answerConceptIds="90166,90167,90001" style="dropdown"
-                                 id="hiv-status"/>
-                        </p>
-                    </td>
-                    <td>
-                        <p>
-                            <label>Referral Note</label>
-                        </p>
-                        <p>
-                            <obs conceptId="163154"/>
-                        </p>
-                    </td>
-                </tr>
-                <tr>
                     <td>
                         <p>
                             <label>Complications/Risk Factors</label>
                         </p>
-                        <p>
-                            <obs conceptId="163155"/>
-                        </p>
                     </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>
+                        <p>
+                            <obs conceptId="99768"/>
+                        </p>
+
+                    </td>
                 </tr>
             </table>
         </fieldset>
