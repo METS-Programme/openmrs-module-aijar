@@ -16,7 +16,7 @@
   <concept_class concept_class_id="13" name="Symptom/Finding" description="Observation that can be reported from patient or found on exam" creator="1" date_created="2004-10-04 00:00:00.0" retired="false" retired_by="1" uuid="8d492b2a-c2cc-11de-8d13-0010c6dffd0f"/>
   <concept_class concept_class_id="24" name="Pharmacologic Drug Class" description="Class of medications based on pharmacologic properties as opposed to therapeutic properties" creator="1" date_created="2014-02-07 22:16:02.0" retired="false" retired_by="1" uuid="b4535251-9183-4175-959e-9ee67dc71e78"/>
 
-  <concept concept_id="5619" retired="false" datatype_id="2" class_id="7" is_set="false" creator="1" date_created="2004-08-12 00:00:00.0" version="1.1" changed_by="1" date_changed="2017-28-02 05:52:00.0" retired_by="1" uuid="dcc37b01-30ab-102d-86b0-7a5022ba4115"/>
+  <concept concept_id="5619" retired="false" datatype_id="2" class_id="7" is_set="false" creator="1" date_created="2017-02-28 00:00:00.0" version="1.1" changed_by="1" date_changed="2017-28-02 05:52:00.0" retired_by="1" uuid="dcc37b01-30ab-102d-86b0-7a5022ba4115"/>
   <concept_answer concept_answer_id="10101" concept_id="5619" answer_concept="1065" creator="1" date_created="2017-02-23 00:00:00.0" uuid="c83d846c-c111-41b7-8230-2292a38ca2f4" sort_weight="1908.0"/>
   <concept_answer concept_answer_id="10102" concept_id="5619" answer_concept="1066" creator="1" date_created="2017-02-23 00:00:00.0" uuid="3d79eaa6-739e-482a-abaa-34060d5bf2a6" sort_weight="1909.0"/>
   <concept_answer concept_answer_id="10103" concept_id="5619" answer_concept="1067" creator="1" date_created="2017-02-23 00:00:00.0" uuid="dfe060d4-95da-4b43-b5bc-68b95e8705c8" sort_weight="1910.0"/>
@@ -48,16 +48,57 @@
   <concept_answer concept_answer_id="10108" concept_id="1783" answer_concept="1555" creator="1" date_created="2017-02-28 00:00:00.0" uuid="e539f9c0-83b2-4f30-a65e-1a43ef8359c0" sort_weight="1911.0"/>
   <concept_answer concept_answer_id="10109" concept_id="1783" answer_concept="1577" creator="1" date_created="2017-02-28 00:00:00.0" uuid="e186c5cb-33e6-4cab-91b5-108f1e433374" sort_weight="1912.0"/>
 
-  <concept concept_id="160434" retired="false" datatype_id="2" class_id="7" is_set="false" creator="1" date_created="2004-08-12 00:00:00.0" version="1.1" changed_by="1" date_changed="2017-28-02 05:52:00.0" retired_by="1" uuid="160434AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+  <concept concept_id="160434" retired="false" datatype_id="2" class_id="7" is_set="false" creator="1" date_created="2017-02-28 00:00:00.0" version="1.1" changed_by="1" date_changed="2017-28-02 05:52:00.0" retired_by="1" uuid="160434AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
   <concept_name concept_id="160434" name="Taking Co-trimoxazole, preventive therapy" locale="en" creator="1" date_created="2017-02-28 00:00:00.0" concept_name_id="200106" voided="false" voided_by="1" uuid="160434BBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
   <concept_answer concept_answer_id="10110" concept_id="160434" answer_concept="1065" creator="1" date_created="2017-02-23 00:00:00.0" uuid="661eb999-618d-4caa-ad40-f8676f2d9d58" sort_weight="1908.0"/>
   <concept_answer concept_answer_id="10111" concept_id="160434" answer_concept="1066" creator="1" date_created="2017-02-23 00:00:00.0" uuid="fc9ae0a0-c46c-46e5-b7d3-516a8fa34a69" sort_weight="1909.0"/>
 
-  <concept concept_id="164361" retired="false" datatype_id="6" class_id="7" is_set="false" creator="1" date_created="2004-08-12 00:00:00.0" version="1.1" changed_by="1" date_changed="2017-28-02 05:52:00.0" retired_by="1" uuid="164361AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+  <concept concept_id="164361" retired="false" datatype_id="6" class_id="7" is_set="false" creator="1" date_created="2017-02-28 00:00:00.0" version="1.1" changed_by="1" date_changed="2017-28-02 05:52:00.0" retired_by="1" uuid="164361AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
   <concept_name concept_id="164361" name="Cotrimoxazole prophylaxis start date" locale="en" creator="1" date_created="2017-02-28 00:00:00.0" concept_name_id="200107" voided="false" voided_by="1" uuid="164361BBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
 
-  <concept concept_id="159395" retired="false" datatype_id="3" class_id="5" is_set="false" creator="1" date_created="2004-08-12 00:00:00.0" version="1.1" changed_by="1" date_changed="2017-28-02 05:52:00.0" retired_by="1" uuid="159395AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+  <concept concept_id="159395" retired="false" datatype_id="3" class_id="5" is_set="false" creator="1" date_created="2017-02-28 00:00:00.0" version="1.1" changed_by="1" date_changed="2017-28-02 05:52:00.0" retired_by="1" uuid="159395AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
   <concept_name concept_id="159395" name="Clinical impression comment" locale="en" creator="1" date_created="2017-02-28 00:00:00.0" concept_name_id="200107" voided="false" voided_by="1" uuid="159395BBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
 
+  <concept concept_id="160541" retired="false" datatype_id="4" class_id="11" is_set="false" creator="1" date_created="2017-02-28 00:00:00.0" version="1.1" changed_by="1" date_changed="2017-28-02 05:52:00.0" retired_by="1" uuid="160541AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+  <concept_name concept_id="160541" name="Tuberculosis treatment program" locale="en" creator="1" date_created="2017-02-28 00:00:00.0" concept_name_id="200108" voided="false" voided_by="1" uuid="160541BBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+
+  <concept concept_id="159794" retired="false" datatype_id="4" class_id="11" is_set="false" creator="1" date_created="2017-02-28 00:00:00.0" version="1.1" changed_by="1" date_changed="2017-28-02 05:52:00.0" retired_by="1" uuid="159794AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+  <concept_name concept_id="160541" name="continuation continuation phase, tuberculosis treatment" locale="en" creator="1" date_created="2017-02-28 00:00:00.0" concept_name_id="200109" voided="false" voided_by="1" uuid="159794BBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+
+  <concept concept_id="159795" retired="false" datatype_id="4" class_id="11" is_set="false" creator="1" date_created="2017-02-28 00:00:00.0" version="1.1" changed_by="1" date_changed="2017-28-02 05:52:00.0" retired_by="1" uuid="159795AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+  <concept_name concept_id="159795" name="initial phase, tuberculosis treatment" locale="en" creator="1" date_created="2017-02-28 00:00:00.0" concept_name_id="200110" voided="false" voided_by="1" uuid="159795BBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+
+  <concept concept_id="159793" retired="false" datatype_id="4" class_id="11" is_set="false" creator="1" date_created="2017-02-28 00:00:00.0" version="1.1" changed_by="1" date_changed="2017-28-02 05:52:00.0" retired_by="1" uuid="159793AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+  <concept_name concept_id="159793" name="retreatment phase, tuberculosis" locale="en" creator="1" date_created="2017-02-28 00:00:00.0" concept_name_id="200111" voided="false" voided_by="1" uuid="159793BBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+
+  <concept concept_id="159792" retired="false" datatype_id="2" class_id="7" is_set="false" creator="1" date_created="2017-02-28 00:00:00.0" version="1" changed_by="1" date_changed="2017-02-28 00:00:00.0" retired_by="1" uuid="159792AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+  <concept_name concept_id="159792" name="tuberculosis treatment phase" locale="en" creator="1" date_created="2017-02-28 00:00:00.0" concept_name_id="200112" voided="false" voided_by="1" uuid="159792BBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+  <concept_answer concept_answer_id="10110" concept_id="159792" answer_concept="159794" creator="1" date_created="2017-02-28 00:00:00.0" uuid="722e4fe9-d078-41fe-bebe-8cd24012cc44" sort_weight="1908.0"/>
+  <concept_answer concept_answer_id="10111" concept_id="159792" answer_concept="159793" creator="1" date_created="2017-02-28 00:00:00.0" uuid="5eb51496-a6b4-4621-b3bd-4a24b7a86cad" sort_weight="1909.0"/>
+  <concept_answer concept_answer_id="10112" concept_id="159792" answer_concept="159795" creator="1" date_created="2017-02-28 00:00:00.0" uuid="3100a264-223c-4b06-bc2f-ed6750396d12" sort_weight="1910.0"/>
+
+  <concept concept_id="164088" retired="false" datatype_id="2" class_id="7" is_set="false" creator="1" date_created="2017-02-28 00:00:00.0" version="1" changed_by="1" date_changed="2017-02-28 00:00:00.0" retired_by="1" uuid="159792AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+  <concept_name concept_id="164088" name="Height for age status" locale="en" creator="1" date_created="2017-02-28 00:00:00.0" concept_name_id="200112" voided="false" voided_by="1" uuid="159792BBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+  <concept_answer concept_answer_id="10113" concept_id="164088" answer_concept="159794" creator="1" date_created="2017-02-28 00:00:00.0" uuid="f4dd6734-c927-493d-ac53-c774cc215096" sort_weight="1908.0"/>
+  <concept_answer concept_answer_id="10114" concept_id="164088" answer_concept="159793" creator="1" date_created="2017-02-28 00:00:00.0" uuid="b80d83ae-6761-4c51-a12f-c07ccdaff9e8" sort_weight="1909.0"/>
+  <concept_answer concept_answer_id="10115" concept_id="164088" answer_concept="159795" creator="1" date_created="2017-02-28 00:00:00.0" uuid="929236bd-8af7-41e5-a86a-84a3f8335c47" sort_weight="1910.0"/>
+
+  <concept concept_id="164085" retired="false" datatype_id="4" class_id="5" is_set="false" creator="1" date_created="2017-02-28 00:00:00.0" version="1.1" changed_by="1" date_changed="2017-28-02 05:52:00.0" retired_by="1" uuid="164085AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+  <concept_name concept_id="164085" name="Nutritional stunting" locale="en" creator="1" date_created="2017-02-28 00:00:00.0" concept_name_id="200113" voided="false" voided_by="1" uuid="164085BBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+
+  <concept concept_id="164086" retired="false" datatype_id="4" class_id="5" is_set="false" creator="1" date_created="2017-02-28 00:00:00.0" version="1.1" changed_by="1" date_changed="2017-28-02 05:52:00.0" retired_by="1" uuid="164086AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+  <concept_name concept_id="164086" name="Severe nutritional stunting" locale="en" creator="1" date_created="2017-02-28 00:00:00.0" concept_name_id="200114" voided="false" voided_by="1" uuid="164086BBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+
+  <concept concept_id="159792" retired="false" datatype_id="2" class_id="5" is_set="false" creator="1" date_created="2017-02-28 00:00:00.0" version="1" changed_by="1" date_changed="2017-02-28 00:00:00.0" retired_by="1" uuid="159792AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+  <concept_name concept_id="159792" name="tuberculosis treatment phase" locale="en" creator="1" date_created="2017-02-28 00:00:00.0" concept_name_id="200115" voided="false" voided_by="1" uuid="159792BBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+  <concept_answer concept_answer_id="10116" concept_id="159792" answer_concept="115" creator="1" date_created="2017-02-28 00:00:00.0" uuid="4bcdde52-faaf-46db-b5e8-f375bdc2f4d6" sort_weight="1908.0"/>
+  <concept_answer concept_answer_id="10117" concept_id="159792" answer_concept="164085" creator="1" date_created="2017-02-28 00:00:00.0" uuid="eedded64-4063-49a8-9f78-3c96d67afab1" sort_weight="1909.0"/>
+  <concept_answer concept_answer_id="10118" concept_id="1115" answer_concept="164086" creator="1" date_created="2017-02-28 00:00:00.0" uuid="6267dd22-c3be-4df7-bdeb-cb0793c076d6" sort_weight="1909.0"/>
+
+  <concept concept_id="162584" retired="false" datatype_id="2" class_id="7" is_set="false" creator="1" date_created="2017-02-28 00:00:00.0" version="1" changed_by="1" date_changed="2017-02-28 00:00:00.0" retired_by="1" uuid="162584AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+  <concept_name concept_id="162584" name="Weight for age z-score" locale="en" creator="1" date_created="2017-02-28 00:00:00.0" concept_name_id="200116" voided="false" voided_by="1" uuid="162584BBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+  <concept_answer concept_answer_id="10119" concept_id="162584" answer_concept="115" creator="1" date_created="2017-02-28 00:00:00.0" uuid="d3f00cf2-7ddf-450b-85ff-54ae1c42604c" sort_weight="1908.0"/>
+  <concept_answer concept_answer_id="10120" concept_id="162584" answer_concept="99271" creator="1" date_created="2017-02-28 00:00:00.0" uuid="53ce160c-bf00-447e-9351-e320466f9b9d" sort_weight="1909.0"/>
+  <concept_answer concept_answer_id="10121" concept_id="162584" answer_concept="99272" creator="1" date_created="2017-02-28 00:00:00.0" uuid="6c8cf0eb-a5ad-4303-8141-375ab4cba2dc" sort_weight="1910.0"/>
 
 </dataset>
