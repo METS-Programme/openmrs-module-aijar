@@ -40,21 +40,61 @@
             min-width: 20%;
         }
 
-        .row {
-            width: 100%;
-            float: left;
-            display: inline-flex;
-            clear: both;
+		fieldset{
+			width:97%;
+			margin:0 0 30px 0
+		}
+		
+		fieldset legend{
+			font-weight:600;
+		}
+
+		fieldset table {
+			width:100%;
+			margin: 0px;
+            margin: 20px 0px;
+
+		}
+
+        fieldset table td {
+            background: #FFFFFF;
+            color: #404040;
+
+            width: 25%;
+            vertical-align: top;
         }
 
-        .row .row-col2 {
-            float: left;
-            width: 50%;
+        fieldset table th, fieldset table td {
+            border: 1px solid #C7C7C7;
+            min-width: 10%;
         }
 
-        table th, table td {
+        fieldset table th, fieldset table td {
             border: 1px solid #AFAFAF;
         }
+
+		fieldset table td > p {
+			margin: 0px;
+		}
+
+		fieldset table td input:text {
+			width: 100%;
+		}
+
+		fieldset table td label {
+			padding: 0px 10px 0 0;
+		}
+				
+		select.hfe-hours, select.hfe-minutes, select.hfe-seconds {
+			 width: 28px;
+			 min-width: 65px;
+			 float: left
+		}
+		
+		fieldset table#tb-results td{
+			width:20%;
+		}
+
     </style>
 
 	<script type="text/javascript">
@@ -119,50 +159,9 @@
 		
 			const TRANSFER_IN_FROM_FIELD = ''
 		
-			var $transferInFromField = jq(TRANSFER_IN_FROM_FIELD);
-			var $transferInUnitTbNumberField = getField('transfer-in-unit-tb-number.value');
-			var $onCptField = jq('#on-cpt').find('input');
-			var $cptStartDateField = getField('cpt-start-date.value');
-			var $onArtField = jq('#on-art').find('input');
-			var $artStartDateField = getField('art-start-date.value');
-			var $artNumberField = getField('art-number.value');
 			var $muacColorCodeField = jq('#muac-color-code').find('input');
 			var $inrNumberField = jq('#inr-number').find('input');
-			var $treatmentOutcomeField = getField('treatment-outcome.value');
-			var $transferOutToField = getField('transfer-out-to.value');
-			var $noOfChildrenInContactField = getField('no-of-children-in-contact.value');
-			var $noOfChildrenInContactOnIptField = getField('no-of-children-in-contact-n-ipt.value');
 			var $muacSection = ('#muac');
-			var patientAge = <lookup expression="$patient.age" />;
-		
-			var transferInFromChange = function() {
-				var transferInFromValue = getValue('transfer-in-from.value');
-				if (transferInFromValue == '') {
-					common.disableField($transferInUnitTbNumberField);
-				} else {
-					common.enableField($transferInUnitTbNumberField);
-				}
-			};  
-			
-			var onCptChange = function() {
-				var onCptValue = getValue('on-cpt.value');
-				if (onCptValue == YES_CONCEPT_ID) {
-					common.enableField($cptStartDateField);
-				} else {
-					common.disableField($cptStartDateField);
-				}
-			};  
-		
-			var onArtChange = function() {
-				var onArtValue = getValue('on-art.value');
-				if (onArtValue == YES_CONCEPT_ID) {
-					common.enableField($artStartDateField);
-					common.enableField($artNumberField);
-				} else {
-					common.disableField($artStartDateField);
-					common.disableField($artNumberField);
-				}
-			};
 		
 			var muacColorCodeChange = function() {
 				var muacColorCodeValue = getValue('muac-color-code.value');
@@ -173,87 +172,9 @@
 				}		
 			};
 		
-			var treatmentOutcomeChange = function() {
-				var treatmentOutcomeValue = getValue('treatment-outcome.value');
-				if (treatmentOutcomeValue == TRANSFER_OUT_CONCEPT_ID) {
-					common.enableField($transferOutToField);
-				} else {
-					common.disableField($transferOutToField);
-				}		
-			};
-		
-			var noOfChildrenInContactChange = function() {
-				var noOfChildrenInContactValue = jq('no-of-children-in-contact.value');
-				var noOfChildrenInContactOnIptValue = jq('no-of-children-in-contact-on-ipt.value');
-				
-				if (noOfChildrenInContactValue &lt; noOfChildrenInContactOnIptValue) {
-					getField('no-of-children-in-contact-on-ipt.error').html('Number of children in contact cannot be less than Number of children in contact on IPT');
-				} else {
-					getField('no-of-children-in-contact-on-ipt.error').html('');
-				} 				
-			};
-		
-			var childrenSectionToggle = function() {
-				if (patientAge &gt;> 6 &amp;&amp; patientAge &lt; = 180) {
-					common.enableField($muacSection.find('input,select'));
-				} else {
-					common.disableField($muacSection.find('input,select'));
-				}
-		
-			};
-		
-			var noOfChildrenValidate = function() {
-				var noOfChildrenInContactValue = jq('no-of-children-in-contact.value');
-				var noOfChildrenInContactOnIptValue = jq('no-of-children-in-contact-on-ipt.value');
-				if (noOfChildrenInContactValue &lt; noOfChildrenInContactOnIptValue) {
-					getField('no-of-children-in-contact-on-ipt.error').html('Number of children in contact cannot be less than Number of children in contact on IPT');
-					return false;
-				} else {
-					return true;
-				} 
-			};
-		
-			var onCptValidate = function() {
-				if (getValue('on-cpt.value') == YES_CONCEPT_ID &amp;&amp; getValue('cpt-start-date'.value) == '') {
-					getField('cpt-start-date.error').html('CPT start date is required');
-					return false;
-				} else {
-					return true;
-				}
-			};
-		
-			var onArtValidate = function() {
-				if (getValue('on-art.value') == YES_CONCEPT_ID &amp;&amp; getValue('art-start-date'.value) == '') {
-					getField('art-start-date.error').html('ART start date is required');
-					return false;
-				} else {
-					return true;
-				}
-			};
-		
-			var transferOutValidate = function() {
-				if (getValue('treatment-outcome.value') == TRANSFER_OUT_CONCEPT_ID &amp;&amp; getValue('transfer-out-to'.value) == '') {
-					getField('transfer-out-to.error').html('The Transfer out to Unit required');
-					return false;
-				} else {
-					return true;
-				}
-			};
-		
-			$transferInFromField.change(transferInFromChange);
-			$onCptField.change(onCptChange());
-			$onArtField.change(onArtChange());
 			$muacColorCodeField.change(muacColorCodeChange());
-			$treatmentOutcomeField.change(treatmentOutcomeChange);
-			$noOfChildrenInContactField.change(noOfChildrenInContactChange());
-			$noOfChildrenInContactOnIptField.change(noOfChildrenInContactOnIptChange());
 		
-			transferInFromChange();
-			onCptChange();
-			onArtChange();
-			muacColorCodeChange()
-			treatmentOutcomeChange();
-			childrenSectionToggle();
+			muacColorCodeChange();
 		
 			beforeSubmit.push(function(){
 				var valid = true;
@@ -321,41 +242,39 @@
 <legend>Results of sputum and other examinations</legend>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 			  <tr>
-			    <td style="width:25%"><p>Follow up visit date:</p>
+			    <td ><p>Follow up visit date:</p>
 		        <p><encounterDate default="today" disallowMultipleEncountersOnDate="block"/> </p></td>
-			    <td style="width:25%">&nbsp;</td>
+			    <td ></td>
 			    <td></td>
 			    <td></td>
     </tr>
 			  <tr>
-				<td style="width:25%"><p>Sputum smear results</p>
-			    <p><obs conceptId="307" answerConceptIds="1118,664,1362,1363,1364" answerLabels="ND - Not Done, NEG- Negative, +, ++, +++" style="dropdown" answerSeparator="&lt;br/&gt;"/>
-			    Missing other options </p></td>
-				<td style="width:25%"><p>Examination Date</p>
+				<td ><p>Sputum smear results</p>
+			    <p><obs conceptId="307" answerConceptIds="1118,664,1362,1363,1364,1365,163417,163418" answerLabels="ND - Not Done, NEG- Negative, 1AFB/100, 2AFB/100, 3AFB/100, 4AFB/100,5AFB/100,6AFB/100" style="dropdown" answerSeparator="&lt;br/&gt;"/>
+			    Missing (7AFB/100,8AFB/100,9AFB/100) </p></td>
+				<td ><p>Examination Date</p>
 			    <p><obs conceptId="99392" /></p></td>
-				<td style="width:25%"><p>DST Results</p>
+				<td ><p>DST Results</p>
 			    <p><obs conceptId="159984" style="dropdown"/>
-			    Missing - Responses not very clear </p></td>
-			    <td style="width:25%"><p>Date of DST results </p>
+			    Missing Responses </p></td>
+			    <td ><p>Date of DST results </p>
 		        <p>Missing</p></td>
-				<td></td>
-				<td></td>
 			  </tr>
-			</table>
+  </table>
 </fieldset>
 
 <fieldset>
 <legend>MUAC/z-score</legend>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" id="muac">
   <tr>
-    <td colspan="2" valign="top" style="width:25%"><p>Weight for age z-score <obs conceptId="1854" answerConceptIds="115,99271,99272" answerLabels="N-Normal,MAM-Moderate Acute Mulnutrition,SAM-Severe Acute Mulnutrition" style="radio" answerSeparator="&lt;br/&gt;" /></p>
-      <p>Confirm ugandaemr equivalent (Missing) </p></td>
-    <td colspan="2" valign="top" style="width:25%"><p>Height/Length for age z-score<obs conceptId="164088" answerConceptIds="1115,164085" answerLabels="N-Normal,S-Stunting" /></p>
-      <p>confirm ugamdaemr equivalent (Missing) </p></td>
+    <td colspan="2" valign="top" ><p>Weight for age z-score <obs conceptId="1854" answerConceptIds="115,99271,99272" answerLabels="N-Normal,MAM-Moderate Acute Mulnutrition,SAM-Severe Acute Mulnutrition" style="radio" answerSeparator="&lt;br/&gt;" /></p>
+    </td>
+    <td colspan="2" valign="top" ><p>Height/Length for age z-score<obs conceptId="164088" answerConceptIds="1115,164085" answerLabels="N-Normal,S-Stunting" /></p>
+      </td>
 	<td valign="top"><p>MUAC Colour Code 
 	    <obs conceptId="99030" style="radio" answerConceptIds="99028,99027,99029" id="muac-color-code" /></p>
 	  </td>
-    <td valign="top" style="width:25%"><p>INR No</p>
+    <td valign="top" ><p>INR No</p>
       <p><span id="inr-number"><patient  field="identifier" identifierTypeId="d4b21726-e908-4b1a-abab-b5f87cd01c18" id="inr-no" required="true" /></span></p></td>
   </tr>
 </table>
@@ -363,26 +282,41 @@
 
 <fieldset>
 <legend>Issue of  anti-TB drug (Missing grouping concept)</legend>
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="width:100%" id="tb-drugs">
+		  <tr>
+		    <th >  TB Treatment phase    </th>    
+		    <th ><p>Name of drug</p>
+	        </th>
+		    <th ><p>Date Dispensed</p>
+	        </th>
+		    <th > <p>No. of days for which Treatment is dispensed </p>
+	        </th>
+		     
+		    <th align="center"></th>
+      </tr>
+
 <repeat>
 	<template>
-		<obsgroup groupingConceptId="163711">
+<!--		<obsgroup groupingConceptId="163711"> --> 
 		  <tr>
-			<td style="width:25%"><p>TB Treatment phase </p>
-			  <p>Missing</p></td>
-			<td style="width:25%"><p>Name of drug</p>
-			  <p><obs conceptId="1282" answerConceptSetIds="160021" />
-			  Missing</p></td>
-			<td style="width:25%">
-			  <p>Date Dispensed</p>
-			  <p>Missing </p></td>
+			<td ><p> <obs conceptId="159792" answerConceptSetIds="159794,159795" answerConceptIds="Initial, Retreatment" style="radio"/></p></td>
+			<td ></td>
+			<td ></td>
 
-			<td style="width:25%"><p>No. of days for which Treatment is dispensed </p>
-		    <p>Missing</p></td>
+			<td ></td>
+		    <td align="center"><a href="#" style="text-decoration:none;">+ Add</a> </td>
 		  </tr>
-		</obsgroup>
+<!--		</obsgroup> -->
 	</template>
-	<render concept=""/>
+	<render/>
+	<render/>
+	<render/>
+	<render/>
+	<render/>
+	<render/>
+	<render/>
+	<render/>
+	<render/>
 </repeat>
 </table>
 </fieldset>
