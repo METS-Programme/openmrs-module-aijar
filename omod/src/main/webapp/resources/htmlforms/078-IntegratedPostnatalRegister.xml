@@ -145,9 +145,6 @@
                         <p>
 
                             Missing
-                            <!--<obs conceptId="Missing" answerConceptIds="Missing"-->
-                            <!--answerLabels="6 Hours,6 Days, 6 Weeks, 6 Months"-->
-                            <!--style="radio"/>-->
                         </p>
                     </td>
                 </tr>
@@ -286,16 +283,14 @@
                                          required="true"/>
                             </p>
                         </td>
-                        <td>
+                        <td colspan="2">
                             <p>
                                 <label>Routine Administration</label>
-                            </p>
+                                <obs conceptId="162394" answerConceptId="99318" answerLabel="Iron"/>
+                                <obs conceptId="162394" answerConceptId="99319" answerLabel="Folic Acid"/>
+                                <obs conceptId="162394" answerConceptId="162933" answerLabel="Vitamin A"/>
+                                <obs conceptId="162394" answerConceptId="99351" answerLabel="CTX"/>
 
-                        </td>
-                        <td>
-                            <p>
-                                <obs conceptId="162394" answerConceptIds="99318,99319,162933,99351"
-                                     answerLabel="Iron, Folic Acid,Vitamin A, CTX" style="checkbox"/>
                             </p>
                         </td>
                     </tr>
@@ -490,11 +485,11 @@
                     <td>
                         <p>
                             <label>Immunization</label>
-                        </p>
-                        <p>
-                            <obs conceptId="162839" answerConceptIds="886,162831,781,99356,163014"
-                                 answerLabels="BCG,OPV,DPT-HepB+Hi,Vitamin A, PCV"
-                                 style="checkbox"/>
+                            <obs conceptId="162839" answerConceptId="886" answerLabel="BCG"/>
+                            <obs conceptId="162839" answerConceptId="162831" answerLabel="OPV"/>
+                            <obs conceptId="162839" answerConceptId="781" answerLabel="DPT"/>
+                            <obs conceptId="162839" answerConceptId="99356" answerLabel="Vitamin A"/>
+                            <obs conceptId="162839" answerConceptId="163014" answerLabel="PCV"/>
                         </p>
                     </td>
 
