@@ -11,140 +11,6 @@
           formDisplayStyle="Standard"
           formLabel="Maternity">
 
-	<style>
-	    form label, .form label {
-	        float: left;
-	        padding: 0px 10px 0 0;
-	    }
-
-	    form input[type="checkbox"], form input[type="radio"], .form input[type="checkbox"], .form input[type="radio"] {
-	        margin: 10px 15px;
-	    }
-
-	    table td {
-	        background: #FFFFFF;
-	        color: #404040;
-	    }
-
-	    form select, .form select {
-	        min-width: 0px;
-	    }
-
-	    form input, form select, form textarea, form ul.select, .form input, .form select, .form textarea, .form ul.select {
-	        background-color: #FBFBFB;
-	        border: 1px solid #CEC9C9;
-	        border-radius: 5px;
-	        margin-bottom: 10px;
-	        padding: 10px;
-	        min-width: 50%;
-	    }
-
-	    .row {
-	        width: 100%;
-	        float: left;
-	        display: inline-flex;
-	        clear: both;
-	    }
-
-	        .row .row-col2 {
-	            float: left;
-	            width: 50%;
-	        }
-
-	    table th, table td {
-	        border: 1px solid #C7C7C7;
-	        min-width: 10%;
-	    }
-
-	    table {
-	        margin: 20px 0px;
-	    }
-
-	    fieldset {
-	        width: 97%;
-	        margin: 0 0 30px 0;
-	    }
-
-	        fieldset legend {
-	            font-weight: 600;
-	        }
-
-	        fieldset table {
-	            width: 100%;
-	            margin: 0px;
-	        }
-
-	            fieldset table td {
-	                width: 25%;
-	                vertical-align: top;
-	            }
-
-	                fieldset table td > p {
-	                    margin: 0px;
-	                }
-
-	                fieldset table td input:text {
-	                    width: 100%;
-	                }
-
-	                fieldset table td label {
-	                    padding: 5px 10px 0 0;
-	                    float: left;
-	                }
-
-	            fieldset table td, fieldset table tr {
-	                border: 0 !important;
-	            }
-
-	        fieldset input[type=text], fieldset select {
-	            float: left;
-	            clear: left;
-	            max-width: 50%;
-	        }
-
-	        fieldset span.has-comment input[type=text] {
-	            clear: none;
-	        }
-
-	        fieldset span.has-comment label {
-	            clear: left;
-	        }
-
-	            fieldset span.has-comment label:first-of-type {
-	                clear: none;
-	            }
-
-	        fieldset span.date-and-time input[type=text] {
-	            min-width: 40% !important;
-	        }
-
-	        fieldset span.required {
-	            float: left;
-	        }
-
-		    select.hfe-hours, select.hfe-minutes, select.hfe-seconds {
-		        width: 28px;
-		        min-width: 65px;
-		        float: left;
-		        clear: none;
-		        /*position: relative;
-		    top: -58px;
-		    left: 244px;*/
-		    }
-
-		    fieldset span.error {
-		    	float: left;
-				border: 2px dotted #fb0303;
-				color: #fb0303;
-		    }
-
-		    fieldset input.error {
-			    background-color: #ffffff;
-			    border: 1px solid #0808fd;
-			    border-radius: 0;
-		    }
-	</style>
-
 	<script type="text/javascript">
 	    jQuery(document).ready(function(jq){
 	        const VIRAL_LOAD_RESULTS_CONCEPT_ID = 1305;
@@ -168,15 +34,15 @@
 	        var $iycfField = jq(IYCF_FIELD).find('input');
 	        var $arvsToMotherField = getField('arvs-to-mother.value');
 
-	        var common = {
-	            disableField: function(args) {
+	        var fieldHelper = {
+	            disable: function(args) {
 	                if (args instanceof jQuery) {
 	                    args.attr('disabled', true);
 	                } else if (typeof args === 'string' ){
 	                    jq(args).attr('disabled', true);
 	                }
 	            },
-	            enableField: function(args) {
+	            enable: function(args) {
 	                if (args instanceof jQuery) {
 	                    args.removeAttr('disabled');
 	                } else if (typeof args === 'string' ){
@@ -204,20 +70,19 @@
 	            var $viralLoadResults = getValue('viral-load-results.value');
 	            var $viralLoadField = getField('viral-load.value');
 
-	            common.removeReadonly($viralLoadField);
-	            common.enableField($viralLoadField);
+	            fieldHelper.removeReadonly($viralLoadField);
+	            fieldHelper.enable($viralLoadField);
 	            if ($viralLoadResults == VIRAL_LOAD_NOT_DETECTED_CONCEPT_ID) { //if viral load quantitive is 'not detected' set a viral load count of 1
 	                $viralLoadField.val(1);
-	                common.makeReadonly($viralLoadField);
+	                fieldHelper.makeReadonly($viralLoadField);
 	            } else if($viralLoadResults == VIRAL_LOAD_DETECTED_CONCEPT_ID) { //if viral load quantitive is 'detected' allow for entry of viral load count
 	                $viralLoadField.val("");
 	            } else if ($viralLoadResults == VIRAL_LOAD_SAMPLE_REJECTED_CONCEPT_ID) { //if viral load quantitive is 'rejected' clear viral load count field
 	                $viralLoadField.val("");
-	                common.disableField($viralLoadField);
-	                $viralLoadField.attr('disabled', true);
+	                fieldHelper.disable($viralLoadField);
 	            } else {
 	                $viralLoadField.val("");
-	                common.disableField($viralLoadField);
+	                fieldHelper.disable($viralLoadField);
 	            }
 	        };
 
@@ -226,15 +91,15 @@
 	            var $hivInformationSection = jq(HIV_INFORMATION_SECTION);
 	            var $arvsAdministeredToBabyField = jq(ARVS_ADMINISTERED_TO_BABY_FIELD).find('input');
 	            if ($hivStatus == HIV_POSITIVE_CONCEPT_ID) {
-	                common.enableField($hivInformationSection.find('input'));
-	                common.enableField($arvsAdministeredToBabyField);
-	                common.enableField($hivInformationSection.find('input,select'));
+	                fieldHelper.enable($hivInformationSection.find('input'));
+	                fieldHelper.enable($arvsAdministeredToBabyField);
+	                fieldHelper.enable($hivInformationSection.find('input,select'));
 	            } else {
 	                $hivInformationSection.find('input,select').each(function() {
 	                    if (jq(this).attr('id') != $hivStatusField.attr('id')) {
-	                        common.disableField(jq(this));
+	                        fieldHelper.disable(jq(this));
 	                    } else {
-	                        common.enableField(jq(this));
+	                        fieldHelper.enable(jq(this));
 	                    }
 	                });
 	                $arvsAdministeredToBabyField.attr('disabled', true);
@@ -246,9 +111,9 @@
 	            var $iycf =  getValue('iycf.value');
 	            var $infantFeedingOptionField = getField('infant-feeding-option.value');
 	            if ($iycf == YES_CONCEPT_ID) {
-	                common.enableField($infantFeedingOptionField);
+	                fieldHelper.enable($infantFeedingOptionField);
 	            } else {
-	                common.enableField($infantFeedingOptionField);
+	                fieldHelper.enable($infantFeedingOptionField);
 	            }
 	        };
 
@@ -256,9 +121,9 @@
 	            var $arvsToMother =  getValue('arvs-to-mother.value');
 	            var $preArtNumberField = jq(PRE_ART_NUMBER_FIELD).find('input:text');
 	            if ($arvsToMother != '') {
-	                common.enableField($preArtNumberField);
+	                fieldHelper.enable($preArtNumberField);
 	            } else {
-	                common.disableField($preArtNumberField);
+	                fieldHelper.disable($preArtNumberField);
 	            }
 	        };
 
@@ -268,9 +133,9 @@
 	            $othersField.each(function(){
 	                var $specifyField = jq(this).siblings('input[type=text]');
 	                if (jq(this).attr('checked') == 'checked') {
-	                    common.removeReadonly($specifyField);
+	                    fieldHelper.removeReadonly($specifyField);
 	                } else {
-	                    common.makeReadonly($specifyField);
+	                    fieldHelper.makeReadonly($specifyField);
 	                    $specifyField.val('');
 	                }
 	            });
@@ -358,7 +223,6 @@
 	    }
 	</script>
 
-
   <div class="ai-page-frame">
     <div class="headers" style="text-align: center;">
       <h3 style="background: #FFFF7D; padding: 10px;">INTEGRATED MATERNITY REGISTER (HMIS FORM 072)</h3>
@@ -370,7 +234,6 @@
           <td>
             <p>
               <label>Date</label>
-              <br/>
               <encounterDate default="today" disallowMultipleEncountersOnDate="block" />
               <span style="display: none;">
                 <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117" order="629d78e9-93e5-43b0-ad8a-48313fd99117" />
@@ -381,14 +244,12 @@
           <td>
             <p>
               <label>IPD Number</label>
-              <br/>
               <patient field="identifier" identifierTypeId="a6217c17-5012-4514-b9f2-5d02d3d04c44" required="true" />
             </p>
           </td>
           <td>
             <p>
               <label>ANC Number</label>
-              <br/>
               <patient field="identifier" identifierTypeId="b0cc255e-ef57-4266-839e-0df7f5099eb9"
                        required="true" />
             </p>
@@ -396,7 +257,6 @@
           <td>
             <p>
               <label>REF Number</label>
-              <br/>
               <obs conceptId="c9159851-557b-4c09-8942-65b7989aa20a" />
             </p>
           </td>
@@ -405,21 +265,18 @@
           <td>
             <p>
               <label>Gravida</label>
-              <br/>
               <obs conceptId="dcc39097-30ab-102d-86b0-7a5022ba4115" />
             </p>
           </td>
           <td>
             <p>
               <label>Parity</label>
-              <br/>
               <obs conceptId="1053AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
             </p>
           </td>
           <td>
             <p>
               <label>Weeks of gestation</label>
-              <br/>
               <obs conceptId="8c40b914-10a0-4f77-92ba-db242973748f" />
             </p>
           </td>
@@ -487,15 +344,12 @@
           <td>
             <p>
               <label>HIV Status</label>
-              <br/>
-
               <obs conceptId="dce0e886-30ab-102d-86b0-7a5022ba4115" answerConceptIds="dcdf4241-30ab-102d-86b0-7a5022ba4115,dcdf4653-30ab-102d-86b0-7a5022ba4115,1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="dropdown" id="hiv-status" />
             </p>
           </td>
           <td>
             <p>
               <label>WHO Clinical Stage</label>
-              <br/>
               <obs conceptId="dcdff274-30ab-102d-86b0-7a5022ba4115"
                    answerConceptIds="dcda2bc2-30ab-102d-86b0-7a5022ba4115,dcda3251-30ab-102d-86b0-7a5022ba4115,dcda3663-30ab-102d-86b0-7a5022ba4115,dcda3a80-30ab-102d-86b0-7a5022ba4115,dd25e735-30ab-102d-86b0-7a5022ba4115,dd2666a5-30ab-102d-86b0-7a5022ba4115,dd266d64-30ab-102d-86b0-7a5022ba4115,dd269c18-30ab-102d-86b0-7a5022ba4115"
                    answerLabels="1,2,3,4,T1,T2,T3,T4" style="dropdown" />
@@ -504,7 +358,6 @@
           <td>
             <p>
               <label>CD4 Date</label>
-              <br/>
               <obs conceptId="159376AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
             </p>
           </td>
@@ -540,7 +393,6 @@
           <td>
             <p>
               <label>eMTCT Code - Woman</label>
-              <br/>
               <obs conceptId="d5b0394c-424f-41db-bc2f-37180dcdbe74" answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465" answerLabels="C,TR,TRR"
                                       style="dropdown" />
             </p>
@@ -548,7 +400,6 @@
           <td>
             <p>
               <label>eMTCT Code - Partner</label>
-              <br/>
               <obs conceptId="62a37075-fc2a-4729-8950-b9fae9b22cfb" answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465" answerLabels="C,TR,TRR"
                                         style="dropdown" />
             </p>
@@ -565,7 +416,6 @@
           <td>
             <p>
               <label>Mode of delivery</label>
-              <br/>
               <obs conceptId="dcc3ac63-30ab-102d-86b0-7a5022ba4115" answerConceptIds="dc9aee12-30ab-102d-86b0-7a5022ba4115,dc9af278-30ab-102d-86b0-7a5022ba4115,dc9af8cf-30ab-102d-86b0-7a5022ba4115,5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                    answerLabels="SPONTANEOUS VAGINAL DELIVERY,CESAREAN SECTION,BREECH DELIVERY,OTHER NON-CODE" style="dropdown" />
             </p>
@@ -573,14 +423,12 @@
           <td>
             <p>
               <label>Date and time of delivery</label>
-              <br/>
               <obs conceptId="f9573837-6a9b-4f2f-9298-aecf27b15fb3" allowTime="true" class="date-and-time" />
             </p>
           </td>
           <td>
             <p>
               <label>Management of 3rd stage labour</label>
-              <br/>
               <obs conceptId="425458af-d1f7-40e4-a672-7d9e38aedb3c" answerConceptIds="e123d685-812a-43c3-bc05-db4e14d8c05c,eca9da28-31d3-4e6f-828d-441e9237b7a5,1c4323a3-6cc6-44d0-81ee-839014bca19c"
                    answerLabels="Ergometrine,Pitocin,Misoprostol" />
             </p>
@@ -588,7 +436,6 @@
           <td>
             <p>
               <label>Other treatment given</label>
-              <br/>
               <obs conceptId="0aea6828-2328-4038-9cd9-680dbdf29790" />
             </p>
           </td>
@@ -597,7 +444,6 @@
           <td>
             <p>
               <label>ARVs to mother</label>
-              <br/>
               <obs conceptId="35ae2043-a3b0-48de-8e22-05f377ac39a2" answerConceptIds="dc9b0596-30ab-102d-86b0-7a5022ba4115,dc800d9d-30ab-102d-86b0-7a5022ba4115,e85fd2ba-8285-4418-af98-750bdb4aa6b7,dc800980-30ab-102d-86b0-7a5022ba4115"
                    answerLabels="NA,NVP Only,AZT and NVP,AZT and 3TC" style="dropdown" id="arvs-to-mother" />
             </p>
@@ -605,7 +451,6 @@
           <td>
             <p>
               <label>Pre-ART number</label>
-              <br/>
               <span id="pre-art-number">
                 <patient field="identifier" identifierTypeId="e1731641-30ab-102d-86b0-7a5022ba4115"
                          required="false" />
@@ -626,7 +471,6 @@
           <td>
             <p>
               <label>Agpar score</label>
-              <br/>
               <obs conceptId="056ee92e-3104-4529-8f83-70580e0f4501" />
             </p>
           </td>
@@ -711,10 +555,9 @@
           <td>
             <p>
               <label>
-                Infant feeding option<br />
+                Infant feeding option
               </label>
-              <br/>
-              <obs conceptId="dc9a00a2-30ab-102d-86b0-7a5022ba4115" answerConceptIds="dcbd637e-30ab-102d-86b0-7a5022ba4115,40fdb5b6-e8ac-424d-988c-f2f2937348db,dcd5487d-30ab-102d-86b0-7a5022ba4115" answerLabels="EBF-Exclusive Breast Feeding, RP-Replacement feeding,MF-Mixed feeding" id="infant-feeding-option" style="dropdown" answerSeparator="&lt;/br&gt;" />
+              <obs conceptId="dc9a00a2-30ab-102d-86b0-7a5022ba4115" answerConceptIds="dcbd637e-30ab-102d-86b0-7a5022ba4115,40fdb5b6-e8ac-424d-988c-f2f2937348db,dcd5487d-30ab-102d-86b0-7a5022ba4115" answerLabels="EBF-Exclusive Breast Feeding, RP-Replacement feeding,MF-Mixed feeding" id="infant-feeding-option" style="dropdown" />
             </p>
           </td>
         </tr>
@@ -795,7 +638,6 @@
           <td>
             <p>
               <label>Condition of mother on discharge</label>
-              <br/>
               <obs conceptId="e87431db-b49e-4ab6-93ee-a3bd6c616a94" answerConceptIds="3f02ee62-613d-4eba-88bc-d0cd66b863c5,17fcfd67-a1a2-4361-9915-ad4e81a7a61d,6e4f1db1-1534-43ca-b2a8-5c01bc62e7ef,dd27a783-30ab-102d-86b0-7a5022ba4115,6d15f334-2130-47a8-b5a2-3b26b6a65c69,792fe1f6-262e-4266-9226-63fe74268279,4095ac37-4955-4718-8e3e-b6f6fb55cf6d,862b583e-97ba-4bef-8997-5a460449a87a"
                    answerLabels="D - Woman discharged alive,DD- Woman died,R - If the woman ran away or left before being discharged,T- Woman transferred to another facility,DF - Woman discharged alive with fistula,DDF - Woman died with fistula,RF- Woman ran away with fistula,TF - Woman transferred with fistula" style="dropdown" />
             </p>
@@ -803,7 +645,6 @@
           <td>
             <p>
               <label>Condition of baby on discharge</label>
-              <br/>
               <obs conceptId="a5638850-0cb4-4ce8-8e87-96fc073de25d" answerConceptIds="fda5ad21-6ba4-4526-a0f3-ea1269d43422,7a15616a-c12a-44fc-9a11-553639128b69,ab3a7679-f5ee-48d6-b690-f55a1dfe95ea,eb7041a0-02e6-4e9a-9b96-ff65dd09a416,23ac7575-f0ea-49a5-855e-b3348ad1da01"
                    answerLabels="MSB - Macerated still birth,FSB - Fresh still birth,NND - Immediate neonatal death (Death within 24 hours),AL - Alive baby,BDF - Baby born with defect" />
             </p>
@@ -811,14 +652,12 @@
           <td>
             <p>
               <label>Delivered by</label>
-              <br />
               <encounterProvider role="Midwife" type="autocomplete"/>
             </p>
           </td>
           <td>
             <p>
               <label>PNC at 6H for mother</label>
-              <br/>
               <obs conceptId="f0d21d70-986e-43ed-b72b-98c693c15f84" />
             </p>
           </td>
@@ -827,21 +666,18 @@
           <td>
             <p>
               <label>PNC at 6H for child</label>
-              <br/>
               <obs conceptId="93ca1215-5346-4fde-8905-84e930d9f1c1" />
             </p>
           </td>
           <td>
             <p>
               <label>Date of discharge</label>
-              <br/>
               <obs conceptId="ff31a419-0eb1-45fc-920a-77b4a3481e00" />
             </p>
           </td>
           <td>
             <p>
               <label>Name of person discharging</label>
-              <br />
               <encounterProviderAndRole count="1" encounterRole="1" autocompleteProvider="false"/>
             </p>
           </td>
