@@ -122,15 +122,27 @@
 	            float: left;
 	        }
 
-	    select.hfe-hours, select.hfe-minutes, select.hfe-seconds {
-	        width: 28px;
-	        min-width: 65px;
-	        float: left;
-	        clear: none;
-	        /*position: relative;
-	    top: -58px;
-	    left: 244px;*/
-	    }
+		    select.hfe-hours, select.hfe-minutes, select.hfe-seconds {
+		        width: 28px;
+		        min-width: 65px;
+		        float: left;
+		        clear: none;
+		        /*position: relative;
+		    top: -58px;
+		    left: 244px;*/
+		    }
+
+		    fieldset span.error {
+		    	float: left;
+				border: 2px dotted #fb0303;
+				color: #fb0303;
+		    }
+
+		    fieldset input.error {
+			    background-color: #ffffff;
+			    border: 1px solid #0808fd;
+			    border-radius: 0;
+		    }
 	</style>
 
 	<script type="text/javascript">
@@ -270,7 +282,10 @@
 
 	            if($viralLoadResultsQualitative == VIRAL_LOAD_DETECTED_CONCEPT_ID &amp;&amp; $viralLoadResultsQuantitative == '') {
 	                getField('viral-load.error').html('Invalid viral load results').show();
+	                getField('viral-load.value').addClass('error');
 	                return false;
+	            } else {
+	            	getField('viral-load.value').removeClass('error');
 	            }
 
 	            return true;
@@ -283,9 +298,11 @@
 		            var $errorField = jq(this).siblings('span.error');
 		            if (jq(this).attr('checked') == 'checked' &amp;&amp;  $specifyField.val() == '') {
 		                $errorField.html('Please specify').show();
+		                $specifyField.addClass('error');
 		                valid = false;
 		            } else {
 		            	$errorField.html('').hide();
+		            	$specifyField.removeClass('error');
 		            }
 
 		        });
@@ -308,12 +325,20 @@
 
 	        beforeSubmit.push(function(){
 	            var valid = true;
+	            var $errorMessageSpan = js('#error-message');
+
 	            if (!viralLoadResultsValidate()) {
 	                valid = false;
 	            }
 
 	            if (!isOtherSelectedAndSpecified()){
 	            	valid = false;
+	            }
+
+	            if (valid) {
+	            	$errorMessageSpan.hide();
+	            } else {
+	            	$errorMessageSpan.show();
 	            }
 
 	            return valid;
@@ -826,7 +851,7 @@
     </fieldset>
     <section></section>
     <section>
-      <submit />
+      <submit /><span style="clear:none;float:none;margin:5px;display: none" class="error" id="error-message">You have errors in your form, please scroll up to see them.</span>
     </section>
   </div>
 </htmlform>
