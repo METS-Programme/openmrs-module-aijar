@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <htmlform formName="Form 096a - Health Unit TB Register - Follow up"
           formDescription="HMIS Form 096a - Health Unit TB Register - Follow up"
           formEncounterType="334bf97e-28e2-4a27-8727-a5ce31c7cd66"
@@ -5,98 +6,11 @@
           formVersion="1.0"
           formAddMetadata="yes"
           formUILocation="patientDashboard.visitActions"
-          formOrder="1"
+          formOrder="2"
           formIcon="icon-medkit"
           formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='8ab22b55-9a17-4121-bf08-6134a9a2439f'"
           formDisplayStyle="Standard"
           formLabel="Form 096a - Health Unit TB Register - Summary">
-    <style>
-
-        form label, .form label {
-            float: left;
-            padding: 0px 10px 0 0;
-        }
-
-        form input[type="checkbox"], form input[type="radio"], .form input[type="checkbox"], .form input[type="radio"] {
-            margin: 10px 15px;
-        }
-
-        table td {
-            background: #FFFFFF;
-            color: #404040;
-        }
-
-        form select, .form select {
-            min-width: 0px;
-        }
-
-        form input, form select, form textarea, form ul.select, .form input, .form select, .form textarea, .form
-        ul.select {
-            background-color: #FBFBFB;
-            border: 1px solid #CEC9C9;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            padding: 10px;
-            min-width: 20%;
-        }
-
-		fieldset{
-			width:97%;
-			margin:0 0 30px 0
-		}
-		
-		fieldset legend{
-			font-weight:600;
-		}
-
-		fieldset table {
-			width:100%;
-			margin: 0px;
-            margin: 20px 0px;
-
-		}
-
-        fieldset table td {
-            background: #FFFFFF;
-            color: #404040;
-
-            width: 25%;
-            vertical-align: top;
-        }
-
-        fieldset table th, fieldset table td {
-            border: 1px solid #C7C7C7;
-            min-width: 10%;
-        }
-
-        fieldset table th, fieldset table td {
-            border: 1px solid #AFAFAF;
-        }
-
-		fieldset table td > p {
-			margin: 0px;
-		}
-
-		fieldset table td input:text {
-			width: 100%;
-		}
-
-		fieldset table td label {
-			padding: 0px 10px 0 0;
-		}
-				
-		select.hfe-hours, select.hfe-minutes, select.hfe-seconds {
-			 width: 28px;
-			 min-width: 65px;
-			 float: left
-		}
-		
-		fieldset table#tb-results td{
-			width:20%;
-		}
-
-    </style>
-
 	<script type="text/javascript">
 		/*
 		Transfer in Unit-TB Number	Only applicable if Transfer In - done - 
@@ -215,111 +129,149 @@
 	
 	</script>
 
-    <div class="ai-page-frame">
-        <div class="headers" style="text-align: center;">
-            <h3 style="background: #FFFF7D; padding: 10px;">096a - Health Unit TB Register - Follow up Page</h3>
-        </div>
-      <section>
-            <table>
-                <tbody>
-                <tr>
-                    <td>   
-                     <span style="display: none;">
-                        <encounterLocation default="8ab22b55-9a17-4121-bf08-6134a9a2439f"
-                                           order="8ab22b55-9a17-4121-bf08-6134a9a2439f"/>
-                      </span>
-                    </td>
-                    <td>
-                        <label><span class="required">*</span> Provider:</label>
-                        <encounterProvider role="Provider" style="autocomplete" required="required"/>
-                    </td>
-                </tr>
-
-                </tbody>
-            </table>
-      </section>
-<fieldset>
-<legend>Results of sputum and other examinations</legend>
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-			  <tr>
-			    <td ><p>Follow up visit date:</p>
-		        <p><encounterDate default="today" disallowMultipleEncountersOnDate="block"/> </p></td>
-			    <td ></td>
-			    <td></td>
-			    <td></td>
-    </tr>
-			  <tr>
-				<td ><p>Sputum smear results</p>
-			    <p><obs conceptId="307" answerConceptIds="1118,664,1362,1363,1364,1365,163417,163418" answerLabels="ND - Not Done, NEG- Negative, 1AFB/100, 2AFB/100, 3AFB/100, 4AFB/100,5AFB/100,6AFB/100" style="dropdown" answerSeparator="&lt;br/&gt;"/>
-			    Missing (7AFB/100,8AFB/100,9AFB/100) </p></td>
-				<td ><p>Examination Date</p>
-			    <p><obs conceptId="99392" /></p></td>
-				<td ><p>DST Results</p>
-			    <p><obs conceptId="159984" style="dropdown"/>
-			    Missing Responses </p></td>
-			    <td ><p>Date of DST results </p>
-		        <p>Missing</p></td>
-			  </tr>
-  </table>
-</fieldset>
-
-<fieldset>
-<legend>MUAC/z-score</legend>
-<table width="100%" border="0" cellspacing="0" cellpadding="0" id="muac">
-  <tr>
-    <td colspan="2" valign="top" ><p>Weight for age z-score <obs conceptId="1854" answerConceptIds="115,99271,99272" answerLabels="N-Normal,MAM-Moderate Acute Mulnutrition,SAM-Severe Acute Mulnutrition" style="radio" answerSeparator="&lt;br/&gt;" /></p>
-    </td>
-    <td colspan="2" valign="top" ><p>Height/Length for age z-score<obs conceptId="164088" answerConceptIds="1115,164085" answerLabels="N-Normal,S-Stunting" /></p>
-      </td>
-	<td valign="top"><p>MUAC Colour Code 
-	    <obs conceptId="99030" style="radio" answerConceptIds="99028,99027,99029" id="muac-color-code" /></p>
-	  </td>
-    <td valign="top" ><p>INR No</p>
-      <p><span id="inr-number"><patient  field="identifier" identifierTypeId="d4b21726-e908-4b1a-abab-b5f87cd01c18" id="inr-no" required="true" /></span></p></td>
-  </tr>
-</table>
-</fieldset>
-
-<fieldset>
-<legend>Issue of  anti-TB drug (Missing grouping concept)</legend>
-<table width="100%" border="0" cellspacing="0" cellpadding="0" style="width:100%" id="tb-drugs">
-		  <tr>
-		    <th >  TB Treatment phase    </th>    
-		    <th ><p>Name of drug</p>
-	        </th>
-		    <th ><p>Date Dispensed</p>
-	        </th>
-		    <th > <p>No. of days for which Treatment is dispensed </p>
-	        </th>
-		     
-		    <th align="center"></th>
-      </tr>
-
-<repeat>
-	<template>
-<!--		<obsgroup groupingConceptId="163711"> --> 
-		  <tr>
-			<td ><p> <obs conceptId="159792" answerConceptSetIds="159794,159795" answerConceptIds="Initial, Retreatment" style="radio"/></p></td>
-			<td ></td>
-			<td ></td>
-
-			<td ></td>
-		    <td align="center"><a href="#" style="text-decoration:none;">+ Add</a> </td>
-		  </tr>
-<!--		</obsgroup> -->
-	</template>
-	<render/>
-	<render/>
-	<render/>
-	<render/>
-	<render/>
-	<render/>
-	<render/>
-	<render/>
-	<render/>
-</repeat>
-</table>
-</fieldset>
-        <submit/>
+  <div class="ai-page-frame">
+    <div class="headers" style="text-align: center;">
+      <h3 style="background: #FFFF7D; padding: 10px;">096a - Health Unit TB Register - Follow up Page</h3>
     </div>
+    <section>
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <span style="display: none;">
+                <encounterLocation default="8ab22b55-9a17-4121-bf08-6134a9a2439f"
+                                   order="8ab22b55-9a17-4121-bf08-6134a9a2439f"/>
+              </span>
+            </td>
+            <td>
+              <label>
+                <span class="required">*</span> Provider:
+              </label>
+              <encounterProvider role="Provider" style="autocomplete" required="required"/>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </section>
+    <fieldset>
+      <legend>Results of sputum and other examinations</legend>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td >
+            <p>
+            	<label>Follow up visit date:</label>
+              <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
+            </p>
+          </td>
+          <td ></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <p>
+            <label>Sputum smear results</label>
+              <obs conceptId="307" answerConceptIds="1118,664,1362,1363,1364,1365,163417AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,163418AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="ND - Not Done, NEG- Negative, 1AFB/100, 2AFB/100, 3AFB/100, 4AFB/100,5AFB/100,6AFB/100" style="dropdown" answerSeparator="&lt;br/&gt;"/>
+              Missing (7AFB/100,8AFB/100,9AFB/100)
+            </p>
+          </td>
+          <td >
+            <p>
+            <label>Examination Date</label>
+              <obs conceptId="99392" />
+            </p>
+          </td>
+          <td >
+            <p>
+            <label>DST Results</label>
+              <obs conceptId="159984AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="dropdown"/>
+              Missing Responses
+            </p>
+          </td>
+          <td >
+            <p>
+            <label>Date of DST results</label> Missing
+            </p>
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+
+    <fieldset>
+      <legend>MUAC/z-score</legend>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" id="muac">
+        <tr>
+          <td colspan="2" valign="top" >
+            <p>
+              <label>Weight for age z-score</label> 
+              <obs conceptId="1854AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="115,99271,99272" answerLabels="N-Normal,MAM-Moderate Acute Mulnutrition,SAM-Severe Acute Mulnutrition" style="radio" answerSeparator="&lt;br/&gt;" />
+            </p>
+          </td>
+          <td colspan="2" valign="top" >
+            <p>
+              <label>Height/Length for age z-score</label>
+              <obs conceptId="164088" answerConceptIds="1115,164085" answerLabels="N-Normal,S-Stunting" />
+            </p>
+          </td>
+          <td valign="top">
+            <p>
+              <label>MUAC Colour Code</label>
+              <obs conceptId="99030" style="radio" answerConceptIds="99028,99027,99029" id="muac-color-code" />
+            </p>
+          </td>
+          <td valign="top" >
+            <p><label>INR No</label>
+              <span id="inr-number">
+                <patient  field="identifier" identifierTypeId="d4b21726-e908-4b1a-abab-b5f87cd01c18" id="inr-no" required="true" />
+              </span>
+            </p>
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+
+    <fieldset>
+      <legend>Issue of  anti-TB drug (Missing grouping concept)</legend>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" style="width:100%" id="tb-drugs">
+        <tr>
+          <th >  TB Treatment phase    </th>
+          <th >
+            <p><label>Name of drug</label></p>
+          </th>
+          <th >
+            <p><label>Date Dispensed</label></p>
+          </th>
+          <th >
+            <p><label>No. of days for which Treatment is dispensed</label> </p>
+          </th>
+
+          <th align="center"></th>
+        </tr>
+
+        <repeat>
+          <template>
+            <obsgroup groupingConceptId="163711AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">
+            <tr>
+              <td >
+                <p>
+                  <obs conceptId="159792" answerConceptSetIds="159794,159795" answerLabels="Initial, Retreatment" id="{id}" style="radio"/>
+                </p>
+              </td>
+              <td ></td>
+              <td ></td>
+
+              <td ></td>
+              <td align="center">
+                <a href="#" style="text-decoration:none;">+ Add</a>
+              </td>
+            </tr>
+			</obsgroup>
+          </template>
+		  <render id="1"/>
+        </repeat>
+      </table>
+    </fieldset>
+    <submit/>
+  </div>
 </htmlform>
