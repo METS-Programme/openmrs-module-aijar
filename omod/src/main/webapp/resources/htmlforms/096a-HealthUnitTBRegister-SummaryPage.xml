@@ -13,7 +13,7 @@
 	<script type="text/javascript">
 		
 		if (jQuery) {
-			jq(document).ready(function () {
+			jQuery(document).ready(function (jq) {
 				if (jq.browser.msie) {
 					jq(":checkbox").click(function () {
 						jq(this).change();
@@ -22,29 +22,45 @@
 			});
 		}
 		
-		JQuery().ready(function(jq){
+		jQuery().ready(function(jq) {
+			const YES_CONCEPT_ID = 1065,
+				NO_CONCEPT_ID = 1066,
+				RED_CONCEPT_ID = 99028,
+				YELLOW_CONCEPT_ID = 99029,
+				TRANSFER_OUT_CONCEPT_ID = 90306,
+				OTHER_CONCEPT_ID = 5622;
+
+			var $transferInFromField,
+				$transferInUnitTbNumberField,
+				$onCptField,
+				$cptStartDateField,
+				$onArtField,
+				$artStartDateField,
+				$artNumberField,
+				$muacColorCodeField,
+				$inrNumberField,
+				$treatmentOutcomeField,
+				$transferOutToField,
+				$noOfChildrenInContactField,
+				$noOfChildrenInContactOnIptField,
+				$muacSection,
+				patientAge;
 		
-			const YES_CONCEPT_ID = 1065;
-			const NO_CONCEPT_ID = 1066;
-			const RED_CONCEPT_ID = 99028;
-			const YELLOW_CONCEPT_ID = 99029;
-			const TRANSFER_OUT_CONCEPT_ID = 90306;
-		
-			var $transferInFromField = getField('transfer-in-from.value');
-			var $transferInUnitTbNumberField = getField('transfer-in-unit-tb-number.value');
-			var $onCptField = jq('#on-cpt').find('input');
-			var $cptStartDateField = getField('cpt-start-date.value');
-			var $onArtField = jq('#on-art').find('input');
-			var $artStartDateField = getField('art-start-date.value');
-			var $artNumberField = getField('art-number.value');
-			var $muacColorCodeField = jq('#muac-color-code').find('input');
-			var $inrNumberField = jq('#inr-number').find('input');
-			var $treatmentOutcomeField = getField('treatment-outcome.value');
-			var $transferOutToField = getField('transfer-out-to.value');
-			var $noOfChildrenInContactField = getField('no-of-children-in-contact.value');
-			var $noOfChildrenInContactOnIptField = getField('no-of-children-in-contact-n-ipt.value');
-			var $muacSection = ('#muac');
-			var patientAge = <lookup expression="$patient.age" />;
+			$transferInFromField = getField('transfer-in-from.value');
+			$transferInUnitTbNumberField = getField('transfer-in-unit-tb-number.value');
+			$onCptField = jq('#on-cpt').find('input');
+			$cptStartDateField = getField('cpt-start-date.value');
+			$onArtField = jq('#on-art').find('input');
+			$artStartDateField = getField('art-start-date.value');
+			$artNumberField = getField('art-number.value');
+			$muacColorCodeField = jq('#muac-color-code').find('input');
+			$inrNumberField = jq('#inr-number').find('input');
+			$treatmentOutcomeField = getField('treatment-outcome.value');
+			$transferOutToField = getField('transfer-out-to.value');
+			$noOfChildrenInContactField = getField('no-of-children-in-contact.value');
+			$noOfChildrenInContactOnIptField = getField('no-of-children-in-contact-on-ipt.value');
+			$muacSection = jq('#muac');
+			patientAge = <lookup expression="patient.age" />;
 		
 			var transferInFromChange = function() {
 				var transferInFromValue = getValue('transfer-in-from.value');
@@ -94,18 +110,20 @@
 			};
 		
 			var noOfChildrenInContactChange = function() {
-				var noOfChildrenInContactValue = jq('no-of-children-in-contact.value');
-				var noOfChildrenInContactOnIptValue = jq('no-of-children-in-contact-on-ipt.value');
-				
-				if (noOfChildrenInContactValue &lt; noOfChildrenInContactOnIptValue) {
-					getField('no-of-children-in-contact-on-ipt.error').html('Number of children in contact cannot be less than Number of children in contact on IPT');
+				var noOfChildrenInContactValue,
+					noOfChildrenInContactOnIptValue;
+
+				noOfChildrenInContactValue = getValue('no-of-children-in-contact.value');
+				noOfChildrenInContactOnIptValue = getValue('no-of-children-in-contact-on-ipt.value');
+				if (parseInt(noOfChildrenInContactValue) &lt; parseInt(noOfChildrenInContactOnIptValue)) {				
+					getField('no-of-children-in-contact.error').html('"Number of children in contact" cannot be less than "Number of children in contact and on IPT"').show();
 				} else {
-					getField('no-of-children-in-contact-on-ipt.error').html('');
+					getField('no-of-children-in-contact-on-ipt.error').html('').hide();
 				} 				
 			};
 		
 			var childrenSectionToggle = function() {
-				if (patientAge &gt;> 6 &amp; patientAge &lt; = 180) {
+				if (patientAge &gt; 6 &amp; patientAge &lt;= 180) {
 					fieldHelper.enable($muacSection.find('input,select'));
 				} else {
 					fieldHelper.disable($muacSection.find('input,select'));
@@ -114,10 +132,13 @@
 			};
 		
 			var noOfChildrenValidate = function() {
-				var noOfChildrenInContactValue = jq('no-of-children-in-contact.value');
-				var noOfChildrenInContactOnIptValue = jq('no-of-children-in-contact-on-ipt.value');
+				var noOfChildrenInContactValue,
+					noOfChildrenInContactOnIptValue;
+
+				noOfChildrenInContactValue = getField('no-of-children-in-contact.value');
+				noOfChildrenInContactOnIptValue = getField('no-of-children-in-contact-on-ipt.value');
 				if (noOfChildrenInContactValue &lt; noOfChildrenInContactOnIptValue) {
-					getField('no-of-children-in-contact-on-ipt.error').html('Number of children in contact cannot be less than Number of children in contact on IPT');
+					getField('no-of-children-in-contact.error').html('"Number of children in contact" cannot be less than "Number of children in contact and on IPT"').show();
 					return false;
 				} else {
 					return true;
@@ -150,14 +171,35 @@
 					return true;
 				}
 			};
+
+	        var $othersField = jq('span.has-comment input[type=checkbox], span.has-comment select');
+
+	        var toggleOtherSpecify = function() {
+	            $othersField.each(function() {
+	                var $specifyField,
+	                	$thisField;
+
+	                $specifyField = jq(this).siblings('input[type=text]');
+	                $thisField = jq(this);
+	                
+	                if (($thisField.is('input[type=checkbox]') &amp;&amp; $thisField.attr('checked') == 'checked') || 
+	                ($thisField.is('select') &amp;&amp; $thisField.val() == OTHER_CONCEPT_ID)) { 
+	                    fieldHelper.removeReadonly($specifyField);
+	                } else {
+	                    fieldHelper.makeReadonly($specifyField);
+	                    $specifyField.val('');
+	                }
+	            });
+	        };
 		
 			$transferInFromField.change(transferInFromChange);
-			$onCptField.change(onCptChange());
-			$onArtField.change(onArtChange());
-			$muacColorCodeField.change(muacColorCodeChange());
+			$onCptField.change(onCptChange);
+			$onArtField.change(onArtChange);
+			$muacColorCodeField.change(muacColorCodeChange);
 			$treatmentOutcomeField.change(treatmentOutcomeChange);
-			$noOfChildrenInContactField.change(noOfChildrenInContactChange());
-			$noOfChildrenInContactOnIptField.change(noOfChildrenInContactOnIptChange());
+			$noOfChildrenInContactField.change(noOfChildrenInContactChange);
+			$noOfChildrenInContactOnIptField.change(noOfChildrenInContactChange);
+			$othersField.change(toggleOtherSpecify);
 		
 			transferInFromChange();
 			onCptChange();
@@ -165,6 +207,7 @@
 			muacColorCodeChange()
 			treatmentOutcomeChange();
 			childrenSectionToggle();
+			toggleOtherSpecify();
 		
 			beforeSubmit.push(function(){
 				var valid = true;
@@ -264,7 +307,7 @@
           <td>
             <p>
               <label>Cadre of health worker</label>
-              <obs conceptId="1783AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+              <obs conceptId="1783AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1574,164831,1577,1578,1555,163557,5622" showCommentField="true" class="has-comment" commentFieldLabel="&lt;span&gt;Specify if Other&lt;/span&gt;"/>
             </p>
           </td>
           <td>
