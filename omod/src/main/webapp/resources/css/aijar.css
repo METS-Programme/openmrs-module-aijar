@@ -62,3 +62,115 @@ span.value {
     display: inline-block;
     margin-left: 10px;
 }
+
+/* A set of css definitions to be used across the data entry forms*/
+form label, .form label {
+	float: left;
+	padding: 0px 10px 0 0;
+}
+
+form input[type="checkbox"], form input[type="radio"], .form input[type="checkbox"], .form input[type="radio"] {
+	margin: 10px 15px;
+}
+
+table td {
+	background: #FFFFFF;
+	color: #404040;
+}
+
+form select, .form select {
+	min-width: 0px;
+}
+
+form input, form select, form textarea, form ul.select, .form input, .form select, .form textarea, .form ul.select {
+	background-color: #FBFBFB;
+	border: 1px solid #CEC9C9;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	padding: 10px;
+	min-width: 50%;
+}
+
+fieldset {
+	width: 97%;
+	margin: 0 0 30px 0;
+}
+
+fieldset legend {
+	font-weight: 600;
+}
+
+fieldset table {
+	width: 100%;
+	margin: 0px;
+}
+
+table th, table td {
+	border: 1px solid #C7C7C7;
+	min-width: 10%;
+	width: 25%;
+	vertical-align: top;
+
+}
+
+fieldset table td > p {
+		margin: 0px;
+	}
+
+fieldset table td input:text {
+	width: 100%;
+}
+
+fieldset table td label {
+	padding: 5px 10px 0 0;
+	float: left;
+}
+
+fieldset table td, fieldset table tr {
+	border: 0 !important;
+}
+
+fieldset input[type=text], fieldset select {
+	float: left;
+	clear: left;
+	max-width: 50%;
+}
+
+fieldset span.has-comment input[type=text] {
+	clear: none;
+}
+
+fieldset span.has-comment label {
+	clear: left;
+}
+
+fieldset span.has-comment label:first-of-type {
+	clear: none;
+}
+
+fieldset span.date-and-time input[type=text] {
+	min-width: 40% !important;
+}
+
+fieldset span.required {
+	float: left;
+}
+
+fieldset select.hfe-hours, select.hfe-minutes, select.hfe-seconds {
+	width: 28px;
+	min-width: 65px;
+	float: left;
+	clear: none;
+}
+
+fieldset span.error {
+	float: left;
+	border: 2px dotted #fb0303;
+	color: #fb0303;
+}
+
+fieldset input.error {
+	background-color: #ffffff;
+	border: 1px solid #0808fd;
+	border-radius: 0;
+}
