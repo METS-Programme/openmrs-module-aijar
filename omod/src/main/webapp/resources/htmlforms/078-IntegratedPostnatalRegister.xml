@@ -161,13 +161,16 @@
                             <label>Family Planning Given</label>
                         </p>
                         <p>
-                            <obs conceptId="374"
-                                 answerConceptIds="163144,163145,163148,163147,780,163146,5275,5279,5277,5276,90088,162961,5622"
-                                 answerLabels="Oral:Lo-Femenal,Oral: Microgynon,Oral: Ovrette,Oral:Others,Female Condoms,Male Condoms,
-                                 IUDs,Injectable,Natual,Female Sterilization,Male Sterilization,Implant,Other"
+                            <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
+                                 answerConceptIds="38aa1dc0-1aaa-4bdd-b26f-28f960dfb16c,4b0899f2-395e-4e0f-8b58-d304b214615e,
+                           670b7048-d71e-483a-b2ec-f10d2326dd84,dc882c84-30ab-102d-86b0-7a5022ba4115,aeee4ccf-cbf8-473c-9d9f-846643afbf11,
+                                 dcb30ba3-30ab-102d-86b0-7a5022ba4115,dcb30381-30ab-102d-86b0-7a5022ba4115,dcb2fba9-30ab-102d-86b0-7a5022ba4115,dcdd8d8d-30ab-102d-86b0-7a5022ba4115,bb83fd9d-24c5-4d49-89c0-97e13c792aaf,dcdd91a7-30ab-102d-86b0-7a5022ba4115,
+                                 aaf150a5-92d2-416f-8254-95d34ed9c4ab,5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                 answerLabels="Oral:Lo-Femenal,Oral: Microgynon,Oral:Others,Female Condoms,Male Condoms,
+                                 Injectable,Natual,Female Sterilization,Male Sterilization,Implant,Tubal Ligation,No Family Planning Method Given,Other"
                                  style="dropdown"/>
                             <span class="familyPlanningOtherSpecify" style="display:none">
-                                <obs conceptId="5281"/>
+                                <obs conceptId="dcb313d7-30ab-102d-86b0-7a5022ba4115"/>
                             </span>
                         </p>
                     </td>
@@ -176,7 +179,7 @@
                             <label>Status Of The Breast</label>
                         </p>
                         <p>
-                            <obs conceptId="99349" answerConceptIds="99345,99346"
+                            <obs conceptId="07c10f5c-17fd-4a7e-8d72-c2252f589da0" answerConceptIds="e4c6b70d-aaa6-490b-8edc-01c44d982cb2,5e416f86-aaf1-4ae4-96f0-30226b9fdd5f"
                                  answerLabels="FOM - No swellings pain or discharge,SS - Have discharge blood or pus"
                                  style="dropdown"/>
                         </p>
@@ -186,7 +189,7 @@
                             <label>Status Of The Cervix</label>
                         </p>
                         <p>
-                            <obs conceptId="99350" answerConceptIds="99347,99348"
+                            <obs conceptId="d858f8cb-fe9e-4131-8d91-cd9929cc53de" answerConceptIds="14556e6e-9ee4-439c-98ac-079e12fc98fa,ec3a0208-0261-450a-a13b-b524e160b8fd"
                                  answerLabels="FOM - Cervix is free of malignancy,SS- Cervix is suspicious of malignancy"/>
                         </p>
                     </td>
@@ -195,7 +198,7 @@
                             <label>Weight(Kgs)</label>
                         </p>
                         <p>
-                            <obs conceptId="5089"/>
+                            <obs conceptId="5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
                         </p>
                     </td>
                 </tr>
@@ -206,20 +209,20 @@
                         </p>
                         <p>
                             <includeIf velocityTest="$patient.age &lt; 5">
-                                <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                                <obs id="br" conceptId="5f86d19d-9546-4466-89c0-6f80c101191b" answerConceptIds="8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3,de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9"
                                      answerLabels="Red &lt; 11.5cm, Yellow 11.5cm - &lt;12.5cm,Green &gt;= 12.5cm"/>
                             </includeIf>
                             <includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
-                                <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                                <obs id="br" conceptId="5f86d19d-9546-4466-89c0-6f80c101191b" answerConceptIds="8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3,de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9"
                                      answerLabels="Red &lt; 13.5cm,Yellow 13.5cm - &lt;14.5cm,Green &gt;=14.5cm"/>
                             </includeIf>
                             <includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
-                                <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                                <obs id="br" conceptId="5f86d19d-9546-4466-89c0-6f80c101191b" answerConceptIds="8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3,de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9"
                                      answerLabels="Red &lt; 16.5cm, Yellow 16.5cm - &lt;19.0cm,Green &gt;=19.0cm"/>
                             </includeIf>
 
                             <includeIf velocityTest="$patient.age &gt;=18">
-                                <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                                <obs id="br" conceptId="5f86d19d-9546-4466-89c0-6f80c101191b" answerConceptIds="8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3,de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9"
                                      answerLabels="Red &lt;19.0cm , Yellow 19.0cm - &lt;22.0cm,Green &gt;=22.0cm"/>
                             </includeIf>
                         </p>
@@ -229,7 +232,7 @@
                             <label>I.N.R Number</label>
                         </p>
                         <p>
-                            <obs conceptId="99733" id="inrNumber"/>
+                            <obs conceptId="b644c29c-9bb0-447e-9f73-2ae89496a709" id="inrNumber"/>
                         </p>
                     </td>
                     <td>
@@ -237,8 +240,8 @@
                             <label>eMTCT Code - Woman</label>
                         </p>
                         <p>
-                            <obs conceptId="99317" labelText="" id="ARVSEnableDisable1"
-                                 answerConceptIds="99313,99734,99314,99315,99735,99736,99737,99738,99739,99741"
+                            <obs conceptId="d5b0394c-424f-41db-bc2f-37180dcdbe74" labelText="" id="ARVSEnableDisable1"
+                                 answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7,86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465,12d878f9-899c-4b3c-bf57-c6226c307a53,60155e4d-1d49-4e97-9689-758315967e0f,81bd3e58-9389-41e7-be1a-c6723f899e56,1f177240-85f6-4f10-964a-cfc7722408b3,a08d9331-b437-485c-8eff-1923f3d43630,8dcaefaa-aa91-4c24-aaeb-122cff549ab3"
                                  answerLabels="C,T,TR,TRR,TR&#8730;,TRR&#8730;,TRK,TRRK,TR+,TRR+" style="dropdown"/>
                         </p>
                     </td>
@@ -247,8 +250,8 @@
                             <label>eMTCT Code - Partner</label>
                         </p>
                         <p>
-                            <obs conceptId="99342" labelText=""
-                                 answerConceptIds="99313,99734,99314,99315,99735,99736,99737,99738,99739,99741"
+                            <obs conceptId="62a37075-fc2a-4729-8950-b9fae9b22cfb" labelText=""
+                                 answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7,86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465,12d878f9-899c-4b3c-bf57-c6226c307a53,60155e4d-1d49-4e97-9689-758315967e0f,81bd3e58-9389-41e7-be1a-c6723f899e56,1f177240-85f6-4f10-964a-cfc7722408b3,a08d9331-b437-485c-8eff-1923f3d43630,8dcaefaa-aa91-4c24-aaeb-122cff549ab3"
                                  answerLabels="C,T,TR,TRR,TR&#8730;,TRR&#8730;,TRK,TRRK,TR+,TRR+" style="dropdown"/>
                         </p>
                     </td>
@@ -264,14 +267,10 @@
                                 <label>ARVs</label>
                             </p>
                             <p>
-                                <obs id="arvs" conceptId="90315"
-                                     answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99007,99008,99044,
-                                     99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99884,99885,99888,163017,99887,90002"
-                                     answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,
-                                     TDF-FTC-NVP,TDF-FTC-EFV,ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,AZT-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,AZT-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-ATV/r,ABC-3TC-LPV/r,TDF-3TC-ATV/r,Other"/>
-                                <span class="RegimenEnableDisableChild1">
-                                    <obs id="arvSpecify" conceptId="99126" labelText="Specify"/>
-                                </span>
+                                <obs id="arvs" conceptId="a615f932-26ee-449c-8e20-e50a15232763"
+                                     answerConceptIds="026e31b7-4a26-44d0-8398-9a41c40ff7d3,2aa7d442-6cbb-4609-9dd3-bc2ad6f05016,2c000b41-f9d7-40c1-8de0-bce91dbae932,
+                                     bbc63761-0741-4583-9396-a34d3a18601c,dc9b0596-30ab-102d-86b0-7a5022ba4115"
+                                     answerLabels="ART,ARTK,ART✔,ARTK✔,NA"/>
                             </p>
                         </td>
                         <td>
@@ -279,17 +278,16 @@
                                 <label>Pre-ART Number</label>
                             </p>
                             <p>
-                                <patient field="identifier" identifierTypeId="e1731641-30ab-102d-86b0-7a5022ba4115"
-                                         required="true"/>
+                                <obs conceptId="9fc5bf9d-a79e-4548-9207-b2afbbeba796" />
                             </p>
                         </td>
                         <td colspan="2">
                             <p>
                                 <label>Routine Administration</label>
-                                <obs conceptId="162394" answerConceptId="99318" answerLabel="Iron"/>
-                                <obs conceptId="162394" answerConceptId="99319" answerLabel="Folic Acid"/>
-                                <obs conceptId="162394" answerConceptId="162933" answerLabel="Vitamin A"/>
-                                <obs conceptId="162394" answerConceptId="99351" answerLabel="CTX"/>
+                                <obs conceptId="315825e8-8ba4-4551-bdd1-aa4e02a36639" answerConceptId="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Iron"/>
+                                <obs conceptId="8c346216-c444-4528-a174-5139922218ed" answerConceptId="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Folic Acid"/>
+                                <obs conceptId="88ec2c8b-eb7b-4595-8612-1871568507a5" answerConceptId="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Vitamin A"/>
+                                <obs conceptId="d12abd7f-c90d-4798-9240-0f2f81977183" answerConceptId="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="CTX"/>
 
                             </p>
                         </td>
@@ -299,7 +297,7 @@
                         <td>
                             <p>
                                 <label>Diagnosis</label>
-                                <obs conceptId="99321" style="textarea"/>
+                                <obs conceptId="0de0b715-f3ef-4a91-a145-09509112b693" style="textarea"/>
                             </p>
                         </td>
                         <td>
@@ -310,15 +308,13 @@
                         <td>
                             <p>
                                 <label>WHO Clinical Stage</label>
-                                <obs conceptId="90203"
-                                     answerConceptIds="90033,90034,90035,90036,90293,90294,90295,90296"
-                                     answerLabels="1,2,3,4,T1,T2,T3,T4" style="dropdown"/>
+                                <obs conceptId="dcdff274-30ab-102d-86b0-7a5022ba4115"
+                                     answerConceptIds="dc9b8cd1-30ab-102d-86b0-7a5022ba4115,dc9b9113-30ab-102d-86b0-7a5022ba4115,dc9b9549-30ab-102d-86b0-7a5022ba4115,dc9b999b-30ab-102d-86b0-7a5022ba4115"
+                                     answerLabels="Stage 1 Adult,Stage 2 Adult,WHO Stage 3 Adult, WHO Stage 4" style="dropdown"/>
                             </p>
                         </td>
                         <td>
                             <p>
-                                <label>WHO Date</label>
-                                Missing
                             </p>
                         </td>
                     </tr>
@@ -330,7 +326,7 @@
                         </td>
                         <td>
                             <p>
-                                <obs conceptId="5497"/>
+                                <obs conceptId="dcbcba2c-30ab-102d-86b0-7a5022ba4115"/>
                             </p>
                         </td>
                         <td>
@@ -340,7 +336,7 @@
                         </td>
                         <td>
                             <p>
-                                <obs conceptId="163154"/>
+                                To be loaded
                             </p>
                         </td>
                     </tr>
@@ -349,8 +345,8 @@
                         <td>
                             <p>
                                 <label>Viral Load Results</label>
-                                <obs conceptId="1305" answerConceptIds="1306,1301,1304"
-                                     answerLabels="Not Detected,Detected,Sample Rejected" style="dropdown"
+                                <obs conceptId="dca12261-30ab-102d-86b0-7a5022ba4115" answerConceptIds="dca1269d-30ab-102d-86b0-7a5022ba4115,dca10c94-30ab-102d-86b0-7a5022ba4115,dca11907-30ab-102d-86b0-7a5022ba4115"
+                                     answerLabels="Beyond Detectable Limit,Detected,Poor Sample Quality" style="dropdown"
                                      id="viral-load-results"/>
                             </p>
                         </td>
@@ -358,20 +354,20 @@
                         <td>
                             <p>
                                 <label>Viral Load Date</label>
-                                <obs conceptId="163155" allowFutureDates="false"/>
+                                <obs conceptId="0b434cfa-b11c-4d14-aaa2-9aed6ca2da88" allowFutureDates="false"/>
                             </p>
 
                         </td>
                         <td>
                             <p>
                                 <label>Viral Load (copies/ml)</label>
-                                <obs conceptId="856" id="viral-load"/>
+                                <obs conceptId="dc8d83e3-30ab-102d-86b0-7a5022ba4115" id="viral-load"/>
                             </p>
                         </td>
                         <td>
                             <p>
                                 <label>Other Treatments</label>
-                                <obs conceptId="99320" id="other-treatments"/>
+                                <obs conceptId="2aa72406-436e-490d-8aa4-d5336148204f" id="other-treatments"/>
                             </p>
                         </td>
                     </tr>
@@ -389,7 +385,8 @@
                             <label>Status Of The Baby</label>
                         </p>
                         <p>
-                            <obs conceptId="99354" answerConceptIds="99353,163140,163141"
+                            <obs conceptId="dd8a2ad9-16f6-44db-82d7-87d6eef14886"
+                                 answerConceptIds="9d9e6b5a-8b5d-4b8c-8ab7-9fdabb279493,811ff634-8d81-454f-9b9d-2850345796d6,95121db8-6c2a-48e0-b281-cf2dc8229dd1"
                                  answerLabels="Alive,NND7,NND28"/>
                         </p>
 
@@ -399,7 +396,7 @@
                             <label>Age (Wks)</label>
                         </p>
                         <p>
-                            Missing
+                           To Load
                         </p>
                     </td>
                     <td>
@@ -407,7 +404,7 @@
                             <label>Weight(Kg)</label>
                         </p>
                         <p>
-                            <obs conceptId="5089"/>
+                            <obs conceptId="5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
                         </p>
                     </td>
                     <td>
@@ -416,20 +413,20 @@
                         </p>
                         <p>
                             <includeIf velocityTest="$patient.age &lt; 5">
-                                <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                                <obs id="br" conceptId="5f86d19d-9546-4466-89c0-6f80c101191b" answerConceptIds="8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3,de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9"
                                      answerLabels="Red &lt; 11.5cm, Yellow 11.5cm - &lt;12.5cm,Green &gt;= 12.5cm"/>
                             </includeIf>
                             <includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
-                                <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                                <obs id="br" conceptId="5f86d19d-9546-4466-89c0-6f80c101191b" answerConceptIds="8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3,de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9"
                                      answerLabels="Red &lt; 13.5cm,Yellow 13.5cm - &lt;14.5cm,Green &gt;=14.5cm"/>
                             </includeIf>
                             <includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
-                                <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                                <obs id="br" conceptId="5f86d19d-9546-4466-89c0-6f80c101191b" answerConceptIds="8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3,de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9"
                                      answerLabels="Red &lt; 16.5cm, Yellow 16.5cm - &lt;19.0cm,Green &gt;=19.0cm"/>
                             </includeIf>
 
                             <includeIf velocityTest="$patient.age &gt;=18">
-                                <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                                <obs id="br" conceptId="5f86d19d-9546-4466-89c0-6f80c101191b" answerConceptIds="8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3,de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9"
                                      answerLabels="Red &lt;19.0cm , Yellow 19.0cm - &lt;22.0cm,Green &gt;=22.0cm"/>
                             </includeIf>
                         </p>
@@ -443,7 +440,7 @@
                             <label>I.N.R Number</label>
                         </p>
                         <p>
-                            <obs conceptId="99733"/>
+                            <obs conceptId="b644c29c-9bb0-447e-9f73-2ae89496a709"/>
                         </p>
                     </td>
                     <td>
@@ -451,7 +448,7 @@
                             <label>Diagnosis</label>
                         </p>
                         <p>
-                            <obs conceptId="99355" style="textarea"/>
+                            <obs conceptId="a16b3a8e-6412-4344-908a-2a96344fa017" style="textarea"/>
                         </p>
                     </td>
                     <td>
@@ -459,14 +456,16 @@
                             <label>Infant Feeding Option</label>
                         </p>
                         <p>
-                            <obs conceptId="1151" answerConceptIds="5526,99089,6046" answerLabels="EBF,RF,MF"
+                            <obs conceptId="dc9a00a2-30ab-102d-86b0-7a5022ba4115"
+                                 answerConceptIds="dcbd637e-30ab-102d-86b0-7a5022ba4115,40fdb5b6-e8ac-424d-988c-f2f2937348db,dcd5487d-30ab-102d-86b0-7a5022ba4115"
+                                 answerLabels="EBF,RF,MF"
                                  style="dropdown"/>
                         </p>
                     </td>
                     <td>
                         <p>
                             <label>Infant Feeding Counseling Done</label>
-                            <obs conceptId="99749" answerConceptIds="1065,1066" answerLabels="Yes, No"
+                            <obs conceptId="5d993591-9334-43d9-a208-11b10adfad85" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes, No"
                                  style="radio"/>
                         </p>
                     </td>
@@ -478,18 +477,18 @@
                     <td>
                         <p>
                             <label>Maternal Nutrition Counseling Done?</label>
-                            <obs conceptId="99750" answerConceptIds="1065,1066" answerLabels="Yes, No"
+                            <obs conceptId="af7dccfd-4692-4e16-bd74-5ac4045bb6bf" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes, No"
                                  style="radio"/>
                         </p>
                     </td>
                     <td>
                         <p>
                             <label>Immunization</label>
-                            <obs conceptId="162839" answerConceptId="886" answerLabel="BCG"/>
-                            <obs conceptId="162839" answerConceptId="162831" answerLabel="OPV"/>
-                            <obs conceptId="162839" answerConceptId="781" answerLabel="DPT"/>
-                            <obs conceptId="162839" answerConceptId="99356" answerLabel="Vitamin A"/>
-                            <obs conceptId="162839" answerConceptId="163014" answerLabel="PCV"/>
+                            <obs conceptId="dc8e1be9-30ab-102d-86b0-7a5022ba4115" answerConceptId="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="BCG"/>
+                            <obs conceptId="dc883964-30ab-102d-86b0-7a5022ba4115" answerConceptId="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="OPV"/>
+                            <obs conceptId="dc8834fe-30ab-102d-86b0-7a5022ba4115" answerConceptId="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="DPT"/>
+                            <obs conceptId="680f7f8d-eac6-44b4-8899-101fa2c4f873" answerConceptId="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Vitamin A"/>
+                            <obs conceptId="62d87122-0a08-4e04-b57c-7e1b2f821854" answerConceptId="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="PCV"/>
                         </p>
                     </td>
 
@@ -499,7 +498,7 @@
                         </p>
                     </td>
                     <td>
-                        <obs conceptId="99320" id="other-treatments-child" style="textarea"/>
+                        <obs conceptId="59560ede-43e2-4e56-a47e-0f876779f0e1" id="other-treatments-child" style="textarea"/>
                     </td>
                 </tr>
             </table>
@@ -522,7 +521,10 @@
                             <label>Clinic/Facility</label>
                         </p>
                         <p>
-                            Missing
+                            <obs conceptId="7ac9966e-71a5-4c61-8998-e763fd94536f"
+                                 answerConceptIds="6abc57f2-3718-42f6-84c4-4f71e921d590,37549919-5934-448e-b110-cc7868e73ff2,99267,9028e51b-0c27-4b72-bde6-fadba72d1396"
+                                 answerLabels="Young Child Clinic, HIV Chronic Care, Other Referral"
+                                 style="dropdown"/>
                         </p>
                     </td>
                     <td>
@@ -530,7 +532,10 @@
                             <label>Referred To?</label>
                         </p>
                         <p>
-                            <obs conceptId="99362" answerConceptIds="99360,99361,99267" style="dropdown"/>
+                            <obs conceptId="7ac9966e-71a5-4c61-8998-e763fd94536f"
+                                 answerConceptIds="6abc57f2-3718-42f6-84c4-4f71e921d590,37549919-5934-448e-b110-cc7868e73ff2,99267,9028e51b-0c27-4b72-bde6-fadba72d1396"
+                                 answerLabels="Young Child Clinic, HIV Chronic Care, Other Referral"
+                                 style="dropdown"/>
                         </p>
                     </td>
                     <td>
@@ -538,7 +543,7 @@
                             <label>Clinic/Facility</label>
                         </p>
                         <p>
-                            Missing
+                            <obs conceptId="dce015bb-30ab-102d-86b0-7a5022ba4115" />
                         </p>
                     </td>
                 </tr>
