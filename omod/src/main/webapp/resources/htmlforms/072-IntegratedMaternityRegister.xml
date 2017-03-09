@@ -12,7 +12,7 @@
           formLabel="Maternity">
 
 	<script type="text/javascript">
-	    jQuery(document).ready(function(jq){
+	    jQuery(document).ready(function(jq) {
 	        const VIRAL_LOAD_RESULTS_CONCEPT_ID = 1305;
 	        const VIRAL_LOAD_DETECTED_CONCEPT_ID = 1301;
 	        const VIRAL_LOAD_NOT_DETECTED_CONCEPT_ID = 1306;
@@ -44,12 +44,9 @@
 	                $viralLoadField.val(1);
 	                fieldHelper.makeReadonly($viralLoadField);
 	            } else if($viralLoadResults == VIRAL_LOAD_DETECTED_CONCEPT_ID) { //if viral load quantitive is 'detected' allow for entry of viral load count
-	                $viralLoadField.val(");
-	            } else if ($viralLoadResults == VIRAL_LOAD_SAMPLE_REJECTED_CONCEPT_ID) { //if viral load quantitive is 'rejected' clear viral load count field
-	                $viralLoadField.val(");
-	                fieldHelper.disable($viralLoadField);
-	            } else {
-	                $viralLoadField.val(");
+	                $viralLoadField.val("");
+	            } else { //if viral load quantitive is 'rejected' clear viral load count field
+	                $viralLoadField.val("");
 	                fieldHelper.disable($viralLoadField);
 	            }
 	        };
@@ -158,7 +155,7 @@
 
 	        beforeSubmit.push(function(){
 	            var valid = true;
-	            var $errorMessageSpan = js('#error-message');
+	            var $errorMessageSpan = jq('span#error-message');
 
 	            if (!viralLoadResultsValidate()) {
 	                valid = false;
@@ -360,16 +357,16 @@
         <tr>
           <td>
             <p>
-              <label>eMTCT Code - Woman</label>
+              <label>eMTCT Code &lt;br/&gt; Woman</label>
               <obs conceptId="d5b0394c-424f-41db-bc2f-37180dcdbe74" answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465" answerLabels="C,TR,TRR"
-                                      style="dropdown" />
+                                      style="radio" />
             </p>
           </td>
           <td>
             <p>
-              <label>eMTCT Code - Partner</label>
+              <label>eMTCT Code &lt;br/&gt; Partner</label>
               <obs conceptId="62a37075-fc2a-4729-8950-b9fae9b22cfb" answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465" answerLabels="C,TR,TRR"
-                                        style="dropdown" />
+                                        style="radio" />
             </p>
           </td>
           <td></td>
@@ -468,7 +465,7 @@
         </tr>
         <tr>
           <td>
-            <label>Breastfed within 1 hour?</label>
+            <label>Breastfed within&lt;br/&gt; 1 hour?</label>
             <obs conceptId="162945" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes, No" style="radio" />
           </td>
           <td></td>
@@ -532,7 +529,7 @@
         <tr>
           <td>
             <p>
-              <label>ARVs administered to baby</label>
+              <label>ARVs administered&lt;/br&gt;to baby</label>
               <obs conceptId="9e825e42-be00-4d4d-8774-257ddb29581b" answerConceptIds="dc9b0596-30ab-102d-86b0-7a5022ba4115,04711d8f-c60d-4b1c-9451-0b32debbb8b0" answerLabels="NA, NVP Syrup" id="arvs-administered-to-baby" style="radio" />
             </p>
           </td>
@@ -543,11 +540,11 @@
             <obs conceptId="dcce847a-30ab-102d-86b0-7a5022ba4115" />
           </td>
           <td>
-            <label>Immunized against Polio?</label>
+            <label>Immunized against&lt;br/&gt;Polio?</label>
             <obs conceptId="dc918618-30ab-102d-86b0-7a5022ba4115" answerConceptId="dc883964-30ab-102d-86b0-7a5022ba4115" style="checkbox" answerLabel="" />
           </td>
           <td>
-            <label>Immunized against BCG?</label>
+            <label>Immunized against&lt;br/&gt;BCG?</label>
             <obs conceptId="dc918618-30ab-102d-86b0-7a5022ba4115" answerConceptId="dc8e1be9-30ab-102d-86b0-7a5022ba4115" style="checkbox" answerLabel="" />
           </td>
         </tr>
@@ -564,7 +561,7 @@
           </td>
           <td>
             <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115" answerConceptId="dcb2fba9-30ab-102d-86b0-7a5022ba4115"
-                 answerLabel="Post Partum female sterilization"/>
+                 answerLabel="Post Partum female&lt;br/&gt;sterilization"/>
           </td>
           <td>
             <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115" answerConceptId="dd4c3016-13cf-458a-8e93-fe54460be667"
@@ -655,7 +652,10 @@
     </fieldset>
     <section></section>
     <section>
-      <submit /><span style="clear:none;float:none;margin:5px;display: none" class="error" id="error-message">You have errors in your form, please scroll up to see them.</span>
+      <submit />
+      <span style="clear:none;float:none;margin:5px;display: none;border: 2px dotted #fb0303;color: #fb0303;" class="error" id="error-message">
+      	You have errors in your form, please scroll up to see them.
+      </span>
     </section>
   </div>
 </htmlform>
