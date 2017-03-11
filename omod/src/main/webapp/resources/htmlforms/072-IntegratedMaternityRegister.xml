@@ -262,10 +262,10 @@
             <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="dc6504d3-30ab-102d-86b0-7a5022ba4115" answerLabel="Abortions" style="checkbox" />
           </td>
           <td>
-            <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="dc69f6f5-30ab-102d-86b0-7a5022ba4115" answerLabel="Antepartum Haemorrhage(APH)" style="checkbox" />
+            <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="dc69f6f5-30ab-102d-86b0-7a5022ba4115" answerLabel="Antepartum &lt;br/&gt;Haemorrhage(APH)" style="checkbox" />
           </td>
           <td>
-            <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="dc650021-30ab-102d-86b0-7a5022ba4115" answerLabel="Postpartum Hemorrhage (PPH)" style="checkbox" />
+            <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="dc650021-30ab-102d-86b0-7a5022ba4115" answerLabel="Postpartum &lt;br/&gt;Hemorrhage (PPH)" style="checkbox" />
           </td>
 
           <td>
@@ -274,7 +274,7 @@
         </tr>
         <tr>
           <td>
-            <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="dc55064a-30ab-102d-86b0-7a5022ba4115" answerLabel="High blood pressure in pregnancy" style="checkbox" />
+            <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="dc55064a-30ab-102d-86b0-7a5022ba4115" answerLabel="High blood &lt;br/&gt;pressure in pregnancy" style="checkbox" />
           </td>
           <td>
             <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="115036AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Obstructed Labour" style="checkbox" />
@@ -357,14 +357,14 @@
         <tr>
           <td>
             <p>
-              <label>eMTCT Code &lt;br/&gt; Woman</label>
+              <label>eMTCT &lt;br/&gt;Code &lt;br/&gt; Woman</label>
               <obs conceptId="d5b0394c-424f-41db-bc2f-37180dcdbe74" answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465" answerLabels="C,TR,TRR"
                                       style="radio" />
             </p>
           </td>
           <td>
             <p>
-              <label>eMTCT Code &lt;br/&gt; Partner</label>
+              <label>eMTCT &lt;br/&gt;Code &lt;br/&gt; Partner</label>
               <obs conceptId="62a37075-fc2a-4729-8950-b9fae9b22cfb" answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465" answerLabels="C,TR,TRR"
                                         style="radio" />
             </p>
@@ -447,7 +447,7 @@
           </td>
           <td>
             <label>
-              Not breathing <br/> at birth
+              Not &lt;br/&gt;breathing &lt;br/&gt; at birth
             </label>
             <obs conceptId="dc958e5c-ab9b-4c0c-b02d-d136b7505754" answerConceptIds="911808cd-f455-4a63-9e18-aeee1f74adf0,e6004c96-2eaf-41f4-874e-6c3203bc1c40,d5ff53b2-1821-43e5-9abe-8c5e86d9639b"
                                         answerLabels="SS,BM,BMD" style="radio" />
@@ -456,7 +456,7 @@
           <td>
             <p>
               <label>
-                Immediate skin to <br />
+                Immediate &lt;br/&gt;skin to &lt;br/&gt;
                 skin contact?
               </label>
               <obs conceptId="be4b37fc-4197-4a4e-913d-0d8f3babdffd" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes, No" style="radio" />
@@ -465,7 +465,7 @@
         </tr>
         <tr>
           <td>
-            <label>Breastfed within&lt;br/&gt; 1 hour?</label>
+            <label>Breastfed &lt;br/&gt;within&lt;br/&gt;1 hour?</label>
             <obs conceptId="162945" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes, No" style="radio" />
           </td>
           <td></td>
@@ -479,7 +479,7 @@
             </p>
           </td>
           <td>
-            <obs conceptId="673d99cc-79a9-45a6-ba84-ecd3e9e793ef" answerConceptId="dc73ee9c-30ab-102d-86b0-7a5022ba4115" answerLabel="TEO - Tetracycline Eye Ointment" style="checkbox" />
+            <obs conceptId="673d99cc-79a9-45a6-ba84-ecd3e9e793ef" answerConceptId="dc73ee9c-30ab-102d-86b0-7a5022ba4115" answerLabel="TEO - &lt;br/&gt;Tetracycline Eye Ointment" style="checkbox" />
           </td>
           <td>
             <obs conceptId="673d99cc-79a9-45a6-ba84-ecd3e9e793ef" answerConceptId="64533b34-1c86-48e0-85a5-5d5a1aab97ce" answerLabel="Vitamin K" style="checkbox" />
@@ -498,21 +498,21 @@
         <tr>
           <td>
             <label>
-              Counselling at <br />
+              Counselling at &lt;br/&gt;
               discharge
             </label>
             <obs conceptId="162938" answerConceptIds="162936,162937" answerLabels="C, NC" style="radio" />
           </td>
           <td>
             <label>
-              Maternal nutritional <br />
+              Maternal nutritional &lt;br/&gt;
               couselling at discharge
             </label>
             <obs conceptId="162939" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes, No" style="radio" />
           </td>
           <td>
             <label>
-              Infant and young <br />
+              Infant and young &lt;br/&gt;
               child feeding (IYCF)
             </label>
             <obs conceptId="99749" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes, No" id="iycf" style="radio" />
@@ -529,7 +529,7 @@
         <tr>
           <td>
             <p>
-              <label>ARVs administered&lt;/br&gt;to baby</label>
+              <label>ARVs &lt;/br&gt;administered&lt;/br&gt;to baby</label>
               <obs conceptId="9e825e42-be00-4d4d-8774-257ddb29581b" answerConceptIds="dc9b0596-30ab-102d-86b0-7a5022ba4115,04711d8f-c60d-4b1c-9451-0b32debbb8b0" answerLabels="NA, NVP Syrup" id="arvs-administered-to-baby" style="radio" />
             </p>
           </td>
