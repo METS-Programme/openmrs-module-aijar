@@ -182,8 +182,8 @@
 	                $specifyField = jq(this).siblings('input[type=text]');
 	                $thisField = jq(this);
 	                
-	                if (($thisField.is('input[type=checkbox]') &amp;&amp; $thisField.attr('checked') == 'checked') || 
-	                ($thisField.is('select') &amp;&amp; $thisField.val() == OTHER_CONCEPT_ID)) { 
+	                if (($thisField.is('input[type=checkbox]') &amp; $thisField.attr('checked') == 'checked') || 
+	                ($thisField.is('select') &amp; $thisField.val() == OTHER_CONCEPT_ID)) { 
 	                    fieldHelper.removeReadonly($specifyField);
 	                } else {
 	                    fieldHelper.makeReadonly($specifyField);
@@ -501,7 +501,7 @@
           <td colspan="4">
             <p>
               <label>Remarks</label>
-              <obs conceptId="160029AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rows="15" cols="60" />Pending correction to a text data type concept
+              <obs conceptId="159395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rows="15" cols="60" />
             </p>
           </td>
         </tr>
