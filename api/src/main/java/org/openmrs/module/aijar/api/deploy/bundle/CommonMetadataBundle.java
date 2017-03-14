@@ -36,6 +36,10 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(PatientIdentifierTypes.ART_PATIENT_NUMBER);
         install(PatientIdentifierTypes.RESEARCH_PATIENT_ID);
         install(PatientIdentifierTypes.SMC_CLIENT_NUMBER);
+        install(PatientIdentifierTypes.UNIT_TB_NUMBER);
+        install(PatientIdentifierTypes.HSD_TB_NUMBER);
+        install(PatientIdentifierTypes.TRANSFER_IN_UNIT_TB_NUMBER);
+        install(PatientIdentifierTypes.INTEGRATED_NUTRITION_REGISTER_NUMBER);
         log.info("Patient IdentifierTypes installed");
 
         // install person attribute types
@@ -56,6 +60,9 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         //Install Encounter Type
         log.info("Installing EncounterTypes");
         install(EncounterTypes.PNC_ENCOUNTER_TYPE);
+        install(EncounterTypes.TB_Summary);
+        install(EncounterTypes.TB_Encounter);
+        install(EncounterTypes.TB_Discontinuation);
         
         //Install Location
         log.info("Installing Locations");
