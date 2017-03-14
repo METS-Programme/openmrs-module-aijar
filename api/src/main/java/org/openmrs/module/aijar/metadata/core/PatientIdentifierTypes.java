@@ -336,6 +336,50 @@ public class PatientIdentifierTypes {
 		public String formatDescription() {
 			return "";
 		}
-	};    	
+	};
+
+	public static PatientIdentifierTypeDescriptor TRANSFER_IN_UNIT_TB_NUMBER = new PatientIdentifierTypeDescriptor() {
+
+		@Override
+		public String name() {
+			return "Transfer In Unit TB No.";
+		}
+
+		@Override
+		public String description() {
+			return "The unit Tb Number assigned to a patient in the facility he/she is being transferred in from";
+		}
+
+		public String uuid() {
+			return "1d2be2a3-7d90-42a6-aasa5-a04b684a365b";
+		}
+
+		public String formatDescription() {
+			return " The first 3 digits of the case number then / then "
+					+ "two digits for the year";
+		}
+	};  
+
+	public static PatientIdentifierTypeDescriptor INTEGRATED_NUTRITION_REGISTER_NUMBER = new PatientIdentifierTypeDescriptor() {
+
+		@Override
+		public String name() {
+			return "Integrated Nutrition Register (INR) No.";
+		}
+
+		@Override
+		public String description() {
+			return "Number given to a patient who has been confirmed to have mulnutrition";
+		}
+
+		public String uuid() {
+			return "d4b21726-e908-4b1a-abab-b5f87cd01c18";
+		}
+
+		public String formatDescription() {
+			return " The first 3 digits of the case number then / then "
+					+ "two digits for the year";
+		}
+	};  	
 	
 }
