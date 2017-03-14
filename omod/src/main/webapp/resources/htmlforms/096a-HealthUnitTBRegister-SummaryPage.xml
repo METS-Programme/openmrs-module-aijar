@@ -1,7 +1,7 @@
 <htmlform formName="Form 096a - Health Unit TB Register - Summary"
           formDescription="HMIS Form 096a - Health Unit TB Register - Initial Visit"
           formEncounterType="334bf97e-28e2-4a27-8727-a5ce31c7cd66"
-          formUuid="b609b3f0-6fa8-4764-976e-625f0683b690"
+          formUuid="ec912f1c-dd2f-4e88-9f76-4f9f692fac2b"
           formVersion="1.0"
           formAddMetadata="yes"
           formUILocation="patientDashboard.visitActions"
@@ -10,203 +10,504 @@
           formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='8ab22b55-9a17-4121-bf08-6134a9a2439f'"
           formDisplayStyle="Standard"
           formLabel="Form 096a - Health Unit TB Register - Summary">
-    <style>
+	<script type="text/javascript">
+		
+		if (jQuery) {
+			jQuery(document).ready(function (jq) {
+				if (jq.browser.msie) {
+					jq(":checkbox").click(function () {
+						jq(this).change();
+					});
+				}
+			});
+		}
+		
+		jQuery().ready(function(jq) {
+			const YES_CONCEPT_ID = 1065,
+				NO_CONCEPT_ID = 1066,
+				RED_CONCEPT_ID = 99028,
+				YELLOW_CONCEPT_ID = 99029,
+				TRANSFER_OUT_CONCEPT_ID = 90306,
+				OTHER_CONCEPT_ID = 5622;
 
-        form label, .form label {
-            float: left;
-            padding: 0px 10px 0 0;
-        }
+			var $transferInFromField,
+				$transferInUnitTbNumberField,
+				$onCptField,
+				$cptStartDateField,
+				$onArtField,
+				$artStartDateField,
+				$artNumberField,
+				$muacColorCodeField,
+				$inrNumberField,
+				$treatmentOutcomeField,
+				$transferOutToField,
+				$noOfChildrenInContactField,
+				$noOfChildrenInContactOnIptField,
+				$muacSection,
+				patientAge;
+		
+			$transferInFromField = getField('transfer-in-from.value');
+			$transferInUnitTbNumberField = getField('transfer-in-unit-tb-number.value');
+			$onCptField = jq('#on-cpt').find('input');
+			$cptStartDateField = getField('cpt-start-date.value');
+			$onArtField = jq('#on-art').find('input');
+			$artStartDateField = getField('art-start-date.value');
+			$artNumberField = getField('art-number.value');
+			$muacColorCodeField = jq('#muac-color-code').find('input');
+			$inrNumberField = jq('#inr-number').find('input');
+			$treatmentOutcomeField = getField('treatment-outcome.value');
+			$transferOutToField = getField('transfer-out-to.value');
+			$noOfChildrenInContactField = getField('no-of-children-in-contact.value');
+			$noOfChildrenInContactOnIptField = getField('no-of-children-in-contact-on-ipt.value');
+			$muacSection = jq('#muac');
+			patientAge = <lookup expression="patient.age" />;
+		
+			var transferInFromChange = function() {
+				var transferInFromValue = getValue('transfer-in-from.value');
+				if (transferInFromValue == '') {
+					fieldHelper.disable($transferInUnitTbNumberField);
+				} else {
+					fieldHelper.enable($transferInUnitTbNumberField);
+				}
+			};  
+			
+			var onCptChange = function() {
+				var onCptValue = getValue('on-cpt.value');
+				if (onCptValue == YES_CONCEPT_ID) {
+					fieldHelper.enable($cptStartDateField);
+				} else {
+					fieldHelper.disable($cptStartDateField);
+				}
+			};  
+		
+			var onArtChange = function() {
+				var onArtValue = getValue('on-art.value');
+				if (onArtValue == YES_CONCEPT_ID) {
+					fieldHelper.enable($artStartDateField);
+					fieldHelper.enable($artNumberField);
+				} else {
+					fieldHelper.disable($artStartDateField);
+					fieldHelper.disable($artNumberField);
+				}
+			};
+		
+			var muacColorCodeChange = function() {
+				var muacColorCodeValue = getValue('muac-color-code.value');
+				if (muacColorCodeValue == YELLOW_CONCEPT_ID || muacColorCodeValue == RED_CONCEPT_ID) {
+					fieldHelper.enable($inrNumberField);
+				} else {
+					fieldHelper.disable($inrNumberField);
+				}		
+			};
+		
+			var treatmentOutcomeChange = function() {
+				var treatmentOutcomeValue = getValue('treatment-outcome.value');
+				if (treatmentOutcomeValue == TRANSFER_OUT_CONCEPT_ID) {
+					fieldHelper.enable($transferOutToField);
+				} else {
+					fieldHelper.disable($transferOutToField);
+				}		
+			};
+		
+			var noOfChildrenInContactChange = function() {
+				var noOfChildrenInContactValue,
+					noOfChildrenInContactOnIptValue;
 
-        form input[type="checkbox"], form input[type="radio"], .form input[type="checkbox"], .form input[type="radio"] {
-            margin: 10px 15px;
-        }
+				noOfChildrenInContactValue = getValue('no-of-children-in-contact.value');
+				noOfChildrenInContactOnIptValue = getValue('no-of-children-in-contact-on-ipt.value');
+				if (parseInt(noOfChildrenInContactValue) &lt; parseInt(noOfChildrenInContactOnIptValue)) {				
+					getField('no-of-children-in-contact.error').html('"Number of children in contact" cannot be less than "Number of children in contact and on IPT"').show();
+				} else {
+					getField('no-of-children-in-contact-on-ipt.error').html('').hide();
+				} 				
+			};
+		
+			var childrenSectionToggle = function() {
+				if (patientAge &gt; 6 &amp; patientAge &lt;= 180) {
+					fieldHelper.enable($muacSection.find('input,select'));
+				} else {
+					fieldHelper.disable($muacSection.find('input,select'));
+				}
+		
+			};
+		
+			var noOfChildrenValidate = function() {
+				var noOfChildrenInContactValue,
+					noOfChildrenInContactOnIptValue;
 
-        table td {
-            background: #FFFFFF;
-            color: #404040;
-        }
+				noOfChildrenInContactValue = getField('no-of-children-in-contact.value');
+				noOfChildrenInContactOnIptValue = getField('no-of-children-in-contact-on-ipt.value');
+				if (noOfChildrenInContactValue &lt; noOfChildrenInContactOnIptValue) {
+					getField('no-of-children-in-contact.error').html('"Number of children in contact" cannot be less than "Number of children in contact and on IPT"').show();
+					return false;
+				} else {
+					return true;
+				} 
+			};
+		
+			var onCptValidate = function() {
+				if (getValue('on-cpt.value') == YES_CONCEPT_ID &amp; getValue('cpt-start-date'.value) == '') {
+					getField('cpt-start-date.error').html('CPT start date is required');
+					return false;
+				} else {
+					return true;
+				}
+			};
+		
+			var onArtValidate = function() {
+				if (getValue('on-art.value') == YES_CONCEPT_ID &amp; getValue('art-start-date'.value) == '') {
+					getField('art-start-date.error').html('ART start date is required');
+					return false;
+				} else {
+					return true;
+				}
+			};
+		
+			var transferOutValidate = function() {
+				if (getValue('treatment-outcome.value') == TRANSFER_OUT_CONCEPT_ID &amp; getValue('transfer-out-to'.value) == '') {
+					getField('transfer-out-to.error').html('The Transfer out to Unit required');
+					return false;
+				} else {
+					return true;
+				}
+			};
 
-        form select, .form select {
-            min-width: 0px;
-        }
+	        var $othersField = jq('span.has-comment input[type=checkbox], span.has-comment select');
 
-        form input, form select, form textarea, form ul.select, .form input, .form select, .form textarea, .form
-        ul.select {
-            background-color: #FBFBFB;
-            border: 1px solid #CEC9C9;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            padding: 10px;
-            min-width: 20%;
-        }
+	        var toggleOtherSpecify = function() {
+	            $othersField.each(function() {
+	                var $specifyField,
+	                	$thisField;
 
-        .row {
-            width: 100%;
-            float: left;
-            display: inline-flex;
-            clear: both;
-        }
-
-        .row .row-col2 {
-            float: left;
-            width: 50%;
-        }
-
-        table th, table td {
-            border: 1px solid #AFAFAF;
-        }
-    </style>
-    <div class="ai-page-frame">
-        <div class="headers" style="text-align: center;">
-            <h3 style="background: #FFFF7D; padding: 10px;">096a - TB Register Summary Page</h3>
-        </div>
-      <section>
-            <table>
-                <tbody>
-                <tr>
-                    <td>
-                        Request date:
-                        <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
-                     <span style="display: none;">
-                        <encounterLocation default="8ab22b55-9a17-4121-bf08-6134a9a2439f"
-                                           order="8ab22b55-9a17-4121-bf08-6134a9a2439f"/>
-                      </span>
-                    </td>
-                    <td>
-                        <label><span class="required">*</span> Provider:</label>
-                        <encounterProvider role="Provider" style="autocomplete" required="required"/>
-                    </td>
-                </tr>
-
-                </tbody>
-            </table>
-        </section>
-		<section>
-			<table width="100%" border="0" cellspacing="0" cellpadding="0">
-			  <tr>
-				<td style="width:33%"><p>Unit TB No.</p>
-				    <p><patient  field="identifier" identifierTypeId="8fd5e225-f91a-44af-ba04-3b41428d2164" id="unit-tb-no" required="true" /></p>
-				</td>
-				<td style="width:33%"><p>HSD TB No. </p>
-				    <p><patient  field="identifier" identifierTypeId="2a6f1f82-2b70-4a51-8507-3a849bc637c3" id="hsd-tb-no" required="false" /></p>
-				</td>
-				<td style="width:33%"><p>District TB No </p>
-				    <p><patient  field="identifier" identifierTypeId="8110f2d2-1f98-4c38-aef3-11b19bb0a589" id="district-tb-no" required="false" /></p>
-				</td>
-			  </tr>
-			  <tr>
-				<td><p>Name of contact person </p>
-			    <p><obs conceptId="163258AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></p></td>
-				<td><p>Is Health worker? </p>
-			    	<p><obs conceptId="5619AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
-				</p>
-				</td>
-				<td><p>Cadre of health worker </p>
-			    <p>missing</p></td>
-			  </tr>
-			  <tr>
-				<td>Date treatment started </td>
-				<td>Regimen</td>
-				<td>Disease clasification </td>
-			  </tr>
-			  <tr>
-				<td>Type of patient </td>
-				<td>Transfer in facility Name </td>
-				<td>Unit TB No. (Of trnsfer in facility) </td>
-			  </tr>
-			</table>
-		</section>
-		<section>
-		<table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td valign="top" style="width:33%">Patient received HIV Results </td>
-    <td valign="top" style="width:33%">HIV Counselling and testing </td>
-    <td style="width:33%"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td style="width:50%">CPT</td>
-        <td style="width:50%">Date</td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-    </table>      </td>
-  </tr>
-  <tr>
-    <td colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td style="width:33%">ART</td>
-        <td style="width:33%">ART No. </td>
-        <td style="width:33%">ART Start Date </td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-    </table></td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>No. of children &lt;5yrs in contact </td>
-    <td>No. of children with IPT </td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>Treatment Model </td>
-    <td>Date for treatment model </td>
-    <td>Name of treatment supporter </td>
-  </tr>
-</table>
-
-		</section>
-        <section>
-            <table>
-                <tbody>
-
-                <tr>
-                    <td colspan="3"><b>HIV DNA PCR, QUAL:</b>
-                        <obs id="br" conceptId="1030" labelText="" answerConceptIds="1138,664,703"
-                             answerLabels="Intermediate, Negative, Positive" style="radio"/>
-                    </td>
-                    <td><b>Chlamydia Trachomatis DNA PCR </b>:
-                        <obs id="br" conceptId="1034" labelText="" answerConceptIds="1300,664,703,1304"
-                             answerLabels="Equivocal,Negative, Positive, Poor sample" style="radio"/>
-                    </td>
-                </tr>
-
-
-                <tr>
-                    <td><b>HIV Viral Load:</b>
-                        <obs id="br" conceptId="99093" answerConceptIds="99090,99091,99092" answerLabels="&#61;,&#60;,&#62;"
-                             style="radio"/>
-                    </td>
-                    <td>
-                        <obs conceptId="856"/>
-                    </td>
-                    <td>copies/ml</td>
-                    <td><b> GONORRHEA PCR: </b>
-                        <obs id="br" conceptId="1038" labelText="" answerConceptIds="1300,664,703,1304"
-                             answerLabels="Equivocal,Negative, Positive, Poor sample" style="radio"/>
-                    </td>
-                </tr>
-
-
-                <tr>
-                    <td colspan="3"><b>HERPES PCR: </b>
-                        <obs id="br" conceptId="1046" labelText="" answerConceptIds="1300,664,703,1304"
-                             answerLabels="Equivocal,Negative, Positive, Poor sample" style="radio"/>
-                    </td>
-                    <td><b>TRICHOMONAS PCR:</b>
-                        <obs id="br" conceptId="1039" labelText="" answerConceptIds="1300,664,703,1304"
-                             answerLabels="Equivocal,Negative, Positive, Poor sample" style="radio"/>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <br/>
-        <submit/>
+	                $specifyField = jq(this).siblings('input[type=text]');
+	                $thisField = jq(this);
+	                
+	                if (($thisField.is('input[type=checkbox]') &amp; $thisField.attr('checked') == 'checked') || 
+	                ($thisField.is('select') &amp; $thisField.val() == OTHER_CONCEPT_ID)) { 
+	                    fieldHelper.removeReadonly($specifyField);
+	                } else {
+	                    fieldHelper.makeReadonly($specifyField);
+	                    $specifyField.val('');
+	                }
+	            });
+	        };
+		
+			$transferInFromField.change(transferInFromChange);
+			$onCptField.change(onCptChange);
+			$onArtField.change(onArtChange);
+			$muacColorCodeField.change(muacColorCodeChange);
+			$treatmentOutcomeField.change(treatmentOutcomeChange);
+			$noOfChildrenInContactField.change(noOfChildrenInContactChange);
+			$noOfChildrenInContactOnIptField.change(noOfChildrenInContactChange);
+			$othersField.change(toggleOtherSpecify);
+		
+			transferInFromChange();
+			onCptChange();
+			onArtChange();
+			muacColorCodeChange()
+			treatmentOutcomeChange();
+			childrenSectionToggle();
+			toggleOtherSpecify();
+		
+			beforeSubmit.push(function(){
+				var valid = true;
+				if (onCptValidate()) {
+					valid = true;
+				} else {
+					valid = false;
+				}
+		
+				if (onArtValidate()) {
+					valid = true;
+				} else {
+					valid = false;
+				}
+		
+				if (noOfChildrenValidate()) {
+					valid = true;
+				} else {
+					valid = false;
+				}
+		
+				if (transferOutValidate()) {
+					valid = true;
+				} else {
+					valid = false;
+				}
+		
+				if (noOfChildrenValidate()) {
+					valid = true;
+				} else {
+					valid = false;
+				}
+		
+				return valid;
+			});
+		
+		});	
+	
+	</script>
+  <div class="ai-page-frame">
+    <div class="headers" style="text-align: center;">
+      <h3 style="background: #FFFF7D; padding: 10px;">096a - Health Unit TB Register Summary Page</h3>
     </div>
+    <section>
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              Encounter date:
+              <encounterDate default="today" disallowMultipleEncountersOnDate="block" />
+              <span style="display: none;">
+                <encounterLocation default="8ab22b55-9a17-4121-bf08-6134a9a2439f"
+                                   order="8ab22b55-9a17-4121-bf08-6134a9a2439f" />
+              </span>
+            </td>
+            <td>
+              <label>
+                <span class="required">*</span> Provider:
+              </label>
+              <encounterProvider role="Provider" style="autocomplete" required="required" />
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </section>
+    <fieldset>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <p>
+              <label>Unit TB No.</label>
+              <patient field="identifier" identifierTypeId="8fd5e225-f91a-44af-ba04-3b41428d2164" id="unit-tb-no" required="true" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>HSD TB No.</label>
+              <patient field="identifier" identifierTypeId="2a6f1f82-2b70-4a51-8507-3a849bc637c3" id="hsd-tb-no" required="false" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>District TB No</label>
+              <patient field="identifier" identifierTypeId="8110f2d2-1f98-4c38-aef3-11b19bb0a589" id="district-tb-no" required="false" />
+            </p>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td valign="top">
+            <p>
+              <label>Is patient a Health worker?</label>
+              <obs conceptId="5619" answerConceptIds="1065,1066" style="radio" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Cadre of health worker</label>
+              <obs conceptId="1783AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1574,164831,1577,1578,1555,163557,5622" showCommentField="true" class="has-comment" commentFieldLabel="&lt;span&gt;Specify if Other&lt;/span&gt;"/>
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Name of contact person</label>
+              <obs conceptId="163258AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+            </p>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <p>
+              <label>Date treatment started</label>
+              <obs conceptId="90217" allowFutureDate="false" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Regimen</label>
+              <obs conceptId="99374" style="dropdown" answerConceptIds="99373,99372,99371" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Disease classification</label>
+              <obs conceptId="99379" answerConceptIds="113491AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,113489AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5042" answerLabels="Pulmonary bacteriologically confirmed TB treatment,Pulmonary clinically diagnosed TB,Extra pulmonary TB" />
+            </p>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <p>
+              <label>Type of patient</label>
+              <obs conceptId="99386" answerConceptIds="99380,99381,99382,99386,1067" answerLabels="New,Relapse,Failure,Lost to follow up,treatment history unknown" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Transfer in from</label>
+              <obs conceptId="99109" id="transfer-in-from"/>
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Transfer in -Unit TB No.</label>
+              <patient field="identifier" identifierTypeId="1d2be2a3-7d90-42a6-aasa5-a04b684a365b" id="district-tb-no" required="false" />
+            </p>
+          </td>
+          <td></td>
+        </tr>
+      </table>
+    </fieldset>
+
+    <fieldset>
+      <legend>TB/HIV Activities</legend>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td valign="top">
+            <p>
+              <label>HIV Counselling and testing</label>
+              <obs conceptId="99409" style="dropdown" answerConceptIds="99405,99406,99407,99408" answerLabels="Counselling done,Counselling and testing done,Counselling and testing done for HIV Positive,Counselling ans Testing done for HIV Negative" />
+            </p>
+          </td>
+          <td valign="top">
+            <p>
+              <label>HIV Testing Date</label>
+              <obs conceptId="164400AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+            </p>
+          </td>
+          <td valign="top">
+            <p>
+              <label>
+                Patient received <br/>HIV Results
+              </label>
+              <obs conceptId="99411" style="radio" answerConceptIds="1065,1066" answerLabels="Yes, No" answerSeparator="&lt;br/&gt;" />
+            </p>
+          </td>
+          <td valign="top">
+            <p>
+              <label>
+                Is Patient <br/>On CPT?
+              </label>
+              <obs conceptId="160434AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1065,1066" answerLabels="Yes,No" id="on-cpt" style="radio" />
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">
+            <p>
+              <label>CPT Start Date</label>
+              <obs conceptId="164361AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="cpt-start-date" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Is Patient On ART?</label>
+              <obs conceptId="159991AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1065,1066" answerLabels="Yes,No" id="on-art" style="radio" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Art Start Date</label>
+              <obs conceptId="99161" allowFutureDates="false" id="art-start-date" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Art No</label>
+              <obs conceptId="99431" id="art-number" />
+            </p>
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+    <fieldset>
+      <legend>Contact with chlidren under 5 years</legend>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td valign="top">
+            <p>
+              <label>No. of children &lt;5yrs in contact</label>
+              <obs conceptId="164419" id="no-of-children-in-contact" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>No. of children &lt; 5yrs on IPT</label>
+              <obs conceptId="164421" id="no-of-children-in-contact-on-ipt"/>
+            </p>
+          </td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+    </fieldset>
+    <fieldset>
+      <legend>Treatment model</legend>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td valign="top">
+            <p>
+              <label>Treatment Model (DOTS)</label>
+              <obs conceptId="99418" answerConceptIds="99416,99417" answerLabels="Facility, Community" style="radio" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>DOTS Date</label>
+              <obs conceptId="90217" allowFutureDates="false" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Name of treatment supporter</label>
+              <obs conceptId="99142" />
+            </p>
+          </td>
+          <td></td>
+        </tr>
+      </table>
+    </fieldset>
+    <fieldset>
+      <legend>Treatment outcome and date when outcome determined</legend>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <p>
+              Treatment Outcome
+              <obs conceptId="99423" answerConceptIds="159791AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,90306,159874AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1366,5240" answerLabels="Cured, Transferred out,Treatment failure,Died,Lost to follow up" style="dropdown" answerSeparator="&lt;br/&gt;" id="treatment-outcome"/>
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Date when outcome determined</label>
+              <obs conceptId="159787" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Transfer out to (Name of unit)</label>
+              <obs conceptId="90211" id="transfer-out-to" />
+            </p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4">
+            <p>
+              <label>Remarks</label>
+              <obs conceptId="159395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rows="15" cols="60" />
+            </p>
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+    <enrollInProgram programId="TB program" />
+    <submit />
+  </div>
 </htmlform>
