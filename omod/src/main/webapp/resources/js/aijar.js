@@ -65,3 +65,41 @@ function showContainer(container) {
     jq(container + ' :input').attr('disabled', false);
     jq(container + ' :input').prop('checked', false);
 }
+
+
+/*
+ *This is a helper object that contains functions to perform basic functions on a form field
+ *
+ *@param: selector string or JQuery object  
+ */
+var fieldHelper = {
+	disable: function(args) {
+		if (args instanceof jQuery) {
+			args.attr('disabled', true);
+		} else if (typeof args === 'string' ){
+			jq(args).attr('disabled', true);
+		}
+	},
+	enable: function(args) {
+		if (args instanceof jQuery) {
+			args.removeAttr('disabled');
+		} else if (typeof args === 'string' ){
+			jq(args).removeAttr('disabled');
+		}
+	},
+	makeReadonly: function(args) {
+		if (args instanceof jQuery) {
+			args.attr('readonly', true).fadeTo(250, 0.5);
+
+		} else if (typeof args === 'string' ){
+			jq(args).attr('readonly', true).fadeTo(250, 0.25);
+		}
+	},
+	removeReadonly: function(args) {
+		if (args instanceof jQuery) {
+			args.removeAttr('readonly').fadeTo(250, 1);
+		} else if (typeof args === 'string' ){
+			jq(args).removeAttr('readonly').fadeTo(250, 1);
+		}
+	}
+};
