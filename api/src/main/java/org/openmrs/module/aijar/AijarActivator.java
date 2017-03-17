@@ -118,6 +118,8 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             log.info("TB concepts imported");
             dataImporter.importData("metadata/Concepts_OPD-1.xml");
             log.info("OPD concepts imported");
+            dataImporter.importData("metadata/Concepts_Programs-1.xml");
+            log.info("Programs concepts imported");
 
             // save defined global properties
             administrationService.saveGlobalProperties(configureGlobalProperties());
