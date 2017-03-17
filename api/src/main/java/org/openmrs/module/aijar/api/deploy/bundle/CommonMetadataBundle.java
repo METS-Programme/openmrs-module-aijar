@@ -1,6 +1,11 @@
 package org.openmrs.module.aijar.api.deploy.bundle;
 
-import org.openmrs.module.aijar.metadata.core.*;
+
+import org.openmrs.module.aijar.metadata.core.EncounterTypes;
+import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
+import org.openmrs.module.aijar.metadata.core.PersonAttributeTypes;
+import org.openmrs.module.aijar.metadata.core.Programs;
+import org.openmrs.module.aijar.metadata.core.Roles;
 import org.openmrs.module.metadatadeploy.bundle.AbstractMetadataBundle;
 import org.springframework.stereotype.Component;
 
