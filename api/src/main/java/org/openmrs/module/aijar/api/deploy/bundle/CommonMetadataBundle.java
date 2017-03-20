@@ -60,9 +60,9 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         //Install Encounter Type
         log.info("Installing EncounterTypes");
         install(EncounterTypes.PNC_ENCOUNTER_TYPE);
-        install(EncounterTypes.TB_Summary);
-        install(EncounterTypes.TB_Encounter);
-        install(EncounterTypes.TB_Discontinuation);
+        install(EncounterTypes.TB_SUMMARY);
+        install(EncounterTypes.TB_ENCOUNTER);
+        install(EncounterTypes.TB_DISCONTINUATION);
         
         //Install Location
         log.info("Installing Locations");
