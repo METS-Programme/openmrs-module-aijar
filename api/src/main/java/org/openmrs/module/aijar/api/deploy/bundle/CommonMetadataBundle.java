@@ -6,7 +6,6 @@ import org.openmrs.module.aijar.metadata.core.PersonAttributeTypes;
 import org.openmrs.module.aijar.metadata.core.Roles;
 import org.openmrs.module.metadatadeploy.bundle.AbstractMetadataBundle;
 import org.springframework.stereotype.Component;
-import org.openmrs.module.aijar.metadata.core.Locations;
 
 /**
  * Installs the most common metadata
@@ -63,9 +62,5 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(EncounterTypes.TB_SUMMARY);
         install(EncounterTypes.TB_ENCOUNTER);
         install(EncounterTypes.TB_DISCONTINUATION);
-        
-        //Install Location
-        log.info("Installing Locations");
-        install(Locations.TB_CLINIC);
     }
 }
