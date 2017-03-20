@@ -22,7 +22,7 @@ public class EncounterTypes {
         }
     };
     
-    public static EncounterTypeDescriptor TB_Summary = new EncounterTypeDescriptor() {
+    public static EncounterTypeDescriptor TB_SUMMARY = new EncounterTypeDescriptor() {
 
 		@Override
 		public String uuid() {
@@ -42,7 +42,7 @@ public class EncounterTypes {
     	
     };
 
-    public static EncounterTypeDescriptor TB_Encounter = new EncounterTypeDescriptor() {
+    public static EncounterTypeDescriptor TB_ENCOUNTER = new EncounterTypeDescriptor() {
 
 		@Override
 		public String uuid() {
@@ -62,7 +62,7 @@ public class EncounterTypes {
     	
     };
 
-    public static EncounterTypeDescriptor TB_Discontinuation = new EncounterTypeDescriptor() {
+    public static EncounterTypeDescriptor TB_DISCONTINUATION = new EncounterTypeDescriptor() {
 
 		@Override
 		public String uuid() {
