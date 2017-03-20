@@ -127,7 +127,7 @@
                             <label>Serial Number</label>
                         </p>
                         <p>
-                            Missing
+                            To be loaded
                         </p>
                     </td>
                     <td>
@@ -135,7 +135,7 @@
                             <label>Client Number</label>
                         </p>
                         <p>
-                            <obs conceptId="99026"/>
+                            <obs conceptId="38460266-6bcd-47e8-844c-649d34323810"/>
                         </p>
                     </td>
                     <td>
@@ -143,7 +143,7 @@
                             <label>ANC Visit</label>
                         </p>
                         <p>
-                            <obs conceptId="99324"/>
+                            <obs conceptId="801b8959-4b2a-46c0-a28f-f7d3fc8b98bb"/>
                         </p>
                     </td>
                 </tr>
@@ -160,7 +160,7 @@
                             <label>Gravida</label>
                         </p>
                         <p>
-                            <obs conceptId="5624"/>
+                            <obs conceptId="dcc39097-30ab-102d-86b0-7a5022ba4115"/>
                         </p>
                     </td>
                     <td>
@@ -168,7 +168,7 @@
                             <label>Parity</label>
                         </p>
                         <p>
-                            <obs conceptId="1053"/>
+                            to be loaded
                         </p>
                     </td>
                     <td>
@@ -176,13 +176,13 @@
                             <label>L.M.P</label>
                         </p>
                         <p>
-                            <obs conceptId="99325"/>
+                            <obs conceptId="27d8e650-615a-473c-954f-ec934b0131d5"/>
                         </p>
                     </td>
                     <td>
                         <p>
                             <label>Gestational Age</label>
-                            <obs conceptId="1279"/>
+                            <obs conceptId="dca0a383-30ab-102d-86b0-7a5022ba4115"/>
                         </p>
                     </td>
                 </tr>
@@ -192,7 +192,8 @@
                             <label>ANC Timing</label>
                         </p>
                         <p>
-                            <obs conceptId="99732" labelText="" answerConceptIds="90003,90004,1175"
+                            <obs conceptId="3a862ab6-7601-4412-b626-d373c1d4a51e" labelText=""
+                                 answerConceptIds="dcd695dc-30ab-102d-86b0-7a5022ba4115,dcd69c06-30ab-102d-86b0-7a5022ba4115,dc9b0596-30ab-102d-86b0-7a5022ba4115"
                                  answerLabels="&#8730;,X,N/A"/>
                         </p>
                     </td>
@@ -201,7 +202,7 @@
                             <label>Expected Date Of Delivery</label>
                         </p>
                         <p>
-                            <obs conceptId="5596" id="edd"/>
+                            <obs conceptId="dcc033e5-30ab-102d-86b0-7a5022ba4115" id="edd"/>
                         </p>
                     </td>
                     <td></td>
@@ -218,7 +219,7 @@
                                 <label>Weight</label>
                             </p>
                             <p>
-                                <obs conceptId="5089"/>
+                                <obs conceptId="5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
                             </p>
                         </td>
                         <td>
@@ -226,7 +227,7 @@
                                 <label>Height</label>
                             </p>
                             <p>
-                                <obs conceptId="5090"/>
+                                <obs conceptId="5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
                             </p>
                         </td>
                         <td>
@@ -235,20 +236,24 @@
                             </p>
                             <p>
                                 <includeIf velocityTest="$patient.age &lt; 5">
-                                    <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                                    <obs id="br" conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                                         answerConceptIds="8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3,de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9"
                                          answerLabels="Red &lt; 11.5cm, Yellow 11.5cm - &lt;12.5cm,Green &gt;= 12.5cm"/>
                                 </includeIf>
                                 <includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
-                                    <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                                    <obs id="br" conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                                         answerConceptIds="8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3,de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9"
                                          answerLabels="Red &lt; 13.5cm,Yellow 13.5cm - &lt;14.5cm,Green &gt;=14.5cm"/>
                                 </includeIf>
                                 <includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
-                                    <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                                    <obs id="br" conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                                         answerConceptIds="8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3,de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9"
                                          answerLabels="Red &lt; 16.5cm, Yellow 16.5cm - &lt;19.0cm,Green &gt;=19.0cm"/>
                                 </includeIf>
 
                                 <includeIf velocityTest="$patient.age &gt;=18">
-                                    <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
+                                    <obs id="br" conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                                         answerConceptIds="8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3,de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9"
                                          answerLabels="Red &lt;19.0cm , Yellow 19.0cm - &lt;22.0cm,Green &gt;=22.0cm"/>
                                 </includeIf>
                             </p>
@@ -258,7 +263,7 @@
                                 <label>I.N.R Number</label>
                             </p>
                             <p>
-                                <obs conceptId="99733" id="inrNumber"/>
+                                <obs conceptId="b644c29c-9bb0-447e-9f73-2ae89496a709" id="inrNumber"/>
                             </p>
                         </td>
                     </tr>
@@ -269,7 +274,7 @@
                                 <label>Diastolic B.P</label>
                             </p>
                             <p>
-                                <obs conceptId="5086"/>
+                                <obs conceptId="5086AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
                             </p>
                         </td>
                         <td>
@@ -277,7 +282,7 @@
                                 <label>Systolic B.P</label>
                             </p>
                             <p>
-                                <obs conceptId="5085"/>
+                                <obs conceptId="5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
                             </p>
                         </td>
                         <td></td>
@@ -290,8 +295,8 @@
                                 <label>eMTCT Code - Woman</label>
                             </p>
                             <p>
-                                <obs conceptId="99317" labelText="" id="ARVSEnableDisable1"
-                                     answerConceptIds="99313,99734,99314,99315,99735,99736,99737,99738,99739,99741"
+                                <obs conceptId="d5b0394c-424f-41db-bc2f-37180dcdbe74" labelText="" id="ARVSEnableDisable1"
+                                     answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7,86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465,12d878f9-899c-4b3c-bf57-c6226c307a53,60155e4d-1d49-4e97-9689-758315967e0f,81bd3e58-9389-41e7-be1a-c6723f899e56,1f177240-85f6-4f10-964a-cfc7722408b3,a08d9331-b437-485c-8eff-1923f3d43630,8dcaefaa-aa91-4c24-aaeb-122cff549ab3"
                                      answerLabels="C,T,TR,TRR,TR&#8730;,TRR&#8730;,TRK,TRRK,TR+,TRR+" style="dropdown"/>
                             </p>
                         </td>
@@ -301,14 +306,14 @@
                             </p>
                             <p>
                                 <obs conceptId="99342" labelText=""
-                                     answerConceptIds="99313,99734,99314,99315,99735,99736,99737,99738,99739,99741"
+                                     answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7,86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465,12d878f9-899c-4b3c-bf57-c6226c307a53,60155e4d-1d49-4e97-9689-758315967e0f,81bd3e58-9389-41e7-be1a-c6723f899e56,1f177240-85f6-4f10-964a-cfc7722408b3,a08d9331-b437-485c-8eff-1923f3d43630,8dcaefaa-aa91-4c24-aaeb-122cff549ab3"
                                      answerLabels="C,T,TR,TRR,TR&#8730;,TRR&#8730;,TRK,TRRK,TR+,TRR+" style="dropdown"/>
                             </p>
                         </td>
                         <td>
                             <p>
                                 <label>Diagnosis</label>
-                                <obs conceptId="99321" style="textarea"/>
+                                <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="textarea"/>
                             </p>
                         </td>
                         <td></td>
@@ -321,21 +326,17 @@
                         </td>
                         <td>
                             <p>
-                                <obs conceptId="90203"
-                                     answerConceptIds="1204,1205,1206,1207"
+                                <obs conceptId="dcdff274-30ab-102d-86b0-7a5022ba4115"
+                                     answerConceptIds="dc9b8cd1-30ab-102d-86b0-7a5022ba4115,dc9b9113-30ab-102d-86b0-7a5022ba4115,dc9b9549-30ab-102d-86b0-7a5022ba4115,dc9b999b-30ab-102d-86b0-7a5022ba4115"
                                      answerLabels="WHO STAGE 1 ADULT, WHO STAGE 2 ADULT,WHO STAGE 3 ADULT,WHO STAGE 4 ADULT"
                                      style="dropdown"/>
                             </p>
                         </td>
                         <td>
-                            <p>
-                                <label>WHO Date</label>
-                            </p>
+
                         </td>
                         <td>
-                            <p>
-                                Missing
-                            </p>
+
                         </td>
                     </tr>
                     <tr>
@@ -346,7 +347,7 @@
                         </td>
                         <td>
                             <p>
-                                <obs conceptId="5497"/>
+                                <obs conceptId="dcbcba2c-30ab-102d-86b0-7a5022ba4115"/>
                             </p>
                         </td>
                         <td>
@@ -356,7 +357,7 @@
                         </td>
                         <td>
                             <p>
-                                Missing
+                                to be loaded
                             </p>
                         </td>
                     </tr>
@@ -369,8 +370,9 @@
                         </td>
                         <td>
                             <p>
-                                <obs conceptId="1305" answerConceptIds="1302,1301,1304"
-                                     answerLabels="Not Detected,Detected,Sample Rejected" style="dropdown"
+                                <obs conceptId="dca12261-30ab-102d-86b0-7a5022ba4115"
+                                     answerConceptIds="dca1269d-30ab-102d-86b0-7a5022ba4115,dca10c94-30ab-102d-86b0-7a5022ba4115,dca11907-30ab-102d-86b0-7a5022ba4115"
+                                     answerLabels="Beyond Detectable Limit,Detected,Sample Rejected" style="dropdown"
                                      id="viral-load-results"/>
                             </p>
                         </td>
@@ -383,7 +385,7 @@
                         </td>
                         <td>
                             <p>
-                                <obs conceptId="163023"/>
+                                <obs conceptId="0b434cfa-b11c-4d14-aaa2-9aed6ca2da88"/>
                             </p>
                         </td>
                     </tr>
@@ -395,7 +397,7 @@
                         </td>
                         <td>
                             <p>
-                                <obs conceptId="856" id="viral-load"/>
+                                <obs conceptId="dc8d83e3-30ab-102d-86b0-7a5022ba4115" id="viral-load"/>
                             </p>
                         </td>
                         <td></td>
@@ -414,7 +416,8 @@
                                 <label>ARVs Given</label>
                             </p>
                             <p>
-                                <obs conceptId="99744" answerConceptIds="99745,99746,99747,99748,1175"
+                                <obs conceptId="a615f932-26ee-449c-8e20-e50a15232763"
+                                     answerConceptIds="026e31b7-4a26-44d0-8398-9a41c40ff7d3,2aa7d442-6cbb-4609-9dd3-bc2ad6f05016,2c000b41-f9d7-40c1-8de0-bce91dbae932,bbc63761-0741-4583-9396-a34d3a18601c,dc9b0596-30ab-102d-86b0-7a5022ba4115"
                                      answerLabels="ART,ARTK,ART✔,ARTK✔,NA"
                                      style="dropdown"/>
                             </p>
@@ -424,7 +427,7 @@
                                 <label>Pre-ART Number</label>
                             </p>
                             <p>
-                                <obs conceptId="99751"/>
+                                <obs conceptId="9fc5bf9d-a79e-4548-9207-b2afbbeba796"/>
                             </p>
                         </td>
                         <td>
@@ -434,7 +437,8 @@
                         </td>
                         <td>
                             <p>
-                                <obs conceptId="99749" answerConceptIds="1065,1066" answerLabels="Yes, No"
+                                <obs conceptId="5d993591-9334-43d9-a208-11b10adfad85"
+                                     answerConceptIds="dcd695dc-30ab-102d-86b0-7a5022ba4115,dcd69c06-30ab-102d-86b0-7a5022ba4115" answerLabels="Yes, No"
                                      style="radio"/>
                             </p>
                         </td>
@@ -448,7 +452,8 @@
                         </td>
                         <td>
                             <p>
-                                <obs conceptId="99750" answerConceptIds="1065,1066" answerLabels="Yes, No"
+                                <obs conceptId="af7dccfd-4692-4e16-bd74-5ac4045bb6bf"
+                                     answerConceptIds="dcd695dc-30ab-102d-86b0-7a5022ba4115,dcd69c06-30ab-102d-86b0-7a5022ba4115" answerLabels="Yes, No"
                                      style="radio"/>
                             </p>
                         </td>
@@ -457,7 +462,8 @@
                                 <label>TB Status</label>
                             </p>
                             <p>
-                                <obs conceptId="90216" answerConceptIds="90079,90073,90078,90071"
+                                <obs conceptId="dce02aa1-30ab-102d-86b0-7a5022ba4115"
+                                     answerConceptIds="dcdaccc1-30ab-102d-86b0-7a5022ba4115,dcdaaf0f-30ab-102d-86b0-7a5022ba4115,dcdac38b-30ab-102d-86b0-7a5022ba4115,dcdaa6b4-30ab-102d-86b0-7a5022ba4115"
                                      answerLabels="No Signs,Suspect,Diagnosed,TB Rx"
                                      style="dropdown"/>
                             </p>
@@ -467,7 +473,7 @@
                                 <label>Haemoglobin</label>
                             </p>
                             <p>
-                                <obs conceptId="21"/>
+                                <obs conceptId="dc548e89-30ab-102d-86b0-7a5022ba4115"/>
                             </p>
                         </td>
                     </tr>
@@ -478,7 +484,8 @@
                                 <label>Syphilis Test - Woman</label>
                             </p>
                             <p>
-                                <obs conceptId="99752" answerConceptIds="99754,99755,99756,99757"
+                                <obs conceptId="275a6f72-b8a4-4038-977a-727552f69cb8"
+                                     answerConceptIds="db3b19b2-e5f0-48c5-9ab4-dd9e4ad519dd,fe247560-8db6-4664-a6bc-e3b873b9b10a,0d323507-97ff-4146-917c-11119546c051,451f794b-2f67-4ac5-bfb6-39cdae7bf4fc"
                                      answerLabels="RX,Positive,NR,NT"
                                      style="dropdown"/>
                             </p>
@@ -488,7 +495,7 @@
                                 <label>Syphilis Test - Partner</label>
                             </p>
                             <p>
-                                <obs conceptId="99753" answerConceptIds="99754,99755,99756,99757"
+                                <obs conceptId="d8bc9915-ed4b-4df9-9458-72ca1bc2cd06" answerConceptIds="db3b19b2-e5f0-48c5-9ab4-dd9e4ad519dd,fe247560-8db6-4664-a6bc-e3b873b9b10a,0d323507-97ff-4146-917c-11119546c051,451f794b-2f67-4ac5-bfb6-39cdae7bf4fc"
                                      answerLabels="RX,Positive,NR,NT"
                                      style="dropdown"/>
                             </p>
@@ -500,7 +507,7 @@
                         </td>
                         <td>
                             <p>99294
-                                <obs conceptId="99296" answerConceptIds="99294,99295" answerLabels="C, C/D"
+                                <obs conceptId="0815c786-5994-49e4-aa07-28b662b0e428" answerConceptIds="cd054f0f-314e-4e0a-9ea8-c3fd1e685ea8,d142bc94-9ed9-4b99-bd88-30a022b60b3b" answerLabels="C, C/D"
                                      style="radio"/>
                             </p>
                         </td>
