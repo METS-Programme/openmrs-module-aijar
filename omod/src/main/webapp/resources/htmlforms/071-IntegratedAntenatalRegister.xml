@@ -495,7 +495,8 @@
                                 <label>Syphilis Test - Partner</label>
                             </p>
                             <p>
-                                <obs conceptId="d8bc9915-ed4b-4df9-9458-72ca1bc2cd06" answerConceptIds="db3b19b2-e5f0-48c5-9ab4-dd9e4ad519dd,fe247560-8db6-4664-a6bc-e3b873b9b10a,0d323507-97ff-4146-917c-11119546c051,451f794b-2f67-4ac5-bfb6-39cdae7bf4fc"
+                                <obs conceptId="d8bc9915-ed4b-4df9-9458-72ca1bc2cd06"
+                                     answerConceptIds="db3b19b2-e5f0-48c5-9ab4-dd9e4ad519dd,fe247560-8db6-4664-a6bc-e3b873b9b10a,0d323507-97ff-4146-917c-11119546c051,451f794b-2f67-4ac5-bfb6-39cdae7bf4fc"
                                      answerLabels="RX,Positive,NR,NT"
                                      style="dropdown"/>
                             </p>
@@ -506,8 +507,10 @@
                             </p>
                         </td>
                         <td>
-                            <p>99294
-                                <obs conceptId="0815c786-5994-49e4-aa07-28b662b0e428" answerConceptIds="cd054f0f-314e-4e0a-9ea8-c3fd1e685ea8,d142bc94-9ed9-4b99-bd88-30a022b60b3b" answerLabels="C, C/D"
+                            <p>
+                                <obs conceptId="0815c786-5994-49e4-aa07-28b662b0e428"
+                                     answerConceptIds="cd054f0f-314e-4e0a-9ea8-c3fd1e685ea8,d142bc94-9ed9-4b99-bd88-30a022b60b3b"
+                                     answerLabels="C, C/D"
                                      style="radio"/>
                             </p>
                         </td>
@@ -518,7 +521,8 @@
                                 <label>Tetanus Dose</label>
                             </p>
                             <p>
-                                <obs conceptId="99303" answerConceptIds="99298,99299,99300,99301,99302,1267"
+                                <obs conceptId="39217e3d-6a39-4679-bf56-f0954a7ffdb8"
+                                     answerConceptIds="0192ca59-b647-4f88-b07e-8fda991ba6d6,f1d5afce-8dfe-4d2d-b24b-051815d61848,a5497b5a-7da1-42d2-9985-b5ec695b4199,da40fa2a-074f-4d90-a875-5bb8316bc753,18f11bf4-c986-4cdd-b31c-fb189ea39333,dca06bae-30ab-102d-86b0-7a5022ba4115"
                                      answerLabels="1st,2nd,3rd,4th,5th,Completed"
                                      style="dropdown"/>
                             </p>
@@ -528,7 +532,8 @@
                                 <label>IPT Dose</label>
                             </p>
                             <p>
-                                <obs conceptId="99306" answerConceptIds="99298,99299,99305,1267,99758,99759"
+                                <obs conceptId="1da3cb98-59d8-4bfd-b0bb-c9c1bcd058c6"
+                                     answerConceptIds="0192ca59-b647-4f88-b07e-8fda991ba6d6,f1d5afce-8dfe-4d2d-b24b-051815d61848,f29f43c6-076a-4f70-9ae8-4563ac3fda80,dca06bae-30ab-102d-86b0-7a5022ba4115,fca28768-50dc-4d6b-a3d2-2aae3b376b27,b0439b8e-469e-43e6-9dda-9b6b49f2147b"
                                      answerLabels="1,2,ND,C,CTX,CTX✔"
                                      style="dropdown"/>
                             </p>
@@ -540,7 +545,9 @@
                         </td>
                         <td>
                             <p>
-                                <obs conceptId="99760" answerConceptIds="90003,90004" answerLabels="Yes, No"
+                                <obs conceptId="3e7bb52c-e6ae-4a0b-bce0-3b36286e8658"
+                                     answerConceptIds="dcd695dc-30ab-102d-86b0-7a5022ba4115,dcd69c06-30ab-102d-86b0-7a5022ba4115"
+                                     answerLabels="Yes, No"
                                      style="radio"/>
                             </p>
                         </td>
@@ -551,22 +558,22 @@
                                 <label>Mebendazole Dose</label>
                             </p>
                             <p>
-                                <obs conceptId="99312"
-                                     answerConceptIds="99309,99310,99311,1267"
-                                     answerLabels="✔,X,NA,C"
+                                <obs conceptId="9d6abbc4-707a-4ec7-a32a-4090b1c3af87"
+                                     answerConceptIds="a7a9d632-b266-4085-9a5e-57fc8dd56f0c,0134c1d3-a255-46b2-ac77-38c0edcd9e53,	beb5523f-ec5a-46fe-a7c9-f3270a05f4b4,dca06bae-30ab-102d-86b0-7a5022ba4115"
+                                     answerLabels="✔,X,ND,C"
                                      style="dropdown"/>
                             </p>
                         </td>
                         <td>
                             <p>
-                                <obs conceptId="99318" answerLabel="Iron" style="checkbox"/>
-                                <obs conceptId="99761"/>
+                                <obs conceptId="315825e8-8ba4-4551-bdd1-aa4e02a36639" answerLabel="Iron" style="checkbox"/>
+                                <obs conceptId="c02d9887-6a46-43cc-9495-5ec034dc05d6" id="ironTabletsGiven"/>
                             </p>
                         </td>
                         <td>
                             <p>
-                                <obs conceptId="99319"  answerLabel="Folic Acid" style="checkbox"/>
-                                <obs conceptId="99762"/>
+                                <obs conceptId="8c346216-c444-4528-a174-5139922218ed"  answerLabel="Folic Acid" style="checkbox"/>
+                                <obs conceptId="961ff308-bc19-4ae4-ba11-fe29157d20f9" id="folicTabletsGiven"/>
                             </p>
                         </td>
                         <td>
@@ -574,7 +581,7 @@
                                 <label>Other Treatments</label>
                             </p>
                             <p>
-                                <obs conceptId="99320" style="textarea"/>
+                                <obs conceptId="2aa72406-436e-490d-8aa4-d5336148204f" style="textarea"/>
                             </p>
                         </td>
                     </tr>
@@ -591,9 +598,10 @@
                             <label>Referal</label>
                         </p>
                         <p>
-                            <obs conceptId="99322" answerConceptIds="99763,99764,99765,99766"
+                            <obs conceptId="cd27f0ac-0fd3-4f40-99a3-57742106f5fd"
+                                 answerConceptIds="6442c9f6-25e8-4c8e-af8a-e9f6845ceaed,14714862-6c78-49da-b65b-f249cccddfb6,03997d45-f6f7-4ee2-a6fe-b16985e3495d,3af0aae4-4ea7-489d-a5be-c5339f7c5a77"
                                  answerLabels="REFOUT,REF IN,C/REF IN,FSG" style="dropdown"
-                                 id="hiv-status"/>
+                                 id="referral"/>
                         </p>
                     </td>
                     <td>
@@ -601,7 +609,7 @@
                             <label>Referral Number</label>
                         </p>
                         <p>
-                            <obs conceptId="99767"/>
+                            <obs conceptId="c9159851-557b-4c09-8942-65b7989aa20a" id="referralNumber"/>
                         </p>
                     </td>
                     <td>
@@ -611,7 +619,7 @@
                     </td>
                     <td>
                         <p>
-                            <obs conceptId="99768"/>
+                            to be loaded
                         </p>
 
                     </td>
