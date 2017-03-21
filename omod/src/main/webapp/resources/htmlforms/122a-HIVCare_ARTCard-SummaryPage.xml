@@ -12,6 +12,19 @@
           formLabel="ART Card - Summary Form">
     <script type="text/javascript">
 
+        beforeSubmit.push(function () {
+            var submitVal = true;
+            <!-- Validation rules -->
+            <!-- The next appointment date if specified has to be after the encounterDate -->
+            if(submitVal==true){
+                submitVal = dateValidator("90299", "encounterDate", "Eligible and ready must be after HIV enrolled date", "less_or_equal");
+                if(submitVal==true){
+                    submitVal = dateValidator("99161", "90299", "ART start date must be after Enrolled date", "less_or_equal");
+                }
+            }
+            return submitVal;
+        });
+
         function enable_disable_fm(selected_option) {
 
             var class_name = jq(selected_option).attr("class");
