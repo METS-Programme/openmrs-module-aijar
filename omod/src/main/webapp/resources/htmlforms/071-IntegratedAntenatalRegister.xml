@@ -182,6 +182,8 @@
                     <td>
                         <p>
                             <label>Gestational Age</label>
+                        </p>
+                        <p>
                             <obs conceptId="dca0a383-30ab-102d-86b0-7a5022ba4115"/>
                         </p>
                     </td>
@@ -295,7 +297,8 @@
                                 <label>eMTCT Code - Woman</label>
                             </p>
                             <p>
-                                <obs conceptId="d5b0394c-424f-41db-bc2f-37180dcdbe74" labelText="" id="ARVSEnableDisable1"
+                                <obs conceptId="d5b0394c-424f-41db-bc2f-37180dcdbe74" labelText=""
+                                     id="ARVSEnableDisable1"
                                      answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7,86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465,12d878f9-899c-4b3c-bf57-c6226c307a53,60155e4d-1d49-4e97-9689-758315967e0f,81bd3e58-9389-41e7-be1a-c6723f899e56,1f177240-85f6-4f10-964a-cfc7722408b3,a08d9331-b437-485c-8eff-1923f3d43630,8dcaefaa-aa91-4c24-aaeb-122cff549ab3"
                                      answerLabels="C,T,TR,TRR,TR&#8730;,TRR&#8730;,TRK,TRRK,TR+,TRR+" style="dropdown"/>
                             </p>
@@ -316,15 +319,10 @@
                                 <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="textarea"/>
                             </p>
                         </td>
-                        <td></td>
-                    </tr>
-                    <tr>
                         <td>
                             <p>
                                 <label>WHO Clinical Stage</label>
                             </p>
-                        </td>
-                        <td>
                             <p>
                                 <obs conceptId="dcdff274-30ab-102d-86b0-7a5022ba4115"
                                      answerConceptIds="dc9b8cd1-30ab-102d-86b0-7a5022ba4115,dc9b9113-30ab-102d-86b0-7a5022ba4115,dc9b9549-30ab-102d-86b0-7a5022ba4115,dc9b999b-30ab-102d-86b0-7a5022ba4115"
@@ -332,13 +330,8 @@
                                      style="dropdown"/>
                             </p>
                         </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
                     </tr>
+
                     <tr>
                         <td>
                             <p>
@@ -438,7 +431,8 @@
                         <td>
                             <p>
                                 <obs conceptId="5d993591-9334-43d9-a208-11b10adfad85"
-                                     answerConceptIds="dcd695dc-30ab-102d-86b0-7a5022ba4115,dcd69c06-30ab-102d-86b0-7a5022ba4115" answerLabels="Yes, No"
+                                     answerConceptIds="dcd695dc-30ab-102d-86b0-7a5022ba4115,dcd69c06-30ab-102d-86b0-7a5022ba4115"
+                                     answerLabels="Yes, No"
                                      style="radio"/>
                             </p>
                         </td>
@@ -453,7 +447,8 @@
                         <td>
                             <p>
                                 <obs conceptId="af7dccfd-4692-4e16-bd74-5ac4045bb6bf"
-                                     answerConceptIds="dcd695dc-30ab-102d-86b0-7a5022ba4115,dcd69c06-30ab-102d-86b0-7a5022ba4115" answerLabels="Yes, No"
+                                     answerConceptIds="dcd695dc-30ab-102d-86b0-7a5022ba4115,dcd69c06-30ab-102d-86b0-7a5022ba4115"
+                                     answerLabels="Yes, No"
                                      style="radio"/>
                             </p>
                         </td>
@@ -565,14 +560,27 @@
                             </p>
                         </td>
                         <td>
+
                             <p>
-                                <obs conceptId="315825e8-8ba4-4551-bdd1-aa4e02a36639" answerLabel="Iron" style="checkbox"/>
+                                <label>Iron</label>
+                                <obs conceptId="315825e8-8ba4-4551-bdd1-aa4e02a36639" answerLabel="Iron"
+                                     answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                     answerLabels="Yes, No"
+                                     style="radio" />
+                            </p>
+                            <p>
                                 <obs conceptId="c02d9887-6a46-43cc-9495-5ec034dc05d6" id="ironTabletsGiven"/>
                             </p>
                         </td>
                         <td>
                             <p>
-                                <obs conceptId="8c346216-c444-4528-a174-5139922218ed"  answerLabel="Folic Acid" style="checkbox"/>
+                                <label>Folic Acid</label>
+                                <obs conceptId="8c346216-c444-4528-a174-5139922218ed"
+                                     answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                     answerLabels="Yes, No"
+                                     style="radio"/>
+                            </p>
+                            <p>
                                 <obs conceptId="961ff308-bc19-4ae4-ba11-fe29157d20f9" id="folicTabletsGiven"/>
                             </p>
                         </td>
