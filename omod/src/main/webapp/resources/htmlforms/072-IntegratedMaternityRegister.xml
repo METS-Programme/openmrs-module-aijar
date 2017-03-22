@@ -44,7 +44,9 @@
 	                $viralLoadField.val(1);
 	                fieldHelper.makeReadonly($viralLoadField);
 	            } else if($viralLoadResults == VIRAL_LOAD_DETECTED_CONCEPT_ID) { //if viral load quantitive is 'detected' allow for entry of viral load count
-	                $viralLoadField.val("");
+	                if ($viralLoadField == 1) {
+		                $viralLoadField.val("");
+	                }
 	            } else { //if viral load quantitive is 'rejected' clear viral load count field
 	                $viralLoadField.val("");
 	                fieldHelper.disable($viralLoadField);
