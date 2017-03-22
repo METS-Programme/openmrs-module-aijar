@@ -31,13 +31,13 @@ import org.openmrs.module.aijar.api.deploy.bundle.CommonMetadataBundle;
 import org.openmrs.module.aijar.api.deploy.bundle.UgandaAddressMetadataBundle;
 import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
 import org.openmrs.module.appframework.service.AppFrameworkService;
+import org.openmrs.module.dataexchange.DataImporter;
 import org.openmrs.module.emrapi.EmrApiConstants;
 import org.openmrs.module.emrapi.utils.MetadataUtil;
 import org.openmrs.module.idgen.IdentifierSource;
 import org.openmrs.module.idgen.service.IdentifierSourceService;
 import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
 import org.openmrs.notification.AlertService;
-import org.openmrs.ui.framework.resource.ResourceFactory;
 import org.openmrs.util.OpenmrsUtil;
 
 import java.io.File;
@@ -107,6 +107,17 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 
             // install commonly used metadata
             installCommonMetadata(deployService);
+            
+            // install concepts
+            DataImporter dataImporter = Context.getRegisteredComponent("dataImporter", DataImporter.class);
+            dataImporter.importData("metadata/Concepts_ART-1.xml");
+            log.info("ART concepts imported");
+            dataImporter.importData("metadata/Concepts_MCH-1.xml");
+            log.info("MCH concepts imported");
+            dataImporter.importData("metadata/Concepts_TB-1.xml");
+            log.info("TB concepts imported");
+            dataImporter.importData("metadata/Concepts_OPD-1.xml");
+            log.info("OPD concepts imported");
 
             // save defined global properties
             administrationService.saveGlobalProperties(configureGlobalProperties());
