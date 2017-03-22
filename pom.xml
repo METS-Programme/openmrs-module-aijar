@@ -47,10 +47,9 @@
 	</modules>
 
 	<properties>
-		<openMRSVersion>1.11.6</openMRSVersion>
+		<openMRSVersion>1.11.8</openMRSVersion>
 		<openmrsTestutilsVersion>1.3</openmrsTestutilsVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<openMRSVersion>1.11.7</openMRSVersion>
 		<webservices.restModuleVersion>2.18.0</webservices.restModuleVersion>
 
 		<!-- Modules Bundled for Uganda distribution  -->
