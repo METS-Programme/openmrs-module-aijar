@@ -409,7 +409,7 @@
                     </td>
                     <td>
                         <excludeIf velocityTest="$patient.person.dead ==true ">
-                            <obs id="returndate" conceptId="5096" required="required" allowFutureDates="true"
+                            <obs id="returndate" conceptId="5096" allowFutureDates="true"
                                  labelText="Return date:"/>
                         </excludeIf>
                     </td>
