@@ -57,12 +57,12 @@ function changeFieldDateToJavascriptDate(dateValue) {
 function dateValidator(prime, factor, message_to_throw, condition) {
     var evaluationResult = true;
 
-    if(getValue(factor + '.value')=='' &amp;&amp; getValue(prime + '.value') != ''){
+    if(getValue(factor + '.value')=='' && getValue(prime + '.value') != ''){
         getField(factor + '.error').html("Can Not Be Null").show();
         evaluationResult = false;
     }
 
-    if (getValue(prime + '.value') != '' &amp;&amp; getValue(factor + '.value')!='') {
+    if (getValue(prime + '.value') != '' && getValue(factor + '.value')!='') {
         <!-- has a value -->
 
         switch (condition) {
@@ -73,7 +73,7 @@ function dateValidator(prime, factor, message_to_throw, condition) {
                 }
                 break;
             case "less_than":
-                if (changeFieldDateToJavascriptDate(getValue(prime + '.value')) &lt; changeFieldDateToJavascriptDate(getValue(factor + '.value'))) {
+                if (changeFieldDateToJavascriptDate(getValue(prime + '.value')) < changeFieldDateToJavascriptDate(getValue(factor + '.value'))) {
                     getField(prime + '.error').html(message_to_throw).show();
                     evaluationResult = false;
                 }
@@ -91,7 +91,7 @@ function dateValidator(prime, factor, message_to_throw, condition) {
                 }
                 break;
             case "less_or_equal":
-                if (changeFieldDateToJavascriptDate(getValue(prime + '.value')) &lt;= changeFieldDateToJavascriptDate(getValue(factor + '.value'))) {
+                if (changeFieldDateToJavascriptDate(getValue(prime + '.value')) <= changeFieldDateToJavascriptDate(getValue(factor + '.value'))) {
                     getField(prime + '.error').html(message_to_throw).show();
                     evaluationResult = false;
                 }
@@ -133,7 +133,7 @@ function showContainer(container) {
 /*
  *This is a helper object that contains functions to perform basic functions on a form field
  *
- *@param: selector string or JQuery object  
+ *@param: selector string or JQuery object
  */
 var fieldHelper = {
 	disable: function(args) {
