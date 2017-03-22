@@ -6,7 +6,7 @@ jq('#checkbox-autogenerate-identifier').click(function () {
     else {
         NavigatorController.getFieldById('deceased-status').hide();
     }
-})
+});
 
 /* Remove the ability to edit the different patient identifiers by removing the link  */
 jq(document).ready(function () {
