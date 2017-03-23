@@ -16,10 +16,13 @@
             var submitVal = true;
             <!-- Validation rules -->
             <!-- The next appointment date if specified has to be after the encounterDate -->
-            if(submitVal==true){
-                submitVal = dateValidator("90299", "encounterDate", "Eligible and ready must be after HIV enrolled date", "less_or_equal");
-                if(submitVal==true){
-                    submitVal = dateValidator("99161", "90299", "ART start date must be after Enrolled date", "less_or_equal");
+            if (submitVal == true) {
+                submitVal = dateValidator("90297", "encounterDate", "Eligible for art date must be after HIV enrolled date", "less_than");
+                if (submitVal == true) {
+                    submitVal = dateValidator("90299", "90297", "Eligible and ready must be after Eligible date", "less_than");
+                    if (submitVal == true) {
+                        submitVal = dateValidator("99161", "90299", "ART start date must be after Enrolled date", "less_than");
+                    }
                 }
             }
             return submitVal;
@@ -102,7 +105,8 @@
 
             });
 
-        }function enable_disable(field, class_name_prefix, conditions, input_type) {
+        }
+        function enable_disable(field, class_name_prefix, conditions, input_type) {
 
             var class_name = jq(field).attr("class");
 
@@ -963,7 +967,7 @@
                     <td>
                         <label><span class="required">*</span>Attending Clinician:</label>
                         <encounterProvider role="Provider" style="autocomplete"/>
-                         <span style="display: none;">
+                        <span style="display: none;">
                         <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
                                            order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
                         </span>
@@ -1002,7 +1006,7 @@
                         <td style="width: 33%;">
                             <label>Care Entry Point</label>
 
-                                <span class="ARTCareEntryPointEnableDisable1">
+                            <span class="ARTCareEntryPointEnableDisable1">
                                         <obs conceptId="90200"
                                              answerConceptIds="90012,90016,99593,90019,90013,90015,90018,90002"
                                              answerLabels="eMTCT,TB,YCC,Outreach,Out Patient,STI,Inpatient,Other"
@@ -1564,7 +1568,7 @@
                     <obsgroup groupingConceptId="99066">
                         <td id="trigger" class="PriorYesNoEnableDisableChild1">
                             <obs conceptId="99056" answerConceptId="90003" answerLabel="PEP:"
-                                    />
+                            />
                         </td>
                         <td id="disabled">
                             <obs id="second" conceptId="99154" labelText=""/>
@@ -1655,7 +1659,7 @@
                     </td>
                     <td class="checkboxGroup"><span class="enableDisable">
                         <p id="trigger">
-                            <obs conceptId="99110" answerConceptId="90003" id="trigger"
+                            <obs conceptId="99110" answerConceptId="90003"
                                  answerLabel="HIV care"/>
                         </p>
                         <p id="disabled">
@@ -1667,7 +1671,7 @@
                 </tr>
                 <tr>
                     <td>Eligible for ART</td>
-                    <td class="HIVCareEnableDisableChild1">
+                    <td>
                         <obs id="90297" conceptId="90297" allowFutureDates="false"/>
                     </td>
                     <td rowspan="2">
@@ -1872,7 +1876,7 @@
                                  answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99884,99885,163017,99143"
                                  answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3CT-LPV/r,Other"/>
                             </span>
-                                <span class="ArtCareEnableDisableChild3">
+                            <span class="ArtCareEnableDisableChild3">
                                 <obs size="20" conceptId="99146" labelText="Other"/>
                             </span>
                         </td>
@@ -1893,7 +1897,7 @@
                                  answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99884,99885,163017,99143"
                                  answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3CT-LPV/r,Other"/>
                             </span>
-                                <span class="ArtCareEnableDisableChild4">
+                            <span class="ArtCareEnableDisableChild4">
                                 <obs size="20" conceptId="99146" labelText="Other"/>
                             </span>
                         </td>
@@ -1914,7 +1918,7 @@
                                  answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99884,99885,163017,99143"
                                  answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3CT-LPV/r,Other"/>
                             </span>
-                                <span class="ArtCareEnableDisableChild5">
+                            <span class="ArtCareEnableDisableChild5">
                                 <obs size="20" conceptId="99146" labelText="Other"/>
                             </span>
                         </td>
@@ -2147,12 +2151,12 @@
                             <label>
                                 <b>Stop/Lost</b>
                             </label>
-                                <span class="ARTTreatmentInterruptionEnableDisable2">
+                            <span class="ARTTreatmentInterruptionEnableDisable2">
                                     <obs conceptId="99132" answerConceptIds="1363,99133"
                                          answerLabels="Stopped,  Lost"/>
                                 </span>
 
-                                <span class="ARTTreatmentInterruptionEnableDisableChild2">
+                            <span class="ARTTreatmentInterruptionEnableDisableChild2">
 
                                     <b>Date</b>
                                     <br/>
@@ -2180,25 +2184,25 @@
                             <label>
                                 <b>Stop/Lost</b>
                             </label>
-                                <span class="ARTTreatmentInterruptionEnableDisable3">
+                            <span class="ARTTreatmentInterruptionEnableDisable3">
                                     <obs conceptId="99132" answerConceptIds="1363,99133"
                                          answerLabels="Stopped,  Lost"/>
                                 </span>
 
-                                <span class="ARTTreatmentInterruptionEnableDisableChild3">
+                            <span class="ARTTreatmentInterruptionEnableDisableChild3">
                                     <b>Date</b>
                                     <br/>
                                     <obs conceptId="99084"/>
                                     <br/>
                                     </span>
-                             <span class="ARTTreatmentInterruptionEnableDisableGrandChild3">
+                            <span class="ARTTreatmentInterruptionEnableDisableGrandChild3">
                                     <b>Why</b>
                                     <br/>
                                     <obs conceptId="1252" labelText=""
                                          answerConceptIds="90040,90046,90158,90050,90045,90051,90052,90066,99289,90002"
                                          answerLabels="1.Toxicity/side effects,2.Treatment Failure,3. Poor Adherence, 4.Illness/hospitalization, 5.Drug out of stock, 6.Patient lacks Finances, 7. Other patient decision, 8.Patient Rx interruption intpn, 9.Excluded HIV Infection, 10.Other,"/>
                                  </span>
-                             <span class="ARTTreatmentInterruptionEnableDisableChild3">
+                            <span class="ARTTreatmentInterruptionEnableDisableChild3">
                                  <br/>
                                     <b>Date if Restart/Re-activated</b>
                                     <br/>
@@ -2211,24 +2215,24 @@
                             <label>
                                 <b>Stop/Lost</b>
                             </label>
-                                <span class="ARTTreatmentInterruptionEnableDisable4">
+                            <span class="ARTTreatmentInterruptionEnableDisable4">
                                     <obs conceptId="99132" answerConceptIds="1363,99133"
                                          answerLabels=" Stopped,  Lost"/>
                                 </span>
-                                <span class="ARTTreatmentInterruptionEnableDisableChild4">
+                            <span class="ARTTreatmentInterruptionEnableDisableChild4">
                                     <b>Date</b>
                                     <br/>
                                     <obs conceptId="99084"/>
                                     <br/>
                                     </span>
-                             <span class="ARTTreatmentInterruptionEnableDisableGrandChild4">
+                            <span class="ARTTreatmentInterruptionEnableDisableGrandChild4">
                                     <b>Why</b>
                                     <br/>
                                     <obs conceptId="1252" labelText=""
                                          answerConceptIds="90040,90046,90158,90050,90045,90051,90052,90066,99289,90002"
                                          answerLabels="1.Toxicity/side effects,2.Treatment Failure,3. Poor Adherence, 4.Illness/hospitalization, 5.Drug out of stock, 6.Patient lacks Finances, 7. Other patient decision, 8.Patient Rx interruption intpn, 9.Excluded HIV Infection, 10.Other,"/>
                                    </span>
-                             <span class="ARTTreatmentInterruptionEnableDisableChild4">
+                            <span class="ARTTreatmentInterruptionEnableDisableChild4">
                                     <br/>
                                     <b>Date if Restart/Re-activated</b>
                                     <br/>
@@ -2241,11 +2245,11 @@
                             <label>
                                 <b>Stop/Lost</b>
                             </label>
-                                <span class="ARTTreatmentInterruptionEnableDisable5">
+                            <span class="ARTTreatmentInterruptionEnableDisable5">
                                     <obs conceptId="99132" answerConceptIds="1363,99133"
                                          answerLabels=" Stopped,  Lost"/>
                                 </span>
-                                <span class="ARTTreatmentInterruptionEnableDisableChild5">
+                            <span class="ARTTreatmentInterruptionEnableDisableChild5">
                                     <b>Date</b>
                                     <br/>
                                     <obs conceptId="99084"/>
@@ -2271,24 +2275,24 @@
                             <label>
                                 <b>Stop/Lost</b>
                             </label>
-                                <span class="ARTTreatmentInterruptionEnableDisable6">
+                            <span class="ARTTreatmentInterruptionEnableDisable6">
                                     <obs conceptId="99132" answerConceptIds="1363,99133"
                                          answerLabels="Stopped,  Lost"/>
                                 </span>
-                                <span class="ARTTreatmentInterruptionEnableDisableChild6">
+                            <span class="ARTTreatmentInterruptionEnableDisableChild6">
                                     <b>Date</b>
                                     <br/>
                                     <obs conceptId="99084"/>
                                     <br/>
                                     </span>
-                             <span class="ARTTreatmentInterruptionEnableDisablGrandeChild6">
+                            <span class="ARTTreatmentInterruptionEnableDisablGrandeChild6">
                                     <b>Why</b>
                                     <br/>
                                     <obs conceptId="1252" labelText=""
                                          answerConceptIds="90040,90046,90158,90050,90045,90051,90052,90066,99289,90002"
                                          answerLabels="1.Toxicity/side effects,2.Treatment Failure,3. Poor Adherence, 4.Illness/hospitalization, 5.Drug out of stock, 6.Patient lacks Finances, 7. Other patient decision, 8.Patient Rx interruption intpn, 9.Excluded HIV Infection, 10.Other,"/>
                                  </span>
-                             <span class="ARTTreatmentInterruptionEnableDisableChild6">
+                            <span class="ARTTreatmentInterruptionEnableDisableChild6">
                                  <br/>
                                     <b>Date if Restart/Re-activated</b>
                                     <br/>
