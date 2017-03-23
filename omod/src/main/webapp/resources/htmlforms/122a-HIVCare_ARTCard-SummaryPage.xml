@@ -16,19 +16,30 @@
             var submitVal = true;
             <!-- Validation rules -->
             <!-- The next appointment date if specified has to be after the encounterDate -->
-            var message1="Eligible for art date must be after HIV enrolled date";
-            var message2="Eligible and ready must be after Eligible date";
-            var message3="ART start date must be after Enrolled date";
+            var message1 = "Eligible for art date must be after HIV enrolled date";
+            var message2 = "Eligible and ready must be after Eligible date";
+            var message3 = "ART start date must be after Enrolled date";
+            var message4 = "must be earlier or on the same day as HIV enrolled";
 
-            if (submitVal == true) {
-                submitVal = dateValidator("90297", "encounterDate", "",message1, "","less_than",true);
-                if (submitVal == true) {
-                    submitVal = dateValidator("90299", "90297", "encounterDate",message2, message1,"less_than",false);
-                    if (submitVal == true) {
-                        submitVal = dateValidator("99161", "90299", "",message3,"","less_than",true);
-                    }
-                }
+            var submitValStage = [];
+            submitValStage.push(dateValidator("90267", "encounterDate", "", message4, "", "greater_than", true));
+            submitValStage.push(dateValidator("90297", "encounterDate", "", message1, "", "less_than", true));
+            submitValStage.push(dateValidator("90299", "90297", "encounterDate", message2, message1, "less_than", false));
+            submitValStage.push(dateValidator("99161", "90299", "", message3, "", "less_than", true));
+            submitValStage.push(dateValidator("99163_1", "99161", "", message3, "", "less_than", true));
+            submitValStage.push(dateValidator("99163_2", "99161", "", message3, "", "less_than", true));
+            submitValStage.push(dateValidator("99163_3", "99161", "", message3, "", "less_than", true));
+            submitValStage.push(dateValidator("99163_4", "99161", "", message3, "", "less_than", true));
+            submitValStage.push(dateValidator("99164_1", "99161", "", message3, "", "less_than", true));
+            submitValStage.push(dateValidator("99164_2", "99161", "", message3, "", "less_than", true));
+            submitValStage.push(dateValidator("99164_3", "99161", "", message3, "", "less_than", true));
+            submitValStage.push(dateValidator("162991_1", "99161", "", message3, "", "less_than", true));
+            submitValStage.push(dateValidator("162991_2", "99161", "", message3, "", "less_than", true));
+            submitValStage.push(dateValidator("162991_3", "99161", "", message3, "", "less_than", true));
+            if (submitValStage.indexOf(false) != -1) {
+                submitVal = false;
             }
+
             return submitVal;
         });
 
@@ -993,7 +1004,7 @@
                 <tr>
                     <td id="comfirmedDate">
                         <label>Date Confirmed HIV +Ve:</label>
-                        <obs conceptId="90267"/>
+                        <obs id="90267" conceptId="90267"/>
                     </td>
                     <td>
                         <label>Test type</label>
@@ -1872,7 +1883,7 @@
                 <tr>
                     <obsgroup groupingConceptId="99062">
                         <td class="ARTStartEnableDisable3">
-                            <obs conceptId="99163"/>
+                            <obs id="99163_1" conceptId="99163"/>
                         </td>
                         <td class="ARTStartEnableDisableChild3">
                             <span class="ArtCareEnableDisable3">
@@ -1893,7 +1904,7 @@
                 <tr>
                     <obsgroup groupingConceptId="99062">
                         <td class="ARTStartEnableDisable4">
-                            <obs conceptId="99163"/>
+                            <obs id="99163_2" conceptId="99163"/>
                         </td>
                         <td class="ARTStartEnableDisableChild4">
                             <span class="ArtCareEnableDisable4">
@@ -1914,7 +1925,7 @@
                 <tr>
                     <obsgroup groupingConceptId="99062">
                         <td class="ARTStartEnableDisable5">
-                            <obs conceptId="99163"/>
+                            <obs id="99163_3" conceptId="99163"/>
                         </td>
                         <td class="ARTStartEnableDisableChild5">
                             <span class="ArtCareEnableDisable5">
@@ -1935,7 +1946,7 @@
                 <tr>
                     <obsgroup groupingConceptId="99062">
                         <td class="ARTStartEnableDisable6">
-                            <obs conceptId="99163"/>
+                            <obs id="99163_4" conceptId="99163"/>
                         </td>
                         <td class="ARTStartEnableDisableChild6">
                         <span class="ArtCareEnableDisable6">
@@ -1967,7 +1978,7 @@
                 <tr>
                     <obsgroup groupingConceptId="99063">
                         <td class="ARTStartEnableDisable7">
-                            <obs conceptId="99164"/>
+                            <obs id="99164_1" conceptId="99164"/>
                         </td>
                         <td class="ARTStartEnableDisableChild7">
                         <span class="ArtCareEnableDisable7">
@@ -1990,7 +2001,7 @@
                 <tr>
                     <obsgroup groupingConceptId="99063">
                         <td class="ARTStartEnableDisable8">
-                            <obs conceptId="99164"/>
+                            <obs id="99164_2" conceptId="99164"/>
                         </td>
                         <td class="ARTStartEnableDisableChild8">
                             <span class="ArtCareEnableDisable8">
@@ -2013,7 +2024,7 @@
                 <tr>
                     <obsgroup groupingConceptId="99063">
                         <td class="ARTStartEnableDisable9">
-                            <obs conceptId="99164"/>
+                            <obs id="99164_3" conceptId="99164"/>
                         </td>
                         <td class="ARTStartEnableDisableChild9">
                                 <span class="ArtCareEnableDisable9">
@@ -2047,7 +2058,7 @@
                 <tr>
                     <obsgroup groupingConceptId="162988">
                         <td class="ARTStart3EnableDisable1">
-                            <obs conceptId="162991"/>
+                            <obs id="162991_1" conceptId="162991"/>
                         </td>
                         <td class="ARTStart3EnableDisableChild1">
                             <span class="ArtCareEnableDisable10">
@@ -2068,7 +2079,7 @@
                 <tr>
                     <obsgroup groupingConceptId="162988">
                         <td class="ARTStart3EnableDisable2">
-                            <obs conceptId="162991"/>
+                            <obs id="162991_2" conceptId="162991"/>
                         </td>
                         <td class="ARTStart3EnableDisableChild2">
                             <span class="ArtCareEnableDisable11">
@@ -2090,7 +2101,7 @@
                 <tr>
                     <obsgroup groupingConceptId="162988">
                         <td class="ARTStart3EnableDisable3">
-                            <obs conceptId="162991"/>
+                            <obs id="162991_3" conceptId="162991"/>
                         </td>
                         <td class="ARTStart3EnableDisableChild3">
                             <span class="ArtCareEnableDisable12">
