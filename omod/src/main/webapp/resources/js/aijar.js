@@ -50,16 +50,27 @@ function changeFieldDateToJavascriptDate(dateValue) {
  *
  * @param prime What to test
  * @param factor What to be tested
+ * @param alternative_factor this is used when factorRequired is true and factor is expected to be null
  * @param message_to_throw
  * @param condition for example greater_than,less_than,equal_to,greater_or_equal,less_or_equal,not_equal
+ * @param factorRequired this
  * @returns {boolean}
  */
-function dateValidator(prime, factor, message_to_throw, condition) {
+function dateValidator(prime, factor, alternative_factor,message_to_throw, alternative_message_to_throw, condition,factorRequired) {
     var evaluationResult = true;
 
-    if (getValue(factor + '.value') == '' && getValue(prime + '.value') != '') {
+    if (getValue(factor + '.value') == '' && getValue(prime + '.value') != '' && factorRequired==true) {
         getField(factor + '.error').html("Can Not Be Null").show();
         evaluationResult = false;
+    }
+    else if(getValue(factor + '.value') == '' && getValue(alternative_factor + '.value') == '' && getValue(prime + '.value') != '' && factorRequired==false){
+        getField(alternative_factor + '.error').html("Can Not Be Null").show();
+        evaluationResult = false;
+    }
+
+    if(getValue(factor + '.value') == '' && getValue(alternative_factor + '.value')!="" && factorRequired==false){
+        factor=alternative_factor;
+        message_to_throw=alternative_message_to_throw;
     }
 
     if (getValue(prime + '.value') != '' && getValue(factor + '.value') != '') {
