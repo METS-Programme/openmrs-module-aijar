@@ -468,7 +468,7 @@
         <tr>
           <td>
             <label>Breastfed &lt;br/&gt;within&lt;br/&gt;1 hour?</label>
-            <obs conceptId="162945" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes, No" style="radio" />
+            <obs conceptId="a4063d62-a936-4a26-9c1c-a0fb279a71b1" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes, No" style="radio" />
           </td>
           <td></td>
           <td></td>
@@ -503,21 +503,21 @@
               Counselling at &lt;br/&gt;
               discharge
             </label>
-            <obs conceptId="162938" answerConceptIds="162936,162937" answerLabels="C, NC" style="radio" />
+            <obs conceptId="3095d500-4a3e-4cf3-ab96-6f406e0d371d" answerConceptIds="162936,162937" answerLabels="C, NC" style="radio" />
           </td>
           <td>
             <label>
               Maternal nutritional &lt;br/&gt;
               couselling at discharge
             </label>
-            <obs conceptId="162939" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes, No" style="radio" />
+            <obs conceptId="af7dccfd-4692-4e16-bd74-5ac4045bb6bf" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes, No" style="radio" />
           </td>
           <td>
             <label>
               Infant and young &lt;br/&gt;
               child feeding (IYCF)
             </label>
-            <obs conceptId="99749" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes, No" id="iycf" style="radio" />
+            <obs conceptId="5d993591-9334-43d9-a208-11b10adfad85" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes, No" id="iycf" style="radio" />
           </td>
           <td>
             <p>
