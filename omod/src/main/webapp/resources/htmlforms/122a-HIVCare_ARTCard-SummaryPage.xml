@@ -16,12 +16,16 @@
             var submitVal = true;
             <!-- Validation rules -->
             <!-- The next appointment date if specified has to be after the encounterDate -->
+            var message1="Eligible for art date must be after HIV enrolled date";
+            var message2="Eligible and ready must be after Eligible date";
+            var message3="ART start date must be after Enrolled date";
+
             if (submitVal == true) {
-                submitVal = dateValidator("90297", "encounterDate", "Eligible for art date must be after HIV enrolled date", "less_than");
+                submitVal = dateValidator("90297", "encounterDate", "",message1, "","less_than",true);
                 if (submitVal == true) {
-                    submitVal = dateValidator("90299", "90297", "Eligible and ready must be after Eligible date", "less_than");
+                    submitVal = dateValidator("90299", "90297", "encounterDate",message2, message1,"less_than",false);
                     if (submitVal == true) {
-                        submitVal = dateValidator("99161", "90299", "ART start date must be after Enrolled date", "less_than");
+                        submitVal = dateValidator("99161", "90299", "",message3,"","less_than",true);
                     }
                 }
             }
