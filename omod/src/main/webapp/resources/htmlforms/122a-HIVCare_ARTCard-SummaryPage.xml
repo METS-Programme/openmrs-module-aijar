@@ -16,26 +16,27 @@
             var submitVal = true;
             <!-- Validation rules -->
             <!-- The next appointment date if specified has to be after the encounterDate -->
-            var message1 = "Eligible for art date must be after HIV enrolled date";
-            var message2 = "Eligible and ready must be after Eligible date";
-            var message3 = "ART start date must be after Enrolled date";
-            var message4 = "must be earlier or on the same day as HIV enrolled";
+            var message1 = "Must be after HIV enrolled date";
+            var message2 = "Must be after Eligible date";
+            var message3 = "Must be after Enrolled date";
+            var message4 = "Must be earlier or on the same day as HIV enrolled";
+            var message5 = "Must be earlier ART Start Date";
 
             var submitValStage = [];
             submitValStage.push(dateValidator("90267", "encounterDate", "", message4, "", "greater_than", true));
             submitValStage.push(dateValidator("90297", "encounterDate", "", message1, "", "less_than", true));
             submitValStage.push(dateValidator("90299", "90297", "encounterDate", message2, message1, "less_than", false));
             submitValStage.push(dateValidator("99161", "90299", "", message3, "", "less_than", true));
-            submitValStage.push(dateValidator("99163_1", "99161", "", message3, "", "less_than", true));
-            submitValStage.push(dateValidator("99163_2", "99161", "", message3, "", "less_than", true));
-            submitValStage.push(dateValidator("99163_3", "99161", "", message3, "", "less_than", true));
-            submitValStage.push(dateValidator("99163_4", "99161", "", message3, "", "less_than", true));
-            submitValStage.push(dateValidator("99164_1", "99161", "", message3, "", "less_than", true));
-            submitValStage.push(dateValidator("99164_2", "99161", "", message3, "", "less_than", true));
-            submitValStage.push(dateValidator("99164_3", "99161", "", message3, "", "less_than", true));
-            submitValStage.push(dateValidator("162991_1", "99161", "", message3, "", "less_than", true));
-            submitValStage.push(dateValidator("162991_2", "99161", "", message3, "", "less_than", true));
-            submitValStage.push(dateValidator("162991_3", "99161", "", message3, "", "less_than", true));
+            submitValStage.push(dateValidator("99163_1", "99161", "", message5, "", "less_than", true));
+            submitValStage.push(dateValidator("99163_2", "99161", "", message5, "", "less_than", true));
+            submitValStage.push(dateValidator("99163_3", "99161", "", message5, "", "less_than", true));
+            submitValStage.push(dateValidator("99163_4", "99161", "", message5, "", "less_than", true));
+            submitValStage.push(dateValidator("99164_1", "99161", "", message5, "", "less_than", true));
+            submitValStage.push(dateValidator("99164_2", "99161", "", message5, "", "less_than", true));
+            submitValStage.push(dateValidator("99164_3", "99161", "", message5, "", "less_than", true));
+            submitValStage.push(dateValidator("162991_1", "99161", "", message5, "", "less_than", true));
+            submitValStage.push(dateValidator("162991_2", "99161", "", message5, "", "less_than", true));
+            submitValStage.push(dateValidator("162991_3", "99161", "", message5, "", "less_than", true));
             if (submitValStage.indexOf(false) != -1) {
                 submitVal = false;
             }
