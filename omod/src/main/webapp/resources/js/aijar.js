@@ -29,11 +29,11 @@ jq(document).ready(function () {
 
     /* Add validation rule for Uganda phone numbers, once applied to an element will validate the format and show a message
      */
-    jq.validator.addMethod( "ugphone", function( phone_number, element ) {
-        phone_number = phone_number.replace( /\(|\)|\s+|-/g, "" );
-        return this.optional( element ) || phone_number.length == 10 &&
-                                           phone_number.match( /^[0-9]{1,10}$/ );
-    }, "Please specify a valid mobile number without any spaces like 0712345678" );
+    jq.validator.addMethod("ugphone", function (phone_number, element) {
+        phone_number = phone_number.replace(/\(|\)|\s+|-/g, "");
+        return this.optional(element) || phone_number.length == 10 &&
+            phone_number.match(/^[0-9]{1,10}$/);
+    }, "Please specify a valid mobile number without any spaces like 0712345678");
 });
 
 /**
@@ -57,12 +57,12 @@ function changeFieldDateToJavascriptDate(dateValue) {
 function dateValidator(prime, factor, message_to_throw, condition) {
     var evaluationResult = true;
 
-    if(getValue(factor + '.value')=='' && getValue(prime + '.value') != ''){
+    if (getValue(factor + '.value') == '' && getValue(prime + '.value') != '') {
         getField(factor + '.error').html("Can Not Be Null").show();
         evaluationResult = false;
     }
 
-    if (getValue(prime + '.value') != '' && getValue(factor + '.value')!='') {
+    if (getValue(prime + '.value') != '' && getValue(factor + '.value') != '') {
         <!-- has a value -->
 
         switch (condition) {
@@ -103,16 +103,17 @@ function dateValidator(prime, factor, message_to_throw, condition) {
                 }
                 break;
         }
-        return evaluationResult;
+
     }
+    return evaluationResult;
 }
 
 
 /*
-* Hide the container, and disable all elements in it
-*
-* @param the Id of the container
-*/
+ * Hide the container, and disable all elements in it
+ *
+ * @param the Id of the container
+ */
 function hideContainer(container) {
     jq(container).addClass('hidden');
     jq(container + ' :input').attr('disabled', true);
@@ -136,33 +137,33 @@ function showContainer(container) {
  *@param: selector string or JQuery object
  */
 var fieldHelper = {
-	disable: function(args) {
-		if (args instanceof jQuery) {
-			args.attr('disabled', true);
-		} else if (typeof args === 'string' ){
-			jq(args).attr('disabled', true);
-		}
-	},
-	enable: function(args) {
-		if (args instanceof jQuery) {
-			args.removeAttr('disabled');
-		} else if (typeof args === 'string' ){
-			jq(args).removeAttr('disabled');
-		}
-	},
-	makeReadonly: function(args) {
-		if (args instanceof jQuery) {
-			args.attr('readonly', true).fadeTo(250, 0.5);
+    disable: function (args) {
+        if (args instanceof jQuery) {
+            args.attr('disabled', true);
+        } else if (typeof args === 'string') {
+            jq(args).attr('disabled', true);
+        }
+    },
+    enable: function (args) {
+        if (args instanceof jQuery) {
+            args.removeAttr('disabled');
+        } else if (typeof args === 'string') {
+            jq(args).removeAttr('disabled');
+        }
+    },
+    makeReadonly: function (args) {
+        if (args instanceof jQuery) {
+            args.attr('readonly', true).fadeTo(250, 0.5);
 
-		} else if (typeof args === 'string' ){
-			jq(args).attr('readonly', true).fadeTo(250, 0.25);
-		}
-	},
-	removeReadonly: function(args) {
-		if (args instanceof jQuery) {
-			args.removeAttr('readonly').fadeTo(250, 1);
-		} else if (typeof args === 'string' ){
-			jq(args).removeAttr('readonly').fadeTo(250, 1);
-		}
-	}
+        } else if (typeof args === 'string') {
+            jq(args).attr('readonly', true).fadeTo(250, 0.25);
+        }
+    },
+    removeReadonly: function (args) {
+        if (args instanceof jQuery) {
+            args.removeAttr('readonly').fadeTo(250, 1);
+        } else if (typeof args === 'string') {
+            jq(args).removeAttr('readonly').fadeTo(250, 1);
+        }
+    }
 };
