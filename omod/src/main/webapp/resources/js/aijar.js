@@ -59,8 +59,11 @@ function changeFieldDateToJavascriptDate(dateValue) {
 function dateValidator(prime, factor, alternative_factor,message_to_throw, alternative_message_to_throw, condition,factorRequired) {
     var evaluationResult = true;
 
+    getField(prime + '.error').html("").hide;
+    getField(factor + '.error').html("").hide;
+
     if (getValue(factor + '.value') == '' && getValue(prime + '.value') != '' && factorRequired==true) {
-        getField(factor + '.error').html("Can Not Be Null").show();
+        getField(factor + '.error').html("Can Not Be Null").show;
         evaluationResult = false;
     }
     else if(getValue(factor + '.value') == '' && getValue(alternative_factor + '.value') == '' && getValue(prime + '.value') != '' && factorRequired==false){
