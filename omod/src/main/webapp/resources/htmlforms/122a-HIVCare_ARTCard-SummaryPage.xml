@@ -2355,18 +2355,6 @@
                         <td></td>
                     </obsgroup>
                 </tr>
-                <tr class="enableDisable">
-                    <obsgroup groupingConceptId="99168">
-                        <td id="trigger">
-                            <obs conceptId="99112" answerConceptId="90003"
-                                 answerLabel="Dead:"/>
-                        </td>
-                        <td id="disabled">
-                            <obs conceptId="90272"/>
-                        </td>
-                        <td></td>
-                    </obsgroup>
-                </tr>
                 </tbody>
             </table>
         </section>
