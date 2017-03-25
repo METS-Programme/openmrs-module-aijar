@@ -13,7 +13,7 @@
     <ifMode mode="ENTER">
         <includeIf velocityTest="$fn.allEncounters('8d5b27bc-c2cc-11de-8d13-0010c6dffd0f').size() == 0">
             <script>
-                jq(function() {
+                jq(function () {
                     alert('This patient has no Summary page, you will now be forwarded to the patient dashboard');
 
                     /*
@@ -36,8 +36,8 @@
                      *     object, suitable for use in a URL query string or Ajax request.
                      */
                     location.href = window.location.protocol + "//" + window.location.host +
-                                    '/' + OPENMRS_CONTEXT_PATH + '/coreapps/clinicianfacing/patient.page?patientId='
-                                    + queryParameters['patientId']; // Causes page to reload
+                            '/' + OPENMRS_CONTEXT_PATH + '/coreapps/clinicianfacing/patient.page?patientId='
+                            + queryParameters['patientId']; // Causes page to reload
                 });
             </script>
         </includeIf>
@@ -234,7 +234,7 @@
         if (jQuery) {
 
             <!-- Validation rules -->
-            beforeSubmit.push(function() {
+            beforeSubmit.push(function () {
                 <!-- clear the previous errors -->
                 setValue('returndate.error', '');
                 setValue('viral-load-results-copies.error', '');
@@ -245,7 +245,7 @@
 
                 if (encounterDate &gt;= returnDate) {
                     getField('returndate.error').html('The return date must be after the date of this visit ' +
-                                                      encounterDate).show();
+                            encounterDate).show();
                     return false;
                 }
 
@@ -285,7 +285,7 @@
 
                 /* Handle viral load results */
                 jq("#viral-load-results-copies").attr("disabled", true);
-                jq("#viral-load-results-qualitative").change(function(){
+                jq("#viral-load-results-qualitative").change(function () {
                     var viral_load_status = getValue('viral-load-results-qualitative.value');
                     if (viral_load_status == 1301) {
                         /* Detected */
@@ -297,7 +297,7 @@
                         jq("#viral-load-results-copies").attr("disabled", false).attr("readonly", true).fadeTo(250, 0.25);
                         setValue('viral-load-results-copies.value', 1);
                     }
-                    if (viral_load_status == "" || viral_load_status == 1304 ) {
+                    if (viral_load_status == "" || viral_load_status == 1304) {
                         /* Sample Rejected and no data */
                         jq("#viral-load-results-copies").attr("disabled", true).attr("readonly", true).fadeTo(250, 0.25);
                         setValue('viral-load-results-copies.value', '');
@@ -408,10 +408,24 @@
                         <obs id="br" conceptId="90069" labelText="Scheduled?" style="checkbox"/>
                     </td>
                     <td>
-                        <excludeIf velocityTest="$patient.person.dead ==true ">
-                            <obs id="returndate" conceptId="5096" allowFutureDates="true"
-                                 labelText="Return date:"/>
+
+                        <excludeIf velocityTest="$patient.person.dead ==true">
+                            <ifMode mode="ENTER">
+                                <span id="transfer_out_date" style="display: none"><lookup
+                                        complexExpression="#set($transfer_out_date='') #set($lost_to_follow_date='') #set($transfer_out='') #foreach($encounter in $fn.allEncounters('8d5b27bc-c2cc-11de-8d13-0010c6dffd0f')) #foreach($obs in $encounter.obs) #if($obs.concept.conceptId == 99165) #set($transfer_out_date=$obs.valueDatetime) #end #if($obs.concept.conceptId == 99165) #set($lost_to_follow_date=$obs.valueDatetime) #end #if($obs.concept.conceptId == 90306) #set($transfer_out=$obs.valueCoded.name) #end #end #end $transfer_out_date"/></span>
+                                <includeIf velocityTest="$transfer_out=='YES'">
+                                    <obs id="returndate" conceptId="5096" allowFutureDates="true"
+                                         labelText="Return date:"/>
+                                </includeIf>
+
+                                <includeIf velocityTest="$transfer_out!='YES'">
+                                    <obs id="returndate" conceptId="5096" required="required" allowFutureDates="true"
+                                         labelText="Return date:"/>
+                                </includeIf>
+                            </ifMode>
+
                         </excludeIf>
+
                     </td>
                     <td>
                         <obs id="br" conceptId="99024" labelText="Duration(Months since baseline):"/>
@@ -419,9 +433,11 @@
                         <obs id="br" conceptId="99025" labelText="Duration:(Months on current regimen)"/>
                     </td>
                     <td>
-                        <obs class="horizontal" conceptId="90236" labelText="Weight" showUnits="uicommons.units.kilograms" unitsCssClass="append-to-value"/>
+                        <obs class="horizontal" conceptId="90236" labelText="Weight"
+                             showUnits="uicommons.units.kilograms" unitsCssClass="append-to-value"/>
                         <br/>
-                        <obs class="horizontal" conceptId="5090" labelText="Height" showUnits="uicommons.units.centimeters" unitsCssClass="append-to-value"/>
+                        <obs class="horizontal" conceptId="5090" labelText="Height"
+                             showUnits="uicommons.units.centimeters" unitsCssClass="append-to-value"/>
                         <br/>
                         <includeIf velocityTest="$patient.age &lt; 5">
                             <obs conceptId="99030" answerConceptIds="99028,99029,99027"
@@ -449,26 +465,32 @@
                              answerLabels="Oedema +,-" style="dropdown"/>
                         <br/>
 
-                                <obs class="horizontal" conceptId="CIEL:5088" id="temperature" showUnits="uicommons.units.degreesCelsius" unitsCssClass="append-to-value" labelText="Temperature"/>
-                            <br />
-                                <obs class="horizontal" conceptId="CIEL:5087" id="heart_rate" showUnits="uicommons.units.perMinute" unitsCssClass="append-to-value" labelText="Heart Rate"/>
-                        <br />
-                                <obs class="horizontal" conceptId="CIEL:5242" id="respiratory_rate" showUnits="uicommons.units.perMinute" unitsCssClass="append-to-value" labelText="Respiratory Rate"/>
-                        <br />
-                            Blood Pressure<br />
-                            <p class="left">
-                                <obs conceptId="CIEL:5085" id="bp_systolic" labelText="Systolic"/>
-                            </p>
-                            <p class="left" style="margin-left: 5px; margin-right: 5px;">
-                                   /
-                            </p>
-                            <p class="left">
-                                <obs conceptId="CIEL:5086" id="bp_diastolic" labelText="Diastolic"/>
-                            </p>
+                        <obs class="horizontal" conceptId="CIEL:5088" id="temperature"
+                             showUnits="uicommons.units.degreesCelsius" unitsCssClass="append-to-value"
+                             labelText="Temperature"/>
+                        <br/>
+                        <obs class="horizontal" conceptId="CIEL:5087" id="heart_rate"
+                             showUnits="uicommons.units.perMinute" unitsCssClass="append-to-value"
+                             labelText="Heart Rate"/>
+                        <br/>
+                        <obs class="horizontal" conceptId="CIEL:5242" id="respiratory_rate"
+                             showUnits="uicommons.units.perMinute" unitsCssClass="append-to-value"
+                             labelText="Respiratory Rate"/>
+                        <br/>
+                        Blood Pressure<br/>
+                        <p class="left">
+                            <obs conceptId="CIEL:5085" id="bp_systolic" labelText="Systolic"/>
+                        </p>
+                        <p class="left" style="margin-left: 5px; margin-right: 5px;">
+                            /
+                        </p>
+                        <p class="left">
+                            <obs conceptId="CIEL:5086" id="bp_diastolic" labelText="Diastolic"/>
+                        </p>
                         <excludeIf velocityTest="$patient.age &gt; 11">
-                        <br style="clear: both;" />
-                        <obs labelText="Z-Scores" conceptId="99800" answerConceptIds="99803,99804,99805,99806,99807"
-                             answerLabels="&#60;-3,-3_&#60;-1,-1_1,&#62;1_3,&#62;3"/>
+                            <br style="clear: both;"/>
+                            <obs labelText="Z-Scores" conceptId="99800" answerConceptIds="99803,99804,99805,99806,99807"
+                                 answerLabels="&#60;-3,-3_&#60;-1,-1_1,&#62;1_3,&#62;3"/>
                         </excludeIf>
                     </td>
                     <td>
@@ -477,7 +499,7 @@
                                     <obs conceptId="90041" style="checkbox" answerConceptIds="1065,1066"
                                          answerLabels="Yes,No" labelText="Pregnant"/>
                                 </span>
-                                <span class="ARTYesNoEnableDisableChild2">
+                            <span class="ARTYesNoEnableDisableChild2">
                                     <obs conceptId="5596" labelText="EDD" allowFutureDates="true"/>
                                     <br/>
                                 </span>
@@ -555,13 +577,13 @@
                                      answerConceptIds="90079,90073,90078,90071"
                                      answerLabels="No signs,Suspect,Diagnosed with Tb,Tb Rx"/>
                             </span>
-                            <span class="DistrictTbRegEnableDisableChild1">
+                        <span class="DistrictTbRegEnableDisableChild1">
                                 <obs id="br" conceptId="90217" labelText="TB Start Date:"/>
                                 <obs id="br" conceptId="90310" labelText="TB Stop Date:" allowFutureDates="true"/>
 
                             </span>
                         <label>District TB No.</label>
-                            <span class="DistrictTbRegEnableDisableChild1">
+                        <span class="DistrictTbRegEnableDisableChild1">
                                 <patient field="identifier" identifierTypeId="8110f2d2-1f98-4c38-aef3-11b19bb0a589"
                                          required="false"/>
                             </span>
@@ -580,9 +602,10 @@
                         <obs id="br" conceptId="90227" answerConceptId="90115" answerLabel="Jaundice"/>
                         <obs id="br" conceptId="90227" answerConceptId="90091" answerLabel="Nausea"/>
                         <obs id="br" conceptId="90227" answerConceptId="90098" answerLabel="Rash"/>
-                            <span class="enableDisable">
+                        <span class="enableDisable">
                                 <span id="trigger">
-                                    <obs id="br" conceptId="90227" answerConceptId="90002" answerLabel="Other specify:"/>
+                                    <obs id="br" conceptId="90227" answerConceptId="90002"
+                                         answerLabel="Other specify:"/>
                                 </span>
                                 <span id="disabled">
                                     <obs conceptId="99113" size="17" labelText=""/>
@@ -629,7 +652,7 @@
                              answerLabel="KS"/>
                         <obs id="br" conceptId="90251" answerConceptId="1294"
                              answerLabel="CCM"/>
-                            <span class="enableDisable">
+                        <span class="enableDisable">
                                 <span id="trigger">
                                     <obs conceptId="90251" answerConceptId="90002" answerLabel="Other specify:"/>
                                 </span>
@@ -726,7 +749,7 @@
                              answerLabel="Septrin"/>
                         <obs id="br" conceptId="1193" answerConceptId="329"
                              answerLabel="Vit B Complex"/>
-                            <span class="enableDisable">
+                        <span class="enableDisable">
                                 <span id="trigger">
                                     <obs id="othermed" conceptId="1193" answerConceptId="90002"
                                          answerLabel="Other specify:"/>
@@ -742,7 +765,7 @@
                                 <obs conceptId="90221" answerConceptIds="90156,90157,90158"
                                      answerLabels=" Good, Fair, Poor" labelText="Adhererence:"/>
                             </span>
-                            <span class="AdherenceEnableDisableChild1">
+                        <span class="AdherenceEnableDisableChild1">
                                 Why Poor/Fair:
                                 <br/>
                                 <obs id="br" conceptId="90223" answerConceptId="90040"
@@ -786,7 +809,7 @@
                         <obs id="br" conceptId="90315" labelText="Regimen:"
                              answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99007,99008,99044,99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99884,99885,99888,163017,99887,90002"
                              answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,AZT-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,AZT-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-ATV/r,ABC-3TC-LPV/r,TDF-3TC-ATV/r,Other"/>
-                            <span class="RegimenEnableDisableChild1">
+                        <span class="RegimenEnableDisableChild1">
                                 <obs id="br" conceptId="99126" size="18" labelText="Specify"/>
                                 <br/>
                             </span>
@@ -851,7 +874,7 @@
                              answerLabel="Sputums"/>
                         <obs id="br" conceptId="1271" answerConceptId="99149"
                              answerLabel="Infant Ab/PCR"/>
-                            <span class="enableDisable">
+                        <span class="enableDisable">
                                 <span id="trigger">
                                     <obs id="br" conceptId="1271" answerConceptId="90002"
                                          answerLabel="Other specify:"/>
@@ -862,10 +885,12 @@
                             </span>
 
                         <div>Test results:</div>
-                        <obs id="br" conceptId="21" labelText="Hb:" dateLabel="Date:"/><br/><br/>
+                        <obs id="br" conceptId="21" labelText="Hb:" dateLabel="Date:"/>
+                        <br/><br/>
 
                         <obsgroup groupingConceptId="99292">
-                            <obs conceptId="99290" answerConceptIds="1019,99152,12,307,99149" answerLabels="CBC,RPR,CXR,Sputums,PCR" labelText="Other Results:" dateLabel="Date:"/>
+                            <obs conceptId="99290" answerConceptIds="1019,99152,12,307,99149"
+                                 answerLabels="CBC,RPR,CXR,Sputums,PCR" labelText="Other Results:" dateLabel="Date:"/>
                             <obs conceptId="99291" size="16" labelText=""/>
                         </obsgroup>
                     </td>
