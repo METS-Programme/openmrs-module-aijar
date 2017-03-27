@@ -412,7 +412,7 @@
                         <excludeIf velocityTest="$patient.person.dead ==true">
                             <ifMode mode="ENTER">
                                 <span id="transfer_out_date" style="display: none"><lookup
-                                        complexExpression="#set($transfer_out_date='') #set($lost_to_follow_date='') #set($transfer_out='') #foreach($encounter in $fn.allEncounters('8d5b27bc-c2cc-11de-8d13-0010c6dffd0f')) #foreach($obs in $encounter.obs) #if($obs.concept.conceptId == 99165) #set($transfer_out_date=$obs.valueDatetime) #end #if($obs.concept.conceptId == 99165) #set($lost_to_follow_date=$obs.valueDatetime) #end #if($obs.concept.conceptId == 90306) #set($transfer_out=$obs.valueCoded.name) #end #end #end $transfer_out_date"/></span>
+                                        complexExpression="#set($transfer_out_date=($fn.latestObs('99165').valueDatetime)) #set($lost_to_follow_date=$fn.latestObs('99165').valueDatetime) #set($transfer_out=$fn.latestObs('90306').valueCoded.name) $transfer_out_date"/></span>
                                 <includeIf velocityTest="$transfer_out=='YES'">
                                     <obs id="returndate" conceptId="5096" allowFutureDates="true"
                                          labelText="Return date:"/>
