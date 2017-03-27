@@ -6,7 +6,7 @@ jq('#checkbox-autogenerate-identifier').click(function () {
     else {
         NavigatorController.getFieldById('deceased-status').hide();
     }
-})
+});
 
 /* Remove the ability to edit the different patient identifiers by removing the link  */
 jq(document).ready(function () {
@@ -29,11 +29,11 @@ jq(document).ready(function () {
 
     /* Add validation rule for Uganda phone numbers, once applied to an element will validate the format and show a message
      */
-    jq.validator.addMethod( "ugphone", function( phone_number, element ) {
-        phone_number = phone_number.replace( /\(|\)|\s+|-/g, "" );
-        return this.optional( element ) || phone_number.length == 10 &&
-                                           phone_number.match( /^[0-9]{1,10}$/ );
-    }, "Please specify a valid mobile number without any spaces like 0712345678" );
+    jq.validator.addMethod("ugphone", function (phone_number, element) {
+        phone_number = phone_number.replace(/\(|\)|\s+|-/g, "");
+        return this.optional(element) || phone_number.length == 10 &&
+            phone_number.match(/^[0-9]{1,10}$/);
+    }, "Please specify a valid mobile number without any spaces like 0712345678");
 });
 
 /**
@@ -41,15 +41,93 @@ jq(document).ready(function () {
  * @param dateValue
  */
 function changeFieldDateToJavascriptDate(dateValue) {
-    return jq.datepicker.formatDate('dd/mm/yy', jq.datepicker.parseDate('yy-mm-dd', dateValue));
+    new Date();
+    return new Date(dateValue);
+}
+
+
+/**
+ *
+ * @param prime What to test
+ * @param factor What to be tested
+ * @param alternative_factor this is used when factorRequired is true and factor is expected to be null
+ * @param message_to_throw
+ * @param condition for example greater_than,less_than,equal_to,greater_or_equal,less_or_equal,not_equal
+ * @param factorRequired this
+ * @returns {boolean}
+ */
+function dateValidator(prime, factor, alternative_factor,message_to_throw, alternative_message_to_throw, condition,factorRequired) {
+    var evaluationResult = true;
+
+    getField(prime + '.error').html("").hide;
+    getField(factor + '.error').html("").hide;
+
+    if (getValue(factor + '.value') == '' && getValue(prime + '.value') != '' && factorRequired==true) {
+        getField(factor + '.error').html("Can Not Be Null").show;
+        evaluationResult = false;
+    }
+    else if(getValue(factor + '.value') == '' && getValue(alternative_factor + '.value') == '' && getValue(prime + '.value') != '' && factorRequired==false){
+        getField(alternative_factor + '.error').html("Can Not Be Null").show();
+        evaluationResult = false;
+    }
+
+    if(getValue(factor + '.value') == '' && getValue(alternative_factor + '.value')!="" && factorRequired==false){
+        factor=alternative_factor;
+        message_to_throw=alternative_message_to_throw;
+    }
+
+    if (getValue(prime + '.value') != '' && getValue(factor + '.value') != '') {
+        <!-- has a value -->
+
+        switch (condition) {
+            case "greater_than":
+                if (changeFieldDateToJavascriptDate(getValue(prime + '.value')) > changeFieldDateToJavascriptDate(getValue(factor + '.value'))) {
+                    getField(prime + '.error').html(message_to_throw).show();
+                    evaluationResult = false;
+                }
+                break;
+            case "less_than":
+                if (changeFieldDateToJavascriptDate(getValue(prime + '.value')) < changeFieldDateToJavascriptDate(getValue(factor + '.value'))) {
+                    getField(prime + '.error').html(message_to_throw).show();
+                    evaluationResult = false;
+                }
+                break;
+            case "equal_to":
+                if (!(changeFieldDateToJavascriptDate(getValue(prime + '.value')) == changeFieldDateToJavascriptDate(getValue(factor + '.value')))) {
+                    getField(prime + '.error').html(message_to_throw).show();
+                    evaluationResult = false;
+                }
+                break;
+            case "greater_or_equal":
+                if (changeFieldDateToJavascriptDate(getValue(prime + '.value')) >= changeFieldDateToJavascriptDate(getValue(factor + '.value'))) {
+                    getField(prime + '.error').html(message_to_throw).show();
+                    evaluationResult = false;
+                }
+                break;
+            case "less_or_equal":
+                if (changeFieldDateToJavascriptDate(getValue(prime + '.value')) <= changeFieldDateToJavascriptDate(getValue(factor + '.value'))) {
+                    getField(prime + '.error').html(message_to_throw).show();
+                    evaluationResult = false;
+                }
+                break;
+            case "not_equal":
+                if (changeFieldDateToJavascriptDate(getValue(prime + '.value') != changeFieldDateToJavascriptDate(getValue(factor + '.value')))) {
+                    getField(prime + '.error').html(message_to_throw).show();
+                    evaluationResult = false;
+                }
+                break;
+        }
+
+    }
+    return evaluationResult;
 }
 
 
 /*
-* Hide the container, and disable all elements in it
-*
-* @param the Id of the container
-*/
+ * Hide the container, and disable all elements in it
+ *
+ * @param the Id of the container
+ */
 function hideContainer(container) {
     jq(container).addClass('hidden');
     jq(container + ' :input').attr('disabled', true);
@@ -65,3 +143,41 @@ function showContainer(container) {
     jq(container + ' :input').attr('disabled', false);
     jq(container + ' :input').prop('checked', false);
 }
+
+
+/*
+ *This is a helper object that contains functions to perform basic functions on a form field
+ *
+ *@param: selector string or JQuery object
+ */
+var fieldHelper = {
+    disable: function (args) {
+        if (args instanceof jQuery) {
+            args.attr('disabled', true);
+        } else if (typeof args === 'string') {
+            jq(args).attr('disabled', true);
+        }
+    },
+    enable: function (args) {
+        if (args instanceof jQuery) {
+            args.removeAttr('disabled');
+        } else if (typeof args === 'string') {
+            jq(args).removeAttr('disabled');
+        }
+    },
+    makeReadonly: function (args) {
+        if (args instanceof jQuery) {
+            args.attr('readonly', true).fadeTo(250, 0.5);
+
+        } else if (typeof args === 'string') {
+            jq(args).attr('readonly', true).fadeTo(250, 0.25);
+        }
+    },
+    removeReadonly: function (args) {
+        if (args instanceof jQuery) {
+            args.removeAttr('readonly').fadeTo(250, 1);
+        } else if (typeof args === 'string') {
+            jq(args).removeAttr('readonly').fadeTo(250, 1);
+        }
+    }
+};
