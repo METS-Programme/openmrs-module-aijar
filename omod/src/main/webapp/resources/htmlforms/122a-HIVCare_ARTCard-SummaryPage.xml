@@ -37,6 +37,12 @@
             submitValStage.push(dateValidator("162991_1", "99161", "", message5, "", "less_than", true));
             submitValStage.push(dateValidator("162991_2", "99161", "", message5, "", "less_than", true));
             submitValStage.push(dateValidator("162991_3", "99161", "", message5, "", "less_than", true));
+
+            submitValStage.push(validateRequiredField("99165","90306","Can Not Be Null","check_box"));
+            submitValStage.push(validateRequiredField("90209","5240","Can Not Be Null","check_box"));
+
+
+
             if (submitValStage.indexOf(false) != -1) {
                 submitVal = false;
             }
@@ -727,6 +733,25 @@
                         /* remove the fade on the fields*/
                         group.find('select').fadeTo(250, 1);
                     }
+                }
+            });
+        }
+
+
+        function showHideFields(trigger, affectedObs) {
+            jq('#' + trigger).find("input[type=checkbox]").each(function () {
+                if (this.checked) {
+                    showContainer('#' + affectedObs);
+                } else {
+                    hideContainer('#' + affectedObs);
+                }
+            });
+
+            jq('#' + trigger).find("input[type=checkbox]").change(function () {
+                if (this.checked) {
+                    showContainer('#' + affectedObs);
+                } else {
+                    hideContainer('#' + affectedObs);
                 }
             });
         }
@@ -2333,11 +2358,11 @@
                 <tr class="enableDisable">
                     <obsgroup groupingConceptId="99166">
                         <td id="trigger">
-                            <obs conceptId="90306" answerConceptId="90003"
+                            <obs id="90306" conceptId="90306" answerConceptId="90003"
                                  answerLabel="Transfer out:"/>
                         </td>
                         <td id="disabled">
-                            <obs conceptId="99165"/>
+                            <obs id="99165" conceptId="99165"/>
                         </td>
                         <td id="disabled">
                             <obs conceptId="90211" labelText="Where"/>
@@ -2347,23 +2372,11 @@
                 <tr class="enableDisable">
                     <obsgroup groupingConceptId="99167">
                         <td id="trigger">
-                            <obs conceptId="5240" answerConceptId="90003"
+                            <obs id="5240" conceptId="5240" answerConceptId="90003"
                                  answerLabel="Lost to follow-up (drop):"/>
                         </td>
                         <td id="disabled">
-                            <obs conceptId="90209"/>
-                        </td>
-                        <td></td>
-                    </obsgroup>
-                </tr>
-                <tr class="enableDisable">
-                    <obsgroup groupingConceptId="99168">
-                        <td id="trigger">
-                            <obs conceptId="99112" answerConceptId="90003"
-                                 answerLabel="Dead:"/>
-                        </td>
-                        <td id="disabled">
-                            <obs conceptId="90272"/>
+                            <obs id="90209" conceptId="90209"/>
                         </td>
                         <td></td>
                     </obsgroup>
