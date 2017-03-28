@@ -123,6 +123,50 @@ function dateValidator(prime, factor, alternative_factor,message_to_throw, alter
 }
 
 
+
+/**
+ *
+ * @param prime What to test
+ * @param factor What to be tested
+ * @param alternative_factor this is used when factorRequired is true and factor is expected to be null
+ * @param message_to_throw
+ * @param condition for example greater_than,less_than,equal_to,greater_or_equal,less_or_equal,not_equal
+ * @param factorRequired this
+ * @returns {boolean}
+ */
+function validateRequiredField(prime,factor,message_to_throw,input_type) {
+    var evaluationResult = true;
+    var selected_value = null;
+    getField(prime + '.error').html("").hide;
+
+    if (input_type == "select") {
+        selected_value = jq(factor).find(":selected").text().trim().toLowerCase();
+        if (selected_value!='' && getValue(prime + '.value') =='') {
+            getField(prime + '.error').html(message_to_throw).show;
+            jq('#'+prime).find("span").removeAttr("style");
+            evaluationResult = false;
+        }
+    }
+    else if (input_type == "hidden") {
+        selected_value = jq(factor).find("input[type=hidden]").val().trim().toLowerCase();
+        if (selected_value!='' && getValue(prime + '.value') =='') {
+            getField(prime + '.error').html(message_to_throw).show;
+            jq('#'+prime).find("span").removeAttr("style");
+            evaluationResult = false;
+        }
+    }
+    else if (input_type=="check_box"){
+        selected_value = jq("#"+factor).find(":checkbox:first").attr("checked");
+        if (selected_value=="checked" && getValue(prime + '.value') =='') {
+            getField(prime + '.error').html(message_to_throw).show;
+            jq('#'+prime).find("span").removeAttr("style");
+            evaluationResult = false;
+        }
+    }
+    return evaluationResult;
+}
+
+
 /*
  * Hide the container, and disable all elements in it
  *
