@@ -69,6 +69,31 @@
         .error {
             color: red;
         }
+
+        form .lablex {
+            width: 93%;
+        }
+
+        form .lablex span {
+            width: 26%;
+            float: left;
+            margin: 1px 0px;
+        }
+
+        form .lablex2 span {
+            min-width: 50%;
+            float: left;
+            margin: 1px 0px;
+        }
+
+        form .lablex3 {
+        }
+
+        form .lablex3 span {
+            min-width: 50%;
+            float: left;
+            margin: 1px 0px;
+        }
     </style>
 
     <script type="text/javascript">
@@ -430,29 +455,30 @@
 
                             <label>How did you hear about SMC</label>
                         </td>
-                        <td>
-                            <obs conceptId="99612" id="br" answerConceptId="99614"
-                                 answerLabel="Friend/Family"/>
-                            <obs conceptId="99612" id="br" answerConceptId="99615"
-                                 answerLabel="Radio"/>
-                            <obs conceptId="99612" id="br" answerConceptId="99616"
-                                 answerLabel="TV"/>
-                            <obs conceptId="99612" id="br" answerConceptId="99617"
-                                 answerLabel="HCW Referral"/>
-                            <obs conceptId="99612" id="br" answerConceptId="162897"
-                                 answerLabel="VHT"/>
-                            <obs conceptId="99612" id="br" answerConceptId="162898"
-                                 answerLabel="Megaphones/Community Radio"/>
-                            <br/>
-                            <span class="enableDisable">
-                                 <span id="trigger">
+                        <td class="lablex2">
+                            <div style="width: 100%" class="enableDisable">
+                                <obs conceptId="99612" id="br" answerConceptId="99614"
+                                     answerLabel="Friend/Family"/>
+                                <obs conceptId="99612" id="br" answerConceptId="99615"
+                                     answerLabel="Radio"/>
+                                <obs conceptId="99612" id="br" answerConceptId="99616"
+                                     answerLabel="TV"/>
+                                <obs conceptId="99612" id="br" answerConceptId="99617"
+                                     answerLabel="HCW Referral"/>
+                                <obs conceptId="99612" id="br" answerConceptId="162897"
+                                     answerLabel="VHT"/>
+                                <obs conceptId="99612" id="br" answerConceptId="162898"
+                                     answerLabel="Megaphones/Community Radio"/>
+
+
+                                <span id="trigger">
                                    <obs conceptId="99612" id="br" answerConceptId="90002" answerLabel="Other"/>
                                  </span>
-                                 <span id="disabled">
+
+                                <span id="disabled">
                                     <obs conceptId="99613" labelText="Other Specify"/>
                                  </span>
-                            </span>
-
+                            </div>
                         </td>
                     </obsgroup>
                 </tr>
@@ -697,7 +723,16 @@
                 <obsgroup groupingConceptId="99653">
                     <tr>
                         <td>
-                            <obs conceptId="99654" labelText="BP:"/>
+                            BP:<br/>
+                            <p class="left">
+                                <obs conceptId="CIEL:5085" id="bp_systolic" labelText="Systolic"/>
+                            </p>
+                            <p class="left" style="margin-left: 5px; margin-right: 5px;">
+                                /
+                            </p>
+                            <p class="left">
+                                <obs conceptId="CIEL:5086" id="bp_diastolic" labelText="Diastolic"/>
+                            </p>
                         </td>
                         <td>
                             <obs conceptId="5087" size="10" labelText="Pulse(rate/min):"/>
@@ -715,7 +750,7 @@
                     <tr>
                         <td>
                             <label>Urethra Discharge?</label>
-                            <obs conceptId="99656" answerConceptIds="90003,90004" answerLabel="Yes, No" style="radio"
+                            <obs conceptId="99656" answerConceptIds="90003,90004" answerLabels="Yes,No" style="radio"
                                  answerSeparator=""/>
                         </td>
                         <td colspan="4">
@@ -867,44 +902,61 @@
                             <obs conceptId="99672" labelText="Bupivicaine 0.25&#37;"/>
                             (mls)
                         </td>
+
+                        Type of circumcision Procedure
                     </tr>
 
                     <tr>
-                        <td>
+                        <td rowspan="2">
                             <label>Type of circumcision Procedure</label>
 
                         </td>
 
-                        <td>
+                        <td class="lablex2" rowspan="2">
                             <span class="SMCOtherEnableDisable3">
-                            <obs conceptId="99674" answerConceptIds="99676,99675,99677, 90002"
-                                 answerLabels="Dorsal slit,Forceps guided,Sleeve, Other Specify" style="radio"
-                                 answerSeparator=""/>
+                            <obs conceptId="99674" answerConceptIds="99676,99675,99677,90002"
+                                 answerLabels="Dorsal slit,Forceps guided,Sleeve,Other Specify" style="radio"
+                                 answerSeparator=" "/>
                                 </span>
                             <br/>
                             <span class="SMCOtherEnableDisableChild3">
                             <obs conceptId="99678" labelText=""/>
                             </span>
                         </td>
-                        <td>
-                            <label>PrePex</label>
-                            <obs conceptId="162908" answerConceptIds="90003,90004" answerLabels="Yes,No" style="radio"
-                                 answerSeparator=""/>
-                            <obs conceptId="162909" labelText="size"/>
+                        <td class="lablex2" style="width: 20%">
+
+                            <div style="margin-bottom: 14px">
+                                <label>PrePex</label>
+                                <obs conceptId="162908" answerConceptIds="90003,90004" answerLabels="Yes,No"
+                                     style="radio"/>
+                            </div>
+                            <div style="width: 100%">
+                                <label>Size</label>
+                                <obs conceptId="162909"/>
+                            </div>
                             <br/>
-                            <label>Shang Ring</label>
-                            <obs conceptId="162911" answerConceptIds="90003,90004" answerLabels="Yes,No" style="radio"
-                                 answerSeparator=""/>
-                            <br/>
-                            <obs conceptId="162910" labelText="size"/>
                         </td>
 
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="margin-bottom: 14px">
+                                <label>Shang Ring</label>
+                                <obs conceptId="162911" answerConceptIds="90003,90004" answerLabels="Yes,No"
+                                     style="radio"/>
+                            </div>
+                            <div style="width: 100%">
+                                <label>Size</label>
+                                <obs conceptId="162910"/>
+                            </div>
+                        </td>
                     </tr>
 
                     <tr>
                         <td>
                             <label><span class="required">*</span>Name of Circumciser:</label>
-                            <encounterProviderAndRole encounterRole="240b26f9-dd88-4172-823d-4a8bfeb7841f" required="false"/>
+                            <encounterProviderAndRole encounterRole="240b26f9-dd88-4172-823d-4a8bfeb7841f"
+                                                      required="false"/>
                         </td>
                         <td>
                             <obs conceptId="99680" labelText="Cadre:"/>
@@ -914,7 +966,8 @@
 
                         <td>
                             <label><span class="required">*</span>Name of Assistant:</label>
-                            <encounterProviderAndRole encounterRole="22498b0c-f509-4ff6-9982-4c654c1e4dc3" required="false"/>
+                            <encounterProviderAndRole encounterRole="22498b0c-f509-4ff6-9982-4c654c1e4dc3"
+                                                      required="false"/>
                         </td>
                         <td colspan="2">
                             <obs conceptId="99682" labelText="Cadre:"/>
@@ -944,7 +997,9 @@
 
                     <tr>
                         <td colspan="3">
-                            <obs conceptId="99692" size="50" labelText="Treatment given:"/>
+                            <div>
+                                <obs conceptId="99692" size="50" labelText="Treatment given:"/>
+                            </div>
                         </td>
                     </tr>
                 </obsgroup>
@@ -958,7 +1013,17 @@
                 <obsgroup groupingConceptId="99693">
                     <tr>
                         <td>
-                            <obs conceptId="99694" labelText="BP:"/>
+                            <br/>
+                            BP:<br/>
+                            <p class="left">
+                                <obs conceptId="CIEL:5085" id="bp_systolic" labelText="Systolic"/>
+                            </p>
+                            <p class="left" style="margin-left: 5px; margin-right: 5px;">
+                                /
+                            </p>
+                            <p class="left">
+                                <obs conceptId="CIEL:5086" id="bp_diastolic" labelText="Diastolic"/>
+                            </p>
                         </td>
                         <td>
                             <obs conceptId="99695" labelText="Pulse:"/>
