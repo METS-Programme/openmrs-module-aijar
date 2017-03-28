@@ -43,6 +43,7 @@
             </script>
         </includeIf>
     </ifMode>
+
     <style>
 
         form label, .form label {
@@ -204,7 +205,7 @@
                             <obs conceptId="99706" answerConceptId="162914" answerLabel="Device displacement"/>
                             <obs conceptId="99706" answerConceptId="162915" answerLabel="Failure to pass urine"/>
                             <span id="smc_presence_of_ae_container"></span>
-                            <obs conceptId="99706" answerConceptId="90002" answerLabel="Other Specify" id="smc_presence_of_ae"/
+                            <obs conceptId="99706" answerConceptId="90002" answerLabel="Other Specify" id="smc_presence_of_ae"/>
 
                         </td>
                         <td class="SMCOtherEnableDisableChild4">
