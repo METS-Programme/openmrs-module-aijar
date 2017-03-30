@@ -10,7 +10,7 @@
           formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='86863db4-6101-4ecf-9a86-5e716d6504e4'"
           formDisplayStyle="Standard">
 
-    <ifMode mode="ENTER">
+    <ifMode mode="ENTER,EDIT">
         <includeIf velocityTest="$fn.allEncounters('8d5b27bc-c2cc-11de-8d13-0010c6dffd0f').size() == 0">
             <script>
                 jq(function () {
@@ -240,12 +240,20 @@
                 setValue('viral-load-results-copies.error', '');
                 setValue('date-viral-load-taken.error', '');
 
-                var encounterDate = getValue('encounterDate.value');
-                var returnDate = getValue('returndate.value');
+
+                var encounterDate = changeFieldDateToJavascriptDate(getValue('encounterDate.value'));
+                var transfer_out_date_id = changeFieldDateToJavascriptDate(jq("#transfer_out_date_id").html());
+                var returnDate = changeFieldDateToJavascriptDate(getValue('returndate.value'));
 
                 if (encounterDate &gt;= returnDate) {
                     getField('returndate.error').html('The return date must be after the date of this visit ' +
                             encounterDate).show();
+                    return false;
+                }
+
+                else if (returnDate &gt;= transfer_out_date_id) {
+                    getField('returndate.error').html('The return date must be before the transfer out date. Transer Out Date: ' +
+                            transfer_out_date_id).show();
                     return false;
                 }
 
@@ -411,7 +419,21 @@
 
                         <excludeIf velocityTest="$patient.person.dead ==true">
                             <ifMode mode="ENTER">
-                                <span id="transfer_out_date" style="display: none"><lookup
+                                <span id="transfer_out_date_id" style="display: none"><lookup
+                                        complexExpression="#set($transfer_out_date=($fn.latestObs('99165').valueDatetime)) #set($lost_to_follow_date=$fn.latestObs('99165').valueDatetime) #set($transfer_out=$fn.latestObs('90306').valueCoded.name) $transfer_out_date"/></span>
+                                <includeIf velocityTest="$transfer_out=='YES'">
+                                    <obs id="returndate" conceptId="5096" allowFutureDates="true"
+                                         labelText="Return date:"/>
+                                </includeIf>
+
+                                <includeIf velocityTest="$transfer_out!='YES'">
+                                    <obs id="returndate" conceptId="5096" required="required" allowFutureDates="true"
+                                         labelText="Return date:"/>
+                                </includeIf>
+                            </ifMode>
+
+                            <ifMode mode="EDIT">
+                                <span id="transfer_out_date_id" style="display: none"><lookup
                                         complexExpression="#set($transfer_out_date=($fn.latestObs('99165').valueDatetime)) #set($lost_to_follow_date=$fn.latestObs('99165').valueDatetime) #set($transfer_out=$fn.latestObs('90306').valueCoded.name) $transfer_out_date"/></span>
                                 <includeIf velocityTest="$transfer_out=='YES'">
                                     <obs id="returndate" conceptId="5096" allowFutureDates="true"
@@ -855,7 +877,7 @@
 
                         <obs id="viral-load-results-copies" conceptId="856"/>
                     </td>
-                    <td class="lablex2">
+                    <td class="lablex2" style="width: 40%;">
                         <b>Tests ordered:</b>
                         <br/>
                         <obs id="br" conceptId="1271" answerConceptId="1019"
@@ -883,16 +905,21 @@
                                     <obs id="br" conceptId="99114" size="16" labelText=""/>
                                 </span>
                             </span>
+                        <hr style="width: 100%; border: 0.5px solid #BDBDBD;"/>
+                        <div style="width: 100%;">
+                            <label>Test results:</label>
+                            <hr style="width: 100%; border: 0.5px solid #BDBDBD;"/>
+                            <p></p>
+                            <obs id="br" conceptId="21" labelText="Hb:" dateLabel="HB Date:"/>
+                            <br/><br/>
 
-                        <div>Test results:</div>
-                        <obs id="br" conceptId="21" labelText="Hb:" dateLabel="Date:"/>
-                        <br/><br/>
-
-                        <obsgroup groupingConceptId="99292">
-                            <obs conceptId="99290" answerConceptIds="1019,99152,12,307,99149"
-                                 answerLabels="CBC,RPR,CXR,Sputums,PCR" labelText="Other Results:" dateLabel="Date:"/>
-                            <obs conceptId="99291" size="16" labelText=""/>
-                        </obsgroup>
+                            <obsgroup groupingConceptId="99292">
+                                <obs conceptId="99290" answerConceptIds="1019,99152,12,307,99149"
+                                     answerLabels="CBC,RPR,CXR,Sputums,PCR" labelText="Other Results:"
+                                     dateLabel="Date:"/>
+                                <obs conceptId="99291" size="16" labelText=""/>
+                            </obsgroup>
+                        </div>
                     </td>
                     <td class="lablex2">
                         <b>Referred for</b>
