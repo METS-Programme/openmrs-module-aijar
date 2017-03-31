@@ -189,13 +189,8 @@ function showContainer(container) {
 
 
 function enableContainer(container) {
-
-
-    /*jq(container).find('select').prop("selectedIndex", 0);*/
     jq(container).find("input").attr("disabled", false);
     jq(container).find('select').attr("disabled", false);
-
-    /* remove the fade on the fields */
     jq(container).find("input").fadeTo(250, 1);
     jq(container).find("select").fadeTo(250, 1);
 }
@@ -205,11 +200,8 @@ function enableContainer(container) {
  * @param the Id of the container
  */
 function disableContainer(container) {
-
-    /*jq(container).find('select').prop("selectedIndex", 0);*/
     jq(container).find("input").attr("disabled", true);
     jq(container).find('select').attr("disabled", true);
-    /* fade out the fields that are disabled */
     jq(container).find("input").fadeTo(250, 0.25);
     jq(container).find("select").fadeTo(250, 0.25);
 }
