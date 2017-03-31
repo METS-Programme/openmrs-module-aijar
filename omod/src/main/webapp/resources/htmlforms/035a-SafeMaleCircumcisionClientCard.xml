@@ -134,9 +134,9 @@
 
                 jq('#99674').click(function () {
                     if (getValue('99674.value') == 90002) {
-                        showContainer('#99678');
+                        enableContainer('#99678');
                     } else {
-                        hideContainer('#99678');
+                        disableContainer('#99678');
                     }
                 });
 
@@ -144,9 +144,9 @@
 
                 jq('#99612').click(function () {
                     if (getValue('99612.value') == 90002) {
-                        showContainer('#99613');
+                        enableContainer('#99613');
                     } else {
-                        hideContainer('#99613');
+                        disableContainer('#99613');
                     }
                 });
 
@@ -155,9 +155,9 @@
 
                 jq('#99619').click(function () {
                     if (getValue('99619.value') == 90002) {
-                        showContainer('#99622');
+                        enableContainer('#99622');
                     } else {
-                        hideContainer('#99622');
+                        disableContainer('#99622');
                     }
                 });
 
@@ -165,11 +165,11 @@
 
                 jq('#99628').click(function () {
                     if (getValue('99628.value') == 703) {
-                        showContainer('#162900');
-                        showContainer('#162901');
+                        enableContainer('#162900');
+                        enableContainer('#162901');
                     } else {
-                        hideContainer('#162900');
-                        hideContainer('#162901');
+                        disableContainer('#162900');
+                        disableContainer('#162901');
                     }
                 });
 
