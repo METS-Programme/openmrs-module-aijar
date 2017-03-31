@@ -15,20 +15,20 @@ import org.openmrs.test.BaseModuleContextSensitiveTest;
  * Test for Incomplete Exposed Infant information data integrity rules
  */
 public class IncompleteExposedInfantInformationTest extends BaseModuleContextSensitiveTest {
-	
+
 	protected static final String UGANDAEMR_STANDARD_DATASET_XML = "org/openmrs/module/aijar/include/standardTestDataset.xml";
 	protected static final String UGANDAEMR_DATA_VIOLATIONS_XML = "org/openmrs/module/aijar/dataintegrity/include/dataViolations.xml";
-	
+
 	IncompleteExposedInfantInformation incompleteExposedInfantInformation;
-	
+
 	@Before
 	public void initialize() throws Exception {
 		executeDataSet(UGANDAEMR_STANDARD_DATASET_XML);
 		executeDataSet(UGANDAEMR_DATA_VIOLATIONS_XML);
-		
+
 		incompleteExposedInfantInformation = new IncompleteExposedInfantInformation();
 	}
-	
+
 	@Test
 	public void testExposedInfantsWithEncountersAndNOSummaryPage() {
 		List<RuleResult<Patient>> result = incompleteExposedInfantInformation.exposedInfantsWithEncountersAndNOSummaryPage();
@@ -37,7 +37,7 @@ public class IncompleteExposedInfantInformationTest extends BaseModuleContextSen
 		Patient patient = result.get(0).getEntity();
 		assertEquals(10002, patient.getId().longValue());
 	}
-	
+
 	@Test
 	public void testExposedInfantsOlderThan18MonthsWithNoFinalOutcome() {
 		List<RuleResult<Patient>> result = incompleteExposedInfantInformation.exposedInfantsOlderThan18MonthsWithNoFinalOutcome();
@@ -46,7 +46,7 @@ public class IncompleteExposedInfantInformationTest extends BaseModuleContextSen
 		Patient patient = result.get(0).getEntity();
 		assertEquals(10000, patient.getId().longValue());
 	}
-	
+
 	@Test
 	public void testExposedInfantsWithSummaryPageNoEncounters() {
 		List<RuleResult<Patient>> result = incompleteExposedInfantInformation.exposedInfantsWithSummaryPageNoEncounters();
