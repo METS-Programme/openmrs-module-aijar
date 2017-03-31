@@ -47,36 +47,35 @@
 	</modules>
 
 	<properties>
-		<openMRSVersion>1.11.6</openMRSVersion>
+		<openMRSVersion>1.11.8</openMRSVersion>
 		<openmrsTestutilsVersion>1.3</openmrsTestutilsVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<openMRSVersion>1.11.7</openMRSVersion>
-		<webservices.restModuleVersion>2.14</webservices.restModuleVersion>
+		<webservices.restModuleVersion>2.18.0</webservices.restModuleVersion>
 
 		<!-- Modules Bundled for Uganda distribution  -->
 		<!-- TODO: Arrange the dependencies and variables in alphabetical order -->
 		<!-- TODO: Remove dependencies on API where omods are available -->
-		<adminuiVersion>1.1</adminuiVersion>
+		<adminuiVersion>1.2.1</adminuiVersion>
 		<addresshierarchyVersion>2.9</addresshierarchyVersion>
 		<allergyapiVersion>1.4</allergyapiVersion>
 		<allergyuiVersion>1.5</allergyuiVersion>
-		<appframeworkVersion>2.9</appframeworkVersion>
+		<appframeworkVersion>2.10.0</appframeworkVersion>
 		<appuiVersion>1.7</appuiVersion>
 		<appointmentschedulingVersion>1.5</appointmentschedulingVersion>
 		<appointmentschedulinguiVersion>1.3</appointmentschedulinguiVersion>
 		<atlasVersion>2.2</atlasVersion>
 		<calculationVersion>1.2</calculationVersion>
 		<chartsearchVersion>1.6</chartsearchVersion>
-		<coreappsVersion>1.11.2-SNAPSHOT</coreappsVersion>
+		<coreappsVersion>1.12.0</coreappsVersion>
 		<databaseBackupVersion>1.2.5</databaseBackupVersion>
 		<dataexchangeVersion>1.3.2</dataexchangeVersion>
-		<dataintegrityVersion>4.2.3</dataintegrityVersion>
+		<dataintegrityVersion>4.3.0</dataintegrityVersion>
 		<emrapiVersion>1.19</emrapiVersion>
 		<eventVersion>2.5</eventVersion>
-		<formentryappVersion>1.2</formentryappVersion>
+		<formentryappVersion>1.4.0</formentryappVersion>
 		<formfilterVersion>1.0.0</formfilterVersion>
 		<htmlformentry19extVersion>1.7</htmlformentry19extVersion>
-		<htmlformentryuiVersion>1.6.2-SNAPSHOT</htmlformentryuiVersion>
+		<htmlformentryuiVersion>1.6.2</htmlformentryuiVersion>
 		<htmlformentryVersion>3.3.1</htmlformentryVersion>
 		<htmlwidgetsVersion>1.7.2</htmlwidgetsVersion>
 		<idgenVersion>4.4.0</idgenVersion>
@@ -88,23 +87,23 @@
 		<openconceptlabVersion>1.1</openconceptlabVersion>
 		<openwebappsVersion>1.6.2</openwebappsVersion>
 		<patientSummaryVersion>2.1</patientSummaryVersion>
-		<providermanagementVersion>2.4</providermanagementVersion>
+		<providermanagementVersion>2.5.0</providermanagementVersion>
 		<referenceapplicationVersion>2.5</referenceapplicationVersion>
 		<referencemetadataVersion>2.5.0</referencemetadataVersion>
-		<registrationappVersion>1.6</registrationappVersion>
+		<registrationappVersion>1.7.0</registrationappVersion>
 		<registrationcoreVersion>1.6</registrationcoreVersion>
 		<reportingRestVersion>1.6</reportingRestVersion>
-		<reportingVersion>0.10.4</reportingVersion>
+		<reportingVersion>0.11.0</reportingVersion>
 		<reportingCompatibilityVersion>1.5.11</reportingCompatibilityVersion>
 		<reportingUIVersion>1.2</reportingUIVersion>
 		<serializationxstreamVersion>0.2.12</serializationxstreamVersion>
 		<uicommonsVersion>2.1</uicommonsVersion>
-		<uiframeworkVersion>3.9</uiframeworkVersion>
+		<uiframeworkVersion>3.10.0</uiframeworkVersion>
 		<uilibraryVersion>2.0.4</uilibraryVersion>
 		<xformsVersion>4.3.9</xformsVersion>
 
 		<!-- core configuration library -->
-		<ugandaemrReportsVersion>1.0.4-SNAPSHOT</ugandaemrReportsVersion>
+		<ugandaemrReportsVersion>1.1-SNAPSHOT</ugandaemrReportsVersion>
 
 	</properties>
 
