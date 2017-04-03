@@ -4,7 +4,7 @@
 
 	<groupId>org.openmrs.module</groupId>
 	<artifactId>aijar</artifactId>
-	<version>1.0.15-SNAPSHOT</version>
+	<version>1.0.16-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Aijar</name>
 	<description>Customizations for Uganda OpenMRS distribution</description>
@@ -103,7 +103,7 @@
 		<xformsVersion>4.3.9</xformsVersion>
 
 		<!-- core configuration library -->
-		<ugandaemrReportsVersion>1.1-SNAPSHOT</ugandaemrReportsVersion>
+		<ugandaemrReportsVersion>1.1.0</ugandaemrReportsVersion>
 
 	</properties>
 
