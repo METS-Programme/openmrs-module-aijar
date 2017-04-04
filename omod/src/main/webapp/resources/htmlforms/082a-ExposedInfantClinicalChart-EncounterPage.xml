@@ -114,7 +114,7 @@
             setValue('next-appointment-date.error', '');
             if (getValue('next-appointment-date.value') != '') {
                 <!-- has a value -->
-                if (!(changeFieldDateToJavascriptDate(getValue('next-appointment-date.value')) > changeFieldDateToJavascriptDate(getValue('encounterDate.value')))) {
+                if (!(changeFieldDateToJavascriptDate(getValue('encounterDate.value'))) > (changeFieldDateToJavascriptDate(getValue('next-appointment-date.value')))) {
                     getField('next-appointment-date.error').html('The next appointment date must be after the current visit date ').show();
                     return false;
                 }
