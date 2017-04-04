@@ -58,13 +58,7 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         //Install Encounter Type
         log.info("Installing EncounterTypes");
         install(EncounterTypes.PNC_ENCOUNTER_TYPE);
-<<<<<<< HEAD
-        install(EncounterTypes.TB_SUMMARY);
-        install(EncounterTypes.TB_ENCOUNTER);
-        install(EncounterTypes.TB_DISCONTINUATION);
-=======
         install(EncounterTypes.SMC_FOLLOW_UP_ENCOUNTER);
         install(encounterRole(EncounterRoles.ASSISTANT_CIRCUMCISER_NAME,EncounterRoles.ASSISTANT_CIRCUMCISER_DESCRIPTION,EncounterRoles.ASSISTANT_CIRCUMCISER_UUID));
->>>>>>> 296d68f8c81a963946365da239b097bd994f9cdb
     }
 }
