@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.openmrs.module</groupId>
 		<artifactId>aijar</artifactId>
-		<version>1.0.15-SNAPSHOT</version>
+		<version>1.0.17-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>aijar-omod</artifactId>
@@ -106,6 +106,7 @@
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>htmlformentry-api-1.10</artifactId>
 		</dependency>
+
 
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
@@ -302,7 +303,7 @@
 							<includeGroupIds>${project.parent.groupId}</includeGroupIds>
 							<includeArtifactIds>${project.parent.artifactId}-api</includeArtifactIds>
 							<excludeTransitive>true</excludeTransitive>
-							<includes>**/*</includes>
+							<includes>**\/*.xml,**\/*.properties</includes>
 							<outputDirectory>${project.build.directory}/classes</outputDirectory>
 						</configuration>
 					</execution>
