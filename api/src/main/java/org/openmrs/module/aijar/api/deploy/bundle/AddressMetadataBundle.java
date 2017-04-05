@@ -15,7 +15,6 @@ import org.openmrs.module.addresshierarchy.AddressHierarchyLevel;
 import org.openmrs.module.addresshierarchy.service.AddressHierarchyService;
 import org.openmrs.module.addresshierarchy.util.AddressHierarchyImportUtil;
 import org.openmrs.module.metadatadeploy.bundle.VersionedMetadataBundle;
-import org.openmrs.util.OpenmrsClassLoader;
 import org.openmrs.util.OpenmrsConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -75,14 +74,14 @@ public abstract class AddressMetadataBundle extends VersionedMetadataBundle {
     public Object getAddressTemplate() {
         Object addressTemplate = null;
         try {
-        	addressTemplate = OpenmrsClassLoader.getInstance().loadClass("org.openmrs.layout.web.address.AddressTemplate");
+			addressTemplate = Context.loadClass("org.openmrs.layout.web.address.AddressTemplate").newInstance();
         }
-        catch (ClassNotFoundException ex) {
+        catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
         	try {
-				addressTemplate = Context.loadClass("org.openmrs.layout.address.AddressTemplate");
+				addressTemplate = Context.loadClass("org.openmrs.layout.address.AddressTemplate").newInstance();
 			}
-			catch (ClassNotFoundException e) {
-				throw new APIException("Error while getting address template", e);
+			catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+				throw new APIException("Error while getting address template", ex);
 			}
         }
         
