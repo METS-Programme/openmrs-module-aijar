@@ -203,6 +203,10 @@
 		width: 50% !important;
 		clear: none !important;
 	}
+
+	.inError {
+	  border: 2px dotted #ff0000;
+	}
   </style>
 
   <div class="ai-page-frame">
