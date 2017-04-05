@@ -51,6 +51,36 @@
 		        return valid;
 		    };
 
+			/**
+			* This validation check works this way:
+			* For each visible row, If any text box or combo box is non-empty, check if there's any other text box or combobox within the same row that is empty. 
+			* If so, validation fails and the elements with missing values are highlighted 
+			*/
+			var drugsValidated = function () {
+			    var $rows,
+			        $objectsToValidate;
+			    var dirty = false;
+
+			    $rows = jq('table#drugs&gt;tbody tr:visible');
+			    $rows.each(function () {
+			        $objectsToValidate = jq(this).find('input[type=text],select'); //Get all text and combo boxes
+			        $objectsToValidate.removeClass('inError');
+			        $objectsToValidate.each(function () {
+			            $obj = jq(this);
+			            if ($obj.val() !== '') { //Only run the validatiion check if there's at least one element that is non-empty 
+			                $objectsToValidate.each(function () {
+			                    if (jq(this).val() === '') {
+			                        jq(this).addClass('inError');
+			                        dirty = true;
+			                    }
+			                });
+			            }
+			        });
+			    });
+
+			    return !dirty;
+			}
+
 	        $othersField.change(toggleOtherSpecify);
 
 	        toggleOtherSpecify();
@@ -61,6 +91,10 @@
 
 	            if (!isOtherSelectedAndSpecified()){
 	            	valid = false;
+	            }
+
+	            if (!drugsValidated) () {
+					valid = false;
 	            }
 
 	            if (valid) {
@@ -168,6 +202,10 @@
 		min-width: 20%;
 		width: 50% !important;
 		clear: none !important;
+	}
+
+	.inError {
+	  border: 2px dotted #ff0000;
 	}
   </style>
 
@@ -298,7 +336,7 @@
                 Palliative <br />
                 care?
               </label>
-              **New Concept to be created*
+              <obs conceptId="164438" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" />
             </p>
           </td>
           <td>
@@ -346,14 +384,14 @@
           <td>
             <p>
               <label>Test Done</label>
+              <obs conceptId="164433" answerConceptIds="32,1643,1118" answerLabels="Blood smear/Microscopy,Rapid Diagnostic Test, Not done" style="radio" />
             </p>
-            **Missing - New concept to be added*
           </td>
           <td>
             <p>
               <label>Results</label>
             </p>
-            **Missing - New concept to be added*
+            <obs conceptId="164434" answerConceptIds="703,664,1118" answerLabels="Pos.,Neg.,Not Done" style="radio" />
           </td>
           <td></td>
         </tr>
@@ -399,7 +437,7 @@
                 Linked to<br />
                 TB Clinic
               </label>
-              **Missing - New concept to be added *
+              <obs conceptId="164435" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" />
             </p>
           </td>
         </tr>
@@ -515,7 +553,7 @@
           <td>
             <p>
               <label>Device provided</label>
-              <obs conceptId="164204" answerConceptIds="161241,164202,156560,164203" answerLabels="Wheelchair,Walking stick,Hearing Aid,Walker" style="dropdown" /> Missing Answer Concept -  Spectacles
+              <obs conceptId="164204" answerConceptIds="164204,161241,164202,156560,164203" answerLabels="Spectacles,Wheelchair,Walking stick,Hearing Aid,Walker" style="dropdown" />
             </p>
           </td>
           <td></td>
@@ -531,7 +569,7 @@
           <td>
             <p>
               <label>Referral in Number</label>
-              **Missing - New concept to be created *
+              <obs conceptId="164436" />
             </p>
           </td>
           <td>
