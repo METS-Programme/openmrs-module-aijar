@@ -4,7 +4,6 @@ import org.openmrs.module.aijar.metadata.core.*;
 import org.openmrs.module.metadatadeploy.bundle.AbstractMetadataBundle;
 import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.encounterRole;
 import org.springframework.stereotype.Component;
-import org.openmrs.module.aijar.metadata.core.Locations;
 
 /**
  * Installs the most common metadata

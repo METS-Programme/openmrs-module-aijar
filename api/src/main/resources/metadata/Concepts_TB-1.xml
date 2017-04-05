@@ -18,7 +18,10 @@
   <concept concept_id="159991" retired="false" datatype_id="2" class_id="7" is_set="false" creator="1" date_created="2011-01-16 17:51:19.0" changed_by="1" date_changed="2017-03-07 05:45:37.0" retired_by="1" uuid="159991AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
   <concept concept_id="160029" retired="false" datatype_id="2" class_id="7" is_set="false" creator="1" date_created="2011-01-17 20:40:33.0" version="" changed_by="1" date_changed="2011-06-16 13:54:02.0" retired_by="1" uuid="160029AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
   <concept concept_id="160434" retired="false" datatype_id="2" class_id="7" is_set="false" creator="1" date_created="2012-06-05 21:45:23.0" version="" changed_by="1" date_changed="2017-01-10 02:52:45.0" retired_by="1" uuid="160434AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+<<<<<<< HEAD
   <concept concept_id="160541" retired="false" datatype_id="4" class_id="11" is_set="false" creator="1" date_created="2012-06-14 16:17:34.0" version="" changed_by="1" date_changed="2016-01-27 03:10:30.0" retired_by="1" uuid="160541AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+=======
+>>>>>>> c244c96a6322280ac02539cc283a97959e0b4c45
   <concept concept_id="162584" retired="false" datatype_id="1" class_id="5" is_set="false" creator="1" date_created="2014-09-22 18:45:54.0" version="" changed_by="1" date_changed="2014-10-13 23:19:39.0" retired_by="1" uuid="162584AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
   <concept concept_id="163258" retired="false" datatype_id="3" class_id="7" is_set="false" creator="1" date_created="2016-02-16 22:19:40.0" version="" changed_by="1" date_changed="2016-07-29 22:33:41.0" retired_by="1" uuid="163258AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
   <concept concept_id="164085" retired="false" datatype_id="4" class_id="5" is_set="false" creator="1" date_created="2016-08-17 02:16:02.0" version="" changed_by="1" date_changed="2016-10-01 04:21:25.0" retired_by="1" uuid="164085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
@@ -354,7 +357,10 @@
   <concept_reference_term concept_reference_term_id="217129" concept_source_id="21" code="159991" creator="1" date_created="2013-07-03 00:00:00.0" changed_by="1" retired="false" retired_by="1" uuid="468464f2-32e2-369a-8a3e-29a522971375"/>
   <concept_reference_term concept_reference_term_id="217166" concept_source_id="21" code="160029" creator="1" date_created="2013-07-03 00:00:00.0" changed_by="1" retired="false" retired_by="1" uuid="0858f26e-f794-36de-a9b3-01109febc764"/>
   <concept_reference_term concept_reference_term_id="217559" concept_source_id="21" code="160434" creator="1" date_created="2013-07-03 00:00:00.0" changed_by="1" retired="false" retired_by="1" uuid="7a8293aa-5640-3299-ae4f-200e5ebfd4b1"/>
+<<<<<<< HEAD
   <concept_reference_term concept_reference_term_id="217664" concept_source_id="21" code="160541" creator="1" date_created="2013-07-03 00:00:00.0" changed_by="1" retired="false" retired_by="1" uuid="bb9d38eb-1738-3a45-82e4-068848a9e15d"/>
+=======
+>>>>>>> c244c96a6322280ac02539cc283a97959e0b4c45
   <concept_reference_term concept_reference_term_id="265676" concept_source_id="24" code="194044" creator="1" date_created="2013-10-01 00:00:00.0" changed_by="1" retired="false" retired_by="1" uuid="eeb444f6-e8d2-3fae-88eb-0e7ec2c37260"/>
   <concept_reference_term concept_reference_term_id="265677" concept_source_id="24" code="194052" creator="1" date_created="2013-10-01 00:00:00.0" changed_by="1" retired="false" retired_by="1" uuid="141f3475-0201-32b6-82e3-e45258ffb61b"/>
   <concept_reference_term concept_reference_term_id="277846" concept_source_id="11" code="6385" creator="1" date_created="2014-09-22 00:00:00.0" changed_by="1" retired="false" retired_by="1" uuid="20ea08cd-a6a3-3920-9d65-9b8bf2089212"/>
@@ -634,7 +640,10 @@
   <concept_reference_map concept_map_id="144412" creator="1" date_created="2012-06-05 21:45:23.0" concept_id="160434" uuid="144412ABBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_reference_term_id="144412" concept_map_type_id="1" changed_by="1"/>
   <concept_reference_map concept_map_id="144533" creator="1" date_created="2012-06-10 02:45:40.0" concept_id="160434" uuid="144533ABBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_reference_term_id="144533" concept_map_type_id="2" changed_by="1"/>
   <concept_reference_map concept_map_id="144534" creator="1" date_created="2012-06-10 02:45:40.0" concept_id="160434" uuid="144534ABBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_reference_term_id="137172" concept_map_type_id="2" changed_by="1"/>
+<<<<<<< HEAD
   <concept_reference_map concept_map_id="144621" creator="1" date_created="2012-06-14 16:17:34.0" concept_id="160541" uuid="144621ABBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_reference_term_id="144621" concept_map_type_id="2" changed_by="1"/>
+=======
+>>>>>>> c244c96a6322280ac02539cc283a97959e0b4c45
   <concept_reference_map concept_map_id="170465" creator="1" date_created="2013-02-28 14:24:04.0" concept_id="159787" uuid="170465ABBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_reference_term_id="170461" concept_map_type_id="2" changed_by="1"/>
   <concept_reference_map concept_map_id="170470" creator="1" date_created="2013-02-28 14:49:43.0" concept_id="159874" uuid="170470ABBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_reference_term_id="138194" concept_map_type_id="2" changed_by="1"/>
   <concept_reference_map concept_map_id="171816" creator="1" date_created="2013-07-03 18:53:08.0" concept_id="1574" uuid="171816ABBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_reference_term_id="171816" concept_map_type_id="1" changed_by="1"/>
@@ -655,7 +664,10 @@
   <concept_reference_map concept_map_id="217129" creator="1" date_created="2013-07-03 18:53:08.0" concept_id="159991" uuid="217129ABBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_reference_term_id="217129" concept_map_type_id="1" changed_by="1"/>
   <concept_reference_map concept_map_id="217166" creator="1" date_created="2013-07-03 18:53:08.0" concept_id="160029" uuid="217166ABBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_reference_term_id="217166" concept_map_type_id="1" changed_by="1"/>
   <concept_reference_map concept_map_id="217559" creator="1" date_created="2013-07-03 18:53:08.0" concept_id="160434" uuid="217559ABBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_reference_term_id="217559" concept_map_type_id="1" changed_by="1"/>
+<<<<<<< HEAD
   <concept_reference_map concept_map_id="217664" creator="1" date_created="2013-07-03 18:53:08.0" concept_id="160541" uuid="217664ABBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_reference_term_id="217664" concept_map_type_id="1" changed_by="1"/>
+=======
+>>>>>>> c244c96a6322280ac02539cc283a97959e0b4c45
   <concept_reference_map concept_map_id="265676" creator="1" date_created="2013-10-01 13:53:58.0" concept_id="113491" uuid="265676ABBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_reference_term_id="265676" concept_map_type_id="1" changed_by="1"/>
   <concept_reference_map concept_map_id="265677" creator="1" date_created="2013-10-01 13:53:58.0" concept_id="113489" uuid="265677ABBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_reference_term_id="265677" concept_map_type_id="1" changed_by="1"/>
   <concept_reference_map concept_map_id="277846" creator="1" date_created="2014-09-22 18:45:54.0" concept_id="162584" uuid="277846ABBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_reference_term_id="277846" concept_map_type_id="2" changed_by="1"/>
@@ -957,9 +969,12 @@
   <concept_name concept_id="160029" name="Clinician notes" locale="en" creator="1" date_created="2011-01-17 20:40:33.0" concept_name_id="107686" voided="false" voided_by="1" uuid="107686BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
   <concept_name concept_id="160434" name="Taking Co-trimoxazole, preventive therapy" locale="en" creator="1" date_created="2012-06-05 21:45:23.0" concept_name_id="108656" voided="false" voided_by="1" uuid="108656BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
   <concept_name concept_id="160434" name="Taking Cotrimoxazole, preventive therapy" locale="en" creator="1" date_created="2017-01-10 02:52:45.0" concept_name_id="140315" voided="false" voided_by="1" uuid="140315BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
+<<<<<<< HEAD
   <concept_name concept_id="160541" name="Tuberculosis treatment program" locale="en" creator="1" date_created="2012-06-14 16:17:34.0" concept_name_id="108876" voided="false" voided_by="1" uuid="108876BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
   <concept_name concept_id="160541" name="TB Program" locale="en" creator="1" date_created="2012-06-14 16:17:34.0" concept_name_id="108877" voided="false" voided_by="1" uuid="108877BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="SHORT" locale_preferred="false"/>
   <concept_name concept_id="160541" name="PROGRAMME DE LA TUBERCULOSE" locale="fr" creator="1" date_created="2012-06-15 14:16:18.0" concept_name_id="108980" voided="false" voided_by="1" uuid="108980BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+=======
+>>>>>>> c244c96a6322280ac02539cc283a97959e0b4c45
   <concept_name concept_id="162584" name="Weight z-score" locale="en" creator="1" date_created="2014-09-22 18:45:54.0" concept_name_id="126216" voided="false" voided_by="1" void_reason="" uuid="126216BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
   <concept_name concept_id="162584" name="Note z du poids" locale="fr" creator="1" date_created="2014-09-22 18:45:54.0" concept_name_id="126217" voided="false" voided_by="1" uuid="126217BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
   <concept_name concept_id="162584" name="Weight for age (z-score)" locale="en" creator="1" date_created="2014-09-22 18:45:54.0" concept_name_id="126218" voided="false" voided_by="1" uuid="126218BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
