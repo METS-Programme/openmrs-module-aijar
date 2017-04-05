@@ -15,21 +15,6 @@
     ]
   },
   {
-    "id": "aijar.referenceapplication.birtReports",
-    "extensions": [
-      {
-        "id": "aijar.referenceapplication.birtReports.homepageLink",
-        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
-        "type": "link",
-        "label": "aijar.app.birtreport.list.label",
-        "url": "module/birt/report.list",
-        "icon": "icon-book",
-        "order": 105,
-        "requiredPrivilege": "Manage Reports"
-      }
-    ]
-  },
-  {
     "id": "aijar.referenceapplication.backupDatabase",
     "extensions": [
       {
