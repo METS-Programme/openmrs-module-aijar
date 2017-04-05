@@ -133,7 +133,8 @@
 				}
 			</ifMode>
 	
-			jq('.add').click(function() { //Handle add button evens
+			jq('.add').click(function(e) { //Handle add button event
+				e.preventDefault();
 				$thisRow = jq(this).parents('tr:first');
 				$nextRow = $thisRow.next();
 	
@@ -144,13 +145,31 @@
 				showAddButtonForLastVisibleRow();
 			});
 			
-			jq('.remove').click(function() { //Handle remove button event
+			jq('.remove').click(function(e) { //Handle remove button event
+				e.preventDefault();
 				$thisRow = jq(this).parents('tr:first');
 				$thisRow.hide();
 				showAddButtonForLastVisibleRow();
 			});			
 		});
   </script>
+  <style type="text/css">
+  	table#drugs td {
+		width: 20%;
+		border: 1px solid rgb(199, 199, 199) !important;
+	}
+
+	table#drugs td.no-of-days-to-take-drugs input {
+		min-width: 20%;
+		width: 25px !important;
+	}
+
+	table#drugs td.no-of-days-to-take-drugs select {
+		min-width: 20%;
+		width: 50% !important;
+		clear: none !important;
+	}
+  </style>
 
   <div class="ai-page-frame">
     <div class="headers" style="text-align: center;">
@@ -190,8 +209,10 @@
         <tr>
           <td>
             <p>
-              <label>MUAC color code</label>
-              <obs conceptId="99030" answerConceptIds="99028,99027,99029" answerLabels="Red,Green,Yellow" style="radio" />
+              <label>
+              	MUAC color code
+              </label>
+              <obs conceptId="99030" answerConceptIds="99028,99027,99029" answerLabels="Red,Green,Yellow" style="dropdown" />
             </p>
           </td>
           <td>
@@ -226,7 +247,7 @@
           <td>
             <p>
               <label>Height for age Z-Score</label>
-              <obs conceptId="164088" answerConceptIds="1115,123814" answerLabels="Normal,Underweight" style="radio" />
+              <obs conceptId="164088" answerConceptIds="1115,123814" answerLabels="Normal,Underweight" style="dropdown" />
             </p>
           </td>
           <td>
@@ -302,7 +323,7 @@
         <tr>
           <td>
             <p>
-              <label>Alcohol use</label>
+              <label>Alcohol <br />use</label>
               <obs conceptId="159449" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" />
             </p>
           </td>
@@ -366,9 +387,10 @@
             <p>
               <label>
                 Lab<br />
-                TB results
+                TB<br />
+                results
               </label>
-              <obs conceptId="160108" answerConceptIds="703,664,1175" answerLabels="Positive,Negative,Not Applicable" style="radio" required="true" />
+              <obs conceptId="160108" answerConceptIds="703,664,1175" answerLabels="Pos.,Neg.,N/A" style="radio" required="true" />
             </p>
           </td>
           <td>
@@ -384,7 +406,7 @@
       </table>
     </fieldset>
     <fieldset>
-      New Diagnosis
+      <legend>New Diagnosis</legend>
       <table width="100%">
         <tr>
           <td>
@@ -420,57 +442,63 @@
         </tr>
       </table>
     </fieldset>
-    <fieldset>
+	<fieldset>
       <legend>Drugs/Treatment</legend>
-      <table width="100%" border="0" cellspacing="0" cellpadding="0" id="drugs">
-        <tr>
-          <th>Drug</th>
-          <th>Units per dose</th>
-          <th>Doses per day</th>
-          <th>No. of days to take drug</th>
-          <th></th>
-        </tr>
-        <repeat>
-          <template>
-            <obsgroup groupingConceptId="160741">
-              <tr>
-                <td>
-                  <p>
-                    <obs conceptId="1282" answerDrugs="true" />
-                  </p>
-                </td>
-                <td>
-                  <p>
-                    <obs conceptId="160856" />
-                  </p>
-                </td>
-                <td>
-                  <p>
-                    <obs conceptId="160855" />
-                  </p>
-                </td>
-                <td>
-                  <p>
-                    <obs conceptId="159368" />
-                    <obs conceptId="1732" />
-                  </p>
-                </td>
-                <td>
-                  <a href="#" class="add">Add</a> | <a href="#" class="remove">Remove</a>
-                </td>
-              </tr>
-            </obsgroup>
-          </template>
-          <render id="1"/>
-          <render id="2"/>
-          <render id="3"/>
-          <render id="4"/>
-          <render id="5"/>
-          <render id="6"/>
-          <render id="7"/>
-          <render id="8"/>
-        </repeat>
-      </table>
+	      <table width="100%" border="0" cellspacing="0" cellpadding="0" id="drugs">
+	      	<thead>
+		        <tr>
+		          <th>Drug</th>
+		          <th>Units per dose</th>
+		          <th>Doses per day</th>
+		          <th>No. of days to take drug</th>
+		          <th></th>
+		        </tr>
+			</thead>
+      		<tbody>
+      			<repeat>
+					<template>
+			            <obsgroup groupingConceptId="160741">
+			              <tr>
+			                <td>
+			                  <p>
+			                    <obs conceptId="1282" answerDrugs="true" />
+			                  </p>
+			                </td>
+			                <td>
+			                  <p>
+			                    <obs conceptId="160856" />
+			                  </p>
+			                </td>
+			                <td>
+			                  <p>
+			                    <obs conceptId="160855" />
+			                  </p>
+			                </td>
+			                <td class="no-of-days-to-take-drugs">
+			                  <p>
+			                    <obs conceptId="159368" />
+			                    <obs conceptId="1732" />
+			                  </p>
+			                </td>
+			                <td>
+			                  <a href="#" class="add">Add</a> | <a href="#" class="remove">Remove</a>
+			                </td>
+			              </tr>
+			            </obsgroup>
+					</template>
+					<render id="1"/>
+					<render id="2"/>
+					<render id="3"/>
+					<render id="4"/>
+					<render id="5"/>
+					<render id="6"/>
+					<render id="7"/>
+					<render id="8"/>
+					<render id="9"/>
+					<render id="10"/>
+      		    </repeat>
+      		</tbody>
+	      </table>
     </fieldset>
     <fieldset>
       <legend>Disability</legend>
