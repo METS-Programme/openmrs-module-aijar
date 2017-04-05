@@ -51,6 +51,36 @@
 		        return valid;
 		    };
 
+			/**
+			* This validation check works this way:
+			* For each visible row, If any text box or combo box is non-empty, check if there's any other text box or combobox within the same row that is empty. 
+			* If so, validation fails and the elements with missing values are highlighted 
+			*/
+			var drugsValidated = function () {
+			    var $rows,
+			        $objectsToValidate;
+			    var dirty = false;
+
+			    $rows = jq('table#drugs&gt;tbody tr:visible');
+			    $rows.each(function () {
+			        $objectsToValidate = jq(this).find('input[type=text],select'); //Get all text and combo boxes
+			        $objectsToValidate.removeClass('inError');
+			        $objectsToValidate.each(function () {
+			            $obj = jq(this);
+			            if ($obj.val() !== '') { //Only run the validatiion check if there's at least one element that is non-empty 
+			                $objectsToValidate.each(function () {
+			                    if (jq(this).val() === '') {
+			                        jq(this).addClass('inError');
+			                        dirty = true;
+			                    }
+			                });
+			            }
+			        });
+			    });
+
+			    return !dirty;
+			}
+
 	        $othersField.change(toggleOtherSpecify);
 
 	        toggleOtherSpecify();
@@ -61,6 +91,10 @@
 
 	            if (!isOtherSelectedAndSpecified()){
 	            	valid = false;
+	            }
+
+	            if (!drugsValidated) () {
+					valid = false;
 	            }
 
 	            if (valid) {
