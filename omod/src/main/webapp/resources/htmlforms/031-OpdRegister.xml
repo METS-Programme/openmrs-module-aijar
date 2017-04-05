@@ -85,15 +85,15 @@
 
 	        toggleOtherSpecify();
 
-	        beforeSubmit.push(function(){
+	        beforeSubmit.push(function() {
 	            var valid = true;
 	            var $errorMessageSpan = jq('span#error-message');
 
-	            if (!isOtherSelectedAndSpecified()){
+	            if (!isOtherSelectedAndSpecified()) {
 	            	valid = false;
 	            }
 
-	            if (!drugsValidated) () {
+	            if (!drugsValidated()) {
 					valid = false;
 	            }
 
