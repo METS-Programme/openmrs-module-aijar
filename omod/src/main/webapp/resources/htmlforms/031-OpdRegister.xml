@@ -298,7 +298,7 @@
                 Palliative <br />
                 care?
               </label>
-              **New Concept to be created*
+              <obs conceptId="164438" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" />
             </p>
           </td>
           <td>
@@ -346,14 +346,14 @@
           <td>
             <p>
               <label>Test Done</label>
+              <obs conceptId="164433" answerConceptIds="32,1643,1118" answerLabels="Blood smear/Microscopy,Rapid Diagnostic Test, Not done" style="radio" />
             </p>
-            **Missing - New concept to be added*
           </td>
           <td>
             <p>
               <label>Results</label>
             </p>
-            **Missing - New concept to be added*
+            <obs conceptId="164434" answerConceptIds="703,664,1118" answerLabels="Pos.,Neg.,Not Done" style="radio" />
           </td>
           <td></td>
         </tr>
@@ -399,7 +399,7 @@
                 Linked to<br />
                 TB Clinic
               </label>
-              **Missing - New concept to be added *
+              <obs conceptId="164435" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" />
             </p>
           </td>
         </tr>
@@ -515,7 +515,7 @@
           <td>
             <p>
               <label>Device provided</label>
-              <obs conceptId="164204" answerConceptIds="161241,164202,156560,164203" answerLabels="Wheelchair,Walking stick,Hearing Aid,Walker" style="dropdown" /> Missing Answer Concept -  Spectacles
+              <obs conceptId="164204" answerConceptIds="164204,161241,164202,156560,164203" answerLabels="Spectacles,Wheelchair,Walking stick,Hearing Aid,Walker" style="dropdown" />
             </p>
           </td>
           <td></td>
@@ -531,7 +531,7 @@
           <td>
             <p>
               <label>Referral in Number</label>
-              **Missing - New concept to be created *
+              <obs conceptId="164436" />
             </p>
           </td>
           <td>
