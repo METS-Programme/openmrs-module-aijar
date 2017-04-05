@@ -1,6 +1,7 @@
 package org.openmrs.module.aijar.api.deploy.bundle;
 
 import java.io.InputStream;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.List;
@@ -74,13 +75,15 @@ public abstract class AddressMetadataBundle extends VersionedMetadataBundle {
     public Object getAddressTemplate() {
         Object addressTemplate = null;
         try {
-			addressTemplate = Context.loadClass("org.openmrs.layout.web.address.AddressTemplate").newInstance();
+        	Constructor constructor = Context.loadClass("org.openmrs.layout.web.address.AddressTemplate").getConstructor(String.class);
+			addressTemplate = constructor.newInstance("");
         }
-        catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+        catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
         	try {
-				addressTemplate = Context.loadClass("org.openmrs.layout.address.AddressTemplate").newInstance();
+        		Constructor constructor = Context.loadClass("org.openmrs.layout.address.AddressTemplate").getConstructor(String.class);
+        		addressTemplate = constructor.newInstance("");
 			}
-			catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+			catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException ex) {
 				throw new APIException("Error while getting address template", ex);
 			}
         }
@@ -97,10 +100,10 @@ public abstract class AddressMetadataBundle extends VersionedMetadataBundle {
         }
         
         try {
-			MethodUtils.invokeExactMethod(addressTemplate, "setNameMappings", nameMappings);
-			MethodUtils.invokeExactMethod(addressTemplate, "setSizeMappings", sizeMappings);
-	        MethodUtils.invokeExactMethod(addressTemplate, "setElementDefaults", elementDefaults);
-	        MethodUtils.invokeExactMethod(addressTemplate, "setLineByLineFormat", getLineByLineFormat());
+			MethodUtils.invokeExactMethod(addressTemplate, "setNameMappings", new Object[]{ nameMappings }, new Class[] { Map.class });
+			MethodUtils.invokeExactMethod(addressTemplate, "setSizeMappings", new Object[]{ sizeMappings }, new Class[] { Map.class });
+	        MethodUtils.invokeExactMethod(addressTemplate, "setElementDefaults", new Object[]{ elementDefaults }, new Class[] { Map.class });
+	        MethodUtils.invokeExactMethod(addressTemplate, "setLineByLineFormat", new Object[]{ getLineByLineFormat() }, new Class[] { List.class });
 		}
 		catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
 			throw new APIException("Error while getting address template", e);
