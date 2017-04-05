@@ -1,20 +1,23 @@
 package org.openmrs.module.aijar.api.deploy.bundle;
 
+import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.beanutils.MethodUtils;
 import org.apache.commons.io.IOUtils;
+import org.openmrs.api.APIException;
 import org.openmrs.api.SerializationService;
 import org.openmrs.api.context.Context;
-import org.openmrs.layout.web.address.AddressTemplate;
 import org.openmrs.module.addresshierarchy.AddressHierarchyLevel;
 import org.openmrs.module.addresshierarchy.service.AddressHierarchyService;
 import org.openmrs.module.addresshierarchy.util.AddressHierarchyImportUtil;
 import org.openmrs.module.metadatadeploy.bundle.VersionedMetadataBundle;
+import org.openmrs.util.OpenmrsClassLoader;
 import org.openmrs.util.OpenmrsConstants;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.io.InputStream;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public abstract class AddressMetadataBundle extends VersionedMetadataBundle {
 
@@ -69,8 +72,20 @@ public abstract class AddressMetadataBundle extends VersionedMetadataBundle {
     /**
      * @return a new AddressTemplate instance for the given configuration
      */
-    public AddressTemplate getAddressTemplate() {
-        AddressTemplate addressTemplate = new AddressTemplate("");
+    public Object getAddressTemplate() {
+        Object addressTemplate = null;
+        try {
+        	addressTemplate = OpenmrsClassLoader.getInstance().loadClass("org.openmrs.layout.web.address.AddressTemplate");
+        }
+        catch (ClassNotFoundException ex) {
+        	try {
+				addressTemplate = Context.loadClass("org.openmrs.layout.address.AddressTemplate");
+			}
+			catch (ClassNotFoundException e) {
+				throw new APIException("Error while getting address template", e);
+			}
+        }
+        
         Map<String, String> nameMappings = new HashMap<String, String>();
         Map<String, String> sizeMappings = new HashMap<String, String>();
         Map<String, String> elementDefaults = new HashMap<String, String>();
@@ -81,10 +96,17 @@ public abstract class AddressMetadataBundle extends VersionedMetadataBundle {
                 elementDefaults.put(c.getField().getName(), c.getElementDefault());
             }
         }
-        addressTemplate.setNameMappings(nameMappings);
-        addressTemplate.setSizeMappings(sizeMappings);
-        addressTemplate.setElementDefaults(elementDefaults);
-        addressTemplate.setLineByLineFormat(getLineByLineFormat());
+        
+        try {
+			MethodUtils.invokeExactMethod(addressTemplate, "setNameMappings", nameMappings);
+			MethodUtils.invokeExactMethod(addressTemplate, "setSizeMappings", sizeMappings);
+	        MethodUtils.invokeExactMethod(addressTemplate, "setElementDefaults", elementDefaults);
+	        MethodUtils.invokeExactMethod(addressTemplate, "setLineByLineFormat", getLineByLineFormat());
+		}
+		catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+			throw new APIException("Error while getting address template", e);
+		}
+
         return addressTemplate;
     }
 
