@@ -64,7 +64,7 @@ span.value {
 }
 
 /* A set of css definitions to be used across the data entry forms*/
-form#htmlform div.ai-page-frame label, .form label {
+form#htmlform div.ai-page-frame label, form#htmlform .form label {
 	float: left;
 	padding: 0px 10px 0 0;
 }
