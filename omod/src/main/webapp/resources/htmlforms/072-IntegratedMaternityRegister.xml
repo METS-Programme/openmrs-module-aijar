@@ -10,7 +10,16 @@
           formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.gender=='F' &amp;&amp; patient.person.age &gt; 12 &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='e9bc61b5-69ff-414b-9cf0-0c22d6dfca2b'"
           formDisplayStyle="Standard"
           formLabel="Maternity">
+	<style type="text/css">
+		form#htmlform div.ai-page-frame table>tbody tr:nth-child(odd) td {
+			background: #eeeeee;
+		}
 
+		form#htmlform div.ai-page-frame table>tbody tr:nth-child(even) td {
+			background: #f9f9f9;
+			
+		}		
+	</style>
 	<script type="text/javascript">
 	    jQuery(document).ready(function(jq) {
 	        const VIRAL_LOAD_RESULTS_CONCEPT_ID = 1305;
@@ -357,22 +366,20 @@
           <td></td>
         </tr>
         <tr>
-          <td>
+          <td colspan="2">
             <p>
-              <label>eMTCT &lt;br/&gt;Code &lt;br/&gt; Woman</label>
+              <label>eMTCT Code: Woman</label>
               <obs conceptId="d5b0394c-424f-41db-bc2f-37180dcdbe74" answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465" answerLabels="C,TR,TRR"
                                       style="radio" />
             </p>
           </td>
-          <td>
+          <td colspan="2">
             <p>
-              <label>eMTCT &lt;br/&gt;Code &lt;br/&gt; Partner</label>
+              <label>eMTCT Code: Partner</label>
               <obs conceptId="62a37075-fc2a-4729-8950-b9fae9b22cfb" answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465" answerLabels="C,TR,TRR"
                                         style="radio" />
             </p>
           </td>
-          <td></td>
-          <td></td>
         </tr>
       </table>
     </fieldset>
