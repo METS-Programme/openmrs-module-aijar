@@ -89,6 +89,9 @@
 	    }
 
 	    jQuery().ready(function(jq){
+	    	const YELLOW_CONCEPT_ID = 99029;
+	    	const RED_CONCEPT_ID = 99028;
+
 	        var $muacColorCodeField,
 				$inrNumberField;
 
