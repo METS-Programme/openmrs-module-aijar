@@ -62,3 +62,160 @@ span.value {
     display: inline-block;
     margin-left: 10px;
 }
+
+/* A set of css definitions to be used across the data entry forms*/
+form#htmlform div.ai-page-frame label, form#htmlform .form label {
+	float: left;
+	padding: 0px 10px 0 0;
+}
+
+form#htmlform div.ai-page-frame input[type="checkbox"], form#htmlform div.ai-page-frame input[type="radio"], form#htmlform div.ai-page-frame .form input[type="checkbox"], form#htmlform div.ai-page-frame .form input[type="radio"] {
+	margin: 10px 10px;
+}
+
+form#htmlform div.ai-page-frame table td {
+	background: #FFFFFF;
+	color: #404040;
+}
+
+form#htmlform div.ai-page-frame select, div.ai-page-frame .form select {
+	min-width: 0px;
+}
+
+form#htmlform div.ai-page-frame input, form#htmlform div.ai-page-frame select, form#htmlform div.ai-page-frame textarea, form#htmlform div.ai-page-frame form ul.select, form#htmlform .form input, form#htmlform div.ai-page-frame .form select, form#htmlform div.ai-page-frame .form textarea, form#htmlform div.ai-page-frame .form ul.select {
+	background-color: #FBFBFB;
+	border: 1px solid #CEC9C9;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	padding: 10px;
+	min-width: 50%;
+}
+
+form#htmlform div.ai-page-frame input[type=checkbox], form#htmlform div.ai-page-frame input[type=radio] {
+	min-width: 0 !important;
+}
+
+
+form#htmlform div.ai-page-frame fieldset {
+	width: 96%;
+	margin: 0 0 30px 0;
+}
+
+form#htmlform div.ai-page-frame fieldset legend {
+	font-weight: 600;
+}
+
+form#htmlform div.ai-page-frame fieldset table {
+	width: 100%;
+	margin: 0px;
+}
+
+form#htmlform div.ai-page-frame table th, form#htmlform div.ai-page-frame table td {
+	border: 1px solid #C7C7C7;
+	min-width: 10%;
+	width: 25%;
+	vertical-align: top;
+}
+
+form#htmlform div.ai-page-frame fieldset table td label {
+	padding: 5px 0px 0 0;
+	float: left;
+}
+
+form#htmlform div.ai-page-frame fieldset table td, div.ai-page-frame fieldset table tr {
+	border: 0;
+}
+
+form#htmlform div.ai-page-frame fieldset input[type=text], form#htmlform div.ai-page-frame fieldset select {
+	float: left;
+	clear: left;
+	max-width: 50%;
+	width: 100%;
+}
+
+form#htmlform div.ai-page-frame fieldset span.has-comment input[type=text] {
+	clear: none;
+}
+
+form#htmlform div.ai-page-frame fieldset span.has-comment label {
+	clear: left;
+}
+
+form#htmlform div.ai-page-frame fieldset span.has-comment label:first-of-type {
+	clear: none;
+}
+
+form#htmlform div.ai-page-frame fieldset span.date-and-time input[type=text] {
+	min-width: 40% !important;
+}
+
+form#htmlform div.ai-page-frame fieldset span.date-and-time select {
+	min-width: 20% !important;
+}
+
+form#htmlform div.ai-page-frame fieldset span.required {
+	float: left;
+}
+
+form#htmlform div.ai-page-frame fieldset span.date-and-time input[type=text] {
+	clear:left
+}
+
+form#htmlform div.ai-page-frame fieldset span.date-and-time select {
+	clear:none;
+	width: 60px;
+	min-width: 65px;
+	float: left;
+}	
+
+form#htmlform div.ai-page-frame fieldset span.date-and-time select.hfe-hours {
+	clear:left;
+}
+
+form#htmlform div.ai-page-frame fieldset span.error {
+	float: left;
+	border: 2px dotted #fb0303;
+	color: #fb0303;
+}
+
+form#htmlform div.ai-page-frame fieldset input.error {
+	background-color: #ffffff;
+	border: 1px solid #0808fd;
+	border-radius: 0;
+}
+
+form#htmlform div.ai-page-frame input.submitButton {
+	min-width: 200px !important;
+}
+
+@media (max-width: 1400px) {
+	form#htmlform div.ai-page-frame input[type="checkbox"], form#htmlform div.ai-page-frame input[type="radio"], form#htmlform .form input[type="checkbox"], form#htmlform .form input[type="radio"] {
+	    margin: 8px 5px;
+	}
+
+	form#htmlform div.ai-page-frame fieldset, form#htmlform .form fieldset {
+	    min-width: 0;
+	    margin: 0 auto;
+	    display: inline-block;
+	    padding: 15px;
+	}
+
+	form#htmlform div.ai-page-frame fieldset legend, form#htmlform .form fieldset legend {
+		font-weight:600;
+		font-size: 0.8rem;
+	}
+
+	form#htmlform div.ai-page-frame fieldset label {
+		padding: 5px 10px 0 0;
+		float: left;
+		font-size: 0.7rem;
+	}
+	
+	form#htmlform div.ai-page-frame fieldset select {
+		width: 100%
+	}
+
+	form#htmlform div.ai-page-frame input, form#htmlform div.ai-page-frame select, form#htmlform div.ai-page-frame textarea, form#htmlform div.ai-page-frame ul.select, form#htmlform .form input, form#htmlform .form select, form#htmlform .form textarea, form#htmlform .form ul.select {
+	    font-size: 0.8rem;
+	}
+}

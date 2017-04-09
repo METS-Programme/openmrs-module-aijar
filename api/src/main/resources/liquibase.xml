@@ -14,4 +14,11 @@
 			UPDATE scheduler_task_config SET start_on_startup = 0 WHERE schedulable_class IN ('org.openmrs.module.formentry.ProcessFormEntryQueueTask', 'org.openmrs.scheduler.tasks.ProcessHL7InQueueTask')
 		</sql>
 	</changeSet>
+
+	<changeSet id="ugandaemr-111032017-1130" author="slubwama">
+		<comment>Change concept 162394 datatype to coded concept</comment>
+		<sql>
+			UPDATE concept SET datatype_id = 2 WHERE concept_id = 162394
+		</sql>
+	</changeSet>
 </databaseChangeLog>

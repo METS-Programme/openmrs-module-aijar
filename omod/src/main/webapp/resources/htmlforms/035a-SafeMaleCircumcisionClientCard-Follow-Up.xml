@@ -1,0 +1,241 @@
+<htmlform formName="HMIS 035a Safe Male Circumcision Client Card Follow up"
+          formDescription="Captures clients undergoing safe male circumcision follow Up"
+          formEncounterType="d0f9e0b7-f336-43bd-bf50-0a7243857fa6"
+          formUuid="2af6a829-98d6-489d-af94-1b0d7d6114d9"
+          formVersion="1.2"
+          formAddMetadata="yes"
+          formUILocation="patientDashboard.visitActions"
+          formOrder="7"
+          formIcon="icon-medkit"
+          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.gender=='M' &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='8f96e239-8586-4ec6-9375-04c6e19628ae'"
+          formDisplayStyle="Standard"
+          formLabel="SMC Client Card Follow Up">
+
+
+    <ifMode mode="ENTER">
+        <includeIf velocityTest="$fn.allEncounters('244da86d-f80e-48fe-aba9-067f241905ee').size() == 0">
+            <script>
+                jq(function () {
+                    alert('This Patient has no SMC Card , you will now be forwarded to the patient dashboard');
+                    /*
+                     * queryParameters -> handles the query string parameters
+                     * queryString -> the query string without the fist '?' character
+                     * re -> the regular expression
+                     * m -> holds the string matching the regular expression
+                     */
+                    var queryParameters = {}, queryString = location.search.substring(1),
+                            re = /([^&amp;=]+)=([^&amp;]*)/g, m;
+
+                    // Creates a map with the query string parameters
+                    while (m = re.exec(queryString)) {
+                        queryParameters[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+                    }
+
+                    /*
+                     * Replace the query portion of the URL.
+                     * jQuery.param() -> create a serialized representation of an array or
+                     *     object, suitable for use in a URL query string or Ajax request.
+                     */
+                    location.href = window.location.protocol + "//" + window.location.host +
+                            '/' + OPENMRS_CONTEXT_PATH + '/coreapps/clinicianfacing/patient.page?patientId='
+                            + queryParameters['patientId']; // Causes page to reload
+                });
+            </script>
+        </includeIf>
+    </ifMode>
+
+    <style>
+
+        form label, .form label {
+            float: left;
+            padding: 0px 10px 0 0;
+        }
+
+        form input[type="checkbox"], form input[type="radio"], .form input[type="checkbox"], .form input[type="radio"] {
+            margin: 10px 15px;
+        }
+
+        table td {
+            background: #FFFFFF;
+            color: #404040;
+        }
+
+        form select, .form select {
+            min-width: 0px;
+        }
+
+        form input, form select, form textarea, form ul.select, .form input, .form select, .form textarea, .form
+        ul.select {
+            background-color: #FBFBFB;
+            border: 1px solid #CEC9C9;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 10px;
+            min-width: 50%;
+        }
+
+        .row {
+            width: 100%;
+            float: left;
+            display: inline-flex;
+            clear: both;
+        }
+
+        .row .row-col2 {
+            float: left;
+            width: 50%;
+        }
+
+        table th, table td {
+            border: 1px solid #C7C7C7;
+        }
+
+        h4 {
+            background: #C1C1C1;
+            color: #000;
+        }
+
+        h3 {
+            background: #C1C1C1;
+            color: #000;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        if (jQuery) {
+            jq(document).ready(function () {
+                if (jq.browser.msie) {
+                    jq(":checkbox").click(function () {
+                        jq(this).change();
+                    });
+                }
+
+                jq('#smc_presence_of_ae').click(function () {
+                    if (getValue('smc_presence_of_ae.value') == 90002) {
+                        showContainer('#smc_presence_of_ae_other');
+
+                    } else {
+                        hideContainer('#smc_presence_of_ae_other');
+                    }
+                });
+
+                jq('#smc_presence_of_ae').trigger('click');
+            });
+        }
+    </script>
+    <div class="ai-page-frame">
+        <div class="headers" style="text-align: center;">
+            <h3 style="background: beige; padding: 10px;">Safe Male Circumcision Client Card</h3>
+        </div>
+        <section>
+            <h3>Facility Information</h3>
+            <table>
+                <tbody>
+
+                <span style="display: none;">
+                        <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
+                                           order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
+                    </span>
+                <tr>
+                    <td>
+                        <label>Site Type:</label>
+                        <obs conceptId="162893" answerConceptIds="162894,162895,162896"
+                             answerLabels="Static/Fixed,Outreach,Camp" required="true"/>
+                    </td>
+                    <td>
+                        <label><span class="required">*</span>Clinic Team Leader:
+                        </label>
+                        <encounterProvider role="Provider" style="autocomplete"/>
+                    </td>
+                    <td>
+                        <label>National ID:</label>
+                        <patient field="identifier" identifierTypeId="f0c16a6d-dc5f-4118-a803-616d0075d282"
+                                 required="false"/>
+                    </td>
+                    <td>
+                        <label>Serial ID:</label>
+                        <patient field="identifier" identifierTypeId="37601abe-2ee0-4493-8ac7-22b4972190cf"/>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h3>Circumcision Follow Up Visits</h3>
+            <table class="section-b">
+                <obsgroup groupingConceptId="99700">
+                    <tr>
+                        <td >
+                            <label>Date:</label>
+                            <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
+                        </td>
+                        <td>
+                            <label>Wound status</label>
+                            <obs conceptId="162912" labelText=""/>
+                        </td>
+                        <td>
+                            <obs id="br" conceptId="90069" labelText=" Misssed Apt?" style="checkbox"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="3">
+                            <label>Type of Visit:</label>
+                            <obs conceptId="99702" answerConceptIds="99703,99704,99705"
+                                 answerLabels="Routine, Client initiated/unscheduled,recommended by physician"
+                                 style="radio" answerSeparator=""/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" class="SMCOtherEnableDisable4">
+                            <label>Presence of AE:</label>
+                            <obs conceptId="99706" answerConceptId="99687" answerLabel="Damage to penis/Urethra"/>
+                            <obs conceptId="99706" answerConceptId="99688" answerLabel="Excessive bleeding"/>
+                            <obs conceptId="99706" answerConceptId="99707" answerLabel="Pus discharge"/>
+                            <obs conceptId="99706" answerConceptId="99708" answerLabel="Excessive Swelling"/>
+                            <obs conceptId="99706" answerConceptId="99709" answerLabel="Excessive Swelling"/>
+                            <obs conceptId="99706" answerConceptId="162913" answerLabel="Infection,Smell"/>
+                            <obs conceptId="99706" answerConceptId="162914" answerLabel="Device displacement"/>
+                            <obs conceptId="99706" answerConceptId="162915" answerLabel="Failure to pass urine"/>
+                            <span id="smc_presence_of_ae_container"></span>
+                            <obs conceptId="99706" answerConceptId="90002" answerLabel="Other Specify" id="smc_presence_of_ae"/>
+
+                        </td>
+                        <td class="SMCOtherEnableDisableChild4">
+                            <span id="smc_presence_of_ae_other_container">
+                                <obs conceptId="99710" labelText="Specify" id="smc_presence_of_ae_other"/>
+                            </span>
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="3">
+                            <label>Severity:</label>
+                            <obs conceptId="99711" answerConceptIds="99562,99561" answerLabels="Moderate, Severe"
+                                 style="radio" answerSeparator=""/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <label>Treatment given:</label>
+                            <obs conceptId="99712"/>
+                        </td>
+                    </tr>
+
+                </obsgroup>
+            </table>
+        </section>
+        <section>
+            <submit/>
+        </section>
+    </div>
+    <!-- End of HTML Form -->
+</htmlform>
