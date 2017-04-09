@@ -128,6 +128,12 @@
                         <p>
                             <encounterProvider role="Provider" type="autocomplete"/>
                         </p>
+                        <p>
+                            <label>Serial</label>
+                        </p>
+                        <p>
+                            <obs conceptId="1646AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+                        </p>
                     </td>
                     <td>
                         <p>
@@ -348,7 +354,7 @@
                         </td>
                         <td>
                             <p>
-                                To be loaded
+                                <obs conceptId="159376AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
                             </p>
                         </td>
                     </tr>
