@@ -124,6 +124,13 @@
                     </td>
                     <td>
                         <p>
+                            <label>Provider</label>
+
+                        </p>
+                        <p>
+                            <encounterProvider role="Provider" type="autocomplete"/>
+                        </p>
+                        <p>
                             <label>Serial Number</label>
                         </p>
                         <p>
