@@ -124,10 +124,17 @@
                     </td>
                     <td>
                         <p>
+                            <label>Provider</label>
+
+                        </p>
+                        <p>
+                            <encounterProvider role="Provider" type="autocomplete"/>
+                        </p>
+                        <p>
                             <label>Serial Number</label>
                         </p>
                         <p>
-                            To be loaded
+                            <obs conceptId="1646AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
                         </p>
                     </td>
                     <td>
@@ -168,7 +175,7 @@
                             <label>Parity</label>
                         </p>
                         <p>
-                            to be loaded
+                            <obs conceptId="1053AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
                         </p>
                     </td>
                     <td>
@@ -350,7 +357,7 @@
                         </td>
                         <td>
                             <p>
-                                to be loaded
+                                <obs conceptId="159376AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
                             </p>
                         </td>
                     </tr>
@@ -566,7 +573,7 @@
                                 <obs conceptId="315825e8-8ba4-4551-bdd1-aa4e02a36639" answerLabel="Iron"
                                      answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                      answerLabels="Yes, No"
-                                     style="radio" />
+                                     style="radio"/>
                             </p>
                             <p>
                                 <obs conceptId="c02d9887-6a46-43cc-9495-5ec034dc05d6" id="ironTabletsGiven"/>
