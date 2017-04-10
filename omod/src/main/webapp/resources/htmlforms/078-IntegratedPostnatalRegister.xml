@@ -518,17 +518,16 @@
                     <td>
                         <p>
                             <label>Immunization</label>
-                            <obs conceptId="dc8e1be9-30ab-102d-86b0-7a5022ba4115"
-                                 answerConceptId="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="BCG"/>
-                            <obs conceptId="dc883964-30ab-102d-86b0-7a5022ba4115"
-                                 answerConceptId="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="OPV"/>
-                            <obs conceptId="dc8834fe-30ab-102d-86b0-7a5022ba4115"
-                                 answerConceptId="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="DPT"/>
-                            <obs conceptId="680f7f8d-eac6-44b4-8899-101fa2c4f873"
-                                 answerConceptId="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Vitamin A"
-                                 style="checkbox"/>
-                            <obs conceptId="62d87122-0a08-4e04-b57c-7e1b2f821854"
-                                 answerConceptId="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="PCV"/>
+                            <obs conceptId="dc918618-30ab-102d-86b0-7a5022ba4115"
+                                 answerConceptId="dc8e1be9-30ab-102d-86b0-7a5022ba4115" answerLabel="BCG"/>
+                            <obs conceptId="dc918618-30ab-102d-86b0-7a5022ba4115"
+                                 answerConceptId="dc883964-30ab-102d-86b0-7a5022ba4115" answerLabel="OPV"/>
+                            <obs conceptId="dc918618-30ab-102d-86b0-7a5022ba4115"
+                                 answerConceptId="dc8834fe-30ab-102d-86b0-7a5022ba4115" answerLabel="DPT"/>
+                            <obs conceptId="dc918618-30ab-102d-86b0-7a5022ba4115"
+                                 answerConceptId="	680f7f8d-eac6-44b4-8899-101fa2c4f873" answerLabel="Vitamin A"/>
+                            <obs conceptId="dc918618-30ab-102d-86b0-7a5022ba4115"
+                                 answerConceptId="62d87122-0a08-4e04-b57c-7e1b2f821854" answerLabel="PCV"/>
                         </p>
                     </td>
 
