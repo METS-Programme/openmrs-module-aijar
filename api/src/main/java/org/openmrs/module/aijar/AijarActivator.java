@@ -116,14 +116,6 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             // form entry extension in active visits
             appFrameworkService.disableExtension("xforms.formentry.cfpd");
 
-            // run the initializers
-            for (Initializer initializer : getInitializers()) {
-                initializer.started();
-            }
-
-            // install commonly used metadata
-            installCommonMetadata(deployService);
-            
             // install concepts
             DataImporter dataImporter = Context.getRegisteredComponent("dataImporter", DataImporter.class);
             dataImporter.importData("metadata/Concepts_ART-1.xml");
@@ -138,6 +130,14 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             log.info("Programs concepts imported");
             dataImporter.importData("metadata/Concepts_SMC-1.xml");
             log.info("SMC concepts imported");
+
+            // install commonly used metadata
+            installCommonMetadata(deployService);
+
+            // run the initializers
+            for (Initializer initializer : getInitializers()) {
+                initializer.started();
+            }
 
             // save defined global properties
             administrationService.saveGlobalProperties(configureGlobalProperties());
