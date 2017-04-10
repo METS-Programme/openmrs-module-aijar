@@ -10,18 +10,13 @@
           formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.gender=='F' &amp;&amp; patient.person.age &gt; 12 &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='e9bc61b5-69ff-414b-9cf0-0c22d6dfca2b'"
           formDisplayStyle="Standard"
           formLabel="Maternity">
-	<style type="text/css">
-		form#htmlform div.ai-page-frame table>tbody tr:nth-child(odd) td {
-			background: #eeeeee;
-		}
 
-		form#htmlform div.ai-page-frame table>tbody tr:nth-child(even) td {
-			background: #f9f9f9;
-			
-		}		
-	</style>
 	<script type="text/javascript">
+<<<<<<< HEAD
 	    jQuery(document).ready(function(jq) {
+=======
+	    jQuery(document).ready(function(jq){
+>>>>>>> c4b4b377aee39a9fe93d5cf131c10c1dd24faa0c
 	        const VIRAL_LOAD_RESULTS_CONCEPT_ID = 1305;
 	        const VIRAL_LOAD_DETECTED_CONCEPT_ID = 1301;
 	        const VIRAL_LOAD_NOT_DETECTED_CONCEPT_ID = 1306;
@@ -53,11 +48,18 @@
 	                $viralLoadField.val(1);
 	                fieldHelper.makeReadonly($viralLoadField);
 	            } else if($viralLoadResults == VIRAL_LOAD_DETECTED_CONCEPT_ID) { //if viral load quantitive is 'detected' allow for entry of viral load count
-	                if ($viralLoadField == 1) {
-		                $viralLoadField.val("");
-	                }
+<<<<<<< HEAD
+	                $viralLoadField.val("");
 	            } else { //if viral load quantitive is 'rejected' clear viral load count field
 	                $viralLoadField.val("");
+=======
+	                $viralLoadField.val(");
+	            } else if ($viralLoadResults == VIRAL_LOAD_SAMPLE_REJECTED_CONCEPT_ID) { //if viral load quantitive is 'rejected' clear viral load count field
+	                $viralLoadField.val(");
+	                fieldHelper.disable($viralLoadField);
+	            } else {
+	                $viralLoadField.val(");
+>>>>>>> c4b4b377aee39a9fe93d5cf131c10c1dd24faa0c
 	                fieldHelper.disable($viralLoadField);
 	            }
 	        };
@@ -166,7 +168,11 @@
 
 	        beforeSubmit.push(function(){
 	            var valid = true;
+<<<<<<< HEAD
 	            var $errorMessageSpan = jq('span#error-message');
+=======
+	            var $errorMessageSpan = js('#error-message');
+>>>>>>> c4b4b377aee39a9fe93d5cf131c10c1dd24faa0c
 
 	            if (!viralLoadResultsValidate()) {
 	                valid = false;
@@ -201,7 +207,7 @@
 
   <div class="ai-page-frame">
     <div class="headers" style="text-align: center;">
-      <h3 style="background: #000000; padding: 10px;color:#07c1ae">INTEGRATED MATERNITY REGISTER (HMIS FORM 072)</h3>
+      <h3 style="background: #FFFF7D; padding: 10px;">INTEGRATED MATERNITY REGISTER (HMIS FORM 072)</h3>
     </div>
     <fieldset>
       <legend>Admission Information</legend>
@@ -273,10 +279,10 @@
             <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="dc6504d3-30ab-102d-86b0-7a5022ba4115" answerLabel="Abortions" style="checkbox" />
           </td>
           <td>
-            <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="dc69f6f5-30ab-102d-86b0-7a5022ba4115" answerLabel="Antepartum &lt;br/&gt;Haemorrhage(APH)" style="checkbox" />
+            <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="dc69f6f5-30ab-102d-86b0-7a5022ba4115" answerLabel="Antepartum Haemorrhage(APH)" style="checkbox" />
           </td>
           <td>
-            <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="dc650021-30ab-102d-86b0-7a5022ba4115" answerLabel="Postpartum &lt;br/&gt;Hemorrhage (PPH)" style="checkbox" />
+            <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="dc650021-30ab-102d-86b0-7a5022ba4115" answerLabel="Postpartum Hemorrhage (PPH)" style="checkbox" />
           </td>
 
           <td>
@@ -285,7 +291,7 @@
         </tr>
         <tr>
           <td>
-            <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="dc55064a-30ab-102d-86b0-7a5022ba4115" answerLabel="High blood &lt;br/&gt;pressure in pregnancy" style="checkbox" />
+            <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="dc55064a-30ab-102d-86b0-7a5022ba4115" answerLabel="High blood pressure in pregnancy" style="checkbox" />
           </td>
           <td>
             <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="115036AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Obstructed Labour" style="checkbox" />
@@ -366,20 +372,34 @@
           <td></td>
         </tr>
         <tr>
-          <td colspan="2">
+          <td>
             <p>
-              <label>eMTCT Code: Woman</label>
+<<<<<<< HEAD
+              <label>eMTCT Code &lt;br/&gt; Woman</label>
               <obs conceptId="d5b0394c-424f-41db-bc2f-37180dcdbe74" answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465" answerLabels="C,TR,TRR"
                                       style="radio" />
+=======
+              <label>eMTCT Code - Woman</label>
+              <obs conceptId="d5b0394c-424f-41db-bc2f-37180dcdbe74" answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465" answerLabels="C,TR,TRR"
+                                      style="dropdown" />
+>>>>>>> c4b4b377aee39a9fe93d5cf131c10c1dd24faa0c
             </p>
           </td>
-          <td colspan="2">
+          <td>
             <p>
-              <label>eMTCT Code: Partner</label>
+<<<<<<< HEAD
+              <label>eMTCT Code &lt;br/&gt; Partner</label>
               <obs conceptId="62a37075-fc2a-4729-8950-b9fae9b22cfb" answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465" answerLabels="C,TR,TRR"
                                         style="radio" />
+=======
+              <label>eMTCT Code - Partner</label>
+              <obs conceptId="62a37075-fc2a-4729-8950-b9fae9b22cfb" answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465" answerLabels="C,TR,TRR"
+                                        style="dropdown" />
+>>>>>>> c4b4b377aee39a9fe93d5cf131c10c1dd24faa0c
             </p>
           </td>
+          <td></td>
+          <td></td>
         </tr>
       </table>
     </fieldset>
@@ -451,12 +471,12 @@
           <td>
             <p>
               <label>Sex</label>
-              <obs conceptId="1587AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1535AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1534AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="F,M" style="radio" />
+              <obs conceptId="dce0e46e-30ab-102d-86b0-7a5022ba4115" answerConceptIds="dcdf3a0a-30ab-102d-86b0-7a5022ba4115,dcdf3e24-30ab-102d-86b0-7a5022ba4115" answerLabels="F,M" style="radio" />
             </p>
           </td>
           <td>
             <label>
-              Not &lt;br/&gt;breathing &lt;br/&gt; at birth
+              Not breathing <br/> at birth
             </label>
             <obs conceptId="dc958e5c-ab9b-4c0c-b02d-d136b7505754" answerConceptIds="911808cd-f455-4a63-9e18-aeee1f74adf0,e6004c96-2eaf-41f4-874e-6c3203bc1c40,d5ff53b2-1821-43e5-9abe-8c5e86d9639b"
                                         answerLabels="SS,BM,BMD" style="radio" />
@@ -465,7 +485,7 @@
           <td>
             <p>
               <label>
-                Immediate &lt;br/&gt;skin to &lt;br/&gt;
+                Immediate skin to <br />
                 skin contact?
               </label>
               <obs conceptId="be4b37fc-4197-4a4e-913d-0d8f3babdffd" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes, No" style="radio" />
@@ -474,8 +494,12 @@
         </tr>
         <tr>
           <td>
-            <label>Breastfed &lt;br/&gt;within&lt;br/&gt;1 hour?</label>
-            <obs conceptId="a4063d62-a936-4a26-9c1c-a0fb279a71b1" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes, No" style="radio" />
+<<<<<<< HEAD
+            <label>Breastfed within&lt;br/&gt; 1 hour?</label>
+=======
+            <label>Breastfed within 1 hour?</label>
+>>>>>>> c4b4b377aee39a9fe93d5cf131c10c1dd24faa0c
+            <obs conceptId="162945" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes, No" style="radio" />
           </td>
           <td></td>
           <td></td>
@@ -488,7 +512,7 @@
             </p>
           </td>
           <td>
-            <obs conceptId="673d99cc-79a9-45a6-ba84-ecd3e9e793ef" answerConceptId="dc73ee9c-30ab-102d-86b0-7a5022ba4115" answerLabel="TEO - &lt;br/&gt;Tetracycline Eye Ointment" style="checkbox" />
+            <obs conceptId="673d99cc-79a9-45a6-ba84-ecd3e9e793ef" answerConceptId="dc73ee9c-30ab-102d-86b0-7a5022ba4115" answerLabel="TEO - Tetracycline Eye Ointment" style="checkbox" />
           </td>
           <td>
             <obs conceptId="673d99cc-79a9-45a6-ba84-ecd3e9e793ef" answerConceptId="64533b34-1c86-48e0-85a5-5d5a1aab97ce" answerLabel="Vitamin K" style="checkbox" />
@@ -507,24 +531,24 @@
         <tr>
           <td>
             <label>
-              Counselling at &lt;br/&gt;
+              Counselling at <br />
               discharge
             </label>
-            <obs conceptId="3095d500-4a3e-4cf3-ab96-6f406e0d371d" answerConceptIds="162936,162937" answerLabels="C, NC" style="radio" />
+            <obs conceptId="162938" answerConceptIds="162936,162937" answerLabels="C, NC" style="radio" />
           </td>
           <td>
             <label>
-              Maternal nutritional &lt;br/&gt;
+              Maternal nutritional <br />
               couselling at discharge
             </label>
-            <obs conceptId="af7dccfd-4692-4e16-bd74-5ac4045bb6bf" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes, No" style="radio" />
+            <obs conceptId="162939" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes, No" style="radio" />
           </td>
           <td>
             <label>
-              Infant and young &lt;br/&gt;
+              Infant and young <br />
               child feeding (IYCF)
             </label>
-            <obs conceptId="5d993591-9334-43d9-a208-11b10adfad85" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes, No" id="iycf" style="radio" />
+            <obs conceptId="99749" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes, No" id="iycf" style="radio" />
           </td>
           <td>
             <p>
@@ -538,7 +562,11 @@
         <tr>
           <td>
             <p>
-              <label>ARVs &lt;/br&gt;administered&lt;/br&gt;to baby</label>
+<<<<<<< HEAD
+              <label>ARVs administered&lt;/br&gt;to baby</label>
+=======
+              <label>ARVs administered to baby</label>
+>>>>>>> c4b4b377aee39a9fe93d5cf131c10c1dd24faa0c
               <obs conceptId="9e825e42-be00-4d4d-8774-257ddb29581b" answerConceptIds="dc9b0596-30ab-102d-86b0-7a5022ba4115,04711d8f-c60d-4b1c-9451-0b32debbb8b0" answerLabels="NA, NVP Syrup" id="arvs-administered-to-baby" style="radio" />
             </p>
           </td>
@@ -549,11 +577,19 @@
             <obs conceptId="dcce847a-30ab-102d-86b0-7a5022ba4115" />
           </td>
           <td>
+<<<<<<< HEAD
             <label>Immunized against&lt;br/&gt;Polio?</label>
             <obs conceptId="dc918618-30ab-102d-86b0-7a5022ba4115" answerConceptId="dc883964-30ab-102d-86b0-7a5022ba4115" style="checkbox" answerLabel="" />
           </td>
           <td>
             <label>Immunized against&lt;br/&gt;BCG?</label>
+=======
+            <label>Immunized against Polio?</label>
+            <obs conceptId="dc918618-30ab-102d-86b0-7a5022ba4115" answerConceptId="dc883964-30ab-102d-86b0-7a5022ba4115" style="checkbox" answerLabel="" />
+          </td>
+          <td>
+            <label>Immunized against BCG?</label>
+>>>>>>> c4b4b377aee39a9fe93d5cf131c10c1dd24faa0c
             <obs conceptId="dc918618-30ab-102d-86b0-7a5022ba4115" answerConceptId="dc8e1be9-30ab-102d-86b0-7a5022ba4115" style="checkbox" answerLabel="" />
           </td>
         </tr>
@@ -570,7 +606,11 @@
           </td>
           <td>
             <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115" answerConceptId="dcb2fba9-30ab-102d-86b0-7a5022ba4115"
+<<<<<<< HEAD
                  answerLabel="Post Partum female&lt;br/&gt;sterilization"/>
+=======
+                 answerLabel="Post Partum female sterilization"/>
+>>>>>>> c4b4b377aee39a9fe93d5cf131c10c1dd24faa0c
           </td>
           <td>
             <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115" answerConceptId="dd4c3016-13cf-458a-8e93-fe54460be667"
@@ -606,6 +646,8 @@
           </td>
           <td></td>
         </tr>
+      </table>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td>
             <p>
@@ -650,7 +692,7 @@
           <td>
             <p>
               <label>Name of person discharging</label>
-              <obs conceptId="1473AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+              <encounterProviderAndRole count="1" encounterRole="1" autocompleteProvider="false"/>
             </p>
           </td>
           <td></td>
@@ -659,10 +701,14 @@
     </fieldset>
     <section></section>
     <section>
+<<<<<<< HEAD
       <submit />
       <span style="clear:none;float:none;margin:5px;display: none;border: 2px dotted #fb0303;color: #fb0303;" class="error" id="error-message">
       	You have errors in your form, please scroll up to see them.
       </span>
+=======
+      <submit /><span style="clear:none;float:none;margin:5px;display: none" class="error" id="error-message">You have errors in your form, please scroll up to see them.</span>
+>>>>>>> c4b4b377aee39a9fe93d5cf131c10c1dd24faa0c
     </section>
   </div>
 </htmlform>
