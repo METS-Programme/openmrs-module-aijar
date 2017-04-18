@@ -73,9 +73,19 @@ form#htmlform div.ai-page-frame input[type="checkbox"], form#htmlform div.ai-pag
 	margin: 10px 10px;
 }
 
-form#htmlform div.ai-page-frame table td {
+form#htmlform div.ai-page-frame input[disabled="disabled"], form#htmlform div.ai-page-frame input[readonly="readonly"], form#htmlform div.ai-page-frame select[disabled="disabled"] {
+	background-color:#dad9d9 !important;
+}
+
+form#htmlform div.ai-page-frame table tbody td {
 	background: #FFFFFF;
 	color: #404040;
+	padding: 5px 5px;
+}
+
+form#htmlform div.ai-page-frame table tfoot td {
+    border: 1px solid #C7C7C7 !important;
+    background-color: #C7C7C7 !important;
 }
 
 form#htmlform div.ai-page-frame select, div.ai-page-frame .form select {
@@ -93,6 +103,7 @@ form#htmlform div.ai-page-frame input, form#htmlform div.ai-page-frame select, f
 
 form#htmlform div.ai-page-frame input[type=checkbox], form#htmlform div.ai-page-frame input[type=radio] {
 	min-width: 0 !important;
+	float:left;
 }
 
 
@@ -138,7 +149,8 @@ form#htmlform div.ai-page-frame fieldset span.has-comment input[type=text] {
 }
 
 form#htmlform div.ai-page-frame fieldset span.has-comment label {
-	clear: left;
+	clear: none;
+    padding: 0 5px 0 5px;
 }
 
 form#htmlform div.ai-page-frame fieldset span.has-comment label:first-of-type {
@@ -168,6 +180,11 @@ form#htmlform div.ai-page-frame fieldset span.date-and-time select {
 	float: left;
 }	
 
+form#htmlform div.ai-page-frame fieldset span.date-and-time label {
+	clear:left;
+	float: left;
+}
+
 form#htmlform div.ai-page-frame fieldset span.date-and-time select.hfe-hours {
 	clear:left;
 }
@@ -186,6 +203,16 @@ form#htmlform div.ai-page-frame fieldset input.error {
 
 form#htmlform div.ai-page-frame input.submitButton {
 	min-width: 200px !important;
+}
+
+form#htmlform div.ai-page-frame span.obs-field.horizontal-layout-options input:first-child {
+    clear: left;
+    float: left;
+}
+
+form#htmlform div.ai-page-frame span.obs-field.vertical-layout-options input {
+    clear: left;
+    float: left;
 }
 
 @media (max-width: 1400px) {
