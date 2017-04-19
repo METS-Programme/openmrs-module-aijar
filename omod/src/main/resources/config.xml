@@ -66,6 +66,9 @@
         <require_module>
             org.openmrs.module.idgen
         </require_module>
+		<require_module>
+			org.openmrs.module.legacyui
+		</require_module>
         <require_module>
             org.openmrs.module.metadatadeploy
         </require_module>
