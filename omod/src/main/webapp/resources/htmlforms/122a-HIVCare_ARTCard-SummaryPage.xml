@@ -25,8 +25,6 @@
             var submitValStage = [];
             submitValStage.push(dateValidator("90267", "encounterDate", "", message4, "", "greater_than", true));
             submitValStage.push(dateValidator("90297", "encounterDate", "", message1, "", "less_than", true));
-            submitValStage.push(dateValidator("90299", "90297", "encounterDate", message2, message1, "less_than", false));
-            submitValStage.push(dateValidator("99161", "90299", "", message3, "", "less_than", true));
             submitValStage.push(dateValidator("99163_1", "99161", "", message5, "", "less_than", true));
             submitValStage.push(dateValidator("99163_2", "99161", "", message5, "", "less_than", true));
             submitValStage.push(dateValidator("99163_3", "99161", "", message5, "", "less_than", true));
@@ -37,10 +35,11 @@
             submitValStage.push(dateValidator("162991_1", "99161", "", message5, "", "less_than", true));
             submitValStage.push(dateValidator("162991_2", "99161", "", message5, "", "less_than", true));
             submitValStage.push(dateValidator("162991_3", "99161", "", message5, "", "less_than", true));
+            submitValStage.push(dateValidator("90299", "90297", "encounterDate", message2, message1, "less_than", false));
+            submitValStage.push(dateValidator("99161", "90299", "encounterDate", message3, message1, "less_than", false));
 
-            submitValStage.push(validateRequiredField("99165","90306","Can Not Be Null","check_box"));
-            submitValStage.push(validateRequiredField("90209","5240","Can Not Be Null","check_box"));
-
+            submitValStage.push(validateRequiredField("99165", "90306", "Can Not Be Null", "check_box"));
+            submitValStage.push(validateRequiredField("90209", "5240", "Can Not Be Null", "check_box"));
 
 
             if (submitValStage.indexOf(false) != -1) {
