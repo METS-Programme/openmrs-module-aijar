@@ -1,14 +1,13 @@
 language: java
 jdk:
-- openjdk7
-- oraclejdk7
+- oraclejdk8
 script:
 - if [ "$TRAVIS_JDK_VERSION" = "openjdk7" ] && [ "$TRAVIS_BRANCH" = "master" ] &&
   [ "$TRAVIS_PULL_REQUEST" = "false" ]; then mvn deploy --settings maven-settings.xml;
   else mvn install; fi
 matrix:
   allow_failures:
-    jdk: oraclejdk7
+    jdk: oraclejdk8
 env:
   global:
   - secure: oBnFWualFwngdEiqEW1UIgaQrr5yCMRak1aB1y8K/fq8B2RWscC2tZE6v1k4fiaKhZgki+C14ZyTGPFzt2WHyeEs4tFNdaHzceaCEMVILe8cZXk8BU3ufcxv/SPDrjjs3v/0j23dHpJdqT7vH9d58wcLuRxvTqSAzxcSBPvWITDOTHHC6bsfp8bTOupvhNADSaXoD0JrVXxG1A4ExC9fIZe6WTaTCP8w0ecBTqIAKOzOyj1USH1vz84p1lIOc1jtzYqco9I7/9KnHIU269p6ibpj+ExDblzSw2ISdIyvOhJIm7lvE9iNwShiI94kZwL9hC0uowj6/YZAz/ajqsY131VsSc/QG/p7Dh3E9wN+C2cGtwFkYEkXXoboML8ocl+om+xMaM5P1VJywVxrb8+ESYBerHYnfUlO4W8Rj/l82rLYDyj97ehQggYVU2YazrA+hG+6pV37fHqnwbFU6B09IipFtb9Wd2407C1w+M0NYuJvX1oIAJtmvJNRPxz1392IhRtqfGnplxxylBQ5k39yjsALnul/zcY3XkoKQeyqzHBNDcLx/WMyZFhgUXYKM+by2YUnJre747MulMgPICpVixgywCb29n3Pv9RC+/Euo3ExFymu9+1NmQOyGnWqTKM97uhs3zbuvdBALULcv4is3kyCTHRwPAw9kz3BnztKWhY=
