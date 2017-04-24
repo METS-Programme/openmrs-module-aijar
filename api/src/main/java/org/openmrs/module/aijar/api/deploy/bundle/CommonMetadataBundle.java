@@ -6,6 +6,7 @@ import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
 import org.openmrs.module.aijar.metadata.core.PersonAttributeTypes;
 import org.openmrs.module.aijar.metadata.core.Programs;
 import org.openmrs.module.aijar.metadata.core.Roles;
+import org.openmrs.module.aijar.metadata.core.Locations;
 import org.openmrs.module.metadatadeploy.bundle.AbstractMetadataBundle;
 import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.encounterRole;
 import org.springframework.stereotype.Component;
@@ -72,5 +73,9 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(Programs.NUTRITION_PROGRAM);
         install(EncounterTypes.SMC_FOLLOW_UP_ENCOUNTER);
         install(encounterRole(EncounterRoles.ASSISTANT_CIRCUMCISER_NAME,EncounterRoles.ASSISTANT_CIRCUMCISER_DESCRIPTION,EncounterRoles.ASSISTANT_CIRCUMCISER_UUID));
+        
+        //install Locations
+        log.info("Installing Locations");
+        install(Locations.TB_CLINIC);
     }
 }
