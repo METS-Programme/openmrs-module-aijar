@@ -99,9 +99,9 @@
 				var transferInFromValue = getValue('transfer-in-from.value');
 				if (transferInFromValue == '') {
 					$transferInUnitTbNumberField.val('');					
-					fieldHelper.makeReadonly($transferInUnitTbNumberField);
+					fieldHelper.disable($transferInUnitTbNumberField);
 				} else {
-					fieldHelper.removeReadonly($transferInUnitTbNumberField);
+					fieldHelper.disable($transferInUnitTbNumberField);
 				}
 			};  
 			
@@ -387,118 +387,115 @@
 	</script>
   <div class="ai-page-frame">
     <div class="headers" style="text-align: center;">
-      <h3 style="background: #FFFF7D; padding: 10px;">HMIS 096A Health Unit TB form-Summary page</h3>
+      <h3 style="background: #FFFF7D; padding: 10px;">HMIS 096a Health Unit TB Form - Summary Page</h3>
     </div>
     <fieldset>
-      <table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-          <td>
-            <p>
-              <label>Unit TB No.</label>
-              <patient field="identifier" identifierTypeId="8fd5e225-f91a-44af-ba04-3b41428d2164" id="unit-tb-no" required="true" />
-            </p>
-          </td>
-          <td>
-            <p>
-              <label>HSD TB No.</label>
-              <patient field="identifier" identifierTypeId="2a6f1f82-2b70-4a51-8507-3a849bc637c3" id="hsd-tb-no" required="false" />
-            </p>
-          </td>
-          <td>
-            <p>
-              <label>District TB No</label>
-              <patient field="identifier" identifierTypeId="8110f2d2-1f98-4c38-aef3-11b19bb0a589" id="district-tb-no" required="false" />
-            </p>
-          </td>
-          <td></td>
-        </tr>
-        <tr>
-          <td valign="top">
-            <p>
-              <label>Is patient a Health worker?</label>
-              <obs 	conceptId="5619" 
-              		answerConceptIds="1065,1066" 
-              		style="radio" id="health-worker" 
-              		class="horizontal-layout-options" required="true" />
-            </p>
-          </td>
-          <td>
-            <p>
-              <label>Cadre of health worker</label>
-              <obs conceptId="1783AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
-              		answerConceptIds="1574,164831,1577,1578,1555,163557,5622" 
-              		answerLabels="Clinical officer/Doctor, Laboratory Technician, Nurse, Midwife, Community Health Worker,Pharmacist,Other" 
-              		id="cadre-of-health-worker" />
-            </p>
-          </td>
-          <td>
-            <p>
-              <label>Name of contact person</label>
-              <obs conceptId="163258AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
-            </p>
-          </td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>
-            <p>
-              <label>Date treatment started</label>
-				<encounterDate default="today" disallowMultipleEncountersOnDate="block" />
-				<span class="hidden">
-				<encounterLocation default="8ab22b55-9a17-4121-bf08-6134a9a2439f"
-				                   order="8ab22b55-9a17-4121-bf08-6134a9a2439f" />
-				<encounterProvider role="Provider" style="autocomplete" required="required" default="currentUser" />
-				</span>
-            </p>
-          </td>
-          <td>
-            <p>
-              <label>Regimen</label>
-              <obs conceptId="99374" style="dropdown" answerConceptIds="99373,99372,99371" />
-            </p>
-          </td>
-          <td>
-            <p>
-              <label>Disease classification</label>
-              <obs 	conceptId="99379" 
-              		answerConceptIds="113491AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,113489AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5042" 
-              		answerLabels="Pulmonary bacteriologically confirmed TB treatment,Pulmonary clinically diagnosed TB,Extra pulmonary TB" />
-            </p>
-          </td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>
-            <p>
-              <label>Type of patient</label>
-              <obs 	conceptId="99386" 
-              		answerConceptIds="99380,99381,99382,99386,1067" 
-              		answerLabels="New,Relapse,Failure,Lost to follow up,Treatment history unknown" 
-              		required="true" />
-            </p>
-          </td>
-          <td>
-            <p>
-              <label>Transfer in from</label>
-              <obs conceptId="99109" id="transfer-in-from" />
-            </p>
-          </td>
-          <td>
-            <p id="transfer-in-unit-tb-no">
-              <label>Transfer in - Unit TB No.</label>
-              <patient 	field="identifier" 
-              			identifierTypeId="1d2be2a3-7d90-42a6-aasa5-a04b684a365b" 
-              			id="transfer-in-unit-tb-no" required="false" />
-            </p>
-          </td>
-          <td></td>
-        </tr>
-      </table>
+    	<legend>Summary Information</legend>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+			  <td>
+			    <p>
+			      <label>Unit TB No.</label>
+			      <patient field="identifier" identifierTypeId="8fd5e225-f91a-44af-ba04-3b41428d2164" id="unit-tb-no" required="true" />
+			    </p>
+			  </td>
+			  <td>
+			    <p>
+			      <label>HSD TB No.</label>
+			      <patient field="identifier" identifierTypeId="2a6f1f82-2b70-4a51-8507-3a849bc637c3" id="hsd-tb-no" required="false" />
+			    </p>
+			  </td>
+			  <td>
+			    <p>
+			      <label>District TB No</label>
+			      <patient field="identifier" identifierTypeId="8110f2d2-1f98-4c38-aef3-11b19bb0a589" id="district-tb-no" required="false" />
+			    </p>
+			  </td>
+			</tr>
+			<tr>
+			  <td valign="top">
+			    <p>
+			      <label>Is patient a Health worker?</label>
+			      <obs 	conceptId="5619" 
+			      		answerConceptIds="1065,1066" 
+			      		style="radio" id="health-worker" 
+			      		class="horizontal-layout-options" required="true" />
+			    </p>
+			  </td>
+			  <td>
+			    <p>
+			      <label>Cadre of health worker</label>
+			      <obs conceptId="1783AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
+			      		answerConceptIds="1574,164831,1577,1578,1555,163557,5622" 
+			      		answerLabels="Clinical officer/Doctor, Laboratory Technician, Nurse, Midwife, Community Health Worker,Pharmacist,Other" 
+			      		id="cadre-of-health-worker" />
+			    </p>
+			  </td>
+			  <td>
+			    <p>
+			      <label>Name of contact person</label>
+			      <obs conceptId="163258AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+			    </p>
+			  </td>
+			</tr>
+			<tr>
+			  <td>
+			    <p>
+			      <label>Date treatment started</label>
+					<encounterDate default="today" disallowMultipleEncountersOnDate="block" />
+					<span class="hidden">
+					<encounterLocation default="8ab22b55-9a17-4121-bf08-6134a9a2439f"
+					                   order="8ab22b55-9a17-4121-bf08-6134a9a2439f" />
+					<encounterProvider role="Provider" style="autocomplete" required="required" default="currentUser" />
+					</span>
+			    </p>
+			  </td>
+			  <td>
+			    <p>
+			      <label>Regimen</label>
+			      <obs conceptId="99374" style="dropdown" answerConceptIds="99373,99372,99371" />
+			    </p>
+			  </td>
+			  <td>
+			    <p>
+			      <label>Disease classification</label>
+			      <obs 	conceptId="99379" 
+			      		answerConceptIds="113491AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,113489AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5042" 
+			      		answerLabels="Pulmonary bacteriologically confirmed TB treatment,Pulmonary clinically diagnosed TB,Extra pulmonary TB" />
+			    </p>
+			  </td>
+			</tr>
+			<tr>
+			  <td>
+			    <p>
+			      <label>Type of patient</label>
+			      <obs 	conceptId="99386" 
+			      		answerConceptIds="99380,99381,99382,99386,1067" 
+			      		answerLabels="New,Relapse,Failure,Lost to follow up,Treatment history unknown" 
+			      		required="true" />
+			    </p>
+			  </td>
+			  <td>
+			    <p>
+			      <label>Transfer in from</label>
+			      <obs conceptId="99109" id="transfer-in-from" />
+			    </p>
+			  </td>
+			  <td>
+			    <p id="transfer-in-unit-tb-no">
+			      <label>Transfer in - Unit TB No.</label>
+			      <patient 	field="identifier" 
+			      			identifierTypeId="1d2be2a3-7d90-42a6-aasa5-a04b684a365b" 
+			      			id="transfer-in-unit-tb-no" required="false" />
+			    </p>
+			  </td>
+			</tr>
+		</table>
     </fieldset>
 	
 	<fieldset>
 		<legend>Results of Sputum and Other Examinations</legend>
-		<h3>Pre-RX</h3>
+		<h3>Pre-Rx</h3>
 		<section>
 			<table>
 				<tr>
@@ -507,14 +504,14 @@
 			              <label>Sputum smear results</label>
 			              <obs 	conceptId="307" 
 			              		answerConceptIds="1118,664,1362,1363,1364,1365,163417AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,163418AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,164428,164429,164430,159985,703,160008" 
-			              		answerLabels="ND - Not Done, NEG- Negative, 1AFB/100, 2AFB/100, 3AFB/100, 4AFB/100,5AFB/100,6AFB/100,7AFB/100,8AFB/100,9AFB/100,Scanty,Positive,contaminated specimen" 
-			              		style="dropdown" />
+			              		answerLabels="ND - Not Done, NEG- Negative, 1AFB/100, 2AFB/100, 3AFB/100, 4AFB/100,5AFB/100,6AFB/100,7AFB/100,8AFB/100,9AFB/100,Scanty,Positive,Contaminated specimen" 
+			              		style="dropdown" required="true" />
 			            </p>
 					</td>
 					<td>
 						<p>
 							<label>Sputum Smear Examination Date</label>
-							<obs conceptId="99392" />
+							<obs conceptId="99392" required="true" />
 						</p>
 					</td>
 				</tr>
@@ -544,6 +541,8 @@
 								answerLabels="AFBs Found, No AFBs Found" 
 								showDate="true" dateLabel="&lt;label style='clear:left'&gt;Examination Date&lt;/label&gt;" />
 					</td>
+				</tr>
+				<tr>
 					<td>
 						<label>Cerebrospinal Fluid Examination (CSF)</label>
 						<obs 	conceptId="159645" 
@@ -551,8 +550,6 @@
 								answerLabels="AFBs Found, No AFBs Found" 
 								showDate="true" dateLabel="&lt;label style='clear:left'&gt;Examination Date&lt;/label&gt;" />
 					</td>
-				</tr>
-				<tr>
 					<td>
 						<label>X-ray</label>
 						<obs 	conceptId="12" 
@@ -560,9 +557,6 @@
 								answerLabels="Normal, Miliary Changes, Evidence Of Cardiac Enlargement, Infiltrate, Diffuse Non-Miliary Changes, Cavitary Lesion, Pleural Effusion, Other" 
 								showDate="true" dateLabel="&lt;label style='clear:left'&gt;Examination Date&lt;/label&gt;" />
 					</td>
-					<td></td>
-					<td></td>
-					<td></td>
 				</tr>
 			</table>
 		</section>
@@ -657,8 +651,6 @@
               <obs 	conceptId="164421" id="no-of-children-in-contact-on-ipt" />
             </p>
           </td>
-          <td></td>
-          <td></td>
         </tr>
       </table>
     </fieldset>
@@ -688,7 +680,6 @@
               <obs conceptId="99142" />
             </p>
           </td>
-          <td></td>
         </tr>
       </table>
     </fieldset>
@@ -717,8 +708,6 @@
               <label>Transfer out to (Name of unit)</label>
               <obs conceptId="90211" id="transfer-out-to" />
             </p>
-          </td>
-          <td>
           </td>
         </tr>
         <tr>
