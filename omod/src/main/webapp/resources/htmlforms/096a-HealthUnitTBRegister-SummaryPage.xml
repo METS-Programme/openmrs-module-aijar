@@ -473,7 +473,8 @@
               <label>Type of patient</label>
               <obs 	conceptId="99386" 
               		answerConceptIds="99380,99381,99382,99386,1067" 
-              		answerLabels="New,Relapse,Failure,Lost to follow up,Treatment history unknown" />
+              		answerLabels="New,Relapse,Failure,Lost to follow up,Treatment history unknown" 
+              		required="true" />
             </p>
           </td>
           <td>
@@ -494,6 +495,78 @@
         </tr>
       </table>
     </fieldset>
+	
+	<fieldset>
+		<legend>Results of Sputum and Other Examinations</legend>
+		<h3>Pre-RX</h3>
+		<section>
+			<table>
+				<tr>
+					<td>
+			            <p>
+			              <label>Sputum smear results</label>
+			              <obs 	conceptId="307" 
+			              		answerConceptIds="1118,664,1362,1363,1364,1365,163417AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,163418AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,164428,164429,164430,159985,703,160008" 
+			              		answerLabels="ND - Not Done, NEG- Negative, 1AFB/100, 2AFB/100, 3AFB/100, 4AFB/100,5AFB/100,6AFB/100,7AFB/100,8AFB/100,9AFB/100,Scanty,Positive,contaminated specimen" 
+			              		style="dropdown" />
+			            </p>
+					</td>
+					<td>
+						<p>
+							<label>Sputum Smear Examination Date</label>
+							<obs conceptId="99392" />
+						</p>
+					</td>
+				</tr>
+			</table>				
+		</section>
+
+		<section>
+			<h3>Other Investigations</h3>
+			<table>
+				<tr>
+					<td>
+						<label>Mantoux</label>
+						<obs 	conceptId="140144" 
+								showDate="true" dateLabel="&lt;label style='clear:left'&gt;Examination Date&lt;/label&gt;" />
+					</td>
+					<td>
+						<label>GeneXpert</label>
+						<obs 	conceptId="162202" 
+								answerConceptIds="162204, 162203, 164104, 664, 163611" 
+								answerLabels="MTB Detected - rifampicin resistance not detected, MTB Detected - rifampicin resistance detected, MTB Detected - rifampicin resistance indeterminate, MTB not detected, Invalid no result - error" 
+								showDate="true" dateLabel="&lt;label style='clear:left'&gt;Examination Date&lt;/label&gt;" />
+					</td>
+					<td>
+						<label>Biopsy</label>
+						<obs 	conceptId="164907"								
+								answerConceptIds="703,664" 
+								answerLabels="AFBs Found, No AFBs Found" 
+								showDate="true" dateLabel="&lt;label style='clear:left'&gt;Examination Date&lt;/label&gt;" />
+					</td>
+					<td>
+						<label>Cerebrospinal Fluid Examination (CSF)</label>
+						<obs 	conceptId="159645" 
+								answerConceptIds="703,664" 
+								answerLabels="AFBs Found, No AFBs Found" 
+								showDate="true" dateLabel="&lt;label style='clear:left'&gt;Examination Date&lt;/label&gt;" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label>X-ray</label>
+						<obs 	conceptId="12" 
+								answerConceptIds="1115,1137,5158,6049,6050,6052,114108,5622" 
+								answerLabels="Normal, Miliary Changes, Evidence Of Cardiac Enlargement, Infiltrate, Diffuse Non-Miliary Changes, Cavitary Lesion, Pleural Effusion, Other" 
+								showDate="true" dateLabel="&lt;label style='clear:left'&gt;Examination Date&lt;/label&gt;" />
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
+		</section>
+	</fieldset>
 
     <fieldset>
       <legend>TB/HIV Activities</legend>
