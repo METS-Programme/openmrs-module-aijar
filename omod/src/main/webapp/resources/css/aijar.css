@@ -157,6 +157,11 @@ form#htmlform div.ai-page-frame fieldset span.has-comment label:first-of-type {
 	clear: none;
 }
 
+form#htmlform div.ai-page-frame fieldset span.has-comment.fit-one-line input[type="text"]{
+	min-width: 20% !important;
+	width: 30% !important;
+}
+
 form#htmlform div.ai-page-frame fieldset span.date-and-time input[type=text] {
 	min-width: 40% !important;
 }

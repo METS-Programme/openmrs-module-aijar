@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
  * (This should be moved to the OpenMRS core.)
  */
 @Component
-public class LocationDatatype extends SerializingCustomDatatype<Location> {
+public class UgandaEMRLocationDatatype extends SerializingCustomDatatype<Location> {
 
     /**
      * @see SerializingCustomDatatype#deserialize(String)
