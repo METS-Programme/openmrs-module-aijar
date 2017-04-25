@@ -59,6 +59,7 @@
 
             if (submitValStage.indexOf(false) != -1) {
                 submitVal = false;
+                jq().toastmessage('showErrorToast', "Form Validation violated. Check for errors");
             }
 
             return submitVal;
