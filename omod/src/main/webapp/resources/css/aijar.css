@@ -22,6 +22,11 @@ header #session-location {
     z-index: 1;
 }
 
+/* Increase spacing between login location buttons on the login page */
+form#login-form ul#sessionLocation.select li {
+    margin: 5px 5px 0 0;
+}
+
 /* Fix the top alignment of the label from the fields */
 form label, .form label {
     margin-top: 0px;

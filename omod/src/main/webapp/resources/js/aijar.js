@@ -260,7 +260,7 @@ var fieldHelper = {
         	this.$jqObj = jq(args);
         } 
 
-        this.$jqObj.find('input[type="text"], select').val('');
+        this.$jqObj.find('input[type="text"], select').val('').change();
 
         this.$jqObj.find('input[type="radio"], input[type="checkbox"]').removeAttr('checked');
     },
