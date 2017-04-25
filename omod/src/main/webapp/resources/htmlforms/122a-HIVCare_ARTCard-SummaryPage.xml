@@ -21,25 +21,40 @@
             var message3 = "Must be after Enrolled date";
             var message4 = "Must be earlier or on the same day as HIV enrolled";
             var message5 = "Must be after ART Start Date";
+            var message6 = "Must be after ART Transfer Date";
+            var message7 = "Either This or Art Transfer Date Must be filled";
+            var message8 = "Either This or Art Start Date Must be filled";
 
             var submitValStage = [];
+            var submitValStageART=[];
+
+
+
+            submitValStageART.push(dateValidator("99163_1", "99161", "99160", message5, message6, "less_than", false));
+            submitValStageART.push(dateValidator("99163_2", "99161", "99160", message5, message6, "less_than", false));
+            submitValStageART.push(dateValidator("99163_3", "99161", "99160", message5, message6, "less_than", false));
+            submitValStageART.push(dateValidator("99163_4", "99161", "99160", message5, message6, "less_than", false));
+            submitValStageART.push(dateValidator("99164_1", "99161", "99160", message5, message6, "less_than", false));
+            submitValStageART.push(dateValidator("99164_2", "99161", "99160", message5, message6, "less_than", false));
+            submitValStageART.push(dateValidator("99164_3", "99161", "99160", message5, message6, "less_than", false));
+            submitValStageART.push(dateValidator("162991_1", "99161", "99160", message5, message6, "less_than", false));
+            submitValStageART.push(dateValidator("162991_2", "99161", "99160", message5, message6, "less_than", false));
+            submitValStageART.push(dateValidator("162991_3", "99161", "99160", message5, message6, "less_than", false));
+
+            submitValStage=submitValStageART;
+
             submitValStage.push(dateValidator("90267", "encounterDate", "", message4, "", "greater_than", true));
             submitValStage.push(dateValidator("90297", "encounterDate", "", message1, "", "less_than", true));
-            submitValStage.push(dateValidator("99163_1", "99161", "", message5, "", "less_than", true));
-            submitValStage.push(dateValidator("99163_2", "99161", "", message5, "", "less_than", true));
-            submitValStage.push(dateValidator("99163_3", "99161", "", message5, "", "less_than", true));
-            submitValStage.push(dateValidator("99163_4", "99161", "", message5, "", "less_than", true));
-            submitValStage.push(dateValidator("99164_1", "99161", "", message5, "", "less_than", true));
-            submitValStage.push(dateValidator("99164_2", "99161", "", message5, "", "less_than", true));
-            submitValStage.push(dateValidator("99164_3", "99161", "", message5, "", "less_than", true));
-            submitValStage.push(dateValidator("162991_1", "99161", "", message5, "", "less_than", true));
-            submitValStage.push(dateValidator("162991_2", "99161", "", message5, "", "less_than", true));
-            submitValStage.push(dateValidator("162991_3", "99161", "", message5, "", "less_than", true));
             submitValStage.push(dateValidator("90299", "90297", "encounterDate", message2, message1, "less_than", false));
             submitValStage.push(dateValidator("99161", "90299", "encounterDate", message3, message1, "less_than", false));
 
             submitValStage.push(validateRequiredField("99165", "90306", "Can Not Be Null", "check_box"));
             submitValStage.push(validateRequiredField("90209", "5240", "Can Not Be Null", "check_box"));
+
+            if((getValue("99161" + '.value')=="" &amp;&amp; getValue("99160" + '.value')=="") &amp;&amp; (submitValStageART.indexOf(false) != -1)){
+                getField("99161" + '.error').html(message7).show();
+                getField("99160" + '.error').html(message8).show();
+            }
 
 
             if (submitValStage.indexOf(false) != -1) {
@@ -1878,7 +1893,7 @@
                 </tr>
                 <tr>
                     <td class="ARTStartEnableDisable2">
-                        <obs conceptId="99160" labelText="Date transfered:"/>
+                        <obs id="99160" conceptId="99160" labelText="Date transfered:"/>
                     </td>
                     <td class="ARTStartEnableDisableChild2">
                         <obs conceptId="90206" size="20" labelText="Transfered from:"/>
