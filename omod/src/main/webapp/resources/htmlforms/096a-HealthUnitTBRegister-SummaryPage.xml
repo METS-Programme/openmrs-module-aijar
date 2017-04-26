@@ -1,0 +1,727 @@
+<htmlform formName="HMIS 096A Health Unit TB form-Summary page"
+          formDescription="HMIS 096A Health Unit TB form-Summary page"
+          formEncounterType="334bf97e-28e2-4a27-8727-a5ce31c7cd66"
+          formUuid="ec912f1c-dd2f-4e88-9f76-4f9f692fac2b"
+          formVersion="1.0"
+          formAddMetadata="yes"
+          formUILocation="patientDashboard.visitActions"
+          formOrder="1"
+          formIcon="icon-medkit"
+          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='8ab22b55-9a17-4121-bf08-6134a9a2439f'"
+          formDisplayStyle="Standard"
+          formLabel="HMIS 096A Health Unit TB form-Summary page">
+
+	<style type="text/css">
+		form#htmlform div.ai-page-frame table>tbody tr:nth-child(odd) td {
+			background: #eeeeee;
+		}
+
+		form#htmlform div.ai-page-frame table>tbody tr:nth-child(even) td {
+			background: #f9f9f9;
+		}
+
+		form#htmlform div.ai-page-frame fieldset#child-information table {
+			margin: 0 0 5px 0;
+		}	
+	</style>
+
+	<script type="text/javascript">
+		if (jQuery) {
+			jQuery(document).ready(function (jq) {
+				if (jq.browser.msie) {
+					jq(":checkbox").click(function () {
+						jq(this).change();
+					});
+				}
+			});
+		}
+		
+		jQuery().ready(function(jq) {
+			const YES_CONCEPT_ID = 1065,
+				NO_CONCEPT_ID = 1066,
+				RED_CONCEPT_ID = 99028,
+				YELLOW_CONCEPT_ID = 99029,
+				TRANSFER_OUT_CONCEPT_ID = 90306,
+				OTHER_CONCEPT_ID = 5622,
+				COUNSELLING_DONE_CONCEPT_ID = 99405,
+				COUNSELLING_AND_TESTING_DONE_CONCEPT_ID = 99406,
+				COUNSELLING_AND_TESTING_DONE_HIV_POS_CONCEPT_ID = 99407,
+				COUNSELLING_AND_TESTING_DONE_HIV_NEG_CONCEPT_ID = 99408;
+
+			var $transferInFromField,
+				$transferInUnitTbNumberField,
+				$unitTbNoField,
+				$onCptField,
+				$cptStartDateField,
+				$onArtField,
+				$artStartDateField,
+				$artNumberField,
+				$muacColorCodeField,
+				$inrNumberField,
+				$treatmentOutcomeField,
+				$transferOutToField,
+				$noOfChildrenInContactField,
+				$noOfChildrenInContactOnIptField,
+				$healthWorkerField,
+				$cadreOfHealthWorkerField,
+				$hivCounsellingAndTestingField,
+				$hivTestingDateField,
+				$patientReceivedResultsField,
+				$muacSection,
+				$tbHivActivitiesSection,
+				patientAge;
+		
+			$transferInFromField = getField('transfer-in-from.value');
+			$transferInUnitTbNumberField = jq('#transfer-in-unit-tb-no').find('input[type="text"]');
+			$unitTbNoField = jq('span#unit-tb-no').find('input[type="text"]');
+			$onCptField = jq('#on-cpt').find('input');
+			$cptStartDateField = getField('cpt-start-date.value');
+			$onArtField = jq('#on-art').find('input');
+			$artStartDateField = getField('art-start-date.value');
+			$artNumberField = getField('art-number.value');
+			$muacColorCodeField = jq('#muac-color-code').find('input');
+			$inrNumberField = jq('#inr-number').find('input');
+			$treatmentOutcomeField = getField('treatment-outcome.value');
+			$transferOutToField = getField('transfer-out-to.value');
+			$noOfChildrenInContactField = getField('no-of-children-in-contact.value');
+			$noOfChildrenInContactOnIptField = getField('no-of-children-in-contact-on-ipt.value');
+			$healthWorkerField = jq('#health-worker').find('input');
+			$cadreOfHealthWorkerField = getField('cadre-of-health-worker.value');
+			$hivCounsellingAndTestingField = getField('hiv-counselling-and-testing.value');
+			$hivTestingDateField = getField('hiv-testing-date.value');
+			$patientReceivedResultsField = jq('#patient-received-hiv-results').find('input');;
+
+			$muacSection = jq('#muac');
+			$tbHivActivitiesSection = jq('#tb-hiv-activities');
+			patientAge = <lookup expression="patient.age" />;
+		
+			var transferInFromChange = function() {
+				var transferInFromValue = getValue('transfer-in-from.value');
+				if (transferInFromValue == '') {
+					$transferInUnitTbNumberField.val('');					
+					fieldHelper.disable($transferInUnitTbNumberField);
+				} else {
+					fieldHelper.disable($transferInUnitTbNumberField);
+				}
+			};  
+			
+			var onCptChange = function() {
+				var onCptValue = getValue('on-cpt.value');
+				if (onCptValue == YES_CONCEPT_ID) {
+					fieldHelper.enable($cptStartDateField);
+				} else {
+					fieldHelper.disable($cptStartDateField);
+				}
+			};  
+		
+			var onArtChange = function() {
+				var onArtValue = getValue('on-art.value');
+				if (onArtValue == YES_CONCEPT_ID) {
+					fieldHelper.enable($artStartDateField);
+					fieldHelper.enable($artNumberField);
+				} else {
+					fieldHelper.disable($artStartDateField);
+					fieldHelper.disable($artNumberField);
+				}
+			};
+		
+			var muacColorCodeChange = function() {
+				var muacColorCodeValue = getValue('muac-color-code.value');
+				if (muacColorCodeValue == YELLOW_CONCEPT_ID || muacColorCodeValue == RED_CONCEPT_ID) {
+					fieldHelper.enable($inrNumberField);
+				} else {
+					fieldHelper.disable($inrNumberField);
+				}		
+			};
+		
+			var treatmentOutcomeChange = function() {
+				var treatmentOutcomeValue = getValue('treatment-outcome.value');
+				if (treatmentOutcomeValue == TRANSFER_OUT_CONCEPT_ID) {
+					fieldHelper.enable($transferOutToField);
+				} else {
+					fieldHelper.disable($transferOutToField);
+				}		
+			};
+		
+			var noOfChildrenInContactChange = function() {
+				var noOfChildrenInContactValue,
+					noOfChildrenInContactOnIptValue;
+
+				noOfChildrenInContactValue = getValue('no-of-children-in-contact.value');
+				noOfChildrenInContactOnIptValue = getValue('no-of-children-in-contact-on-ipt.value');
+				if (parseInt(noOfChildrenInContactValue) &lt; parseInt(noOfChildrenInContactOnIptValue)) {				
+					getField('no-of-children-in-contact.error').html('"Number of children in contact" cannot be less than "Number of children in contact and on IPT"').show();
+				} else {
+					getField('no-of-children-in-contact-on-ipt.error').html('').hide();
+				} 				
+			};
+
+			var healthWorkerChange = function() {
+				var isHealthWorker = getValue('health-worker.value');
+				if (isHealthWorker == YES_CONCEPT_ID) {
+					fieldHelper.enable($cadreOfHealthWorkerField);
+				} else {
+					$cadreOfHealthWorkerField.val('');
+					$cadreOfHealthWorkerField.change()
+					fieldHelper.disable($cadreOfHealthWorkerField);
+				}
+			};
+
+			var enableFieldsInContainer = function ($container, exemptions) {
+				$container.each(function() {
+					if (exemptions.indexOf(jq(this).attr('id')) == -1) {
+						fieldHelper.enable(jq(this));
+					} else {
+						fieldHelper.disable(jq(this));
+
+						if (jq(this).is('input[type="text"], select')) { //Clear values Entered and/or Selected in the disabled fields
+							jq(this).val('');
+							jq(this).change();
+						} else if (jq(this).is('input[type="radio"]') || jq(this).is('input[type="checkbox"]')) {
+							jq(this).attr('checked', false);
+						}						
+					}
+				});
+			};
+
+			var disableFieldsInContainer = function ($container, exemptions) {
+				$container.find('input[type="radio"], input[type="text"], input[type="checkbox"], select').each(function() {
+					if (exemptions.indexOf(jq(this).attr('id')) == -1) {
+						fieldHelper.disable(jq(this));
+
+						if (jq(this).is('input[type="text"], select')) { //Clear values Entered and/or Selected in the disabled fields
+							jq(this).val('');
+							jq(this).change();
+						} else if (jq(this).is('input[type="radio"]') || jq(this).is('input[type="checkbox"]')) {
+							jq(this).attr('checked', false);
+						}
+					} else {
+						fieldHelper.enable(jq(this));
+					}
+				});
+			};
+
+			var hivCounsellingAndTestingChange = function() {
+				var $fieldsToDisable,
+					$fieldsToEnable,
+					$fieldsToExempt,
+					fieldIdsToExempt;
+
+				var hivCounsellingAndTestingValue = getValue('hiv-counselling-and-testing.value');
+
+				fieldIdsToExempt = [];
+				
+				if (hivCounsellingAndTestingValue == COUNSELLING_DONE_CONCEPT_ID || hivCounsellingAndTestingValue == '') {
+					fieldIdsToExempt.push($hivCounsellingAndTestingField.attr('id'));
+					disableFieldsInContainer($tbHivActivitiesSection, fieldIdsToExempt);
+
+				} else if (hivCounsellingAndTestingValue == COUNSELLING_AND_TESTING_DONE_CONCEPT_ID) {
+					fieldIdsToExempt.push($hivCounsellingAndTestingField.attr('id'));
+					fieldIdsToExempt.push($hivTestingDateField.attr('id'));
+					disableFieldsInContainer($tbHivActivitiesSection, fieldIdsToExempt);
+
+				} else if (hivCounsellingAndTestingValue == COUNSELLING_AND_TESTING_DONE_HIV_POS_CONCEPT_ID) {
+					fieldIdsToExempt.push($hivCounsellingAndTestingField.attr('id'));
+					fieldIdsToExempt.push($hivTestingDateField.attr('id'));
+					$patientReceivedResultsField.each(function() { //Push IDs for radio buttons to the exemption array
+						fieldIdsToExempt.push(jq(this).attr('id'));
+					});
+					$onCptField.each(function() {
+						fieldIdsToExempt.push(jq(this).attr('id'));
+					});
+					$onArtField.each(function() {
+						fieldIdsToExempt.push(jq(this).attr('id'));
+					});
+					disableFieldsInContainer($tbHivActivitiesSection, fieldIdsToExempt);
+
+				} else if (hivCounsellingAndTestingValue == COUNSELLING_AND_TESTING_DONE_HIV_NEG_CONCEPT_ID) {
+					fieldIdsToExempt.push($hivCounsellingAndTestingField.attr('id'));
+					fieldIdsToExempt.push($hivTestingDateField.attr('id'));
+					$patientReceivedResultsField.each(function() { //Push IDs for radio buttons to the exemption array
+						fieldIdsToExempt.push(jq(this).attr('id'));
+					});
+					$onCptField.each(function() {
+						fieldIdsToExempt.push(jq(this).attr('id'));
+					});
+					disableFieldsInContainer($tbHivActivitiesSection, fieldIdsToExempt);	
+
+				}
+				else {
+					disableFieldsInContainer($tbHivActivitiesSection, fieldIdsToExempt);
+				}
+			};
+		
+			var childrenSectionToggle = function() {
+				if (patientAge &gt; 6 &amp; patientAge &lt;= 180) {
+					fieldHelper.enable($muacSection.find('input,select'));
+				} else {
+					fieldHelper.disable($muacSection.find('input,select'));
+				}
+		
+			};
+		
+			var noOfChildrenValidate = function() {
+				var noOfChildrenInContactValue,
+					noOfChildrenInContactOnIptValue;
+
+				noOfChildrenInContactValue = getField('no-of-children-in-contact.value');
+				noOfChildrenInContactOnIptValue = getField('no-of-children-in-contact-on-ipt.value');
+				if (noOfChildrenInContactValue &lt; noOfChildrenInContactOnIptValue) {
+					getField('no-of-children-in-contact.error').html('"Number of children in contact" cannot be less than "Number of children in contact and on IPT"').show();
+					return false;
+				} else {
+					return true;
+				} 
+			};
+		
+			var onCptValidate = function() {
+				if (getValue('on-cpt.value') == YES_CONCEPT_ID &amp; getValue('cpt-start-date'.value) == '') {
+					getField('cpt-start-date.error').html('CPT start date is required');
+					return false;
+				} else {
+					return true;
+				}
+			};
+		
+			var onArtValidate = function() {
+				if (getValue('on-art.value') == YES_CONCEPT_ID &amp; getValue('art-start-date'.value) == '') {
+					getField('art-start-date.error').html('ART start date is required');
+					return false;
+				} else {
+					return true;
+				}
+			};
+		
+			var transferOutValidate = function() {
+				if (getValue('treatment-outcome.value') == TRANSFER_OUT_CONCEPT_ID &amp; getValue('transfer-out-to'.value) == '') {
+					getField('transfer-out-to.error').html('The Transfer out to Unit required');
+					return false;
+				} else {
+					return true;
+				}
+			};
+
+			var tbUnitNumbersValidate = function() {
+				$transferInUnitTbNo = $transferInUnitTbNumberField.val();
+				$unitTbNo = $unitTbNoField.val();
+
+				if (($transferInUnitTbNo != '' &amp;&amp; $unitTbNo != '') &amp;&amp; $transferInUnitTbNo == $unitTbNo) {
+					return false;
+				} else {
+					return true;
+				}
+			}
+
+	        var $othersField = jq('span.has-comment input[type=checkbox], span.has-comment select');
+
+	        var toggleOtherSpecify = function() {
+	            $othersField.each(function() {
+	                var $specifyField,
+	                	$thisField;
+
+	                $specifyField = jq(this).siblings('input[type=text]');
+	                $thisField = jq(this);
+	                
+	                if (($thisField.is('input[type=checkbox]') &amp; $thisField.attr('checked') == 'checked') || 
+	                ($thisField.is('select') &amp; $thisField.val() == OTHER_CONCEPT_ID)) { 
+	                    fieldHelper.removeReadonly($specifyField);
+	                } else {
+	                    fieldHelper.makeReadonly($specifyField);
+	                    $specifyField.val('');
+	                }
+	            });
+	        };
+		
+			$transferInFromField.blur(transferInFromChange);
+			$onCptField.change(onCptChange);
+			$onArtField.change(onArtChange);
+			$muacColorCodeField.change(muacColorCodeChange);
+			$treatmentOutcomeField.change(treatmentOutcomeChange);
+			$noOfChildrenInContactField.change(noOfChildrenInContactChange);
+			$noOfChildrenInContactOnIptField.change(noOfChildrenInContactChange);
+			$healthWorkerField.change(healthWorkerChange);
+			$hivCounsellingAndTestingField.change(hivCounsellingAndTestingChange);
+			$othersField.change(toggleOtherSpecify);
+
+			transferInFromChange();
+			onCptChange();
+			onArtChange();
+			muacColorCodeChange()
+			treatmentOutcomeChange();
+			healthWorkerChange();
+			childrenSectionToggle();
+			hivCounsellingAndTestingChange();
+			toggleOtherSpecify();
+		
+			beforeSubmit.push(function(){
+				var valid = true;
+				if (!onCptValidate()) {
+					valid = false;
+				}
+		
+				if (!onArtValidate()) {
+					valid = false;
+				}
+		
+				if (!noOfChildrenValidate()) {
+					valid = false;
+				}
+		
+				if (!transferOutValidate()) {
+					valid = false;
+				}
+		
+				if (!noOfChildrenValidate()) {
+					valid = false;
+				}
+
+				if (!tbUnitNumbersValidate()) {
+					valid = false;
+				}
+		
+				return valid;
+			});
+		
+		});	
+	
+	</script>
+  <div class="ai-page-frame">
+    <div class="headers" style="text-align: center;">
+      <h3 style="background: #FFFF7D; padding: 10px;">HMIS 096a Health Unit TB Form - Summary Page</h3>
+    </div>
+    <fieldset>
+    	<legend>Summary Information</legend>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+			  <td>
+			    <p>
+			      <label>Unit TB No.</label>
+			      <patient field="identifier" identifierTypeId="8fd5e225-f91a-44af-ba04-3b41428d2164" id="unit-tb-no" required="true" />
+			    </p>
+			  </td>
+			  <td>
+			    <p>
+			      <label>HSD TB No.</label>
+			      <patient field="identifier" identifierTypeId="2a6f1f82-2b70-4a51-8507-3a849bc637c3" id="hsd-tb-no" required="false" />
+			    </p>
+			  </td>
+			  <td>
+			    <p>
+			      <label>District TB No</label>
+			      <patient field="identifier" identifierTypeId="8110f2d2-1f98-4c38-aef3-11b19bb0a589" id="district-tb-no" required="false" />
+			    </p>
+			  </td>
+			</tr>
+			<tr>
+			  <td valign="top">
+			    <p>
+			      <label>Is patient a Health worker?</label>
+			      <obs 	conceptId="5619" 
+			      		answerConceptIds="1065,1066" 
+			      		style="radio" id="health-worker" 
+			      		class="horizontal-layout-options" required="true" />
+			    </p>
+			  </td>
+			  <td>
+			    <p>
+			      <label>Cadre of health worker</label>
+			      <obs conceptId="1783AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
+			      		answerConceptIds="1574,164831,1577,1578,1555,163557,5622" 
+			      		answerLabels="Clinical officer/Doctor, Laboratory Technician, Nurse, Midwife, Community Health Worker,Pharmacist,Other" 
+			      		id="cadre-of-health-worker" />
+			    </p>
+			  </td>
+			  <td>
+			    <p>
+			      <label>Name of contact person</label>
+			      <obs conceptId="163258AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+			    </p>
+			  </td>
+			</tr>
+			<tr>
+			  <td>
+			    <p>
+			      <label>Date treatment started</label>
+					<encounterDate default="today" disallowMultipleEncountersOnDate="block" />
+					<span class="hidden">
+					<encounterLocation default="8ab22b55-9a17-4121-bf08-6134a9a2439f"
+					                   order="8ab22b55-9a17-4121-bf08-6134a9a2439f" />
+					<encounterProvider role="Provider" style="autocomplete" required="required" default="currentUser" />
+					</span>
+			    </p>
+			  </td>
+			  <td>
+			    <p>
+			      <label>Regimen</label>
+			      <obs conceptId="99374" style="dropdown" answerConceptIds="99373,99372,99371" />
+			    </p>
+			  </td>
+			  <td>
+			    <p>
+			      <label>Disease classification</label>
+			      <obs 	conceptId="99379" 
+			      		answerConceptIds="113491AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,113489AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5042" 
+			      		answerLabels="Pulmonary bacteriologically confirmed TB treatment,Pulmonary clinically diagnosed TB,Extra pulmonary TB" />
+			    </p>
+			  </td>
+			</tr>
+			<tr>
+			  <td>
+			    <p>
+			      <label>Type of patient</label>
+			      <obs 	conceptId="99386" 
+			      		answerConceptIds="99380,99381,99382,99386,1067" 
+			      		answerLabels="New,Relapse,Failure,Lost to follow up,Treatment history unknown" 
+			      		required="true" />
+			    </p>
+			  </td>
+			  <td>
+			    <p>
+			      <label>Transfer in from</label>
+			      <obs conceptId="99109" id="transfer-in-from" />
+			    </p>
+			  </td>
+			  <td>
+			    <p id="transfer-in-unit-tb-no">
+			      <label>Transfer in - Unit TB No.</label>
+			      <patient 	field="identifier" 
+			      			identifierTypeId="1d2be2a3-7d90-42a6-aasa5-a04b684a365b" 
+			      			id="transfer-in-unit-tb-no" required="false" />
+			    </p>
+			  </td>
+			</tr>
+		</table>
+    </fieldset>
+	
+	<fieldset>
+		<legend>Results of Sputum and Other Examinations</legend>
+		<h3>Pre-Rx</h3>
+		<section>
+			<table>
+				<tr>
+					<td>
+			            <p>
+			              <label>Sputum smear results</label>
+			              <obs 	conceptId="307" 
+			              		answerConceptIds="1118,664,1362,1363,1364,1365,163417AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,163418AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,164428,164429,164430,159985,703,160008" 
+			              		answerLabels="ND - Not Done, NEG- Negative, 1AFB/100, 2AFB/100, 3AFB/100, 4AFB/100,5AFB/100,6AFB/100,7AFB/100,8AFB/100,9AFB/100,Scanty,Positive,Contaminated specimen" 
+			              		style="dropdown" required="true" />
+			            </p>
+					</td>
+					<td>
+						<p>
+							<label>Sputum Smear Examination Date</label>
+							<obs conceptId="99392" required="true" />
+						</p>
+					</td>
+				</tr>
+			</table>				
+		</section>
+
+		<section>
+			<h3>Other Investigations</h3>
+			<table>
+				<tr>
+					<td>
+						<label>Mantoux</label>
+						<obs 	conceptId="140144" 
+								showDate="true" dateLabel="&lt;label style='clear:left'&gt;Examination Date&lt;/label&gt;" />
+					</td>
+					<td>
+						<label>GeneXpert</label>
+						<obs 	conceptId="162202" 
+								answerConceptIds="162204, 162203, 164104, 664, 163611" 
+								answerLabels="MTB Detected - rifampicin resistance not detected, MTB Detected - rifampicin resistance detected, MTB Detected - rifampicin resistance indeterminate, MTB not detected, Invalid no result - error" 
+								showDate="true" dateLabel="&lt;label style='clear:left'&gt;Examination Date&lt;/label&gt;" />
+					</td>
+					<td>
+						<label>Biopsy</label>
+						<obs 	conceptId="164907"								
+								answerConceptIds="703,664" 
+								answerLabels="AFBs Found, No AFBs Found" 
+								showDate="true" dateLabel="&lt;label style='clear:left'&gt;Examination Date&lt;/label&gt;" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label>Cerebrospinal Fluid Examination (CSF)</label>
+						<obs 	conceptId="159645" 
+								answerConceptIds="703,664" 
+								answerLabels="AFBs Found, No AFBs Found" 
+								showDate="true" dateLabel="&lt;label style='clear:left'&gt;Examination Date&lt;/label&gt;" />
+					</td>
+					<td>
+						<label>X-ray</label>
+						<obs 	conceptId="12" 
+								answerConceptIds="1115,1137,5158,6049,6050,6052,114108,5622" 
+								answerLabels="Normal, Miliary Changes, Evidence Of Cardiac Enlargement, Infiltrate, Diffuse Non-Miliary Changes, Cavitary Lesion, Pleural Effusion, Other" 
+								showDate="true" dateLabel="&lt;label style='clear:left'&gt;Examination Date&lt;/label&gt;" />
+					</td>
+				</tr>
+			</table>
+		</section>
+	</fieldset>
+
+    <fieldset>
+      <legend>TB/HIV Activities</legend>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" id="tb-hiv-activities">
+        <tr>
+          <td valign="top">
+            <p>
+              <label>HIV Counselling and testing</label>
+              <obs 	conceptId="99409" 
+              		answerConceptIds="99405,99406,99407,99408" 
+              		answerLabels="C - Counselling done, CT - Counselling and testing done, CT1 - Counselling and testing done for HIV Positive, CT2 - Counselling and testing done for HIV Negative"
+              		style="dropdown" id="hiv-counselling-and-testing" />
+            </p>
+          </td>
+          <td valign="top">
+            <p>
+              <label>HIV Testing Date</label>
+              <obs conceptId="164400AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="hiv-testing-date" />
+            </p>
+          </td>
+          <td valign="top">
+            <p>
+              <label>
+                Patient received HIV Results?
+              </label>
+              <obs 	conceptId="99411" style="radio" 
+              		answerConceptIds="1065,1066" answerLabels="Yes, No"
+              		class="horizontal-layout-options" id="patient-received-hiv-results" />
+            </p>
+          </td>
+          <td valign="top">
+            <p>
+              <label>
+                Is patient On CPT?
+              </label>
+              <obs 	conceptId="160434AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
+              		answerConceptIds="1065,1066" 
+              		answerLabels="Yes,No" id="on-cpt" style="radio" 
+              		class="horizontal-layout-options"/>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">
+            <p>
+              <label>CPT Start Date</label>
+              <obs conceptId="164361AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="cpt-start-date" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Is patient On ART?</label>
+              <obs 	conceptId="159991AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
+              		answerConceptIds="1065,1066" answerLabels="Yes,No" id="on-art" style="radio" 
+              		class="horizontal-layout-options"/>
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>ART Start Date</label>
+              <obs 	conceptId="99161" 
+              		allowFutureDates="false" id="art-start-date" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>ART No</label>
+              <obs 	conceptId="99431" id="art-number" />
+            </p>
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+
+    <fieldset>
+      <legend>Contact with chlidren under 5 years</legend>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td valign="top">
+            <p>
+              <label>No. of children &lt;5yrs in contact</label>
+              <obs 	conceptId="164419" id="no-of-children-in-contact" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>No. of children &lt; 5yrs on IPT</label>
+              <obs 	conceptId="164421" id="no-of-children-in-contact-on-ipt" />
+            </p>
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+
+    <fieldset>
+      <legend>Treatment model</legend>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td valign="top">
+            <p>
+              <label>Treatment Model (DOTS)</label>
+              <obs 	conceptId="99418" answerConceptIds="99416,99417" 
+              		answerLabels="Facility, Community" style="radio"
+              		class="vertical-layout-options" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>DOTS Date</label>
+              <obs 	conceptId="90217" 
+              		allowFutureDates="false" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Name of treatment supporter</label>
+              <obs conceptId="99142" />
+            </p>
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+
+    <fieldset>
+      <legend>Treatment outcome and date when outcome determined</legend>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <p>
+              <label>Treatment Outcome</label>
+              <obs 	conceptId="99423" 
+              		answerConceptIds="159791AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,90306,159874AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1366,5240" 
+              		answerLabels="Cured, Transferred out,Treatment failure,Died,Lost to follow up" 
+              		style="dropdown" id="treatment-outcome" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Date when outcome determined</label>
+              <obs conceptId="159787" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Transfer out to (Name of unit)</label>
+              <obs conceptId="90211" id="transfer-out-to" />
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4">
+            <p>
+              <label>Remarks</label>
+              <obs conceptId="159395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="textarea" />
+            </p>
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+
+    <enrollInProgram programId="9dc21a72-0971-11e7-8037-507b9dc4c741" />
+    <submit />
+  </div>
+</htmlform>
