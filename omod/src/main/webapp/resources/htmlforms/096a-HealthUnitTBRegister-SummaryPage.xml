@@ -101,7 +101,8 @@
 					$transferInUnitTbNumberField.val('');					
 					fieldHelper.disable($transferInUnitTbNumberField);
 				} else {
-					fieldHelper.disable($transferInUnitTbNumberField);
+					fieldHelper.enable($transferInUnitTbNumberField);
+					$transferInUnitTbNumberField.focus();
 				}
 			};  
 			
