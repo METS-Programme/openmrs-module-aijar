@@ -56,24 +56,24 @@ function changeFieldDateToJavascriptDate(dateValue) {
  * @param factorRequired this
  * @returns {boolean}
  */
-function dateValidator(prime, factor, alternative_factor,message_to_throw, alternative_message_to_throw, condition,factorRequired) {
+function dateValidator(prime, factor, alternative_factor, message_to_throw, alternative_message_to_throw, condition, factorRequired) {
     var evaluationResult = true;
 
     getField(prime + '.error').html("").hide;
     getField(factor + '.error').html("").hide;
 
-    if (getValue(factor + '.value') == '' && getValue(prime + '.value') != '' && factorRequired==true) {
+    if (getValue(factor + '.value') == '' && getValue(prime + '.value') != '' && factorRequired == true) {
         getField(factor + '.error').html("Can Not Be Null").show;
         evaluationResult = false;
     }
-    else if(getValue(factor + '.value') == '' && getValue(alternative_factor + '.value') == '' && getValue(prime + '.value') != '' && factorRequired==false){
+    else if (getValue(factor + '.value') == '' && getValue(alternative_factor + '.value') == '' && getValue(prime + '.value') != '' && factorRequired == false) {
         getField(alternative_factor + '.error').html("Can Not Be Null").show();
         evaluationResult = false;
     }
 
-    if(getValue(factor + '.value') == '' && getValue(alternative_factor + '.value')!="" && factorRequired==false){
-        factor=alternative_factor;
-        message_to_throw=alternative_message_to_throw;
+    if (getValue(factor + '.value') == '' && getValue(alternative_factor + '.value') != "" && factorRequired == false) {
+        factor = alternative_factor;
+        message_to_throw = alternative_message_to_throw;
     }
 
     if (getValue(prime + '.value') != '' && getValue(factor + '.value') != '') {
@@ -123,7 +123,6 @@ function dateValidator(prime, factor, alternative_factor,message_to_throw, alter
 }
 
 
-
 /**
  *
  * @param prime What to test
@@ -134,32 +133,32 @@ function dateValidator(prime, factor, alternative_factor,message_to_throw, alter
  * @param factorRequired this
  * @returns {boolean}
  */
-function validateRequiredField(prime,factor,message_to_throw,input_type) {
+function validateRequiredField(prime, factor, message_to_throw, input_type) {
     var evaluationResult = true;
     var selected_value = null;
     getField(prime + '.error').html("").hide;
 
     if (input_type == "select") {
         selected_value = jq(factor).find(":selected").text().trim().toLowerCase();
-        if (selected_value!='' && getValue(prime + '.value') =='') {
+        if (selected_value != '' && getValue(prime + '.value') == '') {
             getField(prime + '.error').html(message_to_throw).show;
-            jq('#'+prime).find("span").removeAttr("style");
+            jq('#' + prime).find("span").removeAttr("style");
             evaluationResult = false;
         }
     }
     else if (input_type == "hidden") {
         selected_value = jq(factor).find("input[type=hidden]").val().trim().toLowerCase();
-        if (selected_value!='' && getValue(prime + '.value') =='') {
+        if (selected_value != '' && getValue(prime + '.value') == '') {
             getField(prime + '.error').html(message_to_throw).show;
-            jq('#'+prime).find("span").removeAttr("style");
+            jq('#' + prime).find("span").removeAttr("style");
             evaluationResult = false;
         }
     }
-    else if (input_type=="check_box"){
-        selected_value = jq("#"+factor).find(":checkbox:first").attr("checked");
-        if (selected_value=="checked" && getValue(prime + '.value') =='') {
+    else if (input_type == "check_box") {
+        selected_value = jq("#" + factor).find(":checkbox:first").attr("checked");
+        if (selected_value == "checked" && getValue(prime + '.value') == '') {
             getField(prime + '.error').html(message_to_throw).show;
-            jq('#'+prime).find("span").removeAttr("style");
+            jq('#' + prime).find("span").removeAttr("style");
             evaluationResult = false;
         }
     }
@@ -189,39 +188,97 @@ function showContainer(container) {
 }
 
 
+function enableContainer(container) {
+    jq(container).find("input").attr("disabled", false);
+    jq(container).find('select').attr("disabled", false);
+    jq(container).find("input").fadeTo(250, 1);
+    jq(container).find("select").fadeTo(250, 1);
+}
+/*
+ * Show the container, and enable all elements in it
+ *
+ * @param the Id of the container
+ */
+function disableContainer(container) {
+    jq(container).find("input").attr("disabled", true);
+    jq(container).find('select').attr("disabled", true);
+    jq(container).find("input").fadeTo(250, 0.25);
+    jq(container).find("select").fadeTo(250, 0.25);
+}
+
+
 /*
  *This is a helper object that contains functions to perform basic functions on a form field
  *
  *@param: selector string or JQuery object
  */
 var fieldHelper = {
+	$jqObj: function() {
+		return {};
+	},
     disable: function (args) {
         if (args instanceof jQuery) {
-            args.attr('disabled', true);
+            this.$jqObj = args;
         } else if (typeof args === 'string') {
-            jq(args).attr('disabled', true);
+            this.$jqObj = jq(args);
         }
+
+        this.$jqObj.attr('disabled', true);
+
     },
     enable: function (args) {
         if (args instanceof jQuery) {
-            args.removeAttr('disabled');
+            this.$jqObj = args;
         } else if (typeof args === 'string') {
-            jq(args).removeAttr('disabled');
+            this.$jqObj = jq(args);
         }
+
+        this.$jqObj.removeAttr('disabled');        
     },
     makeReadonly: function (args) {
         if (args instanceof jQuery) {
-            args.attr('readonly', true).fadeTo(250, 0.5);
-
+            this.$jqObj = args;
         } else if (typeof args === 'string') {
-            jq(args).attr('readonly', true).fadeTo(250, 0.25);
+            this.$jqObj = jq(args);
         }
+
+        this.$jqObj.attr('readonly', true).fadeTo(250, 0.25);
     },
     removeReadonly: function (args) {
         if (args instanceof jQuery) {
-            args.removeAttr('readonly').fadeTo(250, 1);
+            this.$jqObj = args;
         } else if (typeof args === 'string') {
-            jq(args).removeAttr('readonly').fadeTo(250, 1);
+            this.$jqObj = jq(args);
         }
+
+        this.$jqObj.removeAttr('readonly').fadeTo(250, 1)
+    },
+    clearAllFields: function (args) {
+        if (args instanceof jQuery) {
+        	this.$jqObj = args;
+        } else if (typeof args === 'string') {
+        	this.$jqObj = jq(args);
+        } 
+
+        this.$jqObj.find('input[type="text"], select').val('').change();
+
+        this.$jqObj.find('input[type="radio"], input[type="checkbox"]').removeAttr('checked');
+    },
+    customizeDateTimePickerWidget: function(args) {
+        //Remove the colon(:) in the date time picker
+        if (args instanceof jQuery) {
+	        this.$jqObj = args;
+        } else if (typeof args === 'string') {
+	        this.$jqObj = jq(args);
+        }
+
+        this.$jqObj.contents().filter(function() {
+	      return this.nodeType === 3;
+	    }).remove();
+
+
+	    // Insert label for time just before the timepicker field
+	    var $timeLabel = jq('<label/>').html('Time');
+	    $('.hfe-hours').before($timeLabel);
     }
 };

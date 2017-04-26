@@ -62,22 +62,22 @@ public class HtmlFormsInitializer implements Initializer {
             HtmlForm htmlForm = null;
             try {
                 htmlForm = HtmlFormUtil.getHtmlFormFromUiResource(resourceFactory, formService, hfeService, providerName, formPath);
+                try {
+                    // Adds meta data
+                    ExtensionForm extensionForm = ExtensionFormUtil.getExtensionFormFromUiResourceAndForm(resourceFactory, providerName, formPath, hfeAppService, formManager, htmlForm.getForm());
+                    log.info("The form at " + formPath + " has been successfully loaded with its metadata");
+                } catch (Exception e) {
+                    log.error("The form was created but its extension point could not be created in Manage Forms \\ Configure Metadata: " + formPath, e);
+                    throw new RuntimeException("The form was created but its extension point could not be created in Manage Forms \\ Configure Metadata: " + formPath, e);
+                }
             } catch (IOException e) {
                 log.error("Could not generate HTML form from the following resource file: " + formPath, e);
-                continue;
+                throw new RuntimeException("Could not generate HTML form from the following resource file: " + formPath, e);
             } catch (IllegalArgumentException e) {
                 log.error("Error while parsing the form's XML: " + formPath, e);
-                continue;
+                throw new IllegalArgumentException("Error while parsing the form's XML: " + formPath, e);
             }
-            // Adds meta data
-            ExtensionForm extensionForm = null;
-            try {
-                extensionForm = ExtensionFormUtil.getExtensionFormFromUiResourceAndForm(resourceFactory, providerName, formPath, hfeAppService, formManager, htmlForm.getForm());
-            } catch (Exception e) {
-                log.error("The form was created but its extension point could not be created in Manage Forms \\ Configure Metadata: " + formPath, e);
-                continue;
-            }
-            log.info("The form at " + formPath + " has been successfully loaded with its metadata");
+            
         }
     }
 

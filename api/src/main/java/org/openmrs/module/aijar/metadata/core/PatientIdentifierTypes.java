@@ -294,4 +294,92 @@ public class PatientIdentifierTypes {
         }
     };
 
+	public static PatientIdentifierTypeDescriptor UNIT_TB_NUMBER = new PatientIdentifierTypeDescriptor() {
+
+		@Override
+		public String name() {
+			return "Unit TB No.";
+		}
+
+		@Override
+		public String description() {
+			return "The patient identifier assigned to a tuberculosis case by the Health unit providing care";
+		}
+
+		public String uuid() {
+			return "8fd5e225-f91a-44af-ba04-3b41428d2164";
+		}
+
+		public String formatDescription() {
+			return " The first 3 digits of the case number then / then "
+					+ "two digits for the year";
+		}
+	};    
+
+	public static PatientIdentifierTypeDescriptor HSD_TB_NUMBER = new PatientIdentifierTypeDescriptor() {
+
+		@Override
+		public String name() {
+			return "Health Sub-District TB No.";
+		}
+
+		@Override
+		public String description() {
+			return "The patient identifier assigned to a tuberculosis case by a health sub-district focal person "
+					+ "when being registered in the HSD register";
+		}
+
+		public String uuid() {
+			return "2a6f1f82-2b70-4a51-8507-3a849bc637c3";
+		}
+
+		public String formatDescription() {
+			return "";
+		}
+	};
+
+	public static PatientIdentifierTypeDescriptor TRANSFER_IN_UNIT_TB_NUMBER = new PatientIdentifierTypeDescriptor() {
+
+		@Override
+		public String name() {
+			return "Transfer In Unit TB No.";
+		}
+
+		@Override
+		public String description() {
+			return "The unit Tb Number assigned to a patient in the facility he/she is being transferred in from";
+		}
+
+		public String uuid() {
+			return "1d2be2a3-7d90-42a6-aasa5-a04b684a365b";
+		}
+
+		public String formatDescription() {
+			return " The first 3 digits of the case number then / then "
+					+ "two digits for the year";
+		}
+	};  
+
+	public static PatientIdentifierTypeDescriptor INTEGRATED_NUTRITION_REGISTER_NUMBER = new PatientIdentifierTypeDescriptor() {
+
+		@Override
+		public String name() {
+			return "Integrated Nutrition Register (INR) No.";
+		}
+
+		@Override
+		public String description() {
+			return "Number given to a patient who has been confirmed to have mulnutrition";
+		}
+
+		public String uuid() {
+			return "d4b21726-e908-4b1a-abab-b5f87cd01c18";
+		}
+
+		public String formatDescription() {
+			return " The first 3 digits of the case number then / then "
+					+ "two digits for the year";
+		}
+	};  	
+	
 }

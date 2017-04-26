@@ -92,6 +92,22 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             appFrameworkService.disableExtension("org.openmrs.module.coreapps.createVisit");
             // the extension to the edit person details
             appFrameworkService.disableExtension("org.openmrs.module.registrationapp.editPatientDemographics");
+    
+            // disable apps on the Clinican facing dashboard added through coreapps 1.12.0
+            appFrameworkService.disableApp("coreapps.mostRecentVitals");
+            appFrameworkService.disableApp("coreapps.diagnoses");
+            appFrameworkService.disableApp("coreapps.latestObsForConceptList");
+            appFrameworkService.disableApp("coreapps.obsAcrossEncounters");
+            appFrameworkService.disableApp("coreapps.obsGraph");
+            appFrameworkService.disableApp("coreapps.visitByEncounterType");
+            appFrameworkService.disableApp("coreapps.relationships");
+            
+            // Remove the BIRT reports app since it is no longer supported
+            appFrameworkService.disableApp("aijar.referenceapplication.birtReports");
+            
+            // Home page apps clean up
+            appFrameworkService.disableApp("referenceapplication.vitals"); // Capture Vitals
+            appFrameworkService.disableApp("coreapps.activeVisits"); // Active Visits
 
             // form entry app on the home page
             appFrameworkService.disableApp("xforms.formentry");
@@ -100,14 +116,6 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             // form entry extension in active visits
             appFrameworkService.disableExtension("xforms.formentry.cfpd");
 
-            // run the initializers
-            for (Initializer initializer : getInitializers()) {
-                initializer.started();
-            }
-
-            // install commonly used metadata
-            installCommonMetadata(deployService);
-            
             // install concepts
             DataImporter dataImporter = Context.getRegisteredComponent("dataImporter", DataImporter.class);
             dataImporter.importData("metadata/Concepts_ART-1.xml");
@@ -118,6 +126,18 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             log.info("TB concepts imported");
             dataImporter.importData("metadata/Concepts_OPD-1.xml");
             log.info("OPD concepts imported");
+            dataImporter.importData("metadata/Concepts_Programs-1.xml");
+            log.info("Programs concepts imported");
+            dataImporter.importData("metadata/Concepts_SMC-1.xml");
+            log.info("SMC concepts imported");
+
+            // install commonly used metadata
+            installCommonMetadata(deployService);
+
+            // run the initializers
+            for (Initializer initializer : getInitializers()) {
+                initializer.started();
+            }
 
             // save defined global properties
             administrationService.saveGlobalProperties(configureGlobalProperties());

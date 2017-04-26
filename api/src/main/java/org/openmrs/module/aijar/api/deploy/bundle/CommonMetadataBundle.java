@@ -1,10 +1,14 @@
 package org.openmrs.module.aijar.api.deploy.bundle;
 
+import org.openmrs.module.aijar.metadata.core.EncounterRoles;
 import org.openmrs.module.aijar.metadata.core.EncounterTypes;
 import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
 import org.openmrs.module.aijar.metadata.core.PersonAttributeTypes;
+import org.openmrs.module.aijar.metadata.core.Programs;
 import org.openmrs.module.aijar.metadata.core.Roles;
+import org.openmrs.module.aijar.metadata.core.Locations;
 import org.openmrs.module.metadatadeploy.bundle.AbstractMetadataBundle;
+import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.encounterRole;
 import org.springframework.stereotype.Component;
 
 /**
@@ -35,6 +39,10 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(PatientIdentifierTypes.ART_PATIENT_NUMBER);
         install(PatientIdentifierTypes.RESEARCH_PATIENT_ID);
         install(PatientIdentifierTypes.SMC_CLIENT_NUMBER);
+        install(PatientIdentifierTypes.UNIT_TB_NUMBER);
+        install(PatientIdentifierTypes.HSD_TB_NUMBER);
+        install(PatientIdentifierTypes.TRANSFER_IN_UNIT_TB_NUMBER);
+        install(PatientIdentifierTypes.INTEGRATED_NUTRITION_REGISTER_NUMBER);
         log.info("Patient IdentifierTypes installed");
 
         // install person attribute types
@@ -52,8 +60,22 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(Roles.MID_WIFE);
         log.info("Roles installed");
 
+
         //Install Encounter Type
         log.info("Installing EncounterTypes");
         install(EncounterTypes.PNC_ENCOUNTER_TYPE);
+
+        //installing programs metadata
+        log.info("Installing Programs");
+        install(Programs.HIV_PROGRAM);
+        install(Programs.TB_PROGRAM);
+        install(Programs.MCH_PROGRAM);
+        install(Programs.NUTRITION_PROGRAM);
+        install(EncounterTypes.SMC_FOLLOW_UP_ENCOUNTER);
+        install(encounterRole(EncounterRoles.ASSISTANT_CIRCUMCISER_NAME,EncounterRoles.ASSISTANT_CIRCUMCISER_DESCRIPTION,EncounterRoles.ASSISTANT_CIRCUMCISER_UUID));
+        
+        //install Locations
+        log.info("Installing Locations");
+        install(Locations.TB_CLINIC);
     }
 }
