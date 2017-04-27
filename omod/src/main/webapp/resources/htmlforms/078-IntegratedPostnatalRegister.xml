@@ -11,6 +11,39 @@
           formDisplayStyle="Standard"
           formLabel="PNC Encounter Form">
 
+    <ifMode mode="ENTER,EDIT">
+        <includeIf velocityTest="$fn.allEncounters('a9f11592-22e7-45fc-904d-dfe24cb1fc67').size() == 0">
+            <script>
+                jq(function () {
+                    alert('This patient has no Maternity encounter, you will now be forwarded to the patient dashboard');
+
+                    /*
+                     * queryParameters -> handles the query string parameters
+                     * queryString -> the query string without the fist '?' character
+                     * re -> the regular expression
+                     * m -> holds the string matching the regular expression
+                     */
+                    var queryParameters = {}, queryString = location.search.substring(1),
+                            re = /([^&amp;=]+)=([^&amp;]*)/g, m;
+
+                    // Creates a map with the query string parameters
+                    while (m = re.exec(queryString)) {
+                        queryParameters[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+                    }
+
+                    /*
+                     * Replace the query portion of the URL.
+                     * jQuery.param() -> create a serialized representation of an array or
+                     *     object, suitable for use in a URL query string or Ajax request.
+                     */
+                    location.href = window.location.protocol + "//" + window.location.host +
+                            '/' + OPENMRS_CONTEXT_PATH + '/coreapps/clinicianfacing/patient.page?patientId='
+                            + queryParameters['patientId']; // Causes page to reload
+                });
+            </script>
+        </includeIf>
+    </ifMode>
+
 	<style type="text/css">
 
 		form#htmlform div.ai-page-frame table>tbody tr:nth-child(odd) td {
@@ -37,6 +70,7 @@
 	        const VIRAL_LOAD_NOT_DETECTED_CONCEPT_ID = 1306;
 	        const VIRAL_LOAD_SAMPLE_REJECTED_CONCEPT_ID = 1304;
 
+	        const HIV_STATUS_CONCEPT_ID = 90253;
 	        const HIV_POSITIVE_CONCEPT_ID = 90166;
 	        const HIV_NEGATIVE_CONCEPT_ID = 90167;
 
@@ -50,6 +84,7 @@
 	        var $hivStatusField = getField('hiv-status.value');
 	        var $viralLoadResultsField = getField('viral-load-results.value');
 	        var $arvsToMotherField = getField('arvs-to-mother.value');
+	        var $encounterDateField = jq('#encounter-date').find('input[type="hidden"]');
 
 	        var viralLoadResultsChange = function() {
 	            var $viralLoadResults = getValue('viral-load-results.value');
@@ -73,10 +108,18 @@
 	            }
 	        };
 
+	        /**
+	        * This function checks if the HIV status field has been locked(Contains the 'locked' class )
+	        */
+	        var isHivStatusFieldLocked = function () {
+	            return $hivStatusField.is('.locked');
+	        }
+
 	        var hivStatusChange = function () {
 	            var $hivStatus = getValue('hiv-status.value');
 	            var $hivInformationSection = jq(HIV_INFORMATION_SECTION);
 	            var $arvsAdministeredToBabyField = jq(ARVS_ADMINISTERED_TO_BABY_FIELD).find('input');
+
 	            if ($hivStatus == HIV_POSITIVE_CONCEPT_ID) {
 	                fieldHelper.enable($hivInformationSection.find('input'));
 	                fieldHelper.enable($arvsAdministeredToBabyField);
@@ -118,7 +161,7 @@
 		        $othersField.each(function(){
 		            var $specifyField = jq(this).siblings('input[type=text]');
 		            var $errorField = jq(this).siblings('span.error');
-		            if ((jq(this).attr('checked') == 'checked' || jq(this).val() == OTHER_CONCEPT_ID) &amp;&amp;  $specifyField.val() == '') {
+		            if ((jq(this).attr('checked') == 'checked' || (jq(this).is('select') &amp;&amp; jq(this).val() == OTHER_CONCEPT_ID)) &amp;&amp;  $specifyField.val() == '') {
 		                $errorField.html('Please specify').show();
 		                $specifyField.addClass('error');
 		                valid = false;
@@ -132,10 +175,51 @@
 		        return valid;
 		    };
 
-	        $viralLoadResultsField.change(viralLoadResultsChange);
-	        $hivStatusField.change(hivStatusChange);
-	        $othersField.change(toggleOtherSpecify);
+		    var getHivStatus = function () {
+		    	/**
+		    	* HIV Status field should be selected if patient is HIV +ve 
+		    	*/
 
+				var hivStatus = <lookup complexExpression="#set ($hivStatus = $fn.earliestObs(HIV_STATUS_CONCEPT_ID).valueCoded)
+															#if ($hivStatus) $hivStatus;
+															#else '';
+															#end" />
+
+				if (hivStatus == HIV_POSITIVE_CONCEPT_ID) {
+					$hivStatusField.val(hivStatus);
+				}
+
+				/**
+				* Make HIV Status field not changeable only if the encounter date of the ART summary 
+				* page encounter (as we shall be entering retrospective data) is before the date of 
+				* the visit for which data is being entered
+				*/
+				var visitDate = $encounterDateField.val();
+				var artSummaryEncounterDate = <lookup complexExpression="#set ($artSummaryEncounterDate = $fn.latestEncounter('8d5b27bc-c2cc-11de-8d13-0010c6dffd0f').encounterDatetime)
+																		#if ($artSummaryEncounterDate) '$artSummaryEncounterDate';
+																		#else '';
+																		#end"/>
+				if (artSummaryEncounterDate !='' &amp;&amp; artSummaryEncounterDate &lt; visitDate) {
+					$hivStatusField.addClass('locked');
+					$hivStatusField.val(HIV_POSITIVE_CONCEPT_ID);
+					$hivStatusField.change();
+				} else {
+					fieldHelper.enable($hivStatusField);
+				}
+		    };
+
+	        $viralLoadResultsField.change(viralLoadResultsChange);
+	        $hivStatusField.change(function(){
+	            if (isHivStatusFieldLocked()) {
+					setValue('hiv-status.value',HIV_POSITIVE_CONCEPT_ID);
+	            } else {
+	            	hivStatusChange();
+	            }
+	        });
+	        $othersField.change(toggleOtherSpecify);
+	        $encounterDateField.change(getHivStatus);
+			
+			getHivStatus();
 	        viralLoadResultsChange();
 	        hivStatusChange();
 			toggleOtherSpecify();
@@ -152,6 +236,7 @@
 	            	$errorMessageSpan.hide();
 	            } else {
 	            	$errorMessageSpan.show();
+	            	jq().toastmessage('showErrorToast', "Form Validation violated. Check for errors");
 	            }
 
 	            return valid;
@@ -165,18 +250,18 @@
     <!-- Beging of HTML Form -->
     <div class="ai-page-frame">
         <div class="headers" style="text-align: center;">
-            <h3 style="background: #FFFF7D; padding: 10px;">HMIS FORM 078 - INTEGRATED POSTNATAL ENCOUNTER</h3>
+            <h3 style="background: #FFFF7D; padding: 10px;">Integrated PostNatal Form</h3>
         </div>
         <fieldset>
-            <span style="display: none;">
+            <span class="hidden">
                 <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
                                    order="629d78e9-93e5-43b0-ad8a-48313fd99117" />
             </span>
-            <legend>Admission Information</legend>
+            <legend>Visit Summary</legend>
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                     <td>
-                        <p>
+                        <p id="encounter-date">
                             <label>Date</label>
                             <encounterDate default="today" disallowMultipleEncountersOnDate="block" />
                         </p>
@@ -204,7 +289,9 @@
                     <td>
                         <p>
                             <label>Timing for PNC Visit</label>
-                            
+                            <obs 	conceptId="1732AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
+                            		answerConceptIds="1822AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1072AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1073AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1074AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                            		answerLabels="6 Hours, 6 Days, 6 Weeks, 6 Months" style="dropdown" />
                         </p>
                     </td>
                 </tr>
@@ -251,7 +338,7 @@
 	                    <td>
 	                        <p>
 
-	                            <label>Weight(Kgs)</label>
+	                            <label>Weight (Kgs)</label>
 	                            <obs conceptId="5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
 	                        </p>
 	                    </td>
@@ -290,10 +377,6 @@
 	                            <label>I.N.R Number</label>
 	                            <obs conceptId="b644c29c-9bb0-447e-9f73-2ae89496a709" id="inrNumber" />
 	                        </p>
-	                    </td>
-	                    <td>
-	                    </td>
-	                    <td>
 	                    </td>
 	                </tr>
 	            </table>
@@ -395,14 +478,34 @@
 				<table>
 					<tr>
 						<td>
-			                <p>
-			                    <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
-			                    	 answerConceptIds="132678AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,116128AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,dc55064a-30ab-102d-86b0-7a5022ba4115,5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-			                    	 answerLabels="Normal pregnancy, Malaria, High blood pressure,Others"
-			                    	 showCommentField="true" commentFieldLabel="&lt;label&gt;Specify&lt;/label&gt;" class="has-comment fit-one-line"/>
-			                </p>						
+	                        <p>
+	                            <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
+	                            	 answerConceptId="132678AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+	                            	 answerLabel="Normal pregnancy" />
+	                        </p>						
 						</td>
-						<td></td>
+						<td>
+	                        <p>
+	                            <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
+	                            	 answerConceptId="116128AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+	                            	 answerLabel="Malaria" />
+	                        </p>						
+						</td>
+						<td>
+	                        <p>
+	                            <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
+	                            	 answerConceptId="dc55064a-30ab-102d-86b0-7a5022ba4115"
+	                            	 answerLabel="High blood pressure" />
+	                        </p>						
+						</td>
+						<td>
+	                        <p>
+	                            <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
+	                            	 answerConceptId="5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+	                            	 answerLabel="Others"
+	                            	 showCommentField="true" commentFieldLabel="&lt;label&gt;Specify&lt;/label&gt;" class="has-comment fit-one-line" />
+	                        </p>						
+						</td>
 					</tr>
 				</table>
 			</section>
@@ -427,11 +530,11 @@
 
 	                        </p>
 	                    </td>
-	                    <td colspan="2">
+	                    <td colspan="2" style="width:50%">
 	                        <p>
 	                            <label>Routine Administration</label>
 	                            <obs conceptId="315825e8-8ba4-4551-bdd1-aa4e02a36639"
-	                                 answerConceptId="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Iron" />
+	                                 answerConceptId="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Iron" class="horizontal-layout-options" />
 	                            <obs conceptId="8c346216-c444-4528-a174-5139922218ed"
 	                                 answerConceptId="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Folic Acid" />
 	                            <obs conceptId="88ec2c8b-eb7b-4595-8612-1871568507a5"
@@ -442,15 +545,12 @@
 	                    </td>
 	                </tr>
 	                <tr>
-	                	<td>
+	                	<td colspan="2">
 	                        <p>
 	                            <label>Other Treatments</label>
 	                            <obs conceptId="2aa72406-436e-490d-8aa4-d5336148204f" style="textarea" id="other-treatments" />
 	                        </p>                    		
 	                	</td>
-						<td></td>
-						<td></td>
-						<td></td>
 	                </tr>
 	            </table>
 	        </section>
