@@ -73,6 +73,11 @@
 			background: #f9f9f9;
 		}
 
+		#encounter input {
+			min-width: 20% !important;
+			width: 20% !important;
+		}
+
 	</style>
 
 	<script type="text/javascript">
@@ -249,21 +254,17 @@
 		<table>
 		  <tbody>
 		    <tr>
-		      <td>
+		      <td colspan="4" id="encounter">
 		        <p>
 		          <label>
 		            <span class="required">*</span>Follow up visit date:
 		          </label>
 		          <encounterDate default="today" disallowMultipleEncountersOnDate="block" />
 		        </p>
-		      </td>
-		      <td>
 		        <span style="display: none;">
 		          <encounterLocation default="8ab22b55-9a17-4121-bf08-6134a9a2439f"
 		                             order="8ab22b55-9a17-4121-bf08-6134a9a2439f" />
 		        </span>
-		      </td>
-		      <td>
 		      	<p class="hidden">
 					<label>
 						<span class="required">*</span> Provider:
@@ -274,7 +275,6 @@
 										default="currentUser" />
 		        </p>
 		      </td>
-		      <td></td>
 		    </tr>
 		  </tbody>
 		</table>
