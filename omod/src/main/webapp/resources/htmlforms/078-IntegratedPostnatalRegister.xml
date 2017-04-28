@@ -1,4 +1,4 @@
-<htmlform formName="HMIS 078 Integrated Postnatal Encounter"
+<htmlform formName="HMIS 078 Integrated Postnatal Form"
           formDescription="Encounter form for patients enrolled for PNC services"
           formEncounterType="fa6f3ff5-b784-43fb-ab35-a08ab7dbf074"
           formUuid="a6c5a8c3-c414-449f-a077-c2f6acbdd8b1"
@@ -85,6 +85,8 @@
 	        var $viralLoadResultsField = getField('viral-load-results.value');
 	        var $arvsToMotherField = getField('arvs-to-mother.value');
 	        var $encounterDateField = jq('#encounter-date').find('input[type="hidden"]');
+			var $arvsGivenField = getField('arvs-given.value');
+			var $preArtNumberField = jq('span#pre-art-number').find('input[type="text"]');
 
 	        var viralLoadResultsChange = function() {
 	            var $viralLoadResults = getValue('viral-load-results.value');
@@ -125,6 +127,8 @@
 	                fieldHelper.enable($arvsAdministeredToBabyField);
 	                fieldHelper.enable($hivInformationSection.find('input,select'));
 	                fieldHelper.enable($arvsToMotherField);
+	                fieldHelper.enable($arvsGivenField);
+	                fieldHelper.enable($preArtNumberField);
 	            } else {
 	                $hivInformationSection.find('input,select').each(function() {
 	                	var isEmtctCodeField = jq(this).parents('span:first').length &gt; 0 &amp;&amp; jq(this).parents('span:first').attr('class').indexOf('emtct-code') != -1; //Check if current control is an eMTCT Code field
@@ -135,8 +139,10 @@
 	                        fieldHelper.disable(jq(this));
 	                    }
 	                });
-	                $arvsAdministeredToBabyField.attr('disabled', true);
+	                fieldHelper.disable($arvsAdministeredToBabyField);
 	                fieldHelper.disable($arvsToMotherField);
+	                fieldHelper.disable($arvsGivenField);
+	                fieldHelper.disable($preArtNumberField);
 	            }
 	            viralLoadResultsChange();
 	        };
@@ -378,6 +384,7 @@
 	                            <obs conceptId="b644c29c-9bb0-447e-9f73-2ae89496a709" id="inrNumber" />
 	                        </p>
 	                    </td>
+	                    <td colspan="2"></td>
 	                </tr>
 	            </table>
 			</section>
@@ -443,30 +450,35 @@
 		            <p>
 		              <label>eMTCT Code: Woman</label>
 		              <obs conceptId="d5b0394c-424f-41db-bc2f-37180dcdbe74" 
-		              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb, 05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7, 86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a, 25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465, 60155e4d-1d49-4e97-9689-758315967e0f, 81bd3e58-9389-41e7-be1a-c6723f899e56,1f177240-85f6-4f10-964a-cfc7722408b3" 
+		              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb, 05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7, 86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a, 25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465, a08d9331-b437-485c-8eff-1923f3d43630
+, 60155e4d-1d49-4e97-9689-758315967e0f, 81bd3e58-9389-41e7-be1a-c6723f899e56,1f177240-85f6-4f10-964a-cfc7722408b3" 
 		              	answerLabels="C - Counselled but declined HIV testing,
 		              					T - Counselled and tested but didn't receive results,
-		              					TR - Counselled tested and results given - Client tested HIV - in maternity,
-		              					TRR - Counselled tested and results given - Client tested HIV + in maternity,
-		              					TRR+ - Client was originally negative but sero-converted at this test,
-		              					TR&#8730; - New ANC clients with Known HIV- status,
-		              					TRR&#8730; - New ANC clients with Known HIV+ status" 
+		              					TR - Counselled tested and results given - Client tested HIV- in PNC,
+		              					TRR - Counselled tested and results given - Client tested HIV+ in PNC,
+		              					TR+ - Client tested HIV- on a re-test,
+		              					TRR+ - Client tested HIV+ on a re-test,
+		              					TR&#8730; - Client tested on a previous visit with known HIV- status,
+		              					TRR&#8730; - Client tested on previous visit with known HIV+ status" 
 		                style="dropdown" required="true" class="emtct-code"/>
 		            </p>
 		          </td>
 		          <td colspan="2">
 		            <p>
 		              <label>eMTCT Code: Partner</label>
-		              <obs conceptId="62a37075-fc2a-4729-8950-b9fae9b22cfb" 
-		              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb, 05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7, 86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a, 25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465, 60155e4d-1d49-4e97-9689-758315967e0f, 81bd3e58-9389-41e7-be1a-c6723f899e56,1f177240-85f6-4f10-964a-cfc7722408b3" 
+		              <obs conceptId="d5b0394c-424f-41db-bc2f-37180dcdbe74" 
+		              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb, 05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7, 86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a, 25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465, a08d9331-b437-485c-8eff-1923f3d43630
+, 60155e4d-1d49-4e97-9689-758315967e0f, 81bd3e58-9389-41e7-be1a-c6723f899e56,1f177240-85f6-4f10-964a-cfc7722408b3" 
 		              	answerLabels="C - Counselled but declined HIV testing,
 		              					T - Counselled and tested but didn't receive results,
-		              					TR - Counselled tested and results given - Client tested HIV - in maternity,
-		              					TRR - Counselled tested and results given - Client tested HIV + in maternity,
-		              					TRR+ - Client was originally negative but sero-converted at this test,
-		              					TRK - New ANC clients with Known HIV- status,
-		              					TRRK - New ANC clients with Known HIV+ status" 
-		                style="dropdown" class="emtct-code"/>
+		              					TR - Counselled tested and results given - Client tested HIV- in PNC,
+		              					TRR - Counselled tested and results given - Client tested HIV+ in PNC,
+		              					TR+ - Client tested HIV- on a re-test,
+		              					TRR+ - Client tested HIV+ on a re-test,
+		              					TR&#8730; - Client tested on a previous visit with known HIV- status,
+		              					TRR&#8730; - Client tested on previous visit with known HIV+ status" 
+		                style="dropdown" required="true" class="emtct-code"/>
+
 		            </p>
 		          </td>
 		        </tr>
@@ -517,7 +529,7 @@
 	                    <td>
 	                        <p>
 	                            <label>ARVs</label>
-	                            <obs id="arvs" conceptId="a615f932-26ee-449c-8e20-e50a15232763"
+	                            <obs id="arvs-given" conceptId="a615f932-26ee-449c-8e20-e50a15232763"
 	                                 answerConceptIds="026e31b7-4a26-44d0-8398-9a41c40ff7d3,2aa7d442-6cbb-4609-9dd3-bc2ad6f05016,2c000b41-f9d7-40c1-8de0-bce91dbae932,
 	                                 bbc63761-0741-4583-9396-a34d3a18601c,dc9b0596-30ab-102d-86b0-7a5022ba4115"
 	                                 answerLabels="ART,ARTK,ART✔,ARTK✔,NA" />
@@ -526,8 +538,9 @@
 	                    <td>
 	                        <p>
 	                            <label>Pre-ART Number</label>
-	                            <obs conceptId="9fc5bf9d-a79e-4548-9207-b2afbbeba796" />
-
+	                            <span id="pre-art-number">
+		                            <obs conceptId="9fc5bf9d-a79e-4548-9207-b2afbbeba796" />
+								</span>
 	                        </p>
 	                    </td>
 	                    <td colspan="2" style="width:50%">
@@ -551,6 +564,7 @@
 	                            <obs conceptId="2aa72406-436e-490d-8aa4-d5336148204f" style="textarea" id="other-treatments" />
 	                        </p>                    		
 	                	</td>
+	                	<td style="width:50%"></td>
 	                </tr>
 	            </table>
 	        </section>
