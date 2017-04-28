@@ -53,6 +53,7 @@
 	    table#drugs td.duration-of-treatment input {
 	        min-width: 20%;
 	        width: 25px !important;
+            margin: 5px 5px 0 0;
 	    }
 
 	    table#drugs td.duration-of-treatment select {
@@ -109,7 +110,7 @@
 	        var $muacColorCodeField,
 				$inrNumberField;
 
-	        $muacColorCodeField = jq('#muac-color-code').find('input');
+	        $muacColorCodeField = getField('muac-color-code.value');
 	        $inrNumberField = jq('#inr-number').find('input');
 
 	        var muacColorCodeChange = function() {
@@ -140,13 +141,26 @@
 	                    $obj = jq(this);
 	                    if ($obj.val() !== '') { //Only run the validatiion check if there's at least one element that is non-empty
 	                        $objectsToValidate.each(function () {
-	                            if (jq(this).val() === '') {
-	                                jq(this).addClass('inError');
-	                                jq(this).siblings('span.error').html('Required').show()
-	                                dirty = true;
-	                            } else {
-	                                jq(this).siblings('span.error').html('').hide();
-	                            }
+	                        	var $errorContainer = jq(this).siblings('span.error');
+		                    	if (jq(this).is('input[type="radio"]')) { //Validate Radio Buttons
+		                    		var $checkedBoxes = jq(this).parents('span:first').find('input').filter(function() {
+		                    			return this.checked;
+		                    		});
+									if ($checkedBoxes.length == 0) {
+										$errorContainer.html('Required').show()
+		                                dirty = true;
+									} else {
+										$errorContainer.html('').hide()
+									}
+		                    	} else {
+		                            if (jq(this).val() === '') {
+		                                jq(this).addClass('inError');
+		                                $errorContainer.html('Required').show()
+		                                dirty = true;
+		                            } else {
+		                                $errorContainer.html('').hide();
+		                            }
+		                    	}
 	                        });
 	                    }
 	                });
@@ -161,9 +175,17 @@
 
 	        beforeSubmit.push(function(){
 	            var valid = true;
+	            var $errorMessageSpan = jq('span#error-message');
 
 	            if (!drugsValidated()) {
 	                valid = false;
+	            }
+
+	            if (valid) {
+	            	$errorMessageSpan.hide();
+	            } else {
+	            	$errorMessageSpan.show();
+	            	jq().toastmessage('showErrorToast', "Form Validation violated. Check for errors");
 	            }
 
 	            return valid;
@@ -319,7 +341,7 @@
     </fieldset>
 
     <fieldset>
-      <legend>MUAC/z-score</legend>
+      <legend>Vitals</legend>
       <table width="100%" border="0" cellspacing="0" cellpadding="0" id="muac">
         <tr>
           <td colspan="2" valign="top" >
@@ -368,18 +390,22 @@
       <table width="100%" border="0" cellspacing="0" cellpadding="0" style="width:100%" id="drugs">
         <thead>
           <tr>
-            <th >  TB Treatment phase    </th>
-            <th >
-              <p>
-                <label>Name of drug</label>
-              </p>
+            <th style="width:20%">  
+            	<p>
+            		<label>TB Treatment phase</label>
+            	</p>    
             </th>
-            <th >
-              <p>
-                <label>Duration of treatment</label>
-              </p>
+            <th style="width:40%">
+              	<p>
+                	<label>Name of drug</label>
+              	</p>
             </th>
-            <th align="center"></th>
+            <th style="width:20%">
+              	<p>
+              		<label>Duration of treatment</label>
+              	</p>
+            </th>
+            <th align="center" style="width:10%"></th>
           </tr>
         </thead>
         <tbody>
@@ -387,7 +413,7 @@
             <template>
               <obsgroup groupingConceptId="163711">
                 <tr>
-                  <td >
+                  <td>
                     <p>
                       <obs 	conceptId="159792" 
                       		answerConceptIds="159794,159795" 
@@ -428,6 +454,12 @@
         </tbody>
       </table>
     </fieldset>
-    <submit/>
+    <section>
+        <submit/>
+        <span style="clear:none;float:none;margin:5px;display: none;"
+              class="error1" id="error-message">
+            You have errors in your form, please scroll up to see them.
+        </span>
+    </section>
   </div>
 </htmlform>
