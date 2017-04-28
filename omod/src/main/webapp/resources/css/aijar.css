@@ -22,6 +22,11 @@ header #session-location {
     z-index: 1;
 }
 
+/* Increase spacing between login location buttons on the login page */
+form#login-form ul#sessionLocation.select li {
+    margin: 5px 5px 0 0;
+}
+
 /* Fix the top alignment of the label from the fields */
 form label, .form label {
     margin-top: 0px;
@@ -73,7 +78,7 @@ form#htmlform div.ai-page-frame input[type="checkbox"], form#htmlform div.ai-pag
 	margin: 10px 10px;
 }
 
-form#htmlform div.ai-page-frame input[disabled="disabled"], form#htmlform div.ai-page-frame input[readonly="readonly"], form#htmlform div.ai-page-frame select[disabled="disabled"] {
+form#htmlform div.ai-page-frame input[disabled="disabled"], form#htmlform div.ai-page-frame input[readonly="readonly"], form#htmlform div.ai-page-frame select[disabled="disabled"], form#htmlform div.ai-page-frame input.locked,form#htmlform div.ai-page-frame select.locked {
 	background-color:#dad9d9 !important;
 }
 
@@ -155,6 +160,11 @@ form#htmlform div.ai-page-frame fieldset span.has-comment label {
 
 form#htmlform div.ai-page-frame fieldset span.has-comment label:first-of-type {
 	clear: none;
+}
+
+form#htmlform div.ai-page-frame fieldset span.has-comment.fit-one-line input[type="text"]{
+	min-width: 20% !important;
+	width: 30% !important;
 }
 
 form#htmlform div.ai-page-frame fieldset span.date-and-time input[type=text] {
