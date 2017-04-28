@@ -539,7 +539,7 @@
 	                        <p>
 	                            <label>Pre-ART Number</label>
 	                            <span id="pre-art-number">
-		                            <obs conceptId="9fc5bf9d-a79e-4548-9207-b2afbbeba796" />
+		                            <patient field="identifier" identifierTypeId="e1731641-30ab-102d-86b0-7a5022ba4115" />
 								</span>
 	                        </p>
 	                    </td>
