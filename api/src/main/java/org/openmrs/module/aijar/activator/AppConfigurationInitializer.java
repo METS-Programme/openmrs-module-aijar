@@ -59,9 +59,7 @@ public class AppConfigurationInitializer implements Initializer {
 			 }
  		}
 		catch (Exception e) {
-			Module mod = ModuleFactory.getModuleById(AijarConstants.MODULE_ID);
-			ModuleFactory.stopModule(mod);
-			throw new RuntimeException("failed to setup the module configuration ", e);
+			log.error("Failed to setup scheduled tasks ", e);
 		}
 		
 	}
