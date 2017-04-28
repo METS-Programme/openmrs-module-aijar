@@ -37,4 +37,52 @@ public class EncounterTypes {
             return "d0f9e0b7-f336-43bd-bf50-0a7243857fa6";
         }
     };
+
+    public static EncounterTypeDescriptor OPD_ENCOUNTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "OPD Encounter";
+        }
+
+        @Override
+        public String description() {
+            return "Outpatient Clinical Ecnounter";
+        }
+
+        public String uuid() {
+            return "ee4780f5-b5eb-423b-932f-00b5879df5ab";
+        }
+    };
+
+    public static EncounterTypeDescriptor TB_SUMMARY_ENCOUNTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "TB Summary (Enrollment)";
+        }
+
+        @Override
+        public String description() {
+            return "An encounter for the initial visit to the TB clinic";
+        }
+
+        public String uuid() {
+            return "334bf97e-28e2-4a27-8727-a5ce31c7cd66";
+        }
+    };
+
+    public static EncounterTypeDescriptor TB_FOLLOWUP_ENCOUNTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "TB Encounter (Followup)";
+        }
+
+        @Override
+        public String description() {
+            return "An encounter for a return visit to the TB clinic";
+        }
+
+        public String uuid() {
+            return "455bad1f-5e97-4ee9-9558-ff1df8808732";
+        }
+    };    
 }

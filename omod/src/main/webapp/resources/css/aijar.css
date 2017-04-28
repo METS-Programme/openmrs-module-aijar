@@ -78,7 +78,7 @@ form#htmlform div.ai-page-frame input[type="checkbox"], form#htmlform div.ai-pag
 	margin: 10px 10px;
 }
 
-form#htmlform div.ai-page-frame input[disabled="disabled"], form#htmlform div.ai-page-frame input[readonly="readonly"], form#htmlform div.ai-page-frame select[disabled="disabled"] {
+form#htmlform div.ai-page-frame input[disabled="disabled"], form#htmlform div.ai-page-frame input[readonly="readonly"], form#htmlform div.ai-page-frame select[disabled="disabled"], form#htmlform div.ai-page-frame input.locked,form#htmlform div.ai-page-frame select.locked {
 	background-color:#dad9d9 !important;
 }
 
