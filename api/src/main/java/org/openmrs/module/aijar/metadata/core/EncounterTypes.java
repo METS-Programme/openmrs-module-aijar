@@ -37,4 +37,20 @@ public class EncounterTypes {
             return "d0f9e0b7-f336-43bd-bf50-0a7243857fa6";
         }
     };
+
+    public static EncounterTypeDescriptor OPD_ENCOUNTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "OPD Encounter";
+        }
+
+        @Override
+        public String description() {
+            return "Outpatient Clinical Encounter";
+        }
+
+        public String uuid() {
+            return "ee4780f5-b5eb-423b-932f-00b5879df5ab";
+        }
+    };    
 }
