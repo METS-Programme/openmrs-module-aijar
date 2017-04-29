@@ -1,4 +1,4 @@
-<htmlform formName="HMIS 078 Integrated Postnatal Form"
+<htmlform formName="HMIS 078 Postnatal Form"
           formDescription="Encounter form for patients enrolled for PNC services"
           formEncounterType="fa6f3ff5-b784-43fb-ab35-a08ab7dbf074"
           formUuid="a6c5a8c3-c414-449f-a077-c2f6acbdd8b1"
@@ -328,7 +328,7 @@
     <!-- Beging of HTML Form -->
     <div class="ai-page-frame">
         <div class="headers" style="text-align: center;">
-            <h3 style="background: #FFFF7D; padding: 10px;">Integrated PostNatal Form</h3>
+            <h3 style="background: #FFFF7D; padding: 10px;">HMIS 078 Postnatal Form</h3>
         </div>
         <fieldset>
             <span class="hidden">
