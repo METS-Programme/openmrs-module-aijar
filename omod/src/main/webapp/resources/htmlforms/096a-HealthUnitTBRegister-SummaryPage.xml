@@ -691,24 +691,33 @@
         <tr>
           <td>
             <p>
-              <label>Treatment Outcome</label>
-              <obs 	conceptId="99423" 
-              		answerConceptIds="159791AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,90306,159874AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1366,5240" 
-              		answerLabels="Cured, Transferred out,Treatment failure,Died,Lost to follow up" 
-              		style="dropdown" id="treatment-outcome" />
+              	<label>Treatment Outcome</label>
+              	<obs 	conceptId="99423" 
+              			answerConceptIds="159791AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,90306,159874AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1366,5240" 
+              			answerLabels="Cured, Transferred out,Treatment failure,Died,Lost to follow up" 
+              			style="dropdown" id="treatment-outcome" />
             </p>
           </td>
           <td>
             <p>
-              <label>Date when outcome determined</label>
-              <obs conceptId="159787" />
+              	<label>Date when outcome determined</label>
+              	<obs conceptId="159787" />
             </p>
           </td>
           <td>
             <p>
-              <label>Transfer out to (Name of unit)</label>
-              <obs conceptId="90211" id="transfer-out-to" />
+              	<label>Transfer out to (Name of unit)</label>
+              	<obs conceptId="90211" id="transfer-out-to" />
             </p>
+          </td>
+          <td>
+          	<p>
+          		<label>Diagnosed with Drug Resistant TB</label>
+          		<obs 	conceptId="160039" 
+          				answerConceptIds="1065,1066" 
+          				answerLabels="Yes,No" 
+          				style="radio" class="horizontal-layout-options"/>
+          	</p>
           </td>
         </tr>
         <tr>
