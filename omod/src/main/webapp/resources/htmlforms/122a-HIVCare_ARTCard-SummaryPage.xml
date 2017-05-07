@@ -22,8 +22,8 @@
             var message4 = "Must be earlier or on the same day as HIV enrolled";
             var message5 = "Must be after ART Start Date";
             var message6 = "Must be after ART Transfer Date";
-            var message7 = "Either This or Art Transfer Date Must be filled";
-            var message8 = "Either This or Art Start Date Must be filled";
+            var message7 = "Either This or Art Transfer Date Must be filled if you have switching or substitution dates filled";
+            var message8 = "Either This or Art Start Date Must be filled if you have switching or substitution dates filled";
 
             var submitValStage = [];
             var submitValStageART = [];
@@ -76,7 +76,7 @@
 
             if (submitValStage.indexOf(false) != -1) {
                 submitVal = false;
-                jq().toastmessage('showErrorToast', "Form Validation violated. Check for errors");
+                jq().toastmessage('showErrorToast', "  There are errors during the valdation of the data on the form. Please correct them and submit again");
             }
 
             return submitVal;
