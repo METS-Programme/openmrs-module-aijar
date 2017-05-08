@@ -1,0 +1,463 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<htmlform formName="HMIS 096A Health Unit TB form-Follow up page"
+          formDescription="HMIS 096A Health Unit TB form-Follow up page"
+          formEncounterType="455bad1f-5e97-4ee9-9558-ff1df8808732"
+          formUuid="b609b3f0-6fa8-4764-976e-625f0683b690"
+          formVersion="1.0"
+          formAddMetadata="yes"
+          formUILocation="patientDashboard.visitActions"
+          formOrder="2"
+          formIcon="icon-medkit"
+          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='8ab22b55-9a17-4121-bf08-6134a9a2439f'"
+          formDisplayStyle="Standard"
+          formLabel="HMIS 096A Health Unit TB form-Follow up page">
+    <includeIf velocityTest="$fn.allEncounters('334bf97e-28e2-4a27-8727-a5ce31c7cd66').size() == 0">
+        <script>
+            jq(function () {
+                alert('This patient has no Summary page, you will now be forwarded to the patient dashboard');
+
+                /*
+                 * queryParameters -> handles the query string parameters
+                 * queryString -> the query string without the fist '?' character
+                 * re -> the regular expression
+                 * m -> holds the string matching the regular expression
+                 */
+                var queryParameters = {}, queryString = location.search.substring(1),
+                        re = /([^&amp;=]+)=([^&amp;]*)/g, m;
+
+                // Creates a map with the query string parameters
+                while (m = re.exec(queryString)) {
+                    queryParameters[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+                }
+
+                /*
+                 * Replace the query portion of the URL.
+                 * jQuery.param() -> create a serialized representation of an array or
+                 *     object, suitable for use in a URL query string or Ajax request.
+                 */
+                location.href = window.location.protocol + "//" + window.location.host +
+                        '/' + OPENMRS_CONTEXT_PATH + '/coreapps/clinicianfacing/patient.page?patientId='
+                        + queryParameters['patientId']; // Causes page to reload
+            });
+        </script>
+    </includeIf>
+
+	<style type="text/css">
+	    table#drugs tbody td {
+	        width: 25;
+	        border: 1px solid rgb(199, 199, 199) !important;
+	    }
+
+	    table#drugs td.duration-of-treatment input {
+	        min-width: 20%;
+	        width: 25px !important;
+            margin: 5px 5px 0 0;
+	    }
+
+	    table#drugs td.duration-of-treatment select {
+	        min-width: 20%;
+	        width: 50% !important;
+	        clear: none !important;
+	    }
+
+	    .inError {
+	        border: 2px dotted #ff0000 !important;
+	    }
+
+		form#htmlform div.ai-page-frame table>tbody tr:nth-child(odd) td {
+			background: #eeeeee;
+		}
+
+		form#htmlform div.ai-page-frame table>tbody tr:nth-child(even) td {
+			background: #f9f9f9;
+		}
+
+		#encounter input {
+			min-width: 20% !important;
+			width: 20% !important;
+		}
+
+	</style>
+
+	<script type="text/javascript">
+	    /*
+	    Transfer in Unit-TB Number	Only applicable if Transfer In - done -
+	    CPT Start Date	Required/Enabled if patient is on CPT -done
+	    ART Start Date	Required/Enabled if patient is on ART -done -
+	    ART Number	Required/Enabled if patient is on ART -done-
+	    No of children in contact	should always be greater than no of children on IPT -done-
+	    INR No.	should only be enabled/Reqired if MUAC Colour Code is red or yellow -done
+	    Transfer out to	Required/Enabled if treatment outcome is 'transfer out' -done -
+	    MUAC/z-score section	applicable for clients aged 6months and above and below 15 years -done -
+	    */
+
+	    if (jQuery) {
+	        jq(document).ready(function () {
+	            if (jq.browser.msie) {
+	                jq(":checkbox").click(function () {
+	                    jq(this).change();
+	                });
+	            }
+	        });
+	    }
+
+	    jQuery().ready(function(jq){
+	    	const YELLOW_CONCEPT_ID = 99029;
+	    	const RED_CONCEPT_ID = 99028;
+
+	        var $muacColorCodeField,
+				$inrNumberField;
+
+	        $muacColorCodeField = getField('muac-color-code.value');
+	        $inrNumberField = jq('#inr-number').find('input');
+
+	        var muacColorCodeChange = function() {
+	            var muacColorCodeValue = getValue('muac-color-code.value');
+	            if (muacColorCodeValue == YELLOW_CONCEPT_ID || muacColorCodeValue == RED_CONCEPT_ID) {
+	                fieldHelper.enable($inrNumberField);
+	            } else {
+	                fieldHelper.disable($inrNumberField);
+	            }
+	        };
+
+	        /**
+	        * Validation for the TB Drugs section
+	        * This validation check works this way:
+	        * For each visible row, If any text box or combo box is non-empty, check if there's any other text box or combobox within the same row that is empty.
+	        * If so, validation fails and the elements with missing values are highlighted
+	        */
+	        var drugsValidated = function () {
+	            var $rows,
+	                $objectsToValidate;
+	            var dirty = false;
+
+	            $rows = jq('table#drugs&gt;tbody tr:visible');
+	            $rows.each(function () {
+	                $objectsToValidate = jq(this).find('input,select'); //Get all text and combo boxes
+	                $objectsToValidate.removeClass('inError');
+	                $objectsToValidate.each(function () {
+	                    $obj = jq(this);
+	                    if ($obj.val() !== '') { //Only run the validatiion check if there's at least one element that is non-empty
+	                        $objectsToValidate.each(function () {
+	                        	var $errorContainer = jq(this).siblings('span.error');
+		                    	if (jq(this).is('input[type="radio"]')) { //Validate Radio Buttons
+		                    		var $checkedBoxes = jq(this).parents('span:first').find('input').filter(function() {
+		                    			return this.checked;
+		                    		});
+									if ($checkedBoxes.length == 0) {
+										$errorContainer.html('Required').show()
+		                                dirty = true;
+									} else {
+										$errorContainer.html('').hide()
+									}
+		                    	} else {
+		                            if (jq(this).val() === '') {
+		                                jq(this).addClass('inError');
+		                                $errorContainer.html('Required').show()
+		                                dirty = true;
+		                            } else {
+		                                $errorContainer.html('').hide();
+		                            }
+		                    	}
+	                        });
+	                    }
+	                });
+	            });
+
+	            return !dirty;
+	        }
+
+	        $muacColorCodeField.change(muacColorCodeChange);
+
+	        muacColorCodeChange();
+
+	        beforeSubmit.push(function(){
+	            var valid = true;
+	            var $errorMessageSpan = jq('span#error-message');
+
+	            if (!drugsValidated()) {
+	                valid = false;
+	            }
+
+	            if (valid) {
+	            	$errorMessageSpan.hide();
+	            } else {
+	            	$errorMessageSpan.show();
+	            	jq().toastmessage('showErrorToast', "Form Validation violated. Check for errors");
+	            }
+
+	            return valid;
+	        });
+
+	    });
+
+	    jQuery(document).ready(function(jq) {
+	        //Adding new form
+	        var $allRows,
+	            $otherRows,
+	            $firstRow,
+	            $thisRow,
+	            $nextRow,
+	            $hiddenRows,
+	            $lastVisibleRow,
+	            $nonEmptyBoxes;
+
+	        var showAddButtonForLastVisibleRow = function() {
+	            $lastVisibleRow = $('table#drugs &gt; tbody &gt; tr:visible:last');
+	            $lastVisibleRow.find('.add').show('slow');
+	        };
+
+	        $allRows = jq('table#drugs &gt; tbody &gt; tr');
+	        $firstRow = jq('table#drugs tbody tr:first-of-type');
+	        $otherRows = jq('table#drugs tbody tr:not(:first-of-type)');
+
+	        <ifMode mode="ENTER">
+	            $otherRows.hide(); //Hide all rows apart from first row if adding new form
+	        	$firstRow.find('.remove').hide(); //Hide the remove button from the first row
+	        </ifMode>
+
+	        <ifMode mode="EDIT">
+	            //Handle loading of existing obs
+	            $allRows.hide();
+	        	$nonEmptyBoxes = jq('table#drugs tbody tr input[type=text],table#drugs tbody tr select').filter(function() {
+	            	return this.value.length > 0;
+		        });
+		        
+		        if ($nonEmptyBoxes.length &gt; 0 ) {
+		            $nonEmptyBoxes.each(function() {
+		                $thisRow = jq(this).parents('tr:first');
+		                $thisRow.show();
+		            });
+
+		            if ($nonEmptyBoxes.length == 1) {
+		                $nonEmptyBoxes.parents('tr:first').find('.remove').hide(); //Hide the remove button if there is only one visible row
+		            }
+
+		        } else {
+		            $firstRow.show();
+		        	$firstRow.find('.remove').hide();
+		    	}
+	        </ifMode>
+
+	        jq('.add').click(function(e) { //Handle add button event
+	            e.preventDefault();
+	            $thisRow = jq(this).parents('tr:first');
+	            $nextRow = $thisRow.next();
+
+	            if ($nextRow.length &gt; 0) {
+	                $nextRow.show();
+	                $thisRow.find('.add').hide();
+	            }
+	            showAddButtonForLastVisibleRow();
+	        });
+
+		    jq('.remove').click(function(e) { //Handle remove button event
+		        e.preventDefault();
+		        if (confirm('Are you sure you want to remove this record? All fields for this record will be cleared.') == 1) {
+			        $thisRow = jq(this).parents('tr:first');
+			        $thisRow.hide('slow', function() {
+			        	fieldHelper.clearAllFields($thisRow);
+				        showAddButtonForLastVisibleRow();
+			        });
+			    }
+		    });
+	    });
+	</script>
+
+  <div class="ai-page-frame">
+    <div class="headers" style="text-align: center;">
+      <h3 style="background: #FFFF7D; padding: 10px;">HMIS 096A Health Unit TB Form - Followup</h3>
+    </div>
+
+	<fieldset>
+	<legend>Encounter details</legend>
+		<table>
+		  <tbody>
+		    <tr>
+		      <td colspan="4" id="encounter">
+		        <p>
+		          <label>
+		            <span class="required">*</span>Follow up visit date:
+		          </label>
+		          <encounterDate default="today" disallowMultipleEncountersOnDate="block" />
+		        </p>
+		        <span style="display: none;">
+		          <encounterLocation default="8ab22b55-9a17-4121-bf08-6134a9a2439f"
+		                             order="8ab22b55-9a17-4121-bf08-6134a9a2439f" />
+		        </span>
+		      	<p class="hidden">
+					<label>
+						<span class="required">*</span> Provider:
+					</label>
+					<encounterProvider 	role="Provider" 
+										style="autocomplete" 
+										required="required" 
+										default="currentUser" />
+		        </p>
+		      </td>
+		    </tr>
+		  </tbody>
+		</table>
+	</fieldset>
+
+    <fieldset>
+      <legend>Results of sputum and other examinations</legend>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <p>
+              <label>Sputum smear results</label>
+              <obs 	conceptId="307" 
+              		answerConceptIds="1118,664,1362,1363,1364,1365,163417AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,163418AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,164428,164429,164430,159985,703,160008" 
+              		answerLabels="ND - Not Done, NEG- Negative, 1AFB/100, 2AFB/100, 3AFB/100, 4AFB/100,5AFB/100,6AFB/100,7AFB/100,8AFB/100,9AFB/100,Scanty,Positive,contaminated specimen" 
+              		style="dropdown" />
+            </p>
+          </td>
+          <td >
+            <p>
+              <label>Examination Date</label>
+              <obs conceptId="99392" />
+            </p>
+          </td>
+          <td >
+            <p>
+              <label>Drug Susceptibility Testing (DST) Results</label>
+              <obs 	conceptId="159984AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
+              		answerConceptIds="164366,164432,159345,664,164367,159346" 
+              		answerLabels="Rif Monoresistant,INH Monoresistant,MDR Confirmed,Polyresistant,Pan Sensitive,XDR Confirmed" 
+              		style="dropdown" />
+            </p>
+          </td>
+          <td >
+            <p>
+              <label>Date of DST results</label>
+              <obs conceptId="164396" />
+            </p>
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+
+    <fieldset>
+      <legend>Vitals</legend>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" id="muac">
+        <tr>
+          <td colspan="2" valign="top" >
+            <p>
+              <label>Weight for age z-score</label>
+              <obs 	conceptId="1854AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
+              		answerConceptIds="115,99271,99272" 
+              		answerLabels="N-Normal,MAM-Moderate Acute Mulnutrition,SAM-Severe Acute Mulnutrition" 
+              		style="dropdown" />
+            </p>
+          </td>
+          <td colspan="2" valign="top" >
+            <p>
+              <label>Height/Length for age z-score</label>
+              <obs 	conceptId="164088" 
+              		answerConceptIds="1115,164085" 
+              		answerLabels="N-Normal,S-Stunting" />
+            </p>
+          </td>
+          <td valign="top">
+            <p>
+              <label>MUAC</label>
+              <obs 	conceptId="99030" 
+	              	answerConceptIds="99028,99027,99029" 
+	              	answerLabels="Red,Green,Yellow" 
+	              	id="muac-color-code" 
+	              	style="dropdown" />
+            </p>
+          </td>
+          <td valign="top" >
+            <p>
+              <label>INR No</label>
+              <span id="inr-number">
+                <patient  	field="identifier" 
+                			identifierTypeId="d4b21726-e908-4b1a-abab-b5f87cd01c18" 
+                			id="inr-no" required="false" />
+              </span>
+            </p>
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+
+    <fieldset>
+      <legend>Issue of anti-TB drug</legend>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" style="width:100%" id="drugs">
+        <thead>
+          <tr>
+            <th style="width:20%">  
+            	<p>
+            		<label>TB Treatment phase</label>
+            	</p>    
+            </th>
+            <th style="width:40%">
+              	<p>
+                	<label>Name of drug</label>
+              	</p>
+            </th>
+            <th style="width:20%">
+              	<p>
+              		<label>Duration of treatment</label>
+              	</p>
+            </th>
+            <th align="center" style="width:10%"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <repeat>
+            <template>
+              <obsgroup groupingConceptId="163711">
+                <tr>
+                  <td>
+                    <p>
+                      <obs 	conceptId="159792" 
+                      		answerConceptIds="159794,159795" 
+                      		answerLabels="Intensive Phase, Continous Phase" 
+                      		style="radio" class="vertical-layout-options" />
+                    </p>
+                  </td>
+                  <td>
+                    <p>
+                      <obs 	conceptId="1282" 
+                      		answerConceptSetIds="160021" 
+                      		style="dropdown" />
+                    </p>
+                  </td>
+                  <td class="duration-of-treatment">
+                    <p>
+                      <obs conceptId="159368"/>
+                      <obs conceptId="1732" answerConceptIds="1072,1073,1074" />
+                    </p>
+                  </td>
+                  <td align="center">
+                    <a href="#" class="add">Add</a> | <a href="#" class="remove">Remove</a>
+                  </td>
+                </tr>
+              </obsgroup>
+            </template>
+            <render />
+            <render />
+            <render />
+            <render />
+            <render />
+            <render />
+            <render />
+            <render />
+            <render />
+            <render />
+          </repeat>
+        </tbody>
+      </table>
+    </fieldset>
+    <section>
+        <submit/>
+        <span style="clear:none;float:none;margin:5px;display: none;"
+              class="error1" id="error-message">
+            You have errors in your form, please scroll up to see them.
+        </span>
+    </section>
+  </div>
+</htmlform>

@@ -1,591 +1,741 @@
-<htmlform formName="HMIS 078 Integrated Postnatal Register"
-          formDescription="Entry form for patients enrolled for PNC services"
+<htmlform formName="HMIS 078 Integrated Postnatal Form"
+          formDescription="Encounter form for patients enrolled for PNC services"
           formEncounterType="fa6f3ff5-b784-43fb-ab35-a08ab7dbf074"
           formUuid="a6c5a8c3-c414-449f-a077-c2f6acbdd8b1"
-          formVersion="1.2"
+          formVersion="1.3"
           formAddMetadata="yes"
           formUILocation="patientDashboard.visitActions"
           formOrder="11"
           formIcon="icon-medkit"
           formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='e9bc61b5-69ff-414b-9cf0-0c22d6dfca2b'"
           formDisplayStyle="Standard"
-          formLabel="PNC Register Form">
-    <macros>
-        headerColor =#8fabc7
-        fontOnHeaderColor = white
-    </macros>
+          formLabel="PNC Encounter Form">
 
+    <ifMode mode="ENTER,EDIT">
+        <includeIf velocityTest="$fn.allEncounters('a9f11592-22e7-45fc-904d-dfe24cb1fc67').size() == 0">
+            <script>
+                jq(function () {
+                    alert('This patient has no Maternity encounter, you will now be forwarded to the patient dashboard');
 
-    <style type="text/css">
-        .error {
-            color: red;
-        }
+                    /*
+                     * queryParameters -> handles the query string parameters
+                     * queryString -> the query string without the fist '?' character
+                     * re -> the regular expression
+                     * m -> holds the string matching the regular expression
+                     */
+                    var queryParameters = {}, queryString = location.search.substring(1),
+                            re = /([^&amp;=]+)=([^&amp;]*)/g, m;
 
-        table td {
-            background: #FFFFFF;
-            color: #404040;
-        }
-
-        form select, .form select {
-            min-width: 0px;
-        }
-
-        form input, form select, form textarea, form ul.select, .form input, .form select, .form textarea, .form
-        ul.select {
-            background-color: #FBFBFB;
-            border: 1px solid #404040;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            padding: 10px;
-            min-width: 50%;
-        }
-
-        table th, table td {
-            border: 1px solid #756F6F;
-            text-align: center;
-        }
-
-        table {
-            margin: 20px 0px;
-        }
-
-        .rotate-text {
-            -ms-transform: rotate(-90deg); /* IE 9 */
-            -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
-            transform: rotate(-90deg);
-        }
-
-        thead tr {
-            height: 70px;
-        }
-
-        .resize-cell-width {
-            width: 22px;
-        }
-
-    </style>
-
-    <script type="text/javascript">
-        function enable_disable(field, class_name_prefix, conditions, input_type) {
-
-            var class_name = jq(field).attr("class");
-
-            var length = class_name.length;
-
-            var class_id = parseInt(class_name.substring(length - 1, length));
-            var childClass = "Child" + class_id;
-
-            var disable = true;
-            var requires = true;
-
-            var row = '[class^="' + class_name_prefix + '"][class*="' + childClass + '"]';
-
-            var selected_value = null;
-
-            if (input_type == "select") {
-                selected_value = jq(field).find(":selected").text().trim().toLowerCase();
-            }
-            else if (input_type == "hidden") {
-                selected_value = jq(field).find("input[type=hidden]").val().trim().toLowerCase();
-            }
-
-
-            if (eval(conditions)) {
-                disable = false;
-            }
-
-
-            jq(row).each(function () {
-                var group = jq(this);
-
-                if (class_name.indexOf('Child') == -1) {
-                    // group.find("input").attr("value", "");
-                    group.find("input").attr("required", requires);
-                    // group.find('select').prop("selectedIndex", 0);
-                    group.find("input").attr("disabled", disable);
-                    group.find('select').attr("disabled", disable);
-
-                    if (disable) {
-                        // fade out the fields that are disabled
-                        group.find("input").fadeTo(250, 0.25);
-                        group.find("select").fadeTo(250, 0.25);
-                    } else {
-                        // remove the fade on the fields
-                        group.find("input").fadeTo(250, 1);
-                        group.find("select").fadeTo(250, 1);
-                    }
-                }
-            });
-        }
-
-
-        function enable_disable_district_tb_reg(selected_option) {
-
-            var class_name = jq(selected_option).attr("class");
-
-            var length = class_name.length;
-
-            var class_id = parseInt(class_name.substring(length - 1, length))
-
-            var row_id = class_id;
-
-            var disable = true;
-            var requires = false;
-
-            var row_1 = '[class^="DistrictTbReg"][class*="Child1"]';
-
-            var xx = row_1;
-            var selected_value = jq(selected_option).find(":selected").text()
-
-            selected_value = selected_value.trim().toLowerCase();
-
-            if (selected_value == "tb rx") {
-                disable = false;
-                requires = true;
-            }
-
-            switch (row_id) {
-                case 1:
-                    xx = row_1;
-                    break;
-            }
-
-
-            jq(xx).each(function () {
-                var group = jq(this);
-
-                if (class_name.indexOf('Child') == -1) {
-                    // group.find("input").attr("value", "");
-                    group.find("input").attr("required", requires);
-                    // group.find('select').prop("selectedIndex", 0);
-                    group.find("input").attr("disabled", disable);
-                    group.find('select').attr("disabled", disable);
-                    if (requires == false) {
-                        group.find('.required').show();
-                    }
-                    else if (requires == true) {
-                        group.find('.required').hide();
+                    // Creates a map with the query string parameters
+                    while (m = re.exec(queryString)) {
+                        queryParameters[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
                     }
 
-                    if (disable) {
-                        // fade out the fields that are disabled
-                        group.find("input").fadeTo(250, 0.25);
-                        group.find("select").fadeTo(250, 0.25);
-                    } else {
-                        // remove the fade on the fields
-                        group.find("input").fadeTo(250, 1);
-                        group.find("select").fadeTo(250, 1);
-                    }
-
-                }
-            });
-        }
-
-
-        if (jQuery) {
-            jq(document).ready(function () {
-                if (jq.browser.msie) {
-                    jq(":checkbox").click(function () {
-                        jq(this).change();
-                    });
-                }
-
-                jq('[class^="RegimenEnableDisable"]').change(function () {
-                    enable_disable(jq(this), "Regimen", 'selected_value == "other"', "select");
+                    /*
+                     * Replace the query portion of the URL.
+                     * jQuery.param() -> create a serialized representation of an array or
+                     *     object, suitable for use in a URL query string or Ajax request.
+                     */
+                    location.href = window.location.protocol + "//" + window.location.host +
+                            '/' + OPENMRS_CONTEXT_PATH + '/coreapps/clinicianfacing/patient.page?patientId='
+                            + queryParameters['patientId']; // Causes page to reload
                 });
+            </script>
+        </includeIf>
+    </ifMode>
 
-                jq('[class^="RegimenEnableDisable"]').each(function () {
-                    enable_disable(jq(this), "Regimen", 'selected_value == "other"', "select");
-                });
+	<style type="text/css">
 
+		form#htmlform div.ai-page-frame table>tbody tr:nth-child(odd) td {
+			background: #eeeeee;
+		}
 
-                jq('[class^="ViralLoadEnableDisable"]').change(function () {
-                    enable_disable(jq(this), "ViralLoad", 'selected_value != "not detected" &amp;&amp; selected_value!=""', "select");
-                });
+		form#htmlform div.ai-page-frame table>tbody tr:nth-child(even) td {
+			background: #f9f9f9;
+		}
 
-                jq('[class^="ViralLoadEnableDisable"]').each(function () {
-                    enable_disable(jq(this), "ViralLoad", 'selected_value != "not detected" &amp;&amp; selected_value!=""', "select");
-                });
+		form#htmlform div.ai-page-frame fieldset#child-information table {
+			margin: 0 0 5px 0;
+		}	
 
-                jq('[class^="FamilyPlanningEnableDisable"]').change(function () {
-                    enable_disable(jq(this), "FamilyPlanning", 'selected_value == "other"', "select");
-                });
+	</style>
 
-                jq('[class^="FamilyPlanningEnableDisable"]').each(function () {
-                    enable_disable(jq(this), "FamilyPlanning", 'selected_value == "other"', "select");
-                });
+	<script type="text/javascript">
 
-            });
-        }
-    </script>
+		jQuery(document).ready(function(jq) {
 
+			const OTHER_CONCEPT_ID = 5622;
+	        const VIRAL_LOAD_RESULTS_CONCEPT_ID = 1305;
+	        const VIRAL_LOAD_DETECTED_CONCEPT_ID = 1301;
+	        const VIRAL_LOAD_NOT_DETECTED_CONCEPT_ID = 1306;
+	        const VIRAL_LOAD_SAMPLE_REJECTED_CONCEPT_ID = 1304;
 
-    <!-- Beginning of HTML Form -->
+	        const HIV_STATUS_CONCEPT_ID = 90253;
+	        const HIV_POSITIVE_CONCEPT_ID = 90166;
+	        const HIV_NEGATIVE_CONCEPT_ID = 90167;
+
+	        const YES_CONCEPT_ID = 1065;
+	        const NO_CONCEPT_ID = 1066;
+
+	        const HIV_INFORMATION_SECTION = '#hiv-information-section';
+	        const PRE_ART_NUMBER_FIELD = '#pre-art-number';
+	        const ARVS_ADMINISTERED_TO_BABY_FIELD = '#arvs-administered-to-baby';
+
+	        var $hivStatusField = getField('hiv-status.value');
+	        var $viralLoadResultsField = getField('viral-load-results.value');
+	        var $arvsToMotherField = getField('arvs-to-mother.value');
+	        var $encounterDateField = jq('#encounter-date').find('input[type="hidden"]');
+			var $arvsGivenField = getField('arvs-given.value');
+			var $preArtNumberField = jq('span#pre-art-number').find('input[type="text"]');
+
+	        var viralLoadResultsChange = function() {
+	            var $viralLoadResults = getValue('viral-load-results.value');
+	            var $viralLoadField = getField('viral-load.value');
+
+	            fieldHelper.removeReadonly($viralLoadField);
+	            fieldHelper.enable($viralLoadField);
+	            if ($viralLoadResults == VIRAL_LOAD_NOT_DETECTED_CONCEPT_ID) { //if viral load quantitive is 'not detected' set a viral load count of 1
+	                $viralLoadField.val(1);
+	                $viralLoadField.change();
+	                fieldHelper.makeReadonly($viralLoadField);
+	            } else if($viralLoadResults == VIRAL_LOAD_DETECTED_CONCEPT_ID) { //if viral load quantitive is 'detected' allow for entry of viral load count
+	                if ($viralLoadField.val() == 1) {
+		                $viralLoadField.val("");
+		                $viralLoadField.change();
+	                }
+	            } else { //if viral load quantitive is 'rejected' clear viral load count field
+	                $viralLoadField.val("");
+	                $viralLoadField.change();
+	                fieldHelper.disable($viralLoadField);
+	            }
+	        };
+
+	        /**
+	        * This function checks if the HIV status field has been locked(Contains the 'locked' class )
+	        */
+	        var isHivStatusFieldLocked = function () {
+	            return $hivStatusField.is('.locked');
+	        }
+
+	        var hivStatusChange = function () {
+	            var $hivStatus = getValue('hiv-status.value');
+	            var $hivInformationSection = jq(HIV_INFORMATION_SECTION);
+	            var $arvsAdministeredToBabyField = jq(ARVS_ADMINISTERED_TO_BABY_FIELD).find('input');
+
+	            if ($hivStatus == HIV_POSITIVE_CONCEPT_ID) {
+	                fieldHelper.enable($hivInformationSection.find('input'));
+	                fieldHelper.enable($arvsAdministeredToBabyField);
+	                fieldHelper.enable($hivInformationSection.find('input,select'));
+	                fieldHelper.enable($arvsToMotherField);
+	                fieldHelper.enable($arvsGivenField);
+	                fieldHelper.enable($preArtNumberField);
+	            } else {
+	                $hivInformationSection.find('input,select').each(function() {
+	                	var isEmtctCodeField = jq(this).parents('span:first').length &gt; 0 &amp;&amp; jq(this).parents('span:first').attr('class').indexOf('emtct-code') != -1; //Check if current control is an eMTCT Code field
+
+	                    if (jq(this).attr('id') == $hivStatusField.attr('id') || isEmtctCodeField ) {
+	                        fieldHelper.enable(jq(this));
+	                    } else {
+	                        fieldHelper.disable(jq(this));
+	                    }
+	                });
+	                fieldHelper.disable($arvsAdministeredToBabyField);
+	                fieldHelper.disable($arvsToMotherField);
+	                fieldHelper.disable($arvsGivenField);
+	                fieldHelper.disable($preArtNumberField);
+	            }
+	            viralLoadResultsChange();
+	        };
+
+	        var $othersField = jq('span.has-comment input[type=checkbox], span.has-comment select');
+
+	        var toggleOtherSpecify = function() {
+	            $othersField.each(function(){
+	                var $specifyField = jq(this).siblings('input[type=text]');
+	                if (jq(this).attr('checked') == 'checked' || jq(this).val() == OTHER_CONCEPT_ID) {
+	                    fieldHelper.removeReadonly($specifyField);
+	                } else {
+	                    fieldHelper.makeReadonly($specifyField);
+	                    $specifyField.val('');
+	                    $specifyField.change();
+	                }
+	            });
+	        };
+
+		    var isOtherSelectedAndSpecified = function() {
+		    	var valid = true;
+		        $othersField.each(function(){
+		            var $specifyField = jq(this).siblings('input[type=text]');
+		            var $errorField = jq(this).siblings('span.error');
+		            if ((jq(this).attr('checked') == 'checked' || (jq(this).is('select') &amp;&amp; jq(this).val() == OTHER_CONCEPT_ID)) &amp;&amp;  $specifyField.val() == '') {
+		                $errorField.html('Please specify').show();
+		                $specifyField.addClass('error');
+		                valid = false;
+		            } else {
+		            	$errorField.html('').hide();
+		            	$specifyField.removeClass('error');
+		            }
+
+		        });
+
+		        return valid;
+		    };
+
+		    var getHivStatus = function () {
+		    	/**
+		    	* HIV Status field should be selected if patient is HIV +ve 
+		    	*/
+
+				var hivStatus = <lookup complexExpression="#set ($hivStatus = $fn.earliestObs(HIV_STATUS_CONCEPT_ID).valueCoded)
+															#if ($hivStatus) $hivStatus;
+															#else '';
+															#end" />
+
+				if (hivStatus == HIV_POSITIVE_CONCEPT_ID) {
+					$hivStatusField.val(hivStatus);
+				}
+
+				/**
+				* Make HIV Status field not changeable only if the encounter date of the ART summary 
+				* page encounter (as we shall be entering retrospective data) is before the date of 
+				* the visit for which data is being entered
+				*/
+				var visitDate = $encounterDateField.val();
+				var artSummaryEncounterDate = <lookup complexExpression="#set ($artSummaryEncounterDate = $fn.latestEncounter('8d5b27bc-c2cc-11de-8d13-0010c6dffd0f').encounterDatetime)
+																		#if ($artSummaryEncounterDate) '$artSummaryEncounterDate';
+																		#else '';
+																		#end"/>
+				if (artSummaryEncounterDate !='' &amp;&amp; artSummaryEncounterDate &lt; visitDate) {
+					$hivStatusField.addClass('locked');
+					$hivStatusField.val(HIV_POSITIVE_CONCEPT_ID);
+					$hivStatusField.change();
+				} else {
+					fieldHelper.enable($hivStatusField);
+				}
+		    };
+
+	        $viralLoadResultsField.change(viralLoadResultsChange);
+	        $hivStatusField.change(function(){
+	            if (isHivStatusFieldLocked()) {
+					setValue('hiv-status.value',HIV_POSITIVE_CONCEPT_ID);
+	            } else {
+	            	hivStatusChange();
+	            }
+	        });
+	        $othersField.change(toggleOtherSpecify);
+	        $encounterDateField.change(getHivStatus);
+			
+			getHivStatus();
+	        viralLoadResultsChange();
+	        hivStatusChange();
+			toggleOtherSpecify();
+
+			beforeSubmit.push(function() {
+	            var valid = true;
+	            var $errorMessageSpan = jq('span#error-message');
+
+	            if (!isOtherSelectedAndSpecified()) {
+	            	valid = false;
+	            }
+
+	            if (valid) {
+	            	$errorMessageSpan.hide();
+	            } else {
+	            	$errorMessageSpan.show();
+	            	jq().toastmessage('showErrorToast', "Form Validation violated. Check for errors");
+	            }
+
+	            return valid;
+
+			});
+
+		});
+		
+	</script>
+
+    <!-- Beging of HTML Form -->
     <div class="ai-page-frame">
         <div class="headers" style="text-align: center;">
-            <h3 style="background: #004616; padding: 10px; color: #fff;">Integrated Postnatal Register</h3>
+            <h3 style="background: #FFFF7D; padding: 10px;">Integrated PostNatal Form</h3>
         </div>
-        <section>
-            <table class="enrollment">
-                <tbody>
+        <fieldset>
+            <span class="hidden">
+                <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
+                                   order="629d78e9-93e5-43b0-ad8a-48313fd99117" />
+            </span>
+            <legend>Visit Summary</legend>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                     <td>
-                        <label>Date</label>
-                        <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
+                        <p id="encounter-date">
+                            <label>Date</label>
+                            <encounterDate default="today" disallowMultipleEncountersOnDate="block" />
+                        </p>
                     </td>
                     <td>
-                        <label>Attending Clinician:</label>
-                        <encounterProvider role="Provider" style="autocomplete"/>
-                    </td>
-                    <td>
-                        <label>Client No:</label>
-                        <patient field="identifier" identifierTypeId="758ef6e4-9ceb-4137-bc8d-9246dc7b41fe"
-                                 required="true"/>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </section>
-       <span style="display: none;">
-            <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
-                               order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
-        </span>
-        <section>
-            <table class="table table-bordered custom-table">
-                <tr>
+                        <p class="hidden">
+                            <label>Provider</label>
+                            <encounterProvider role="Provider" type="autocomplete" default="currentUser" />
+                        </p>
+                        <p>
+                            <label>Serial</label>
+                        </p>
+                        <p>
+                            <obs conceptId="1646AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
 
-                    <td style="width:15%;">Mother's Name</td>
-                    <td style="width: 15%;">
-                        <obs conceptId="163142"/>
+                        </p>
                     </td>
-                    <td style="width:15%;">Father's Name</td>
-                    <td colspan="3">
-                        <obs conceptId="163143"/>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>Village</td>
                     <td>
-                        <obs conceptId="99137"/>
+                        <p>
+                            <label>Client Number</label>
+                            <patient field="identifier" identifierTypeId="758ef6e4-9ceb-4137-bc8d-9246dc7b41fe"
+                                     required="true" />
+                        </p>
                     </td>
-                    <td>Parish</td>
                     <td>
-                        <obs conceptId="99136"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Telephone No</td>
-                    <td colspan="3">
-                        <obs conceptId="162889" id="162889"/>
+                        <p>
+                            <label>Timing for PNC Visit</label>
+                            <obs 	conceptId="1732AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
+                            		answerConceptIds="1822AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1072AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1073AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1074AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                            		answerLabels="6 Hours, 6 Days, 6 Weeks, 6 Months" style="dropdown" />
+                        </p>
                     </td>
                 </tr>
             </table>
-        </section>
+        </fieldset>
 
+        <fieldset>
+            <legend>Mother's Information</legend>
+            <section>
+	            <table width="100%" border="0" cellspacing="0" cellpadding="0" id="mothers-information-section">
+	                <tr>
+	                    <td>
+	                        <p>
+	                            <label>Family Planning Given</label>
+	                            <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
+	                                 answerConceptIds="38aa1dc0-1aaa-4bdd-b26f-28f960dfb16c,4b0899f2-395e-4e0f-8b58-d304b214615e,                           670b7048-d71e-483a-b2ec-f10d2326dd84,dc882c84-30ab-102d-86b0-7a5022ba4115,aeee4ccf-cbf8-473c-9d9f-846643afbf11,
+	                                 dcb30ba3-30ab-102d-86b0-7a5022ba4115,dcb30381-30ab-102d-86b0-7a5022ba4115,dcb2fba9-30ab-102d-86b0-7a5022ba4115,dcdd8d8d-30ab-102d-86b0-7a5022ba4115,bb83fd9d-24c5-4d49-89c0-97e13c792aaf,dcdd91a7-30ab-102d-86b0-7a5022ba4115,
+	                                 aaf150a5-92d2-416f-8254-95d34ed9c4ab,5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+	                                 answerLabels="Oral:Lo-Femenal,Oral: Microgynon,Oral:Others,Female Condoms,Male Condoms,
+	                                 Injectable,Natual,Female Sterilization,Male Sterilization,Implant,Tubal Ligation,No Family Planning Method Given,Other"
+	                                 style="dropdown" />
+	                            <span class="familyPlanningOtherSpecify" style="display:none">
+	                                <obs conceptId="dcb313d7-30ab-102d-86b0-7a5022ba4115" />
+	                            </span>
+	                        </p>
+	                    </td>
+	                    <td>
+	                        <p>
+	                            <label>Status Of The Breast</label>
+	                            <obs conceptId="07c10f5c-17fd-4a7e-8d72-c2252f589da0"
+	                                 answerConceptIds="e4c6b70d-aaa6-490b-8edc-01c44d982cb2,5e416f86-aaf1-4ae4-96f0-30226b9fdd5f"
+	                                 answerLabels="FOM - No swellings pain or discharge,SS - Have discharge blood or pus"
+	                                 style="dropdown" />
+	                        </p>
+	                    </td>
+	                    <td>
+	                        <p>
+	                            <label>Status Of The Cervix</label>
+	                            <obs conceptId="d858f8cb-fe9e-4131-8d91-cd9929cc53de"
+	                                 answerConceptIds="14556e6e-9ee4-439c-98ac-079e12fc98fa,ec3a0208-0261-450a-a13b-b524e160b8fd"
+	                                 answerLabels="FOM - Cervix is free of malignancy,SS- Cervix is suspicious of malignancy" />
+	                        </p>
+	                    </td>
+	                    <td>
+	                        <p>
 
-        <section>
-            <label>Mother's Information</label>
-            <table id="mothers_info" border="1">
-                <thead>
-                <tr>
-                    <th rowspan="3">
-                        <div class="rotate-text">Family Planning <br/>Method given</div>
-                    </th>
-                    <th rowspan="3">
-                        <div class="rotate-text">Status of Breast</div>
-                    </th>
-                    <th rowspan="3">
-                        <div class="rotate-text">Status of Cervix</div>
-                    </th>
-                    <th>Weight(kg)</th>
-                    <th colspan="2">eMTCT Codes</th>
+	                            <label>Weight (Kgs)</label>
+	                            <obs conceptId="5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+	                        </p>
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <td>
+	                        <p>
+	                            <label>M.U.A.C</label>
+	                            <includeIf velocityTest="$patient.age &lt; 5">
+	                                <obs id="br" conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+	                                     answerConceptIds="8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3,de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9"
+	                                     answerLabels="Red &lt; 11.5cm, Yellow 11.5cm - &lt;12.5cm,Green &gt;= 12.5cm" />
+	                            </includeIf>
+	                            <includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
+	                                <obs id="br" conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+	                                     answerConceptIds="8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3,de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9"
+	                                     answerLabels="Red &lt; 13.5cm,Yellow 13.5cm - &lt;14.5cm,Green &gt;=14.5cm" />
+	                            </includeIf>
+	                            <includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
+	                                <obs id="br" conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+	                                     answerConceptIds="8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3,de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9"
 
-                    <th rowspan="3">ARVs <br/><br/> Pre-ART No.</th>
-                </tr>
-                <tr>
+	                                     answerLabels="Red &lt; 16.5cm, Yellow 16.5cm - &lt;19.0cm,Green &gt;=19.0cm" />
+	                            </includeIf>
 
-                    <th>MUAC</th>
-                    <th rowspan="2">W</th>
-                    <th rowspan="2">P</th>
-                </tr>
-                <tr>
+	                            <includeIf velocityTest="$patient.age &gt;=18">
+	                                <obs id="br" conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+	                                     answerConceptIds="8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3,de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9"
 
-                    <th>INR No.</th>
+	                                     answerLabels="Red &lt;19.0cm , Yellow 19.0cm - &lt;22.0cm,Green &gt;=22.0cm" />
+	                            </includeIf>
+	                        </p>
+	                    </td>
+	                    <td>
+	                        <p>
+	                            <label>I.N.R Number</label>
+	                            <obs conceptId="b644c29c-9bb0-447e-9f73-2ae89496a709" id="inrNumber" />
+	                        </p>
+	                    </td>
+	                    <td colspan="2"></td>
+	                </tr>
+	            </table>
+			</section>
 
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td rowspan="3">
-                        <label></label>
-                        <span class="FamilyPlanningEnableDisable1">
-                        <obs conceptId="374" answerConceptIds="163144,163145,163148,163147,780,163146,5275,5279,5277,5276,90088,162961,5622"
-                             answerLabels="Oral:Lo-Femenal,Oral: Microgynon,Oral: Ovrette,Oral:Others,Female Condoms,Male Condoms,IUDs,Injectable,Natual,Female Sterilization,Male Sterilization,Implant,Other"/>
-                        </span>
-                        <span class="FamilyPlanningEnableDisableChild1">
-                            <obs conceptId="5281"/>
-                            </span>
-                    </td>
-                    <td rowspan="3">
-                        <obs conceptId="99349" answerConceptIds="99345,99346" answerLabels="FOM,SS"/>
-                    </td>
-                    <td rowspan="3">
-                        <obs conceptId="99350" answerConceptIds="99347,99348" answerLabels="FOM - Cervix is free of malignancy,S S- Cervix is suspicious of malignancy"/>
-                    </td>
-                    <td>
-                        <label>Weight(kg)</label>
-                        <obs conceptId="5089"/>
-                    </td>
-                    <td rowspan="3">
-                        <obs conceptId="99317" labelText="" id="ARVSEnableDisable1"
-                             answerConceptIds="99313,99734,99314,99315,99735,99736,99737,99738,99739,99741"
-                             answerLabels="C,T,TR,TRR,TR&#8730;,TRR&#8730;,TRK,TRRK,TR+,TRR+"/>
+		    <section>
+		      <h3>HIV Information</h3>
+		      <table width="100%" border="0" cellspacing="0" cellpadding="0" id="hiv-information-section">
+		        <tr>
+		          <td>
+		            <p>
+		              <label>HIV Status</label>
+		              <obs conceptId="dce0e886-30ab-102d-86b0-7a5022ba4115" 
+		              	   answerConceptIds="dcdf4241-30ab-102d-86b0-7a5022ba4115,dcdf4653-30ab-102d-86b0-7a5022ba4115,1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
+		              	   style="dropdown" id="hiv-status" required="true"/>
+		            </p>
+		          </td>
+		          <td>
+		            <p>
+		              <label>WHO Clinical Stage</label>
+		              <obs conceptId="dcdff274-30ab-102d-86b0-7a5022ba4115"
+		                   answerConceptIds="dcda2bc2-30ab-102d-86b0-7a5022ba4115,dcda3251-30ab-102d-86b0-7a5022ba4115,dcda3663-30ab-102d-86b0-7a5022ba4115,dcda3a80-30ab-102d-86b0-7a5022ba4115,dd25e735-30ab-102d-86b0-7a5022ba4115,dd2666a5-30ab-102d-86b0-7a5022ba4115,dd266d64-30ab-102d-86b0-7a5022ba4115,dd269c18-30ab-102d-86b0-7a5022ba4115"
+		                   answerLabels="1,2,3,4,T1,T2,T3,T4" style="dropdown" />
+		            </p>
+		          </td>
+		          <td>
+		            <p>
+		              <label>CD4 Date</label>
+		              <obs conceptId="159376AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" allowFutureDates="false" />
+		            </p>
+		          </td>
+		          <td>
+		            <p>
+		              <label>CD4 Count</label>
+		              <obs conceptId="dcbcba2c-30ab-102d-86b0-7a5022ba4115" />
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p>
+		              <label>Viral Load Date</label>
+		              <obs conceptId="0b434cfa-b11c-4d14-aaa2-9aed6ca2da88" allowFutureDates="false"/>
+		            </p>
+		          </td>
+		          <td>
+		            <p>
+		              <label>Viral Load Results</label>
+		              <obs conceptId="dca12261-30ab-102d-86b0-7a5022ba4115" 
+		              	    answerConceptIds="dca1269d-30ab-102d-86b0-7a5022ba4115,dca10c94-30ab-102d-86b0-7a5022ba4115,dca11907-30ab-102d-86b0-7a5022ba4115" 
+		              	    answerLabels="Not Detected,Detected,Sample Rejected" style="dropdown" id="viral-load-results" />
+		            </p>
+		          </td>
+		          <td>
+		            <p>
+		              <label>Viral Load (copies/ml)</label>
+		              <obs conceptId="dc8d83e3-30ab-102d-86b0-7a5022ba4115" id="viral-load" />
+		            </p>
+		          </td>
+		          <td></td>
+		        </tr>
+		        <tr>
+		          <td colspan="2">
+		            <p>
+		              <label>eMTCT Code: Woman</label>
+		              <obs conceptId="d5b0394c-424f-41db-bc2f-37180dcdbe74" 
+		              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb, 05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7, 86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a, 25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465, a08d9331-b437-485c-8eff-1923f3d43630
+, 60155e4d-1d49-4e97-9689-758315967e0f, 81bd3e58-9389-41e7-be1a-c6723f899e56,1f177240-85f6-4f10-964a-cfc7722408b3" 
+		              	answerLabels="C - Counselled but declined HIV testing,
+		              					T - Counselled and tested but didn't receive results,
+		              					TR - Counselled tested and results given - Client tested HIV- in PNC,
+		              					TRR - Counselled tested and results given - Client tested HIV+ in PNC,
+		              					TR+ - Client tested HIV- on a re-test,
+		              					TRR+ - Client tested HIV+ on a re-test,
+		              					TR&#8730; - Client tested on a previous visit with known HIV- status,
+		              					TRR&#8730; - Client tested on previous visit with known HIV+ status" 
+		                style="dropdown" required="true" class="emtct-code"/>
+		            </p>
+		          </td>
+		          <td colspan="2">
+		            <p>
+		              <label>eMTCT Code: Partner</label>
+		              <obs conceptId="d5b0394c-424f-41db-bc2f-37180dcdbe74" 
+		              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb, 05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7, 86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a, 25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465, a08d9331-b437-485c-8eff-1923f3d43630
+, 60155e4d-1d49-4e97-9689-758315967e0f, 81bd3e58-9389-41e7-be1a-c6723f899e56,1f177240-85f6-4f10-964a-cfc7722408b3" 
+		              	answerLabels="C - Counselled but declined HIV testing,
+		              					T - Counselled and tested but didn't receive results,
+		              					TR - Counselled tested and results given - Client tested HIV- in PNC,
+		              					TRR - Counselled tested and results given - Client tested HIV+ in PNC,
+		              					TR+ - Client tested HIV- on a re-test,
+		              					TRR+ - Client tested HIV+ on a re-test,
+		              					TR&#8730; - Client tested on a previous visit with known HIV- status,
+		              					TRR&#8730; - Client tested on previous visit with known HIV+ status" 
+		                style="dropdown" required="true" class="emtct-code"/>
 
-                    </td>
-                    <td rowspan="3">
-                        <obs conceptId="99342" labelText=""
-                             answerConceptIds="99313,99734,99314,99315,99735,99736,99737,99738,99739,99741"
-                             answerLabels="C,T,TR,TRR,TR&#8730;,TRR&#8730;,TRK,TRRK,TR+,TRR+"/>
-                    </td>
-                    <td rowspan="2" class="RegimenEnableDisable1" style="width:3%;">
-                        <obs id="br" conceptId="90315" labelText="ARVs:"
-                             answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99007,99008,99044,99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99884,99885,99888,163017,99887,90002"
-                             answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,AZT-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,AZT-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-ATV/r,ABC-3TC-LPV/r,TDF-3TC-ATV/r,Other"/>
-                            <span class="RegimenEnableDisableChild1">
-                                <obs id="br" conceptId="99126" size="18" labelText="Specify"/>
-                                <br/>
-                            </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <includeIf velocityTest="$patient.age &lt; 5">
-                            <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
-                                 answerLabels="Red &lt; 11.5cm, Yellow 11.5cm - &lt;12.5cm,Green &gt;= 12.5cm"
-                                 labelText="MUAC"/>
-                        </includeIf>
-                        <includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
-                            <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
-                                 answerLabels="Red &lt; 13.5cm,Yellow 13.5cm - &lt;14.5cm,Green &gt;=14.5cm"
-                                 labelText="MUAC"/>
-                        </includeIf>
-                        <includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
-                            <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
-                                 answerLabels="Red &lt; 16.5cm, Yellow 16.5cm - &lt;19.0cm,Green &gt;=19.0cm"
-                                 labelText="MUAC"/>
-                        </includeIf>
+		            </p>
+		          </td>
+		        </tr>
+		      </table>
+		    </section>
 
-                        <includeIf velocityTest="$patient.age &gt;=18">
-                            <obs id="br" conceptId="99030" answerConceptIds="99027,99028,99029"
-                                 answerLabels="Red &lt;19.0cm , Yellow 19.0cm - &lt;22.0cm,Green &gt;=22.0cm"
-                                 labelText="MUAC"/>
-                        </includeIf>
-                    </td>
+			<section>
+				<h3>Diagnosis</h3>
+				<table>
+					<tr>
+						<td>
+	                        <p>
+	                            <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
+	                            	 answerConceptId="132678AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+	                            	 answerLabel="Normal pregnancy" />
+	                        </p>						
+						</td>
+						<td>
+	                        <p>
+	                            <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
+	                            	 answerConceptId="116128AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+	                            	 answerLabel="Malaria" />
+	                        </p>						
+						</td>
+						<td>
+	                        <p>
+	                            <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
+	                            	 answerConceptId="dc55064a-30ab-102d-86b0-7a5022ba4115"
+	                            	 answerLabel="High blood pressure" />
+	                        </p>						
+						</td>
+						<td>
+	                        <p>
+	                            <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
+	                            	 answerConceptId="5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+	                            	 answerLabel="Others"
+	                            	 showCommentField="true" commentFieldLabel="&lt;label&gt;Specify&lt;/label&gt;" class="has-comment fit-one-line" />
+	                        </p>						
+						</td>
+					</tr>
+				</table>
+			</section>
 
-                </tr>
-                <tr>
-                    <td>
-                        <obs conceptId="99733" labelText="INR No"/>
-                    </td>
-                    <td> Pre-ART No.
-                        <patient field="identifier" identifierTypeId="e1731641-30ab-102d-86b0-7a5022ba4115"
-                                 required="true"/>
-                    </td>
-                </tr>
-                </tbody>
+	        <section>
+	            <h3>Routine Administration/Treatment</h3>
+	            <table>
+	                <tr>
+	                    <td>
+	                        <p>
+	                            <label>ARVs</label>
+	                            <obs id="arvs-given" conceptId="a615f932-26ee-449c-8e20-e50a15232763"
+	                                 answerConceptIds="026e31b7-4a26-44d0-8398-9a41c40ff7d3,2aa7d442-6cbb-4609-9dd3-bc2ad6f05016,2c000b41-f9d7-40c1-8de0-bce91dbae932,
+	                                 bbc63761-0741-4583-9396-a34d3a18601c,dc9b0596-30ab-102d-86b0-7a5022ba4115"
+	                                 answerLabels="ART,ARTK,ART✔,ARTK✔,NA" />
+	                        </p>
+	                    </td>
+	                    <td>
+	                        <p>
+	                            <label>Pre-ART Number</label>
+	                            <span id="pre-art-number">
+		                            <patient field="identifier" identifierTypeId="e1731641-30ab-102d-86b0-7a5022ba4115" />
+								</span>
+	                        </p>
+	                    </td>
+	                    <td colspan="2" style="width:50%">
+	                        <p>
+	                            <label>Routine Administration</label>
+	                            <obs conceptId="315825e8-8ba4-4551-bdd1-aa4e02a36639"
+	                                 answerConceptId="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Iron" class="horizontal-layout-options" />
+	                            <obs conceptId="8c346216-c444-4528-a174-5139922218ed"
+	                                 answerConceptId="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Folic Acid" />
+	                            <obs conceptId="88ec2c8b-eb7b-4595-8612-1871568507a5"
+	                                 answerConceptId="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Vitamin A" />
+	                            <obs conceptId="d12abd7f-c90d-4798-9240-0f2f81977183"
+	                                 answerConceptId="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Septrin" />
+	                        </p>
+	                    </td>
+	                </tr>
+	                <tr>
+	                	<td colspan="2">
+	                        <p>
+	                            <label>Other Treatments</label>
+	                            <obs conceptId="2aa72406-436e-490d-8aa4-d5336148204f" style="textarea" id="other-treatments" />
+	                        </p>                    		
+	                	</td>
+	                	<td style="width:50%"></td>
+	                </tr>
+	            </table>
+	        </section>
+		</fieldset>
 
-            </table>
-
-        </section>
-
-        <section>
+        <fieldset>
+            <legend>Child's Information</legend>
             <table>
                 <tr>
-                    <th colspan="4">Routine <br/>Administration</th>
-                    <th rowspan="3">Diagnosis</th>
-                    <th rowspan="3">WHO Clinical Stage/<br/>Viral Load/<br/>CD4</th>
-                    <th rowspan="3">Other Treatments</th>
-                </tr>
-                <tr>
-                    <th rowspan="2">
-                        <div class="rotate-text">Iron</div>
-                    </th>
-                    <th rowspan="2">
-                        <div class="rotate-text resize-cell-width">Folic Acid</div>
-                    </th>
-                    <th rowspan="2">
-                        <div class="rotate-text resize-cell-width">Vit A</div>
-                    </th>
-                    <th rowspan="2">
-                        <div class="rotate-text">CTX</div>
-                    </th>
-
-
-                </tr>
-
-                <tbody>
-                <tr>
-                        <td rowspan="3">
-                            <obs conceptId="162394" answerConceptId="5843" answerLabel="" />
-                        </td>
-                        <td rowspan="3">
-                            <obs conceptId="162394" answerConceptId="257" answerLabel="" />
-                        </td>
-                        <td rowspan="3">
-                            <obs conceptId="162394" answerConceptId="99356" answerLabel=""/>
-                        </td>
-                        <td rowspan="3">
-                            <obs conceptId="162394" answerConceptId="90168" answerLabel=""/>
-                        </td>
-                    <td rowspan="3">
-                        <obs conceptId="99321" style="textarea" rows="10" cols="40"/>
+                    <td>
+                        <p>
+                            <label>Status Of The Baby</label>
+                            <obs conceptId="dd8a2ad9-16f6-44db-82d7-87d6eef14886"
+                                 answerConceptIds="9d9e6b5a-8b5d-4b8c-8ab7-9fdabb279493,811ff634-8d81-454f-9b9d-2850345796d6,95121db8-6c2a-48e0-b281-cf2dc8229dd1"
+                                 answerLabels="Alive,NND7,NND28" />
+                        </p>
                     </td>
                     <td>
-                        <obs id="br" conceptId="90203"
-                             answerConceptIds="90033,90034,90035,90036,90293,90294,90295,90296"
-                             answerLabels="1,2,3,4,T1,T2,T3,T4" labelText="WHo Clinic Stage"/>
-                    </td>
+                        <p>
+                            <label>Age (Wks)</label>
+                            <obs conceptId="164438AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
 
-                    <td rowspan="3">
-                        <obs style="textarea" rows="10" cols="40" conceptId="99320"/>
+                        </p>
                     </td>
-                </tr>
-
-                <tr>
                     <td>
-                        <br/><b>Viral Load</b>
-                        <br/>
-                        Date Viral Load Taken
-                        <obs conceptId="163023" allowFutureDates="false"/>
-                        <br/>
-                        Viral Load Results
-                        <br/>
-                        <span class="ViralLoadEnableDisable1">
-                        <obs id="br" conceptId="1305" answerConceptIds="1306,1301"
-                             answerLabels="Detected,Not Detected"/>
-                        </span>
-                        <br/>
-                        <span class="ViralLoadEnableDisableChild1">
-                        Viral Load (copies/ml)
+                        <p>
+                            <label>Weight(Kg)</label>
+                            <obs conceptId="5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>M.U.A.C</label>
+                            <includeIf velocityTest="$patient.age &lt; 5">
+                                <obs id="br" conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                                     answerConceptIds="8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3,de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9"
+                                     answerLabels="Red &lt; 11.5cm, Yellow 11.5cm - &lt;12.5cm,Green &gt;= 12.5cm" />
+                            </includeIf>
+                            <includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
+                                <obs id="br" conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                                     answerConceptIds="8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3,de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9"
+                                     answerLabels="Red &lt; 13.5cm,Yellow 13.5cm - &lt;14.5cm,Green &gt;=14.5cm" />
+                            </includeIf>
+                            <includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
+                                <obs id="br" conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                                     answerConceptIds="8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3,de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9"
+                                     answerLabels="Red &lt; 16.5cm, Yellow 16.5cm - &lt;19.0cm,Green &gt;=19.0cm" />
+                            </includeIf>
 
-                        <obs id="br" conceptId="856"/>
-                        </span></td>
+                            <includeIf velocityTest="$patient.age &gt;=18">
+                                <obs id="br" conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                                     answerConceptIds="8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3,de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9"
+
+                                     answerLabels="Red &lt;19.0cm , Yellow 19.0cm - &lt;22.0cm,Green &gt;=22.0cm" />
+                            </includeIf>
+                        </p>
+                    </td>
                 </tr>
                 <tr>
                     <td>
-                        <obs id="br" conceptId="5497" dateLabel="Date:" labelText="CD4:"/>
+                        <p>
+                            <label>I.N.R Number</label>
+                            <obs conceptId="b644c29c-9bb0-447e-9f73-2ae89496a709" />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>Diagnosis</label>
+                            <obs conceptId="a16b3a8e-6412-4344-908a-2a96344fa017" style="textarea" />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>Infant Feeding Option</label>
+                            <obs conceptId="dc9a00a2-30ab-102d-86b0-7a5022ba4115"
+                                 answerConceptIds="dcbd637e-30ab-102d-86b0-7a5022ba4115,40fdb5b6-e8ac-424d-988c-f2f2937348db,dcd5487d-30ab-102d-86b0-7a5022ba4115" 
+                                 answerLabels="EBF-Exclusive Breast Feeding, RP-Replacement feeding,MF-Mixed feeding" 
+                                 style="dropdown" />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>Infant Feeding Counseling Done</label>
+                            <obs conceptId="5d993591-9334-43d9-a208-11b10adfad85"
+                                 answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                 answerLabels="Yes, No"
+                                 style="radio" class="horizontal-layout-options" />
+                        </p>
                     </td>
                 </tr>
-                </tbody>
+                <tr>
+                    <td>
+                        <p>
+                            <label>Maternal Nutrition Counseling Done?</label>
+                            <obs conceptId="af7dccfd-4692-4e16-bd74-5ac4045bb6bf"
+                                 answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                 answerLabels="Yes, No"
+                                 style="radio" class="horizontal-layout-options" />
+                        </p>
+                    </td>
+                    <td colspan="2">
+                        <p>
+                            <label>Immunization</label>
+                            <obs conceptId="dc918618-30ab-102d-86b0-7a5022ba4115"
+                                 answerConceptId="dc8e1be9-30ab-102d-86b0-7a5022ba4115" answerLabel="BCG" />
+                            <obs conceptId="dc918618-30ab-102d-86b0-7a5022ba4115"
+                                 answerConceptId="dc883964-30ab-102d-86b0-7a5022ba4115" answerLabel="OPV" />
+                            <obs conceptId="dc918618-30ab-102d-86b0-7a5022ba4115"
+                                 answerConceptId="782AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="DPT-HepB" />
+                            <obs conceptId="dc918618-30ab-102d-86b0-7a5022ba4115"
+                                 answerConceptId="	680f7f8d-eac6-44b4-8899-101fa2c4f873" answerLabel="Vitamin A" />
+                            <obs conceptId="dc918618-30ab-102d-86b0-7a5022ba4115"
+                                 answerConceptId="62d87122-0a08-4e04-b57c-7e1b2f821854" answerLabel="PCV" />
+
+                        </p>
+                    </td>
+                    <td>
+                    	<p>
+	                    	<label>Other Treatments</label>
+	                        <obs conceptId="59560ede-43e2-4e56-a47e-0f876779f0e1" id="other-treatments-child"
+	                             style="textarea" />
+	                    </p>
+                    </td>
+                </tr>
             </table>
-        </section>
+        </fieldset>
 
-        <section>
-            <label>Infant Information</label>
-            <table id="mothers_info" border="1">
-                <thead>
-                <tr>
-                    <th rowspan="3">Status Of the baby</th>
-                    <th rowspan="3">
-                        <div class="rotate-text">WT</div>
-                    </th>
-                    <th rowspan="3">
-                        <div>Diagnosis</div>
-                    </th>
-                    <th>Infant Feeding Options</th>
-                    <th colspan="5">Immunisation</th>
-
-                </tr>
-                <tr>
-                    <th>IYCF</th>
-                    <th rowspan="2">BCG</th>
-                    <th rowspan="2">OPV</th>
-                    <th rowspan="2">DPT</th>
-                    <th rowspan="2">Vit A</th>
-                    <th rowspan="2">PCV</th>
-                </tr>
-                <tr>
-                    <th>Maternal Nutrition Counseling</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td rowspan="3">
-                        <obs conceptId="99354" answerConceptIds="99353,163140,163141" answerLabels="Alive,NND7,NND28"/>
-                    </td>
-                    <td rowspan="3">
-                        <obs conceptId="90236"/>
-                    </td>
-                    <td rowspan="3">
-                        <obs conceptId="99355" style="textarea" rows="10" cols="40"/>
-                    </td>
-                    <td>
-                        <obs conceptId="1151" answerConceptIds="5526,99089,6046" answerLabels="EBF,RF,MF"/>
-                    </td>
-                    <td rowspan="3">
-                        <obs conceptId="162839" answerConceptId="886" answerLabel="BCG"/>
-                    </td>
-                    <td rowspan="3">
-                        <obs conceptId="162839" answerConceptId="162831" answerLabel="OPV"/>
-                    </td>
-                    <td rowspan="3">
-                        <obs conceptId="162839" answerConceptId="781" answerLabel="DPT"/>
-                    </td>
-                    <td rowspan="3">
-                        <obs conceptId="162839" answerConceptId="99356" answerLabel="Vitamin A"/>
-                    </td>
-                    <td rowspan="3">
-                        <obs conceptId="162839" answerConceptId="163014" answerLabel="PCV"/>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td>
-                        <obs id="br" conceptId="99749" labelText="IYCF" answerConceptIds="90003,90004"
-                             answerLabels="Yes,No"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <obs id="br" conceptId="99750" labelText="Maternal Nutrition Counseling"
-                             answerConceptIds="90003,90004" answerLabels="Yes,No"/>
-                    </td>
-                </tr>
-                </tbody>
-
-            </table>
-
+        <fieldset>
+            <legend>Referral Information</legend>
             <table>
-                <thead>
-                <th rowspan="3">Other Treatment</th>
-                <th rowspan="3">Referred to where/ Referred from Where</th>
-                </thead>
-                <tbody>
-                <td>
-                    <obs conceptId="99648" style="textarea" rows="10" cols="50"/>
-                </td>
-                <td>
-                    <obs conceptId="99322" id="br" labelText="Reffered" answerConceptIds="99764,99763"
-                         answerLabels="In,Out"/>
-                    <br/>
-                    <obs conceptId="99109" id="br" labelText="Place"/>
-                </td>
-                </tbody>
+                <tr>
+                    <td>
+                        <p>
+                            <label>Referred From?</label>
+                            <obs conceptId="99770" answerConceptIds="99360,99361,99267" style="dropdown" />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>Clinic/Facility</label>
+                            <obs conceptId="7ac9966e-71a5-4c61-8998-e763fd94536f"
+                                 answerConceptIds="6abc57f2-3718-42f6-84c4-4f71e921d590,37549919-5934-448e-b110-cc7868e73ff2,9028e51b-0c27-4b72-bde6-fadba72d1396"
+                                 answerLabels="Young Child Clinic, HIV Chronic Care, Other Referral"
+                                 style="dropdown" />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>Referred To?</label>
+                            <obs conceptId="7ac9966e-71a5-4c61-8998-e763fd94536f"
+                                 answerConceptIds="6abc57f2-3718-42f6-84c4-4f71e921d590,37549919-5934-448e-b110-cc7868e73ff2,9028e51b-0c27-4b72-bde6-fadba72d1396"
+                                 answerLabels="Young Child Clinic, HIV Chronic Care, Other Referral"
+                                 style="dropdown" />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>Clinic/Facility</label>
+                            <obs conceptId="dce015bb-30ab-102d-86b0-7a5022ba4115" />
+                        </p>
+                    </td>
+                </tr>
             </table>
-
-
-        </section>
+        </fieldset>
         <section>
-            <table>
-                <tr><td>
-
-
-                </td></tr>
-            </table>
+            <submit/>
+            <span style="clear:none;float:none;margin:5px;display: none;"
+                  class="error1" id="error-message">
+                You have errors in your form, please scroll up to see them.
+            </span>
         </section>
     </div>
-    <section>
-        <submit/>
-    </section>
+    <!-- End of HTML Form -->
 </htmlform>
