@@ -37,6 +37,11 @@
 	        const VIRAL_LOAD_NOT_DETECTED_CONCEPT_ID = 1306;
 	        const VIRAL_LOAD_SAMPLE_REJECTED_CONCEPT_ID = 1304;
 
+	        const RED_CONCEPT_ID = 99028;
+	        const GREEN_CONCEPT_ID = 99027;
+	        const YELLOW_CONCEPT_ID = 99029;
+
+	        const HIV_STATUS_CONCEPT_ID = 90253;
 	        const HIV_POSITIVE_CONCEPT_ID = 90166;
 	        const HIV_NEGATIVE_CONCEPT_ID = 90167;
 
@@ -54,6 +59,22 @@
 			var $anc1TimingField = getField('anc1-timing.value');
 			var $arvsGivenField = getField('arvs-given.value');
 			var $preArtNumberField = jq('span#pre-art-number').find('input[type="text"]');
+			var $encounterDateField = jq('#encounterDate').find('input[type="hidden"]');
+			var $encounterDate = jq('#encounterDate').find('input[type="hidden"]').val();
+			var $muacQuantitativeField = getField('muac-quantitative.value');
+			var $muacQualitativeField = getField('muac-qualitative.value');
+			var $emtctCodeWomanField = getField('emtct-code-woman.value');
+            var $viralLoadStatusField = getField('viral-load-status.value');
+
+			var firstAncVisit = true;
+
+			/**
+			* ANC 1 timing should only be selected if this is the first ANC visit otherwise it should be disabled
+			*/
+			 <includeIf velocityTest="$fn.allEncounters('044daI6d-f80e-48fe-aba9-037f241905Pe').size() &gt; 0">
+			 	firstAncVisit = false;
+				fieldHelper.disable($anc1TimingField);
+			</includeIf>
 
 	        var viralLoadResultsChange = function() {
 	            var $viralLoadResults = getValue('viral-load-results.value');
@@ -61,21 +82,32 @@
 
 	            fieldHelper.removeReadonly($viralLoadField);
 	            fieldHelper.enable($viralLoadField);
+                fieldHelper.disable($viralLoadStatusField);
 	            if ($viralLoadResults == VIRAL_LOAD_NOT_DETECTED_CONCEPT_ID) { //if viral load quantitive is 'not detected' set a viral load count of 1
 	                $viralLoadField.val(1);
 	                $viralLoadField.change();
 	                fieldHelper.makeReadonly($viralLoadField);
+	                setValue('viral-load-status.value', '');
 	            } else if($viralLoadResults == VIRAL_LOAD_DETECTED_CONCEPT_ID) { //if viral load quantitive is 'detected' allow for entry of viral load count
 	                if ($viralLoadField.val() == 1) {
 		                $viralLoadField.val("");
 		                $viralLoadField.change();
 	                }
+	                fieldHelper.enable($viralLoadStatusField);
 	            } else { //if viral load quantitive is 'rejected' clear viral load count field
 	                $viralLoadField.val("");
 	                $viralLoadField.change();
 	                fieldHelper.disable($viralLoadField);
+	                setValue('viral-load-status.value', '');
 	            }
 	        }; 
+
+	        /**
+	        * This function checks if the HIV status field has been locked(Contains the 'locked' class )
+	        */
+	        var isHivStatusFieldLocked = function () {
+	            return $hivStatusField.is('.locked');
+	        }
 
 	        var hivStatusChange = function () {
 	            var $hivStatus = getValue('hiv-status.value');
@@ -139,16 +171,112 @@
 		        	fieldHelper.makeReadonly($eddField);
 			}
 
+			var calculateLnmp = function (edd) {
+				if (edd == '') {
+					return;
+				}
+				
+		        var pregnancyDurationValue = ((40*7)-1)*60*60*24*1000;
+		        var lmpDateValue,
+					lmpDate,
+					eddValue,
+					edd,
+					lmpDateFormatted;		
+
+				edd = new Date(edd);
+				eddValue = edd.getTime();
+				lmpDateValue = eddValue - pregnancyDurationValue;
+				lmpDate = new Date(lmpDateValue);
+				lmpDateFormatted = $.datepicker.formatDate("yy-mm-dd", lmpDate);
+			    setValue('lmp-date.value', lmpDateFormatted);
+			    $lmpField.change();
+			}
+
 	        var lmpChange =  function() {
 	        	var $lmpDate = getValue('lmp-date.value');
-	        	var $encounterDate = jq('#encounterDate').find('input[type="hidden"]').val();
 
 	        	calculateGestationAndEdd($lmpDate, $encounterDate);
 	        };
 
+	        var eddChange = function() {
+	        	var $eddDate = getValue('edd.value');
+
+	        	calculateLnmp($eddDate);
+	        }
+
+	        var muacChange = function() {
+	        	var muacQuantitative = getValue('muac-quantitative.value');
+	        	var muacQualitative = getValue('muac-qualitative.value');
+	        	var $muacQuantitativeErrorField = getField('muac-quantitative.error');
+	        	var $muacQualitativeErrorField = getField('muac-qualitative.error');
+
+
+	        	if (muacQuantitative == '' || muacQualitative =='') {
+	        		return;
+	        	}
+
+	        	var valid = false;
+
+	        	var validRange = {};
+
+                <includeIf velocityTest="$patient.age &lt; 5">
+                     validRange = [
+                 			{color: RED_CONCEPT_ID, lower:0, upper:11.4},
+                 			{color: YELLOW_CONCEPT_ID, lower:11.5, upper:12.4},
+							{color: GREEN_CONCEPT_ID, lower:12.5, upper:50}
+                 			];
+                </includeIf>
+                <includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
+                     validRange = [
+                 			{color: RED_CONCEPT_ID, lower:0, upper:13.4},
+                 			{color: YELLOW_CONCEPT_ID, lower:13.5, upper:14.4},
+							{color: GREEN_CONCEPT_ID, lower:14.5, upper:50}
+                 			];
+                </includeIf>
+                <includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
+                     validRange = [
+                 			{color: RED_CONCEPT_ID, lower:0, upper:16.5},
+                 			{color: YES_CONCEPT_ID, lower:16.5, upper:18.9},
+							{color: GREEN_CONCEPT_ID, lower:19, upper:100}
+                 			];
+                </includeIf>
+
+                <includeIf velocityTest="$patient.age &gt;=18">
+                     validRange = [
+                 			{color: RED_CONCEPT_ID, lower:0, upper:18.9},
+                 			{color: YELLOW_CONCEPT_ID, lower:19, upper:21.9},
+							{color: GREEN_CONCEPT_ID, lower:22, upper:100}
+                 			];
+                </includeIf>
+
+                var selectedValidRange =  validRange.find(function(o) {
+					return o.color == muacQualitative;
+                });
+
+                if (muacQuantitative &gt;= selectedValidRange.lower &amp;&amp; muacQuantitative &lt;= selectedValidRange.upper) {
+					valid = true;
+                }
+
+                if (!valid) {
+					$muacQuantitativeErrorField.html('The MUAC Qualitative and Quatitative values do not match, please check').show();
+					$muacQualitativeErrorField.html('The MUAC Qualitative and Quatitative values do not match, please check').show();
+                	$muacQuantitativeField.addClass('error');
+                	$muacQualitativeField.addClass('error');
+                } else {
+                	$muacQuantitativeErrorField.html('').hide();
+                	$muacQualitativeErrorField.html('').hide();
+                	$muacQuantitativeField.removeClass('error');
+                	$muacQualitativeField.removeClass('error');
+                }
+	        };
+
 	        var setAnc1Timing = function() {
+	        	if (!firstAncVisit) {
+	        		return;
+	        	}
+
 	        	var $gestationAge = getValue('gestational-age.value');
-				
+
 	        	if ($gestationAge &lt; 14) {
 					setValue('anc1-timing.value', YES_CONCEPT_ID);
 	        	} else if ($gestationAge &gt;= 14) {
@@ -225,12 +353,33 @@
 	        	return true
 	        }
 
+	        var eddLmpValidate = function () {
+	        	/**
+	        	* Validate that the visit date falls between the EDD and LNMP
+	        	*/
+				var edd = getValue('edd.value');
+				var lmp = getValue('lmp-date.value');
+				var encounterDate = $encounterDate;
+				
+				var $eddErrorField = getField('edd.error');
+
+				if (encounterDate &gt;=lmp &amp;&amp; encounterDate&lt;=edd) {
+					$eddErrorField.html('').hide();
+					$eddField.removeClass('error');
+					return true;
+				}  else {
+					$eddErrorField.html('The visit date must fall between the edd and lmp date').show();
+					$eddField.addClass('error');
+					return false;
+				}
+	        };
+
 		    var isOtherSelectedAndSpecified = function() {
 		    	var valid = true;
 		        $othersField.each(function(){
 		            var $specifyField = jq(this).siblings('input[type=text]');
 		            var $errorField = jq(this).siblings('span.error');
-		            if ((jq(this).attr('checked') == 'checked' || jq(this).val() == OTHER_CONCEPT_ID) &amp;&amp;  $specifyField.val() == '') {
+		            if ((jq(this).attr('checked') == 'checked' || (jq(this).is('select') &amp;&amp; jq(this).val() == OTHER_CONCEPT_ID)) &amp;&amp;  $specifyField.val() == '') {
 		                $errorField.html('Please specify').show();
 		                $specifyField.addClass('error');
 		                valid = false;
@@ -244,12 +393,66 @@
 		        return valid;
 		    };
 
+		    var hideOtherEmtctCodesForKnownHivPositiveStatus = function() {
+				var emtctCodesToHide = [99313,99734,99314,99315,99736,99737];
+				var emtctControlsToHide =  $emtctCodeWomanField.children('option').filter(function() {
+					return emtctCodesToHide.indexOf(parseInt(this.value)) &gt; -1;
+				});
+				emtctControlsToHide.remove();
+				setValue('emtct-code-woman.value', 99738);
+		    };
+
+		    var getHivStatus = function () {
+		    	/**
+		    	* HIV Status field should be selected if patient is HIV +ve 
+		    	*/
+				var hivStatus = <lookup complexExpression="#set ($hivStatus = $fn.earliestObs(HIV_STATUS_CONCEPT_ID).valueCoded)
+															#if ($hivStatus) $hivStatus;
+															#else '';
+															#end" />
+
+				if (hivStatus == HIV_POSITIVE_CONCEPT_ID) {
+					$hivStatusField.val(hivStatus);
+				}
+
+				/**
+				* Make HIV Status field not changeable only if the encounter date of the ART summary 
+				* page encounter (as we shall be entering retrospective data) is before the date of 
+				* the visit for which data is being entered
+				*/
+				var visitDate = $encounterDateField.val();
+				var artSummaryEncounterDate = <lookup complexExpression="#set ($artSummaryEncounterDate = $fn.latestEncounter('8d5b27bc-c2cc-11de-8d13-0010c6dffd0f').encounterDatetime)
+																		#if ($artSummaryEncounterDate) '$artSummaryEncounterDate';
+																		#else '';
+																		#end"/>
+				if (artSummaryEncounterDate !='' &amp;&amp; artSummaryEncounterDate &lt; visitDate) {
+					$hivStatusField.addClass('locked');
+					$hivStatusField.val(HIV_POSITIVE_CONCEPT_ID);
+					$hivStatusField.change();
+					hideOtherEmtctCodesForKnownHivPositiveStatus();
+				} else {
+					fieldHelper.enable($hivStatusField);
+				}
+		    };
+
 	        $viralLoadResultsField.change(viralLoadResultsChange);
+	        $hivStatusField.change(function(){
+	            if (isHivStatusFieldLocked()) {
+					setValue('hiv-status.value',HIV_POSITIVE_CONCEPT_ID);
+	            } else {
+	            	hivStatusChange();
+	            }
+	        });
 	        $hivStatusField.change(hivStatusChange);
-	        $lmpField.change(lmpChange);
+	        //$lmpField.change(lmpChange);
+	        $eddField.change(eddChange);
 	        $gestationAgeField.change(setAnc1Timing);
 	        $othersField.change(toggleOtherSpecify);
+	        $encounterDateField.change(getHivStatus);
+	        $muacQuantitativeField.change(muacChange);
+	        $muacQualitativeField.change(muacChange);
 
+			getHivStatus();
 	        viralLoadResultsChange();
 	        hivStatusChange();
 			toggleOtherSpecify();
@@ -266,6 +469,10 @@
 	            	valid = false;
 	            }
 
+	            if (!eddLmpValidate()) {
+	            	valid = false;
+	            }
+
 	            if (!isOtherSelectedAndSpecified()) {
 	            	valid = false;
 	            }
@@ -274,6 +481,7 @@
 	            	$errorMessageSpan.hide();
 	            } else {
 	            	$errorMessageSpan.show();
+	            	jq().toastmessage('showErrorToast', "Form Validation failed. Please check for errors");
 	            }
 
 	            return valid;
@@ -349,40 +557,46 @@
                             </p>
                         </td>
                         <td>
+                        	<p>
+                        		<label>M.U.A.C(cm)</label>
+                        		<obs conceptId="1343AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="muac-quantitative" />
+                        	</p>
+                        </td>
+                        <td>
                             <p>
                                 <label>M.U.A.C</label>
                                 <includeIf velocityTest="$patient.age &lt; 5">
-                                    <obs id="br" conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
-                                         answerConceptIds="8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3,de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9"
-                                         answerLabels="Red &lt; 11.5cm, Yellow 11.5cm - &lt;12.5cm,Green &gt;= 12.5cm" />
+                                    <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                                         answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
+                                         answerLabels="Red &lt; 11.5cm, Yellow 11.5cm - &lt;12.5cm,Green &gt;= 12.5cm" id="muac-qualitative" />
                                 </includeIf>
                                 <includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
-                                    <obs id="br" conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
-                                         answerConceptIds="8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3,de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9"
-                                         answerLabels="Red &lt; 13.5cm,Yellow 13.5cm - &lt;14.5cm,Green &gt;=14.5cm" />
+                                    <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                                         answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
+                                         answerLabels="Red &lt; 13.5cm,Yellow 13.5cm - &lt;14.5cm,Green &gt;=14.5cm" id="muac-qualitative" />
                                 </includeIf>
                                 <includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
-                                    <obs id="br" conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
-                                         answerConceptIds="8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3,de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9"
-                                         answerLabels="Red &lt; 16.5cm, Yellow 16.5cm - &lt;19.0cm,Green &gt;=19.0cm" />
+                                    <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                                         answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
+                                         answerLabels="Red &lt; 16.5cm, Yellow 16.5cm - &lt;19.0cm,Green &gt;=19.0cm" id="muac-qualitative" />
                                 </includeIf>
 
                                 <includeIf velocityTest="$patient.age &gt;=18">
-                                    <obs id="br" conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
-                                         answerConceptIds="8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3,de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9"
-                                         answerLabels="Red &lt;19.0cm , Yellow 19.0cm - &lt;22.0cm,Green &gt;=22.0cm" />
+                                    <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                                         answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
+                                         answerLabels="Red &lt;19.0cm , Yellow 19.0cm - &lt;22.0cm,Green &gt;=22.0cm" id="muac-qualitative" />
                                 </includeIf>
                             </p>
                         </td>
+                    </tr>
+
+                    <tr>
                         <td>
                             <p>
                                 <label>I.N.R Number</label>
                                 <obs conceptId="b644c29c-9bb0-447e-9f73-2ae89496a709" id="inrNumber" />
                             </p>
                         </td>
-                    </tr>
-
-                    <tr>
                         <td>
                             <p>
                                 <label>Diastolic B.P</label>
@@ -395,7 +609,6 @@
                                 <obs conceptId="5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
                             </p>
                         </td>
-                        <td></td>
                         <td></td>
                     </tr>
                 </table>
@@ -419,30 +632,30 @@
                     </td>
                     <td>
                         <p>
-                            <label>L.M.P</label>
-                            <obs conceptId="27d8e650-615a-473c-954f-ec934b0131d5" required="true" id="lmp-date" />
+                            <label>Gestational Age</label>
+                            <obs conceptId="dca0a383-30ab-102d-86b0-7a5022ba4115" id="gestational-age" required="true" />
                         </p>
                     </td>
                     <td>
                         <p>
-                            <label>Gestational Age</label>
-                            <obs conceptId="dca0a383-30ab-102d-86b0-7a5022ba4115" id="gestational-age" />
+                            <label>Expected Date Of Delivery</label>
+                            <obs conceptId="dcc033e5-30ab-102d-86b0-7a5022ba4115" id="edd" allowFutureDates="true" required="true" />
                         </p>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <p>
-                            <label>ANC 1 Timing</label>
-                            <obs conceptId="3a862ab6-7601-4412-b626-d373c1d4a51e" labelText=""
-                                 answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,dc9b0596-30ab-102d-86b0-7a5022ba4115"
-                                 answerLabels="&#8730; - Yes,X - No ,N/A" id="anc1-timing" />
+                            <label>L.N.M.P</label>
+                            <obs conceptId="27d8e650-615a-473c-954f-ec934b0131d5" required="true" id="lmp-date" />
                         </p>
                     </td>
                     <td>
                         <p>
-                            <label>Expected Date Of Delivery</label>
-                            <obs conceptId="dcc033e5-30ab-102d-86b0-7a5022ba4115" id="edd" allowFutureDates="true" />
+                            <label>ANC 1 Timing</label>
+                            <obs conceptId="3a862ab6-7601-4412-b626-d373c1d4a51e" labelText=""
+                                 answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,dc9b0596-30ab-102d-86b0-7a5022ba4115"
+                                 answerLabels="&#8730; - Yes,X - No ,N/A" id="anc1-timing" />
                         </p>
                     </td>
                     <td>                       
@@ -507,7 +720,14 @@
 	              <obs conceptId="dc8d83e3-30ab-102d-86b0-7a5022ba4115" id="viral-load" />
 	            </p>
 	          </td>
-	          <td></td>
+	          <td>
+	          	<p>
+	          		<label>Viral Load Status</label>
+	          		<obs 	conceptId="fcb5ef91-ad8f-44bc-ac5f-9ffb29881e59" 
+	          				answerConceptIds="a4089d8e-9ea6-4fff-b273-415c6640203a,f56e8d46-5b2f-488b-861a-94a89d16adf6"
+	          				answerLabels="Suppressed,Non-suppressed" id="viral-load-status" />
+	          	</p>
+	          </td>
 	        </tr>
 	        <tr>
 	          <td colspan="2">
@@ -517,12 +737,12 @@
 	              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb, 05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7, 86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a, 25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465, 60155e4d-1d49-4e97-9689-758315967e0f, 81bd3e58-9389-41e7-be1a-c6723f899e56,1f177240-85f6-4f10-964a-cfc7722408b3" 
 	              	answerLabels="C - Counselled but declined HIV testing,
 	              					T - Counselled and tested but didn't receive results,
-	              					TR - Counselled tested and results given - Client tested HIV - in maternity,
-	              					TRR - Counselled tested and results given - Client tested HIV + in maternity,
+	              					TR - Counselled tested and results given - Client tested HIV - in ANC,
+	              					TRR - Counselled tested and results given - Client tested HIV + in ANC,
 	              					TRR+ - Client was originally negative but sero-converted at this test,
 	              					TR&#8730; - New ANC clients with Known HIV- status,
 	              					TRR&#8730; - New ANC clients with Known HIV+ status" 
-	                style="dropdown" required="true" class="emtct-code" />
+	                style="dropdown" required="true" class="emtct-code" id="emtct-code-woman" />
 	            </p>
 	          </td>
 	          <td colspan="2">
@@ -532,12 +752,12 @@
 	              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb, 05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7, 86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a, 25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465, 60155e4d-1d49-4e97-9689-758315967e0f, 81bd3e58-9389-41e7-be1a-c6723f899e56,1f177240-85f6-4f10-964a-cfc7722408b3" 
 	              	answerLabels="C - Counselled but declined HIV testing,
 	              					T - Counselled and tested but didn't receive results,
-	              					TR - Counselled tested and results given - Client tested HIV - in maternity,
-	              					TRR - Counselled tested and results given - Client tested HIV + in maternity,
+	              					TR - Counselled tested and results given - Client tested HIV - in ANC,
+	              					TRR - Counselled tested and results given - Client tested HIV + in ANC,
 	              					TRR+ - Client was originally negative but sero-converted at this test,
 	              					TRK - New ANC clients with Known HIV- status,
 	              					TRRK - New ANC clients with Known HIV+ status" 
-	                style="dropdown" class="emtct-code" />
+	                style="dropdown" class="emtct-code" id="emtct-code-partner" />
 	            </p>
 	          </td>
 	        </tr>
@@ -629,7 +849,7 @@
                             <label>TB Status</label>
                             <obs conceptId="dce02aa1-30ab-102d-86b0-7a5022ba4115"
                                  answerConceptIds="dcdaccc1-30ab-102d-86b0-7a5022ba4115,dcdaaf0f-30ab-102d-86b0-7a5022ba4115,dcdac38b-30ab-102d-86b0-7a5022ba4115,dcdaa6b4-30ab-102d-86b0-7a5022ba4115"
-                                 answerLabels="No Signs,Suspect,Diagnosed,TB Rx"
+                                 answerLabels="No Signs - No signs or symptoms of TB,Presumptive (Suspect) - TB refer or sputum sent,TB Diagnosed - Diagnosed with TB,TB Rx - CUrrently on TB treatment"
                                  style="dropdown" />
                         </p>
                     </td>
@@ -682,8 +902,8 @@
                         <p>
                             <label>IPT Dose</label>
                             <obs conceptId="1da3cb98-59d8-4bfd-b0bb-c9c1bcd058c6"
-                                 answerConceptIds="0192ca59-b647-4f88-b07e-8fda991ba6d6,f1d5afce-8dfe-4d2d-b24b-051815d61848,f29f43c6-076a-4f70-9ae8-4563ac3fda80,dca06bae-30ab-102d-86b0-7a5022ba4115,fca28768-50dc-4d6b-a3d2-2aae3b376b27,b0439b8e-469e-43e6-9dda-9b6b49f2147b"
-                                 answerLabels="1,2,ND,C,CTX,CTX✔"
+                                 answerConceptIds="0192ca59-b647-4f88-b07e-8fda991ba6d6,f1d5afce-8dfe-4d2d-b24b-051815d61848,a5497b5a-7da1-42d2-9985-b5ec695b4199,f29f43c6-076a-4f70-9ae8-4563ac3fda80,dca06bae-30ab-102d-86b0-7a5022ba4115,fca28768-50dc-4d6b-a3d2-2aae3b376b27,b0439b8e-469e-43e6-9dda-9b6b49f2147b"
+                                 answerLabels="1,2,3,ND - Not Due,C,CTX - Initial  septrin prescrition,CTX✔ - Septrin prescribed on prev visit"
                                  style="dropdown" />
                         </p>
                     </td>
@@ -758,10 +978,10 @@
                 <tr>
                     <td>
                         <p>
-                            <label>Referal</label>
+                            <label>Referal Type</label>
                             <obs conceptId="cd27f0ac-0fd3-4f40-99a3-57742106f5fd"
                                  answerConceptIds="6442c9f6-25e8-4c8e-af8a-e9f6845ceaed,14714862-6c78-49da-b65b-f249cccddfb6,03997d45-f6f7-4ee2-a6fe-b16985e3495d,3af0aae4-4ea7-489d-a5be-c5339f7c5a77"
-                                 answerLabels="REFOUT,REF IN,C/REF IN,FSG" style="dropdown"
+                                 answerLabels="REFOUT - Referred Out,REF IN - Referred In,C/REF IN - Referred in from community,FSG - Referred to family support groups" style="dropdown"
                                  id="referral" />
                         </p>
                     </td>
@@ -773,8 +993,14 @@
                     </td>
                     <td>
                         <p>
+                            <label>Referral Notes</label>
+                            <obs conceptId="160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="textarea" cols="35" />
+                        </p>
+                    </td>                    
+                    <td>
+                        <p>
                             <label>Complications/Risk Factors</label>
-                            <obs conceptId="120186AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="textarea" />
+                            <obs conceptId="120186AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="textarea" cols="35" />
                         </p>
                     </td>
                 </tr>
