@@ -64,18 +64,22 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         //Install Encounter Type
         log.info("Installing EncounterTypes");
         install(EncounterTypes.PNC_ENCOUNTER_TYPE);
-
+        install(EncounterTypes.SMC_FOLLOW_UP_ENCOUNTER);
+        install(EncounterTypes.OPD_ENCOUNTER);
+        install(EncounterTypes.TB_SUMMARY_ENCOUNTER);
+        install(EncounterTypes.TB_FOLLOWUP_ENCOUNTER);
+        
         //installing programs metadata
         log.info("Installing Programs");
         install(Programs.HIV_PROGRAM);
         install(Programs.TB_PROGRAM);
         install(Programs.MCH_PROGRAM);
         install(Programs.NUTRITION_PROGRAM);
-        install(EncounterTypes.SMC_FOLLOW_UP_ENCOUNTER);
         install(encounterRole(EncounterRoles.ASSISTANT_CIRCUMCISER_NAME,EncounterRoles.ASSISTANT_CIRCUMCISER_DESCRIPTION,EncounterRoles.ASSISTANT_CIRCUMCISER_UUID));
         
         //install Locations
         log.info("Installing Locations");
         install(Locations.TB_CLINIC);
+        install(Locations.OPD_CLINIC);
     }
 }
