@@ -68,7 +68,7 @@
 		<chartsearchVersion>1.6</chartsearchVersion>
 		<coreappsVersion>1.12.0</coreappsVersion>
 		<databaseBackupVersion>1.3.0</databaseBackupVersion>
-		<dataEntryStatisticsVersion>1.3.2</dataEntryStatisticsVersion>
+		<dataEntryStatisticsVersion>1.3.3</dataEntryStatisticsVersion>
 		<dataexchangeVersion>1.3.2</dataexchangeVersion>
 		<dataintegrityVersion>4.3.0</dataintegrityVersion>
 		<emrapiVersion>1.19</emrapiVersion>
@@ -212,6 +212,7 @@
 				<version>${dataexchangeVersion}</version>
 				<scope>provided</scope>
 			</dependency>
+			
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>dataintegrity-api</artifactId>
