@@ -56,5 +56,6 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(EncounterTypes.PNC_ENCOUNTER_TYPE);
         install(EncounterTypes.SMC_FOLLOW_UP_ENCOUNTER);
         install(encounterRole(EncounterRoles.ASSISTANT_CIRCUMCISER_NAME,EncounterRoles.ASSISTANT_CIRCUMCISER_DESCRIPTION,EncounterRoles.ASSISTANT_CIRCUMCISER_UUID));
+        install(EncounterTypes.VIRAL_LOAD_NON_SUPPRESSED);
     }
 }
