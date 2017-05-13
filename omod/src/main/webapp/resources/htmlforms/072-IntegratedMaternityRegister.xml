@@ -1,4 +1,4 @@
-<htmlform formName="HMIS 072 Integrated Maternity Form"
+<htmlform formName="HMIS 072 Maternity Form"
           formDescription="Admission into a clinic for a pregnant woman to give birth"
           formEncounterType="a9f11592-22e7-45fc-904d-dfe24cb1fc67"
           formUuid="bf56b96c-7aa2-4a3f-aca3-57f43aca4cd6"
@@ -454,7 +454,7 @@
 
   <div class="ai-page-frame">
     <div class="headers" style="text-align: center;">
-      <h3 style="background: #000000; padding: 10px;color:#07c1ae">INTEGRATED MATERNITY REGISTER (HMIS FORM 072)</h3>
+      <h3 style="background: #000000; padding: 10px;color:#07c1ae">HMIS 072 Maternity Form</h3>
     </div>
     <fieldset>
       <legend>Admission Information</legend>
