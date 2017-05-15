@@ -1,0 +1,652 @@
+<htmlform formName="HMIS 031 Outpatient (OPD) Form"
+          formDescription="HMIS 031 Out Patient Form"
+          formEncounterType="ee4780f5-b5eb-423b-932f-00b5879df5ab"
+          formUuid="8c2f8378-51c7-4407-85a0-cb2832accfcf"
+          formVersion="1.0"
+          formAddMetadata="yes"
+          formUILocation="patientDashboard.visitActions"
+          formOrder="11"
+          formIcon="icon-user"
+          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='11d5d2b8-0fdd-42e0-9f53-257c760bb9a3'"
+          formDisplayStyle="Standard"
+          formLabel="Out-Patient(OPD)">
+  
+  <style type="text/css">
+  	table.multi td {
+		width: 20%;
+		border: 1px solid rgb(199, 199, 199) !important;
+	}
+
+	table.multi td.duration input {
+		min-width: 20% !important;
+		width: 25px !important;
+	}
+
+	table.multi td.duration select {
+		min-width: 20%;
+		width: 50% !important;
+		clear: none !important;
+	}
+
+	.inError {
+	  border: 2px dotted #ff0000 !important;
+	}
+	
+	/**
+	Zebra stripping of tables
+	*/
+	form#htmlform div.ai-page-frame table>tbody tr:nth-child(odd) td {
+		background: #eeeeee;
+	}
+
+	form#htmlform div.ai-page-frame table>tbody tr:nth-child(even) td {
+		background: #f9f9f9;
+	}
+
+  </style>
+
+  <script type="text/javascript">
+	    jQuery(document).ready(function(jq) {
+	        const YES_CONCEPT_ID = 1065;
+	        const NO_CONCEPT_ID = 1066;
+
+			var disableBmiField = function () {
+				fieldHelper.makeReadonly(getField('bmi.value'));
+			};			
+			
+			var computeBmi = function () {
+				var weight,
+					height,
+					bmi;
+				weight = getValue('weight.value');
+				height = getValue('height.value');
+				if(!isNaN(parseInt(weight)) &amp;&amp; !isNaN(parseInt(height))) {
+					bmi = weight / Math.pow(height/100, 2);
+					bmi = Math.round(bmi);
+					setValue('bmi.value', bmi);	
+				 } else {
+				 	setValue('bmi.value', '');
+				 }
+			};
+
+	        var $othersField = jq('span.has-comment input[type=checkbox]');
+
+	        var toggleOtherSpecify = function() {
+	            $othersField.each(function(){
+	                var $specifyField = jq(this).siblings('input[type=text]');
+	                if (jq(this).attr('checked') == 'checked') {
+	                    fieldHelper.removeReadonly($specifyField);
+	                } else {
+	                    fieldHelper.makeReadonly($specifyField);
+	                    $specifyField.val('');
+	                }
+	            });
+	        };
+
+		    var isOtherSelectedAndSpecified = function() {
+		    	var valid = true;
+		        $othersField.each(function(){
+		            var $specifyField = jq(this).siblings('input[type=text]');
+		            var $errorField = jq(this).siblings('span.error');
+		            if (jq(this).attr('checked') == 'checked' &amp;&amp;  $specifyField.val() == '') {
+		                $errorField.html('Please specify').show();
+		                $specifyField.addClass('error');
+		                valid = false;
+		            } else {
+		            	$errorField.html('').hide();
+		            	$specifyField.removeClass('error');
+		            }
+
+		        });
+
+		        return valid;
+		    };
+
+			/**
+			* This validation check works this way:
+			* For each visible row, If any text box or combo box is non-empty, check if there's any other text box or combobox within the same row that is empty. 
+			* If so, validation fails and the elements with missing values are highlighted 
+			*/
+			var multipleEntryValidated = function () {
+			    var $rows,
+			        $objectsToValidate;
+			    var dirty = false;
+
+			    $rows = jq('table.multi&gt;tbody tr:visible');
+			    $rows.each(function () {
+			        $objectsToValidate = jq(this).find('input,select'); //Get all text and combo boxes
+			        $objectsToValidate.removeClass('inError');
+			        $objectsToValidate.each(function () {
+			            $obj = jq(this);
+			            if ($obj.val() !== '') { //Only run the validatiion check if there's at least one element that is non-empty 
+			                $objectsToValidate.each(function () {
+			                    if (jq(this).val() === '') {
+			                        jq(this).addClass('inError');
+			                        jq(this).siblings('span.error').html('Required').show()
+			                        dirty = true;
+			                    } else {
+			                    	jq(this).siblings('span.error').html('').hide();
+			                    }
+			                });
+			            }
+			        });
+			    });
+
+			    return !dirty;
+			}
+
+	        $othersField.change(toggleOtherSpecify);
+
+	        jq('span#height input[type="text"], span#weight input[type="text"]').change(computeBmi);
+
+	        toggleOtherSpecify();
+
+	        disableBmiField();
+
+	        beforeSubmit.push(function() {
+	            var valid = true;
+	            var $errorMessageSpan = jq('span#error-message');
+
+	            if (!isOtherSelectedAndSpecified()) {
+	            	valid = false;
+	            }
+
+	            if (!multipleEntryValidated()) {
+					valid = false;
+	            }
+
+	            if (valid) {
+	            	$errorMessageSpan.hide();
+	            } else {
+	            	$errorMessageSpan.show();
+	            }
+
+	            return valid;
+	        });
+
+	    });
+
+	    if (jQuery) {
+	        jQuery(document).ready(function (jq) {
+	            if (jq.browser.msie) {
+	                jq(":checkbox").click(function () {
+	                    jq(this).change();
+	                });
+	            }
+
+	        });
+	    }
+
+		jQuery(document).ready(function(jq) {
+			//Adding new form
+			var $allTables,
+				$allRows,
+				$otherRows,
+				$firstRow,
+				$thisRow,
+				$nextRow,
+				$hiddenRows,
+				$lastVisibleRow,
+				$nonEmptyBoxes;
+	
+			var showAddButtonForLastVisibleRow = function($container) {
+				$lastVisibleRow = $container.find('tr:visible:last');
+				$lastVisibleRow.find('.add').show();
+			};
+				
+			$firstRow = jq('table.multi tbody tr:first-of-type');
+			$otherRows = jq('table.multi tbody tr:not(:first-of-type)');
+	
+			<ifMode mode="ENTER">				
+				$otherRows.hide(); //Hide all rows apart from first row if adding new form
+				$firstRow.find('.remove').hide(); //Hide the remove button from the first row
+			</ifMode>
+			
+			<ifMode mode="EDIT">
+				//Handle loading of existing obs
+				$allTables = jq('table.multi');
+				$allTables.each(function() {
+					$allRows = jq(this).find('tbody &gt; tr');
+					$allRows.hide();
+					$nonEmptyBoxes = jq(this).find('input').filter(function() {
+					  return this.value.length &gt; 0;
+					});
+				
+					if ($nonEmptyBoxes.length &gt; 0 ) {
+					  $nonEmptyBoxes.each(function() {
+						$thisRow = jq(this).parents('tr:first');
+						$thisRow.show();
+						if ($thisRow.is($firstRow)) {
+							$firstRow.find('.remove').hide();
+						}
+					  });
+					  
+					  if ($nonEmptyBoxes.length == 1) {
+						$nonEmptyBoxes.parents('tr:first').find('.remove').hide(); //Hide the remove button if there is only one visible row
+					  }				  
+					} else {
+					  $firstRow.show();
+					  $firstRow.find('.remove').hide();
+					}
+				});
+			</ifMode>
+	
+			jq('.add').click(function(e) { //Handle add button event
+				e.preventDefault();
+				$thisRow = jq(this).parents('tr:first');
+				$nextRow = $thisRow.next();
+	
+				if ($nextRow.length &gt; 0) {
+					$nextRow.show('slow');
+					$thisRow.find('.add').hide();
+				}
+				showAddButtonForLastVisibleRow($thisRow.parents('table:first'));
+			});
+			
+			jq('.remove').click(function(e) { //Handle remove button event
+				e.preventDefault();
+				$thisRow = jq(this).parents('tr:first');
+				if (confirm('Are you sure you want to remove this record? All fields for this record will be cleared.') == 1) {
+					$thisRow = jq(this).parents('tr:first');
+					$thisRow.hide('slow', function() {
+						showAddButtonForLastVisibleRow($thisRow.parents('table:first'));
+						fieldHelper.clearAllFields($thisRow);
+					});
+				}
+			});			
+		});
+  </script>
+
+  <div class="ai-page-frame">
+    <div class="headers" style="text-align: center;">
+      <h3 style="background: #c0c0c0; padding: 10px; color: #1f2121;">HMIS 031 Outpatient (OPD) Form</h3>
+    </div>
+    <fieldset>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <p>
+              <label>Date</label>
+              <encounterDate default="today" disallowMultipleEncountersOnDate="block" />
+              <span style="display: none;">
+                <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117" order="629d78e9-93e5-43b0-ad8a-48313fd99117" />
+              </span>
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Serial Number </label>
+              <obs conceptId="1646" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Provider</label>
+              <encounterProvider type="dropdown" placeholder="Enter provider" />
+            </p>
+          </td>
+          <td></td>
+        </tr>
+      </table>
+    </fieldset>
+    <fieldset>
+      <legend>Vitals</legend>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <p>
+              <label>
+              	MUAC color code
+              </label>
+				<includeIf velocityTest="$patient.age &lt; 5">
+				    <obs conceptId="99030" answerConceptIds="99028,99029,99027"
+				         answerLabels="Red &lt; 11.5cm, Yellow 11.5cm - &lt;12.5cm,Green &gt;= 12.5cm"
+				         style="dropdown"/>
+				</includeIf>
+				<includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
+				    <obs conceptId="99030" answerConceptIds="99028,99029,99027"
+				         answerLabels="Red &lt; 13.5cm,Yellow 13.5cm - &lt;14.5cm,Green &gt;=14.5cm"
+				         style="dropdown"/>
+				</includeIf>
+				<includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
+				    <obs conceptId="99030" answerConceptIds="99028,99029,99027"
+				         answerLabels="Red &lt; 16.5cm, Yellow 16.5cm - &lt;19.0cm,Green &gt;=19.0cm"
+				         style="dropdown"/>
+				</includeIf>
+
+				<includeIf velocityTest="$patient.age &gt;=18">
+				    <obs conceptId="99030" answerConceptIds="99028,99029,99027"
+				         answerLabels="Red &lt;19.0cm , Yellow 19.0cm - &lt;22.0cm,Green &gt;=22.0cm"
+				         style="dropdown"/>
+				</includeIf>
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Weight (kg) </label>
+              <obs conceptId="5089" id="weight" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Height/Length (cm) </label>
+              <obs conceptId="5090" id="height" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>BMI</label>
+              <obs conceptId="1342" id="bmi" />
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>
+              <label>Weight for age Z-score</label>
+              <obs conceptId="1854"
+	          		answerConceptIds="1115,114413,123814,1067,134722,126598,134723,123815"
+	          		answerLabels="Normal,Overweight,Underweight,unknown,Malnutrition of moderate degree (Gomez: 60% to Less than 75% of Standard Weight),Severe protein-calorie malnutrition (Gomez: Less than 60% of Standard Weight),Malnutrition of mild degree (Gomez: 75% to Less than 90% of Standard Weight),Undernourished"
+	          		style="dropdown"/>
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Height for age Z-Score</label>
+              <obs conceptId="164088" answerConceptIds="1115,123814" answerLabels="Normal - N,Underweight - U" style="radio" class="horizontal-layout-options" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Blood pressure - Diastolic</label>
+              <obs conceptId="5086" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Blood pressure - Systolic</label>
+              <obs conceptId="5085" />
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>
+              <label>Blood sugar</label>
+              <obs conceptId="887" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Temp</label>
+              <obs conceptId="5088" />
+            </p>
+          </td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+    </fieldset>
+    <fieldset>
+      <legend>Follow up  Information</legend>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <p>
+              <label>Next of kin</label>
+              <obs conceptId="162729" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>
+                Need for Palliative care?
+              </label>
+              <obs conceptId="164438" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" class="horizontal-layout-options" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>
+                Patient Classification
+              </label>
+              <obs conceptId="162728" answerConceptIds="1597,164142" answerLabels="New Attendance, Re-attendance" style="radio" class="horizontal-layout-options" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>
+                Tobacco Use
+              </label>
+              <obs conceptId="163731" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" />
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>
+              <label>Alcohol use</label>
+              <obs conceptId="159449" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" />
+            </p>
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+    </fieldset>
+    <fieldset>
+      <legend>Malaria Test</legend>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <p>
+              <label>Fever</label>
+              <obs conceptId="1069" answerConceptId="5945" answerLabel="" style="checkbox" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Test Done</label>
+              <obs conceptId="164433" answerConceptIds="32,1643,1118" answerLabels="Blood smear/Microscopy,Rapid Diagnostic Test, Not done" style="radio" class="vertical-layout-options" />
+            </p>
+          </td>
+          <td>
+            <p>
+              	<label>Results</label>
+            	<obs conceptId="164434" answerConceptIds="703,664,1118" answerLabels="Positive,Negative,Not Done" style="radio" class="horizontal-layout-options" />
+            </p>
+          </td>
+          <td></td>
+        </tr>
+      </table>
+    </fieldset>
+    <fieldset>
+      <legend>TB</legend>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <p>
+              <label>
+                New Presumed Case?
+              </label>
+              <obs conceptId="99498" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" required="true" class="horizontal-layout-options" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>
+                Patient sent to lab?
+              </label>
+              <obs conceptId="90216" answerConceptId="90073" answerLabel="" style="checkbox" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>
+                Lab TB Results
+              </label>
+              <obs conceptId="160108" answerConceptIds="703,664,1175" answerLabels="Positive,Negative,N/A" style="radio" required="true" class="horizontal-layout-options" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>
+                Linked to TB Clinic
+              </label>
+              <obs conceptId="164435" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" class="horizontal-layout-options" />
+            </p>
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+    <fieldset>
+      <legend>New Diagnosis</legend>
+      <table width="100%" class="multi">
+      	<tbody>
+	 		<repeat>
+	 			<template>
+			        <tr>
+			          <td style="width:5%">#{id}</td>
+			          <td>
+			            <p>
+			              <obs conceptId="163149" answerClasses="Diagnosis,Finding" style="autocomplete" placeholder="Fill in Diagnosis" />
+			            </p>
+			          </td>
+			          <td><a href="#" class="add">Add Diagnosis</a>| <a href="#" class="remove">Remove Diagnosis</a></td>
+			         </tr> 				
+	 			</template>
+	 			<render id="1" />
+	 			<render id="2" />
+	 			<render id="3" />
+	 			<render id="4" />
+	 			<render id="5" />
+	 			<render id="6" />
+	 			<render id="7" />
+	 			<render id="8" />
+	 			<render id="9" />
+	 			<render id="10" />
+	 		</repeat>
+		</tbody>
+ 	  </table>
+    </fieldset>
+	<fieldset>
+      <legend>Drugs/Treatment</legend>
+	      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="multi">
+	      	<thead>
+		        <tr>
+		          <th>Drug</th>
+		          <th>Units per dose</th>
+		          <th>Doses per day</th>
+		          <th>Duration</th>
+		          <th></th>
+		        </tr>
+			</thead>
+      		<tbody>
+      			<repeat>
+					<template>
+			            <obsgroup groupingConceptId="160741">
+			              <tr>
+			                <td>
+			                  <p>
+			                    <obs conceptId="1282" />
+			                  </p>
+			                </td>
+			                <td>
+			                  <p>
+			                    <obs conceptId="160856" />
+			                  </p>
+			                </td>
+			                <td>
+			                  <p>
+			                    <obs conceptId="160855" />
+			                  </p>
+			                </td>
+			                <td class="duration">
+			                  <p>
+			                    <obs conceptId="159368" />
+			                    <obs conceptId="1732" />
+			                  </p>
+			                </td>
+			                <td>
+			                  <a href="#" class="add">Add</a> | <a href="#" class="remove">Remove</a>
+			                </td>
+			              </tr>
+			            </obsgroup>
+					</template>
+					<render id="1"/>
+					<render id="2"/>
+					<render id="3"/>
+					<render id="4"/>
+					<render id="5"/>
+					<render id="6"/>
+					<render id="7"/>
+					<render id="8"/>
+					<render id="9"/>
+					<render id="10"/>
+      		    </repeat>
+      		</tbody>
+	      </table>
+    </fieldset>
+    <fieldset>
+      <legend>Disability</legend>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <p>
+              <label>
+                Disability
+              </label>
+              <obs conceptId="162558" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" />
+            </p>
+          </td>
+          <td>
+          	<label>
+          		Type of disability
+          	</label>
+			*To be described***
+          </td>
+          <td colspan="2" style="width:60%">
+            <p>
+              <label>Device provided</label>
+              <obs conceptId="164204" answerConceptId="164204" answerLabel="Spectacles" style="checkbox" class="horizontal-layout-options" />
+              <obs conceptId="164204" answerConceptId="161241" answerLabel="Wheelchair" style="checkbox"  />
+              <obs conceptId="164204" answerConceptId="164202" answerLabel="Walking stick" style="checkbox"  />
+              <obs conceptId="164204" answerConceptId="156560" answerLabel="Hearing Aid" style="checkbox"  />
+              <obs conceptId="164204" answerConceptId="164203" answerLabel="Walker" style="checkbox"  />
+            </p>
+          </td>
+        </tr>
+      </table>
+
+    </fieldset>
+    <fieldset>
+      <legend>Out-Patient Referrals</legend>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <p>
+              <label>Referral in Number</label>
+              <obs conceptId="164436" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Referral Out Number</label>
+              <obs conceptId="99767" />
+            </p>
+          </td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+
+    </fieldset>
+    <section>
+      <submit />
+      <span style="clear:none;float:none;margin:5px;display: none;border: 2px dotted #fb0303;color: #fb0303;" id="error-message">
+        You have errors in your form, please scroll up to see them.
+      </span>
+    </section>
+  </div>
+</htmlform>

@@ -60,7 +60,6 @@ function dateValidator(prime, factor, alternative_factor, message_to_throw, alte
     var evaluationResult = true;
 
     getField(prime + '.error').html("").hide;
-    getField(factor + '.error').html("").hide;
 
     if (getValue(factor + '.value') == '' && getValue(prime + '.value') != '' && factorRequired == true) {
         getField(factor + '.error').html("Can Not Be Null").show;
@@ -213,33 +212,72 @@ function disableContainer(container) {
  *@param: selector string or JQuery object
  */
 var fieldHelper = {
+	$jqObj: function() {
+		return {};
+	},
     disable: function (args) {
         if (args instanceof jQuery) {
-            args.attr('disabled', true);
+            this.$jqObj = args;
         } else if (typeof args === 'string') {
-            jq(args).attr('disabled', true);
+            this.$jqObj = jq(args);
         }
+
+        this.$jqObj.attr('disabled', true);
+
     },
     enable: function (args) {
         if (args instanceof jQuery) {
-            args.removeAttr('disabled');
+            this.$jqObj = args;
         } else if (typeof args === 'string') {
-            jq(args).removeAttr('disabled');
+            this.$jqObj = jq(args);
         }
+
+        this.$jqObj.removeAttr('disabled');        
     },
     makeReadonly: function (args) {
         if (args instanceof jQuery) {
-            args.attr('readonly', true).fadeTo(250, 0.5);
-
+            this.$jqObj = args;
         } else if (typeof args === 'string') {
-            jq(args).attr('readonly', true).fadeTo(250, 0.25);
+            this.$jqObj = jq(args);
         }
+
+        this.$jqObj.attr('readonly', true).fadeTo(250, 0.25);
     },
     removeReadonly: function (args) {
         if (args instanceof jQuery) {
-            args.removeAttr('readonly').fadeTo(250, 1);
+            this.$jqObj = args;
         } else if (typeof args === 'string') {
-            jq(args).removeAttr('readonly').fadeTo(250, 1);
+            this.$jqObj = jq(args);
         }
+
+        this.$jqObj.removeAttr('readonly').fadeTo(250, 1)
+    },
+    clearAllFields: function (args) {
+        if (args instanceof jQuery) {
+        	this.$jqObj = args;
+        } else if (typeof args === 'string') {
+        	this.$jqObj = jq(args);
+        } 
+
+        this.$jqObj.find('input[type="text"], select').val('').change();
+
+        this.$jqObj.find('input[type="radio"], input[type="checkbox"]').removeAttr('checked');
+    },
+    customizeDateTimePickerWidget: function(args) {
+        //Remove the colon(:) in the date time picker
+        if (args instanceof jQuery) {
+	        this.$jqObj = args;
+        } else if (typeof args === 'string') {
+	        this.$jqObj = jq(args);
+        }
+
+        this.$jqObj.contents().filter(function() {
+	      return this.nodeType === 3;
+	    }).remove();
+
+
+	    // Insert label for time just before the timepicker field
+	    var $timeLabel = jq('<label/>').html('Time');
+	    $('.hfe-hours').before($timeLabel);
     }
 };

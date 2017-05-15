@@ -1,4 +1,4 @@
-<htmlform formName="HMIS 072 Integrated Maternity Form"
+<htmlform formName="HMIS 072 Maternity Form"
           formDescription="Admission into a clinic for a pregnant woman to give birth"
           formEncounterType="a9f11592-22e7-45fc-904d-dfe24cb1fc67"
           formUuid="bf56b96c-7aa2-4a3f-aca3-57f43aca4cd6"
@@ -23,6 +23,56 @@
 			margin: 0 0 5px 0;
 		}	
 	</style>
+
+	<ifMode mode="ENTER">
+			<script>
+				jQuery(document).ready(function() {
+					/*
+					 * If a mother is already in care (has an ART encounter) then the HIV+ field must be automatically selected
+					 */
+					<includeIf velocityTest="$fn.allEncounters('8d5b2be0-c2cc-11de-8d13-0010c6dffd0f').size() &gt; 0">
+						setValue('hiv-status.value', 90166);
+					</includeIf>
+					
+
+					/*
+					 *When the page is loaded with no providers with the Midwife role - a Javascript message must be shown and the user forwarded to the manage Users page
+					 */
+					var $midwifeField = jq('span#delivered-by').find('select');
+					
+					if ($midwifeField.children('option').size() === 1) {
+	                    alert('No user with a midwife role has been defined in the system. You will now be redirected to the manage users page..');
+
+	                    /*
+	                     * queryParameters -> handles the query string parameters
+	                     * queryString -> the query string without the fist '?' character
+	                     * re -> the regular expression
+	                     * m -> holds the string matching the regular expression
+	                     */
+	                    var queryParameters = {}, queryString = location.search.substring(1),
+	                            re = /([^&amp;=]+)=([^&amp;]*)/g, m;
+
+	                    // Creates a map with the query string parameters
+	                    while (m = re.exec(queryString)) {
+	                        queryParameters[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+	                    }
+
+	                    /*
+	                     * Replace the query portion of the URL.
+	                     * jQuery.param() -> create a serialized representation of an array or
+	                     *     object, suitable for use in a URL query string or Ajax request.
+	                     */
+	                    location.href = window.location.protocol + "//" + window.location.host +
+	                            '/' + OPENMRS_CONTEXT_PATH + '/admin/users/users.list';
+
+					}
+					
+				});
+			</script>
+		
+
+	</ifMode>
+
 	<script type="text/javascript">
 	    jQuery(document).ready(function(jq) {
 	        const VIRAL_LOAD_RESULTS_CONCEPT_ID = 1305;
@@ -45,6 +95,7 @@
 	        var $viralLoadResultsField = getField('viral-load-results.value');
 	        var $iycfField = jq(IYCF_FIELD).find('input');
 	        var $arvsToMotherField = getField('arvs-to-mother.value');
+	        var $gestationWeeksField = getField('gestation-weeks.value');
 
 	        var viralLoadResultsChange = function() {
 	            var $viralLoadResults = getValue('viral-load-results.value');
@@ -54,13 +105,16 @@
 	            fieldHelper.enable($viralLoadField);
 	            if ($viralLoadResults == VIRAL_LOAD_NOT_DETECTED_CONCEPT_ID) { //if viral load quantitive is 'not detected' set a viral load count of 1
 	                $viralLoadField.val(1);
+	                $viralLoadField.change();
 	                fieldHelper.makeReadonly($viralLoadField);
 	            } else if($viralLoadResults == VIRAL_LOAD_DETECTED_CONCEPT_ID) { //if viral load quantitive is 'detected' allow for entry of viral load count
-	                if ($viralLoadField == 1) {
+	                if ($viralLoadField.val() == 1) {
 		                $viralLoadField.val("");
+		                $viralLoadField.change();
 	                }
 	            } else { //if viral load quantitive is 'rejected' clear viral load count field
 	                $viralLoadField.val("");
+	                $viralLoadField.change();
 	                fieldHelper.disable($viralLoadField);
 	            }
 	        };
@@ -73,15 +127,19 @@
 	                fieldHelper.enable($hivInformationSection.find('input'));
 	                fieldHelper.enable($arvsAdministeredToBabyField);
 	                fieldHelper.enable($hivInformationSection.find('input,select'));
+	                fieldHelper.enable($arvsToMotherField);
 	            } else {
 	                $hivInformationSection.find('input,select').each(function() {
-	                    if (jq(this).attr('id') != $hivStatusField.attr('id')) {
-	                        fieldHelper.disable(jq(this));
-	                    } else {
+	                	var isEmtctCodeField = jq(this).parents('span:first').length &gt; 0 &amp;&amp; jq(this).parents('span:first').attr('class').indexOf('emtct-code') != -1; //Check if current control is an eMTCT Code field
+
+	                    if (jq(this).attr('id') == $hivStatusField.attr('id') || isEmtctCodeField ) {
 	                        fieldHelper.enable(jq(this));
+	                    } else {
+	                        fieldHelper.disable(jq(this));
 	                    }
 	                });
 	                $arvsAdministeredToBabyField.attr('disabled', true);
+	                fieldHelper.disable($arvsToMotherField);
 	            }
 	            viralLoadResultsChange();
 	        };
@@ -106,6 +164,18 @@
 	            }
 	        };
 
+	        var setDelivery = function() {
+	        	var $gestationWeeks = getValue('gestation-weeks.value');
+
+	        	if ($gestationWeeks &lt; 37) {
+					//select pre-term
+					setValue('delivery.value', 129218);
+	        	} else {
+					//select term
+					setValue('delivery.value', 1395);
+	        	}
+	        }
+
 	        var $othersField = jq('span.has-comment input[type=checkbox]');
 
 	        var toggleOtherSpecify = function() {
@@ -116,6 +186,7 @@
 	                } else {
 	                    fieldHelper.makeReadonly($specifyField);
 	                    $specifyField.val('');
+	                    $specifyField.change();
 	                }
 	            });
 	        };
@@ -139,14 +210,64 @@
 	        	var apgarScoreField = getField('apgar-score.value');
 	        	var apgarScore = getValue('apgar-score.value');
 	        	var apgarScoreErrorField = getField('apgar-score.error');
-
-	        	if (apgarScore &lt; 1 || apgarScore &gt; 10) {
+				
+	        	if (apgarScore != '' &amp;&amp; (apgarScore &lt; 1 || apgarScore &gt; 10)) {
 					apgarScoreField.addClass('error');
 					apgarScoreErrorField.html('Apgar score needs to be between 1 and 10').show();
 					return false
 	        	} else {
 	        		apgarScoreField.removeClass('error');
 					apgarScoreErrorField.html('').hide();
+	        	}
+
+	        	return true
+	        }
+
+			var gravidaValidate = function() {
+	        	var gravidaField = getField('gravida.value');
+	        	var gravida = getValue('gravida.value');
+	        	var gravidaErrorField = getField('gravida.error');
+	        	
+	        	if (gravida &lt; 0) {
+					gravidaField.addClass('error');
+					gravidaErrorField.html('Parity cannot be less than 0').show();
+					return false;
+	        	} else {
+	        		gravidaField.removeClass('error');
+					gravidaErrorField.html('').hide();
+	        	}
+
+	        	return true;
+			};
+
+			var parityValidate = function() {
+	        	var parityField = getField('parity.value');
+	        	var parity = getValue('parity.value');
+	        	var parityErrorField = getField('parity.error');
+	        	
+	        	if (parity &lt; 0) {
+					parityField.addClass('error');
+					parityErrorField.html('Gravida cannot be less than 0').show();
+					return false;
+	        	} else {
+	        		parityField.removeClass('error');
+					parityErrorField.html('').hide();
+	        	}
+
+	        	return true;
+			};
+
+	        var gestationWeeksValidate = function() {
+	        	var gestationWeeks = getValue('gestation-weeks.value');
+	        	var gestationWeeksErrorField = getField('gestation-weeks.error');
+
+	        	if (gestationWeeks &lt;= 28 || gestationWeeks &gt; 45) {
+					gestationWeeksField.addClass('error');
+					gestationWeeksErrorField.html('Weeks of Gestation should be between 28 and 45').show();
+					return false;
+	        	} else {
+	        		gestationWeeksField.removeClass('error');
+					gestationWeeksErrorField.html('').hide();
 	        	}
 
 	        	return true
@@ -171,12 +292,34 @@
 		        return valid;
 		    };
 
+			var childValidated = function () {
+			    var $tables;
+			    var dirty = false;
+
+			    $tables = jq('fieldset#child-information &gt; table:visible');
+			    $tables.each(function () {
+			    	$checkedBoxes = $('#child-sex').find('input[type="radio"]').filter(function() {
+			    		return this.checked == true;
+			    	});
+
+					if ($checkedBoxes.length == 0) {
+						getField('child-sex.error').html('Required field').show();
+						dirty = true;
+					} else {
+						getField('child-sex.error').html('').hide();					
+					}
+			    });
+
+			    return !dirty;
+			}
+
 	        $othersField.change(toggleOtherSpecify);
 
 	        $viralLoadResultsField.change(viralLoadResultsChange);
 	        $hivStatusField.change(hivStatusChange);
 	        $iycfField.change(iycfChange);
 	        $arvsToMotherField.change(arvsToMotherChange);
+	        $gestationWeeksField.change(setDelivery);
 
 	        viralLoadResultsChange();
 	        hivStatusChange();
@@ -199,7 +342,19 @@
 					valid = false;
 	            }
 
-	            if (!isOtherSelectedAndSpecified()){
+	            if (!gravidaValidate()) {
+	            	valid = false;
+	            }
+
+	            if (!parityValidate()) {
+	            	valid = false;
+	            }
+
+	            if (!childValidated()) {
+					valid = false;
+	            }
+
+	            if (!isOtherSelectedAndSpecified()) {
 	            	valid = false;
 	            }
 
@@ -299,7 +454,7 @@
 
   <div class="ai-page-frame">
     <div class="headers" style="text-align: center;">
-      <h3 style="background: #000000; padding: 10px;color:#07c1ae">INTEGRATED MATERNITY REGISTER (HMIS FORM 072)</h3>
+      <h3 style="background: #000000; padding: 10px;color:#07c1ae">HMIS 072 Maternity Form</h3>
     </div>
     <fieldset>
       <legend>Admission Information</legend>
@@ -339,25 +494,25 @@
           <td>
             <p>
               <label>Gravida</label>
-              <obs conceptId="dcc39097-30ab-102d-86b0-7a5022ba4115" />
+              <obs conceptId="dcc39097-30ab-102d-86b0-7a5022ba4115" id="gravida" />
             </p>
           </td>
           <td>
             <p>
               <label>Parity</label>
-              <obs conceptId="1053AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+              <obs conceptId="1053AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="parity" />
             </p>
           </td>
           <td>
             <p>
               <label>Weeks of gestation</label>
-              <obs conceptId="8c40b914-10a0-4f77-92ba-db242973748f" />
+              <obs conceptId="8c40b914-10a0-4f77-92ba-db242973748f" id="gestation-weeks"/>
             </p>
           </td>
           <td>
             <p>
               <label>Delivery</label>
-              <obs conceptId="161033AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,129218AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Term,Preterm" style="radio" />
+              <obs conceptId="161033AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,129218AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Term,Preterm" style="dropdown" id="delivery"/>
             </p>
           </td>
         </tr>
@@ -418,7 +573,7 @@
           <td>
             <p>
               <label>HIV Status</label>
-              <obs conceptId="dce0e886-30ab-102d-86b0-7a5022ba4115" answerConceptIds="dcdf4241-30ab-102d-86b0-7a5022ba4115,dcdf4653-30ab-102d-86b0-7a5022ba4115,1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="dropdown" id="hiv-status" />
+              <obs conceptId="dce0e886-30ab-102d-86b0-7a5022ba4115" answerConceptIds="dcdf4241-30ab-102d-86b0-7a5022ba4115,dcdf4653-30ab-102d-86b0-7a5022ba4115,1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="dropdown" id="hiv-status" required="true"/>
             </p>
           </td>
           <td>
@@ -468,26 +623,30 @@
             <p>
               <label>eMTCT Code: Woman</label>
               <obs conceptId="d5b0394c-424f-41db-bc2f-37180dcdbe74" 
-              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7,86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465,60155e4d-1d49-4e97-9689-758315967e0f" 
-              	answerLabels="Counselled but declined HIV testing (C),
-              					Counselled and tested but didn't receive results (T),
-              					Counselled tested and results given - Client tested HIV - in maternity(TR),
-              					Counselled tested and results given - Client tested HIV + in maternity (TRR),
-              					Client was originally negative but sero-converted at this test (TRR+)"
-                style="dropdown" />
+              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb, 05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7, 86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a, 25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465, 60155e4d-1d49-4e97-9689-758315967e0f, 81bd3e58-9389-41e7-be1a-c6723f899e56,1f177240-85f6-4f10-964a-cfc7722408b3" 
+              	answerLabels="C - Counselled but declined HIV testing,
+              					T - Counselled and tested but didn't receive results,
+              					TR - Counselled tested and results given - Client tested HIV - in maternity,
+              					TRR - Counselled tested and results given - Client tested HIV + in maternity,
+              					TRR+ - Client was originally negative but sero-converted at this test,
+              					TRK - New ANC clients with Known HIV- status,
+              					TRRK - New ANC clients with Known HIV+ status" 
+                style="dropdown" required="true" class="emtct-code"/>
             </p>
           </td>
           <td colspan="2">
             <p>
               <label>eMTCT Code: Partner</label>
               <obs conceptId="62a37075-fc2a-4729-8950-b9fae9b22cfb" 
-              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7,86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465,60155e4d-1d49-4e97-9689-758315967e0f" 
-              	answerLabels="Counselled but declined HIV testing (C),
-              					Counselled and tested but didn't receive results (T),
-              					Counselled tested and results given - Client tested HIV - in maternity(TR),
-              					Counselled tested and results given - Client tested HIV + in maternity (TRR),
-              					Client was originally negative but sero-converted at this test (TRR+)"
-                style="dropdown" />
+              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb, 05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7, 86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a, 25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465, 60155e4d-1d49-4e97-9689-758315967e0f, 81bd3e58-9389-41e7-be1a-c6723f899e56,1f177240-85f6-4f10-964a-cfc7722408b3" 
+              	answerLabels="C - Counselled but declined HIV testing,
+              					T - Counselled and tested but didn't receive results,
+              					TR - Counselled tested and results given - Client tested HIV - in maternity,
+              					TRR - Counselled tested and results given - Client tested HIV + in maternity,
+              					TRR+ - Client was originally negative but sero-converted at this test,
+              					TRK - New ANC clients with Known HIV- status,
+              					TRRK - New ANC clients with Known HIV+ status" 
+                style="dropdown" class="emtct-code"/>
             </p>
           </td>
         </tr>
@@ -507,7 +666,7 @@
           <td>
             <p>
               <label>Date of delivery</label>
-              <obs conceptId="f9573837-6a9b-4f2f-9298-aecf27b15fb3" allowTime="true" class="date-and-time" />
+              <obs conceptId="f9573837-6a9b-4f2f-9298-aecf27b15fb3" allowTime="true" class="date-and-time" required="true"/>
             </p>
           </td>
           <td>
@@ -520,7 +679,7 @@
           <td>
             <p>
               <label>Other treatment given</label>
-              <obs conceptId="0aea6828-2328-4038-9cd9-680dbdf29790" />
+              <obs conceptId="0aea6828-2328-4038-9cd9-680dbdf29790" rows="5" cols="30" />
             </p>
           </td>
         </tr>
@@ -562,7 +721,7 @@
 				          <td>
 				            <p>
 				              <label>Sex</label>
-				              <obs conceptId="1587AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1535AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1534AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Female,Male" style="radio" />
+				              <obs conceptId="1587AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1535AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1534AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Female,Male" style="radio" id="child-sex" />
 				            </p>
 				          </td>
 				          <td>
@@ -580,7 +739,7 @@
 				          <td>
 				            <p>
 				              <label>Apgar score</label>
-				              <obs conceptId="056ee92e-3104-4529-8f83-70580e0f4501" id="apgar-score" />
+				              <obs conceptId="056ee92e-3104-4529-8f83-70580e0f4501" id="apgar-score" answers="1,2,3,4,5,6,7,8,9,10" answerLabels="1,2,3,4,5,6,7,8,9,10" />
 				            </p>
 				          </td>
 				          <td>
@@ -588,14 +747,14 @@
 				              <label>
 				                Immediate skin to skin contact?
 				              </label>
-				              <obs conceptId="be4b37fc-4197-4a4e-913d-0d8f3babdffd" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes, No" style="radio" />
+				              <obs conceptId="be4b37fc-4197-4a4e-913d-0d8f3babdffd" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes, No" style="radio" class="horizontal-layout-options" />
 				            </p>
 				          </td>
 				        </tr>
 				        <tr>
 				          <td>
 				            <label>Breastfed within 1 hour?</label>
-				            <obs conceptId="a4063d62-a936-4a26-9c1c-a0fb279a71b1" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes, No" style="radio" />
+				            <obs conceptId="a4063d62-a936-4a26-9c1c-a0fb279a71b1" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes, No" style="radio" class="horizontal-layout-options" />
 				          </td>
 				          <td></td>
 				          <td></td>
@@ -629,7 +788,7 @@
 				            <label>
 				              Counselling at discharge
 				            </label>
-				            <obs conceptId="3095d500-4a3e-4cf3-ab96-6f406e0d371d" answerConceptIds="162936,162937" answerLabels="Counselled (C), Not Counselled (NC)" style="radio" class="horizontal-layout-options" />
+				            <obs conceptId="3095d500-4a3e-4cf3-ab96-6f406e0d371d" answerConceptIds="162936,162937" answerLabels="Counselled (C), Not Counselled (NC)" style="radio" class="vertical-layout-options" />
 				          </td>
 				          <td>
 				            <label>
@@ -656,7 +815,7 @@
 				          <td>
 				            <p>
 				              <label>ARVs administered to baby</label>
-				              <obs conceptId="9e825e42-be00-4d4d-8774-257ddb29581b" answerConceptIds="dc9b0596-30ab-102d-86b0-7a5022ba4115,04711d8f-c60d-4b1c-9451-0b32debbb8b0" answerLabels="NA, NVP Syrup" id="arvs-administered-to-baby" style="radio" />
+				              <obs conceptId="9e825e42-be00-4d4d-8774-257ddb29581b" answerConceptIds="dc9b0596-30ab-102d-86b0-7a5022ba4115,04711d8f-c60d-4b1c-9451-0b32debbb8b0" answerLabels="NA, NVP Syrup" id="arvs-administered-to-baby" style="radio" class="horizontal-layout-options" />
 				            </p>
 				          </td>
 				          <td>
@@ -757,7 +916,7 @@
           <td>
             <p>
               <label>Delivered by</label>
-              <encounterProvider role="Midwife" type="autocomplete"/>
+              <encounterProvider role="Midwife" type="radio" id="delivered-by" />
             </p>
           </td>
           <td>
@@ -793,7 +952,7 @@
     <section></section>
     <section>
       <submit />
-      <span style="clear:none;float:none;margin:5px;display: none;border: 2px dotted #fb0303;color: #fb0303;" class="error" id="error-message">
+      <span style="clear:none;float:none;margin:5px;display: none;" class="error1" id="error-message">
       	You have errors in your form, please scroll up to see them.
       </span>
     </section>
