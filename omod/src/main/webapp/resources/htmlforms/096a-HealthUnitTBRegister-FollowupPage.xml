@@ -126,7 +126,7 @@
 				var encounterDate = new Date($encounterDateField.val());
 				var patientAgeInMonths = moment(encounterDate).diff(patientDob, 'months', false);
 
-				if (patientAgeInMonths &gt; 6) {
+				if (patientAgeInMonths &lt; 6) {
 					fieldHelper.disable($muacQualitativeField);
 					fieldHelper.disable($muacQuantitativeField);
 				} else {
