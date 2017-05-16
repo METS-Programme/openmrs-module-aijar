@@ -529,6 +529,7 @@
                                          answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
                                          answerLabels="Red &lt;19.0cm , Yellow 19.0cm - &lt;22.0cm,Green &gt;=22.0cm" id="muac-qualitative" />
                                 </includeIf>
+
 	                        </p>
 	                    </td>
 	                    <td>
@@ -686,6 +687,7 @@
 
         <fieldset>
             <legend>Routine Administration/Treatment</legend>
+
             <table>
                 <tr>
                     <td>
@@ -714,10 +716,12 @@
                                  answerConceptId="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Folic Acid" />
                             <obs conceptId="d12abd7f-c90d-4798-9240-0f2f81977183"
                                  answerConceptId="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Septrin" id="septrin"/>
+
                         </p>
                     </td>
                 </tr>
                 <tr>
+
                 	<td colspan="2">
                         <p>
                             <label>Other Treatments</label>
@@ -739,10 +743,12 @@
                             <obs conceptId="dd8a2ad9-16f6-44db-82d7-87d6eef14886"
                                  answerConceptIds="9d9e6b5a-8b5d-4b8c-8ab7-9fdabb279493,811ff634-8d81-454f-9b9d-2850345796d6,95121db8-6c2a-48e0-b281-cf2dc8229dd1"
                                  answerLabels="AL - Alive,NND7 - Dead within first seven(7) days,NND28 - Dead between eight(8) and twenty eight(28) Days" />
+
                         </p>
                     </td>
                     <td>
                         <p>
+
                             <label>Age (Wks)</label>
                             <obs conceptId="164438AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
 
@@ -787,10 +793,12 @@
                         <p>
                             <label>I.N.R Number</label>
                             <obs conceptId="b644c29c-9bb0-447e-9f73-2ae89496a709" />
+
                         </p>
                     </td>
                     <td>
                         <p>
+
                             <label>Diagnosis</label>
                             <obs conceptId="a16b3a8e-6412-4344-908a-2a96344fa017" style="textarea" />
                         </p>
@@ -846,10 +854,12 @@
 	                        <obs conceptId="59560ede-43e2-4e56-a47e-0f876779f0e1" id="other-treatments-child"
 	                             style="textarea" />
 	                    </p>
+
                     </td>
                 </tr>
             </table>
         </fieldset>
+
 
         <fieldset>
             <legend>Referral Information</legend>
@@ -948,6 +958,7 @@
 	            </table>
 			</section>
         </fieldset>
+
         <section>
             <submit/>
             <span style="clear:none;float:none;margin:5px;display: none;"
