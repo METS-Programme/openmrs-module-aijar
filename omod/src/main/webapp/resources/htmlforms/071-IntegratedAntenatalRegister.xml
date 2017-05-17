@@ -45,8 +45,9 @@
 	        const HIV_POSITIVE_CONCEPT_ID = 90166;
 	        const HIV_NEGATIVE_CONCEPT_ID = 90167;
 
-	        const YES_CONCEPT_ID = 1065;
-	        const NO_CONCEPT_ID = 1066;
+	        const 	YES_CONCEPT_ID = 1065,
+	        		NO_CONCEPT_ID = 1066,
+	        		NA_CONCEPT_ID = 1175;
 
 	        const HIV_INFORMATION_SECTION = '#hiv-information-section';
 	        const ARVS_ADMINISTERED_TO_BABY_FIELD = '#arvs-administered-to-baby';
@@ -264,18 +265,25 @@
 			/**
 			* ANC 1 timing should only be selected if this is the first ANC visit otherwise it should be disabled
 			*/
+			var firstAncVisit = false;
 	        var ancVisitChange = function() {
 				var ancVisit = getValue('anc-visit.value');
 				if (ancVisit == 1) {
-					fieldHelper.enable($anc1TimingField);				
+					fieldHelper.enable($anc1TimingField);	
+					firstAncVisit = true;			
 				} else {
+					firstAncVisit = false;
 					fieldHelper.disable($anc1TimingField);
-					setValue('anc1-timing.value', '');
+					setAnc1Timing();
 				}
 	        };
 
+        	var selectedAnc1TimingValue = '';
 	        var setAnc1Timing = function() {
 	        	if (!firstAncVisit) {
+	        		selectedAnc1TimingValue = NA_CONCEPT_ID;
+	        		$anc1TimingField.addClass('locked');
+	        		$anc1TimingField.change();
 	        		return;
 	        	}
 
@@ -288,9 +296,23 @@
 	        	} else {
 					setValue('anc1-timing.value', '');
 	        	}
+	        	selectedAnc1TimingValue = getValue('anc1-timing.value');
 	        	$anc1TimingField.change();
-				fieldHelper.disable($anc1TimingField);
+	        	$anc1TimingField.addClass('locked');
 	        }
+
+	        /**
+	        * This function checks if the HIV status field has been locked(Contains the 'locked' class )
+	        */
+	        var isAnc1TimingFieldLocked = function () {
+	            return $anc1TimingField.is('.locked');
+	        }
+
+	        var anc1TimingChange = function() {
+	        	if (isAnc1TimingFieldLocked) {
+					setValue('anc1-timing.value', selectedAnc1TimingValue);
+	        	}
+	        };
 
 	        var $othersField = jq('span.has-comment input[type="checkbox"], span.has-comment select');
 
@@ -456,6 +478,7 @@
 	        $muacQuantitativeField.change(muacChange);
 	        $muacQualitativeField.change(muacChange);
 	        $ancVisitField.change(ancVisitChange);
+	        $anc1TimingField.change(anc1TimingChange);
 
 			getHivStatus();
 	        viralLoadResultsChange();
