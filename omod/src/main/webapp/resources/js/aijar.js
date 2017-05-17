@@ -60,7 +60,6 @@ function dateValidator(prime, factor, alternative_factor, message_to_throw, alte
     var evaluationResult = true;
 
     getField(prime + '.error').html("").hide;
-    getField(factor + '.error').html("").hide;
 
     if (getValue(factor + '.value') == '' && getValue(prime + '.value') != '' && factorRequired == true) {
         getField(factor + '.error').html("Can Not Be Null").show;

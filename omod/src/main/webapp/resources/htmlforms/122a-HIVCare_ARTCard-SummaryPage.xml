@@ -22,44 +22,61 @@
             var message4 = "Must be earlier or on the same day as HIV enrolled";
             var message5 = "Must be after ART Start Date";
             var message6 = "Must be after ART Transfer Date";
-            var message7 = "Either This or Art Transfer Date Must be filled";
-            var message8 = "Either This or Art Start Date Must be filled";
+            var message7 = "Either This or Art Transfer Date Must be filled if you have switching or substitution dates filled";
+            var message8 = "Either This or Art Start Date Must be filled if you have switching or substitution dates filled";
 
             var submitValStage = [];
-            var submitValStageART=[];
+            var submitValStageART = [];
 
-
-
+            //Validation for Substitution within 1st line
             submitValStageART.push(dateValidator("99163_1", "99161", "99160", message5, message6, "less_than", false));
             submitValStageART.push(dateValidator("99163_2", "99161", "99160", message5, message6, "less_than", false));
             submitValStageART.push(dateValidator("99163_3", "99161", "99160", message5, message6, "less_than", false));
             submitValStageART.push(dateValidator("99163_4", "99161", "99160", message5, message6, "less_than", false));
+
+            //Validation for Switch to 2nd
             submitValStageART.push(dateValidator("99164_1", "99161", "99160", message5, message6, "less_than", false));
             submitValStageART.push(dateValidator("99164_2", "99161", "99160", message5, message6, "less_than", false));
             submitValStageART.push(dateValidator("99164_3", "99161", "99160", message5, message6, "less_than", false));
+
+            //Validation for Switch to 3rd
             submitValStageART.push(dateValidator("162991_1", "99161", "99160", message5, message6, "less_than", false));
             submitValStageART.push(dateValidator("162991_2", "99161", "99160", message5, message6, "less_than", false));
             submitValStageART.push(dateValidator("162991_3", "99161", "99160", message5, message6, "less_than", false));
 
-            submitValStage=submitValStageART;
+            submitValStage = submitValStageART;
 
+            //Validation for Date Confirmed HIV +Ve
             submitValStage.push(dateValidator("90267", "encounterDate", "", message4, "", "greater_than", true));
-            submitValStage.push(dateValidator("90297", "encounterDate", "", message1, "", "less_than", true));
-            submitValStage.push(dateValidator("90299", "90297", "encounterDate", message2, message1, "less_than", false));
-            submitValStage.push(dateValidator("99161", "90299", "encounterDate", message3, message1, "less_than", false));
 
+            //Validation for Start ART date
+            if (getValue("99161" + '.value') != "") {
+                submitValStage.push(dateValidator("99161", "90299", "encounterDate", message3, message1, "less_than", false));
+            }
+            //Validation for ART Transfer Date
+            if (getValue("99160" + '.value') != "") {
+                submitValStage.push(dateValidator("99160", "90299", "encounterDate", message3, message1, "less_than", false));
+            }
+
+            if (getValue("99160" + '.value') == "") {
+                //Validation for Eligible and ready Date
+                submitValStage.push(dateValidator("90299", "90297", "encounterDate", message2, message1, "less_than", false));
+                //Validation for Eligible for ART Date
+                submitValStage.push(dateValidator("90297", "encounterDate", "", message1, "", "less_than", true));
+            }
+            //Validation for Transfer out Date
             submitValStage.push(validateRequiredField("99165", "90306", "Can Not Be Null", "check_box"));
+            //Validation for Lost to follow-up Date
             submitValStage.push(validateRequiredField("90209", "5240", "Can Not Be Null", "check_box"));
 
-            if((getValue("99161" + '.value')=="" &amp;&amp; getValue("99160" + '.value')=="") &amp;&amp; (submitValStageART.indexOf(false) != -1)){
+            if ((getValue("99161" + '.value') == "" &amp;&amp; getValue("99160" + '.value') == "") &amp;&amp; (submitValStageART.indexOf(false) != -1)) {
                 getField("99161" + '.error').html(message7).show();
                 getField("99160" + '.error').html(message8).show();
             }
 
-
             if (submitValStage.indexOf(false) != -1) {
                 submitVal = false;
-                jq().toastmessage('showErrorToast', "Form Validation violated. Check for errors");
+                jq().toastmessage('showErrorToast', "  There are errors during the valdation of the data on the form. Please correct them and submit again");
             }
 
             return submitVal;
