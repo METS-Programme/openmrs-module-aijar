@@ -50,7 +50,8 @@
 				PBC_CONCEPT_ID = 113491;
 	        	HIV_STATUS_CONCEPT_ID = 90253;
 	        	HIV_POSITIVE_CONCEPT_ID = 90166;
-	        	HIV_NEGATIVE_CONCEPT_ID = 90167;
+	        	HIV_NEGATIVE_CONCEPT_ID = 90167,
+	        	NOT_DONE_CONCEPT_ID = 1118;
 
 			var $transferInFromField,
 				$transferInUnitTbNumberField,
@@ -376,12 +377,31 @@
 			var diseaseClassificationChange = function() {
 				if ($diseaseClassificationField.val() == PBC_CONCEPT_ID) {
 					fieldHelper.enable($sputumSmearResultsField);
-					fieldHelper.enable($sputumSmearDateField);
 				} else {
 					fieldHelper.disable($sputumSmearResultsField);
 					fieldHelper.disable($sputumSmearDateField);
 					setValue('sputum-smear-results.value','');
 					setValue('sputum-smear-date.value','');
+				}
+			};
+			
+			/*
+			* Sputum examination date should be required when spartum results other than Not done are selected
+			*/
+			var sputumSmearResultsChange = function() {
+				var sputumSmearResult = $sputumSmearResultsField.val();
+				var $sputumSmearExaminationDateErrorField = getField('sputum-smear-date.error');
+				fieldHelper.enable($sputumSmearDateField);
+				if (sputumSmearResult != '' &amp;&amp; sputumSmearResult != NOT_DONE_CONCEPT_ID) {
+					if ($sputumSmearDateField.val() == '') {
+						$sputumSmearExaminationDateErrorField.html('Please enter examination date').show();
+					} else {
+						$sputumSmearExaminationDateErrorField.html('').hide(); 
+					}
+				} else {
+					fieldHelper.disable($sputumSmearDateField);
+					setValue('sputum-smear-date.value', '');
+					$sputumSmearExaminationDateErrorField.html('').hide(); 
 				}
 			};
 			
@@ -427,6 +447,8 @@
 			$healthWorkerField.change(healthWorkerChange);
 			$hivCounsellingAndTestingField.change(hivCounsellingAndTestingChange);
 			$diseaseClassificationField.change(diseaseClassificationChange);
+			$sputumSmearResultsField.change(sputumSmearResultsChange);
+			$sputumSmearDateField.change(sputumSmearResultsChange);
 			$othersField.change(toggleOtherSpecify);
 
 			transferInFromChange();
@@ -439,7 +461,8 @@
 			hivCounsellingAndTestingChange();
 			diseaseClassificationChange();
 			getHivStatus();
-			moveXRayCommentField()
+			moveXRayCommentField();
+			sputumSmearResultsChange();
 			toggleOtherSpecify();
 		
 			beforeSubmit.push(function(){
@@ -474,13 +497,16 @@
 					valid = false;
 				}
 
+	            if (jq('span.error.field-error:visible').length &gt; 0) {
+	            	valid = false;
+	            }
+
 	            if (valid) {
 	            	$errorMessageSpan.hide();
 	            } else {
 	            	$errorMessageSpan.show();
 	            	jq().toastmessage('showErrorToast', "Form Validation failed. Check for errors");
 	            }
-
 		
 				return valid;
 			});
