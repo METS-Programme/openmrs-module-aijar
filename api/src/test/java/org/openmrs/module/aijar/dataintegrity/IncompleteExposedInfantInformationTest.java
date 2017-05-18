@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.openmrs.Encounter;
 import org.openmrs.Patient;
 import org.openmrs.module.dataintegrity.rule.RuleResult;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
@@ -42,6 +43,10 @@ public class IncompleteExposedInfantInformationTest extends BaseModuleContextSen
 	public void testExposedInfantsOlderThan18MonthsWithNoFinalOutcome() {
 		List<RuleResult<Patient>> result = incompleteExposedInfantInformation.exposedInfantsOlderThan18MonthsWithNoFinalOutcome();
 		assertNotNull(result);
+		
+		for (RuleResult<Patient> ruleResult: result) {
+			System.out.println("No outcome patient Id " + ruleResult.getEntity().getPatientId());
+		}
 		assertEquals(1, result.size());
 		Patient patient = result.get(0).getEntity();
 		assertEquals(10000, patient.getId().longValue());
@@ -50,6 +55,15 @@ public class IncompleteExposedInfantInformationTest extends BaseModuleContextSen
 	@Test
 	public void testExposedInfantsWithSummaryPageNoEncounters() {
 		List<RuleResult<Patient>> result = incompleteExposedInfantInformation.exposedInfantsWithSummaryPageNoEncounters();
+		assertNotNull(result);
+		assertEquals(1, result.size());
+		Patient patient = result.get(0).getEntity();
+		assertEquals(10001, patient.getId().longValue());
+	}
+	
+	@Test
+	public void testExposedInfantsWithNoMotherARTNumber() {
+		List<RuleResult<Patient>> result = incompleteExposedInfantInformation.exposedInfantsWithNoMotherARTNumber();
 		assertNotNull(result);
 		assertEquals(1, result.size());
 		Patient patient = result.get(0).getEntity();
