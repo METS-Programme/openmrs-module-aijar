@@ -299,7 +299,7 @@
 				
 				$childFields.attr('checked', false);
 	        };
-
+			
 			var diagnosisChildFieldsChange = function() {
 				var $childFields = jq('span.child-diagnoses').find('input[type=checkbox]'),
 					$thisField = jq(this),
