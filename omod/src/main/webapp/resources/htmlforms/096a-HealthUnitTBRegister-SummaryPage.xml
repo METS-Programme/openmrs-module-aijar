@@ -1,5 +1,5 @@
-<htmlform formName="HMIS 096A TB Form - Summary"
-          formDescription="HMIS 096A Health Unit TB form-Summary page"
+<htmlform formName="HMIS 096A Health Unit TB Form - Summary"
+          formDescription="HMIS 096A Health Unit TB Form - Summary"
           formEncounterType="334bf97e-28e2-4a27-8727-a5ce31c7cd66"
           formUuid="ec912f1c-dd2f-4e88-9f76-4f9f692fac2b"
           formVersion="1.0"
@@ -9,7 +9,7 @@
           formIcon="icon-medkit"
           formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='8ab22b55-9a17-4121-bf08-6134a9a2439f'"
           formDisplayStyle="Standard"
-          formLabel="HMIS 096A Health Unit TB form-Summary page">
+          formLabel="HMIS 096A Health Unit TB Form - Summary">
 
 	<style type="text/css">
 		form#htmlform div.ai-page-frame table>tbody tr:nth-child(odd) td {
@@ -47,6 +47,11 @@
 				COUNSELLING_AND_TESTING_DONE_CONCEPT_ID = 99406,
 				COUNSELLING_AND_TESTING_DONE_HIV_POS_CONCEPT_ID = 99407,
 				COUNSELLING_AND_TESTING_DONE_HIV_NEG_CONCEPT_ID = 99408;
+				PBC_CONCEPT_ID = 113491;
+	        	HIV_STATUS_CONCEPT_ID = 90253;
+	        	HIV_POSITIVE_CONCEPT_ID = 90166;
+	        	HIV_NEGATIVE_CONCEPT_ID = 90167,
+	        	NOT_DONE_CONCEPT_ID = 1118;
 
 			var $transferInFromField,
 				$transferInUnitTbNumberField,
@@ -69,6 +74,9 @@
 				$patientReceivedResultsField,
 				$muacSection,
 				$tbHivActivitiesSection,
+				$sputumSmearResultsField,
+				$sputumSmearDateField,
+				$encounterDateField,
 				patientAge;
 		
 			$transferInFromField = getField('transfer-in-from.value');
@@ -89,7 +97,11 @@
 			$cadreOfHealthWorkerField = getField('cadre-of-health-worker.value');
 			$hivCounsellingAndTestingField = getField('hiv-counselling-and-testing.value');
 			$hivTestingDateField = getField('hiv-testing-date.value');
-			$patientReceivedResultsField = jq('#patient-received-hiv-results').find('input');;
+			$sputumSmearResultsField = getField('sputum-smear-results.value');
+			$sputumSmearDateField = getField('sputum-smear-date.value');
+			$diseaseClassificationField = getField('disease-classification.value');
+			$patientReceivedResultsField = jq('#patient-received-hiv-results').find('input');
+	        $encounterDateField = jq('#encounter-date').find('input[type="hidden"]');
 
 			$muacSection = jq('#muac');
 			$tbHivActivitiesSection = jq('#tb-hiv-activities');
@@ -101,7 +113,8 @@
 					$transferInUnitTbNumberField.val('');					
 					fieldHelper.disable($transferInUnitTbNumberField);
 				} else {
-					fieldHelper.disable($transferInUnitTbNumberField);
+					fieldHelper.enable($transferInUnitTbNumberField);
+					$transferInUnitTbNumberField.focus();
 				}
 			};  
 			
@@ -201,6 +214,43 @@
 				});
 			};
 
+		    var hideCounsellinAndTestingOptionsForHivPositivePerson = function() {
+				var counsellingTestingOptionsToHide = [99405,99406,99408];
+				var optionsToHide =  $hivCounsellingAndTestingField.children('option').filter(function() {
+					return counsellingTestingOptionsToHide.indexOf(parseInt(this.value)) &gt; -1;
+				});
+				optionsToHide.remove();
+		    };
+
+		    var hideCounsellinAndTestingOptionsForHivNegativePerson = function() {
+				var counsellingTestingOptionsToHide = [99408];
+				var optionsToHide =  $hivCounsellingAndTestingField.children('option').filter(function() {
+					return counsellingTestingOptionsToHide.indexOf(parseInt(this.value)) &gt; -1;
+				});
+				optionsToHide.remove();
+		    };
+
+		    var getHivStatus = function () {
+		    	/**
+		    	* HIV Status field should be selected if patient is HIV +ve 
+		    	*/
+				var hivStatus = <lookup complexExpression="#set ($hivStatus = $fn.earliestObs(90253).valueCoded.conceptId)
+															#if ($hivStatus) $hivStatus;
+															#else '';
+															#end" />
+
+				var visitDate = $encounterDateField.val();
+				var artSummaryEncounterDate = <lookup complexExpression="#set ($artSummaryEncounterDate = $fn.latestEncounter('8d5b27bc-c2cc-11de-8d13-0010c6dffd0f').encounterDatetime)
+																		#if ($artSummaryEncounterDate) '$artSummaryEncounterDate';
+																		#else '';
+																		#end"/>
+				if ((artSummaryEncounterDate !='' &amp;&amp; artSummaryEncounterDate &lt; visitDate) || hivStatus == HIV_POSITIVE_CONCEPT_ID) {
+					hideCounsellinAndTestingOptionsForHivPositivePerson();
+				} else {
+					hideCounsellinAndTestingOptionsForHivNegativePerson();
+				}
+		    };
+
 			var hivCounsellingAndTestingChange = function() {
 				var $fieldsToDisable,
 					$fieldsToEnable,
@@ -222,10 +272,6 @@
 
 				} else if (hivCounsellingAndTestingValue == COUNSELLING_AND_TESTING_DONE_HIV_POS_CONCEPT_ID) {
 					fieldIdsToExempt.push($hivCounsellingAndTestingField.attr('id'));
-					fieldIdsToExempt.push($hivTestingDateField.attr('id'));
-					$patientReceivedResultsField.each(function() { //Push IDs for radio buttons to the exemption array
-						fieldIdsToExempt.push(jq(this).attr('id'));
-					});
 					$onCptField.each(function() {
 						fieldIdsToExempt.push(jq(this).attr('id'));
 					});
@@ -312,6 +358,65 @@
 				}
 			}
 
+			/*
+			*If Disease classification is PBC then require Sputum smear results (Pre-Rx) 
+			*/
+			var sputumSmearResultsValidate = function() {
+				$diseaseClassification = getValue('disease-classification.value');
+				$sputumSmearResults = getValue('sputum-smear-results.value');
+				if ($diseaseClassification == PBC_CONCEPT_ID &amp;&amp; $sputumSmearResults == '') {
+					getField('sputum-smear-results.error').html('Results required for P-BC').show();
+					return false;					
+				} else {
+					getField('sputum-smear-results.error').html('').hide();
+					return true;
+				}
+				
+			};
+
+			var diseaseClassificationChange = function() {
+				if ($diseaseClassificationField.val() == PBC_CONCEPT_ID) {
+					fieldHelper.enable($sputumSmearResultsField);
+				} else {
+					fieldHelper.disable($sputumSmearResultsField);
+					fieldHelper.disable($sputumSmearDateField);
+					setValue('sputum-smear-results.value','');
+					setValue('sputum-smear-date.value','');
+				}
+			};
+			
+			/*
+			* Sputum examination date should be required when spartum results other than Not done are selected
+			*/
+			var sputumSmearResultsChange = function() {
+				var sputumSmearResult = $sputumSmearResultsField.val();
+				var $sputumSmearExaminationDateErrorField = getField('sputum-smear-date.error');
+				fieldHelper.enable($sputumSmearDateField);
+				if (sputumSmearResult != '' &amp;&amp; sputumSmearResult != NOT_DONE_CONCEPT_ID) {
+					if ($sputumSmearDateField.val() == '') {
+						$sputumSmearExaminationDateErrorField.html('Please enter examination date').show();
+					} else {
+						$sputumSmearExaminationDateErrorField.html('').hide(); 
+					}
+				} else {
+					fieldHelper.disable($sputumSmearDateField);
+					setValue('sputum-smear-date.value', '');
+					$sputumSmearExaminationDateErrorField.html('').hide(); 
+				}
+			};
+			
+			/*
+			* Pretty ugly function to move the obs Comment field for the X-Ray Results obs close to the 'Other' checkbox	
+			*/
+			var moveXRayCommentField = function() {
+				var $xRayOtherField = $('#other-xray').siblings('input[type=checkbox]');
+				var $xRayCommentField = $('#other-xray-comment').siblings('input[type=text]').filter(function() {
+					return $(this).is('.hasDatepicker') == false;	
+				});
+
+				$xRayOtherField.parent().append($xRayCommentField);
+			};
+
 	        var $othersField = jq('span.has-comment input[type=checkbox], span.has-comment select');
 
 	        var toggleOtherSpecify = function() {
@@ -332,7 +437,7 @@
 	            });
 	        };
 		
-			$transferInFromField.blur(transferInFromChange);
+			$transferInFromField.change(transferInFromChange);
 			$onCptField.change(onCptChange);
 			$onArtField.change(onArtChange);
 			$muacColorCodeField.change(muacColorCodeChange);
@@ -341,6 +446,9 @@
 			$noOfChildrenInContactOnIptField.change(noOfChildrenInContactChange);
 			$healthWorkerField.change(healthWorkerChange);
 			$hivCounsellingAndTestingField.change(hivCounsellingAndTestingChange);
+			$diseaseClassificationField.change(diseaseClassificationChange);
+			$sputumSmearResultsField.change(sputumSmearResultsChange);
+			$sputumSmearDateField.change(sputumSmearResultsChange);
 			$othersField.change(toggleOtherSpecify);
 
 			transferInFromChange();
@@ -351,10 +459,16 @@
 			healthWorkerChange();
 			childrenSectionToggle();
 			hivCounsellingAndTestingChange();
+			diseaseClassificationChange();
+			getHivStatus();
+			moveXRayCommentField();
+			sputumSmearResultsChange();
 			toggleOtherSpecify();
 		
 			beforeSubmit.push(function(){
 				var valid = true;
+	            var $errorMessageSpan = jq('span#error-message');
+
 				if (!onCptValidate()) {
 					valid = false;
 				}
@@ -378,6 +492,21 @@
 				if (!tbUnitNumbersValidate()) {
 					valid = false;
 				}
+
+				if (!sputumSmearResultsValidate()) {
+					valid = false;
+				}
+
+	            if (jq('span.error.field-error:visible').length &gt; 0) {
+	            	valid = false;
+	            }
+
+	            if (valid) {
+	            	$errorMessageSpan.hide();
+	            } else {
+	            	$errorMessageSpan.show();
+	            	jq().toastmessage('showErrorToast', "Form Validation failed. Check for errors");
+	            }
 		
 				return valid;
 			});
@@ -387,7 +516,7 @@
 	</script>
   <div class="ai-page-frame">
     <div class="headers" style="text-align: center;">
-      <h3 style="background: #FFFF7D; padding: 10px;">HMIS 096A TB Form - Followup</h3>
+      <h3 style="background: #FFFF7D; padding: 10px;">HMIS 096A Health Unit TB Form - Summary</h3>
     </div>
     <fieldset>
     	<legend>Summary Information</legend>
@@ -426,140 +555,180 @@
 			    <p>
 			      <label>Cadre of health worker</label>
 			      <obs conceptId="1783AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
-			      		answerConceptIds="1574,164831,1577,1578,1555,163557,5622" 
-			      		answerLabels="Clinical officer/Doctor, Laboratory Technician, Nurse, Midwife, Community Health Worker,Pharmacist,Other" 
+			      		answerConceptIds="162592,162591,164831,1577,1578,1555,163557,164914,5622" 
+			      		answerLabels="Clinical officer,Doctor, Laboratory Personnel, Nurse, Midwife, Community Health Worker,Dispenser,Dentist,Other" 
 			      		id="cadre-of-health-worker" />
 			    </p>
 			  </td>
 			  <td>
-			    <p>
-			      <label>Name of contact person</label>
-			      <obs conceptId="163258AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
-			    </p>
 			  </td>
 			</tr>
 			<tr>
-			  <td>
-			    <p>
-			      <label>Date treatment started</label>
-					<encounterDate default="today" disallowMultipleEncountersOnDate="block" />
-					<span class="hidden">
-					<encounterLocation default="8ab22b55-9a17-4121-bf08-6134a9a2439f"
-					                   order="8ab22b55-9a17-4121-bf08-6134a9a2439f" />
-					<encounterProvider role="Provider" style="autocomplete" required="required" default="currentUser" />
-					</span>
-			    </p>
-			  </td>
-			  <td>
-			    <p>
-			      <label>Regimen</label>
-			      <obs conceptId="99374" style="dropdown" answerConceptIds="99373,99372,99371" />
-			    </p>
-			  </td>
-			  <td>
-			    <p>
-			      <label>Disease classification</label>
-			      <obs 	conceptId="99379" 
-			      		answerConceptIds="113491AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,113489AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5042" 
-			      		answerLabels="Pulmonary bacteriologically confirmed TB treatment,Pulmonary clinically diagnosed TB,Extra pulmonary TB" />
-			    </p>
-			  </td>
+				<td>
+				    <p>
+				      <label>Name of contact person</label>
+				      <obs conceptId="163258AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+				    </p>					
+				</td>
+				<td>
+					<p>
+						<label>Relationship of contact person</label>
+						<obs 	conceptId="dce138f8-30ab-102d-86b0-7a5022ba4115"
+								answerConceptIds="dce17a7d-30ab-102d-86b0-7a5022ba4115,dce180a8-30ab-102d-86b0-7a5022ba4115,dce186ca-30ab-102d-86b0-7a5022ba4115,dd1df716-30ab-102d-86b0-7a5022ba4115,dd1e1d59-30ab-102d-86b0-7a5022ba4115,dd1e43f2-30ab-102d-86b0-7a5022ba4115,dd21e8b5-30ab-102d-86b0-7a5022ba4115,dd22614e-30ab-102d-86b0-7a5022ba4115,dd22b709-30ab-102d-86b0-7a5022ba4115,dd23c975-30ab-102d-86b0-7a5022ba4115,dcc374a5-30ab-102d-86b0-7a5022ba4115"
+								answerLabels="Parent,Child,Aunt/Uncle,Niece/Nephew,Grandparent,Grandchild,Brother/Sister,Cousin,Not family,Spouse/Partner,Friend" />
+					</p>
+				</td>
+				<td>
+					<p id="encounter-date">
+					  <label>Date treatment started</label>
+						<encounterDate default="today" disallowMultipleEncountersOnDate="block" />
+						<span class="hidden">
+						<encounterLocation default="8ab22b55-9a17-4121-bf08-6134a9a2439f"
+						                   order="8ab22b55-9a17-4121-bf08-6134a9a2439f" />
+						<encounterProvider role="Provider" style="autocomplete" required="required" default="currentUser" />
+						</span>
+					</p>					
+				</td>
 			</tr>
 			<tr>
-			  <td>
-			    <p>
-			      <label>Type of patient</label>
-			      <obs 	conceptId="99386" 
-			      		answerConceptIds="99380,99381,99382,99386,1067" 
-			      		answerLabels="New,Relapse,Failure,Lost to follow up,Treatment history unknown" 
-			      		required="true" />
-			    </p>
-			  </td>
-			  <td>
-			    <p>
-			      <label>Transfer in from</label>
-			      <obs conceptId="99109" id="transfer-in-from" />
-			    </p>
-			  </td>
-			  <td>
-			    <p id="transfer-in-unit-tb-no">
-			      <label>Transfer in - Unit TB No.</label>
-			      <patient 	field="identifier" 
-			      			identifierTypeId="1d2be2a3-7d90-42a6-aasa5-a04b684a365b" 
-			      			id="transfer-in-unit-tb-no" required="false" />
-			    </p>
-			  </td>
+				<td>
+					<p>
+					  <label>Regimen</label>
+					  <obs conceptId="99374" style="dropdown" answerConceptIds="99373,99372,99371" />
+					</p>					
+				</td>
+				<td>
+					<p>
+					  <label>Disease classification</label>
+					  <obs 	conceptId="99379" 
+					  		answerConceptIds="113491AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,113489AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5042" 
+					  		answerLabels="P-BC - Pulmonary bacteriologically confirmed TB treatment,P-CD - Pulmonary clinically diagnosed TB,EP - Extra pulmonary TB" 
+					  		id="disease-classification" />
+					</p>
+				</td>
+				<td>
+					<p>
+					  <label>Type of patient</label>
+					  <obs 	conceptId="99386" 
+					  		answerConceptIds="99380,99381,99382,99386,1067" 
+					  		answerLabels="N - New,R - Relapse,F - Failure,L - Lost to follow up,THU - Treatment history unknown" 
+					  		required="true" />
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p>
+					  <label>Transfer in from</label>
+					  <obs conceptId="99109" id="transfer-in-from" />
+					</p>
+				</td>
+				<td>
+					<p id="transfer-in-unit-tb-no">
+					  <label>Transfer in - Unit TB No.</label>
+					  <patient 	field="identifier" 
+					  			identifierTypeId="1d2be2a3-7d90-42a6-aasa5-a04b684a365b" 
+					  			id="transfer-in-unit-tb-no" required="false" />
+					</p>
+				</td>
+				<td></td>
 			</tr>
 		</table>
     </fieldset>
+
+	<fieldset>
+		<legend>Pre-Rx Sputum Smear</legend>
+		<table>
+			<tr>
+				<td>
+		            <p>
+		              <label>Sputum smear results</label>
+		              <obs 	conceptId="307" 
+		              		answerConceptIds="1118,664,164422,164423,164424,164425,164426,164427,164428,164429,164430,99388,99389,99390" 
+		              		answerLabels="ND - Not Done ,NEG - 0AFB/100, 1 - 1AFB/100 ,2 - 2AFB/100 ,3 - 3AFB/100 ,4 - 4AFB/100 ,5 - 5AFB/100,6 - 6AFB/100,7 - 7AFB/100,8 - 8AFB/100,9 - 9AFB/100,+ - 10-99 AFB/100 Fields,++ - 1-10 AFB/Field,+++ - &gt;10AFB/Field" 
+		              		id="sputum-smear-results" style="dropdown" />
+		            </p>
+				</td>
+				<td>
+					<p>
+						<label>Sputum Smear Examination Date</label>
+						<obs conceptId="99392" id="sputum-smear-date" />
+					</p>
+				</td>
+			</tr>
+		</table>				
+	</fieldset>
+
 	
 	<fieldset>
-		<legend>Results of Sputum and Other Examinations</legend>
-		<h3>Pre-Rx</h3>
-		<section>
-			<table>
-				<tr>
-					<td>
-			            <p>
-			              <label>Sputum smear results</label>
-			              <obs 	conceptId="307" 
-			              		answerConceptIds="1118,664,1362,1363,1364,1365,163417AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,163418AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,164428,164429,164430,159985,703,160008" 
-			              		answerLabels="ND - Not Done, NEG- Negative, 1AFB/100, 2AFB/100, 3AFB/100, 4AFB/100,5AFB/100,6AFB/100,7AFB/100,8AFB/100,9AFB/100,Scanty,Positive,Contaminated specimen" 
-			              		style="dropdown" required="true" />
-			            </p>
-					</td>
-					<td>
-						<p>
-							<label>Sputum Smear Examination Date</label>
-							<obs conceptId="99392" required="true" />
-						</p>
-					</td>
-				</tr>
-			</table>				
-		</section>
-
-		<section>
-			<h3>Other Investigations</h3>
-			<table>
-				<tr>
-					<td>
-						<label>Mantoux</label>
-						<obs 	conceptId="140144" 
-								showDate="true" dateLabel="&lt;label style='clear:left'&gt;Examination Date&lt;/label&gt;" />
-					</td>
-					<td>
-						<label>GeneXpert</label>
-						<obs 	conceptId="162202" 
-								answerConceptIds="162204, 162203, 164104, 664, 163611" 
-								answerLabels="MTB Detected - rifampicin resistance not detected, MTB Detected - rifampicin resistance detected, MTB Detected - rifampicin resistance indeterminate, MTB not detected, Invalid no result - error" 
-								showDate="true" dateLabel="&lt;label style='clear:left'&gt;Examination Date&lt;/label&gt;" />
-					</td>
-					<td>
-						<label>Biopsy</label>
-						<obs 	conceptId="164907"								
-								answerConceptIds="703,664" 
-								answerLabels="AFBs Found, No AFBs Found" 
-								showDate="true" dateLabel="&lt;label style='clear:left'&gt;Examination Date&lt;/label&gt;" />
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label>Cerebrospinal Fluid Examination (CSF)</label>
-						<obs 	conceptId="159645" 
-								answerConceptIds="703,664" 
-								answerLabels="AFBs Found, No AFBs Found" 
-								showDate="true" dateLabel="&lt;label style='clear:left'&gt;Examination Date&lt;/label&gt;" />
-					</td>
-					<td>
-						<label>X-ray</label>
-						<obs 	conceptId="12" 
-								answerConceptIds="1115,1137,5158,6049,6050,6052,114108,5622" 
-								answerLabels="Normal, Miliary Changes, Evidence Of Cardiac Enlargement, Infiltrate, Diffuse Non-Miliary Changes, Cavitary Lesion, Pleural Effusion, Other" 
-								showDate="true" dateLabel="&lt;label style='clear:left'&gt;Examination Date&lt;/label&gt;" />
-					</td>
-				</tr>
-			</table>
-		</section>
+		<legend>Results of Other Examinations</legend>
+		<table>
+			<tr>
+				<td>
+					<label>Mantoux</label>
+					<obs 	conceptId="140144" 
+							showDate="true" dateLabel="&lt;/td&gt;&lt;td&gt;&lt;label&gt;Mantoux Examination Date&lt;/label&gt;" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label>GeneXpert</label>
+					<obs 	conceptId="162202" 
+							answerConceptIds="162204, 162203, 164104, 664, 163611" 
+							answerLabels="T - MTB Detected and Rifampicin resistance not detected),RR - MTB Detected and Rifampicin resistance detected,TI - MTB Detected and Rifampicin resistance indeterminate,N - MTB not detected,I - Invalid no result - error" 
+							showDate="true" dateLabel="&lt;/td&gt;&lt;td&gt;&lt;label&gt;GeneXpert Examination Date&lt;/label&gt;" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label>Biopsy</label>
+					<obs 	conceptId="164907"								
+							answerConceptIds="703,664" 
+							answerLabels="AFBs Found, No AFBs Found" 
+							showDate="true" dateLabel="&lt;/td&gt;&lt;td&gt;&lt;label&gt;Biopsy Examination Date&lt;/label&gt;" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label>Cerebrospinal Fluid Examination (CSF)</label>
+					<obs 	conceptId="159645" 
+							answerConceptIds="703,664" 
+							answerLabels="AFBs Found, No AFBs Found" 
+							showDate="true" dateLabel="&lt;/td&gt;&lt;td&gt;&lt;label&gt;CSF Examination Date&lt;/label&gt;" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label>X-ray results</label>
+					<obs 	conceptId="12" 
+							answerConceptId="1115" 
+							answerLabel="Normal" 
+							class="horizontal-layout-options" />
+					<obs 	conceptId="12" 
+							answerConceptId="1137" 
+							answerLabel="Miliary Changes" />
+					<obs 	conceptId="12" 
+							answerConceptId="5158" 
+							answerLabel="Evidence Of Cardiac Enlargement" />
+					<obs 	conceptId="12" 
+							answerConceptId="6049" 
+							answerLabel="Infiltrate" class="horizontal-layout-options" />
+					<obs 	conceptId="12" 
+							answerConceptId="6050" 
+							answerLabel="Diffuse Non-Miliary Changes" />
+					<obs 	conceptId="12" 
+							answerConceptId="6052" 
+							answerLabel="Cavitary Lesion" />
+					<obs 	conceptId="12" 
+							answerConceptId="114108" 
+							answerLabel="Pleural Effusion" />
+					<obs 	conceptId="12" 
+							answerConceptId="5622" 
+							answerLabel="Other&lt;/label&gt;&lt;label id='other-xray'&gt;&lt;/label&gt;" 							
+							showDate="true" dateLabel="&lt;/td&gt;&lt;td&gt;&lt;label&gt;X-ray Examination Date&lt;/label&gt;" class="horizontal-layout-options has-comment" commentFieldLabel="&lt;span id='other-xray-comment'&gt;&lt;/span&gt;"/>
+				</td>
+			</tr>
+		</table>
 	</fieldset>
 
     <fieldset>
@@ -663,7 +832,7 @@
             <p>
               <label>Treatment Model (DOTS)</label>
               <obs 	conceptId="99418" answerConceptIds="99416,99417" 
-              		answerLabels="Facility, Community" style="radio"
+              		answerLabels="F - Facility COTS, C - Community COTS (CBDOTS)" style="radio"
               		class="vertical-layout-options" />
             </p>
           </td>
@@ -690,24 +859,33 @@
         <tr>
           <td>
             <p>
-              <label>Treatment Outcome</label>
-              <obs 	conceptId="99423" 
-              		answerConceptIds="159791AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,90306,159874AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1366,5240" 
-              		answerLabels="Cured, Transferred out,Treatment failure,Died,Lost to follow up" 
-              		style="dropdown" id="treatment-outcome" />
+              	<label>Treatment Outcome</label>
+              	<obs 	conceptId="99423" 
+              			answerConceptIds="159791AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,90306,159874AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1366,5240,160737" 
+              			answerLabels="Cured, Transferred out,Treatment failure,Died,Lost to follow up, Not evaluated" 
+              			style="dropdown" id="treatment-outcome" />
             </p>
           </td>
           <td>
             <p>
-              <label>Date when outcome determined</label>
-              <obs conceptId="159787" />
+              	<label>Date when outcome determined</label>
+              	<obs conceptId="159787" />
             </p>
           </td>
           <td>
             <p>
-              <label>Transfer out to (Name of unit)</label>
-              <obs conceptId="90211" id="transfer-out-to" />
+              	<label>Transfer out to (Name of unit)</label>
+              	<obs conceptId="90211" id="transfer-out-to" />
             </p>
+          </td>
+          <td>
+          	<p>
+          		<label>Diagnosed with Drug Resistant TB</label>
+          		<obs 	conceptId="160039" 
+          				answerConceptIds="1065,1066" 
+          				answerLabels="Yes,No" 
+          				style="radio" class="horizontal-layout-options"/>
+          	</p>
           </td>
         </tr>
         <tr>
@@ -722,6 +900,12 @@
     </fieldset>
 
     <enrollInProgram programId="9dc21a72-0971-11e7-8037-507b9dc4c741" />
-    <submit />
+    <section>
+        <submit/>
+        <span style="clear:none;float:none;margin:5px;display: none;"
+              class="error1" id="error-message">
+            You have errors in your form, please scroll up to see them.
+        </span>
+    </section>
   </div>
 </htmlform>
