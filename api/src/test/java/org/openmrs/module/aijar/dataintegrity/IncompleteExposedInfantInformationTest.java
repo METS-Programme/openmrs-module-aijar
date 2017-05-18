@@ -17,7 +17,7 @@ import org.openmrs.test.BaseModuleContextSensitiveTest;
 public class IncompleteExposedInfantInformationTest extends BaseModuleContextSensitiveTest {
 
 	protected static final String UGANDAEMR_STANDARD_DATASET_XML = "org/openmrs/module/aijar/include/standardTestDataset.xml";
-	protected static final String UGANDAEMR_DATA_VIOLATIONS_XML = "org/openmrs/module/aijar/dataintegrity/include/dataViolations.xml";
+	protected static final String UGANDAEMR_DATA_VIOLATIONS_XML = "org/openmrs/module/aijar/include/exposedInfantData.xml";
 
 	IncompleteExposedInfantInformation incompleteExposedInfantInformation;
 
