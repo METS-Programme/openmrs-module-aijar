@@ -573,9 +573,15 @@
       <legend>Final Diagnosis</legend>
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
-          <td>
-            <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="dc6504d3-30ab-102d-86b0-7a5022ba4115" answerLabel="Abortions" style="checkbox" />
-          </td>
+        	<td>
+        		<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="164917" answerLabel="Abortion due to other causes" style="checkbox" class="parent-diagnosis" />
+        		<span class="child-diagnoses">
+	        		<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="120295" answerLabel="Complete" style="checkbox" class="horizontal-layout-options" />
+	        		<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="112416" answerLabel="Threatening" style="checkbox" class="horizontal-layout-options" />
+	        		<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="905" answerLabel="Missed" style="checkbox" class="horizontal-layout-options" />
+	        		<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="164918" answerLabel="Uknown cause of abortion" style="checkbox" class="horizontal-layout-options" />
+	        	</span>
+        	</td>
           <td>
             <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="dc69f6f5-30ab-102d-86b0-7a5022ba4115" answerLabel="Antepartum Haemorrhage (APH)" style="checkbox" class="parent-diagnosis" />
 			<span class="child-diagnoses">
@@ -587,16 +593,10 @@
           <td>
             <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="dc650021-30ab-102d-86b0-7a5022ba4115" answerLabel="Postpartum Hemorrhage (PPH)" style="checkbox" class="parent-diagnosis" />
             <span class="child-diagnoses">
-	            <!--<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="dc650021-30ab-102d-86b0-7a5022ba4115" answerLabel="Primary" style="checkbox" />-->
+	            <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="dc650021-30ab-102d-86b0-7a5022ba4115" answerLabel="Primary" style="checkbox" class="horizontal-layout-options" />
 	            <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="126877" answerLabel="Secondary" style="checkbox" class="horizontal-layout-options" />
 	        </span>
           </td>
-
-          <td>
-            <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="135361AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Malaria in pregnancy" style="checkbox" />
-          </td>
-        </tr>
-        <tr>
           <td>
             <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="dc55064a-30ab-102d-86b0-7a5022ba4115" answerLabel="High blood pressure in pregnancy" style="checkbox" class="parent-diagnosis" />
             <span class="child-diagnoses">
@@ -605,17 +605,25 @@
 	            <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="113006" answerLabel="Severe pre-eclampsia" style="checkbox" class="horizontal-layout-options" />
 	        </span>
           </td>
+        </tr>
+        <tr>
+          <td>
+            <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="dc6504d3-30ab-102d-86b0-7a5022ba4115" answerLabel="Abortions" style="checkbox" />
+          </td>
+          <td>
+            <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="135361AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Malaria in pregnancy" style="checkbox" />
+          </td>
           <td>
             <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="115036AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Obstructed Labour" style="checkbox" />
           </td>
           <td>
             <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="dc66a5b3-30ab-102d-86b0-7a5022ba4115" answerLabel="Puerperal sepsis" style="checkbox" />
           </td>
+        </tr>
+        <tr>
           <td>
             <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="dc69ec17-30ab-102d-86b0-7a5022ba4115" answerLabel="Sepsis related to pregnancy" style="checkbox" />
           </td>
-        </tr>
-        <tr>
           <td>
             <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="148834AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Anaemia in pregnancy" style="checkbox" />
           </td>
@@ -625,27 +633,18 @@
           <td>
             <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="dc550257-30ab-102d-86b0-7a5022ba4115" answerLabel="Ectopic pregnancy" style="checkbox" />
           </td>
-          <td>
-          	<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="164916" answerLabel="Abortion due to Gender based Violence" style="checkbox" />
-          </td>
         </tr>
         <tr>
-        	<td>
-        		<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="164917" answerLabel="Abortion due to other causes" style="checkbox" class="parent-diagnosis" />
-        		<span class="child-diagnoses">
-	        		<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="120295" answerLabel="Complete" style="checkbox" class="horizontal-layout-options" />
-	        		<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="112416" answerLabel="Threatening" style="checkbox" class="horizontal-layout-options" />
-	        		<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="905" answerLabel="Missed" style="checkbox" class="horizontal-layout-options" />
-	        		<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="164918" answerLabel="Uknown cause of abortion" style="checkbox" class="horizontal-layout-options" />
-	        	</span>
-        	</td>
-        	<td>
-        		 <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="129211" answerLabel="Premature rapture of Membranes" style="checkbox" />
-        	</td>
-			<td>
-				<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Other" showCommentField="true" commentFieldLabel="&lt;label&gt;Specify&lt;/label&gt;" style="checkbox" class="has-comment" />
-				</td>
-        	<td></td>
+		<td>
+			<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="164916" answerLabel="Abortion due to Gender based Violence" style="checkbox" />
+		</td>
+		<td>
+			 <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="129211" answerLabel="Premature rapture of Membranes" style="checkbox" />
+		</td>
+		<td>
+			<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Other" showCommentField="true" commentFieldLabel="&lt;label&gt;Specify&lt;/label&gt;" style="checkbox" class="has-comment" />
+			</td>
+		<td></td>
         </tr>
       </table>
     </fieldset>
@@ -971,11 +970,13 @@
         <tr>
           <td>
             <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115" answerConceptId="bb83fd9d-24c5-4d49-89c0-97e13c792aaf"
-               answerLabel="4. Implant as part of post abortion care"/>
-            <obs conceptId="efbe5bf3-3411-4949-855b-636ada05f5e7" answerConceptId="bb83fd9d-24c5-4d49-89c0-97e13c792aaf"
-               answerLabel="Combined Oral Contraceptive (COS)"/>
-            <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115" answerConceptId="82624AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-               answerLabel="Progestogen-Only(POP) Contraceptive Pill"/>
+               answerLabel="4. Implant as part of post abortion care" class="parent-diagnosis"/>
+            <span class="child-diagnoses">
+	            <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115" answerConceptId="efbe5bf3-3411-4949-855b-636ada05f5e7"
+	               answerLabel="Combined Oral Contraceptive (COS)" class="horizontal-layout-options" />
+	            <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115" answerConceptId="82624AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+	               answerLabel="Progestogen-Only(POP) Contraceptive Pill" class="horizontal-layout-options"/>
+            </span>
           </td>
           <td>
             <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115" answerConceptId="336650b2-65f7-4202-80eb-3c6437878262"
