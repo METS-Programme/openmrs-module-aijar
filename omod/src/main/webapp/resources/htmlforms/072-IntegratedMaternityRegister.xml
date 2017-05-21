@@ -295,9 +295,8 @@
 				} else {
 					fieldHelper.disable($childFields);
 					$errorField.html('').hide();
-				}
-				
-				$childFields.attr('checked', false);
+					$childFields.attr('checked', false);
+				}				
 	        };
 			
 			var diagnosisChildFieldsChange = function() {
@@ -340,20 +339,29 @@
 
 			    $tables = jq('fieldset#baby-information &gt; table:visible');
 			    $tables.each(function () {
-			    	$checkedBoxes = $('#baby-sex').find('input[type="radio"]').filter(function() {
+			    	$errorField = $(this).find('.baby-sex').find('span.error');
+				    $errorField.html('').hide();
+			    	$checkedBoxes = $(this).find('.baby-sex').find('input[type="radio"]').filter(function() {
 			    		return this.checked == true;
 			    	});
 
 					if ($checkedBoxes.length == 0) {
-						getField('baby-sex.error').html('Required field').show();
+						$errorField.html('Required field').show();
 						dirty = true;
 					} else {
-						getField('baby-sex.error').html('').hide();					
+						$errorField.html('').hide();					
 					}
 			    });
 
 			    return !dirty;
 			}
+
+
+			var clearErrorMessages = function() {
+	        	if($(this).val() != "") {
+					$(this).siblings('span.error').html('').hide();
+	        	}
+	        }
 
 	        $othersField.change(toggleOtherSpecify);
 
@@ -375,6 +383,8 @@
 
 	        //Customize the datetimepicker field
 	        fieldHelper.customizeDateTimePickerWidget('span.date-and-time');
+
+	        jq('select,input').change(clearErrorMessages);
 
 	        beforeSubmit.push(function(){
 	            var valid = true;
@@ -458,10 +468,9 @@
 			<ifMode mode="EDIT">
 				//Handle loading of existing obs
 				$allTables.hide();
-				$nonEmptyBoxes = jq('fieldset#baby-information input[type="text"], fieldset#baby-information input[checked="checked"], fieldset#baby-information select').filter(function() {
-				  return this.value.length &gt; 0;
+				$nonEmptyBoxes = jq('fieldset#baby-information input[type="radio"]').filter(function() {
+				  return this.checked == true;
 				});
-				console.log($nonEmptyBoxes);
 				if ($nonEmptyBoxes.length &gt; 0 ) {
 				  $nonEmptyBoxes.each(function() {
 					$thisTable = jq(this).parents('table:first');
@@ -805,7 +814,7 @@
 							<td>
 								<p>
 								  <label>Sex</label>
-								  <obs conceptId="1587AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1535AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1534AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Female,Male" style="radio" id="baby-sex" />
+								  <obs conceptId="1587AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1535AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1534AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Female,Male" style="radio" class="baby-sex" />
 								</p>
 							</td>
 							<td>
