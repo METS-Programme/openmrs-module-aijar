@@ -173,7 +173,7 @@ CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `transfer`()
 
     -- Deleting attributes with null or empty values
 
-    DELETE FROM person_attribute WHERE `value` IS NULL OR `value`='';
+    DELETE FROM openmrs.person_attribute WHERE `value` IS NULL OR `value`='';
 
   END$$
 DELIMITER ;
