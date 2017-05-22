@@ -1,4 +1,4 @@
-<htmlform formName="HMIS 031 Outpatient (OPD) Form"
+<htmlform formName="HMIS 031 Out Patient(OPD) Form"
           formDescription="HMIS 031 Out Patient Form"
           formEncounterType="ee4780f5-b5eb-423b-932f-00b5879df5ab"
           formUuid="8c2f8378-51c7-4407-85a0-cb2832accfcf"
@@ -47,8 +47,38 @@
 
   <script type="text/javascript">
 	    jQuery(document).ready(function(jq) {
-	        const YES_CONCEPT_ID = 1065;
-	        const NO_CONCEPT_ID = 1066;
+	        const 	YES_CONCEPT_ID = 1065,
+	        		NO_CONCEPT_ID = 1066,
+	        		NOT_DONE_CONCEPT_ID = 1118,
+	    			YELLOW_CONCEPT_ID = 99029,
+	    			RED_CONCEPT_ID = 99028,
+	    			GREEN_CONCEPT_ID = 99027;
+
+	        var $malariaTestFields = jq('span#malaria-test').find('input[type=radio]'),
+	        	$malariaTestResultFields = jq('span#malaria-test-results').find('input[type=radio]'),
+	        	$disabilityField = jq('span#disability').find('input[type=radio]'),
+	        	$typeOfDisabilityFields = jq('span#type-of-disability').find('input[type=checkbox]'),
+	        	$sentToLabField = getField('sent-to-lab.value'),
+	        	$tbLabResultsFields = jq('span#tb-lab-results').find('input[type=radio]'),
+				$muacQuantitativeField = getField('muac-quantitative.value'),
+				$muacQualitativeField = getField('muac-qualitative.value'),
+				$encounterDateField = jq('#encounter-date').find('input[type="hidden"]');
+
+			/*
+			* Disable MUAC for patients below 6 months of age */
+			var disableMuacForPatientsBelow6Months = function() {
+				var patientDob = new Date('<lookup expression="patient.birthdate" />');
+				var encounterDate = new Date($encounterDateField.val());
+				var patientAgeInMonths = moment(encounterDate).diff(patientDob, 'months', false);
+
+				if (patientAgeInMonths &lt; 6) {
+					fieldHelper.disable($muacQualitativeField);
+					fieldHelper.disable($muacQuantitativeField);
+				} else {
+					fieldHelper.enable($muacQualitativeField);
+					fieldHelper.enable($muacQuantitativeField);				
+				}
+			};
 
 			var disableBmiField = function () {
 				fieldHelper.makeReadonly(getField('bmi.value'));
@@ -68,6 +98,173 @@
 				 	setValue('bmi.value', '');
 				 }
 			};
+
+			var malariaTestChange = function() {
+				getField('malaria-test.error').html('').hide();
+				getField('malaria-test-results.error').html('').hide();
+				if (this.checked == true &amp;&amp; this.value == NOT_DONE_CONCEPT_ID) {
+					$malariaTestResultFields.each(function() {
+						if (this.value == NOT_DONE_CONCEPT_ID) {
+							this.disabled = false;
+							this.checked = true;
+						} else {
+							this.disabled = true;
+						}
+					});
+				} else if (this.checked == true &amp;&amp; this.value != NOT_DONE_CONCEPT_ID) {
+					var resultProvided = false;
+					$malariaTestResultFields.each(function() {
+						if (this.value == NOT_DONE_CONCEPT_ID) {
+							this.disabled = true;
+							this.checked = false;
+						} else {
+							this.disabled = false;
+							if (this.checked == true) {
+								resultProvided = true;
+							}
+						}
+						if (!resultProvided) {
+							getField('malaria-test-results.error').html('Select result').show();
+						}
+
+					});					
+				} else {
+					$malariaTestResultFields.each(function() {
+						this.checked = false;
+						this.disabled = true;
+					});
+				}
+			}
+
+			var malariaTestResultsChange = function() {
+				getField('malaria-test.error').html('').hide();
+				getField('malaria-test-results.error').html('').hide();
+				if (this.checked == false) {
+					getField('malaria-test-results.error').html('Select result').show();					
+				}
+			};
+
+			var $disabilityErrorField = getField('disability.error');
+
+			var disabilityFieldChange = function() {
+				var disability = getValue('disability.value');
+				if (disability == YES_CONCEPT_ID) {
+					fieldHelper.enable($typeOfDisabilityFields);
+					$disabilityErrorField.html('Select type of disability below').show();
+				} else {
+					fieldHelper.disable($typeOfDisabilityFields);
+					$typeOfDisabilityFields.attr('checked', false);
+					$typeOfDisabilityFields.change();
+					$disabilityErrorField.html('').hide();
+				}
+			};
+
+			var typeOfDisabilityFieldsChange = function() {
+				var disability = getValue('disability.value');
+				if (disability == YES_CONCEPT_ID) {
+					var checkedFields = $typeOfDisabilityFields.filter(function() {
+						return this.checked == true;
+					});
+					if(checkedFields.length == 0) {
+						$disabilityErrorField.html('Select type of disability below').show();					
+					} else {
+						$disabilityErrorField.html('').hide();						
+					}
+				}
+
+			};
+
+			var sentToLabFieldChange = function() {
+				$tbLabResultErrorField = getField('tb-lab-results.error');
+				if ($sentToLabField.is(':checked')) {
+					fieldHelper.enable($tbLabResultsFields);
+					var checkedFields = $tbLabResultsFields.filter(function() {
+						return this.checked == true;
+					});
+					if(checkedFields.length == 0) {
+						$tbLabResultErrorField.html('Select result').show();
+					}
+				} else {
+					fieldHelper.disable($tbLabResultsFields);
+					$tbLabResultsFields.attr('checked', false);
+					$tbLabResultErrorField.html('').hide();
+				}
+			};
+
+			var tbLabResultsFieldChange = function() {
+				$tbLabResultErrorField = getField('tb-lab-results.error');
+				if ($(this).is(':checked')) {
+					$tbLabResultErrorField.html('').hide();
+				} else {
+					$tbLabResultErrorField.html('Select result').show();
+				}
+			};
+
+	        var muacChange = function() {
+	        	var muacQuantitative = getValue('muac-quantitative.value');
+	        	var muacQualitative = getValue('muac-qualitative.value');
+	        	var $muacQuantitativeErrorField = getField('muac-quantitative.error');
+	        	var $muacQualitativeErrorField = getField('muac-qualitative.error');
+
+
+	        	if (muacQuantitative == '' || muacQualitative =='') {
+	        		return;
+	        	}
+
+	        	var valid = false;
+
+	        	var validRange = {};
+
+                <includeIf velocityTest="$patient.age &lt; 5">
+                     validRange = [
+                 			{color: RED_CONCEPT_ID, lower:0, upper:11.4},
+                 			{color: YELLOW_CONCEPT_ID, lower:11.5, upper:12.4},
+							{color: GREEN_CONCEPT_ID, lower:12.5, upper:50}
+                 			];
+                </includeIf>
+                <includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
+                     validRange = [
+                 			{color: RED_CONCEPT_ID, lower:0, upper:13.4},
+                 			{color: YELLOW_CONCEPT_ID, lower:13.5, upper:14.4},
+							{color: GREEN_CONCEPT_ID, lower:14.5, upper:50}
+                 			];
+                </includeIf>
+                <includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
+                     validRange = [
+                 			{color: RED_CONCEPT_ID, lower:0, upper:16.5},
+                 			{color: YES_CONCEPT_ID, lower:16.5, upper:18.9},
+							{color: GREEN_CONCEPT_ID, lower:19, upper:100}
+                 			];
+                </includeIf>
+
+                <includeIf velocityTest="$patient.age &gt;=18">
+                     validRange = [
+                 			{color: RED_CONCEPT_ID, lower:0, upper:18.9},
+                 			{color: YELLOW_CONCEPT_ID, lower:19, upper:21.9},
+							{color: GREEN_CONCEPT_ID, lower:22, upper:100}
+                 			];
+                </includeIf>
+
+                var selectedValidRange =  validRange.find(function(o) {
+					return o.color == muacQualitative;
+                });
+
+                if (muacQuantitative &gt;= selectedValidRange.lower &amp;&amp; muacQuantitative &lt;= selectedValidRange.upper) {
+					valid = true;
+                }
+
+                if (!valid) {
+					$muacQuantitativeErrorField.html('The MUAC Qualitative and Quatitative values do not match, please check').show();
+					$muacQualitativeErrorField.html('The MUAC Qualitative and Quatitative values do not match, please check').show();
+                	$muacQuantitativeField.addClass('error');
+                	$muacQualitativeField.addClass('error');
+                } else {
+                	$muacQuantitativeErrorField.html('').hide();
+                	$muacQualitativeErrorField.html('').hide();
+                	$muacQuantitativeField.removeClass('error');
+                	$muacQualitativeField.removeClass('error');
+                }
+	        };
 
 	        var $othersField = jq('span.has-comment input[type=checkbox]');
 
@@ -138,10 +335,23 @@
 	        $othersField.change(toggleOtherSpecify);
 
 	        jq('span#height input[type="text"], span#weight input[type="text"]').change(computeBmi);
+	        $malariaTestFields.click(malariaTestChange);
+	        $malariaTestResultFields.click(malariaTestResultsChange);
+	        $disabilityField.change(disabilityFieldChange);
+	        $typeOfDisabilityFields.change(typeOfDisabilityFieldsChange);
+	        $tbLabResultsFields.click(tbLabResultsFieldChange);
+	        $sentToLabField.change(sentToLabFieldChange);
+	        $muacQuantitativeField.change(muacChange);
+	        $muacQualitativeField.change(muacChange);
+
+	        disabilityFieldChange();
+	        $typeOfDisabilityFields.each(typeOfDisabilityFieldsChange);
+			sentToLabFieldChange();
 
 	        toggleOtherSpecify();
 
 	        disableBmiField();
+			disableMuacForPatientsBelow6Months();
 
 	        beforeSubmit.push(function() {
 	            var valid = true;
@@ -155,10 +365,16 @@
 					valid = false;
 	            }
 
+	            if(jq('span.error.field-error:visible').length &gt; 0) {
+	            	valid = false;
+	            }
+
+
 	            if (valid) {
 	            	$errorMessageSpan.hide();
 	            } else {
 	            	$errorMessageSpan.show();
+	            	jq().toastmessage('showErrorToast', "Form Validation failed. Check for errors");
 	            }
 
 	            return valid;
@@ -259,7 +475,7 @@
 
   <div class="ai-page-frame">
     <div class="headers" style="text-align: center;">
-      <h3 style="background: #c0c0c0; padding: 10px; color: #1f2121;">HMIS 031 Outpatient (OPD) Form</h3>
+      <h3 style="background: #c0c0c0; padding: 10px; color: #1f2121;">HMIS 031 Outpatient(OPD) FORM</h3>
     </div>
     <fieldset>
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -267,10 +483,15 @@
           <td>
             <p>
               <label>Date</label>
-              <encounterDate default="today" disallowMultipleEncountersOnDate="block" />
-              <span style="display: none;">
-                <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117" order="629d78e9-93e5-43b0-ad8a-48313fd99117" />
-              </span>
+		        <p id="encounter-date">
+		          <label>
+		            <span class="required">*</span>Follow up visit date:
+		          </label>
+		          <encounterDate default="today" disallowMultipleEncountersOnDate="block" />
+		        </p>
+				<span style="display: none;">
+					<encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117" order="629d78e9-93e5-43b0-ad8a-48313fd99117" />
+				</span>
             </p>
           </td>
           <td>
@@ -280,9 +501,9 @@
             </p>
           </td>
           <td>
-            <p>
+            <p class="hidden">
               <label>Provider</label>
-              <encounterProvider type="dropdown" placeholder="Enter provider" />
+              <encounterProvider type="dropdown" placeholder="Enter provider" default="currentUser" />
             </p>
           </td>
           <td></td>
@@ -293,97 +514,101 @@
       <legend>Vitals</legend>
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
-          <td>
-            <p>
-              <label>
-              	MUAC color code
-              </label>
-				<includeIf velocityTest="$patient.age &lt; 5">
-				    <obs conceptId="99030" answerConceptIds="99028,99029,99027"
-				         answerLabels="Red &lt; 11.5cm, Yellow 11.5cm - &lt;12.5cm,Green &gt;= 12.5cm"
-				         style="dropdown"/>
-				</includeIf>
-				<includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
-				    <obs conceptId="99030" answerConceptIds="99028,99029,99027"
-				         answerLabels="Red &lt; 13.5cm,Yellow 13.5cm - &lt;14.5cm,Green &gt;=14.5cm"
-				         style="dropdown"/>
-				</includeIf>
-				<includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
-				    <obs conceptId="99030" answerConceptIds="99028,99029,99027"
-				         answerLabels="Red &lt; 16.5cm, Yellow 16.5cm - &lt;19.0cm,Green &gt;=19.0cm"
-				         style="dropdown"/>
-				</includeIf>
+	        <td>
+	        	<p>
+	        		<label>M.U.A.C(cm)</label>
+	        		<obs conceptId="1343AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="muac-quantitative" />
+	        	</p>
+	        </td>
+            <td>
+                <p>
+                    <label>M.U.A.C</label>
+                    <includeIf velocityTest="$patient.age &lt; 5">
+                        <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                             answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
+                             answerLabels="Red &lt; 11.5cm, Yellow 11.5cm - &lt;12.5cm,Green &gt;= 12.5cm" id="muac-qualitative" />
+                    </includeIf>
+                    <includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
+                        <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                             answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
+                             answerLabels="Red &lt; 13.5cm,Yellow 13.5cm - &lt;14.5cm,Green &gt;=14.5cm" id="muac-qualitative" />
+                    </includeIf>
+                    <includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
+                        <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                             answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
+                             answerLabels="Red &lt; 16.5cm, Yellow 16.5cm - &lt;19.0cm,Green &gt;=19.0cm" id="muac-qualitative" />
+                    </includeIf>
 
-				<includeIf velocityTest="$patient.age &gt;=18">
-				    <obs conceptId="99030" answerConceptIds="99028,99029,99027"
-				         answerLabels="Red &lt;19.0cm , Yellow 19.0cm - &lt;22.0cm,Green &gt;=22.0cm"
-				         style="dropdown"/>
-				</includeIf>
-            </p>
-          </td>
-          <td>
-            <p>
-              <label>Weight (kg) </label>
-              <obs conceptId="5089" id="weight" />
-            </p>
-          </td>
-          <td>
-            <p>
-              <label>Height/Length (cm) </label>
-              <obs conceptId="5090" id="height" />
-            </p>
-          </td>
-          <td>
-            <p>
-              <label>BMI</label>
-              <obs conceptId="1342" id="bmi" />
-            </p>
-          </td>
+                    <includeIf velocityTest="$patient.age &gt;=18">
+                        <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                             answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
+                             answerLabels="Red &lt;19.0cm , Yellow 19.0cm - &lt;22.0cm,Green &gt;=22.0cm" id="muac-qualitative" />
+                    </includeIf>
+                </p>
+            </td>
+			<td>
+				<p>
+				  <label>Weight (kg) </label>
+				  <obs conceptId="5089" id="weight" />
+				</p>
+			</td>
+			<td>
+				<p>
+				  <label>Height/Length (cm) </label>
+				  <obs conceptId="5090" id="height" />
+				</p>
+			</td>
         </tr>
         <tr>
-          <td>
-            <p>
-              <label>Weight for age Z-score</label>
-              <obs conceptId="1854"
-	          		answerConceptIds="1115,114413,123814,1067,134722,126598,134723,123815"
-	          		answerLabels="Normal,Overweight,Underweight,unknown,Malnutrition of moderate degree (Gomez: 60% to Less than 75% of Standard Weight),Severe protein-calorie malnutrition (Gomez: Less than 60% of Standard Weight),Malnutrition of mild degree (Gomez: 75% to Less than 90% of Standard Weight),Undernourished"
-	          		style="dropdown"/>
-            </p>
-          </td>
-          <td>
-            <p>
-              <label>Height for age Z-Score</label>
-              <obs conceptId="164088" answerConceptIds="1115,123814" answerLabels="Normal - N,Underweight - U" style="radio" class="horizontal-layout-options" />
-            </p>
-          </td>
-          <td>
-            <p>
-              <label>Blood pressure - Diastolic</label>
-              <obs conceptId="5086" />
-            </p>
-          </td>
-          <td>
-            <p>
-              <label>Blood pressure - Systolic</label>
-              <obs conceptId="5085" />
-            </p>
-          </td>
+			<td>
+				<p>
+				  <label>BMI</label>
+				  <obs conceptId="1342" id="bmi" />
+				</p>
+			</td>
+			<td>
+				<p>
+				  <label>Weight for age Z-score</label>
+				  <obs conceptId="1854"
+				  		answerConceptIds="1115,114413,123814,1067,134722,126598,134723,123815"
+				  		answerLabels="Normal,Overweight,Underweight,unknown,Malnutrition of moderate degree (Gomez: 60% to Less than 75% of Standard Weight),Severe protein-calorie malnutrition (Gomez: Less than 60% of Standard Weight),Malnutrition of mild degree (Gomez: 75% to Less than 90% of Standard Weight),Undernourished"
+				  		style="dropdown"/>
+				</p>
+			</td>
+			<td>
+				<p>
+				  <label>Height for age Z-Score</label>
+				  <obs conceptId="164088" answerConceptIds="1115,123814" answerLabels="Normal - N,Underweight - U" style="radio" class="horizontal-layout-options" />
+				</p>
+			</td>
+			<td></td>
         </tr>
         <tr>
-          <td>
-            <p>
-              <label>Blood sugar</label>
-              <obs conceptId="887" />
-            </p>
-          </td>
-          <td>
-            <p>
-              <label>Temp</label>
-              <obs conceptId="5088" />
-            </p>
-          </td>
-          <td></td>
-          <td></td>
+			<td>
+				<p>
+				  <label>Blood pressure - Diastolic</label>
+				  <obs conceptId="5086" />
+				</p>
+			</td>
+			<td>
+				<p>
+				  <label>Blood pressure - Systolic</label>
+				  <obs conceptId="5085" />
+				</p>
+			</td>
+			<td>
+				<p>
+				  <label>Blood sugar</label>
+				  <obs conceptId="887" />
+				</p>
+			</td>
+			<td>
+				<p>
+				  <label>Temp</label>
+				  <obs conceptId="5088" />
+				</p>
+			</td>
+			<td></td>
         </tr>
       </table>
     </fieldset>
@@ -402,7 +627,7 @@
               <label>
                 Need for Palliative care?
               </label>
-              <obs conceptId="164438" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" class="horizontal-layout-options" />
+              <obs conceptId="70d0c3e5-20c6-48f7-ab82-4ecdd86874d4" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" class="horizontal-layout-options" />
             </p>
           </td>
           <td>
@@ -439,22 +664,28 @@
       <legend>Malaria Test</legend>
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
+			<td>
+				<p>
+					<label>Fever</label>
+					<obs conceptId="1069" answerConceptId="5945" answerLabel="" style="checkbox" />
+				</p>
+			</td>
           <td>
-            <p>
-              <label>Fever</label>
-              <obs conceptId="1069" answerConceptId="5945" answerLabel="" style="checkbox" />
-            </p>
-          </td>
-          <td>
-            <p>
-              <label>Test Done</label>
-              <obs conceptId="164433" answerConceptIds="32,1643,1118" answerLabels="Blood smear/Microscopy,Rapid Diagnostic Test, Not done" style="radio" class="vertical-layout-options" />
-            </p>
+				<p>
+					<label>Test Done</label>
+					<obs 	conceptId="164433" 
+							answerConceptIds="32,1643,1118" 
+							answerLabels="Blood smear/Microscopy,Rapid Diagnostic Test, Not done" 
+							style="radio" class="vertical-layout-options" id="malaria-test" />
+				</p>
           </td>
           <td>
             <p>
               	<label>Results</label>
-            	<obs conceptId="164434" answerConceptIds="703,664,1118" answerLabels="Positive,Negative,Not Done" style="radio" class="horizontal-layout-options" />
+            	<obs 	conceptId="164434" 
+            			answerConceptIds="703,664,1118" 
+            			answerLabels="Positive,Negative,Not Done" 
+            			style="radio" class="horizontal-layout-options" id="malaria-test-results" />
             </p>
           </td>
           <td></td>
@@ -478,7 +709,7 @@
               <label>
                 Patient sent to lab?
               </label>
-              <obs conceptId="90216" answerConceptId="90073" answerLabel="" style="checkbox" />
+              <obs conceptId="90216" answerConceptId="90073" answerLabel="" style="checkbox" id="sent-to-lab" />
             </p>
           </td>
           <td>
@@ -486,7 +717,7 @@
               <label>
                 Lab TB Results
               </label>
-              <obs conceptId="160108" answerConceptIds="703,664,1175" answerLabels="Positive,Negative,N/A" style="radio" required="true" class="horizontal-layout-options" />
+              <obs conceptId="160108" answerConceptIds="703,664,1175" answerLabels="Positive,Negative,N/A" style="radio" class="horizontal-layout-options" id="tb-lab-results" />
             </p>
           </td>
           <td>
@@ -510,7 +741,7 @@
 			          <td style="width:5%">#{id}</td>
 			          <td>
 			            <p>
-			              <obs conceptId="163149" answerClasses="Diagnosis,Finding" style="autocomplete" placeholder="Fill in Diagnosis" />
+			              <obs conceptId="163149" answerConceptSetIds="164947" style="autocomplete" placeholder="Fill in Diagnosis" />
 			            </p>
 			          </td>
 			          <td><a href="#" class="add">Add Diagnosis</a>| <a href="#" class="remove">Remove Diagnosis</a></td>
@@ -528,6 +759,16 @@
 	 			<render id="10" />
 	 		</repeat>
 		</tbody>
+ 	  </table>
+ 	  <table>
+ 		<tr>
+ 			<td>
+ 				<p>
+ 					<label>Other Diagnosis</label>
+					<obs conceptId="163149" answerConceptId="5622" answerLabel="" class="has-comment" commentFieldLabel=""/>	
+ 				</p>
+ 			</td>
+ 		</tr> 	  	
  	  </table>
     </fieldset>
 	<fieldset>
@@ -549,7 +790,7 @@
 			              <tr>
 			                <td>
 			                  <p>
-			                    <obs conceptId="1282" />
+			                    <obs conceptId="1282" answerConceptSetIds="1157,1158,1159,1195,1197,5279,5839" style="autocomplete"/>
 			                  </p>
 			                </td>
 			                <td>
@@ -597,23 +838,28 @@
               <label>
                 Disability
               </label>
-              <obs conceptId="162558" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" />
+              <obs conceptId="162558" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" id="disability"/>
             </p>
           </td>
-          <td>
+          <td style="width:40%">
           	<label>
           		Type of disability
           	</label>
-			*To be described***
+			<span id="type-of-disability">
+          		<obs conceptId="164945" answerConceptId="118939" answerLabel="Visual impairement" style="checkbox" class="horizontal-layout-options" />
+          		<obs conceptId="164945" answerConceptId="119483" answerLabel="Speech disorder" style="checkbox" />
+          		<obs conceptId="164945" answerConceptId="122936" answerLabel="Walking disability" style="checkbox" class="horizontal-layout-options" />
+          		<obs conceptId="164945" answerConceptId="156923" answerLabel="Mental/ Intellectual disabilities" style="checkbox" />			
+          	</span>          
           </td>
-          <td colspan="2" style="width:60%">
+          <td style="width:40%">
             <p>
               <label>Device provided</label>
-              <obs conceptId="164204" answerConceptId="164204" answerLabel="Spectacles" style="checkbox" class="horizontal-layout-options" />
-              <obs conceptId="164204" answerConceptId="161241" answerLabel="Wheelchair" style="checkbox"  />
-              <obs conceptId="164204" answerConceptId="164202" answerLabel="Walking stick" style="checkbox"  />
-              <obs conceptId="164204" answerConceptId="156560" answerLabel="Hearing Aid" style="checkbox"  />
-              <obs conceptId="164204" answerConceptId="164203" answerLabel="Walker" style="checkbox"  />
+	              <obs conceptId="164204" answerConceptId="164204" answerLabel="Spectacles" style="checkbox" class="horizontal-layout-options"/>
+	              <obs conceptId="164204" answerConceptId="161241" answerLabel="Wheelchair" style="checkbox"  />
+	              <obs conceptId="164204" answerConceptId="164202" answerLabel="Walking stick" style="checkbox"  class="horizontal-layout-options"/>
+	              <obs conceptId="164204" answerConceptId="156560" answerLabel="Hearing Aid" style="checkbox"  />
+	              <obs conceptId="164204" answerConceptId="164203" answerLabel="Walker" style="checkbox"  />
             </p>
           </td>
         </tr>
