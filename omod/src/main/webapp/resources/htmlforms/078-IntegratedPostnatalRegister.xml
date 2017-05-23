@@ -65,17 +65,20 @@
 		jQuery(document).ready(function(jq) {
 
 			const OTHER_CONCEPT_ID = 5622;
-	        const VIRAL_LOAD_RESULTS_CONCEPT_ID = 1305;
-	        const VIRAL_LOAD_DETECTED_CONCEPT_ID = 1301;
-	        const VIRAL_LOAD_NOT_DETECTED_CONCEPT_ID = 1306;
-	        const VIRAL_LOAD_SAMPLE_REJECTED_CONCEPT_ID = 1304;
+	        const 	VIRAL_LOAD_RESULTS_CONCEPT_ID = 1305,
+	        		VIRAL_LOAD_DETECTED_CONCEPT_ID = 1301,
+	        		VIRAL_LOAD_NOT_DETECTED_CONCEPT_ID = 1306,
+	        		VIRAL_LOAD_SAMPLE_REJECTED_CONCEPT_ID = 1304;
 
-	        const HIV_STATUS_CONCEPT_ID = 90253;
-	        const HIV_POSITIVE_CONCEPT_ID = 90166;
-	        const HIV_NEGATIVE_CONCEPT_ID = 90167;
+	        const 	HIV_STATUS_CONCEPT_ID = 90253,
+	        		HIV_POSITIVE_CONCEPT_ID = 90166,
+	        		HIV_NEGATIVE_CONCEPT_ID = 90167;
 
-	        const YES_CONCEPT_ID = 1065;
-	        const NO_CONCEPT_ID = 1066;
+	        const 	YES_CONCEPT_ID = 1065,
+	        		NO_CONCEPT_ID = 1066,
+	    			YELLOW_CONCEPT_ID = 99029,
+	    			RED_CONCEPT_ID = 99028,
+	    			GREEN_CONCEPT_ID = 99027;
 
 	        const NORMAL_DELIVERY_CONCEPT_ID = 1170;
 
@@ -366,6 +369,7 @@
             <span class="hidden">
                 <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
                                    order="629d78e9-93e5-43b0-ad8a-48313fd99117" />
+                <encounterProvider role="Provider" type="autocomplete" default="currentUser" />
             </span>
             <legend>Visit Summary</legend>
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -377,10 +381,6 @@
                         </p>
                     </td>
                     <td>
-                        <p class="hidden">
-                            <label>Provider</label>
-                            <encounterProvider role="Provider" type="autocomplete" default="currentUser" />
-                        </p>
                         <p>
                             <label>Serial</label>
                         </p>
@@ -703,7 +703,7 @@
                         <p>
                             <label>Pre-ART Number</label>
                             <span id="pre-art-number">
-	                            <patient field="identifier" identifierTypeId="e1731641-30ab-102d-86b0-7a5022ba4115" />
+	                            <patient field="identifier" identifierTypeId="e1731641-30ab-102d-86b0-7a5022ba4115" required="false" />
 							</span>
                         </p>
                     </td>
@@ -750,7 +750,7 @@
                         <p>
 
                             <label>Age (Wks)</label>
-                            <obs conceptId="164438AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+                            <obs conceptId="274d8abf-f41d-4dce-a496-8c949d362466" />
 
                         </p>
                     </td>
@@ -863,7 +863,7 @@
         <fieldset>
             <legend>Referral Information</legend>
             <section>
-            	<h3>Child</h3>
+            	<h3>Baby</h3>
 				<table>
 					<tr>
 						<td colspan="2">
@@ -879,13 +879,13 @@
 						<td>
 							<p>
 								<label>Facility Name</label>
-								<obs conceptId="90206" />
+								<obs conceptId="dcdffef2-30ab-102d-86b0-7a5022ba4115" />
 							</p>
 						</td>
 						<td>
 							<p>
 								<label>Facility Type</label>
-								<obs conceptId="99770"
+								<obs conceptId="2b00ebe6-edfd-4290-8b8d-942554e3c30d"
 	                                 answerConceptIds="6abc57f2-3718-42f6-84c4-4f71e921d590,37549919-5934-448e-b110-cc7868e73ff2,9028e51b-0c27-4b72-bde6-fadba72d1396"
 	                                 answerLabels="Young Child Clinic, HIV Chronic Care, Other Referral"
 	                                 style="dropdown" />
@@ -894,7 +894,7 @@
 						<td>
 							<p>
 								<label>Facility Name</label>
-								<obs conceptId="90211" />
+								<obs conceptId="dce015bb-30ab-102d-86b0-7a5022ba4115" />
 							</p>
 						</td>
 						<td>
@@ -934,7 +934,7 @@
 	                            <obs conceptId="160481"
 	                                 answerConceptIds="6abc57f2-3718-42f6-84c4-4f71e921d590,37549919-5934-448e-b110-cc7868e73ff2,9028e51b-0c27-4b72-bde6-fadba72d1396"
 	                                 answerLabels="Young Child Clinic, HIV Chronic Care, Other Referral"
-	                                 style="dropdown" />
+	                                 style="dropdown" id="mother-referred-from-facilty-type" />
 	                        </p>
 	                    </td>
 	                    <td>
