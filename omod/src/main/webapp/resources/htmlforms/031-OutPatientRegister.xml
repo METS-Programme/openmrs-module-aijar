@@ -1,5 +1,5 @@
-<htmlform formName="HMIS 031 Out Patient(OPD) Form"
-          formDescription="HMIS 031 Out Patient Form"
+<htmlform formName="HMIS 031 Outpatient (OPD) Form"
+          formDescription="HMIS 031 Outpatient (OPD) Form"
           formEncounterType="ee4780f5-b5eb-423b-932f-00b5879df5ab"
           formUuid="8c2f8378-51c7-4407-85a0-cb2832accfcf"
           formVersion="1.0"
@@ -12,24 +12,30 @@
           formLabel="Out-Patient(OPD)">
   
   <style type="text/css">
-  	table.multi td {
-		width: 20%;
+  	table.multi td, table.multi th {
+		width: 20% !important;
 		border: 1px solid rgb(199, 199, 199) !important;
 	}
 
 	table.multi td.duration input {
 		min-width: 20% !important;
 		width: 25px !important;
+		margin-right: 5px;
 	}
 
 	table.multi td.duration select {
-		min-width: 20%;
+		min-width: 20% !important;
 		width: 50% !important;
 		clear: none !important;
 	}
-
+	
 	.inError {
 	  border: 2px dotted #ff0000 !important;
+	}
+
+	span.fullwidth input[type=text]{
+		width: 100%;
+		min-width: 90% !important;
 	}
 	
 	/**
@@ -475,24 +481,22 @@
 
   <div class="ai-page-frame">
     <div class="headers" style="text-align: center;">
-      <h3 style="background: #c0c0c0; padding: 10px; color: #1f2121;">HMIS 031 Outpatient(OPD) FORM</h3>
+      <h3 style="background: #c0c0c0; padding: 10px; color: #1f2121;">HMIS 031 Outpatient (OPD) FORM</h3>
     </div>
     <fieldset>
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td>
-            <p>
-              <label>Date</label>
-		        <p id="encounter-date">
-		          <label>
-		            <span class="required">*</span>Follow up visit date:
-		          </label>
-		          <encounterDate default="today" disallowMultipleEncountersOnDate="block" />
-		        </p>
-				<span style="display: none;">
+	        <p id="encounter-date">
+				<label>
+					<span class="required">*</span>Visit date:
+				</label>
+				<encounterDate default="today" disallowMultipleEncountersOnDate="block" />
+				<span class="hidden">
 					<encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117" order="629d78e9-93e5-43b0-ad8a-48313fd99117" />
+					<encounterProvider type="dropdown" placeholder="Enter provider" default="currentUser" />
 				</span>
-            </p>
+	        </p>
           </td>
           <td>
             <p>
@@ -500,13 +504,6 @@
               <obs conceptId="1646" />
             </p>
           </td>
-          <td>
-            <p class="hidden">
-              <label>Provider</label>
-              <encounterProvider type="dropdown" placeholder="Enter provider" default="currentUser" />
-            </p>
-          </td>
-          <td></td>
         </tr>
       </table>
     </fieldset>
@@ -608,7 +605,6 @@
 				  <obs conceptId="5088" />
 				</p>
 			</td>
-			<td></td>
         </tr>
       </table>
     </fieldset>
@@ -638,6 +634,8 @@
               <obs conceptId="162728" answerConceptIds="1597,164142" answerLabels="New Attendance, Re-attendance" style="radio" class="horizontal-layout-options" />
             </p>
           </td>
+        </tr>
+        <tr>
           <td>
             <p>
               <label>
@@ -646,16 +644,12 @@
               <obs conceptId="163731" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" />
             </p>
           </td>
-        </tr>
-        <tr>
           <td>
             <p>
               <label>Alcohol use</label>
               <obs conceptId="159449" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" />
             </p>
           </td>
-          <td></td>
-          <td></td>
           <td></td>
         </tr>
       </table>
@@ -688,7 +682,6 @@
             			style="radio" class="horizontal-layout-options" id="malaria-test-results" />
             </p>
           </td>
-          <td></td>
         </tr>
       </table>
     </fieldset>
@@ -738,10 +731,10 @@
 	 		<repeat>
 	 			<template>
 			        <tr>
-			          <td style="width:5%">#{id}</td>
+			          <td style="width:5% !important">#{id}</td>
 			          <td>
 			            <p>
-			              <obs conceptId="163149" answerConceptSetIds="164947" style="autocomplete" placeholder="Fill in Diagnosis" />
+			              <obs conceptId="163149" answerConceptSetIds="164947" style="autocomplete" placeholder="Fill in Diagnosis" class="fullwidth" />
 			            </p>
 			          </td>
 			          <td><a href="#" class="add">Add Diagnosis</a>| <a href="#" class="remove">Remove Diagnosis</a></td>
@@ -790,7 +783,7 @@
 			              <tr>
 			                <td>
 			                  <p>
-			                    <obs conceptId="1282" answerConceptSetIds="1157,1158,1159,1195,1197,5279,5839" style="autocomplete"/>
+			                    <obs conceptId="1282" answerConceptSetIds="1157,1158,1159,1195,1197,5279,5839" style="autocomplete" class="fullwidth"/>
 			                  </p>
 			                </td>
 			                <td>
@@ -882,8 +875,6 @@
               <obs conceptId="99767" />
             </p>
           </td>
-          <td></td>
-          <td></td>
         </tr>
       </table>
 
