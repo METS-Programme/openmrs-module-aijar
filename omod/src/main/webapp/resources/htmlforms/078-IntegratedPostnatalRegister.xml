@@ -11,39 +11,6 @@
           formDisplayStyle="Standard"
           formLabel="PNC Encounter Form">
 
-    <ifMode mode="ENTER">
-        <includeIf velocityTest="$fn.allEncounters('a9f11592-22e7-45fc-904d-dfe24cb1fc67').size() == 0">
-            <script>
-                jq(function () {
-                    alert('This patient has no Maternity encounter, you will now be forwarded to the patient dashboard');
-
-                    /*
-                     * queryParameters -> handles the query string parameters
-                     * queryString -> the query string without the fist '?' character
-                     * re -> the regular expression
-                     * m -> holds the string matching the regular expression
-                     */
-                    var queryParameters = {}, queryString = location.search.substring(1),
-                            re = /([^&amp;=]+)=([^&amp;]*)/g, m;
-
-                    // Creates a map with the query string parameters
-                    while (m = re.exec(queryString)) {
-                        queryParameters[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
-                    }
-
-                    /*
-                     * Replace the query portion of the URL.
-                     * jQuery.param() -> create a serialized representation of an array or
-                     *     object, suitable for use in a URL query string or Ajax request.
-                     */
-                    location.href = window.location.protocol + "//" + window.location.host +
-                            '/' + OPENMRS_CONTEXT_PATH + '/coreapps/clinicianfacing/patient.page?patientId='
-                            + queryParameters['patientId']; // Causes page to reload
-                });
-            </script>
-        </includeIf>
-    </ifMode>
-
 	<style type="text/css">
 
 		form#htmlform div.ai-page-frame table>tbody tr:nth-child(odd) td {
@@ -102,9 +69,10 @@
 
 			var setNormalDeliveryStatus = function() {
 				var deliveryMethod = <lookup complexExpression="
-										#set ($deliveryMethod = '')
 										#set ($deliveryMethod = $fn.latestObs('5630').valueCoded.conceptId)
-										$deliveryMethod
+										#if ($deliveryMethod) $deliveryMethod;
+										#else '';
+										#end
 										" />
 				if (deliveryMethod == NORMAL_DELIVERY_CONCEPT_ID) {
 					$normalPregnancyField.attr('checked', 'checked');
@@ -284,6 +252,14 @@
 				setValue('emtct-code-woman.value', 99738);
 		    };
 
+		    var hideOtherHivStatusOPtionsForKnownHivPositiveStatus = function() {
+				var hivStatusCodesToHide = [90167,1067];
+				var hivStatusControlsToHide =  $hivStatusField.children('option').filter(function() {
+					return hivStatusCodesToHide.indexOf(parseInt(this.value)) &gt; -1;
+				});
+				hivStatusControlsToHide.remove();
+		    };
+
 		    var getHivStatus = function () {
 		    	/**
 		    	* HIV Status field should be selected if patient is HIV +ve 
@@ -313,6 +289,7 @@
 					$hivStatusField.val(HIV_POSITIVE_CONCEPT_ID);
 					$hivStatusField.change();
 					hideOtherEmtctCodesForKnownHivPositiveStatus();
+					hideOtherHivStatusOPtionsForKnownHivPositiveStatus();					
 				} else {
 					fieldHelper.enable($hivStatusField);
 				}
@@ -443,7 +420,7 @@
 	                            <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
 	                            	 answerConceptId="dcb30381-30ab-102d-86b0-7a5022ba4115"
 	                                 answerLabel="Natural"
-	                                 style="checkbox"/>
+	                                 style="checkbox" class="horizontal-layout-options"/>
 	                            <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
 	                                 answerConceptId="dcb2fba9-30ab-102d-86b0-7a5022ba4115"
 	                                 answerLabel="Female Sterilization"
@@ -455,7 +432,7 @@
 	                            <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
 	                                 answerConceptId="bb83fd9d-24c5-4d49-89c0-97e13c792aaf"
 	                                 answerLabel="Implant"
-	                                 style="checkbox" class="horizontal-layout-options" />
+	                                 style="checkbox" />
 	                            <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
 	                                 answerConceptId="dcdd91a7-30ab-102d-86b0-7a5022ba4115"
 	                                 answerLabel="Tubal Ligation"
@@ -468,7 +445,7 @@
 	                            <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
 	                                 answerConceptId="5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 	                                 answerLabel="Other"
-	                                 style="checkbox" />
+	                                 style="checkbox" commentFieldLabel="" class="has-comment horizontal-layout-options"/>
 	                        </p>
 	                    </td>
 	                </tr>
