@@ -1,5 +1,7 @@
 package org.openmrs.module.aijar.htmlformentry;
 
+import java.util.Date;
+
 import org.openmrs.Patient;
 import org.openmrs.PatientProgram;
 import org.openmrs.Program;
@@ -12,13 +14,14 @@ import org.openmrs.module.htmlformentry.FormEntryContext;
 import org.openmrs.module.htmlformentry.FormEntrySession;
 
 /**
- * Enrolls patients into the MCH program
+ * Exits patients out of the MCH program
  */
-public class MCHProgramEnrollmentPostSubmissionAction implements CustomFormSubmissionAction {
+public class MCHProgramExitPostSubmissionAction implements CustomFormSubmissionAction {
 	
 	@Override
 	public void applyAction(FormEntrySession session) {
-		//enroll only on initial form submission
+		
+		//exit only on initial form submission
 		if (!session.getContext().getMode().equals(FormEntryContext.Mode.ENTER)) {
 			return;
 		}
@@ -29,19 +32,25 @@ public class MCHProgramEnrollmentPostSubmissionAction implements CustomFormSubmi
 			throw new APIException("The MCH Program does not exist. Please restore it if deleted");
 		}
 		Patient patient = session.getPatient();
-		
-		//return if patient is already enrolled in an MCH program
-		for (PatientProgram patientProgram : service.getPatientPrograms(patient, mchProgram, null, null, null, null,
-		    false)) {
+		boolean enrollmentFound = false;
+		for (PatientProgram patientProgram : service.getPatientPrograms(patient, mchProgram, null, null, null, null, false)) {
 			if (patientProgram.getActive()) {
-				return;
+				patientProgram.setDateCompleted(new Date());
+				service.voidPatientProgram(patientProgram, "htmlformentry");
+				enrollmentFound = true;
 			}
 		}
 		
-		PatientProgram enrollment = new PatientProgram();
-		enrollment.setProgram(mchProgram);
-		enrollment.setPatient(patient);
-		enrollment.setDateEnrolled(session.getEncounter().getEncounterDatetime());
-		service.savePatientProgram(enrollment);
+		if (!enrollmentFound) {
+			//enroll and exit immediately
+			PatientProgram patientProgram = new PatientProgram();
+			patientProgram.setProgram(mchProgram);
+			patientProgram.setPatient(patient);
+			patientProgram.setDateEnrolled(session.getEncounter().getEncounterDatetime());
+			service.savePatientProgram(patientProgram);
+			
+			patientProgram.setDateCompleted(new Date());
+			service.voidPatientProgram(patientProgram, "htmlformentry");
+		}
 	}
 }
