@@ -3,6 +3,7 @@ package org.openmrs.module.aijar.htmlformentry;
 import org.openmrs.Patient;
 import org.openmrs.PatientProgram;
 import org.openmrs.Program;
+import org.openmrs.api.APIException;
 import org.openmrs.api.ProgramWorkflowService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.aijar.metadata.core.Programs;
@@ -24,6 +25,9 @@ public class TBProgramEnrollmentPostSubmissionAction implements CustomFormSubmis
 		
 		ProgramWorkflowService service = Context.getService(ProgramWorkflowService.class);
 		Program tbProgram = service.getProgramByUuid(Programs.TB_PROGRAM.uuid());
+		if (tbProgram == null) {
+			throw new APIException("The TB Program does not exist. Please restore it if deleted");
+		}
 		Patient patient = session.getPatient();
 		
 		//return if patient is already enrolled in a TB program
