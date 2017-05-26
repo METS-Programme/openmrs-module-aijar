@@ -1,4 +1,4 @@
-package org.openmrs.module.aijar.program;
+package org.openmrs.module.aijar.tasks;
 
 import java.util.Date;
 import java.util.List;
@@ -13,9 +13,10 @@ import org.openmrs.Program;
 import org.openmrs.api.ProgramWorkflowService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.aijar.metadata.core.Programs;
+import org.openmrs.module.aijar.tasks.ExitMCHProgramASLostToFollowUpTask;
 import org.openmrs.web.test.BaseModuleWebContextSensitiveTest;
 
-public class ExitTBProgramTaskTest extends BaseModuleWebContextSensitiveTest {
+public class ExitMCHProgramASLostToFollowUpTaskTest extends BaseModuleWebContextSensitiveTest {
 	
 	protected static final String UGANDAEMR_STANDARD_DATASET_XML = "org/openmrs/module/aijar/include/standardTestDataset.xml";
 
@@ -27,30 +28,30 @@ public class ExitTBProgramTaskTest extends BaseModuleWebContextSensitiveTest {
 	@Test
 	public void shoudExitPatientsWhoAreLostToFollowUp() {
 		
-		Patient patient = new Patient(7);
+		Patient patient = new Patient(8);
 		ProgramWorkflowService service = Context.getService(ProgramWorkflowService.class);
-		Program tbProgram = service.getProgramByUuid(Programs.TB_PROGRAM.uuid());
+		Program mchProgram = service.getProgramByUuid(Programs.MCH_PROGRAM.uuid());
 		
-		//should be enrolled in the tb program
-		List<PatientProgram> patientPrograms = service.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
+		//should be enrolled in the mch program
+		List<PatientProgram> patientPrograms = service.getPatientPrograms(patient, mchProgram, null, null, null, null, false);
 		Assert.assertEquals(1, patientPrograms.size());
 		
-		new ExitTBProgramTask().execute();
+		new ExitMCHProgramASLostToFollowUpTask().execute();
 		
-		//should not be enrolled in tb program
-        patientPrograms = service.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
+		//should not be enrolled in mch program
+        patientPrograms = service.getPatientPrograms(patient, mchProgram, null, null, null, null, false);
 		Assert.assertEquals(0, patientPrograms.size());
 	}
 	
 	@Test
 	public void shoudNotExitPatientsWhoAreNotLostToFollowUp() {
 		
-		Patient patient = new Patient(7);
+		Patient patient = new Patient(8);
 		ProgramWorkflowService service = Context.getService(ProgramWorkflowService.class);
-		Program tbProgram = service.getProgramByUuid(Programs.TB_PROGRAM.uuid());
+		Program mchProgram = service.getProgramByUuid(Programs.MCH_PROGRAM.uuid());
 		
-		//should be enrolled in the tb program
-		List<PatientProgram> patientPrograms = service.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
+		//should be enrolled in the mch program
+		List<PatientProgram> patientPrograms = service.getPatientPrograms(patient, mchProgram, null, null, null, null, false);
 		Assert.assertEquals(1, patientPrograms.size());
 		
 		//adjust the latest encounter date to less than the lost to follow up days
@@ -59,10 +60,10 @@ public class ExitTBProgramTaskTest extends BaseModuleWebContextSensitiveTest {
 		latestEncounter.setEncounterDatetime(new Date());
 		Context.getEncounterService().saveEncounter(latestEncounter);
 		
-		new ExitTBProgramTask().execute();
+		new ExitMCHProgramASLostToFollowUpTask().execute();
 		
-		//should still be enrolled in tb program
-        patientPrograms = service.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
+		//should still be enrolled in mch program
+        patientPrograms = service.getPatientPrograms(patient, mchProgram, null, null, null, null, false);
 		Assert.assertEquals(1, patientPrograms.size());
 	}
 }

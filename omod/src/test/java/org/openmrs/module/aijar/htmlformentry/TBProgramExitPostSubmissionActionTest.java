@@ -88,7 +88,7 @@ public class TBProgramExitPostSubmissionActionTest extends BaseModuleWebContextS
 	}
 	
 	@Test
-	public void shouldExitPatientFromTBProgramWhenEditedPNCFormIsSubmittedWithTreatmentOutcome() throws Exception {
+	public void shouldExitPatientFromTBProgramWhenEditedFormIsSubmittedWithTreatmentOutcome() throws Exception {
 		Patient patient = new Patient(7);
 		ProgramWorkflowService service = Context.getService(ProgramWorkflowService.class);
 		Program tbProgram = service.getProgramByUuid(Programs.TB_PROGRAM.uuid());
@@ -163,7 +163,7 @@ public class TBProgramExitPostSubmissionActionTest extends BaseModuleWebContextS
 	}
 	
 	@Test
-	public void shouldNotExitPatientFromTBProgramWhenEditedPNCFormIsSubmittedWithoutTreatmentOutcome() throws Exception {
+	public void shouldNotExitPatientFromTBProgramWhenEditedFormIsSubmittedWithoutTreatmentOutcome() throws Exception {
 		Patient patient = new Patient(7);
 		ProgramWorkflowService service = Context.getService(ProgramWorkflowService.class);
 		Program tbProgram = service.getProgramByUuid(Programs.TB_PROGRAM.uuid());
