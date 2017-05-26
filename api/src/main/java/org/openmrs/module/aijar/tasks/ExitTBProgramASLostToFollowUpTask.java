@@ -1,4 +1,4 @@
-package org.openmrs.module.aijar.program;
+package org.openmrs.module.aijar.tasks;
 
 import java.util.Date;
 import java.util.List;
@@ -17,7 +17,7 @@ import org.openmrs.scheduler.tasks.AbstractTask;
 /**
  * Exits patients, who have lost follow up, from the TB program
  */
-public class ExitTBProgramTask extends AbstractTask {
+public class ExitTBProgramASLostToFollowUpTask extends AbstractTask {
 
 	public static final int LOST_TO_FOLLOWUP_CONCEPT_ID = 5240;
 	
