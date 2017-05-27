@@ -3,7 +3,6 @@ package org.openmrs.module.aijar.htmlformentry;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.junit.Assert;
@@ -13,14 +12,13 @@ import org.openmrs.Encounter;
 import org.openmrs.Relationship;
 import org.openmrs.api.PatientService;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.aijar.htmlformenry.MotherToBabyPairLinkingPostSubmissionAction;
 import org.openmrs.module.htmlformentry.FormEntryContext;
 import org.openmrs.module.htmlformentry.FormEntrySession;
 import org.openmrs.module.htmlformentry.FormSubmissionActions;
 import org.openmrs.web.test.BaseModuleWebContextSensitiveTest;
 
 /**
- * Test class for Mother to Baby Pair Linking
+ * Test linking of mothers to HIV exposed infants through the mother's ART number
  */
 public class MotherToBabyPairLinkingPostSubmissionActionTest extends BaseModuleWebContextSensitiveTest {
 	private FormEntrySession mockFormEntrySession;
@@ -59,8 +57,9 @@ public class MotherToBabyPairLinkingPostSubmissionActionTest extends BaseModuleW
 		List<Relationship> parents = Context.getPersonService().getRelationshipsByPerson(e.getPatient().getPerson());
 		
 		
-		Assert.assertEquals("Infant linked to mother via ART number", parents.size(), 1);
+		Assert.assertEquals("Infant linked to mother via ART number", 1, parents.size());
 		Assert.assertEquals("Mother ID is 7", 10007, parents.get(0).getPersonA().getPersonId().longValue() );
+		Assert.assertEquals("8d91a210-c2cc-11de-8d13-0010c6dffd0f", parents.get(0).getRelationshipType().getUuid());
 	}
 	
 	@Test

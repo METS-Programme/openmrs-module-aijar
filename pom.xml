@@ -50,56 +50,56 @@
 		<openMRSVersion>2.0.5</openMRSVersion>
 		<openmrsTestutilsVersion>1.3</openmrsTestutilsVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<webservices.restModuleVersion>2.18.0</webservices.restModuleVersion>
+		<webservices.restModuleVersion>2.19.0</webservices.restModuleVersion>
 
 		<!-- Modules Bundled for Uganda distribution  -->
 		<!-- TODO: Arrange the dependencies and variables in alphabetical order -->
 		<!-- TODO: Remove dependencies on API where omods are available -->
-		<adminuiVersion>1.2.1</adminuiVersion>
+		<adminuiVersion>1.2.2</adminuiVersion>
 		<addresshierarchyVersion>2.9</addresshierarchyVersion>
 		<allergyuiVersion>1.6</allergyuiVersion>
 		<appframeworkVersion>2.10.0</appframeworkVersion>
-		<appuiVersion>1.7</appuiVersion>
+		<appuiVersion>1.8.0</appuiVersion>
 		<appointmentschedulingVersion>1.7.0</appointmentschedulingVersion>
 		<appointmentschedulinguiVersion>1.5.0</appointmentschedulinguiVersion>
 		<atlasVersion>2.2</atlasVersion>
 		<calculationVersion>1.2</calculationVersion>
 		<chartsearchVersion>2.1-SNAPSHOT</chartsearchVersion>
-		<coreappsVersion>1.12.0</coreappsVersion>
+		<coreappsVersion>1.14.0-SNAPSHOT</coreappsVersion>
 		<databaseBackupVersion>1.3.0</databaseBackupVersion>
 		<dataEntryStatisticsVersion>1.3.3</dataEntryStatisticsVersion>
 		<dataexchangeVersion>1.3.2</dataexchangeVersion>
 		<dataintegrityVersion>4.3.0</dataintegrityVersion>
 		<emrapiVersion>1.21.0</emrapiVersion>
 		<eventVersion>2.5</eventVersion>
-		<fhirVersion>1.6</fhirVersion>
-		<formentryappVersion>1.4.0</formentryappVersion>
+		<fhirVersion>1.7.0</fhirVersion>
+		<formentryappVersion>1.4.1</formentryappVersion>
 		<formfilterVersion>1.0.0</formfilterVersion>
-		<htmlformentryuiVersion>1.6.2</htmlformentryuiVersion>
+		<htmlformentryuiVersion>1.6.3</htmlformentryuiVersion>
 		<htmlformentryVersion>3.3.2</htmlformentryVersion>
-		<htmlwidgetsVersion>1.7.2</htmlwidgetsVersion>
+		<htmlwidgetsVersion>1.9.0</htmlwidgetsVersion>
 		<idgenVersion>4.4.0</idgenVersion>
 		<jacksonVersion>1.8.3</jacksonVersion>
 		<junitParamsVersion>1.0.4</junitParamsVersion>
-		<legacyuiVersion>1.2.3</legacyuiVersion>
+		<legacyuiVersion>1.3.1</legacyuiVersion>
 		<metadatadeployVersion>1.8.1</metadatadeployVersion>
-		<metadatamappingVersion>1.3.1</metadatamappingVersion>
+		<metadatamappingVersion>1.3.2</metadatamappingVersion>
 		<metadatasharingVersion>1.2.2</metadatasharingVersion>
 		<openconceptlabVersion>1.1</openconceptlabVersion>
-		<openwebappsVersion>1.6.3</openwebappsVersion>
+		<openwebappsVersion>1.7.0</openwebappsVersion>
 		<patientSummaryVersion>2.1</patientSummaryVersion>
-		<providermanagementVersion>2.5.0</providermanagementVersion>
-		<referenceapplicationVersion>2.5</referenceapplicationVersion>
-		<referencemetadataVersion>2.5.0</referencemetadataVersion>
-		<registrationappVersion>1.7.0</registrationappVersion>
-		<registrationcoreVersion>1.6</registrationcoreVersion>
-		<reportingRestVersion>1.6</reportingRestVersion>
+		<providermanagementVersion>2.6.0</providermanagementVersion>
+		<referenceapplicationVersion>2.6.0</referenceapplicationVersion>
+		<referencemetadataVersion>2.6.0</referencemetadataVersion>
+		<registrationappVersion>1.8.0</registrationappVersion>
+		<registrationcoreVersion>1.7.1</registrationcoreVersion>
+		<reportingRestVersion>1.8.0</reportingRestVersion>
 		<reportingVersion>1.13.0-SNAPSHOT</reportingVersion>
 		<reportingCompatibilityVersion>2.0.2</reportingCompatibilityVersion>
-		<reportingUIVersion>1.2</reportingUIVersion>
+		<reportingUIVersion>1.3.0</reportingUIVersion>
 		<serializationxstreamVersion>0.2.12</serializationxstreamVersion>
-		<uicommonsVersion>2.1</uicommonsVersion>
-		<uiframeworkVersion>3.10.0</uiframeworkVersion>
+		<uicommonsVersion>2.3.0</uicommonsVersion>
+		<uiframeworkVersion>3.11.0</uiframeworkVersion>
 		<uilibraryVersion>2.0.4</uilibraryVersion>
 		<xformsVersion>4.3.9</xformsVersion>
 

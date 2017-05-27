@@ -65,6 +65,9 @@
 	<patient patient_id="10006" creator="1" date_created="2017-01-03 00:00:00.0" voided="false"/>
 	<patient_identifier patient_identifier_id="10006" patient_id="10006" identifier="EXP-10006" identifier_type="8" preferred="0" location_id="1" creator="1" date_created="2017-01-03 00:00:00.0" voided="false" void_reason="" uuid="d3ca1de0-7144-4a5d-8c42-3f69afc028ff"/>
 	
+	<!-- relationship types -->
+	<relationship_type  relationship_type_id="1000"  a_is_to_b="Parent"  b_is_to_a="Child"  preferred="0"  weight="0"  description="Relationship from a mother/father to the child"  creator="1"  date_created="2007-05-01 11:38:27"  uuid="8d91a210-c2cc-11de-8d13-0010c6dffd0f"  retired="0" />
+	
 	<!-- Under age mother -->
 	<person person_id="10007" gender="F" dead="false" creator="1" birthdate_estimated="0" date_created="2008-08-15 15:46:47.0" voided="false" uuid="df8ae447-6745-45be-b859-403241d9913d"/>
 	<patient patient_id="10007" creator="1" date_created="2017-01-03 00:00:00.0" voided="false"/>
