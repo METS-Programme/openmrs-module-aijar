@@ -58,23 +58,49 @@ public class MotherToBabyPairLinkingPostSubmissionActionTest extends BaseModuleW
 		
 		
 		Assert.assertEquals("Infant linked to mother via ART number", 1, parents.size());
-		Assert.assertEquals("Mother ID is 7", 10007, parents.get(0).getPersonA().getPersonId().longValue() );
+		Assert.assertEquals("Mother ID is 7", 7, parents.get(0).getPersonA().getPersonId().longValue() );
 		Assert.assertEquals("8d91a210-c2cc-11de-8d13-0010c6dffd0f", parents.get(0).getRelationshipType().getUuid());
 	}
 	
 	@Test
 	public void shouldNotLinkBabyToMotherAgainIfAlreadyDone() throws Exception {
-		Assert.assertTrue(true);
+		Encounter e = Context.getEncounterService().getEncounter(10012);
+		when(mockFormEntrySession.getEncounter()).thenReturn(e);
+		
+		motherToBabyPairLinkingPostSubmissionAction.applyAction(mockFormEntrySession);
+		
+		List<Relationship> parents = Context.getPersonService().getRelationshipsByPerson(e.getPatient().getPerson());
+		
+		
+		Assert.assertEquals("Infant already linked should not link again", parents.size(), 1);
+		Assert.assertEquals("Mother ID is 8", 8, parents.get(0).getPersonA().getPersonId().longValue() );
+		Assert.assertEquals("8d91a210-c2cc-11de-8d13-0010c6dffd0f", parents.get(0).getRelationshipType().getUuid());
 	}
 	
 	@Test
 	public void shouldNotLinkBabyIfARTNumberBelongsToMan() throws Exception {
-		Assert.assertTrue(true);
+		Encounter e = Context.getEncounterService().getEncounter(10010);
+		when(mockFormEntrySession.getEncounter()).thenReturn(e);
+		
+		motherToBabyPairLinkingPostSubmissionAction.applyAction(mockFormEntrySession);
+		
+		List<Relationship> parents = Context.getPersonService().getRelationshipsByPerson(e.getPatient().getPerson());
+		
+		
+		Assert.assertEquals("Infant with linked to man as mother", parents.size(), 0);
 	}
 	
 	@Test
 	public void shouldNotLinkBabyIfARTNumberIsForPersonBelow12Years() throws Exception {
-		Assert.assertTrue(true);
+		Encounter e = Context.getEncounterService().getEncounter(10006);
+		when(mockFormEntrySession.getEncounter()).thenReturn(e);
+		
+		motherToBabyPairLinkingPostSubmissionAction.applyAction(mockFormEntrySession);
+		
+		List<Relationship> parents = Context.getPersonService().getRelationshipsByPerson(e.getPatient().getPerson());
+		
+		
+		Assert.assertEquals("Infant with mother below 12 years", parents.size(), 0);
 	}
 	
 	@Test

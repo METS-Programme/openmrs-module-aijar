@@ -50,11 +50,16 @@ public class MotherToBabyPairLinkingPostSubmissionAction implements CustomFormSu
 									PatientIdentifierTypes.HIV_CARE_NUMBER.uuid())), // ART Number Identifier type
 							true); // match Identifier exactly
 					if (mothers.size() != 0) {
-						Relationship relationship = new Relationship();
-						relationship.setRelationshipType(personService.getRelationshipTypeByUuid("8d91a210-c2cc-11de-8d13-0010c6dffd0f"));
-						relationship.setPersonA(mothers.get(0).getPerson());
-						relationship.setPersonB(infant);
-						personService.saveRelationship(relationship);
+						Person potentialMother = mothers.get(0).getPerson();
+						// mothers have to be female and above 12 years of age
+						if (potentialMother.getAge() > 12 & potentialMother.getGender().equals("F")) {
+							Relationship relationship = new Relationship();
+							relationship.setRelationshipType(
+									personService.getRelationshipTypeByUuid("8d91a210-c2cc-11de-8d13-0010c6dffd0f"));
+							relationship.setPersonA(potentialMother);
+							relationship.setPersonB(infant);
+							personService.saveRelationship(relationship);
+						}
 					}
 				}
 			}

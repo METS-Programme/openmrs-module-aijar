@@ -19,7 +19,24 @@
 	<encounter encounter_id="10005"  encounter_type="19" patient_id="10005" location_id="1" form_id="1" encounter_datetime="2014-01-08 00:00:00.0" creator="1" date_created="2014-01-08 14:09:05.0" voided="false" uuid="456ebc12-18b0-4774-bc6a-c4a42528105c"/>
 	<obs obs_id="10006" person_id="10005" concept_id="162874" encounter_id="10005" obs_datetime="2014-01-08 00:00:00.0" location_id="1" value_text="ART-FEMALE-1" comments="" creator="1" date_created="2014-01-08 14:11:13.0" voided="false" uuid="f9aec34c-c7a8-4cad-9420-bd6ba34ad1af"/>
 	<obs obs_id="10007" person_id="10005" concept_id="99428" encounter_id="10005" obs_datetime="2014-01-08 00:00:00.0" location_id="1" value_coded="90200" comments="" creator="1" date_created="2014-01-08 14:11:13.0" voided="false" uuid="f9aec34c-c7a8-4cad-9420-bd6ba34ad1ah"/>
+	<encounter encounter_id="10008"  encounter_type="20" patient_id="10005" location_id="1" form_id="1" encounter_datetime="2014-01-08 00:00:00.0" creator="1" date_created="2014-01-08 14:09:05.0" voided="false" uuid="456ebc12-18b0-4774-bc6a-c4a42528106c"/>
 	
-	<encounter encounter_id="10006" encounter_type="20" patient_id="10005" location_id="1" form_id="1" encounter_datetime="2014-01-08 00:00:00.0" creator="1" date_created="2014-01-08 14:09:05.0" voided="false" uuid="074b46a9-b136-4114-b766-883a84af2588"/>
+	<!-- Exposed infant with under age mother -->
+	<encounter encounter_id="10006" encounter_type="19" patient_id="10006" location_id="1" form_id="1" encounter_datetime="2014-01-08 00:00:00.0" creator="1" date_created="2014-01-08 14:09:05.0" voided="false" uuid="074b46a9-b136-4114-b766-883a84af2588"/>
+	<obs obs_id="10010" person_id="10006" concept_id="162874" encounter_id="10006" obs_datetime="2014-01-08 00:00:00.0" location_id="1" value_text="ART-FEMALE-UNDERAGE-1" comments="" creator="1" date_created="2014-01-08 14:11:13.0" voided="false" uuid="f9aec34c-c7a8-4cad-9420-bd6ba34ad1aw"/>
+	
+	<encounter encounter_id="10007" encounter_type="20" patient_id="10006" location_id="1" form_id="1" encounter_datetime="2014-01-08 00:00:00.0" creator="1" date_created="2014-01-08 14:09:05.0" voided="false" uuid="074b46a9-b136-4114-b766-883a84af2589"/>
+	
+	<!-- Exposed infant with man linked as mother -->
+	<encounter encounter_id="10010" encounter_type="19" patient_id="10008" location_id="1" form_id="1" encounter_datetime="2014-01-08 00:00:00.0" creator="1" date_created="2014-01-08 14:09:05.0" voided="false" uuid="074b46a9-b136-4114-b766-883a84af2598"/>
+	<obs obs_id="10015" person_id="10008" concept_id="162874" encounter_id="10010" obs_datetime="2014-01-08 00:00:00.0" location_id="1" value_text="ART-MALE-1" comments="" creator="1" date_created="2014-01-08 14:11:13.0" voided="false" uuid="f9aec34c-c7a8-4cad-9420-bd6ba34ad1bw"/>
+	
+	<encounter encounter_id="10011" encounter_type="20" patient_id="10008" location_id="1" form_id="1" encounter_datetime="2014-01-08 00:00:00.0" creator="1" date_created="2014-01-08 14:09:05.0" voided="false" uuid="074b46a9-b136-4114-b766-883a84af2599"/>
+	
+	<!-- Exposed infant already linked should not link again -->
+	<encounter encounter_id="10012" encounter_type="19" patient_id="10009" location_id="1" form_id="1" encounter_datetime="2014-01-08 00:00:00.0" creator="1" date_created="2014-01-08 14:09:05.0" voided="false" uuid="074b46a9-b136-4114-b766-883a84af2600"/>
+	<obs obs_id="10016" person_id="10009" concept_id="162874" encounter_id="10012" obs_datetime="2014-01-08 00:00:00.0" location_id="1" value_text="ART-FEMALE-1" comments="" creator="1" date_created="2014-01-08 14:11:13.0" voided="false" uuid="f9aec34c-c7a8-4cad-9420-bd6ba34ad1bx"/>
+	
+	<encounter encounter_id="10013" encounter_type="20" patient_id="10009" location_id="1" form_id="1" encounter_datetime="2014-01-08 00:00:00.0" creator="1" date_created="2014-01-08 14:09:05.0" voided="false" uuid="074b46a9-b136-4114-b766-883a84af2601"/>
 	
 </dataset>
