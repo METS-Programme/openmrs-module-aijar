@@ -8,13 +8,36 @@
       "widget": "latestobsforconceptlist",
       "icon": "icon-user-md",
       "label": "ART Status",
-      "maxAge": "10y",
+      "maxAge": "120m",
       "concepts": "dce12b4f-30ab-102d-86b0-7a5022ba4115,ab505422-26d9-41f1-a079-c3d222000440,c3332e8d-2548-4ad6-931d-6855692694a3,c17bd9df-23e6-4e65-ba42-eb6d9250ca3f"
     },
     "extensions": [
       {
         "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardFirstColumn",
         "appId": "ugandaemr.dashboardwidget.ARTStatus",
+        "extensionPointId": "patientDashboard.firstColumnFragments",
+        "extensionParams": {
+          "provider": "coreapps",
+          "fragment": "dashboardwidgets/dashboardWidget"
+        }
+      }
+    ]
+  },
+  {
+    "id": "ugandaemr.dataIntegrityViolations",
+    "instanceOf": "coreapps.template.dashboardWidget",
+    "description": "coreapps.dataIntegrityViolations.app.description",
+    "order": 10,
+    "config": {
+      "widget": "dataintegrityviolations",
+      "icon": "icon-question-sign",
+      "label": "Data Quality Violations",
+      "maxResults": "8"
+    },
+    "extensions": [
+      {
+        "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardFirstColumn",
+        "appId": "ugandaemr.dataIntegrityViolations",
         "extensionPointId": "patientDashboard.firstColumnFragments",
         "extensionParams": {
           "provider": "coreapps",
