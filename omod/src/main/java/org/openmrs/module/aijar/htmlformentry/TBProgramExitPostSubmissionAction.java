@@ -16,16 +16,17 @@ import org.openmrs.module.htmlformentry.FormEntrySession;
 import org.openmrs.module.htmlformentry.FormEntryContext.Mode;
 
 /**
- * Enrolls patients into the TB program
+ * Exits patients out of the TB program
  */
-public class TBProgramEnrollmentPostSubmissionAction implements CustomFormSubmissionAction {
+public class TBProgramExitPostSubmissionAction implements CustomFormSubmissionAction {
 	
 	public static final int TREATMENT_OUTCOME_CONCEPT_ID = 99423;
 	public static final int TREATMENT_OUTCOME_DATE_CONCEPT_ID = 259787;
 	
 	@Override
 	public void applyAction(FormEntrySession session) {
-		//enroll or exit during enter and edit modes
+		
+		//exit during enter or edit modes
 		Mode mode = session.getContext().getMode();
 		if (!(mode.equals(FormEntryContext.Mode.ENTER) || mode.equals(FormEntryContext.Mode.EDIT))) {
 			return;
@@ -36,38 +37,25 @@ public class TBProgramEnrollmentPostSubmissionAction implements CustomFormSubmis
 		if (tbProgram == null) {
 			throw new APIException("The TB Program does not exist. Please restore it if deleted");
 		}
-		
-		//enroll if not already so
 		Patient patient = session.getPatient();
-		PatientProgram patientProgram = getPatientProgram(service, patient, tbProgram);
-		if (patientProgram == null) {
-			PatientProgram enrollment = new PatientProgram();
-			enrollment.setProgram(tbProgram);
-			enrollment.setPatient(patient);
-			enrollment.setDateEnrolled(session.getEncounter().getEncounterDatetime());
-			service.savePatientProgram(enrollment);
-		}
 		
-		//exit if has a treatment outcome
-		Obs obs = getTreatmentOutcomeObs(session.getEncounter());
-		if (obs != null) {
-			patientProgram.setDateCompleted(obs.getObsDatetime());
-			patientProgram.setOutcome(obs.getValueCoded());
-			obs = getTreatmentOutcomeDateObs(session.getEncounter());
-			if (obs != null) {
-				patientProgram.setDateCompleted(obs.getValueDate());
-			}
-			service.voidPatientProgram(patientProgram, "htmlformentry");
-		}
-	}
-	
-	private PatientProgram getPatientProgram(ProgramWorkflowService service, Patient patient, Program tbProgram) {
+		//exit if patient is enrolled and we have a treatment outcome
 		for (PatientProgram patientProgram : service.getPatientPrograms(patient, tbProgram, null, null, null, null, false)) {
-			if (patientProgram.getActive()) {
-				return patientProgram;
+			if (!patientProgram.getActive()) {
+				continue;
+			}
+			
+			Obs obs = getTreatmentOutcomeObs(session.getEncounter());
+			if (obs != null) {
+				patientProgram.setDateCompleted(obs.getObsDatetime());
+				patientProgram.setOutcome(obs.getValueCoded());
+				obs = getTreatmentOutcomeDateObs(session.getEncounter());
+				if (obs != null) {
+					patientProgram.setDateCompleted(obs.getValueDate());
+				}
+				service.voidPatientProgram(patientProgram, "htmlformentry");
 			}
 		}
-		return null;
 	}
 	
 	private Obs getTreatmentOutcomeDateObs(Encounter encounter) {
