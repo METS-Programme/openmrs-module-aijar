@@ -141,6 +141,7 @@ public class TBProgramEnrollmentPostSubmissionActionTest extends BaseModuleWebCo
 		Concept concept = Context.getConceptService().getConcept(TBProgramExitPostSubmissionAction.TREATMENT_OUTCOME_CONCEPT_ID);
 		obs.setConcept(concept);
 		encounter.addObs(obs);
+		when(formEntrySession.getContext().getMode()).thenReturn(FormEntryContext.Mode.EDIT);
 		new TBProgramExitPostSubmissionAction().applyAction(formEntrySession);
 		programs = programWorkflowService.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
 		Assert.assertEquals(0, programs.size()); //should have exited program

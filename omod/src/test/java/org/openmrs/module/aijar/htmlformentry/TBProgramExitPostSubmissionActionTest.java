@@ -52,7 +52,7 @@ public class TBProgramExitPostSubmissionActionTest extends BaseModuleWebContextS
 	}
 	
 	@Test
-	public void shouldExitPatientFromTBProgramWhenNewTBFormIsSubmittedWithTreatmentOutcome() throws Exception {
+	public void shouldNotExitPatientFromTBProgramWhenNewTBFormIsSubmitted() throws Exception {
 		Patient patient = new Patient(7);
 		ProgramWorkflowService service = Context.getService(ProgramWorkflowService.class);
 		Program tbProgram = service.getProgramByUuid(Programs.TB_PROGRAM.uuid());
@@ -82,9 +82,9 @@ public class TBProgramExitPostSubmissionActionTest extends BaseModuleWebContextS
         
         session.applyActions();
         
-        //should not be enrolled in tb program
+        //should still be enrolled in tb program
         patientPrograms = service.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
-		Assert.assertEquals(0, patientPrograms.size());
+		Assert.assertEquals(1, patientPrograms.size());
 	}
 	
 	@Test
@@ -124,42 +124,6 @@ public class TBProgramExitPostSubmissionActionTest extends BaseModuleWebContextS
         //should not be enrolled in tb program
         patientPrograms = service.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
 		Assert.assertEquals(0, patientPrograms.size());
-	}
-	
-	@Test
-	public void shouldNotExitPatientFromTBProgramWhenNewTBFormIsSubmittedWithoutTreatmentOutcome() throws Exception {
-		Patient patient = new Patient(7);
-		ProgramWorkflowService service = Context.getService(ProgramWorkflowService.class);
-		Program tbProgram = service.getProgramByUuid(Programs.TB_PROGRAM.uuid());
-		
-		//should be enrolled in the tb program
-		List<PatientProgram> patientPrograms = service.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
-		Assert.assertEquals(1, patientPrograms.size());
-			
-		//prepare and submit an html form to exit patient from tb program
-		HtmlForm htmlForm = new HtmlForm();
-		htmlForm.setXmlData(xml);
-		Form form = new Form(1);
-		form.setEncounterType(new EncounterType(1));
-		htmlForm.setForm(form);
-		FormEntrySession session = new FormEntrySession(patient, null, FormEntryContext.Mode.ENTER, htmlForm, new MockHttpSession());
-        
-        //getHtmlToDisplay() is called to generate necessary tag handlers and cache the form
-        session.getHtmlToDisplay();
-        
-        //prepareForSubmit is called to set patient and encounter if specified in tags
-        session.prepareForSubmit();
-        
-        HttpServletRequest request = mock(MockHttpServletRequest.class);
-        when(request.getParameter("w1")).thenReturn("2017-04-01");
-        when(request.getParameter("w8")).thenReturn(null); //no outcome
-        session.getSubmissionController().handleFormSubmission(session, request);
-        
-        session.applyActions();
-        
-        //should still be enrolled in tb program
-        patientPrograms = service.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
-		Assert.assertEquals(1, patientPrograms.size());
 	}
 	
 	@Test

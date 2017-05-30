@@ -28,7 +28,7 @@ public class TBProgramExitPostSubmissionAction implements CustomFormSubmissionAc
 		
 		//exit during enter or edit modes
 		Mode mode = session.getContext().getMode();
-		if (!(mode.equals(FormEntryContext.Mode.ENTER) || mode.equals(FormEntryContext.Mode.EDIT))) {
+		if (!mode.equals(FormEntryContext.Mode.EDIT)) {
 			return;
 		}
 		
