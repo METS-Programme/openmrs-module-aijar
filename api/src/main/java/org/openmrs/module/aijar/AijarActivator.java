@@ -37,6 +37,8 @@ import org.openmrs.module.emrapi.utils.MetadataUtil;
 import org.openmrs.module.idgen.IdentifierSource;
 import org.openmrs.module.idgen.service.IdentifierSourceService;
 import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
+import org.openmrs.module.metadatamapping.MetadataTermMapping;
+import org.openmrs.module.metadatamapping.api.MetadataMappingService;
 import org.openmrs.notification.AlertService;
 import org.openmrs.util.OpenmrsUtil;
 
@@ -227,9 +229,16 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
      */
     private List<GlobalProperty> configureGlobalProperties() {
         List<GlobalProperty> properties = new ArrayList<GlobalProperty>();
-        // The National ID as the primary identifier that needs to be displayed
-        properties.add(
-                new GlobalProperty(EmrApiConstants.PRIMARY_IDENTIFIER_TYPE, PatientIdentifierTypes.OPENMRS_ID.uuid()));
+        // The primary identifier type now uses metadata mapping instead of a global property
+        MetadataMappingService metadataMappingService = Context.getService(MetadataMappingService.class);
+        MetadataTermMapping identifierTypeMapping = metadataMappingService.getMetadataTermMapping(EmrApiConstants.EMR_METADATA_SOURCE_NAME, EmrApiConstants.PRIMARY_IDENTIFIER_TYPE);
+        PatientIdentifierType openmrsIdType = Context.getPatientService().getPatientIdentifierTypeByUuid(PatientIdentifierTypes.OPENMRS_ID.uuid());
+    
+        //overwrite if not set yet
+        if(!openmrsIdType.getUuid().equals(identifierTypeMapping.getMetadataUuid())){
+            identifierTypeMapping.setMappedObject(openmrsIdType);
+            metadataMappingService.saveMetadataTermMapping(identifierTypeMapping);
+        }
         
         String ART_Patient_Number_Identifier = "";
         // check if the ART patient number is to be displayed then add it here
