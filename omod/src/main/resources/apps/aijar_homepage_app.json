@@ -76,27 +76,5 @@
     "config": {
       "registrationAppLink": "registrationapp/registerPatient.page?appId=aijar.registrationapp.registerPatient"
     }
-  },
-  {
-        "id": "aijar.program",
-        "description": "Provides patient program enrollment",
-        "order": 3,
-        "extensions": [
-            {
-                "id": "aijar.programHomepageLink",
-                "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
-                "type": "link",
-                "label": "aijar.app.program.label",
-                "url": "coreapps/findpatient/findPatient.page?app=aijar.program",
-                "icon": "icon-file-alt",
-                "requiredPrivilege": "App: aijar.program"
-            }
-        ],
-        "config": {
-            "afterSelectedUrl": "/aijar/patientProgram.page?patientId={{patientId}}",
-            "label": "aijar.app.program.title",
-            "showLastViewedPatients": true,
-            "heading": "aijar.app.program.selectPatient"
-        }
-    }
+  }
 ]
