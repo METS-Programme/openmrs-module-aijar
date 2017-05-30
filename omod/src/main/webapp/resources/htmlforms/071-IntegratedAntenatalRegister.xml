@@ -424,7 +424,7 @@
 				var emtctControlsToHide =  $emtctCodeWomanField.children('option').filter(function() {
 					return emtctCodesToHide.indexOf(parseInt(this.value)) &gt; -1;
 				});
-				emtctControlsToHide.remove();
+				emtctControlsToHide.attr('disabled', true);
 				setValue('emtct-code-woman.value', 99738);
 		    };
 
@@ -784,8 +784,8 @@
 	              					TR - Counselled tested and results given - Client tested HIV - in ANC,
 	              					TRR - Counselled tested and results given - Client tested HIV + in ANC,
 	              					TRR+ - Client was originally negative but sero-converted at this test,
-	              					TRK - New ANC clients with Known HIV- status,
-	              					TRRK - New ANC clients with Known HIV+ status" 
+	              					TR&#8730; - New ANC clients with Known HIV- status,
+	              					TRR&#8730; - New ANC clients with Known HIV+ status" 
 	                style="dropdown" class="emtct-code" id="emtct-code-partner" />
 	            </p>
 	          </td>
@@ -839,7 +839,7 @@
                             <label>ARVs Given</label>
                             <obs conceptId="a615f932-26ee-449c-8e20-e50a15232763"
                                  answerConceptIds="026e31b7-4a26-44d0-8398-9a41c40ff7d3,2aa7d442-6cbb-4609-9dd3-bc2ad6f05016,2c000b41-f9d7-40c1-8de0-bce91dbae932,bbc63761-0741-4583-9396-a34d3a18601c,dc9b0596-30ab-102d-86b0-7a5022ba4115"
-                                 answerLabels="ART,ARTK,ART✔,ARTK✔,NA"
+                                 answerLabels="ART,ARTK,ART&#10003;,ARTK&#10003;,NA"
                                  style="dropdown" id="arvs-given" />
                         </p>
                     </td>
@@ -932,7 +932,7 @@
                             <label>IPT Dose</label>
                             <obs conceptId="1da3cb98-59d8-4bfd-b0bb-c9c1bcd058c6"
                                  answerConceptIds="0192ca59-b647-4f88-b07e-8fda991ba6d6,f1d5afce-8dfe-4d2d-b24b-051815d61848,a5497b5a-7da1-42d2-9985-b5ec695b4199,f29f43c6-076a-4f70-9ae8-4563ac3fda80,dca06bae-30ab-102d-86b0-7a5022ba4115,fca28768-50dc-4d6b-a3d2-2aae3b376b27,b0439b8e-469e-43e6-9dda-9b6b49f2147b"
-                                 answerLabels="1 - IPT1,2 - IPT2,3 - IPT3,ND - Not Due,C - Complete,CTX - Initial  septrin prescrition,CTX✔ - Septrin prescribed on prev visit"
+                                 answerLabels="1 - IPT1,2 - IPT2,3 - IPT3,ND - Not Due,C - Complete,CTX - Initial  septrin prescrition,CTX&#10003; - Septrin prescribed on prev visit"
                                  style="dropdown" />
                         </p>
                     </td>
@@ -953,7 +953,7 @@
                             <label>Mebendazole Dose</label>
                             <obs conceptId="9d6abbc4-707a-4ec7-a32a-4090b1c3af87"
                                  answerConceptIds="a7a9d632-b266-4085-9a5e-57fc8dd56f0c,0134c1d3-a255-46b2-ac77-38c0edcd9e53,	beb5523f-ec5a-46fe-a7c9-f3270a05f4b4,dca06bae-30ab-102d-86b0-7a5022ba4115"
-                                 answerLabels="✔ - Received,X - Not Received,ND - Not due,C - Completed"
+                                 answerLabels="&#10003; - Received,X - Not Received,ND - Not due,C - Completed"
                                  style="dropdown" />
                         </p>
                     </td>
