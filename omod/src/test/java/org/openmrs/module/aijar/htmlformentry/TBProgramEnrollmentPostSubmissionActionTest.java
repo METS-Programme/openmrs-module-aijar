@@ -123,7 +123,7 @@ public class TBProgramEnrollmentPostSubmissionActionTest extends BaseModuleWebCo
 		when(formEntrySession.getContext().getMode()).thenReturn(FormEntryContext.Mode.EDIT);
 		postSubmissionAction.applyAction(formEntrySession);
 		programs = programWorkflowService.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
-		Assert.assertEquals(0, programs.size()); //should not enroll in edit mode
+		Assert.assertEquals(1, programs.size()); //should enroll in edit mode
 		
 		//try enroll in enter mode
 		when(formEntrySession.getContext().getMode()).thenReturn(FormEntryContext.Mode.ENTER);
