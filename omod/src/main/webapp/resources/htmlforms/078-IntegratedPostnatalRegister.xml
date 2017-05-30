@@ -248,7 +248,7 @@
 				var emtctControlsToHide =  $emtctCodeWomanField.children('option').filter(function() {
 					return emtctCodesToHide.indexOf(parseInt(this.value)) &gt; -1;
 				});
-				emtctControlsToHide.remove();
+				emtctControlsToHide.attr('disabled', true);
 				setValue('emtct-code-woman.value', 99738);
 		    };
 
@@ -673,7 +673,7 @@
                             <obs id="arvs-given" conceptId="a615f932-26ee-449c-8e20-e50a15232763"
                                  answerConceptIds="026e31b7-4a26-44d0-8398-9a41c40ff7d3,2aa7d442-6cbb-4609-9dd3-bc2ad6f05016,2c000b41-f9d7-40c1-8de0-bce91dbae932,
                                  bbc63761-0741-4583-9396-a34d3a18601c,dc9b0596-30ab-102d-86b0-7a5022ba4115"
-                                 answerLabels="ART,ARTK,ART✔,ARTK✔,NA" />
+                                 answerLabels="ART,ARTK,ART&#8730;,ARTK&#8730;,NA" />
                         </p>
                     </td>
                     <td>

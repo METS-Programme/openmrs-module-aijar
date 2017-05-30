@@ -41,7 +41,7 @@ public class TBProgramEnrollmentPostSubmissionActionTest extends BaseModuleWebCo
 			+ "Date: <encounterDate default='today'/>\n"
 			+ "Location: <encounterLocation default='1'/>\n"
 			+ "Provider: <encounterProvider role='Provider' />\n"	
-			+ "<obs conceptId=\"4\" />\n"
+			+ "<obs conceptId=\"99423\" answerConceptIds=\"5240,90306\" />\n"
 			+ "<postSubmissionAction class='org.openmrs.module.aijar.htmlformentry.TBProgramEnrollmentPostSubmissionAction'/>\n"
 			+ "<submit/>"
 			+ "</htmlform>";
@@ -123,7 +123,7 @@ public class TBProgramEnrollmentPostSubmissionActionTest extends BaseModuleWebCo
 		when(formEntrySession.getContext().getMode()).thenReturn(FormEntryContext.Mode.EDIT);
 		postSubmissionAction.applyAction(formEntrySession);
 		programs = programWorkflowService.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
-		Assert.assertEquals(0, programs.size()); //should not enroll in edit mode
+		Assert.assertEquals(1, programs.size()); //should enroll in edit mode
 		
 		//try enroll in enter mode
 		when(formEntrySession.getContext().getMode()).thenReturn(FormEntryContext.Mode.ENTER);
@@ -138,11 +138,161 @@ public class TBProgramEnrollmentPostSubmissionActionTest extends BaseModuleWebCo
 		
 		//should exit patient from program, if treatment outcome is entered
 		Obs obs = new Obs();
-		Concept concept = Context.getConceptService().getConcept(TBProgramExitPostSubmissionAction.TREATMENT_OUTCOME_CONCEPT_ID);
+		Concept concept = Context.getConceptService().getConcept(TBProgramEnrollmentPostSubmissionAction.TREATMENT_OUTCOME_CONCEPT_ID);
 		obs.setConcept(concept);
 		encounter.addObs(obs);
-		new TBProgramExitPostSubmissionAction().applyAction(formEntrySession);
+		new TBProgramEnrollmentPostSubmissionAction().applyAction(formEntrySession);
 		programs = programWorkflowService.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
 		Assert.assertEquals(0, programs.size()); //should have exited program
+	}
+	
+	@Test
+	public void shouldExitPatientFromTBProgramWhenNewTBFormIsSubmittedWithTreatmentOutcome() throws Exception {
+		Patient patient = new Patient(7);
+		ProgramWorkflowService service = Context.getService(ProgramWorkflowService.class);
+		Program tbProgram = service.getProgramByUuid(Programs.TB_PROGRAM.uuid());
+		
+		//should be enrolled in the tb program
+		List<PatientProgram> patientPrograms = service.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
+		Assert.assertEquals(1, patientPrograms.size());
+			
+		//prepare and submit an html form to exit patient from tb program
+		HtmlForm htmlForm = new HtmlForm();
+		htmlForm.setXmlData(xml);
+		Form form = new Form(1);
+		form.setEncounterType(new EncounterType(1));
+		htmlForm.setForm(form);
+		FormEntrySession session = new FormEntrySession(patient, null, FormEntryContext.Mode.ENTER, htmlForm, new MockHttpSession());
+        
+        //getHtmlToDisplay() is called to generate necessary tag handlers and cache the form
+        session.getHtmlToDisplay();
+        
+        //prepareForSubmit is called to set patient and encounter if specified in tags
+        session.prepareForSubmit();
+        
+        HttpServletRequest request = mock(MockHttpServletRequest.class);
+        when(request.getParameter("w1")).thenReturn("2017-04-01");
+        when(request.getParameter("w8")).thenReturn(TBProgramEnrollmentPostSubmissionAction.TREATMENT_OUTCOME_CONCEPT_ID + "");
+        session.getSubmissionController().handleFormSubmission(session, request);
+        
+        session.applyActions();
+        
+        //should not be enrolled in tb program
+        patientPrograms = service.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
+		Assert.assertEquals(0, patientPrograms.size());
+	}
+	
+	@Test
+	public void shouldExitPatientFromTBProgramWhenEditedFormIsSubmittedWithTreatmentOutcome() throws Exception {
+		Patient patient = new Patient(7);
+		ProgramWorkflowService service = Context.getService(ProgramWorkflowService.class);
+		Program tbProgram = service.getProgramByUuid(Programs.TB_PROGRAM.uuid());
+		
+		//should be enrolled in the tb program
+		List<PatientProgram> patientPrograms = service.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
+		Assert.assertEquals(1, patientPrograms.size());
+		
+		//prepare and submit an html form to exit patient from tb program
+		HtmlForm htmlForm = new HtmlForm();
+		htmlForm.setXmlData(xml);
+		Form form = new Form(1);
+		form.setEncounterType(new EncounterType(1));
+		htmlForm.setForm(form);
+		Encounter encounter = new Encounter();
+		encounter.setDateCreated(new Date());
+		encounter.setEncounterDatetime(new Date());
+		FormEntrySession session = new FormEntrySession(patient, encounter, FormEntryContext.Mode.EDIT, htmlForm, new MockHttpSession());
+        
+        //getHtmlToDisplay() is called to generate necessary tag handlers and cache the form
+        session.getHtmlToDisplay();
+        
+        //prepareForSubmit is called to set patient and encounter if specified in tags
+        session.prepareForSubmit();
+        
+        HttpServletRequest request = mock(MockHttpServletRequest.class);
+        when(request.getParameter("w1")).thenReturn("2017-04-01");
+        when(request.getParameter("w8")).thenReturn(TBProgramEnrollmentPostSubmissionAction.TREATMENT_OUTCOME_CONCEPT_ID + "");
+        session.getSubmissionController().handleFormSubmission(session, request);
+        
+        session.applyActions();
+        
+        //should not be enrolled in tb program
+        patientPrograms = service.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
+		Assert.assertEquals(0, patientPrograms.size());
+	}
+	
+	@Test
+	public void shouldNotExitPatientFromTBProgramWhenNewTBFormIsSubmittedWithoutTreatmentOutcome() throws Exception {
+		Patient patient = new Patient(7);
+		ProgramWorkflowService service = Context.getService(ProgramWorkflowService.class);
+		Program tbProgram = service.getProgramByUuid(Programs.TB_PROGRAM.uuid());
+		
+		//should be enrolled in the tb program
+		List<PatientProgram> patientPrograms = service.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
+		Assert.assertEquals(1, patientPrograms.size());
+			
+		//prepare and submit an html form to exit patient from tb program
+		HtmlForm htmlForm = new HtmlForm();
+		htmlForm.setXmlData(xml);
+		Form form = new Form(1);
+		form.setEncounterType(new EncounterType(1));
+		htmlForm.setForm(form);
+		FormEntrySession session = new FormEntrySession(patient, null, FormEntryContext.Mode.ENTER, htmlForm, new MockHttpSession());
+        
+        //getHtmlToDisplay() is called to generate necessary tag handlers and cache the form
+        session.getHtmlToDisplay();
+        
+        //prepareForSubmit is called to set patient and encounter if specified in tags
+        session.prepareForSubmit();
+        
+        HttpServletRequest request = mock(MockHttpServletRequest.class);
+        when(request.getParameter("w1")).thenReturn("2017-04-01");
+        when(request.getParameter("w8")).thenReturn(null); //no outcome
+        session.getSubmissionController().handleFormSubmission(session, request);
+        
+        session.applyActions();
+        
+        //should still be enrolled in tb program
+        patientPrograms = service.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
+		Assert.assertEquals(1, patientPrograms.size());
+	}
+	
+	@Test
+	public void shouldNotExitPatientFromTBProgramWhenEditedFormIsSubmittedWithoutTreatmentOutcome() throws Exception {
+		Patient patient = new Patient(7);
+		ProgramWorkflowService service = Context.getService(ProgramWorkflowService.class);
+		Program tbProgram = service.getProgramByUuid(Programs.TB_PROGRAM.uuid());
+		
+		//should be enrolled in the tb program
+		List<PatientProgram> patientPrograms = service.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
+		Assert.assertEquals(1, patientPrograms.size());
+		
+		//prepare and submit an html form to exit patient from tb program
+		HtmlForm htmlForm = new HtmlForm();
+		htmlForm.setXmlData(xml);
+		Form form = new Form(1);
+		form.setEncounterType(new EncounterType(1));
+		htmlForm.setForm(form);
+		Encounter encounter = new Encounter();
+		encounter.setDateCreated(new Date());
+		encounter.setEncounterDatetime(new Date());
+		FormEntrySession session = new FormEntrySession(patient, encounter, FormEntryContext.Mode.EDIT, htmlForm, new MockHttpSession());
+        
+        //getHtmlToDisplay() is called to generate necessary tag handlers and cache the form
+        session.getHtmlToDisplay();
+        
+        //prepareForSubmit is called to set patient and encounter if specified in tags
+        session.prepareForSubmit();
+        
+        HttpServletRequest request = mock(MockHttpServletRequest.class);
+        when(request.getParameter("w1")).thenReturn("2017-04-01");
+        when(request.getParameter("w8")).thenReturn(null); //no outcome
+        session.getSubmissionController().handleFormSubmission(session, request);
+        
+        session.applyActions();
+        
+        //should still be enrolled in tb program
+        patientPrograms = service.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
+		Assert.assertEquals(1, patientPrograms.size());
 	}
 }
