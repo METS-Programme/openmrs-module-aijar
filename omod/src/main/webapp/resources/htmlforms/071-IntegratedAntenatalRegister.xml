@@ -1035,7 +1035,7 @@
                 </tr>
             </table>
         </fieldset>
-
+		<postSubmissionAction class="org.openmrs.module.aijar.htmlformentry.MCHProgramEnrollmentPostSubmissionAction" />
         <section>
             <submit/>
 			<span style="clear:none;float:none;margin:5px;display: none;" class="error1" id="error-message">

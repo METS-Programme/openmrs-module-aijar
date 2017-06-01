@@ -369,8 +369,7 @@
                     <td>
                         <p>
                             <label>Client Number</label>
-                            <patient field="identifier" identifierTypeId="758ef6e4-9ceb-4137-bc8d-9246dc7b41fe"
-                                     required="true" />
+                            <obs conceptId="ef1f4c7a-2b90-4412-83bb-87ae8094ce4c" />
                         </p>
                     </td>
                     <td>
@@ -934,7 +933,7 @@
 	            </table>
 			</section>
         </fieldset>
-
+		<postSubmissionAction class="org.openmrs.module.aijar.htmlformentry.MCHProgramExitPostSubmissionAction" />
         <section>
             <submit/>
             <span style="clear:none;float:none;margin:5px;display: none;"
