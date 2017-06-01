@@ -545,8 +545,8 @@
 			  <td valign="top">
 			    <p>
 			      <label>Is patient a Health worker?</label>
-			      <obs 	conceptId="5619" 
-			      		answerConceptIds="1065,1066" 
+			      <obs 	conceptId="5619AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
+			      		answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
 			      		style="radio" id="health-worker" 
 			      		class="horizontal-layout-options" required="true" />
 			    </p>
@@ -555,7 +555,16 @@
 			    <p>
 			      <label>Cadre of health worker</label>
 			      <obs conceptId="1783AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
-			      		answerConceptIds="162592,162591,164831,1577,1578,1555,163557,164914,5622" 
+			      		answerConceptIds="
+			      		162592AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+			      		162591AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+			      		164831AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+			      		1577AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+			      		1578AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+			      		1555AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+			      		163557AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+			      		7835a772-4b7c-491e-be3b-feda81bf104e,
+			      		5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
 			      		answerLabels="Clinical officer,Doctor, Laboratory Personnel, Nurse, Midwife, Community Health Worker,Dispenser,Dentist,Other" 
 			      		id="cadre-of-health-worker" />
 			    </p>
@@ -574,7 +583,18 @@
 					<p>
 						<label>Relationship of contact person</label>
 						<obs 	conceptId="dce138f8-30ab-102d-86b0-7a5022ba4115"
-								answerConceptIds="dce17a7d-30ab-102d-86b0-7a5022ba4115,dce180a8-30ab-102d-86b0-7a5022ba4115,dce186ca-30ab-102d-86b0-7a5022ba4115,dd1df716-30ab-102d-86b0-7a5022ba4115,dd1e1d59-30ab-102d-86b0-7a5022ba4115,dd1e43f2-30ab-102d-86b0-7a5022ba4115,dd21e8b5-30ab-102d-86b0-7a5022ba4115,dd22614e-30ab-102d-86b0-7a5022ba4115,dd22b709-30ab-102d-86b0-7a5022ba4115,dd23c975-30ab-102d-86b0-7a5022ba4115,dcc374a5-30ab-102d-86b0-7a5022ba4115"
+								answerConceptIds="
+								dce17a7d-30ab-102d-86b0-7a5022ba4115,
+								dce180a8-30ab-102d-86b0-7a5022ba4115,
+								dce186ca-30ab-102d-86b0-7a5022ba4115,
+								dd1df716-30ab-102d-86b0-7a5022ba4115,
+								dd1e1d59-30ab-102d-86b0-7a5022ba4115,
+								dd1e43f2-30ab-102d-86b0-7a5022ba4115,
+								dd21e8b5-30ab-102d-86b0-7a5022ba4115,
+								dd22614e-30ab-102d-86b0-7a5022ba4115,
+								dd22b709-30ab-102d-86b0-7a5022ba4115,
+								dd23c975-30ab-102d-86b0-7a5022ba4115,
+								dcc374a5-30ab-102d-86b0-7a5022ba4115"
 								answerLabels="Parent,Child,Aunt/Uncle,Niece/Nephew,Grandparent,Grandchild,Brother/Sister,Cousin,Not family,Spouse/Partner,Friend" />
 					</p>
 				</td>
@@ -594,14 +614,17 @@
 				<td>
 					<p>
 					  <label>Regimen</label>
-					  <obs conceptId="99374" style="dropdown" answerConceptIds="99373,99372,99371" />
+					  <obs conceptId="16fd7307-0b26-4c8b-afa3-8362baff4042" style="dropdown" answerConceptIds="c25e5586-4660-4020-83cd-ee7f7f7fec20,b539f758-b24b-417f-9400-4edeca0f6e06,73cd1cda-e82a-43d8-938c-fbaf97b7642b" />
 					</p>					
 				</td>
 				<td>
 					<p>
 					  <label>Disease classification</label>
-					  <obs 	conceptId="99379" 
-					  		answerConceptIds="113491AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,113489AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5042" 
+					  <obs 	conceptId="d45871ee-62d6-4d4d-b905-f7b75a3fd3bb" 
+					  		answerConceptIds="
+					  		113491AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+					  		113489AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+					  		dca7ae44-30ab-102d-86b0-7a5022ba4115" 
 					  		answerLabels="P-BC - Pulmonary bacteriologically confirmed TB treatment,P-CD - Pulmonary clinically diagnosed TB,EP - Extra pulmonary TB" 
 					  		id="disease-classification" />
 					</p>
@@ -609,8 +632,13 @@
 				<td>
 					<p>
 					  <label>Type of patient</label>
-					  <obs 	conceptId="99386" 
-					  		answerConceptIds="99380,99381,99382,99386,1067" 
+					  <obs 	conceptId="e077f196-c19a-417f-adc6-b175a3343bfd" 
+					  		answerConceptIds="
+					  		b3c43c5e-1987-42c1-a7b3-2c71dc58c126,
+					  		8ad53c8c-e136-41e3-aab8-eace935a3bbe,
+					  		7f5420a6-2c1a-4bb9-b6cf-8ed565933669,
+					  		a37462b6-1f47-4efb-8df5-2bdc742efc17,
+					  		1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
 					  		answerLabels="N - New,R - Relapse,F - Failure,L - Lost to follow up,THU - Treatment history unknown" 
 					  		required="true" />
 					</p>
@@ -620,7 +648,7 @@
 				<td>
 					<p>
 					  <label>Transfer in from</label>
-					  <obs conceptId="99109" id="transfer-in-from" />
+					  <obs conceptId="88e07e7c-f7e4-4ccf-8068-b770a3e3957b" id="transfer-in-from" />
 					</p>
 				</td>
 				<td>
@@ -634,9 +662,6 @@
 				<td></td>
 			</tr>
 		</table>
-
-
-
     </fieldset>
 
 	<fieldset>
@@ -646,8 +671,8 @@
 				<td>
 		            <p>
 		              <label>Sputum smear results</label>
-		              <obs 	conceptId="307" 
-		              		answerConceptIds="1118,664,164422,164423,164424,164425,164426,164427,164428,164429,164430,99388,99389,99390" 
+		              <obs 	conceptId="dc74ab15-30ab-102d-86b0-7a5022ba4115" 
+		              		answerConceptIds="dc9825cf-30ab-102d-86b0-7a5022ba4115,dc85aa72-30ab-102d-86b0-7a5022ba4115,9a1da4c4-8b3e-4abe-8973-81ed7f3be2fa,6a248b5a-e5f1-4b54-afaf-fbdce9e4d4d2,f7fb1ddc-c1cd-4f69-83fa-1e5ba5a7506b,c039361d-3bf7-47ac-81d0-4baaa62da73a,d9ef7712-ff3e-4106-aed2-59eb162531a0,068b6480-c6c1-4b07-ad21-2c7526713c91,3ff926cf-ce67-40da-b4d6-adc5fc08a073,e7724a60-58a6-4b99-aa5c-03a10393d5fd,39a9b825-a033-48cf-8b71-d2e0170dc6e0,389fd35a-5ce0-415f-b00b-096bf67880af,16e293b5-09eb-433d-a2d0-aa8ee33c7d51,681629aa-86f7-4efc-bce2-3ce589ca7fa1" 
 		              		answerLabels="ND - Not Done ,NEG - 0AFB/100, 1 - 1AFB/100 ,2 - 2AFB/100 ,3 - 3AFB/100 ,4 - 4AFB/100 ,5 - 5AFB/100,6 - 6AFB/100,7 - 7AFB/100,8 - 8AFB/100,9 - 9AFB/100,+ - 10-99 AFB/100 Fields,++ - 1-10 AFB/Field,+++ - &gt;10AFB/Field" 
 		              		id="sputum-smear-results" style="dropdown" />
 		            </p>
@@ -655,7 +680,7 @@
 				<td>
 					<p>
 						<label>Sputum Smear Examination Date</label>
-						<obs conceptId="99392" id="sputum-smear-date" />
+						<obs conceptId="e761b90d-8346-49b3-a754-5cfbd26ee43b" id="sputum-smear-date" />
 					</p>
 				</td>
 			</tr>
@@ -669,15 +694,15 @@
 			<tr>
 				<td>
 					<label>Mantoux</label>
-					<obs 	conceptId="140144" 
+					<obs 	conceptId="140144AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
 							showDate="true" dateLabel="&lt;/td&gt;&lt;td&gt;&lt;label&gt;Mantoux Examination Date&lt;/label&gt;" />
 				</td>
 			</tr>
 			<tr>
 				<td>
 					<label>GeneXpert</label>
-					<obs 	conceptId="162202" 
-							answerConceptIds="162204, 162203, 164104, 664, 163611" 
+					<obs 	conceptId="162202AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
+							answerConceptIds="162204AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, 162203AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, 164104AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, dc85aa72-30ab-102d-86b0-7a5022ba4115, 163611AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
 							answerLabels="T - MTB Detected and Rifampicin resistance not detected),RR - MTB Detected and Rifampicin resistance detected,TI - MTB Detected and Rifampicin resistance indeterminate,N - MTB not detected,I - Invalid no result - error" 
 							showDate="true" dateLabel="&lt;/td&gt;&lt;td&gt;&lt;label&gt;GeneXpert Examination Date&lt;/label&gt;" />
 				</td>
@@ -685,8 +710,8 @@
 			<tr>
 				<td>
 					<label>Biopsy</label>
-					<obs 	conceptId="164907"								
-							answerConceptIds="703,664" 
+					<obs 	conceptId="164907AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"								
+							answerConceptIds="dc866728-30ab-102d-86b0-7a5022ba4115,dc85aa72-30ab-102d-86b0-7a5022ba4115" 
 							answerLabels="AFBs Found, No AFBs Found" 
 							showDate="true" dateLabel="&lt;/td&gt;&lt;td&gt;&lt;label&gt;Biopsy Examination Date&lt;/label&gt;" />
 				</td>
@@ -694,8 +719,8 @@
 			<tr>
 				<td>
 					<label>Cerebrospinal Fluid Examination (CSF)</label>
-					<obs 	conceptId="159645" 
-							answerConceptIds="703,664" 
+					<obs 	conceptId="159645AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
+							answerConceptIds="dc866728-30ab-102d-86b0-7a5022ba4115,dc85aa72-30ab-102d-86b0-7a5022ba4115" 
 							answerLabels="AFBs Found, No AFBs Found" 
 							showDate="true" dateLabel="&lt;/td&gt;&lt;td&gt;&lt;label&gt;CSF Examination Date&lt;/label&gt;" />
 				</td>
@@ -704,29 +729,29 @@
 				<td>
 					<label>X-ray results</label>
 					<obs 	conceptId="12" 
-							answerConceptId="1115" 
+							answerConceptId="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
 							answerLabel="Normal" 
 							class="horizontal-layout-options" />
 					<obs 	conceptId="12" 
-							answerConceptId="1137" 
+							answerConceptId="1137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
 							answerLabel="Miliary Changes" />
 					<obs 	conceptId="12" 
-							answerConceptId="5158" 
+							answerConceptId="dcad8a96-30ab-102d-86b0-7a5022ba4115" 
 							answerLabel="Evidence Of Cardiac Enlargement" />
 					<obs 	conceptId="12" 
-							answerConceptId="6049" 
+							answerConceptId="dcd555fc-30ab-102d-86b0-7a5022ba4115" 
 							answerLabel="Infiltrate" class="horizontal-layout-options" />
 					<obs 	conceptId="12" 
-							answerConceptId="6050" 
+							answerConceptId="dcd55c78-30ab-102d-86b0-7a5022ba4115" 
 							answerLabel="Diffuse Non-Miliary Changes" />
 					<obs 	conceptId="12" 
-							answerConceptId="6052" 
+							answerConceptId="dcd5655d-30ab-102d-86b0-7a5022ba4115" 
 							answerLabel="Cavitary Lesion" />
 					<obs 	conceptId="12" 
-							answerConceptId="114108" 
+							answerConceptId="114108AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
 							answerLabel="Pleural Effusion" />
 					<obs 	conceptId="12" 
-							answerConceptId="5622" 
+							answerConceptId="5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
 							answerLabel="Other&lt;/label&gt;&lt;label id='other-xray'&gt;&lt;/label&gt;" 							
 							showDate="true" dateLabel="&lt;/td&gt;&lt;td&gt;&lt;label&gt;X-ray Examination Date&lt;/label&gt;" class="horizontal-layout-options has-comment" commentFieldLabel="&lt;span id='other-xray-comment'&gt;&lt;/span&gt;"/>
 				</td>
@@ -741,8 +766,8 @@
           <td valign="top">
             <p>
               <label>HIV Counselling and testing</label>
-              <obs 	conceptId="99409" 
-              		answerConceptIds="99405,99406,99407,99408" 
+              <obs 	conceptId="4395c8b9-2aaa-46b2-a228-5968e42bf085" 
+              		answerConceptIds="bcbbaa2d-18c1-4292-91ac-67bf2069417b,17302d1a-e24c-4343-a071-6170d49a163c,c4f1f27e-e0c1-4004-8251-a00164ce30ef,88eade2c-e74e-4c16-9286-43916419adf6" 
               		answerLabels="C - Counselling done, CT - Counselling and testing done, CT1 - Counselling and testing done for HIV Positive, CT2 - Counselling and testing done for HIV Negative"
               		style="dropdown" id="hiv-counselling-and-testing" />
             </p>
@@ -758,8 +783,8 @@
               <label>
                 Patient received HIV Results?
               </label>
-              <obs 	conceptId="99411" style="radio" 
-              		answerConceptIds="1065,1066" answerLabels="Yes, No"
+              <obs 	conceptId="ad2884a2-830f-4ca8-bc1e-1e1fd2df0f81" style="radio" 
+              		answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes, No"
               		class="horizontal-layout-options" id="patient-received-hiv-results" />
             </p>
           </td>
@@ -769,7 +794,7 @@
                 Is patient On CPT?
               </label>
               <obs 	conceptId="160434AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
-              		answerConceptIds="1065,1066" 
+              		answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
               		answerLabels="Yes,No" id="on-cpt" style="radio" 
               		class="horizontal-layout-options"/>
             </p>
@@ -786,21 +811,21 @@
             <p>
               <label>Is patient On ART?</label>
               <obs 	conceptId="159991AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
-              		answerConceptIds="1065,1066" answerLabels="Yes,No" id="on-art" style="radio" 
+              		answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No" id="on-art" style="radio" 
               		class="horizontal-layout-options"/>
             </p>
           </td>
           <td>
             <p>
               <label>ART Start Date</label>
-              <obs 	conceptId="99161" 
+              <obs 	conceptId="ab505422-26d9-41f1-a079-c3d222000440" 
               		allowFutureDates="false" id="art-start-date" />
             </p>
           </td>
           <td>
             <p>
               <label>ART No</label>
-              <obs 	conceptId="99431" id="art-number" />
+              <obs 	conceptId="105ef9de-ad90-4c08-bcd5-ab48f74f6287" id="art-number" />
             </p>
           </td>
         </tr>
@@ -814,13 +839,13 @@
           <td valign="top">
             <p>
               <label>No. of children &lt;5yrs in contact</label>
-              <obs 	conceptId="164419" id="no-of-children-in-contact" />
+              <obs 	conceptId="164419AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="no-of-children-in-contact" />
             </p>
           </td>
           <td>
             <p>
               <label>No. of children &lt; 5yrs on IPT</label>
-              <obs 	conceptId="164421" id="no-of-children-in-contact-on-ipt" />
+              <obs 	conceptId="164421AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="no-of-children-in-contact-on-ipt" />
             </p>
           </td>
         </tr>
@@ -834,7 +859,7 @@
           <td valign="top">
             <p>
               <label>Treatment Model (DOTS)</label>
-              <obs 	conceptId="99418" answerConceptIds="99416,99417" 
+              <obs 	conceptId="c7858e35-20d1-4503-908c-7b8bd8b8b376" answerConceptIds="ecb88326-0a3f-44a5-9bbf-df4bfc3239e1,e646fcf7-aaf2-4b04-a24c-9b4506bf634f" 
               		answerLabels="F - Facility COTS, C - Community COTS (CBDOTS)" style="radio"
               		class="vertical-layout-options" />
             </p>
@@ -842,14 +867,14 @@
           <td>
             <p>
               <label>DOTS Date</label>
-              <obs 	conceptId="90217" 
+              <obs 	conceptId="dce02eca-30ab-102d-86b0-7a5022ba4115" 
               		allowFutureDates="false" />
             </p>
           </td>
           <td>
             <p>
               <label>Name of treatment supporter</label>
-              <obs conceptId="99142" />
+              <obs conceptId="23e28311-3c17-4137-8eee-69860621b80b" />
             </p>
           </td>
         </tr>
@@ -863,8 +888,8 @@
           <td>
             <p>
               	<label>Treatment Outcome</label>
-              	<obs 	conceptId="99423" 
-              			answerConceptIds="159791AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,90306,159874AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1366,5240,160737" 
+              	<obs 	conceptId="e44c8c4c-db50-4d1e-9d6e-092d3b31cfd6" 
+              			answerConceptIds="159791AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,dd27a783-30ab-102d-86b0-7a5022ba4115,159874AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,dca27d22-30ab-102d-86b0-7a5022ba4115,dcb23465-30ab-102d-86b0-7a5022ba4115,160737AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
               			answerLabels="Cured,Transferred out,Treatment failure,Died,Lost to follow up, Not evaluated" 
               			style="dropdown" id="treatment-outcome" />
             </p>
@@ -872,20 +897,20 @@
           <td>
             <p>
               	<label>Date when outcome determined</label>
-              	<obs conceptId="159787" />
+              	<obs conceptId="159787AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
             </p>
           </td>
           <td>
             <p>
               	<label>Transfer out to (Name of unit)</label>
-              	<obs conceptId="90211" id="transfer-out-to" />
+              	<obs conceptId="dce015bb-30ab-102d-86b0-7a5022ba4115" id="transfer-out-to" />
             </p>
           </td>
           <td>
           	<p>
           		<label>Diagnosed with Drug Resistant TB</label>
-          		<obs 	conceptId="160039" 
-          				answerConceptIds="1065,1066" 
+          		<obs 	conceptId="160039AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
+          				answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
           				answerLabels="Yes,No" 
           				style="radio" class="horizontal-layout-options"/>
           	</p>
