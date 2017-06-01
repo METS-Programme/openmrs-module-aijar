@@ -203,7 +203,7 @@
 						fieldHelper.disable(jq(this));
 
 						if (jq(this).is('input[type="text"], select')) { //Clear values Entered and/or Selected in the disabled fields
-							jq(this).val('');
+							//jq(this).val('');
 							jq(this).change();
 						} else if (jq(this).is('input[type="radio"]') || jq(this).is('input[type="checkbox"]')) {
 							jq(this).attr('checked', false);
@@ -219,7 +219,7 @@
 				var optionsToHide =  $hivCounsellingAndTestingField.children('option').filter(function() {
 					return counsellingTestingOptionsToHide.indexOf(parseInt(this.value)) &gt; -1;
 				});
-				optionsToHide.remove();
+				optionsToHide.attr('disabled', true);
 		    };
 
 		    var hideCounsellinAndTestingOptionsForHivNegativePerson = function() {
@@ -227,7 +227,7 @@
 				var optionsToHide =  $hivCounsellingAndTestingField.children('option').filter(function() {
 					return counsellingTestingOptionsToHide.indexOf(parseInt(this.value)) &gt; -1;
 				});
-				optionsToHide.remove();
+				optionsToHide.attr('disabled', true);
 		    };
 
 		    var getHivStatus = function () {
@@ -321,7 +321,7 @@
 			};
 		
 			var onCptValidate = function() {
-				if (getValue('on-cpt.value') == YES_CONCEPT_ID &amp; getValue('cpt-start-date'.value) == '') {
+				if (getValue('on-cpt.value') == YES_CONCEPT_ID &amp;&amp; getValue('cpt-start-date'.value) == '') {
 					getField('cpt-start-date.error').html('CPT start date is required');
 					return false;
 				} else {
@@ -330,7 +330,7 @@
 			};
 		
 			var onArtValidate = function() {
-				if (getValue('on-art.value') == YES_CONCEPT_ID &amp; getValue('art-start-date'.value) == '') {
+				if (getValue('on-art.value') == YES_CONCEPT_ID &amp;&amp; getValue('art-start-date'.value) == '') {
 					getField('art-start-date.error').html('ART start date is required');
 					return false;
 				} else {
@@ -339,7 +339,7 @@
 			};
 		
 			var transferOutValidate = function() {
-				if (getValue('treatment-outcome.value') == TRANSFER_OUT_CONCEPT_ID &amp; getValue('transfer-out-to'.value) == '') {
+				if (getValue('treatment-outcome.value') == TRANSFER_OUT_CONCEPT_ID &amp;&amp; getValue('transfer-out-to'.value) == '') {
 					getField('transfer-out-to.error').html('The Transfer out to Unit required');
 					return false;
 				} else {
@@ -453,12 +453,12 @@
 
 			transferInFromChange();
 			onCptChange();
-			onArtChange();
-			muacColorCodeChange()
+			muacColorCodeChange();
 			treatmentOutcomeChange();
 			healthWorkerChange();
 			childrenSectionToggle();
 			hivCounsellingAndTestingChange();
+			onArtChange();
 			diseaseClassificationChange();
 			getHivStatus();
 			moveXRayCommentField();
@@ -634,6 +634,9 @@
 				<td></td>
 			</tr>
 		</table>
+
+
+
     </fieldset>
 
 	<fieldset>
@@ -862,7 +865,7 @@
               	<label>Treatment Outcome</label>
               	<obs 	conceptId="99423" 
               			answerConceptIds="159791AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,90306,159874AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1366,5240,160737" 
-              			answerLabels="Cured, Transferred out,Treatment failure,Died,Lost to follow up, Not evaluated" 
+              			answerLabels="Cured,Transferred out,Treatment failure,Died,Lost to follow up, Not evaluated" 
               			style="dropdown" id="treatment-outcome" />
             </p>
           </td>
