@@ -18,7 +18,7 @@ import org.openmrs.module.htmlformentry.FormEntryContext.Mode;
 /**
  * Enrolls patients into the TB program
  */
-public class TBProgramEnrollmentPostSubmissionAction implements CustomFormSubmissionAction {
+public class TBProgramPostSubmissionAction implements CustomFormSubmissionAction {
 	
 	public static final int TREATMENT_OUTCOME_CONCEPT_ID = 99423;
 	public static final int TREATMENT_OUTCOME_DATE_CONCEPT_ID = 259787;
