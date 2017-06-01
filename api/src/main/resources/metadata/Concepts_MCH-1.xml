@@ -103,6 +103,7 @@
   <concept concept_id="99267" retired="false" datatype_id="3" class_id="11" is_set="false" creator="1" date_created="2011-03-16 06:20:47.0" retired_by="1" uuid="9028e51b-0c27-4b72-bde6-fadba72d1396"/>
   <concept concept_id="99360" retired="false" datatype_id="1" class_id="1" is_set="false" creator="1" date_created="2012-06-27 12:31:13.0" retired_by="1" uuid="6abc57f2-3718-42f6-84c4-4f71e921d590"/>
   <concept concept_id="99361" retired="false" datatype_id="1" class_id="1" is_set="false" creator="1" date_created="2012-06-27 12:32:07.0" uuid="37549919-5934-448e-b110-cc7868e73ff2"/>
+  <concept concept_id="164956" retired="false" datatype_id="3" class_id="7" is_set="false" creator="1" date_created="2017-05-31 13:01:32.0" uuid="ef1f4c7a-2b90-4412-83bb-87ae8094ce4c"/>
   <concept_numeric concept_id="1053" units="# children" precise="false"/>
   <concept_numeric concept_id="159603" hi_absolute="10.0" low_absolute="0.0" units="" precise="false"/>
   <concept_numeric concept_id="159604" hi_absolute="10.0" low_absolute="0.0" units="" precise="false"/>
@@ -565,6 +566,8 @@
   <concept_name concept_name_id="4600" concept_id="99360" name="Young child clinic" locale="en" locale_preferred="false" creator="1" date_created="2012-06-27 12:31:13.0" concept_name_type="FULLY_SPECIFIED" voided="false" uuid="fb8a822b-d2d2-45f5-8209-5f06ae0525ea"/>
   <concept_name concept_name_id="4601" concept_id="99361" name="HIV chronic care" locale="en" locale_preferred="false" creator="1" date_created="2012-06-27 12:32:07.0" concept_name_type="FULLY_SPECIFIED" voided="false" uuid="9c22f759-3f05-4661-9f3b-7d3783cc1ed1"/>
   <concept_name concept_name_id="141249" concept_id="164954" name="Type of Clinic Referred from" locale="en" locale_preferred="true" creator="1" date_created="2017-05-23 17:30:14.0" concept_name_type="FULLY_SPECIFIED" voided="false" uuid="38e4c332-f50e-4f62-861f-bc8a7be26be5"/>
+  <concept_name concept_name_id="141252" concept_id="164956" name="Postnatal Number" locale="en" locale_preferred="true" creator="1" date_created="2017-05-31 13:01:32.0" concept_name_type="FULLY_SPECIFIED" voided="false" uuid="055047d2-f05b-4c25-8d07-48cd898ec1da"/>
+  <concept_name concept_name_id="141253" concept_id="164956" name="PNC No." locale="en" locale_preferred="false" creator="1" date_created="2017-05-31 13:01:32.0" concept_name_type="SHORT" voided="false" uuid="dfa6e7be-076d-4235-8680-f2d0075247b6"/>
   <concept_answer concept_answer_id="1930" concept_id="36" answer_concept="1066" creator="1" date_created="2009-07-14 13:41:19.0" uuid="1930CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" sort_weight="1930.0"/>
   <concept_answer concept_answer_id="1931" concept_id="36" answer_concept="1067" creator="1" date_created="2009-07-14 13:41:19.0" uuid="1931CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" sort_weight="1931.0"/>
   <concept_answer concept_answer_id="1932" concept_id="36" answer_concept="1065" creator="1" date_created="2009-07-14 13:41:19.0" uuid="1932CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" sort_weight="1932.0"/>
