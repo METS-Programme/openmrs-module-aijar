@@ -525,19 +525,19 @@
 			  <td>
 			    <p>
 			      <label>Unit TB No.</label>
-			      <patient field="identifier" identifierTypeId="8fd5e225-f91a-44af-ba04-3b41428d2164" id="unit-tb-no" required="true" />
-			    </p>
+					<obs conceptId="304df0d0-afe4-4a61-a917-d684b100a65a" id="unit-tb-no" />
+				</p>
 			  </td>
 			  <td>
 			    <p>
 			      <label>HSD TB No.</label>
-			      <patient field="identifier" identifierTypeId="2a6f1f82-2b70-4a51-8507-3a849bc637c3" id="hsd-tb-no" required="false" />
+					<obs conceptId="d1cda288-4853-4450-afbc-76bd4e65ea70" id="hsd-tb-no" />
 			    </p>
 			  </td>
 			  <td>
 			    <p>
 			      <label>District TB No</label>
-			      <patient field="identifier" identifierTypeId="8110f2d2-1f98-4c38-aef3-11b19bb0a589" id="district-tb-no" required="false" />
+					<obs conceptId="67e9ec2f-4c72-408b-8122-3706909d77ec" id="district-tb-no" />
 			    </p>
 			  </td>
 			</tr>
@@ -899,7 +899,7 @@
       </table>
     </fieldset>
 
-    <enrollInProgram programId="9dc21a72-0971-11e7-8037-507b9dc4c741" />
+	  <postSubmissionAction class="org.openmrs.module.aijar.htmlformentry.TBProgramPostSubmissionAction" />
     <section>
         <submit/>
         <span style="clear:none;float:none;margin:5px;display: none;"
