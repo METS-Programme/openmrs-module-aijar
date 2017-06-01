@@ -899,7 +899,7 @@
       </table>
     </fieldset>
 
-	  <postSubmissionAction class="org.openmrs.module.aijar.htmlformentry.TBProgramEnrollmentPostSubmissionAction" />
+	  <postSubmissionAction class="org.openmrs.module.aijar.htmlformentry.TBProgramPostSubmissionAction" />
     <section>
         <submit/>
         <span style="clear:none;float:none;margin:5px;display: none;"
