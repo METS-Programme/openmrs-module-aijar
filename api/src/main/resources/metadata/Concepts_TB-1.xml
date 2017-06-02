@@ -183,6 +183,7 @@
   <concept concept_id="99031" retired="false" datatype_id="3" class_id="11" is_set="false" creator="1" date_created="2010-08-07 14:01:14.0" uuid="67e9ec2f-4c72-408b-8122-3706909d77ec"/>
   <concept concept_id="99370" retired="false" datatype_id="3" class_id="11" is_set="false" creator="1" date_created="2012-08-03 23:35:37.0" uuid="d1cda288-4853-4450-afbc-76bd4e65ea70"/>
   <concept concept_id="164955" retired="false" datatype_id="3" class_id="7" is_set="false" creator="1" date_created="2017-05-31 12:56:29.0" uuid="304df0d0-afe4-4a61-a917-d684b100a65a"/>
+  <concept concept_id="164957" retired="false" datatype_id="6" class_id="1" is_set="false" creator="1" date_created="2017-06-02 07:36:01.0" uuid="c56ddd82-a49f-481d-9a17-70e273b7ce86"/>
   <concept_numeric concept_id="162584" units="" precise="false"/>
   <concept_numeric concept_id="164419" units="" precise="false"/>
   <concept_numeric concept_id="164421" units="" precise="false"/>
@@ -1102,6 +1103,8 @@
   <concept_name concept_name_id="4614" concept_id="99370" name="HSD TB No" locale="en" locale_preferred="false" creator="1" date_created="2012-08-03 23:35:37.0" concept_name_type="FULLY_SPECIFIED" voided="false" uuid="142c6e5a-246b-464e-a5e1-a854adc84eee"/>
   <concept_name concept_name_id="141250" concept_id="164955" name="Unit TB No." locale="en" locale_preferred="false" creator="1" date_created="2017-05-31 12:56:29.0" concept_name_type="SHORT" voided="false" uuid="f77d21b9-ff56-4a0b-9e10-d9207ad82064"/>
   <concept_name concept_name_id="141251" concept_id="164955" name="Unit TB Number" locale="en" locale_preferred="true" creator="1" date_created="2017-05-31 12:56:29.0" concept_name_type="FULLY_SPECIFIED" voided="false" uuid="17a9b546-0f67-4e9c-a320-c32ad0daaea9"/>
+  <concept_name concept_name_id="141254" concept_id="164957" name="X-RAY EXAMINATION DATE" locale="en" locale_preferred="true" creator="1" date_created="2017-06-02 07:36:01.0" concept_name_type="FULLY_SPECIFIED" voided="false" uuid="c7c9e28f-243c-40d9-a54b-e82ee8905d7a"/>
+  <concept_name concept_name_id="141255" concept_id="164957" name="X-RAY EXAM DATE" locale="en" locale_preferred="false" creator="1" date_created="2017-06-02 07:36:01.0" voided="false" uuid="60ed037d-2f30-49c4-a5fd-d43ba0b122f1"/>
   <concept_answer concept_answer_id="1908" concept_id="512" answer_concept="1066" creator="1" date_created="2009-07-14 11:31:52.0" uuid="1908CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" sort_weight="1908.0"/>
   <concept_answer concept_answer_id="1909" concept_id="512" answer_concept="1067" creator="1" date_created="2009-07-14 11:31:52.0" uuid="1909CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" sort_weight="1909.0"/>
   <concept_answer concept_answer_id="1910" concept_id="512" answer_concept="1065" creator="1" date_created="2009-07-14 11:31:52.0" uuid="1910CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" sort_weight="1910.0"/>
