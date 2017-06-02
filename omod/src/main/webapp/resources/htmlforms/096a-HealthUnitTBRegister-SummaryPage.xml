@@ -497,6 +497,9 @@
 					valid = false;
 				}
 
+				//Clear validation messages displayed during previous validation check
+				$("span.error:visible:contains('Required')").html('').hide();				
+
 	            if (jq('span.error.field-error:visible').length &gt; 0) {
 	            	valid = false;
 	            }
