@@ -497,8 +497,9 @@
 					valid = false;
 				}
 
-				//Clear validation messages displayed during previous validation check
-				$("span.error:visible:contains('Required')").html('').hide();				
+				//Clear validation messages displayed during a failed previous validation check
+				$("span.error:visible:contains('Required'), span.error:visible:contains('Date without value')").html('').hide();
+ 	
 
 	            if (jq('span.error.field-error:visible').length &gt; 0) {
 	            	valid = false;
@@ -756,7 +757,11 @@
 					<obs 	conceptId="12" 
 							answerConceptId="5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
 							answerLabel="Other&lt;/label&gt;&lt;label id='other-xray'&gt;&lt;/label&gt;" 							
-							showDate="true" dateLabel="&lt;/td&gt;&lt;td&gt;&lt;label&gt;X-ray Examination Date&lt;/label&gt;" class="horizontal-layout-options has-comment" commentFieldLabel="&lt;span id='other-xray-comment'&gt;&lt;/span&gt;"/>
+							class="horizontal-layout-options has-comment" commentFieldLabel="&lt;span id='other-xray-comment'&gt;&lt;/span&gt;"/>
+				</td>
+				<td>
+					<label>X-ray Examination Date</label>
+					<obs conceptId="c56ddd82-a49f-481d-9a17-70e273b7ce86" />
 				</td>
 			</tr>
 		</table>
