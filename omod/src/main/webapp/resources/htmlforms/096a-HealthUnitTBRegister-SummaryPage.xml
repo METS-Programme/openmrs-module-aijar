@@ -409,9 +409,9 @@
 			* Pretty ugly function to move the obs Comment field for the X-Ray Results obs close to the 'Other' checkbox	
 			*/
 			var moveXRayCommentField = function() {
-				var $xRayOtherField = $('#other-xray').siblings('input[type=checkbox]');
-				var $xRayCommentField = $('#other-xray-comment').siblings('input[type=text]').filter(function() {
-					return $(this).is('.hasDatepicker') == false;	
+				var $xRayOtherField = jq('#other-xray').siblings('input[type=checkbox]');
+				var $xRayCommentField = jq('#other-xray-comment').siblings('input[type=text]').filter(function() {
+					return jq(this).is('.hasDatepicker') == false;	
 				});
 
 				$xRayOtherField.parent().append($xRayCommentField);
@@ -497,8 +497,8 @@
 					valid = false;
 				}
 
-				//Clear validation messages displayed during a failed previous validation check
-				$("span.error:visible:contains('Required'), span.error:visible:contains('Date without value')").html('').hide();
+				//Clear validation messages displayed during a previously failed validation check
+				jq("span.error:visible:contains('Required'), span.error:visible:contains('Date without value')").html('').hide();
  	
 
 	            if (jq('span.error.field-error:visible').length &gt; 0) {
