@@ -40,7 +40,7 @@ public class TBProgramPostSubmissionActionTest extends BaseModuleWebContextSensi
 			+ "Date: <encounterDate default='today'/>\n"
 			+ "Location: <encounterLocation default='1'/>\n"
 			+ "Provider: <encounterProvider role='Provider' />\n"	
-			+ "<obs conceptId=\"99423\" answerConceptIds=\"5240,90306\" />\n"
+			+ "<obs conceptId=\"e44c8c4c-db50-4d1e-9d6e-092d3b31cfd6\" answerConceptIds=\"5240,90306\" />\n"
 			+ "<postSubmissionAction class='org.openmrs.module.aijar.htmlformentry.TBProgramPostSubmissionAction'/>\n"
 			+ "<submit/>"
 			+ "</htmlform>";
@@ -137,7 +137,7 @@ public class TBProgramPostSubmissionActionTest extends BaseModuleWebContextSensi
 		
 		//should exit patient from program, if treatment outcome is entered
 		Obs obs = new Obs();
-		Concept concept = Context.getConceptService().getConcept(TBProgramPostSubmissionAction.TREATMENT_OUTCOME_CONCEPT_ID);
+		Concept concept = Context.getConceptService().getConceptByUuid(TBProgramPostSubmissionAction.TREATMENT_OUTCOME_CONCEPT_UUID);
 		obs.setConcept(concept);
 		encounter.addObs(obs);
 		new TBProgramPostSubmissionAction().applyAction(formEntrySession);
@@ -171,7 +171,7 @@ public class TBProgramPostSubmissionActionTest extends BaseModuleWebContextSensi
         
         HttpServletRequest request = mock(MockHttpServletRequest.class);
         when(request.getParameter("w1")).thenReturn("2017-04-01");
-        when(request.getParameter("w8")).thenReturn(TBProgramPostSubmissionAction.TREATMENT_OUTCOME_CONCEPT_ID + "");
+        when(request.getParameter("w8")).thenReturn(TBProgramPostSubmissionAction.TREATMENT_OUTCOME_CONCEPT_UUID);
         session.getSubmissionController().handleFormSubmission(session, request);
         
         session.applyActions();
@@ -210,7 +210,7 @@ public class TBProgramPostSubmissionActionTest extends BaseModuleWebContextSensi
         
         HttpServletRequest request = mock(MockHttpServletRequest.class);
         when(request.getParameter("w1")).thenReturn("2017-04-01");
-        when(request.getParameter("w8")).thenReturn(TBProgramPostSubmissionAction.TREATMENT_OUTCOME_CONCEPT_ID + "");
+        when(request.getParameter("w8")).thenReturn(TBProgramPostSubmissionAction.TREATMENT_OUTCOME_CONCEPT_UUID);
         session.getSubmissionController().handleFormSubmission(session, request);
         
         session.applyActions();
