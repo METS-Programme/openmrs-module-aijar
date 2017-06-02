@@ -20,8 +20,8 @@ import org.openmrs.module.htmlformentry.FormEntryContext.Mode;
  */
 public class TBProgramPostSubmissionAction implements CustomFormSubmissionAction {
 	
-	public static final int TREATMENT_OUTCOME_CONCEPT_ID = 99423;
-	public static final int TREATMENT_OUTCOME_DATE_CONCEPT_ID = 259787;
+	public static final String TREATMENT_OUTCOME_CONCEPT_UUID = "e44c8c4c-db50-4d1e-9d6e-092d3b31cfd6";
+	public static final String TREATMENT_OUTCOME_DATE_CONCEPT_UUID = "159787AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 	
 	@Override
 	public void applyAction(FormEntrySession session) {
@@ -71,12 +71,12 @@ public class TBProgramPostSubmissionAction implements CustomFormSubmissionAction
 	}
 	
 	private Obs getTreatmentOutcomeDateObs(Encounter encounter) {
-		Concept concept = Context.getConceptService().getConcept(TREATMENT_OUTCOME_DATE_CONCEPT_ID);
+		Concept concept = Context.getConceptService().getConceptByUuid(TREATMENT_OUTCOME_DATE_CONCEPT_UUID);
         return getObs(encounter, concept);
     }
 	
 	private Obs getTreatmentOutcomeObs(Encounter encounter) {
-		Concept concept = Context.getConceptService().getConcept(TREATMENT_OUTCOME_CONCEPT_ID);
+		Concept concept = Context.getConceptService().getConceptByUuid(TREATMENT_OUTCOME_CONCEPT_UUID);
         return getObs(encounter, concept);
     }
 	
