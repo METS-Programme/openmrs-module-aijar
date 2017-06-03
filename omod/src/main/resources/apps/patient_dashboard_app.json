@@ -1,5 +1,29 @@
 [
   {
+    "id": "ugandaemr.dashboardwidget.EIDSummary",
+    "instanceOf": "coreapps.template.dashboardWidget",
+    "description": "coreapps.latestObsForConceptList.app.description",
+    "order": 10,
+    "config": {
+      "widget": "latestobsforconceptlist",
+      "icon": "icon-user-md",
+      "label": "EID Summary",
+      "maxAge": "120m",
+      "concepts": "51941f01-307f-44ca-9351-401bc008a208,b6a6210b-ccdf-45fc-80dd-1567f65e2d98,1f627527-2f97-4f21-9b61-2b79d887950f,e1b4efbf-0dff-4e9e-a2f2-34edcb02a5d0,4092ad52-3db3-47f5-b497-126e1202f1eb,162881AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,977b16f4-2d3e-40d2-ba51-54794c98f7ef"
+    },
+    "extensions": [
+      {
+        "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardSecondColumn",
+        "appId": "ugandaemr.dashboardwidget.EIDSummary",
+        "extensionPointId": "patientDashboard.secondColumnFragments",
+        "extensionParams": {
+          "provider": "coreapps",
+          "fragment": "dashboardwidgets/dashboardWidget"
+        }
+      }
+    ]
+  },
+  {
     "id": "ugandaemr.dashboardwidget.ARTStatus",
     "instanceOf": "coreapps.template.dashboardWidget",
     "description": "coreapps.latestObsForConceptList.app.description",
