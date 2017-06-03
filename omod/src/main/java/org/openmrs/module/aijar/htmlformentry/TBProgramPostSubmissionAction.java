@@ -41,11 +41,11 @@ public class TBProgramPostSubmissionAction implements CustomFormSubmissionAction
 		Patient patient = session.getPatient();
 		PatientProgram patientProgram = getPatientProgram(service, patient, tbProgram);
 		if (patientProgram == null) {
-			PatientProgram enrollment = new PatientProgram();
-			enrollment.setProgram(tbProgram);
-			enrollment.setPatient(patient);
-			enrollment.setDateEnrolled(session.getEncounter().getEncounterDatetime());
-			service.savePatientProgram(enrollment);
+			patientProgram = new PatientProgram();
+			patientProgram.setProgram(tbProgram);
+			patientProgram.setPatient(patient);
+			patientProgram.setDateEnrolled(session.getEncounter().getEncounterDatetime());
+			service.savePatientProgram(patientProgram);
 		}
 		
 		//exit if has a treatment outcome
