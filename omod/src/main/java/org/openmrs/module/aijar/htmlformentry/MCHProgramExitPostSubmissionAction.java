@@ -36,7 +36,7 @@ public class MCHProgramExitPostSubmissionAction implements CustomFormSubmissionA
 		for (PatientProgram patientProgram : service.getPatientPrograms(patient, mchProgram, null, null, null, null, false)) {
 			if (patientProgram.getActive()) {
 				patientProgram.setDateCompleted(new Date());
-				service.voidPatientProgram(patientProgram, "htmlformentry");
+				service.savePatientProgram(patientProgram);
 				enrollmentFound = true;
 			}
 		}
@@ -47,10 +47,8 @@ public class MCHProgramExitPostSubmissionAction implements CustomFormSubmissionA
 			patientProgram.setProgram(mchProgram);
 			patientProgram.setPatient(patient);
 			patientProgram.setDateEnrolled(session.getEncounter().getEncounterDatetime());
-			service.savePatientProgram(patientProgram);
-			
 			patientProgram.setDateCompleted(new Date());
-			service.voidPatientProgram(patientProgram, "htmlformentry");
+			service.savePatientProgram(patientProgram);
 		}
 	}
 }
