@@ -57,7 +57,7 @@ public class TBProgramPostSubmissionAction implements CustomFormSubmissionAction
 			if (obs != null) {
 				patientProgram.setDateCompleted(obs.getValueDate());
 			}
-			service.voidPatientProgram(patientProgram, "htmlformentry");
+			service.savePatientProgram(patientProgram);
 		}
 	}
 	

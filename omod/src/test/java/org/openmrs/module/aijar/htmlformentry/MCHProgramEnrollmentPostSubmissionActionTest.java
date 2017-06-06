@@ -87,6 +87,7 @@ public class MCHProgramEnrollmentPostSubmissionActionTest extends BaseModuleWebC
         //should be enrolled in mch program
         patientPrograms = service.getPatientPrograms(patient, mchProgram, null, null, null, null, false);
 		Assert.assertEquals(1, patientPrograms.size());
+		Assert.assertNull(patientPrograms.get(0).getDateCompleted());
 	}
 	
 	@Test
@@ -129,10 +130,12 @@ public class MCHProgramEnrollmentPostSubmissionActionTest extends BaseModuleWebC
 		postSubmissionAction.applyAction(formEntrySession);
 		programs = programWorkflowService.getPatientPrograms(patient, mchProgram, null, null, null, null, false);
 		Assert.assertEquals(1, programs.size()); //should enroll in enter mode
+		Assert.assertNull(programs.get(0).getDateCompleted());
 		
 		//try enroll again for the same patient and program in enter mode
 		postSubmissionAction.applyAction(formEntrySession);
 		programs = programWorkflowService.getPatientPrograms(patient, mchProgram, null, null, null, null, false);
 		Assert.assertEquals(1, programs.size()); //should not do duplicate enrollment
+		Assert.assertNull(programs.get(0).getDateCompleted());
 	}
 }

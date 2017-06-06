@@ -60,6 +60,7 @@ public class MCHProgramExitPostSubmissionActionTest extends BaseModuleWebContext
 		//should be enrolled in the mch program
 		List<PatientProgram> patientPrograms = service.getPatientPrograms(patient, mchProgram, null, null, null, null, false);
 		Assert.assertEquals(1, patientPrograms.size());
+		Assert.assertNull(patientPrograms.get(0).getDateCompleted());
 			
 		//prepare and submit a new  html form to exit patient from mch program
 		HtmlForm htmlForm = new HtmlForm();
@@ -83,7 +84,8 @@ public class MCHProgramExitPostSubmissionActionTest extends BaseModuleWebContext
         
         //should not be enrolled in mch program
         patientPrograms = service.getPatientPrograms(patient, mchProgram, null, null, null, null, false);
-		Assert.assertEquals(0, patientPrograms.size());
+		Assert.assertEquals(1, patientPrograms.size());
+		Assert.assertNotNull(patientPrograms.get(0).getDateCompleted());
 	}
 	
 	@Test
@@ -93,7 +95,7 @@ public class MCHProgramExitPostSubmissionActionTest extends BaseModuleWebContext
 		Program mchProgram = service.getProgramByUuid(Programs.MCH_PROGRAM.uuid());
 		
 		//should not be enrolled in the mch program and should not even have a voided enrollment
-		List<PatientProgram> patientPrograms = service.getPatientPrograms(patient, mchProgram, null, null, null, null, true);
+		List<PatientProgram> patientPrograms = service.getPatientPrograms(patient, mchProgram, null, null, null, null, false);
 		Assert.assertEquals(0, patientPrograms.size());
 			
 		//prepare and submit a new  html form to exit patient from mch program
@@ -118,13 +120,7 @@ public class MCHProgramExitPostSubmissionActionTest extends BaseModuleWebContext
         
         //should not be enrolled in mch program
         patientPrograms = service.getPatientPrograms(patient, mchProgram, null, null, null, null, false);
-		Assert.assertEquals(0, patientPrograms.size());
-		
-		//should have a voided mch program enrollment
-        patientPrograms = service.getPatientPrograms(patient, mchProgram, null, null, null, null, true);
 		Assert.assertEquals(1, patientPrograms.size());
-		Assert.assertTrue(patientPrograms.get(0).getVoided());
-		Assert.assertEquals("htmlformentry", patientPrograms.get(0).getVoidReason());
 		Assert.assertNotNull(patientPrograms.get(0).getDateCompleted());
 	}
 	
@@ -137,6 +133,7 @@ public class MCHProgramExitPostSubmissionActionTest extends BaseModuleWebContext
 		//should be enrolled in the mch program
 		List<PatientProgram> patientPrograms = service.getPatientPrograms(patient, mchProgram, null, null, null, null, false);
 		Assert.assertEquals(1, patientPrograms.size());
+		Assert.assertNull(patientPrograms.get(0).getDateCompleted());
 		
 		//prepare and submit an edited html form to see if we shall exit patient from mch program
 		HtmlForm htmlForm = new HtmlForm();
@@ -164,5 +161,6 @@ public class MCHProgramExitPostSubmissionActionTest extends BaseModuleWebContext
         //should still be enrolled in mch program
         patientPrograms = service.getPatientPrograms(patient, mchProgram, null, null, null, null, false);
 		Assert.assertEquals(1, patientPrograms.size());
+		Assert.assertNull(patientPrograms.get(0).getDateCompleted());
 	}
 }

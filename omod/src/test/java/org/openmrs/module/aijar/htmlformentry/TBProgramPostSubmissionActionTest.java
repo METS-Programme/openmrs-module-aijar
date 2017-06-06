@@ -88,6 +88,7 @@ public class TBProgramPostSubmissionActionTest extends BaseModuleWebContextSensi
         //should be enrolled in tb program
         patientPrograms = service.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
 		Assert.assertEquals(1, patientPrograms.size());
+		Assert.assertNull(patientPrograms.get(0).getDateCompleted());
 	}
 	
 	@Test
@@ -123,17 +124,20 @@ public class TBProgramPostSubmissionActionTest extends BaseModuleWebContextSensi
 		postSubmissionAction.applyAction(formEntrySession);
 		programs = programWorkflowService.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
 		Assert.assertEquals(1, programs.size()); //should enroll in edit mode
+		Assert.assertNull(programs.get(0).getDateCompleted());
 		
 		//try enroll in enter mode
 		when(formEntrySession.getContext().getMode()).thenReturn(FormEntryContext.Mode.ENTER);
 		postSubmissionAction.applyAction(formEntrySession);
 		programs = programWorkflowService.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
 		Assert.assertEquals(1, programs.size()); //should enroll in enter mode
+		Assert.assertNull(programs.get(0).getDateCompleted());
 		
 		//try enroll again for the same patient and program in enter mode
 		postSubmissionAction.applyAction(formEntrySession);
 		programs = programWorkflowService.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
 		Assert.assertEquals(1, programs.size()); //should not do duplicate enrollment
+		Assert.assertNull(programs.get(0).getDateCompleted());
 		
 		//should exit patient from program, if treatment outcome is entered
 		Obs obs = new Obs();
@@ -142,7 +146,8 @@ public class TBProgramPostSubmissionActionTest extends BaseModuleWebContextSensi
 		encounter.addObs(obs);
 		new TBProgramPostSubmissionAction().applyAction(formEntrySession);
 		programs = programWorkflowService.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
-		Assert.assertEquals(0, programs.size()); //should have exited program
+		Assert.assertEquals(1, programs.size()); //should have exited program
+		Assert.assertNotNull(programs.get(0).getDateCompleted());
 	}
 	
 	@Test
@@ -154,6 +159,7 @@ public class TBProgramPostSubmissionActionTest extends BaseModuleWebContextSensi
 		//should be enrolled in the tb program
 		List<PatientProgram> patientPrograms = service.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
 		Assert.assertEquals(1, patientPrograms.size());
+		Assert.assertNull(patientPrograms.get(0).getDateCompleted());
 			
 		//prepare and submit an html form to exit patient from tb program
 		HtmlForm htmlForm = new HtmlForm();
@@ -178,7 +184,8 @@ public class TBProgramPostSubmissionActionTest extends BaseModuleWebContextSensi
         
         //should not be enrolled in tb program
         patientPrograms = service.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
-		Assert.assertEquals(0, patientPrograms.size());
+		Assert.assertEquals(1, patientPrograms.size());
+		Assert.assertNotNull(patientPrograms.get(0).getDateCompleted());
 	}
 	
 	@Test
@@ -190,6 +197,7 @@ public class TBProgramPostSubmissionActionTest extends BaseModuleWebContextSensi
 		//should be enrolled in the tb program
 		List<PatientProgram> patientPrograms = service.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
 		Assert.assertEquals(1, patientPrograms.size());
+		Assert.assertNull(patientPrograms.get(0).getDateCompleted());
 		
 		//prepare and submit an html form to exit patient from tb program
 		HtmlForm htmlForm = new HtmlForm();
@@ -217,7 +225,8 @@ public class TBProgramPostSubmissionActionTest extends BaseModuleWebContextSensi
         
         //should not be enrolled in tb program
         patientPrograms = service.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
-		Assert.assertEquals(0, patientPrograms.size());
+		Assert.assertEquals(1, patientPrograms.size());
+		Assert.assertNotNull(patientPrograms.get(0).getDateCompleted());
 	}
 	
 	@Test
@@ -229,6 +238,7 @@ public class TBProgramPostSubmissionActionTest extends BaseModuleWebContextSensi
 		//should be enrolled in the tb program
 		List<PatientProgram> patientPrograms = service.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
 		Assert.assertEquals(1, patientPrograms.size());
+		Assert.assertNull(patientPrograms.get(0).getDateCompleted());
 			
 		//prepare and submit an html form to exit patient from tb program
 		HtmlForm htmlForm = new HtmlForm();
@@ -254,6 +264,7 @@ public class TBProgramPostSubmissionActionTest extends BaseModuleWebContextSensi
         //should still be enrolled in tb program
         patientPrograms = service.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
 		Assert.assertEquals(1, patientPrograms.size());
+		Assert.assertNull(patientPrograms.get(0).getDateCompleted());
 	}
 	
 	@Test
@@ -265,6 +276,7 @@ public class TBProgramPostSubmissionActionTest extends BaseModuleWebContextSensi
 		//should be enrolled in the tb program
 		List<PatientProgram> patientPrograms = service.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
 		Assert.assertEquals(1, patientPrograms.size());
+		Assert.assertNull(patientPrograms.get(0).getDateCompleted());
 		
 		//prepare and submit an html form to exit patient from tb program
 		HtmlForm htmlForm = new HtmlForm();
@@ -293,6 +305,7 @@ public class TBProgramPostSubmissionActionTest extends BaseModuleWebContextSensi
         //should still be enrolled in tb program
         patientPrograms = service.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
 		Assert.assertEquals(1, patientPrograms.size());
+		Assert.assertNull(patientPrograms.get(0).getDateCompleted());
 	}
 	
 	@Test
@@ -326,13 +339,9 @@ public class TBProgramPostSubmissionActionTest extends BaseModuleWebContextSensi
         
         session.applyActions();
         
-        //should not be enrolled in tb program
-        patientPrograms = service.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
-		Assert.assertEquals(0, patientPrograms.size());
-		
 		//should have enrolled and exited from tb program
-        patientPrograms = service.getPatientPrograms(patient, tbProgram, null, null, null, null, true);
+        patientPrograms = service.getPatientPrograms(patient, tbProgram, null, null, null, null, false);
 		Assert.assertEquals(1, patientPrograms.size());
-		Assert.assertTrue(patientPrograms.get(0).getVoided());
+		Assert.assertNotNull(patientPrograms.get(0).getDateCompleted());
 	}
 }
