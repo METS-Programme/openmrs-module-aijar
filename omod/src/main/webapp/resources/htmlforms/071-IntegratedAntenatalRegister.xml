@@ -575,19 +575,19 @@
                     <tr>
                         <td>
                             <p>
-                                <label>Weight</label>
+                                <label>Weight (kg)</label>
                                 <obs conceptId="5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
                             </p>
                         </td>
                         <td>
                             <p>
-                                <label>Height</label>
+                                <label>Height (cm)</label>
                                 <obs conceptId="5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
                             </p>
                         </td>
                         <td>
                         	<p>
-                        		<label>M.U.A.C(cm)</label>
+                        		<label>M.U.A.C (cm)</label>
                         		<obs conceptId="1343AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="muac-quantitative" />
                         	</p>
                         </td>
@@ -628,14 +628,14 @@
                         </td>
                         <td>
                             <p>
-                                <label>Diastolic B.P</label>
-                                <obs conceptId="5086AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+                                <label>Systolic B.P (mg/dl)</label>
+                                <obs conceptId="5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
                             </p>
                         </td>
                         <td>
                             <p>
-                                <label>Systolic B.P</label>
-                                <obs conceptId="5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+                                <label>Diastolic B.P (mg/dl)</label>
+                                <obs conceptId="5086AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
                             </p>
                         </td>
                         <td></td>
