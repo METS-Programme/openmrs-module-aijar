@@ -164,7 +164,7 @@ CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `transfer`()
     UPDATE openmrs.person_address  AS c1, openmrs_backup.person_address AS c2 SET c1.address5 = c2.address3,c1.address4 = c2.address4,c1.address3 = c2.address5 WHERE c1.person_address_id = c2.person_address_id AND c1.person_id = c2.person_id ;
 
     -- Deleting attributes with null or empty values
-    DELETE FROM person_attribute WHERE `value` IS NULL OR `value`='';
+    DELETE FROM openmrs.person_attribute WHERE `value` IS NULL OR `value`='';
 
 
   END$$

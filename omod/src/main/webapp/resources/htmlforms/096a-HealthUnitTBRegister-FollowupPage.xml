@@ -1,6 +1,6 @@
 <!--<?xml version="1.0" encoding="utf-8"?>-->
-<htmlform formName="HMIS 096A TB Form - Followup"
-          formDescription="TB patient follow up form"
+<htmlform formName="HMIS 096A Health Unit TB Form - Followup"
+          formDescription="HMIS 096A Health Unit TB Form - Followup"
           formEncounterType="455bad1f-5e97-4ee9-9558-ff1df8808732"
           formUuid="b609b3f0-6fa8-4764-976e-625f0683b690"
           formVersion="1.0"
@@ -102,22 +102,110 @@
 	    }
 
 	    jQuery().ready(function(jq){
-	    	const YELLOW_CONCEPT_ID = 99029;
-	    	const RED_CONCEPT_ID = 99028;
+	    	const 	YELLOW_CONCEPT_ID = 99029,
+	    			RED_CONCEPT_ID = 99028,
+	    			GREEN_CONCEPT_ID = 99027,
+					PBC_CONCEPT_ID = 113491,
+					INTENSIVE_CONCEPT_ID = 159794,
+					CONTINOUS_CONCEPT_ID = 159795,
+					RHZE_CONCEPT_ID = 1675,
+					RHZ_CONCEPT_ID = 1678;
 
-	        var $muacColorCodeField,
-				$inrNumberField;
+	        var $inrNumberField = jq('#inr-number').find('input'),
+				$sputumSmearResultsField = getField('sputum-smear-results.value'),
+				$sputumSmearDateField = getField('sputum-smear-date.value'),
+				$muacQuantitativeField = getField('muac-quantitative.value'),
+				$muacQualitativeField = getField('muac-qualitative.value'),
+	        	$encounterDateField = jq('#encounter-date').find('input[type="hidden"]');
 
-	        $muacColorCodeField = getField('muac-color-code.value');
-	        $inrNumberField = jq('#inr-number').find('input');
 
-	        var muacColorCodeChange = function() {
-	            var muacColorCodeValue = getValue('muac-color-code.value');
-	            if (muacColorCodeValue == YELLOW_CONCEPT_ID || muacColorCodeValue == RED_CONCEPT_ID) {
+			/*
+			* Disable MUAC for patients below 6 months of age */
+			var disableMuacForPatientsBelow6Months = function() {
+				var patientDob = new Date('<lookup expression="patient.birthdate" />');
+				var encounterDate = new Date($encounterDateField.val());
+				var patientAgeInMonths = moment(encounterDate).diff(patientDob, 'months', false);
+
+				if (patientAgeInMonths &lt; 6) {
+					fieldHelper.disable($muacQualitativeField);
+					fieldHelper.disable($muacQuantitativeField);
+				} else {
+					fieldHelper.enable($muacQualitativeField);
+					fieldHelper.enable($muacQuantitativeField);				
+				}
+			};
+
+	        var muacChange = function() {
+	        	var muacQuantitative = getValue('muac-quantitative.value');
+	        	var muacQualitative = getValue('muac-qualitative.value');
+	        	var $muacQuantitativeErrorField = getField('muac-quantitative.error');
+	        	var $muacQualitativeErrorField = getField('muac-qualitative.error');
+
+	            if (muacQualitative == YELLOW_CONCEPT_ID || muacQualitative == RED_CONCEPT_ID) {
 	                fieldHelper.enable($inrNumberField);
 	            } else {
 	                fieldHelper.disable($inrNumberField);
+	                $inrNumberField.val('');
+	                $inrNumberField.change();
 	            }
+
+	        	if (muacQuantitative == '' || muacQualitative =='') {
+	        		return;
+	        	}
+
+	        	var valid = false;
+
+	        	var validRange = {};
+
+                <includeIf velocityTest="$patient.age &lt; 5">
+                     validRange = [
+                 			{color: RED_CONCEPT_ID, lower:0, upper:11.4},
+                 			{color: YELLOW_CONCEPT_ID, lower:11.5, upper:12.4},
+							{color: GREEN_CONCEPT_ID, lower:12.5, upper:50}
+                 			];
+                </includeIf>
+                <includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
+                     validRange = [
+                 			{color: RED_CONCEPT_ID, lower:0, upper:13.4},
+                 			{color: YELLOW_CONCEPT_ID, lower:13.5, upper:14.4},
+							{color: GREEN_CONCEPT_ID, lower:14.5, upper:50}
+                 			];
+                </includeIf>
+                <includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
+                     validRange = [
+                 			{color: RED_CONCEPT_ID, lower:0, upper:16.5},
+                 			{color: YES_CONCEPT_ID, lower:16.5, upper:18.9},
+							{color: GREEN_CONCEPT_ID, lower:19, upper:100}
+                 			];
+                </includeIf>
+
+                <includeIf velocityTest="$patient.age &gt;=18">
+                     validRange = [
+                 			{color: RED_CONCEPT_ID, lower:0, upper:18.9},
+                 			{color: YELLOW_CONCEPT_ID, lower:19, upper:21.9},
+							{color: GREEN_CONCEPT_ID, lower:22, upper:100}
+                 			];
+                </includeIf>
+
+                var selectedValidRange =  validRange.find(function(o) {
+					return o.color == muacQualitative;
+                });
+
+                if (muacQuantitative &gt;= selectedValidRange.lower &amp;&amp; muacQuantitative &lt;= selectedValidRange.upper) {
+					valid = true;
+                }
+
+                if (!valid) {
+					$muacQuantitativeErrorField.html('The MUAC Qualitative and Quatitative values do not match, please check').show();
+					$muacQualitativeErrorField.html('The MUAC Qualitative and Quatitative values do not match, please check').show();
+                	$muacQuantitativeField.addClass('error');
+                	$muacQualitativeField.addClass('error');
+                } else {
+                	$muacQuantitativeErrorField.html('').hide();
+                	$muacQualitativeErrorField.html('').hide();
+                	$muacQuantitativeField.removeClass('error');
+                	$muacQualitativeField.removeClass('error');
+                }
 	        };
 
 	        /**
@@ -167,9 +255,69 @@
 	            return !dirty;
 	        }
 
-	        $muacColorCodeField.change(muacColorCodeChange);
+			var diseaseClassification = <lookup complexExpression="
+				#set ($diseaseClassification = $fn.latestObs('99379').valueCoded.conceptId)
+				#if ($diseaseClassification) $diseaseClassification
+				#else ''
+				#end
+			" />;
 
-	        muacColorCodeChange();
+			/*
+			*If Disease classification is PBC then require Sputum smear results (Pre-Rx) 
+			*/			
+			var sputumSmearResultsValidate = function() {
+				$sputumSmearResults = getValue('sputum-smear-results.value');
+				if (diseaseClassification == PBC_CONCEPT_ID &amp;&amp; $sputumSmearResults == '') {
+					getField('sputum-smear-results.error').html('Results required for P-BC').show();
+					return false;					
+				} else {
+					getField('sputum-smear-results.error').html('').hide();
+					return true;
+				}
+				
+			};
+
+			var sputumSmearResultsCheck = function() {
+				if (diseaseClassification == PBC_CONCEPT_ID) {
+					fieldHelper.enable($sputumSmearResultsField);
+					fieldHelper.enable($sputumSmearDateField);
+				} else {
+					fieldHelper.disable($sputumSmearResultsField);
+					fieldHelper.disable($sputumSmearDateField);
+					setValue('sputum-smear-results.value','');
+					setValue('sputum-smear-date.value','');
+				}
+			};
+
+			var disableSelectOption = function($selectField, ids) {
+				if (jQuery.isArray(ids)) {
+					$selectField.children('option').each(function() {
+						this.disabled = false;
+						if (ids.indexOf(parseInt(this.value))) {
+							this.disabled = 'disabled';
+						}
+					});
+				}
+			}
+
+			$('table#drugs').find('input[type=radio]').click(function() {
+				if (this.checked == true) {
+					var $drugCombo = $(this).parents('tr:first').find('select:first');
+					var idsToDisable = []; 
+					if (this.value == INTENSIVE_CONCEPT_ID) {
+						idsToDisable.push(RHZ_CONCEPT_ID);
+					} else if (this.value == CONTINOUS_CONCEPT_ID) {
+						idsToDisable.push(RHZE_CONCEPT_ID);
+					}
+					disableSelectOption($drugCombo, idsToDisable);
+				}
+			});
+			
+	        $muacQuantitativeField.change(muacChange);
+	        $muacQualitativeField.change(muacChange);
+
+	        sputumSmearResultsCheck();
+			disableMuacForPatientsBelow6Months();
 
 	        beforeSubmit.push(function(){
 	            var valid = true;
@@ -179,11 +327,19 @@
 	                valid = false;
 	            }
 
+	            if (!sputumSmearResultsValidate()) {
+	                valid = false;
+	            }
+
+	            if (jq('span.error.field-error:visible').length &gt; 0) {
+	            	valid = false;
+	            }
+
 	            if (valid) {
 	            	$errorMessageSpan.hide();
 	            } else {
 	            	$errorMessageSpan.show();
-	            	jq().toastmessage('showErrorToast', "Form Validation violated. Check for errors");
+	            	jq().toastmessage('showErrorToast', "Form Validation failed. Check for errors");
 	            }
 
 	            return valid;
@@ -266,7 +422,7 @@
 
   <div class="ai-page-frame">
     <div class="headers" style="text-align: center;">
-      <h3 style="background: #FFFF7D; padding: 10px;">HMIS 096A TB Form - Followup</h3>
+      <h3 style="background: #FFFF7D; padding: 10px;">HMIS 096A Health Unit TB Form - Followup</h3>
     </div>
 
 	<fieldset>
@@ -275,7 +431,7 @@
 		  <tbody>
 		    <tr>
 		      <td colspan="4" id="encounter">
-		        <p>
+		        <p id="encounter-date">
 		          <label>
 		            <span class="required">*</span>Follow up visit date:
 		          </label>
@@ -304,36 +460,36 @@
       <legend>Results of sputum and other examinations</legend>
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
-          <td>
-            <p>
-              <label>Sputum smear results</label>
-              <obs 	conceptId="307" 
-              		answerConceptIds="1118,664,1362,1363,1364,1365,163417AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,163418AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,164428,164429,164430,159985,703,160008" 
-              		answerLabels="ND - Not Done, NEG- Negative, 1AFB/100, 2AFB/100, 3AFB/100, 4AFB/100,5AFB/100,6AFB/100,7AFB/100,8AFB/100,9AFB/100,Scanty,Positive,contaminated specimen" 
-              		style="dropdown" />
-            </p>
-          </td>
-          <td >
-            <p>
-              <label>Examination Date</label>
-              <obs conceptId="99392" />
-            </p>
-          </td>
-          <td >
-            <p>
-              <label>Drug Susceptibility Testing (DST) Results</label>
-              <obs 	conceptId="159984AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
-              		answerConceptIds="164366,164432,159345,664,164367,159346" 
-              		answerLabels="Rif Monoresistant,INH Monoresistant,MDR Confirmed,Polyresistant,Pan Sensitive,XDR Confirmed" 
-              		style="dropdown" />
-            </p>
-          </td>
-          <td >
-            <p>
-              <label>Date of DST results</label>
-              <obs conceptId="164396" />
-            </p>
-          </td>
+			<td>
+	            <p>
+	              <label>Sputum smear results</label>
+	              <obs 	conceptId="307" 
+	              		answerConceptIds="1118,664,164422,164423,164424,164425,164426,164427,164428,164429,164430,99388,99389,99390" 
+	              		answerLabels="ND - Not Done ,NEG - 0AFB/100, 1 - 1AFB/100 ,2 - 2AFB/100 ,3 - 3AFB/100 ,4 - 4AFB/100 ,5 - 5AFB/100,6 - 6AFB/100,7 - 7AFB/100,8 - 8AFB/100,9 - 9AFB/100,+ - 10-99AFB/Field,++ - 1-10AFB/Field,+++ - &gt;10AFB/Field" 
+	              		id="sputum-smear-results" style="dropdown" />
+	            </p>
+			</td>
+			<td>
+				<p>
+					<label>Sputum Smear Examination Date</label>
+					<obs conceptId="99392" id="sputum-smear-date" />
+				</p>
+			</td>
+			<td>
+				<p>
+				  <label>Drug Susceptibility Testing (DST) Results</label>
+				  <obs 	conceptId="159984AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
+				  		answerConceptIds="164366,164432,159345,664,164367,159346" 
+				  		answerLabels="1 - Rif Monoresistant,2- INH Monoresistant,3 - MDR Confirmed,4 - Polyresistant,5 - Pan Sensitive, 6- XDR Confirmed" 
+				  		style="dropdown" />
+				</p>
+			</td>
+			<td>
+				<p>
+				  <label>Date of DST results</label>
+				  <obs conceptId="164396" />
+				</p>
+			</td>
         </tr>
       </table>
     </fieldset>
@@ -342,43 +498,70 @@
       <legend>Vitals</legend>
       <table width="100%" border="0" cellspacing="0" cellpadding="0" id="muac">
         <tr>
-          <td colspan="2" valign="top" >
-            <p>
-              <label>Weight for age z-score</label>
-              <obs 	conceptId="1854AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
-              		answerConceptIds="115,99271,99272" 
-              		answerLabels="N-Normal,MAM-Moderate Acute Mulnutrition,SAM-Severe Acute Mulnutrition" 
-              		style="dropdown" />
-            </p>
-          </td>
-          <td colspan="2" valign="top" >
-            <p>
-              <label>Height/Length for age z-score</label>
-              <obs 	conceptId="164088" 
-              		answerConceptIds="1115,164085" 
-              		answerLabels="N-Normal,S-Stunting" />
-            </p>
-          </td>
-          <td valign="top">
-            <p>
-              <label>MUAC</label>
-              <obs 	conceptId="99030" 
-	              	answerConceptIds="99028,99027,99029" 
-	              	answerLabels="Red,Green,Yellow" 
-	              	id="muac-color-code" 
-	              	style="dropdown" />
-            </p>
-          </td>
-          <td valign="top" >
-            <p>
-              <label>INR No</label>
-              <span id="inr-number">
-                <patient  	field="identifier" 
-                			identifierTypeId="d4b21726-e908-4b1a-abab-b5f87cd01c18" 
-                			id="inr-no" required="false" />
-              </span>
-            </p>
-          </td>
+			<td valign="top" >
+				<p>
+				  <label>Weight for age z-score</label>
+				  <obs 	conceptId="1854AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
+				  		answerConceptIds="115,99271,99272" 
+				  		answerLabels="N-Normal,MAM-Moderate Acute Mulnutrition,SAM-Severe Acute Mulnutrition" 
+				  		style="dropdown" />
+				</p>
+			</td>
+			<td valign="top" >
+				<p>
+				  <label>Height/Length for age z-score</label>
+				  <obs 	conceptId="164088" 
+				  		answerConceptIds="1115,164085" 
+				  		answerLabels="N-Normal,S-Stunting" />
+				</p>
+			</td>
+			<td>
+				<p>
+					<label>M.U.A.C (cm)</label>
+					<obs conceptId="1343AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="muac-quantitative" />
+				</p>
+			</td>
+            <td>
+                <p>
+                    <label>M.U.A.C</label>
+                    <includeIf velocityTest="$patient.age &lt; 5">
+                        <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                             answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
+                             answerLabels="Red &lt; 11.5cm, Yellow 11.5cm - &lt;12.5cm,Green &gt;= 12.5cm" id="muac-qualitative" />
+                    </includeIf>
+                    <includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
+                        <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                             answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
+                             answerLabels="Red &lt; 13.5cm,Yellow 13.5cm - &lt;14.5cm,Green &gt;=14.5cm" id="muac-qualitative" />
+                    </includeIf>
+                    <includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
+                        <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                             answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
+                             answerLabels="Red &lt; 16.5cm, Yellow 16.5cm - &lt;19.0cm,Green &gt;=19.0cm" id="muac-qualitative" />
+                    </includeIf>
+
+                    <includeIf velocityTest="$patient.age &gt;=18">
+                        <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                             answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
+                             answerLabels="Red &lt;19.0cm , Yellow 19.0cm - &lt;22.0cm,Green &gt;=22.0cm" id="muac-qualitative" />
+                    </includeIf>
+                </p>
+            </td>
+		</tr>
+		<tr>
+			<td valign="top" >
+				<p>
+					<label>INR No</label>
+					<span id="inr-number">
+						<patient  	field="identifier" 
+									identifierTypeId="d4b21726-e908-4b1a-abab-b5f87cd01c18" 
+									id="inr-no" required="false" />
+					</span>
+				</p>
+			</td>
+			<td></td>
+			<td></td>
+			<td></td>
         </tr>
       </table>
     </fieldset>
@@ -421,8 +604,9 @@
                   </td>
                   <td>
                     <p>
-                      <obs 	conceptId="1282" 
-                      		answerConceptSetIds="160021" 
+                      <obs 	conceptId="dc9b5b8f-30ab-102d-86b0-7a5022ba4115" 
+                      		answerConceptIds="1675,1678" 
+                      		answerLabels="RHZE,RHZ"
                       		style="dropdown" />
                     </p>
                   </td>
