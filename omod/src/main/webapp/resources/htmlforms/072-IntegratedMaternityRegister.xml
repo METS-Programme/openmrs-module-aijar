@@ -714,10 +714,18 @@
             <p>
               <label>eMTCT Code: Woman</label>
               <obs conceptId="d5b0394c-424f-41db-bc2f-37180dcdbe74" 
-              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb, 05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7, 86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a, 25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465, 60155e4d-1d49-4e97-9689-758315967e0f, 81bd3e58-9389-41e7-be1a-c6723f899e56,1f177240-85f6-4f10-964a-cfc7722408b3" 
-              	answerLabels="C - Counselled but declined HIV testing,
+              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,
+				              	05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7,
+				              	86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,
+				              	a08d9331-b437-485c-8eff-1923f3d43630,
+				              	25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465,
+				              	60155e4d-1d49-4e97-9689-758315967e0f,
+				              	81bd3e58-9389-41e7-be1a-c6723f899e56,
+				              	1f177240-85f6-4f10-964a-cfc7722408b3" 
+              	answerLabels=	"C - Counselled but declined HIV testing,
               					T - Counselled and tested but didn't receive results,
               					TR - Counselled tested and results given - Client tested HIV - in maternity,
+              					TR+ - Tested HIV- on retest,
               					TRR - Counselled tested and results given - Client tested HIV + in maternity,
               					TRR+ - Client was originally negative but sero-converted at this test,
               					TRK - New ANC clients with Known HIV- status,
@@ -729,10 +737,18 @@
             <p>
               <label>eMTCT Code: Partner</label>
               <obs conceptId="62a37075-fc2a-4729-8950-b9fae9b22cfb" 
-              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb, 05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7, 86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a, 25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465, 60155e4d-1d49-4e97-9689-758315967e0f, 81bd3e58-9389-41e7-be1a-c6723f899e56,1f177240-85f6-4f10-964a-cfc7722408b3" 
+              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,
+				              	05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7,
+				              	86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,
+				              	a08d9331-b437-485c-8eff-1923f3d43630,
+				              	25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465,
+				              	60155e4d-1d49-4e97-9689-758315967e0f,
+				              	81bd3e58-9389-41e7-be1a-c6723f899e56,
+				              	1f177240-85f6-4f10-964a-cfc7722408b3" 
               	answerLabels="C - Counselled but declined HIV testing,
               					T - Counselled and tested but didn't receive results,
               					TR - Counselled tested and results given - Client tested HIV - in maternity,
+              					TR+ - Tested HIV- on retest,
               					TRR - Counselled tested and results given - Client tested HIV + in maternity,
               					TRR+ - Client was originally negative but sero-converted at this test,
               					TRK - New ANC clients with Known HIV- status,
@@ -757,24 +773,25 @@
           <td>
             <p>
               <label>Date of delivery</label>
-              <obs conceptId="f9573837-6a9b-4f2f-9298-aecf27b15fb3" allowTime="true" class="date-and-time" required="true"/>
+              <obs conceptId="f9573837-6a9b-4f2f-9298-aecf27b15fb3" allowTime="true" class="date-and-time" required="false"/>
             </p>
           </td>
-          <td>
+          <td colspan="2">
             <p>
               <label>Management of 3rd stage labour</label>
-              <obs conceptId="425458af-d1f7-40e4-a672-7d9e38aedb3c" answerConceptIds="e123d685-812a-43c3-bc05-db4e14d8c05c,eca9da28-31d3-4e6f-828d-441e9237b7a5,1c4323a3-6cc6-44d0-81ee-839014bca19c"
-                   answerLabels="1.Ergometrine,2.Oxtocin (Pitocin),3.Misoprostol" />
+              <obs conceptId="425458af-d1f7-40e4-a672-7d9e38aedb3c" answerConceptId="e123d685-812a-43c3-bc05-db4e14d8c05c" answerLabel="1.Ergometrine" />
+              <obs conceptId="425458af-d1f7-40e4-a672-7d9e38aedb3c" answerConceptId="eca9da28-31d3-4e6f-828d-441e9237b7a5" answerLabel="2.Oxtocin (Pitocin)" />
+              <obs conceptId="425458af-d1f7-40e4-a672-7d9e38aedb3c" answerConceptId="1c4323a3-6cc6-44d0-81ee-839014bca19c" answerLabel="3.Misoprostol" />
             </p>
           </td>
-          <td>
+        </tr>
+        <tr>
+          <td colspan="2">
             <p>
               <label>Other treatment given</label>
               <obs conceptId="0aea6828-2328-4038-9cd9-680dbdf29790" rows="5" cols="30" />
             </p>
           </td>
-        </tr>
-        <tr>
           <td>
             <p>
               <label>ARVs to mother</label>
@@ -792,10 +809,6 @@
                          required="false" />
               </span>
             </p>
-          </td>
-          <td>
-          </td>
-          <td>
           </td>
         </tr>
       </table>
@@ -1019,20 +1032,33 @@
           <td></td>
         </tr>
         <tr>
-          <td>
+          <td colspan="4">
             <p>
               <label>Condition of mother on discharge</label>
-              <obs conceptId="e87431db-b49e-4ab6-93ee-a3bd6c616a94" answerConceptIds="3f02ee62-613d-4eba-88bc-d0cd66b863c5,17fcfd67-a1a2-4361-9915-ad4e81a7a61d,6e4f1db1-1534-43ca-b2a8-5c01bc62e7ef,dd27a783-30ab-102d-86b0-7a5022ba4115,6d15f334-2130-47a8-b5a2-3b26b6a65c69,792fe1f6-262e-4266-9226-63fe74268279,4095ac37-4955-4718-8e3e-b6f6fb55cf6d,862b583e-97ba-4bef-8997-5a460449a87a"
-                   answerLabels="D - Woman discharged alive,DD- Woman died,R - If the woman ran away or left before being discharged,T- Woman transferred to another facility,DF - Woman discharged alive with fistula,DDF - Woman died with fistula,RF- Woman ran away with fistula,TF - Woman transferred with fistula" style="dropdown" />
+              <obs conceptId="e87431db-b49e-4ab6-93ee-a3bd6c616a94" answerConceptId="3f02ee62-613d-4eba-88bc-d0cd66b863c5" answerLabels="D - Woman discharged alive" style="checkbox" class="horizontal-layout-options" />
+              <obs conceptId="e87431db-b49e-4ab6-93ee-a3bd6c616a94" answerConceptId="17fcfd67-a1a2-4361-9915-ad4e81a7a61d" answerLabel="DD- Woman died" style="checkbox" />
+              <obs conceptId="e87431db-b49e-4ab6-93ee-a3bd6c616a94" answerConceptId="6e4f1db1-1534-43ca-b2a8-5c01bc62e7ef" answerLabel="R - If the woman ran away or left before being discharged" style="checkbox" />
+              <obs conceptId="e87431db-b49e-4ab6-93ee-a3bd6c616a94" answerConceptId="dd27a783-30ab-102d-86b0-7a5022ba4115" answerLabel="T- Woman transferred to another facility" style="checkbox" />
+              <obs conceptId="e87431db-b49e-4ab6-93ee-a3bd6c616a94" answerConceptId="6d15f334-2130-47a8-b5a2-3b26b6a65c69" answerLabel="DF - Woman discharged alive with fistula" style="checkbox" class="horizontal-layout-options" />
+              <obs conceptId="e87431db-b49e-4ab6-93ee-a3bd6c616a94" answerConceptId="792fe1f6-262e-4266-9226-63fe74268279" answerLabel="DDF - Woman died with fistula" style="checkbox" />
+              <obs conceptId="e87431db-b49e-4ab6-93ee-a3bd6c616a94" answerConceptId="4095ac37-4955-4718-8e3e-b6f6fb55cf6d" answerLabel="RF - Woman ran away with Fistula" style="checkbox" />
+              <obs conceptId="e87431db-b49e-4ab6-93ee-a3bd6c616a94" answerConceptId="862b583e-97ba-4bef-8997-5a460449a87a" answerLabel="TF - Woman transferred with fistula" style="checkbox" />
             </p>
           </td>
-          <td>
+      </tr>
+      <tr>
+          <td colspan="4">
             <p>
               <label>Condition of baby on discharge</label>
-              <obs conceptId="a5638850-0cb4-4ce8-8e87-96fc073de25d" answerConceptIds="fda5ad21-6ba4-4526-a0f3-ea1269d43422,7a15616a-c12a-44fc-9a11-553639128b69,ab3a7679-f5ee-48d6-b690-f55a1dfe95ea,eb7041a0-02e6-4e9a-9b96-ff65dd09a416,23ac7575-f0ea-49a5-855e-b3348ad1da01"
-                   answerLabels="MSB - Macerated still birth,FSB - Fresh still birth,NND - Immediate neonatal death (Death within 24 hours),AL - Alive baby,BDF - Baby born with defect" />
+              <obs conceptId="a5638850-0cb4-4ce8-8e87-96fc073de25d" answerConceptId="fda5ad21-6ba4-4526-a0f3-ea1269d43422" answerLabel="MSB - Macerated still birth" class="horizontal-layout-options" />
+              <obs conceptId="a5638850-0cb4-4ce8-8e87-96fc073de25d" answerConceptId="7a15616a-c12a-44fc-9a11-553639128b69" answerLabel="FSB - Fresh still birth" />
+              <obs conceptId="a5638850-0cb4-4ce8-8e87-96fc073de25d" answerConceptId="ab3a7679-f5ee-48d6-b690-f55a1dfe95ea" answerLabel="NND - Immediate neonatal death (Death within 24 hours)" />
+              <obs conceptId="a5638850-0cb4-4ce8-8e87-96fc073de25d" answerConceptId="eb7041a0-02e6-4e9a-9b96-ff65dd09a416" answerLabel="AL - Alive baby" />
+              <obs conceptId="a5638850-0cb4-4ce8-8e87-96fc073de25d" answerConceptId="23ac7575-f0ea-49a5-855e-b3348ad1da01" answerLabel="BDF - Baby born with defect" />
             </p>
           </td>
+      </tr>
+      <tr>
           <td>
             <p>
               <label>PNC at 6H for mother</label>
@@ -1041,16 +1067,14 @@
           </td>
           <td>
             <p>
-              <label>Delivered by</label>
-              <encounterProvider type="radio" id="delivered-by" />
-            </p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>
               <label>PNC at 6H for child</label>
               <obs conceptId="93ca1215-5346-4fde-8905-84e930d9f1c1" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Delivered by</label>
+              <encounterProvider type="radio" id="delivered-by" />
             </p>
           </td>
           <td>
@@ -1059,13 +1083,15 @@
               <obs conceptId="ff31a419-0eb1-45fc-920a-77b4a3481e00" />
             </p>
           </td>
+      </tr>
+      <tr>
           <td>
             <p>
               <label>Name of person discharging</label>
               <obs conceptId="1473AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
             </p>
           </td>
-          <td></td>
+          <td colspan="3"></td>
         </tr>
       </table>
     </fieldset>
