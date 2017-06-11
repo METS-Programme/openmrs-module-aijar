@@ -539,8 +539,7 @@
           <td>
             <p>
               <label>ANC Number</label>
-              <patient field="identifier" identifierTypeId="b0cc255e-ef57-4266-839e-0df7f5099eb9"
-                       required="true" />
+              <obs conceptId="c7231d96-34d8-4bf7-a509-c810f75e3329" />
             </p>
           </td>
           <td>
@@ -583,8 +582,8 @@
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
         	<td>
-        		<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="164917" answerLabel="Abortion due to other causes" style="checkbox" class="parent-diagnosis" />
-        		<span class="child-diagnoses">
+        		<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="164917" answerLabel="Abortion due to other causes" style="checkbox" />
+        		<span>
 	        		<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="120295" answerLabel="Complete" style="checkbox" class="horizontal-layout-options" />
 	        		<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="112416" answerLabel="Threatening" style="checkbox" class="horizontal-layout-options" />
 	        		<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="905" answerLabel="Missed" style="checkbox" class="horizontal-layout-options" />
@@ -592,8 +591,8 @@
 	        	</span>
         	</td>
           <td>
-            <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="dc69f6f5-30ab-102d-86b0-7a5022ba4115" answerLabel="Antepartum Haemorrhage (APH)" style="checkbox" class="parent-diagnosis" />
-			<span class="child-diagnoses">
+            <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="dc69f6f5-30ab-102d-86b0-7a5022ba4115" answerLabel="Antepartum Haemorrhage (APH)" style="checkbox" />
+			<span>
             	<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="130108" answerLabel="Placental Abruption" style="checkbox" class="horizontal-layout-options" />
             	<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="114127" answerLabel="placenta Praevia" style="checkbox" class="horizontal-layout-options" />
             	<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="130123" answerLabel="placenta  percreta" style="checkbox" class="horizontal-layout-options" />
@@ -779,9 +778,9 @@
           <td colspan="2">
             <p>
               <label>Management of 3rd stage labour</label>
-              <obs conceptId="425458af-d1f7-40e4-a672-7d9e38aedb3c" answerConceptId="e123d685-812a-43c3-bc05-db4e14d8c05c" answerLabel="1.Ergometrine" />
-              <obs conceptId="425458af-d1f7-40e4-a672-7d9e38aedb3c" answerConceptId="eca9da28-31d3-4e6f-828d-441e9237b7a5" answerLabel="2.Oxtocin (Pitocin)" />
-              <obs conceptId="425458af-d1f7-40e4-a672-7d9e38aedb3c" answerConceptId="1c4323a3-6cc6-44d0-81ee-839014bca19c" answerLabel="3.Misoprostol" />
+              <obs conceptId="425458af-d1f7-40e4-a672-7d9e38aedb3c" answerConceptId="e123d685-812a-43c3-bc05-db4e14d8c05c" answerLabel="1 - Ergometrine" class="horizontal-layout-options" />
+              <obs conceptId="425458af-d1f7-40e4-a672-7d9e38aedb3c" answerConceptId="eca9da28-31d3-4e6f-828d-441e9237b7a5" answerLabel="2 - Oxtocin (Pitocin)" class="horizontal-layout-options" />
+              <obs conceptId="425458af-d1f7-40e4-a672-7d9e38aedb3c" answerConceptId="1c4323a3-6cc6-44d0-81ee-839014bca19c" answerLabel="3 - Misoprostol" class="horizontal-layout-options" />
             </p>
           </td>
         </tr>
@@ -893,11 +892,9 @@
 				          </td>
 				        </tr>
 				        <tr>
-				          <td>
+				          <td colspan="3">
 				            <obs conceptId="673d99cc-79a9-45a6-ba84-ecd3e9e793ef" answerConceptId="5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Other" style="checkbox" showCommentField="true" commentFieldLabel="&lt;label&gt;Specify&lt;/label&gt;"  class="has-comment"/>
 				          </td>
-				          <td></td>
-				          <td></td>
 				        </tr>
 				        <tr>
 				          <td>
@@ -971,11 +968,13 @@
       <legend>Discharge Information</legend>
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
-          <td rowspan="4">
+          <td colspan="3">
             <p>
-              <label>Family planning method</label>
+              <label><strong>Family planning method</strong></label>
             </p>
           </td>
+        </tr>
+        <tr>
           <td>
             <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115" answerConceptId="dcb2fba9-30ab-102d-86b0-7a5022ba4115"
                  answerLabel="1. Post Partum female sterilization"/>
@@ -1031,32 +1030,26 @@
           <td></td>
           <td></td>
         </tr>
+    </table>
+    <table>
         <tr>
-          <td colspan="4">
-            <p>
-              <label>Condition of mother on discharge</label>
-              <obs conceptId="e87431db-b49e-4ab6-93ee-a3bd6c616a94" answerConceptId="3f02ee62-613d-4eba-88bc-d0cd66b863c5" answerLabels="D - Woman discharged alive" style="checkbox" class="horizontal-layout-options" />
-              <obs conceptId="e87431db-b49e-4ab6-93ee-a3bd6c616a94" answerConceptId="17fcfd67-a1a2-4361-9915-ad4e81a7a61d" answerLabel="DD- Woman died" style="checkbox" />
-              <obs conceptId="e87431db-b49e-4ab6-93ee-a3bd6c616a94" answerConceptId="6e4f1db1-1534-43ca-b2a8-5c01bc62e7ef" answerLabel="R - If the woman ran away or left before being discharged" style="checkbox" />
-              <obs conceptId="e87431db-b49e-4ab6-93ee-a3bd6c616a94" answerConceptId="dd27a783-30ab-102d-86b0-7a5022ba4115" answerLabel="T- Woman transferred to another facility" style="checkbox" />
-              <obs conceptId="e87431db-b49e-4ab6-93ee-a3bd6c616a94" answerConceptId="6d15f334-2130-47a8-b5a2-3b26b6a65c69" answerLabel="DF - Woman discharged alive with fistula" style="checkbox" class="horizontal-layout-options" />
-              <obs conceptId="e87431db-b49e-4ab6-93ee-a3bd6c616a94" answerConceptId="792fe1f6-262e-4266-9226-63fe74268279" answerLabel="DDF - Woman died with fistula" style="checkbox" />
-              <obs conceptId="e87431db-b49e-4ab6-93ee-a3bd6c616a94" answerConceptId="4095ac37-4955-4718-8e3e-b6f6fb55cf6d" answerLabel="RF - Woman ran away with Fistula" style="checkbox" />
-              <obs conceptId="e87431db-b49e-4ab6-93ee-a3bd6c616a94" answerConceptId="862b583e-97ba-4bef-8997-5a460449a87a" answerLabel="TF - Woman transferred with fistula" style="checkbox" />
-            </p>
-          </td>
-      </tr>
-      <tr>
-          <td colspan="4">
-            <p>
-              <label>Condition of baby on discharge</label>
-              <obs conceptId="a5638850-0cb4-4ce8-8e87-96fc073de25d" answerConceptId="fda5ad21-6ba4-4526-a0f3-ea1269d43422" answerLabel="MSB - Macerated still birth" class="horizontal-layout-options" />
-              <obs conceptId="a5638850-0cb4-4ce8-8e87-96fc073de25d" answerConceptId="7a15616a-c12a-44fc-9a11-553639128b69" answerLabel="FSB - Fresh still birth" />
-              <obs conceptId="a5638850-0cb4-4ce8-8e87-96fc073de25d" answerConceptId="ab3a7679-f5ee-48d6-b690-f55a1dfe95ea" answerLabel="NND - Immediate neonatal death (Death within 24 hours)" />
-              <obs conceptId="a5638850-0cb4-4ce8-8e87-96fc073de25d" answerConceptId="eb7041a0-02e6-4e9a-9b96-ff65dd09a416" answerLabel="AL - Alive baby" />
-              <obs conceptId="a5638850-0cb4-4ce8-8e87-96fc073de25d" answerConceptId="23ac7575-f0ea-49a5-855e-b3348ad1da01" answerLabel="BDF - Baby born with defect" />
-            </p>
-          </td>
+		<td>
+			<p>
+			  <label>Condition of mother on discharge</label>
+			  <obs conceptId="e87431db-b49e-4ab6-93ee-a3bd6c616a94" answerConceptIds="3f02ee62-613d-4eba-88bc-d0cd66b863c5,17fcfd67-a1a2-4361-9915-ad4e81a7a61d,6e4f1db1-1534-43ca-b2a8-5c01bc62e7ef,dd27a783-30ab-102d-86b0-7a5022ba4115,6d15f334-2130-47a8-b5a2-3b26b6a65c69,792fe1f6-262e-4266-9226-63fe74268279,4095ac37-4955-4718-8e3e-b6f6fb55cf6d,862b583e-97ba-4bef-8997-5a460449a87a"
+			       answerLabels="D - Woman discharged alive,DD- Woman died,R - If the woman ran away or left before being discharged,T- Woman transferred to another facility,DF - Woman discharged alive with fistula,DDF - Woman died with fistula,RF- Woman ran away with fistula,TF - Woman transferred with fistula" style="dropdown" />
+			</p>
+		</td>
+		<td colspan="3">
+			<p>
+			  <label>Condition of baby on discharge</label>
+			  <obs conceptId="a5638850-0cb4-4ce8-8e87-96fc073de25d" answerConceptId="fda5ad21-6ba4-4526-a0f3-ea1269d43422" answerLabel="MSB - Macerated still birth" class="horizontal-layout-options" />
+			  <obs conceptId="a5638850-0cb4-4ce8-8e87-96fc073de25d" answerConceptId="7a15616a-c12a-44fc-9a11-553639128b69" answerLabel="FSB - Fresh still birth" />
+			  <obs conceptId="a5638850-0cb4-4ce8-8e87-96fc073de25d" answerConceptId="ab3a7679-f5ee-48d6-b690-f55a1dfe95ea" answerLabel="NND - Immediate neonatal death (Death within 24 hours)" />
+			  <obs conceptId="a5638850-0cb4-4ce8-8e87-96fc073de25d" answerConceptId="eb7041a0-02e6-4e9a-9b96-ff65dd09a416" answerLabel="AL - Alive baby" class="horizontal-layout-options" />
+			  <obs conceptId="a5638850-0cb4-4ce8-8e87-96fc073de25d" answerConceptId="23ac7575-f0ea-49a5-855e-b3348ad1da01" answerLabel="BDF - Baby born with defect" />
+			</p>
+		</td>
       </tr>
       <tr>
           <td>
