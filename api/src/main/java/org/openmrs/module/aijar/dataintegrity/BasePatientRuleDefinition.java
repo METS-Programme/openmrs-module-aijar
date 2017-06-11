@@ -28,7 +28,7 @@ public abstract class BasePatientRuleDefinition implements RuleDefinition<Patien
 	public String getHIVClinicNumber(Patient patient) {
 		PatientService patientService = Context.getPatientService();
 		PatientIdentifierType pit = patientService.getPatientIdentifierTypeByUuid(PatientIdentifierTypes.HIV_CARE_NUMBER.uuid());
-		 return patient.getPatientIdentifier(pit).toString();
+		 return patient.getPatientIdentifier(pit) == null ? "" : patient.getPatientIdentifier(pit).toString();
 	}
 	
 	/**
@@ -39,7 +39,7 @@ public abstract class BasePatientRuleDefinition implements RuleDefinition<Patien
 	public String getExposedInfantNumber(Patient patient) {
 		PatientService patientService = Context.getPatientService();
 		PatientIdentifierType pit = patientService.getPatientIdentifierTypeByUuid(PatientIdentifierTypes.EXPOSED_INFANT_NUMBER.uuid());
-		return patient.getPatientIdentifier(pit).toString();
+		return patient.getPatientIdentifier(pit) == null ? "" : patient.getPatientIdentifier(pit).toString();
 	}
 	
 	/**

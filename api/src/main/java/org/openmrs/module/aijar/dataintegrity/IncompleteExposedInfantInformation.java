@@ -37,6 +37,7 @@ public class IncompleteExposedInfantInformation extends BasePatientRuleDefinitio
 		ruleResults.addAll(exposedInfantsWithEncountersAndNOSummaryPage());
 		ruleResults.addAll(exposedInfantsWithSummaryPageNoEncounters());
 		ruleResults.addAll(exposedInfantsOlderThan18MonthsWithNoFinalOutcome());
+		ruleResults.addAll(exposedInfantsWithNoMotherARTNumber());
 		return ruleResults;
 	}
 	
@@ -110,10 +111,13 @@ public class IncompleteExposedInfantInformation extends BasePatientRuleDefinitio
 			// this rule only applies to infants below 18 months
 			if (Months.monthsBetween(new DateTime(encounter.getPatient().getBirthdate().getTime()), new DateTime()).getMonths() > 18) {
 				RuleResult<Patient> ruleResult = new RuleResult<>();
-				ruleResult.setActionUrl(
+				String actionUrl =
 						"htmlformentryui/htmlform/enterHtmlFormWithStandardUi.page?formUuid=860c5f2f-cf3c-4c3f-b0c4-9958b6a5a938&patientId="
-								+ encounter.getPatient().getUuid() + "&encounterId=" + encounter.getEncounterId()
-								+ "&visitId=" + encounter.getVisit().getId());
+								+ encounter.getPatient().getUuid() + "&encounterId=" + encounter.getEncounterId();
+				if (encounter.getVisit() != null) {
+					actionUrl = actionUrl + "&visitId=" + encounter.getVisit().getId();
+				}
+				ruleResult.setActionUrl(actionUrl);
 				ruleResult.setNotes("Exposed Infant # " + getExposedInfantNumber(encounter.getPatient())
 						+ " is over 18 months with no final outcome");
 				ruleResult.setEntity(encounter.getPatient());

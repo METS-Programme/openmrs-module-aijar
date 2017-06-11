@@ -49,7 +49,11 @@ public class IncompleteARTInformation extends BasePatientRuleDefinition {
 		List<RuleResult<Patient>> ruleResults = new ArrayList<>();
 		for (Encounter encounter : encounterList) {
 			RuleResult<Patient> ruleResult = new RuleResult<>();
-			ruleResult.setActionUrl("htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?formUuid=52653a60-8300-4c13-be4d-4b746da06fee&patientId=" + encounter.getPatient().getPatientId() + "&encounterId=" + encounter.getEncounterId()+"&visitId=" + encounter.getVisit().getId());
+			String actionUrl = "htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?formUuid=52653a60-8300-4c13-be4d-4b746da06fee&patientId=" + encounter.getPatient().getPatientId() + "&encounterId=" + encounter.getEncounterId();
+			if (encounter.getVisit() != null) {
+				actionUrl = actionUrl +"&visitId=" + encounter.getVisit().getId();
+			}
+			ruleResult.setActionUrl(actionUrl);
 			ruleResult.setNotes("Client# " + getHIVClinicNumber(encounter.getPatient()) + " has no ART Start Date");
 			ruleResult.setEntity(encounter.getPatient());
 			
@@ -75,7 +79,11 @@ public class IncompleteARTInformation extends BasePatientRuleDefinition {
 		List<RuleResult<Patient>> ruleResults = new ArrayList<>();
 		for (Encounter encounter : encounterList) {
 			RuleResult<Patient> ruleResult = new RuleResult<>();
-			ruleResult.setActionUrl("htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?formUuid=52653a60-8300-4c13-be4d-4b746da06fee&patientId=" + encounter.getPatient().getPatientId() + "&encounterId=" + encounter.getEncounterId()+"&visitId=" + encounter.getVisit().getId());
+			String actionUrl = "htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?formUuid=52653a60-8300-4c13-be4d-4b746da06fee&patientId=" + encounter.getPatient().getPatientId() + "&encounterId=" + encounter.getEncounterId();
+			if (encounter.getVisit() != null) {
+				actionUrl = actionUrl +"&visitId=" + encounter.getVisit().getId();
+			}
+			ruleResult.setActionUrl(actionUrl);
 			ruleResult.setNotes("Client# " + getHIVClinicNumber(encounter.getPatient()) + " has no ART Start Date");
 			ruleResult.setEntity(encounter.getPatient());
 			
@@ -102,8 +110,12 @@ public class IncompleteARTInformation extends BasePatientRuleDefinition {
 		for (Encounter encounter : encounterList) {
 			RuleResult<Patient> ruleResult = new RuleResult<>();
 			Patient patient = encounter.getPatient();
-			// link to the Encounter page for the
-			ruleResult.setActionUrl("htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?formUuid=12de5bc5-352e-4faf-9961-a2125085a75c&encounterId=" + encounter.getEncounterId() + "&patientId=" + patient.getId()+"&visitId=" + encounter.getVisit().getId());
+			// link to the Encounter page
+			String actionUrl = "htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?formUuid=12de5bc5-352e-4faf-9961-a2125085a75c&encounterId=" + encounter.getEncounterId() + "&patientId=" + patient.getId();
+			if (encounter.getVisit() != null) {
+				actionUrl = actionUrl + "&visitId=" + encounter.getVisit().getId();
+			}
+			ruleResult.setActionUrl(actionUrl);
 			ruleResult.setNotes("Client# " + getHIVClinicNumber(patient) + " has ART regimen Other for visit on " + encounter.getEncounterDatetime());
 			ruleResult.setEntity(patient);
 			
