@@ -99,6 +99,10 @@
 	        var $gestationWeeksField = getField('gestation-weeks.value');
 	        var $diagnosisParentFields = $('span.parent-diagnosis').find('input[type=checkbox]');
 	        var $diagnosisChildFields = $('span.child-diagnoses').find('input[type=checkbox]');
+			var $encounterDateField = jq('#encounterDate').find('input[type="hidden"]');
+			var $encounterDate = jq('#encounterDate').find('input[type="hidden"]').val();
+			var $emtctCodeWomanField = getField('emtct-code-woman.value');
+			var $preArtNumberField = jq('span#pre-art-number').find('input[type="text"]');
 
 	        var viralLoadResultsChange = function() {
 	            var $viralLoadResults = getValue('viral-load-results.value');
@@ -333,6 +337,94 @@
 		        return valid;
 		    };
 
+		    var hideOtherEmtctCodesForKnownHivPositiveStatus = function() {
+				var emtctCodesToHide = [99313,99734,99314,99315,99736,99737,99739];
+				var emtctControlsToHide =  $emtctCodeWomanField.children('option').filter(function() {
+					return emtctCodesToHide.indexOf(parseInt(this.value)) &gt; -1;
+				});
+				$emtctCodeWomanField.children('option').attr('disabled', false);
+				emtctControlsToHide.attr('disabled', true);
+				setValue('emtct-code-woman.value', 99738);
+		    };
+
+		    var showOtherEmtctCodesForKnownHivNegativeStatus = function() {
+				var emtctCodesToHide = [99738];
+				var emtctControlsToHide =  $emtctCodeWomanField.children('option').filter(function() {
+					return emtctCodesToHide.indexOf(parseInt(this.value)) &gt; -1;
+				});
+				$emtctCodeWomanField.children('option').attr('disabled', false);
+				emtctControlsToHide.attr('disabled', true);
+				setValue('emtct-code-woman.value', '');
+		    };
+
+		    var getHivStatus = function () {
+		    	/**
+		    	* HIV Status field should be selected if patient is HIV +ve 
+		    	*/
+				var hivStatus = <lookup complexExpression="#set ($hivStatus = $fn.earliestObs(HIV_STATUS_CONCEPT_ID).valueCoded)
+															#if ($hivStatus) $hivStatus;
+															#else '';
+															#end" />
+
+				if (hivStatus == HIV_POSITIVE_CONCEPT_ID) {
+					$hivStatusField.val(hivStatus);
+				}
+
+				/**
+				* Make HIV Status field not changeable only if the encounter date of the ART summary 
+				* page encounter (as we shall be entering retrospective data) is before the date of 
+				* the visit for which data is being entered
+				*/
+				var visitDate = $encounterDateField.val();
+				var artSummaryEncounterDate = <lookup complexExpression="#set ($artSummaryEncounterDate = $fn.latestEncounter('8d5b27bc-c2cc-11de-8d13-0010c6dffd0f').encounterDatetime)
+																		#if ($artSummaryEncounterDate) '$artSummaryEncounterDate';
+																		#else '';
+																		#end"/>
+				if (artSummaryEncounterDate !='' &amp;&amp; artSummaryEncounterDate &lt; visitDate) {
+					$hivStatusField.addClass('locked');
+					$hivStatusField.val(HIV_POSITIVE_CONCEPT_ID);
+					$hivStatusField.change();
+					hideOtherEmtctCodesForKnownHivPositiveStatus();
+				} else {
+					fieldHelper.enable($hivStatusField);
+				}
+		    };
+
+	        /**
+	        * This function checks if the HIV status field has been locked(Contains the 'locked' class )
+	        */
+	        var isHivStatusFieldLocked = function () {
+	            return $hivStatusField.is('.locked');
+	        }
+
+	        var hivStatusChange = function () {
+	            var $hivStatus = getValue('hiv-status.value');
+	            var $hivInformationSection = jq(HIV_INFORMATION_SECTION);
+	            var $arvsAdministeredToBabyField = jq(ARVS_ADMINISTERED_TO_BABY_FIELD).find('input');
+	            if ($hivStatus == HIV_POSITIVE_CONCEPT_ID) {
+	                fieldHelper.enable($hivInformationSection.find('input'));
+	                fieldHelper.enable($arvsAdministeredToBabyField);
+	                fieldHelper.enable($hivInformationSection.find('input,select'));
+	                fieldHelper.enable($arvsToMotherField);
+	                fieldHelper.enable($preArtNumberField);
+	                hideOtherEmtctCodesForKnownHivPositiveStatus();
+	            } else {
+	                $hivInformationSection.find('input[type="text"],select').each(function() {
+	                	var isEmtctCodeField = jq(this).parents('span:first').length &gt; 0 &amp;&amp; jq(this).parents('span:first').attr('class').indexOf('emtct-code') != -1; //Check if current control is an eMTCT Code field
+	                    if (jq(this).attr('id') == $hivStatusField.attr('id') || isEmtctCodeField ) {
+	                        fieldHelper.enable(jq(this));
+	                    } else {
+	                        fieldHelper.disable(jq(this));
+	                    }
+	                });
+	                fieldHelper.disable($arvsAdministeredToBabyField);
+	                fieldHelper.disable($arvsToMotherField);
+	                fieldHelper.disable($preArtNumberField);
+					showOtherEmtctCodesForKnownHivNegativeStatus();
+	            }
+	            viralLoadResultsChange();
+	        };
+
 			var babyValidated = function () {
 			    var $tables;
 			    var dirty = false;
@@ -365,6 +457,13 @@
 
 	        $othersField.change(toggleOtherSpecify);
 
+	        $hivStatusField.change(function(){
+	            if (isHivStatusFieldLocked()) {
+					setValue('hiv-status.value',HIV_POSITIVE_CONCEPT_ID);
+	            } else {
+	            	hivStatusChange();
+	            }
+	        });
 	        $viralLoadResultsField.change(viralLoadResultsChange);
 	        $hivStatusField.change(hivStatusChange);
 	        $iycfField.change(iycfChange);
@@ -372,8 +471,9 @@
 	        $gestationWeeksField.change(setDelivery);
 	        $diagnosisParentFields.change(diagnosisParentFieldsChange);
 	        $diagnosisChildFields.change(diagnosisChildFieldsChange);
+	        $encounterDateField.change(getHivStatus);
 
-
+			getHivStatus();
 	        viralLoadResultsChange();
 	        hivStatusChange();
 	        iycfChange();
@@ -728,7 +828,7 @@
               					TRR+ - Client was originally negative but sero-converted at this test,
               					TRK - New ANC clients with Known HIV- status,
               					TRRK - New ANC clients with Known HIV+ status" 
-                style="dropdown" required="true" class="emtct-code"/>
+	                style="dropdown" required="true" class="emtct-code" id="emtct-code-woman" />
             </p>
           </td>
           <td colspan="2">
@@ -751,7 +851,7 @@
               					TRR+ - Client was originally negative but sero-converted at this test,
               					TRK - New ANC clients with Known HIV- status,
               					TRRK - New ANC clients with Known HIV+ status" 
-                style="dropdown" class="emtct-code"/>
+	                style="dropdown" class="emtct-code" id="emtct-code-partner" />
             </p>
           </td>
         </tr>
