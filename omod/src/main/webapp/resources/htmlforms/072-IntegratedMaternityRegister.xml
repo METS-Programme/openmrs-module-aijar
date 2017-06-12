@@ -99,6 +99,10 @@
 	        var $gestationWeeksField = getField('gestation-weeks.value');
 	        var $diagnosisParentFields = $('span.parent-diagnosis').find('input[type=checkbox]');
 	        var $diagnosisChildFields = $('span.child-diagnoses').find('input[type=checkbox]');
+			var $encounterDateField = jq('#encounterDate').find('input[type="hidden"]');
+			var $encounterDate = jq('#encounterDate').find('input[type="hidden"]').val();
+			var $emtctCodeWomanField = getField('emtct-code-woman.value');
+			var $preArtNumberField = jq('span#pre-art-number').find('input[type="text"]');
 
 	        var viralLoadResultsChange = function() {
 	            var $viralLoadResults = getValue('viral-load-results.value');
@@ -279,16 +283,15 @@
 	        var diagnosisParentFieldsChange = function() {
 	        	var $parentField =  $(this),
 	        		$childFields = $(this).parents('span:first').siblings('span.child-diagnoses').find('input[type=checkbox]'),
-					$errorField = $parentField.siblings('span.error');
-				
+					//$errorField = $parentField.siblings('span.error');
+					$errorField = $childFields.siblings('span.error');
 				if ($parentField.is(':checked')) {
 					fieldHelper.enable($childFields);
-					var checkedChildFields = $childFields.filter(function() {
+					var $checkedChildFields = $childFields.filter(function() {
 						return this.checked == true;
 					});
-
-					if (checkedChildFields.length == 0) { //Show message if at least one of the child obs field is not selected
-						$errorField.html('Select at least one option below').show();
+					if ($checkedChildFields.length == 0) { //Show message if at least one of the child obs field is not selected
+						$errorField.html('Select at least one').show();
 					} else {
 						$errorField.html('').hide();
 					}
@@ -300,17 +303,18 @@
 	        };
 			
 			var diagnosisChildFieldsChange = function() {
-				var $childFields = jq('span.child-diagnoses').find('input[type=checkbox]'),
-					$thisField = jq(this),
-					$parentField = $thisField.parents('span.child-diagnoses').siblings('span.parent-diagnosis').find('input[type=checkbox]'),
-					$errorField = $parentField.siblings('span.error');
+				var $thisField = jq(this),
+					$container = $thisField.parents('span.child-diagnoses:first'),
+					$childFields = $container.find('input[type=checkbox]'),					
+					$parentField = $container.siblings('span.parent-diagnosis').find('input[type=checkbox]'),
+					$errorField = $childFields.siblings('span.error');
 
 				$errorField.html('').hide();
 				if ($thisField.is(':checked')) {
 					$childFields.attr('checked', false);
 					$thisField.attr('checked', true);
 				} else {
-					$errorField.html('Select at least one option below').show();
+					$errorField.html('Select at least one').show();
 				}
 			};
 
@@ -332,6 +336,94 @@
 
 		        return valid;
 		    };
+
+		    var hideOtherEmtctCodesForKnownHivPositiveStatus = function() {
+				var emtctCodesToHide = [99313,99734,99314,99315,99736,99737,99739];
+				var emtctControlsToHide =  $emtctCodeWomanField.children('option').filter(function() {
+					return emtctCodesToHide.indexOf(parseInt(this.value)) &gt; -1;
+				});
+				$emtctCodeWomanField.children('option').attr('disabled', false);
+				emtctControlsToHide.attr('disabled', true);
+				setValue('emtct-code-woman.value', 99738);
+		    };
+
+		    var showOtherEmtctCodesForKnownHivNegativeStatus = function() {
+				var emtctCodesToHide = [99738];
+				var emtctControlsToHide =  $emtctCodeWomanField.children('option').filter(function() {
+					return emtctCodesToHide.indexOf(parseInt(this.value)) &gt; -1;
+				});
+				$emtctCodeWomanField.children('option').attr('disabled', false);
+				emtctControlsToHide.attr('disabled', true);
+				setValue('emtct-code-woman.value', '');
+		    };
+
+		    var getHivStatus = function () {
+		    	/**
+		    	* HIV Status field should be selected if patient is HIV +ve 
+		    	*/
+				var hivStatus = <lookup complexExpression="#set ($hivStatus = $fn.earliestObs(HIV_STATUS_CONCEPT_ID).valueCoded)
+															#if ($hivStatus) $hivStatus;
+															#else '';
+															#end" />
+
+				if (hivStatus == HIV_POSITIVE_CONCEPT_ID) {
+					$hivStatusField.val(hivStatus);
+				}
+
+				/**
+				* Make HIV Status field not changeable only if the encounter date of the ART summary 
+				* page encounter (as we shall be entering retrospective data) is before the date of 
+				* the visit for which data is being entered
+				*/
+				var visitDate = $encounterDateField.val();
+				var artSummaryEncounterDate = <lookup complexExpression="#set ($artSummaryEncounterDate = $fn.latestEncounter('8d5b27bc-c2cc-11de-8d13-0010c6dffd0f').encounterDatetime)
+																		#if ($artSummaryEncounterDate) '$artSummaryEncounterDate';
+																		#else '';
+																		#end"/>
+				if (artSummaryEncounterDate !='' &amp;&amp; artSummaryEncounterDate &lt; visitDate) {
+					$hivStatusField.addClass('locked');
+					$hivStatusField.val(HIV_POSITIVE_CONCEPT_ID);
+					$hivStatusField.change();
+					hideOtherEmtctCodesForKnownHivPositiveStatus();
+				} else {
+					fieldHelper.enable($hivStatusField);
+				}
+		    };
+
+	        /**
+	        * This function checks if the HIV status field has been locked(Contains the 'locked' class )
+	        */
+	        var isHivStatusFieldLocked = function () {
+	            return $hivStatusField.is('.locked');
+	        }
+
+	        var hivStatusChange = function () {
+	            var $hivStatus = getValue('hiv-status.value');
+	            var $hivInformationSection = jq(HIV_INFORMATION_SECTION);
+	            var $arvsAdministeredToBabyField = jq(ARVS_ADMINISTERED_TO_BABY_FIELD).find('input');
+	            if ($hivStatus == HIV_POSITIVE_CONCEPT_ID) {
+	                fieldHelper.enable($hivInformationSection.find('input'));
+	                fieldHelper.enable($arvsAdministeredToBabyField);
+	                fieldHelper.enable($hivInformationSection.find('input,select'));
+	                fieldHelper.enable($arvsToMotherField);
+	                fieldHelper.enable($preArtNumberField);
+	                hideOtherEmtctCodesForKnownHivPositiveStatus();
+	            } else {
+	                $hivInformationSection.find('input[type="text"],select').each(function() {
+	                	var isEmtctCodeField = jq(this).parents('span:first').length &gt; 0 &amp;&amp; jq(this).parents('span:first').attr('class').indexOf('emtct-code') != -1; //Check if current control is an eMTCT Code field
+	                    if (jq(this).attr('id') == $hivStatusField.attr('id') || isEmtctCodeField ) {
+	                        fieldHelper.enable(jq(this));
+	                    } else {
+	                        fieldHelper.disable(jq(this));
+	                    }
+	                });
+	                fieldHelper.disable($arvsAdministeredToBabyField);
+	                fieldHelper.disable($arvsToMotherField);
+	                fieldHelper.disable($preArtNumberField);
+					showOtherEmtctCodesForKnownHivNegativeStatus();
+	            }
+	            viralLoadResultsChange();
+	        };
 
 			var babyValidated = function () {
 			    var $tables;
@@ -365,6 +457,13 @@
 
 	        $othersField.change(toggleOtherSpecify);
 
+	        $hivStatusField.change(function(){
+	            if (isHivStatusFieldLocked()) {
+					setValue('hiv-status.value',HIV_POSITIVE_CONCEPT_ID);
+	            } else {
+	            	hivStatusChange();
+	            }
+	        });
 	        $viralLoadResultsField.change(viralLoadResultsChange);
 	        $hivStatusField.change(hivStatusChange);
 	        $iycfField.change(iycfChange);
@@ -372,8 +471,9 @@
 	        $gestationWeeksField.change(setDelivery);
 	        $diagnosisParentFields.change(diagnosisParentFieldsChange);
 	        $diagnosisChildFields.change(diagnosisChildFieldsChange);
+	        $encounterDateField.change(getHivStatus);
 
-
+			getHivStatus();
 	        viralLoadResultsChange();
 	        hivStatusChange();
 	        iycfChange();
@@ -539,8 +639,7 @@
           <td>
             <p>
               <label>ANC Number</label>
-              <patient field="identifier" identifierTypeId="b0cc255e-ef57-4266-839e-0df7f5099eb9"
-                       required="true" />
+              <obs conceptId="c7231d96-34d8-4bf7-a509-c810f75e3329" />
             </p>
           </td>
           <td>
@@ -594,9 +693,9 @@
           <td>
             <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="dc69f6f5-30ab-102d-86b0-7a5022ba4115" answerLabel="Antepartum Haemorrhage (APH)" style="checkbox" class="parent-diagnosis" />
 			<span class="child-diagnoses">
-            	<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="130108" answerLabel="Placental Abruption" style="checkbox" class="horizontal-layout-options" />
-            	<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="114127" answerLabel="placenta Praevia" style="checkbox" class="horizontal-layout-options" />
-            	<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="130123" answerLabel="placenta  percreta" style="checkbox" class="horizontal-layout-options" />
+            	<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="130108" answerLabel="Placental abruption" style="checkbox" class="horizontal-layout-options" />
+            	<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="114127" answerLabel="Placenta praevia" style="checkbox" class="horizontal-layout-options" />
+            	<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="130123" answerLabel="Placenta  percreta" style="checkbox" class="horizontal-layout-options" />
             </span>          
       		</td>
           <td>
@@ -644,16 +743,15 @@
           </td>
         </tr>
         <tr>
-		<td>
-			<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="164916" answerLabel="Abortion due to Gender based Violence" style="checkbox" />
-		</td>
-		<td>
-			 <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="129211" answerLabel="Premature rapture of Membranes" style="checkbox" />
-		</td>
-		<td>
-			<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Other" showCommentField="true" commentFieldLabel="&lt;label&gt;Specify&lt;/label&gt;" style="checkbox" class="has-comment" />
+			<td>
+				<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="164916" answerLabel="Abortion due to Gender based Violence" style="checkbox" />
 			</td>
-		<td></td>
+			<td>
+				 <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="129211" answerLabel="Premature rapture of Membranes" style="checkbox" />
+			</td>
+			<td colspan="2">
+				<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Other" showCommentField="true" commentFieldLabel="&lt;label&gt;Specify&lt;/label&gt;" style="checkbox" class="has-comment" />
+			</td>
         </tr>
       </table>
     </fieldset>
@@ -714,30 +812,46 @@
             <p>
               <label>eMTCT Code: Woman</label>
               <obs conceptId="d5b0394c-424f-41db-bc2f-37180dcdbe74" 
-              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb, 05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7, 86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a, 25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465, 60155e4d-1d49-4e97-9689-758315967e0f, 81bd3e58-9389-41e7-be1a-c6723f899e56,1f177240-85f6-4f10-964a-cfc7722408b3" 
-              	answerLabels="C - Counselled but declined HIV testing,
+              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,
+				              	05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7,
+				              	86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,
+				              	a08d9331-b437-485c-8eff-1923f3d43630,
+				              	25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465,
+				              	60155e4d-1d49-4e97-9689-758315967e0f,
+				              	81bd3e58-9389-41e7-be1a-c6723f899e56,
+				              	1f177240-85f6-4f10-964a-cfc7722408b3" 
+              	answerLabels=	"C - Counselled but declined HIV testing,
               					T - Counselled and tested but didn't receive results,
               					TR - Counselled tested and results given - Client tested HIV - in maternity,
+              					TR+ - Tested HIV- on retest,
               					TRR - Counselled tested and results given - Client tested HIV + in maternity,
               					TRR+ - Client was originally negative but sero-converted at this test,
               					TRK - New ANC clients with Known HIV- status,
               					TRRK - New ANC clients with Known HIV+ status" 
-                style="dropdown" required="true" class="emtct-code"/>
+	                style="dropdown" required="true" class="emtct-code" id="emtct-code-woman" />
             </p>
           </td>
           <td colspan="2">
             <p>
               <label>eMTCT Code: Partner</label>
               <obs conceptId="62a37075-fc2a-4729-8950-b9fae9b22cfb" 
-              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb, 05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7, 86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a, 25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465, 60155e4d-1d49-4e97-9689-758315967e0f, 81bd3e58-9389-41e7-be1a-c6723f899e56,1f177240-85f6-4f10-964a-cfc7722408b3" 
+              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,
+				              	05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7,
+				              	86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,
+				              	a08d9331-b437-485c-8eff-1923f3d43630,
+				              	25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465,
+				              	60155e4d-1d49-4e97-9689-758315967e0f,
+				              	81bd3e58-9389-41e7-be1a-c6723f899e56,
+				              	1f177240-85f6-4f10-964a-cfc7722408b3" 
               	answerLabels="C - Counselled but declined HIV testing,
               					T - Counselled and tested but didn't receive results,
               					TR - Counselled tested and results given - Client tested HIV - in maternity,
+              					TR+ - Tested HIV- on retest,
               					TRR - Counselled tested and results given - Client tested HIV + in maternity,
               					TRR+ - Client was originally negative but sero-converted at this test,
               					TRK - New ANC clients with Known HIV- status,
               					TRRK - New ANC clients with Known HIV+ status" 
-                style="dropdown" class="emtct-code"/>
+	                style="dropdown" class="emtct-code" id="emtct-code-partner" />
             </p>
           </td>
         </tr>
@@ -757,24 +871,25 @@
           <td>
             <p>
               <label>Date of delivery</label>
-              <obs conceptId="f9573837-6a9b-4f2f-9298-aecf27b15fb3" allowTime="true" class="date-and-time" required="true"/>
+              <obs conceptId="f9573837-6a9b-4f2f-9298-aecf27b15fb3" allowTime="true" class="date-and-time" required="false"/>
             </p>
           </td>
-          <td>
+          <td colspan="2">
             <p>
               <label>Management of 3rd stage labour</label>
-              <obs conceptId="425458af-d1f7-40e4-a672-7d9e38aedb3c" answerConceptIds="e123d685-812a-43c3-bc05-db4e14d8c05c,eca9da28-31d3-4e6f-828d-441e9237b7a5,1c4323a3-6cc6-44d0-81ee-839014bca19c"
-                   answerLabels="1.Ergometrine,2.Oxtocin (Pitocin),3.Misoprostol" />
+              <obs conceptId="425458af-d1f7-40e4-a672-7d9e38aedb3c" answerConceptId="e123d685-812a-43c3-bc05-db4e14d8c05c" answerLabel="1 - Ergometrine" class="horizontal-layout-options" />
+              <obs conceptId="425458af-d1f7-40e4-a672-7d9e38aedb3c" answerConceptId="eca9da28-31d3-4e6f-828d-441e9237b7a5" answerLabel="2 - Oxtocin (Pitocin)" class="horizontal-layout-options" />
+              <obs conceptId="425458af-d1f7-40e4-a672-7d9e38aedb3c" answerConceptId="1c4323a3-6cc6-44d0-81ee-839014bca19c" answerLabel="3 - Misoprostol" class="horizontal-layout-options" />
             </p>
           </td>
-          <td>
+        </tr>
+        <tr>
+          <td colspan="2">
             <p>
               <label>Other treatment given</label>
               <obs conceptId="0aea6828-2328-4038-9cd9-680dbdf29790" rows="5" cols="30" />
             </p>
           </td>
-        </tr>
-        <tr>
           <td>
             <p>
               <label>ARVs to mother</label>
@@ -792,10 +907,6 @@
                          required="false" />
               </span>
             </p>
-          </td>
-          <td>
-          </td>
-          <td>
           </td>
         </tr>
       </table>
@@ -880,11 +991,9 @@
 				          </td>
 				        </tr>
 				        <tr>
-				          <td>
+				          <td colspan="3">
 				            <obs conceptId="673d99cc-79a9-45a6-ba84-ecd3e9e793ef" answerConceptId="5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Other" style="checkbox" showCommentField="true" commentFieldLabel="&lt;label&gt;Specify&lt;/label&gt;"  class="has-comment"/>
 				          </td>
-				          <td></td>
-				          <td></td>
 				        </tr>
 				        <tr>
 				          <td>
@@ -936,6 +1045,42 @@
 				            <obs conceptId="dc918618-30ab-102d-86b0-7a5022ba4115" answerConceptId="dc8e1be9-30ab-102d-86b0-7a5022ba4115" style="checkbox" answerLabel="" />
 				          </td>
 				        </tr>
+				        <tr>
+							<td colspan="4">
+								<p>
+								  <label><strong>Condition of baby on discharge</strong></label>
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+							  <obs conceptId="a5638850-0cb4-4ce8-8e87-96fc073de25d" answerConceptId="fda5ad21-6ba4-4526-a0f3-ea1269d43422" answerLabel="MSB - Macerated still birth" class="horizontal-layout-options" />
+							</td>
+							<td>
+							  <obs conceptId="a5638850-0cb4-4ce8-8e87-96fc073de25d" answerConceptId="7a15616a-c12a-44fc-9a11-553639128b69" answerLabel="FSB - Fresh still birth" />
+							</td>
+							<td colspan="2">
+							  <obs conceptId="a5638850-0cb4-4ce8-8e87-96fc073de25d" answerConceptId="ab3a7679-f5ee-48d6-b690-f55a1dfe95ea" answerLabel="NND - Immediate neonatal death (Death within 24 hours)" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+							  <obs conceptId="a5638850-0cb4-4ce8-8e87-96fc073de25d" answerConceptId="eb7041a0-02e6-4e9a-9b96-ff65dd09a416" answerLabel="AL - Alive baby" class="horizontal-layout-options" />
+							</td>
+							<td>
+							  <obs conceptId="a5638850-0cb4-4ce8-8e87-96fc073de25d" answerConceptId="23ac7575-f0ea-49a5-855e-b3348ad1da01" answerLabel="BDF - Baby born with defect" />
+							</td>	
+							<td colspan="2"></td>
+				        </tr>
+				        <tr>
+				          <td>
+				            <p>
+				              <label>PNC at 6H for child</label>
+				              <obs conceptId="93ca1215-5346-4fde-8905-84e930d9f1c1" />
+				            </p>
+				          </td>
+				          <td colspan="3"></td>
+				        </tr>
 			        </tbody>
 			        <tfoot>
 				        <tr>
@@ -958,25 +1103,27 @@
       <legend>Discharge Information</legend>
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
-          <td rowspan="4">
+          <td colspan="3">
             <p>
-              <label>Family planning method</label>
+              <label><strong>Family planning method</strong></label>
             </p>
-          </td>
-          <td>
-            <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115" answerConceptId="dcb2fba9-30ab-102d-86b0-7a5022ba4115"
-                 answerLabel="1. Post Partum female sterilization"/>
-          </td>
-          <td>
-            <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115" answerConceptId="fed07c37-7bb6-4baa-adf9-596ce4c4e93c"
-               answerLabel="2. Post Partum IUD"/>
-          </td>
-          <td>
-            <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115" answerConceptId="dd4c3016-13cf-458a-8e93-fe54460be667"
-             answerLabel="3. IUD as part of post abortion care"/>
           </td>
         </tr>
         <tr>
+          <td colspan="2">
+            <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115" answerConceptId="dcb2fba9-30ab-102d-86b0-7a5022ba4115"
+                 answerLabel="1. Post Partum female sterilization (Bilateral Tubal Ligation (PP - BTL))"/>
+          </td>
+          <td>
+            <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115" answerConceptId="fed07c37-7bb6-4baa-adf9-596ce4c4e93c"
+               answerLabel="2. Post Partum IUD (PP-IUD)"/>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115" answerConceptId="dd4c3016-13cf-458a-8e93-fe54460be667"
+             answerLabel="3. IUD as part of post abortion care (PAC - IUD)"/>
+          </td>
           <td>
             <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115" answerConceptId="bb83fd9d-24c5-4d49-89c0-97e13c792aaf"
                answerLabel="4. Implant as part of post abortion care" class="parent-diagnosis"/>
@@ -991,15 +1138,21 @@
             <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115" answerConceptId="336650b2-65f7-4202-80eb-3c6437878262"
                answerLabel="5. Oral pills as part of post abortion care"/>
           </td>
+        </tr>
+        <tr>
           <td>
             <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115" answerConceptId="3e18cafc-8edc-4648-94b3-835de371a2f2"
                answerLabel="6. Depo as part of post abortion care"/>
+          </td>
+          <td colspan="2">
+            <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115" answerConceptId="5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+               answerLabel="7. Other Family Planning method" showCommentField="true" commentFieldLabel="&lt;label&gt;Specify&lt;/label&gt;"  class="has-comment"/>
           </td>
         </tr>
         <tr>
           <td>
             <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115" answerConceptId="aaf150a5-92d2-416f-8254-95d34ed9c4ab"
-               answerLabel="8.Not Given"/>
+               answerLabel="8.Not Family Planning Method Given"/>
           </td>
           <td>
           	<obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115" answerConceptId="dc692ad3-30ab-102d-86b0-7a5022ba4115"
@@ -1010,62 +1163,43 @@
                answerLabel="Moon beads"/>          	
           </td>
         </tr>
+    </table>
+    <table>
         <tr>
-          <td>
-            <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115" answerConceptId="5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-               answerLabel="7. Other" showCommentField="true" commentFieldLabel="&lt;label&gt;Specify&lt;/label&gt;"  class="has-comment"/>
-          </td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>
-            <p>
-              <label>Condition of mother on discharge</label>
-              <obs conceptId="e87431db-b49e-4ab6-93ee-a3bd6c616a94" answerConceptIds="3f02ee62-613d-4eba-88bc-d0cd66b863c5,17fcfd67-a1a2-4361-9915-ad4e81a7a61d,6e4f1db1-1534-43ca-b2a8-5c01bc62e7ef,dd27a783-30ab-102d-86b0-7a5022ba4115,6d15f334-2130-47a8-b5a2-3b26b6a65c69,792fe1f6-262e-4266-9226-63fe74268279,4095ac37-4955-4718-8e3e-b6f6fb55cf6d,862b583e-97ba-4bef-8997-5a460449a87a"
-                   answerLabels="D - Woman discharged alive,DD- Woman died,R - If the woman ran away or left before being discharged,T- Woman transferred to another facility,DF - Woman discharged alive with fistula,DDF - Woman died with fistula,RF- Woman ran away with fistula,TF - Woman transferred with fistula" style="dropdown" />
-            </p>
-          </td>
-          <td>
-            <p>
-              <label>Condition of baby on discharge</label>
-              <obs conceptId="a5638850-0cb4-4ce8-8e87-96fc073de25d" answerConceptIds="fda5ad21-6ba4-4526-a0f3-ea1269d43422,7a15616a-c12a-44fc-9a11-553639128b69,ab3a7679-f5ee-48d6-b690-f55a1dfe95ea,eb7041a0-02e6-4e9a-9b96-ff65dd09a416,23ac7575-f0ea-49a5-855e-b3348ad1da01"
-                   answerLabels="MSB - Macerated still birth,FSB - Fresh still birth,NND - Immediate neonatal death (Death within 24 hours),AL - Alive baby,BDF - Baby born with defect" />
-            </p>
-          </td>
-          <td>
-            <p>
-              <label>PNC at 6H for mother</label>
-              <obs conceptId="f0d21d70-986e-43ed-b72b-98c693c15f84" />
-            </p>
-          </td>
-          <td>
-            <p>
-              <label>Delivered by</label>
-              <encounterProvider type="radio" id="delivered-by" />
-            </p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>
-              <label>PNC at 6H for child</label>
-              <obs conceptId="93ca1215-5346-4fde-8905-84e930d9f1c1" />
-            </p>
-          </td>
-          <td>
-            <p>
-              <label>Date of discharge</label>
-              <obs conceptId="ff31a419-0eb1-45fc-920a-77b4a3481e00" />
-            </p>
-          </td>
+		<td>
+			<p>
+			  <label>Condition of mother on discharge</label>
+			  <obs conceptId="e87431db-b49e-4ab6-93ee-a3bd6c616a94" answerConceptIds="3f02ee62-613d-4eba-88bc-d0cd66b863c5,17fcfd67-a1a2-4361-9915-ad4e81a7a61d,6e4f1db1-1534-43ca-b2a8-5c01bc62e7ef,dd27a783-30ab-102d-86b0-7a5022ba4115,6d15f334-2130-47a8-b5a2-3b26b6a65c69,792fe1f6-262e-4266-9226-63fe74268279,4095ac37-4955-4718-8e3e-b6f6fb55cf6d,862b583e-97ba-4bef-8997-5a460449a87a"
+			       answerLabels="D - Woman discharged alive,DD- Woman died,R - If the woman ran away or left before being discharged,T- Woman transferred to another facility,DF - Woman discharged alive with fistula,DDF - Woman died with fistula,RF- Woman ran away with fistula,TF - Woman transferred with fistula" style="dropdown" />
+			</p>
+		</td>
+		<td>
+			<p>
+			  <label>PNC at 6H for mother</label>
+			  <obs conceptId="f0d21d70-986e-43ed-b72b-98c693c15f84" />
+			</p>
+		</td>
+		<td>
+			<p>
+			  <label>Delivered by</label>
+			  <encounterProviderAndRole encounterRole="240b26f9-dd88-4172-823d-4a8bfeb7841f" id="delivered-by" required="true" />
+			</p>
+		</td>
+	  </tr>
+      <tr>
+    	<td>
+			<p>
+			  <label>Date of discharge</label>
+			  <obs conceptId="ff31a419-0eb1-45fc-920a-77b4a3481e00" />
+			</p>
+		</td>
           <td>
             <p>
               <label>Name of person discharging</label>
-              <obs conceptId="1473AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+			  <encounterProviderAndRole encounterRole="a0b03050-c99b-11e0-9572-0800200c9a66" id="person-discharging" required="true" />
             </p>
           </td>
-          <td></td>
+          <td colspan="2"></td>
         </tr>
       </table>
     </fieldset>
