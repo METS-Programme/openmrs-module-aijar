@@ -279,16 +279,15 @@
 	        var diagnosisParentFieldsChange = function() {
 	        	var $parentField =  $(this),
 	        		$childFields = $(this).parents('span:first').siblings('span.child-diagnoses').find('input[type=checkbox]'),
-					$errorField = $parentField.siblings('span.error');
-				
+					//$errorField = $parentField.siblings('span.error');
+					$errorField = $childFields.siblings('span.error');
 				if ($parentField.is(':checked')) {
 					fieldHelper.enable($childFields);
-					var checkedChildFields = $childFields.filter(function() {
+					var $checkedChildFields = $childFields.filter(function() {
 						return this.checked == true;
 					});
-
-					if (checkedChildFields.length == 0) { //Show message if at least one of the child obs field is not selected
-						$errorField.html('Select at least one option below').show();
+					if ($checkedChildFields.length == 0) { //Show message if at least one of the child obs field is not selected
+						$errorField.html('Select at least one').show();
 					} else {
 						$errorField.html('').hide();
 					}
@@ -300,17 +299,18 @@
 	        };
 			
 			var diagnosisChildFieldsChange = function() {
-				var $childFields = jq('span.child-diagnoses').find('input[type=checkbox]'),
-					$thisField = jq(this),
-					$parentField = $thisField.parents('span.child-diagnoses').siblings('span.parent-diagnosis').find('input[type=checkbox]'),
-					$errorField = $parentField.siblings('span.error');
+				var $thisField = jq(this),
+					$container = $thisField.parents('span.child-diagnoses:first'),
+					$childFields = $container.find('input[type=checkbox]'),					
+					$parentField = $container.siblings('span.parent-diagnosis').find('input[type=checkbox]'),
+					$errorField = $childFields.siblings('span.error');
 
 				$errorField.html('').hide();
 				if ($thisField.is(':checked')) {
 					$childFields.attr('checked', false);
 					$thisField.attr('checked', true);
 				} else {
-					$errorField.html('Select at least one option below').show();
+					$errorField.html('Select at least one').show();
 				}
 			};
 
@@ -582,8 +582,8 @@
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
         	<td>
-        		<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="164917" answerLabel="Abortion due to other causes" style="checkbox" />
-        		<span>
+        		<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="164917" answerLabel="Abortion due to other causes" style="checkbox" class="parent-diagnosis" />
+        		<span class="child-diagnoses">
 	        		<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="120295" answerLabel="Complete" style="checkbox" class="horizontal-layout-options" />
 	        		<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="112416" answerLabel="Threatening" style="checkbox" class="horizontal-layout-options" />
 	        		<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="905" answerLabel="Missed" style="checkbox" class="horizontal-layout-options" />
@@ -591,11 +591,11 @@
 	        	</span>
         	</td>
           <td>
-            <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="dc69f6f5-30ab-102d-86b0-7a5022ba4115" answerLabel="Antepartum Haemorrhage (APH)" style="checkbox" />
-			<span>
-            	<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="130108" answerLabel="Placental Abruption" style="checkbox" class="horizontal-layout-options" />
-            	<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="114127" answerLabel="placenta Praevia" style="checkbox" class="horizontal-layout-options" />
-            	<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="130123" answerLabel="placenta  percreta" style="checkbox" class="horizontal-layout-options" />
+            <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="dc69f6f5-30ab-102d-86b0-7a5022ba4115" answerLabel="Antepartum Haemorrhage (APH)" style="checkbox" class="parent-diagnosis" />
+			<span class="child-diagnoses">
+            	<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="130108" answerLabel="Placental abruption" style="checkbox" class="horizontal-layout-options" />
+            	<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="114127" answerLabel="Placenta praevia" style="checkbox" class="horizontal-layout-options" />
+            	<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="130123" answerLabel="Placenta  percreta" style="checkbox" class="horizontal-layout-options" />
             </span>          
       		</td>
           <td>
@@ -643,16 +643,15 @@
           </td>
         </tr>
         <tr>
-		<td>
-			<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="164916" answerLabel="Abortion due to Gender based Violence" style="checkbox" />
-		</td>
-		<td>
-			 <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="129211" answerLabel="Premature rapture of Membranes" style="checkbox" />
-		</td>
-		<td>
-			<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Other" showCommentField="true" commentFieldLabel="&lt;label&gt;Specify&lt;/label&gt;" style="checkbox" class="has-comment" />
+			<td>
+				<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="164916" answerLabel="Abortion due to Gender based Violence" style="checkbox" />
 			</td>
-		<td></td>
+			<td>
+				 <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="129211" answerLabel="Premature rapture of Membranes" style="checkbox" />
+			</td>
+			<td colspan="2">
+				<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Other" showCommentField="true" commentFieldLabel="&lt;label&gt;Specify&lt;/label&gt;" style="checkbox" class="has-comment" />
+			</td>
         </tr>
       </table>
     </fieldset>
