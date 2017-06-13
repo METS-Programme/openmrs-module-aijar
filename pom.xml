@@ -67,7 +67,7 @@
 		<chartsearchVersion>2.1-SNAPSHOT</chartsearchVersion>
 		<coreappsVersion>1.14.0-SNAPSHOT</coreappsVersion>
 		<databaseBackupVersion>1.3.0</databaseBackupVersion>
-		<dataEntryStatisticsVersion>1.3.3</dataEntryStatisticsVersion>
+		<dataEntryStatisticsVersion>1.4.0-SNAPSHOT</dataEntryStatisticsVersion>
 		<dataexchangeVersion>1.3.2</dataexchangeVersion>
 		<dataintegrityVersion>4.3.0</dataintegrityVersion>
 		<emrapiVersion>1.21.0</emrapiVersion>
@@ -104,7 +104,7 @@
 		<xformsVersion>4.3.9</xformsVersion>
 
 		<!-- core configuration library -->
-		<ugandaemrReportsVersion>1.1.2</ugandaemrReportsVersion>
+		<ugandaemrReportsVersion>1.1.3-SNAPSHOT</ugandaemrReportsVersion>
 
 	</properties>
 
