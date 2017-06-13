@@ -220,28 +220,6 @@ public class PatientIdentifierTypes {
         }
     };
 
-	public static PatientIdentifierTypeDescriptor DISTRICT_TB_NUMBER = new PatientIdentifierTypeDescriptor() {
-
-		@Override
-		public String name() {
-			return "TB No.";
-		}
-
-		@Override
-		public String description() {
-			return "The district tuberculosis number assigned to a case";
-		}
-
-		public String uuid() {
-			return "8110f2d2-1f98-4c38-aef3-11b19bb0a589";
-		}
-
-		public String formatDescription() {
-			return " The first three letters of the district, followed by / then 3 digits of the case number then / then "
-					+ "two digits for the year";
-		}
-	};
-
     public static PatientIdentifierTypeDescriptor NATIONAL_ID = new PatientIdentifierTypeDescriptor() {
 
         @Override
@@ -293,72 +271,6 @@ public class PatientIdentifierTypes {
             return "37601abe-2ee0-4493-8ac7-22b4972190cf";
         }
     };
-
-	public static PatientIdentifierTypeDescriptor UNIT_TB_NUMBER = new PatientIdentifierTypeDescriptor() {
-
-		@Override
-		public String name() {
-			return "Unit TB No.";
-		}
-
-		@Override
-		public String description() {
-			return "The patient identifier assigned to a tuberculosis case by the Health unit providing care";
-		}
-
-		public String uuid() {
-			return "8fd5e225-f91a-44af-ba04-3b41428d2164";
-		}
-
-		public String formatDescription() {
-			return " The first 3 digits of the case number then / then "
-					+ "two digits for the year";
-		}
-	};    
-
-	public static PatientIdentifierTypeDescriptor HSD_TB_NUMBER = new PatientIdentifierTypeDescriptor() {
-
-		@Override
-		public String name() {
-			return "Health Sub-District TB No.";
-		}
-
-		@Override
-		public String description() {
-			return "The patient identifier assigned to a tuberculosis case by a health sub-district focal person "
-					+ "when being registered in the HSD register";
-		}
-
-		public String uuid() {
-			return "2a6f1f82-2b70-4a51-8507-3a849bc637c3";
-		}
-
-		public String formatDescription() {
-			return "";
-		}
-	};
-
-	public static PatientIdentifierTypeDescriptor TRANSFER_IN_UNIT_TB_NUMBER = new PatientIdentifierTypeDescriptor() {
-
-		@Override
-		public String name() {
-			return "Transfer In Unit TB No.";
-		}
-
-		@Override
-		public String description() {
-			return "The unit Tb Number assigned to a patient in the facility he/she is being transferred in from";
-		}
-
-		public String uuid() {
-			return "1d2be2a3-7d90-42a6-aasa5-a04b684a365b";
-		}
-
-		public String formatDescription() {
-			return " The first 3 digits of the case number then / then "
-					+ "two digits for the year";
-		}
-	};  
 
 	public static PatientIdentifierTypeDescriptor INTEGRATED_NUTRITION_REGISTER_NUMBER = new PatientIdentifierTypeDescriptor() {
 
