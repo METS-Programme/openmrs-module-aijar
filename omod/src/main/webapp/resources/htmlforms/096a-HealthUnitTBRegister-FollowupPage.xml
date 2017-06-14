@@ -41,7 +41,7 @@
             });
         </script>
     </includeIf>
-
+	<link href="/openmrs/ms/uiframework/resource/aijar/css/aijar2_0.css" rel="stylesheet" type="text/css">
 	<style type="text/css">
 	    table#drugs tbody td {
 	        width: 25;

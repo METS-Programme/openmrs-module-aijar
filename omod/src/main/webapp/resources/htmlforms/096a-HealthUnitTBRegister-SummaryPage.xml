@@ -11,6 +11,7 @@
           formDisplayStyle="Standard"
           formLabel="HMIS 096A Health Unit TB Form - Summary">
 
+	<link href="/openmrs/ms/uiframework/resource/aijar/css/aijar2_0.css" rel="stylesheet" type="text/css">
 	<style type="text/css">
 		form#htmlform div.ai-page-frame table>tbody tr:nth-child(odd) td {
 			background: #eeeeee;
