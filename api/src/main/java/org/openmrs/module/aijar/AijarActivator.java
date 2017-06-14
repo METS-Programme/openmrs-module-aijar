@@ -231,13 +231,13 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         List<GlobalProperty> properties = new ArrayList<GlobalProperty>();
         // The primary identifier type now uses metadata mapping instead of a global property
         MetadataMappingService metadataMappingService = Context.getService(MetadataMappingService.class);
-        MetadataTermMapping identifierTypeMapping = metadataMappingService.getMetadataTermMapping(EmrApiConstants.EMR_METADATA_SOURCE_NAME, EmrApiConstants.PRIMARY_IDENTIFIER_TYPE);
-        PatientIdentifierType openmrsIdType = Context.getPatientService().getPatientIdentifierTypeByUuid(PatientIdentifierTypes.OPENMRS_ID.uuid());
+        MetadataTermMapping primaryIdentifierTypeMapping = metadataMappingService.getMetadataTermMapping(EmrApiConstants.EMR_METADATA_SOURCE_NAME, EmrApiConstants.PRIMARY_IDENTIFIER_TYPE);
+        PatientIdentifierType openmrsIdType = Context.getPatientService().getPatientIdentifierTypeByUuid(PatientIdentifierTypes.NATIONAL_ID.uuid());
     
         //overwrite if not set yet
-        if(!openmrsIdType.getUuid().equals(identifierTypeMapping.getMetadataUuid())){
-            identifierTypeMapping.setMappedObject(openmrsIdType);
-            metadataMappingService.saveMetadataTermMapping(identifierTypeMapping);
+        if(!openmrsIdType.getUuid().equals(primaryIdentifierTypeMapping.getMetadataUuid())){
+            primaryIdentifierTypeMapping.setMappedObject(openmrsIdType);
+            metadataMappingService.saveMetadataTermMapping(primaryIdentifierTypeMapping);
         }
         
         String ART_Patient_Number_Identifier = "";
@@ -256,7 +256,6 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 
         // set the HIV care number and EID number as additional identifiers that can be searched for
         properties.add(new GlobalProperty(EmrApiConstants.GP_EXTRA_PATIENT_IDENTIFIER_TYPES,
-                PatientIdentifierTypes.NATIONAL_ID.uuid() + ",",
                 PatientIdentifierTypes.HIV_CARE_NUMBER.uuid() + "," + PatientIdentifierTypes.EXPOSED_INFANT_NUMBER.uuid()
                         + "," + PatientIdentifierTypes.IPD_NUMBER.uuid() + "," + PatientIdentifierTypes.ANC_NUMBER.uuid()+ "," + PatientIdentifierTypes.PNC_NUMBER.uuid()
                         + "," + PatientIdentifierTypes.HCT_NUMBER.uuid() + ART_Patient_Number_Identifier + Research_Patient_Identifier));

@@ -371,6 +371,9 @@
 					valid = false;
 	            }
 
+				//Clear validation messages displayed during a previously failed validation check
+				jq("span.error:visible:contains('Required'), span.error:visible:contains('Date without value')").html('').hide();
+
 	            if(jq('span.error.field-error:visible').length &gt; 0) {
 	            	valid = false;
 	            }
@@ -475,7 +478,23 @@
 						fieldHelper.clearAllFields($thisRow);
 					});
 				}
-			});			
+			});
+
+			// Disallow an entry from being selected twice in the autocomplete multiple entry sections 
+			jq(".autoCompleteText").on( "autocompleteselect", function( event, ui ) {
+
+				var $similarSelections = jq(this).parents('table:first').find('input.autoCompleteText:visible[type=text]').filter(function() {
+					return (jq(this).val() == ui.item.label);
+				});
+
+				if ($similarSelections.length &gt; 0 ) {
+					alert('The entry \'' + ui.item.label + '\' has already been selected');
+					return false;
+				} else {
+					return true;
+				}
+			});
+
 		});
   </script>
 
@@ -583,25 +602,25 @@
         <tr>
 			<td>
 				<p>
-				  <label>Blood pressure - Diastolic</label>
-				  <obs conceptId="5086" />
-				</p>
-			</td>
-			<td>
-				<p>
-				  <label>Blood pressure - Systolic</label>
+				  <label>Blood pressure - Systolic (mmHg)</label>
 				  <obs conceptId="5085" />
 				</p>
 			</td>
 			<td>
 				<p>
-				  <label>Blood sugar</label>
+				  <label>Blood pressure - Diastolic (mmHg)</label>
+				  <obs conceptId="5086" />
+				</p>
+			</td>
+			<td>
+				<p>
+				  <label>Blood sugar (mg/dl)</label>
 				  <obs conceptId="887" />
 				</p>
 			</td>
 			<td>
 				<p>
-				  <label>Temp</label>
+				  <label>Temp (<sup>o</sup>C)</label>
 				  <obs conceptId="5088" />
 				</p>
 			</td>
@@ -726,7 +745,7 @@
     </fieldset>
     <fieldset>
       <legend>New Diagnosis</legend>
-      <table width="100%" class="multi">
+      <table width="100%" class="multi" id="diagnosis">
       	<tbody>
 	 		<repeat>
 	 			<template>

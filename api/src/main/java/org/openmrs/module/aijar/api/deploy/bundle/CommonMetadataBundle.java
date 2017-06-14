@@ -26,7 +26,6 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         // install the patient identifier types
         log.info("Installing PatientIdentifierTypes");
         install(PatientIdentifierTypes.HIV_CARE_NUMBER);
-        install(PatientIdentifierTypes.DISTRICT_TB_NUMBER);
         install(PatientIdentifierTypes.OLD_OPENMRS_IDENTIFICATION_NUMBER);
         install(PatientIdentifierTypes.OPENMRS_ID);
         install(PatientIdentifierTypes.OPENMRS_IDENTIFICATION_NUMBER);
@@ -39,9 +38,6 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(PatientIdentifierTypes.ART_PATIENT_NUMBER);
         install(PatientIdentifierTypes.RESEARCH_PATIENT_ID);
         install(PatientIdentifierTypes.SMC_CLIENT_NUMBER);
-        install(PatientIdentifierTypes.UNIT_TB_NUMBER);
-        install(PatientIdentifierTypes.HSD_TB_NUMBER);
-        install(PatientIdentifierTypes.TRANSFER_IN_UNIT_TB_NUMBER);
         install(PatientIdentifierTypes.INTEGRATED_NUTRITION_REGISTER_NUMBER);
         log.info("Patient IdentifierTypes installed");
 
