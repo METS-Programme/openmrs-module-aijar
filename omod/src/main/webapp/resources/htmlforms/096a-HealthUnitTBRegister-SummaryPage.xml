@@ -1,5 +1,5 @@
-<htmlform formName="HMIS 096A Health Unit TB Form - Summary"
-          formDescription="HMIS 096A Health Unit TB Form - Summary"
+<htmlform formName="HMIS 096A Health Unit TB Form"
+          formDescription="HMIS 096A Health Unit TB Form"
           formEncounterType="334bf97e-28e2-4a27-8727-a5ce31c7cd66"
           formUuid="ec912f1c-dd2f-4e88-9f76-4f9f692fac2b"
           formVersion="1.0"
@@ -9,7 +9,7 @@
           formIcon="icon-medkit"
           formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='8ab22b55-9a17-4121-bf08-6134a9a2439f'"
           formDisplayStyle="Standard"
-          formLabel="HMIS 096A Health Unit TB Form - Summary">
+          formLabel="HMIS 096A Health Unit TB Form">
 
 	<style type="text/css">
 		form#htmlform div.ai-page-frame table>tbody tr:nth-child(odd) td {
@@ -727,7 +727,7 @@
 	</script>
   <div class="ai-page-frame">
     <div class="headers" style="text-align: center;">
-      <h3 style="background: #FFFF7D; padding: 10px;">HMIS 096A Health Unit TB Form - Summary</h3>
+      <h3 style="background: #FFFF7D; padding: 10px;">HMIS 096A Health Unit TB Form</h3>
     </div>
     <fieldset>
     	<legend>Summary Information</legend>
