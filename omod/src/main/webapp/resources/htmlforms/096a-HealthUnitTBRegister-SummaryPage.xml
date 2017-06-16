@@ -753,37 +753,6 @@
 			  </td>
 			</tr>
 			<tr>
-			  <td valign="top">
-			    <p>
-			      <label>Is patient a Health worker?</label>
-			      <obs 	conceptId="5619AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
-			      		answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
-			      		style="radio" id="health-worker" 
-			      		class="horizontal-layout-options" required="true" />
-			    </p>
-			  </td>
-			  <td>
-			    <p>
-			      <label>Cadre of health worker</label>
-			      <obs conceptId="1783AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
-			      		answerConceptIds="
-			      		162592AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-			      		162591AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-			      		164831AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-			      		1577AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-			      		1578AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-			      		1555AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-			      		163557AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-			      		7835a772-4b7c-491e-be3b-feda81bf104e,
-			      		5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
-			      		answerLabels="Clinical officer,Doctor, Laboratory Personnel, Nurse, Midwife, Community Health Worker,Dispenser,Dentist,Other" 
-			      		id="cadre-of-health-worker" />
-			    </p>
-			  </td>
-			  <td>
-			  </td>
-			</tr>
-			<tr>
 				<td>
 				    <p>
 				      <label>Name of contact person</label>
@@ -815,6 +784,37 @@
 								answerLabels="Parent,Child,Aunt/Uncle,Niece/Nephew,Grandparent,Grandchild,Brother/Sister,Cousin,Not family,Spouse/Partner,Friend" />
 					</p>
 				</td>
+			</tr>
+			<tr>
+			  <td valign="top">
+			    <p>
+			      <label>Is patient a Health worker?</label>
+			      <obs 	conceptId="5619AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
+			      		answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
+			      		style="radio" id="health-worker" 
+			      		class="horizontal-layout-options" required="true" />
+			    </p>
+			  </td>
+			  <td>
+			    <p>
+			      <label>Cadre of health worker</label>
+			      <obs conceptId="1783AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
+			      		answerConceptIds="
+			      		162592AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+			      		162591AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+			      		164831AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+			      		1577AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+			      		1578AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+			      		1555AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+			      		163557AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+			      		7835a772-4b7c-491e-be3b-feda81bf104e,
+			      		5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
+			      		answerLabels="Clinical officer,Doctor, Laboratory Personnel, Nurse, Midwife, Community Health Worker,Dispenser,Dentist,Other" 
+			      		id="cadre-of-health-worker" />
+			    </p>
+			  </td>
+			  <td>
+			  </td>
 			</tr>
 			<tr>
 				<td>
@@ -1194,6 +1194,11 @@
                 	<label>Name of drug</label>
               	</p>
             </th>
+            <th>
+            	<p>
+            		<label>Date Issued</label>
+            	</p>
+            </th>
             <th style="width:20%">
               	<p>
               		<label>Duration of treatment</label>
@@ -1216,12 +1221,10 @@
                     </p>
                   </td>
                   <td>
-                    <p>
-                      <obs 	conceptId="dc9b5b8f-30ab-102d-86b0-7a5022ba4115" 
-                      		answerConceptIds="1675,1678" 
-                      		answerLabels="RHZE,RHZ"
-                      		style="dropdown" />
-                    </p>
+	                  <obs 	conceptId="dc9b5b8f-30ab-102d-86b0-7a5022ba4115" 
+	                  		answerConceptIds="1675,1678" 
+	                  		answerLabels="RHZE,RHZ"
+	                  		style="dropdown" showDate="True" dateLabel="&lt;/td&gt;&lt;td&gt;" />
                   </td>
                   <td class="duration">
                     <p>
