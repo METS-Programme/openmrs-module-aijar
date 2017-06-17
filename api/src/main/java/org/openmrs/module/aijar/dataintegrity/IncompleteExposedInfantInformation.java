@@ -47,7 +47,7 @@ public class IncompleteExposedInfantInformation extends BasePatientRuleDefinitio
 	 */
 	public List<RuleResult<Patient>> exposedInfantsWithEncountersAndNOSummaryPage() {
 		log.info("Executing rule to find exposed infants with encounters but no summary page");
-		String queryString = "SELECT patient FROM Encounter e WHERE e.voided = false AND e.encounterType.uuid = '4345dacb-909d-429c-99aa-045f2db77e2b'"
+		String queryString = "SELECT patient FROM Encounter e WHERE e.voided = false AND e.patient.dead=0 AND e.encounterType.uuid = '4345dacb-909d-429c-99aa-045f2db77e2b'"
 				+ " AND e.patient.patientId NOT IN (SELECT ee.patient.patientId FROM Encounter ee WHERE ee.encounterType.uuid = '9fcfcc91-ad60-4d84-9710-11cc25258719') GROUP BY e.patient.patientId";
 		
 		Query query = getSession().createQuery(queryString);
@@ -74,7 +74,7 @@ public class IncompleteExposedInfantInformation extends BasePatientRuleDefinitio
 	 */
 	public List<RuleResult<Patient>> exposedInfantsWithSummaryPageNoEncounters() {
 		log.info("Executing rule to find exposed infants a summary page and no encounters");
-		String queryString = "SELECT patient FROM Encounter e WHERE e.voided = false AND e.encounterType.uuid = '9fcfcc91-ad60-4d84-9710-11cc25258719' AND e.patient.patientId NOT IN (SELECT ee.patient.patientId FROM Encounter ee WHERE ee.encounterType.uuid =  '4345dacb-909d-429c-99aa-045f2db77e2b') GROUP BY e.patient.patientId";
+		String queryString = "SELECT patient FROM Encounter e WHERE e.voided = false AND e.patient.dead=0 AND e.encounterType.uuid = '9fcfcc91-ad60-4d84-9710-11cc25258719' AND e.patient.patientId NOT IN (SELECT ee.patient.patientId FROM Encounter ee WHERE ee.encounterType.uuid =  '4345dacb-909d-429c-99aa-045f2db77e2b') GROUP BY e.patient.patientId";
 		
 		Query query = getSession().createQuery(queryString);
 		
@@ -99,7 +99,7 @@ public class IncompleteExposedInfantInformation extends BasePatientRuleDefinitio
 	 * @return
 	 */
 	public List<RuleResult<Patient>> exposedInfantsOlderThan18MonthsWithNoFinalOutcome() {
-		String queryString = "SELECT encounter FROM Obs o WHERE o.voided = false AND o.encounter.voided = false AND o.encounter.encounterType.uuid = '9fcfcc91-ad60-4d84-9710-11cc25258719' AND o.person.personId NOT IN (SELECT o.person.personId FROM Obs o WHERE o.voided = false AND o.concept.conceptId = 99428) GROUP BY o.person.personId";
+		String queryString = "SELECT encounter FROM Obs o WHERE o.voided = false AND o.encounter.voided = false AND o.person.dead=0 AND o.encounter.encounterType.uuid = '9fcfcc91-ad60-4d84-9710-11cc25258719' AND o.person.personId NOT IN (SELECT o.person.personId FROM Obs o WHERE o.voided = false AND o.concept.conceptId = 99428) GROUP BY o.person.personId";
 		
 		Query query = getSession().createQuery(queryString);
 		
@@ -141,7 +141,7 @@ public class IncompleteExposedInfantInformation extends BasePatientRuleDefinitio
 	}
 	
 	public List<RuleResult<Patient>> exposedInfantsWithNoMotherARTNumber() {
-		String queryString = "SELECT encounter FROM Obs o WHERE o.voided = false AND o.encounter.voided = false AND o.encounter.encounterType.uuid = '9fcfcc91-ad60-4d84-9710-11cc25258719' AND o.person.personId NOT IN (SELECT o.person.personId FROM Obs o WHERE o.voided = false AND o.concept.conceptId = 162874)";
+		String queryString = "SELECT encounter FROM Obs o WHERE o.voided = false AND o.encounter.voided = false AND o.person.dead=0 AND o.encounter.encounterType.uuid = '9fcfcc91-ad60-4d84-9710-11cc25258719' AND o.person.personId NOT IN (SELECT o.person.personId FROM Obs o WHERE o.voided = false AND o.concept.conceptId = 162874) GROUP BY o.person.personId";
 		
 		Query query = getSession().createQuery(queryString);
 		
@@ -151,12 +151,43 @@ public class IncompleteExposedInfantInformation extends BasePatientRuleDefinitio
 		Calendar today = new GregorianCalendar();
 		for (Encounter encounter : encounterList) {
 			RuleResult<Patient> ruleResult = new RuleResult<>();
-			ruleResult.setActionUrl(
+			String actionUrl =
 					"htmlformentryui/htmlform/enterHtmlFormWithStandardUi.page?formUuid=860c5f2f-cf3c-4c3f-b0c4-9958b6a5a938&patientId="
-							+ encounter.getPatient().getUuid() + "&encounterId=" + encounter.getEncounterId()
-							+ "&visitId=" + encounter.getVisit().getId());
+							+ encounter.getPatient().getUuid() + "&encounterId=" + encounter.getEncounterId();
+			if (encounter.getVisit() != null) {
+				actionUrl = actionUrl + "&visitId=" + encounter.getVisit().getId();
+			}
+			ruleResult.setActionUrl(actionUrl);
 			ruleResult.setNotes("Exposed Infant # " + getExposedInfantNumber(encounter.getPatient())
 					+ " has no ART Number for mother");
+			ruleResult.setEntity(encounter.getPatient());
+			
+			ruleResults.add(ruleResult);
+		}
+		
+		return ruleResults;
+	}
+	
+	public List<RuleResult<Patient>> exposedInfantsWithMotherARTNumberButNotLinked() {
+		String queryString = "SELECT encounter FROM Obs o WHERE o.voided = false AND o.encounter.voided = false AND o.person.dead=0 AND o.encounter.encounterType.uuid = '9fcfcc91-ad60-4d84-9710-11cc25258719' AND o.person.personId IN (SELECT o.person.personId FROM Obs o WHERE o.voided = false AND o.concept.conceptId = 162874) AND o.persond.personId NOT IN (SELECT r.personB.personId FROM Relationship r WHERE r.relationship.relationshipType.uuid = '8d91a210-c2cc-11de-8d13-0010c6dffd0f') GROUP BY o.person.personId";
+		
+		Query query = getSession().createQuery(queryString);
+		
+		List<Encounter> encounterList = query.list();
+		
+		List<RuleResult<Patient>> ruleResults = new ArrayList<>();
+		Calendar today = new GregorianCalendar();
+		for (Encounter encounter : encounterList) {
+			RuleResult<Patient> ruleResult = new RuleResult<>();
+			String actionUrl =
+					"htmlformentryui/htmlform/enterHtmlFormWithStandardUi.page?formUuid=860c5f2f-cf3c-4c3f-b0c4-9958b6a5a938&patientId="
+							+ encounter.getPatient().getUuid() + "&encounterId=" + encounter.getEncounterId();
+			if (encounter.getVisit() != null) {
+				actionUrl = actionUrl + "&visitId=" + encounter.getVisit().getId();
+			}
+			ruleResult.setActionUrl(actionUrl);
+			ruleResult.setNotes("Exposed Infant # " + getExposedInfantNumber(encounter.getPatient())
+					+ " has an ART Number for mother but is not linked to mother");
 			ruleResult.setEntity(encounter.getPatient());
 			
 			ruleResults.add(ruleResult);
