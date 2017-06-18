@@ -114,7 +114,9 @@
 				$muacSection,
 				$tbHivActivitiesSection,
 				$sputumSmearResultsField,
-				$sputumSmearDateField,
+				$sputumSmearResultsDateField,
+				$dstResultsField,
+				$dstResultsDateField,
 				$encounterDateField,
 				patientAge;
 		
@@ -136,8 +138,10 @@
 			$cadreOfHealthWorkerField = getField('cadre-of-health-worker.value');
 			$hivCounsellingAndTestingField = getField('hiv-counselling-and-testing.value');
 			$hivTestingDateField = getField('hiv-testing-date.value');
-			$sputumSmearResultsField = getField('sputum-smear-results.value');
-			$sputumSmearDateField = getField('sputum-smear-date.value');
+			$sputumSmearResultsField = jq('span.sputum-smear-results').find('select');
+			$sputumSmearResultsDateField = jq('span.sputum-smear-results-date').find('input');
+			$dstResultsField = jq('span.dst-results').find('select');
+			$dstResultsDateField = jq('span.dst-results-date').find('input');
 			$diseaseClassificationField = getField('disease-classification.value');
 			$patientReceivedResultsField = jq('#patient-received-hiv-results').find('input');
 			$patientHivTestResults = jq('#patient-hiv-results').find('input');
@@ -409,47 +413,67 @@
 			/*
 			*If Disease classification is PBC then require Sputum smear results (Pre-Rx) 
 			*/
+			/*
 			var sputumSmearResultsValidate = function() {
 				$diseaseClassification = getValue('disease-classification.value');
 				$sputumSmearResults = getValue('sputum-smear-results.value');
 				if ($diseaseClassification == PBC_CONCEPT_ID &amp;&amp; $sputumSmearResults == '') {
 					getField('sputum-smear-results.error').html('Results required for P-BC').show();
-					return false;					
+					return false;			
 				} else {
 					getField('sputum-smear-results.error').html('').hide();
 					return true;
 				}
 				
-			};
-
+			};*/
+			
 			var diseaseClassificationChange = function() {
 				if ($diseaseClassificationField.val() == PBC_CONCEPT_ID) {
 					fieldHelper.enable($sputumSmearResultsField);
 				} else {
 					fieldHelper.disable($sputumSmearResultsField);
-					fieldHelper.disable($sputumSmearDateField);
-					setValue('sputum-smear-results.value','');
-					setValue('sputum-smear-date.value','');
+					fieldHelper.disable($sputumSmearResultsDateField);
+					fieldHelper.clear($sputumSmearResultsField);
+					fieldHelper.clear($sputumSmearResultsDateField);
 				}
 			};
 			
-			/*
-			* Sputum examination date should be required when spartum results other than Not done are selected
+			/**
+			* If Sputum Smear Results has been provided then Sputum Smear Results date is required
 			*/
 			var sputumSmearResultsChange = function() {
-				var sputumSmearResult = $sputumSmearResultsField.val();
-				var $sputumSmearExaminationDateErrorField = getField('sputum-smear-date.error');
-				fieldHelper.enable($sputumSmearDateField);
-				if (sputumSmearResult != '' &amp;&amp; sputumSmearResult != NOT_DONE_CONCEPT_ID) {
-					if ($sputumSmearDateField.val() == '') {
-						$sputumSmearExaminationDateErrorField.html('Please enter examination date').show();
-					} else {
-						$sputumSmearExaminationDateErrorField.html('').hide(); 
-					}
+				var $sputumSmearResultsField = jq(this),
+					$sputumSmearResultsDateField = $sputumSmearResultsField.parents('tr:first').find('span.sputum-smear-results-date input'),
+					$errorField = $sputumSmearResultsDateField.siblings('span.error');
+				var sputumSmearResults = $sputumSmearResultsField.val(),
+					sputumSmearResultsDate = $sputumSmearResultsDateField.val();
+
+				if (sputumSmearResults != NOT_DONE_CONCEPT_ID &amp;&amp;  (sputumSmearResults != '' &amp;&amp; sputumSmearResultsDate == '')) {
+					fieldHelper.enable($sputumSmearResultsDateField);
+					$errorField.html('Sputum Results date is required').show();
 				} else {
-					fieldHelper.disable($sputumSmearDateField);
-					setValue('sputum-smear-date.value', '');
-					$sputumSmearExaminationDateErrorField.html('').hide(); 
+					$errorField.html('').hide();;
+					fieldHelper.disable($sputumSmearResultsDateField);
+				}
+			};
+
+			/**
+			* If DST Results has been provided then DST Results date is required
+			*/
+			var dstResultsChange = function () {
+				var $dstResultsField = jq(this),
+					$dstResultsDateField = $dstResultsField.parents('tr:first').find('span.dst-results-date input'),
+					$errorField = $dstResultsDateField.siblings('span.error');
+
+				var dstResults = $dstResultsField.val(),
+					dstResultsDate = $dstResultsDateField.val();
+
+				if (dstResults != '' &amp;&amp; dstResultsDate == '') {
+					$errorField.html('DST Results date is required').show();
+					fieldHelper.enable($dstResultsDateField);
+				} else {
+					$errorField.html('').hide();;
+					fieldHelper.disable($dstResultsDateField);
 				}
 			};
 			
@@ -480,7 +504,7 @@
 	                    fieldHelper.removeReadonly($specifyField);
 	                } else {
 	                    fieldHelper.makeReadonly($specifyField);
-	                    $specifyField.val('');
+	                    fieldHelper.clear($specifyField);
 	                }
 	            });
 	        };
@@ -494,26 +518,33 @@
 			    var $rows,
 			        $objectsToValidate;
 			    var dirty = false;
+				
+				$tables = jq('table.multi');
 
-			    $rows = jq('table.multi&gt;tbody tr:visible');
-			    $rows.each(function () {
-			        $objectsToValidate = jq(this).find('input,select'); //Get all text and combo boxes
-			        $objectsToValidate.removeClass('inError');
-			        $objectsToValidate.each(function () {
-			            $obj = jq(this);
-			            if ($obj.val() !== '') { //Only run the validatiion check if there's at least one element that is non-empty 
-			                $objectsToValidate.each(function () {
-			                    if (jq(this).val() === '') {
-			                        jq(this).addClass('inError');
-			                        jq(this).siblings('span.error').html('Required').show()
-			                        dirty = true;
-			                    } else {
-			                    	jq(this).siblings('span.error').html('').hide();
-			                    }
-			                });
-			            }
-			        });
-			    });
+				$tables.each(function() {
+					var $table = jq(this);
+					if ($table.is('.novalidate') == false) { //Don't validate tables marked with the 'novalidate' css class
+					    $rows = $table.find('&gt;tbody tr:visible');
+					    $rows.each(function () {
+					        $objectsToValidate = jq(this).find('input,select'); //Get all text and combo boxes
+					        $objectsToValidate.removeClass('inError');
+					        $objectsToValidate.each(function () {
+					            $obj = jq(this);
+					            if ($obj.val() !== '') { //Only run the validatiion check if there's at least one element that is non-empty 
+					                $objectsToValidate.each(function () {
+					                    if (jq(this).val() === '') {
+					                        jq(this).addClass('inError');
+					                        jq(this).siblings('span.error').html('Required').show()
+					                        dirty = true;
+					                    } else {
+					                    	jq(this).siblings('span.error').html('').hide();
+					                    }
+					                });
+					            }
+					        });
+					    });
+					}					
+				});
 
 			    return !dirty;
 			}
@@ -529,7 +560,9 @@
 			$hivCounsellingAndTestingField.change(hivCounsellingAndTestingChange);
 			$diseaseClassificationField.change(diseaseClassificationChange);
 			$sputumSmearResultsField.change(sputumSmearResultsChange);
-			$sputumSmearDateField.change(sputumSmearResultsChange);
+			$sputumSmearResultsDateField.change(sputumSmearResultsChange);
+			$dstResultsField.change(dstResultsChange);
+			$dstResultsDateField.change(dstResultsChange);
 			$patientReceivedResultsField.change(patientReceivedHivResultsChange);
 			$othersField.change(toggleOtherSpecify);
 
@@ -544,20 +577,6 @@
 				}
 			}
 
-			$('table#drugs').find('input[type=radio]').click(function() {
-				if (this.checked == true) {
-					var $drugCombo = $(this).parents('tr:first').find('select:first');
-					var idsToDisable = []; 
-					if (this.value == INTENSIVE_CONCEPT_ID) {
-						idsToDisable.push(RHZ_CONCEPT_ID);
-					} else if (this.value == CONTINOUS_CONCEPT_ID) {
-						idsToDisable.push(RHZE_CONCEPT_ID);
-					}
-					disableSelectOption($drugCombo, idsToDisable);
-					$drugCombo.val('');
-				}
-			});
-
 			transferInFromChange();
 			onCptChange();
 			muacColorCodeChange();
@@ -569,7 +588,8 @@
 			diseaseClassificationChange();
 			getHivStatus();
 			moveXRayCommentField();
-			sputumSmearResultsChange();
+			$sputumSmearResultsField.each(sputumSmearResultsChange)
+			$dstResultsField.each(dstResultsChange);
 			patientReceivedHivResultsChange();
 			toggleOtherSpecify();
 		
@@ -601,9 +621,9 @@
 					valid = false;
 				}
 
-				if (!sputumSmearResultsValidate()) {
-					valid = false;
-				}
+				//if (!sputumSmearResultsValidate()) {
+				//	valid = false;
+				//}
 
 	            if (!multipleEntryValidated()) {
 					valid = false;
@@ -893,13 +913,13 @@
 		              <obs 	conceptId="dc74ab15-30ab-102d-86b0-7a5022ba4115" 
 		              		answerConceptIds="dc9825cf-30ab-102d-86b0-7a5022ba4115,dc85aa72-30ab-102d-86b0-7a5022ba4115,9a1da4c4-8b3e-4abe-8973-81ed7f3be2fa,6a248b5a-e5f1-4b54-afaf-fbdce9e4d4d2,f7fb1ddc-c1cd-4f69-83fa-1e5ba5a7506b,c039361d-3bf7-47ac-81d0-4baaa62da73a,d9ef7712-ff3e-4106-aed2-59eb162531a0,068b6480-c6c1-4b07-ad21-2c7526713c91,3ff926cf-ce67-40da-b4d6-adc5fc08a073,e7724a60-58a6-4b99-aa5c-03a10393d5fd,39a9b825-a033-48cf-8b71-d2e0170dc6e0,389fd35a-5ce0-415f-b00b-096bf67880af,16e293b5-09eb-433d-a2d0-aa8ee33c7d51,681629aa-86f7-4efc-bce2-3ce589ca7fa1" 
 		              		answerLabels="ND - Not Done ,NEG - 0AFB/100, 1 - 1AFB/100 ,2 - 2AFB/100 ,3 - 3AFB/100 ,4 - 4AFB/100 ,5 - 5AFB/100,6 - 6AFB/100,7 - 7AFB/100,8 - 8AFB/100,9 - 9AFB/100,+ - 10-99 AFB/100 Fields,++ - 1-10 AFB/Field,+++ - &gt;10AFB/Field" 
-		              		id="sputum-smear-results" style="dropdown" />
+		              		class="sputum-smear-results" style="dropdown" />
 		            </p>
 				</td>
 				<td>
 					<p>
 						<label>Sputum Smear Examination Date</label>
-						<obs conceptId="e761b90d-8346-49b3-a754-5cfbd26ee43b" id="sputum-smear-date" />
+						<obs conceptId="e761b90d-8346-49b3-a754-5cfbd26ee43b" class="sputum-smear-results-date" />
 					</p>
 				</td>
 			</tr>
@@ -984,7 +1004,7 @@
 
     <fieldset>
       <legend>Sputum smear follow up and DST results</legend>
-      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="multi" >
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="multi novalidate" >
       	<tbody>
 		  <repeat>
 	      	<template>
@@ -996,13 +1016,13 @@
 				              <obs 	conceptId="307" 
 				              		answerConceptIds="1118,664,164422,164423,164424,164425,164426,164427,164428,164429,164430,99388,99389,99390" 
 				              		answerLabels="ND - Not Done ,NEG - 0AFB/100, 1 - 1AFB/100 ,2 - 2AFB/100 ,3 - 3AFB/100 ,4 - 4AFB/100 ,5 - 5AFB/100,6 - 6AFB/100,7 - 7AFB/100,8 - 8AFB/100,9 - 9AFB/100,+ - 10-99AFB/Field,++ - 1-10AFB/Field,+++ - &gt;10AFB/Field" 
-				              		id="sputum-smear-results" style="dropdown" />
+				              		class="sputum-smear-results" style="dropdown" />
 				            </p>
 						</td>
 						<td>
 							<p>
 								<label>Sputum Smear Examination Date</label>
-								<obs conceptId="99392" id="sputum-smear-date" />
+								<obs conceptId="99392" class="sputum-smear-results-date" />
 							</p>
 						</td>
 						<td>
@@ -1011,13 +1031,13 @@
 							  <obs 	conceptId="159984AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
 							  		answerConceptIds="164366,164432,159345,664,164367,159346" 
 							  		answerLabels="1 - Rif Monoresistant,2- INH Monoresistant,3 - MDR Confirmed,4 - Polyresistant,5 - Pan Sensitive, 6- XDR Confirmed" 
-							  		style="dropdown" />
+							  		style="dropdown" class="dst-results" />
 							</p>
 						</td>
 						<td>
 							<p>
 							  <label>Date of DST results</label>
-							  <obs conceptId="164396" />
+							  <obs conceptId="164396" class="dst-results-date" />
 							</p>
 						</td>
 						<td align="center">
