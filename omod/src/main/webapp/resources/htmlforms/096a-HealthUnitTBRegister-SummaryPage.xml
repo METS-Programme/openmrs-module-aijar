@@ -409,71 +409,16 @@
 					return true;
 				}
 			}
-
-			/*
-			*If Disease classification is PBC then require Sputum smear results (Pre-Rx) 
-			*/
-			/*
-			var sputumSmearResultsValidate = function() {
-				$diseaseClassification = getValue('disease-classification.value');
-				$sputumSmearResults = getValue('sputum-smear-results.value');
-				if ($diseaseClassification == PBC_CONCEPT_ID &amp;&amp; $sputumSmearResults == '') {
-					getField('sputum-smear-results.error').html('Results required for P-BC').show();
-					return false;			
-				} else {
-					getField('sputum-smear-results.error').html('').hide();
-					return true;
-				}
-				
-			};*/
 			
 			var diseaseClassificationChange = function() {
 				if ($diseaseClassificationField.val() == PBC_CONCEPT_ID) {
 					fieldHelper.enable($sputumSmearResultsField);
+					fieldHelper.enable($sputumSmearResultsDateField);
 				} else {
 					fieldHelper.disable($sputumSmearResultsField);
 					fieldHelper.disable($sputumSmearResultsDateField);
 					fieldHelper.clear($sputumSmearResultsField);
 					fieldHelper.clear($sputumSmearResultsDateField);
-				}
-			};
-			
-			/**
-			* If Sputum Smear Results has been provided then Sputum Smear Results date is required
-			*/
-			var sputumSmearResultsChange = function() {
-				var $sputumSmearResultsField = jq(this),
-					$sputumSmearResultsDateField = $sputumSmearResultsField.parents('tr:first').find('span.sputum-smear-results-date input'),
-					$errorField = $sputumSmearResultsDateField.siblings('span.error');
-				var sputumSmearResults = $sputumSmearResultsField.val(),
-					sputumSmearResultsDate = $sputumSmearResultsDateField.val();
-
-				if (sputumSmearResults != NOT_DONE_CONCEPT_ID &amp;&amp;  (sputumSmearResults != '' &amp;&amp; sputumSmearResultsDate == '')) {
-					fieldHelper.enable($sputumSmearResultsDateField);
-					$errorField.html('Sputum Results date is required').show();
-				} else {
-					$errorField.html('').hide();;
-					fieldHelper.disable($sputumSmearResultsDateField);
-				}
-			};
-
-			/**
-			* If DST Results has been provided then DST Results date is required
-			*/
-			var dstResultsChange = function () {
-				var $dstResultsField = jq(this),
-					$dstResultsDateField = $dstResultsField.parents('tr:first').find('span.dst-results-date input'),
-					$errorField = $dstResultsDateField.siblings('span.error');
-
-				var dstResults = $dstResultsField.val(),
-					dstResultsDate = $dstResultsDateField.val();
-
-				if (dstResults != '' &amp;&amp; dstResultsDate == '') {
-					$errorField.html('DST Results date is required').show();
-					fieldHelper.enable($dstResultsDateField);
-				} else {
-					$errorField.html('').hide();;
-					fieldHelper.disable($dstResultsDateField);
 				}
 			};
 			
@@ -559,10 +504,6 @@
 			$healthWorkerField.change(healthWorkerChange);
 			$hivCounsellingAndTestingField.change(hivCounsellingAndTestingChange);
 			$diseaseClassificationField.change(diseaseClassificationChange);
-			$sputumSmearResultsField.change(sputumSmearResultsChange);
-			$sputumSmearResultsDateField.change(sputumSmearResultsChange);
-			$dstResultsField.change(dstResultsChange);
-			$dstResultsDateField.change(dstResultsChange);
 			$patientReceivedResultsField.change(patientReceivedHivResultsChange);
 			$othersField.change(toggleOtherSpecify);
 
@@ -588,8 +529,6 @@
 			diseaseClassificationChange();
 			getHivStatus();
 			moveXRayCommentField();
-			$sputumSmearResultsField.each(sputumSmearResultsChange)
-			$dstResultsField.each(dstResultsChange);
 			patientReceivedHivResultsChange();
 			toggleOtherSpecify();
 		
