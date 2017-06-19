@@ -144,6 +144,8 @@
   <concept concept_id="159635" retired="false" datatype_id="3" class_id="7" is_set="false" creator="1" date_created="2010-10-31 22:02:07.0" version="" uuid="159635AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
   <concept concept_id="164958" retired="false" datatype_id="4" class_id="11" is_set="false" creator="1" date_created="2017-06-14 20:33:45.0" uuid="d250bcae-5889-4bb4-9903-e47f8594f746"/>
   <concept concept_id="163756" retired="false" datatype_id="3" class_id="11" is_set="false" creator="1" date_created="2016-07-30 22:50:31.0" version="" uuid="163756AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+  <concept concept_id="164960" retired="false" datatype_id="4" class_id="3" is_set="false" creator="1" date_created="2017-06-19 06:01:17.0" uuid="7f47837f-1ea5-4a99-b4dd-5ca268d24ba8"/>
+  <concept concept_id="164961" retired="false" datatype_id="4" class_id="3" is_set="false" creator="1" date_created="2017-06-19 06:02:20.0" uuid="eb1f1131-d0e2-414a-94a5-d5c7ad126c9f"/>
   <concept_numeric concept_id="162584" units="" precise="false"/>
   <concept_numeric concept_id="164419" units="" precise="false"/>
   <concept_numeric concept_id="164421" units="" precise="false"/>
@@ -776,6 +778,8 @@
   <concept_name concept_id="163756" name="Mwa evalyasyon tib&#232;kiloz" locale="ht" creator="1" date_created="2016-07-30 22:50:31.0" concept_name_id="139275" voided="false" voided_by="1" uuid="139275BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
   <concept_name concept_id="163756" name="Tuberculosis evaluation month" locale="en" creator="1" date_created="2016-07-30 22:50:31.0" concept_name_id="139276" voided="false" voided_by="1" uuid="139276BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
   <concept_name concept_name_id="141255" concept_id="164957" name="X-RAY EXAM DATE" locale="en" locale_preferred="false" creator="1" date_created="2017-06-02 07:36:01.0" voided="false" uuid="60ed037d-2f30-49c4-a5fd-d43ba0b122f1"/>
+  <concept_name concept_name_id="141258" concept_id="164960" name="2RHZE/10RH" locale="en" locale_preferred="true" creator="1" date_created="2017-06-19 06:01:17.0" concept_name_type="FULLY_SPECIFIED" voided="false" uuid="7d95496d-39b9-418a-80a6-65b259d1f799"/>
+  <concept_name concept_name_id="141259" concept_id="164961" name="2RHZE/4RH" locale="en" locale_preferred="true" creator="1" date_created="2017-06-19 06:02:20.0" concept_name_type="FULLY_SPECIFIED" voided="false" uuid="45d8790a-4d9d-46a5-a8b6-40f4b13fee04"/>
   <concept_answer concept_answer_id="1908" concept_id="512" answer_concept="1066" creator="1" date_created="2009-07-14 11:31:52.0" uuid="1908CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" sort_weight="1908.0"/>
   <concept_answer concept_answer_id="1909" concept_id="512" answer_concept="1067" creator="1" date_created="2009-07-14 11:31:52.0" uuid="1909CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" sort_weight="1909.0"/>
   <concept_answer concept_answer_id="1910" concept_id="512" answer_concept="1065" creator="1" date_created="2009-07-14 11:31:52.0" uuid="1910CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" sort_weight="1910.0"/>
@@ -974,6 +978,12 @@
   <concept_answer concept_answer_id="5170" concept_id="5619" answer_concept="1065" creator="1" date_created="2014-11-17 03:56:18.0" uuid="5170CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" sort_weight="5170.0"/>
   <concept_answer concept_answer_id="5171" concept_id="5619" answer_concept="1066" creator="1" date_created="2014-11-17 03:56:18.0" uuid="5171CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" sort_weight="5171.0"/>
   <concept_answer concept_answer_id="5172" concept_id="5619" answer_concept="1067" creator="1" date_created="2014-11-17 03:56:18.0" uuid="5172CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" sort_weight="5172.0"/>
+  <concept_answer concept_answer_id="1887" concept_id="99374" answer_concept="99373" creator="1" date_created="2012-08-04 00:21:56.0" sort_weight="1.0" uuid="0e58adbc-8785-494d-8efd-6c1c99a92e69"/>
+  <concept_answer concept_answer_id="1888" concept_id="99374" answer_concept="99372" creator="1" date_created="2012-08-04 00:21:56.0" sort_weight="2.0" uuid="25f69143-53ea-4bf8-9e92-4f27ceac02bb"/>
+  <concept_answer concept_answer_id="6810" concept_id="99374" answer_concept="164960" creator="1" date_created="2017-06-19 06:10:01.0" sort_weight="3.0" uuid="1e0ef2eb-8b1f-4943-96b7-f70e7c30009c"/>
+  <concept_answer concept_answer_id="6811" concept_id="99374" answer_concept="164958" creator="1" date_created="2017-06-19 06:10:01.0" sort_weight="4.0" uuid="5b2a2656-fa9f-4ee9-88d9-d7fe2a3d9c11"/>
+  <concept_answer concept_answer_id="6812" concept_id="99374" answer_concept="99371" creator="1" date_created="2017-06-19 06:10:01.0" sort_weight="5.0" uuid="2fab9917-ad38-4b74-9561-b971adfef968"/>
+  <concept_answer concept_answer_id="6813" concept_id="99374" answer_concept="164961" creator="1" date_created="2017-06-19 06:10:01.0" sort_weight="6.0" uuid="cdaad2e7-5f27-49a7-9b45-a664a674f3e8"/>  
   <concept_set concept_set_id="1860" concept_id="162583" concept_set="1732" sort_weight="0.0" creator="1" date_created="2014-10-02 19:58:53.0" uuid="1860AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>
   <concept_set concept_set_id="1861" concept_id="1733" concept_set="1732" sort_weight="1.0" creator="1" date_created="2014-10-02 19:58:53.0" uuid="1861AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>
   <concept_set concept_set_id="1862" concept_id="1822" concept_set="1732" sort_weight="2.0" creator="1" date_created="2014-10-02 19:58:53.0" uuid="1862AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>
