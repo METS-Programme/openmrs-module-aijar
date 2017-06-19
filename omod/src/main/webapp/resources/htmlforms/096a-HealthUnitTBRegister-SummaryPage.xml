@@ -269,7 +269,7 @@
 		    };
 
 		    var hideCounsellinAndTestingOptionsForHivNegativePerson = function() {
-				var counsellingTestingOptionsToHide = [99407];
+				var counsellingTestingOptionsToHide = [];
 				var optionsToHide =  $hivCounsellingAndTestingField.children('option').filter(function() {
 					return counsellingTestingOptionsToHide.indexOf(parseInt(this.value)) &gt; -1;
 				});
@@ -318,6 +318,9 @@
 						fieldIdsToExempt.push(jq(this).attr('id'));
 					});
 					$onCptField.each(function() {
+						fieldIdsToExempt.push(jq(this).attr('id'));
+					});
+					$onArtField.each(function() {
 						fieldIdsToExempt.push(jq(this).attr('id'));
 					});
 					disableFieldsInContainer($tbHivActivitiesSection, fieldIdsToExempt);
@@ -1182,7 +1185,7 @@
                   <td>
 	                  <obs 	conceptId="dc9b5b8f-30ab-102d-86b0-7a5022ba4115" 
 	                  		answerConceptIds="1675,1678" 
-	                  		answerLabels="RHZE,RHZ"
+	                  		answerLabels="RHZE,RH"
 	                  		style="dropdown" showDate="True" dateLabel="&lt;/td&gt;&lt;td&gt;" />
                   </td>
                   <td class="duration">
