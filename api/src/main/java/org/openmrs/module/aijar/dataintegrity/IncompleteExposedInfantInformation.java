@@ -38,6 +38,7 @@ public class IncompleteExposedInfantInformation extends BasePatientRuleDefinitio
 		ruleResults.addAll(exposedInfantsWithSummaryPageNoEncounters());
 		ruleResults.addAll(exposedInfantsOlderThan18MonthsWithNoFinalOutcome());
 		ruleResults.addAll(exposedInfantsWithNoMotherARTNumber());
+		ruleResults.addAll(exposedInfantsWithMotherARTNumberButNotLinked());
 		return ruleResults;
 	}
 	
