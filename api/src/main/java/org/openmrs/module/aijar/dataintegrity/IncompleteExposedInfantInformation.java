@@ -170,7 +170,7 @@ public class IncompleteExposedInfantInformation extends BasePatientRuleDefinitio
 	}
 	
 	public List<RuleResult<Patient>> exposedInfantsWithMotherARTNumberButNotLinked() {
-		String queryString = "SELECT encounter FROM Obs o WHERE o.voided = false AND o.encounter.voided = false AND o.person.dead=0 AND o.encounter.encounterType.uuid = '9fcfcc91-ad60-4d84-9710-11cc25258719' AND o.person.personId IN (SELECT o.person.personId FROM Obs o WHERE o.voided = false AND o.concept.conceptId = 162874) AND o.persond.personId NOT IN (SELECT r.personB.personId FROM Relationship r WHERE r.relationship.relationshipType.uuid = '8d91a210-c2cc-11de-8d13-0010c6dffd0f') GROUP BY o.person.personId";
+		String queryString = "SELECT encounter FROM Obs o WHERE o.voided = false AND o.encounter.voided = false AND o.person.dead=0 AND o.encounter.encounterType.uuid = '9fcfcc91-ad60-4d84-9710-11cc25258719' AND o.person.personId IN (SELECT o.person.personId FROM Obs o WHERE o.voided = false AND o.concept.conceptId = 162874) AND o.person.personId NOT IN (SELECT r.personB.personId FROM Relationship r WHERE r.relationshipType.uuid = '8d91a210-c2cc-11de-8d13-0010c6dffd0f') GROUP BY o.person.personId";
 		
 		Query query = getSession().createQuery(queryString);
 		
