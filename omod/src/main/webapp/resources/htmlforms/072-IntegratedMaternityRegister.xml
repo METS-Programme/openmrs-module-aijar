@@ -27,14 +27,6 @@
 	<ifMode mode="ENTER">
 			<script>
 				jQuery(document).ready(function() {
-					/*
-					 * If a mother is already in care (has an ART encounter) then the HIV+ field must be automatically selected
-					 */
-					<includeIf velocityTest="$fn.allEncounters('8d5b2be0-c2cc-11de-8d13-0010c6dffd0f').size() &gt; 0">
-						setValue('hiv-status.value', 90166);
-					</includeIf>
-					
-
 					<!--
 					 /*
 					 *When the page is loaded with no providers with the Midwife role - a Javascript message must be shown and the user forwarded to the manage Users page
@@ -86,6 +78,10 @@
 
 	        const YES_CONCEPT_ID = 1065;
 	        const NO_CONCEPT_ID = 1066;
+
+	        const 	TRRK_CONCEPT_ID = 99738,
+	        		TRRP_CONCEPT_ID = 99736,
+	        		TRR_CONCEPT_ID = 99315;
 
 	        const HIV_INFORMATION_SECTION = '#hiv-information-section';
 	        const PRE_ART_NUMBER_FIELD = '#pre-art-number';
@@ -144,7 +140,6 @@
 	                fieldHelper.enable($arvsAdministeredToBabyField);
 	                fieldHelper.enable($hivInformationSection.find('input,select'));
 	                fieldHelper.enable($preArtNumberField);
-					hideOtherEmtctCodesForKnownHivPositiveStatus();
 	            } else {
 	                $hivInformationSection.find('input[type="text"],select').each(function() {
 	                	var isEmtctCodeField = jq(this).parents('span:first').length &gt; 0 &amp;&amp; jq(this).parents('span:first').attr('class').indexOf('emtct-code') != -1; //Check if current control is an eMTCT Code field
@@ -156,8 +151,6 @@
 	                });
 	                fieldHelper.disable($arvsAdministeredToBabyField);
 	                fieldHelper.disable($preArtNumberField);
-	                showOtherEmtctCodesForKnownHivNegativeStatus();
-
 	            }
 	            viralLoadResultsChange();
 	        };
@@ -384,8 +377,8 @@
 					hideOtherEmtctCodesForKnownHivPositiveStatus();
 				} else {
 					hivStatusChange(HIV_NEGATIVE_CONCEPT_ID);
+					showOtherEmtctCodesForKnownHivNegativeStatus();
 				}
-
 		    };
 
 			var babyValidated = function () {
@@ -427,6 +420,14 @@
 	        $diagnosisParentFields.change(diagnosisParentFieldsChange);
 	        $diagnosisChildFields.change(diagnosisChildFieldsChange);
 	        $encounterDateField.change(getHivStatus);
+	        $emtctCodeWomanField.change(function() {
+	        	var emtctCode = getValue('emtct-code-woman.value');
+	        	if (emtctCode == TRR_CONCEPT_ID || emtctCode == TRRK_CONCEPT_ID || emtctCode == TRRP_CONCEPT_ID ) {
+		        	hivStatusChange(HIV_POSITIVE_CONCEPT_ID);
+	        	} else {
+		        	hivStatusChange(HIV_NEGATIVE_CONCEPT_ID); 	
+	        	}
+	        });
 
 			getHivStatus();
 	        viralLoadResultsChange();
@@ -713,6 +714,56 @@
       <legend>HIV Information</legend>
       <table width="100%" border="0" cellspacing="0" cellpadding="0" id="hiv-information-section">
         <tr>
+          <td colspan="2">
+            <p>
+              <label>eMTCT Code: Woman</label>
+              <obs conceptId="d5b0394c-424f-41db-bc2f-37180dcdbe74" 
+              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,
+				              	05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7,
+				              	86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,
+				              	a08d9331-b437-485c-8eff-1923f3d43630,
+				              	25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465,
+				              	60155e4d-1d49-4e97-9689-758315967e0f,
+				              	81bd3e58-9389-41e7-be1a-c6723f899e56,
+				              	1f177240-85f6-4f10-964a-cfc7722408b3" 
+              	answerLabels=	"C - Counselled but declined HIV testing,
+              					T - Counselled and tested but didn't receive results,
+              					TR - Counselled tested and results given - Client tested HIV - in maternity,
+              					TR+ - Tested HIV- on retest,
+              					TRR - Counselled tested and results given - Client tested HIV + in maternity,
+              					TRR+ - Client was originally negative but sero-converted at this test,
+              					TRK - New ANC clients with Known HIV- status,
+              					TRRK - New ANC clients with Known HIV+ status" 
+	                style="dropdown" required="true" class="emtct-code" id="emtct-code-woman" />
+            </p>
+          </td>
+          <td colspan="2">
+            <p>
+              <label>eMTCT Code: Partner</label>
+              <obs conceptId="62a37075-fc2a-4729-8950-b9fae9b22cfb" 
+              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,
+				              	05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7,
+				              	86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,
+				              	a08d9331-b437-485c-8eff-1923f3d43630,
+				              	25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465,
+				              	60155e4d-1d49-4e97-9689-758315967e0f,
+				              	81bd3e58-9389-41e7-be1a-c6723f899e56,
+				              	1f177240-85f6-4f10-964a-cfc7722408b3,
+				              	8eab745c-24a5-4ba4-906c-b5087e920b66" 
+              	answerLabels="C - Counselled but declined HIV testing,
+              					T - Counselled and tested but didn't receive results,
+              					TR - Counselled tested and results given - Client tested HIV - in maternity,
+              					TR+ - Tested HIV- on retest,
+              					TRR - Counselled tested and results given - Client tested HIV + in maternity,
+              					TRR+ - Client was originally negative but sero-converted at this test,
+              					TRK - New ANC clients with Known HIV- status,
+              					TRRK - New ANC clients with Known HIV+ status,
+	              				Not Tested"
+	                style="dropdown" class="emtct-code" id="emtct-code-partner" />
+            </p>
+          </td>
+        </tr>
+        <tr>
           <td>
             <p>
               <label>WHO Clinical Stage</label>
@@ -761,56 +812,6 @@
           				answerConceptIds="a4089d8e-9ea6-4fff-b273-415c6640203a,f56e8d46-5b2f-488b-861a-94a89d16adf6"
           				answerLabels="Suppressed,Non-suppressed" id="viral-load-status" />
           	</p>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2">
-            <p>
-              <label>eMTCT Code: Woman</label>
-              <obs conceptId="d5b0394c-424f-41db-bc2f-37180dcdbe74" 
-              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,
-				              	05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7,
-				              	86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,
-				              	a08d9331-b437-485c-8eff-1923f3d43630,
-				              	25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465,
-				              	60155e4d-1d49-4e97-9689-758315967e0f,
-				              	81bd3e58-9389-41e7-be1a-c6723f899e56,
-				              	1f177240-85f6-4f10-964a-cfc7722408b3" 
-              	answerLabels=	"C - Counselled but declined HIV testing,
-              					T - Counselled and tested but didn't receive results,
-              					TR - Counselled tested and results given - Client tested HIV - in maternity,
-              					TR+ - Tested HIV- on retest,
-              					TRR - Counselled tested and results given - Client tested HIV + in maternity,
-              					TRR+ - Client was originally negative but sero-converted at this test,
-              					TRK - New ANC clients with Known HIV- status,
-              					TRRK - New ANC clients with Known HIV+ status" 
-	                style="dropdown" required="true" class="emtct-code" id="emtct-code-woman" />
-            </p>
-          </td>
-          <td colspan="2">
-            <p>
-              <label>eMTCT Code: Partner</label>
-              <obs conceptId="62a37075-fc2a-4729-8950-b9fae9b22cfb" 
-              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,
-				              	05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7,
-				              	86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,
-				              	a08d9331-b437-485c-8eff-1923f3d43630,
-				              	25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465,
-				              	60155e4d-1d49-4e97-9689-758315967e0f,
-				              	81bd3e58-9389-41e7-be1a-c6723f899e56,
-				              	1f177240-85f6-4f10-964a-cfc7722408b3,
-				              	8eab745c-24a5-4ba4-906c-b5087e920b66" 
-              	answerLabels="C - Counselled but declined HIV testing,
-              					T - Counselled and tested but didn't receive results,
-              					TR - Counselled tested and results given - Client tested HIV - in maternity,
-              					TR+ - Tested HIV- on retest,
-              					TRR - Counselled tested and results given - Client tested HIV + in maternity,
-              					TRR+ - Client was originally negative but sero-converted at this test,
-              					TRK - New ANC clients with Known HIV- status,
-              					TRRK - New ANC clients with Known HIV+ status,
-	              				Not Tested"
-	                style="dropdown" class="emtct-code" id="emtct-code-partner" />
-            </p>
           </td>
         </tr>
       </table>
