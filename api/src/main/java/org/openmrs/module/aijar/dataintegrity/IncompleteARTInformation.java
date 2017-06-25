@@ -84,7 +84,7 @@ public class IncompleteARTInformation extends BasePatientRuleDefinition {
 				actionUrl = actionUrl +"&visitId=" + encounter.getVisit().getId();
 			}
 			ruleResult.setActionUrl(actionUrl);
-			ruleResult.setNotes("Client# " + getHIVClinicNumber(encounter.getPatient()) + " has no ART Start Date");
+			ruleResult.setNotes("Client #" + getHIVClinicNumber(encounter.getPatient()) + " has no ART Start Date");
 			ruleResult.setEntity(encounter.getPatient());
 			
 			ruleResults.add(ruleResult);
@@ -99,7 +99,7 @@ public class IncompleteARTInformation extends BasePatientRuleDefinition {
 	 */
 	private List<RuleResult<Patient>> patientsOnARTWithOtherRegimen() {
 		log.info("Executing rule to find patients on ART with Other as a regimen");
-		String queryString = "SELECT o.encounter from Obs o WHERE o.voided = false AND o.person.dead=0 AND o.concept.conceptId = 90315 AND o.valueCoded.conceptId = 90002";
+		String queryString = "SELECT o.encounter from Obs o WHERE o.voided = false AND o.person.dead=0 AND o.concept.conceptId = 90315 AND o.valueCoded.conceptId = 90002 GROUP BY o.person.personId";
 		
 		Query query = getSession().createQuery(queryString);
 		

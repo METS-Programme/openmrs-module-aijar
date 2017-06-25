@@ -60,7 +60,7 @@ public class IncompleteExposedInfantInformation extends BasePatientRuleDefinitio
 		for (Patient patient : patientList) {
 			RuleResult<Patient> ruleResult = new RuleResult<>();
 			ruleResult.setActionUrl("coreapps/patientdashboard/patientDashboard.page?patientId=" + patient.getUuid());
-			ruleResult.setNotes("Exposed Infant # " + getExposedInfantNumber(patient) + " has no Summary Page");
+			ruleResult.setNotes("Exposed Infant #" + getExposedInfantNumber(patient) + " has no Summary Page");
 			ruleResult.setEntity(patient);
 			
 			ruleResults.add(ruleResult);
@@ -86,7 +86,7 @@ public class IncompleteExposedInfantInformation extends BasePatientRuleDefinitio
 		for (Patient patient : patientList) {
 			RuleResult<Patient> ruleResult = new RuleResult<>();
 			ruleResult.setActionUrl("coreapps/patientdashboard/patientDashboard.page?patientId=" + patient.getUuid());
-			ruleResult.setNotes("Exposed Infant # " + getExposedInfantNumber(patient) + " has no Encounters");
+			ruleResult.setNotes("Exposed Infant #" + getExposedInfantNumber(patient) + " has no Encounters");
 			ruleResult.setEntity(patient);
 			
 			ruleResults.add(ruleResult);
@@ -119,7 +119,7 @@ public class IncompleteExposedInfantInformation extends BasePatientRuleDefinitio
 					actionUrl = actionUrl + "&visitId=" + encounter.getVisit().getId();
 				}
 				ruleResult.setActionUrl(actionUrl);
-				ruleResult.setNotes("Exposed Infant # " + getExposedInfantNumber(encounter.getPatient())
+				ruleResult.setNotes("Exposed Infant #" + getExposedInfantNumber(encounter.getPatient())
 						+ " is over 18 months with no final outcome");
 				ruleResult.setEntity(encounter.getPatient());
 				
@@ -159,7 +159,7 @@ public class IncompleteExposedInfantInformation extends BasePatientRuleDefinitio
 				actionUrl = actionUrl + "&visitId=" + encounter.getVisit().getId();
 			}
 			ruleResult.setActionUrl(actionUrl);
-			ruleResult.setNotes("Exposed Infant # " + getExposedInfantNumber(encounter.getPatient())
+			ruleResult.setNotes("Exposed Infant #" + getExposedInfantNumber(encounter.getPatient())
 					+ " has no ART Number for mother");
 			ruleResult.setEntity(encounter.getPatient());
 			
@@ -187,7 +187,7 @@ public class IncompleteExposedInfantInformation extends BasePatientRuleDefinitio
 				actionUrl = actionUrl + "&visitId=" + encounter.getVisit().getId();
 			}
 			ruleResult.setActionUrl(actionUrl);
-			ruleResult.setNotes("Exposed Infant # " + getExposedInfantNumber(encounter.getPatient())
+			ruleResult.setNotes("Exposed Infant #" + getExposedInfantNumber(encounter.getPatient())
 					+ " has an ART Number for mother but is not linked to mother");
 			ruleResult.setEntity(encounter.getPatient());
 			
