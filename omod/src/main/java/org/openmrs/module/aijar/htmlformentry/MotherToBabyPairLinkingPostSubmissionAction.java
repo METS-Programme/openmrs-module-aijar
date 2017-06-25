@@ -15,6 +15,7 @@ import org.openmrs.api.ConceptService;
 import org.openmrs.api.PatientService;
 import org.openmrs.api.PersonService;
 import org.openmrs.api.context.Context;
+import org.openmrs.module.aijar.api.AijarService;
 import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
 import org.openmrs.module.htmlformentry.CustomFormSubmissionAction;
 import org.openmrs.module.htmlformentry.FormEntrySession;
@@ -26,12 +27,12 @@ public class MotherToBabyPairLinkingPostSubmissionAction implements CustomFormSu
 	
 	protected final Log log = LogFactory.getLog(getClass());
 	
+	private AijarService aijarService;
 	private PersonService personService;
-	private PatientService patientService;
 	
 	public MotherToBabyPairLinkingPostSubmissionAction() {
+		this.aijarService = Context.getService(AijarService.class);
 		this.personService = Context.getPersonService();
-		this.patientService = Context.getPatientService();
 	}
 	
 	@Override
@@ -42,25 +43,7 @@ public class MotherToBabyPairLinkingPostSubmissionAction implements CustomFormSu
 			// Find the mother using her ART number saved
 			for (Obs obs: formEntrySession.getEncounter().getAllObs(false)) {
 				if (obs.getConcept().getId() == 162874) {
-					
-					// find the mother by identifier
-					List<Patient> mothers = patientService.getPatients(null, // name of the person
-							obs.getValueText(), //mother ART number
-							Arrays.asList(Context.getPatientService().getPatientIdentifierTypeByUuid(
-									PatientIdentifierTypes.HIV_CARE_NUMBER.uuid())), // ART Number Identifier type
-							true); // match Identifier exactly
-					if (mothers.size() != 0) {
-						Person potentialMother = mothers.get(0).getPerson();
-						// mothers have to be female and above 12 years of age
-						if (potentialMother.getAge() > 12 & potentialMother.getGender().equals("F")) {
-							Relationship relationship = new Relationship();
-							relationship.setRelationshipType(
-									personService.getRelationshipTypeByUuid("8d91a210-c2cc-11de-8d13-0010c6dffd0f"));
-							relationship.setPersonA(potentialMother);
-							relationship.setPersonB(infant);
-							personService.saveRelationship(relationship);
-						}
-					}
+					aijarService.linkExposedInfantToMotherViaARTNumber(infant, obs.getValueText());
 				}
 			}
 		}
@@ -80,7 +63,7 @@ public class MotherToBabyPairLinkingPostSubmissionAction implements CustomFormSu
 				}
 			}
 		}
-				
+		
 		return hasMother;
 	}
 }
