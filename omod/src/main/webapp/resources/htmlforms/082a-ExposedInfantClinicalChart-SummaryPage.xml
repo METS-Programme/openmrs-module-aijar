@@ -19,7 +19,7 @@
             #if( $encounter != 0 )
                 &lt;script type=&quot;text/javascript&quot;>
                         if (window.location.href.indexOf('/module/htmlformentry/htmlForm.form') == -1) {
-                            window.location.href = window.location.protocol + &quot;//&quot; + window.location.host + &quot;/&quot;+ OPENMRS_CONTEXT_PATH + &quot;/htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=$encounter.patientId&amp;visitId=$encounter.visit.visitId&amp;formUuid=860c5f2f-cf3c-4c3f-b0c4-9958b6a5a938&amp;encounterId=$encounter.encounterId&amp;returnUrl=%2F&quot; + OPENMRS_CONTEXT_PATH + &quot;%2Fcoreapps%2Fclinicianfacing%2Fpatient.page%3FpatientId%3D$encounter.patientId&quot;;
+                            window.location.href = window.location.protocol + &quot;//&quot; + window.location.host + &quot;/&quot;+ OPENMRS_CONTEXT_PATH + &quot;/htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=$patient.patientId&amp;visitId=$encounter.visit.visitId&amp;formUuid=860c5f2f-cf3c-4c3f-b0c4-9958b6a5a938&amp;encounterId=$encounter.encounterId&amp;returnUrl=%2F&quot; + OPENMRS_CONTEXT_PATH + &quot;%2Fcoreapps%2Fclinicianfacing%2Fpatient.page%3FpatientId%3D$patient.patientId&quot;;
                         }
                 &lt;/script>
             #end"/>
