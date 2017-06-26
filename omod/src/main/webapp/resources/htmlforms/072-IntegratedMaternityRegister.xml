@@ -27,14 +27,6 @@
 	<ifMode mode="ENTER">
 			<script>
 				jQuery(document).ready(function() {
-					/*
-					 * If a mother is already in care (has an ART encounter) then the HIV+ field must be automatically selected
-					 */
-					<includeIf velocityTest="$fn.allEncounters('8d5b2be0-c2cc-11de-8d13-0010c6dffd0f').size() &gt; 0">
-						setValue('hiv-status.value', 90166);
-					</includeIf>
-					
-
 					<!--
 					 /*
 					 *When the page is loaded with no providers with the Midwife role - a Javascript message must be shown and the user forwarded to the manage Users page
@@ -87,12 +79,17 @@
 	        const YES_CONCEPT_ID = 1065;
 	        const NO_CONCEPT_ID = 1066;
 
+	        const 	TRRK_CONCEPT_ID = 99738,
+	        		TRRP_CONCEPT_ID = 99736,
+	        		TRR_CONCEPT_ID = 99315;
+
 	        const HIV_INFORMATION_SECTION = '#hiv-information-section';
 	        const PRE_ART_NUMBER_FIELD = '#pre-art-number';
 	        const ARVS_ADMINISTERED_TO_BABY_FIELD = '#arvs-administered-to-baby';
 	        const IYCF_FIELD = '#iycf';
 
-	        var $hivStatusField = getField('hiv-status.value');
+            var $viralLoadField = getField('viral-load.value');
+			var $viralLoadStatusField = getField('viral-load-status.value');
 	        var $viralLoadResultsField = getField('viral-load-results.value');
 	        var $iycfField = jq(IYCF_FIELD).find('input');
 	        var $arvsToMotherField = getField('arvs-to-mother.value');
@@ -106,47 +103,54 @@
 
 	        var viralLoadResultsChange = function() {
 	            var $viralLoadResults = getValue('viral-load-results.value');
-	            var $viralLoadField = getField('viral-load.value');
-
 	            fieldHelper.removeReadonly($viralLoadField);
 	            fieldHelper.enable($viralLoadField);
+	            fieldHelper.disable($viralLoadStatusField);
 	            if ($viralLoadResults == VIRAL_LOAD_NOT_DETECTED_CONCEPT_ID) { //if viral load quantitive is 'not detected' set a viral load count of 1
 	                $viralLoadField.val(1);
 	                $viralLoadField.change();
 	                fieldHelper.makeReadonly($viralLoadField);
+					setValue('viral-load-status.value','');
 	            } else if($viralLoadResults == VIRAL_LOAD_DETECTED_CONCEPT_ID) { //if viral load quantitive is 'detected' allow for entry of viral load count
 	                if ($viralLoadField.val() == 1) {
 		                $viralLoadField.val("");
 		                $viralLoadField.change();
 	                }
+	                fieldHelper.enable($viralLoadStatusField);
 	            } else { //if viral load quantitive is 'rejected' clear viral load count field
 	                $viralLoadField.val("");
 	                $viralLoadField.change();
 	                fieldHelper.disable($viralLoadField);
+					setValue('viral-load-status.value','');
 	            }
 	        };
 
-	        var hivStatusChange = function () {
-	            var $hivStatus = getValue('hiv-status.value');
+	        /**
+	        * This function checks if the HIV status field has been locked(Contains the 'locked' class )
+	        */
+	        var isHivStatusFieldLocked = function () {
+	            return $hivStatusField.is('.locked');
+	        }
+
+	        var hivStatusChange = function (hivStatus) {
 	            var $hivInformationSection = jq(HIV_INFORMATION_SECTION);
 	            var $arvsAdministeredToBabyField = jq(ARVS_ADMINISTERED_TO_BABY_FIELD).find('input');
-	            if ($hivStatus == HIV_POSITIVE_CONCEPT_ID) {
+	            if (hivStatus == HIV_POSITIVE_CONCEPT_ID) {
 	                fieldHelper.enable($hivInformationSection.find('input'));
 	                fieldHelper.enable($arvsAdministeredToBabyField);
 	                fieldHelper.enable($hivInformationSection.find('input,select'));
-	                fieldHelper.enable($arvsToMotherField);
+	                fieldHelper.enable($preArtNumberField);
 	            } else {
-	                $hivInformationSection.find('input,select').each(function() {
+	                $hivInformationSection.find('input[type="text"],select').each(function() {
 	                	var isEmtctCodeField = jq(this).parents('span:first').length &gt; 0 &amp;&amp; jq(this).parents('span:first').attr('class').indexOf('emtct-code') != -1; //Check if current control is an eMTCT Code field
-
-	                    if (jq(this).attr('id') == $hivStatusField.attr('id') || isEmtctCodeField ) {
+	                    if ( isEmtctCodeField ) {
 	                        fieldHelper.enable(jq(this));
 	                    } else {
 	                        fieldHelper.disable(jq(this));
 	                    }
 	                });
-	                $arvsAdministeredToBabyField.attr('disabled', true);
-	                fieldHelper.disable($arvsToMotherField);
+	                fieldHelper.disable($arvsAdministeredToBabyField);
+	                fieldHelper.disable($preArtNumberField);
 	            }
 	            viralLoadResultsChange();
 	        };
@@ -348,7 +352,7 @@
 		    };
 
 		    var showOtherEmtctCodesForKnownHivNegativeStatus = function() {
-				var emtctCodesToHide = [99738];
+				var emtctCodesToHide = [];
 				var emtctControlsToHide =  $emtctCodeWomanField.children('option').filter(function() {
 					return emtctCodesToHide.indexOf(parseInt(this.value)) &gt; -1;
 				});
@@ -358,18 +362,6 @@
 		    };
 
 		    var getHivStatus = function () {
-		    	/**
-		    	* HIV Status field should be selected if patient is HIV +ve 
-		    	*/
-				var hivStatus = <lookup complexExpression="#set ($hivStatus = $fn.earliestObs(HIV_STATUS_CONCEPT_ID).valueCoded)
-															#if ($hivStatus) $hivStatus;
-															#else '';
-															#end" />
-
-				if (hivStatus == HIV_POSITIVE_CONCEPT_ID) {
-					$hivStatusField.val(hivStatus);
-				}
-
 				/**
 				* Make HIV Status field not changeable only if the encounter date of the ART summary 
 				* page encounter (as we shall be entering retrospective data) is before the date of 
@@ -381,49 +373,13 @@
 																		#else '';
 																		#end"/>
 				if (artSummaryEncounterDate !='' &amp;&amp; artSummaryEncounterDate &lt; visitDate) {
-					$hivStatusField.addClass('locked');
-					$hivStatusField.val(HIV_POSITIVE_CONCEPT_ID);
-					$hivStatusField.change();
+					hivStatusChange(HIV_POSITIVE_CONCEPT_ID);
 					hideOtherEmtctCodesForKnownHivPositiveStatus();
 				} else {
-					fieldHelper.enable($hivStatusField);
+					hivStatusChange(HIV_NEGATIVE_CONCEPT_ID);
+					showOtherEmtctCodesForKnownHivNegativeStatus();
 				}
 		    };
-
-	        /**
-	        * This function checks if the HIV status field has been locked(Contains the 'locked' class )
-	        */
-	        var isHivStatusFieldLocked = function () {
-	            return $hivStatusField.is('.locked');
-	        }
-
-	        var hivStatusChange = function () {
-	            var $hivStatus = getValue('hiv-status.value');
-	            var $hivInformationSection = jq(HIV_INFORMATION_SECTION);
-	            var $arvsAdministeredToBabyField = jq(ARVS_ADMINISTERED_TO_BABY_FIELD).find('input');
-	            if ($hivStatus == HIV_POSITIVE_CONCEPT_ID) {
-	                fieldHelper.enable($hivInformationSection.find('input'));
-	                fieldHelper.enable($arvsAdministeredToBabyField);
-	                fieldHelper.enable($hivInformationSection.find('input,select'));
-	                fieldHelper.enable($arvsToMotherField);
-	                fieldHelper.enable($preArtNumberField);
-	                hideOtherEmtctCodesForKnownHivPositiveStatus();
-	            } else {
-	                $hivInformationSection.find('input[type="text"],select').each(function() {
-	                	var isEmtctCodeField = jq(this).parents('span:first').length &gt; 0 &amp;&amp; jq(this).parents('span:first').attr('class').indexOf('emtct-code') != -1; //Check if current control is an eMTCT Code field
-	                    if (jq(this).attr('id') == $hivStatusField.attr('id') || isEmtctCodeField ) {
-	                        fieldHelper.enable(jq(this));
-	                    } else {
-	                        fieldHelper.disable(jq(this));
-	                    }
-	                });
-	                fieldHelper.disable($arvsAdministeredToBabyField);
-	                fieldHelper.disable($arvsToMotherField);
-	                fieldHelper.disable($preArtNumberField);
-					showOtherEmtctCodesForKnownHivNegativeStatus();
-	            }
-	            viralLoadResultsChange();
-	        };
 
 			var babyValidated = function () {
 			    var $tables;
@@ -457,25 +413,24 @@
 
 	        $othersField.change(toggleOtherSpecify);
 
-	        $hivStatusField.change(function(){
-	            if (isHivStatusFieldLocked()) {
-					setValue('hiv-status.value',HIV_POSITIVE_CONCEPT_ID);
-	            } else {
-	            	hivStatusChange();
-	            }
-	        });
 	        $viralLoadResultsField.change(viralLoadResultsChange);
-	        $hivStatusField.change(hivStatusChange);
 	        $iycfField.change(iycfChange);
 	        $arvsToMotherField.change(arvsToMotherChange);
 	        $gestationWeeksField.change(setDelivery);
 	        $diagnosisParentFields.change(diagnosisParentFieldsChange);
 	        $diagnosisChildFields.change(diagnosisChildFieldsChange);
 	        $encounterDateField.change(getHivStatus);
+	        $emtctCodeWomanField.change(function() {
+	        	var emtctCode = getValue('emtct-code-woman.value');
+	        	if (emtctCode == TRR_CONCEPT_ID || emtctCode == TRRK_CONCEPT_ID || emtctCode == TRRP_CONCEPT_ID ) {
+		        	hivStatusChange(HIV_POSITIVE_CONCEPT_ID);
+	        	} else {
+		        	hivStatusChange(HIV_NEGATIVE_CONCEPT_ID); 	
+	        	}
+	        });
 
 			getHivStatus();
 	        viralLoadResultsChange();
-	        hivStatusChange();
 	        iycfChange();
 	        arvsToMotherChange();
 	        $diagnosisParentFields.each(diagnosisParentFieldsChange);
@@ -665,7 +620,7 @@
           <td>
             <p>
               <label>Weeks of gestation</label>
-              <obs conceptId="8c40b914-10a0-4f77-92ba-db242973748f" id="gestation-weeks"/>
+              <obs conceptId="dca0a383-30ab-102d-86b0-7a5022ba4115" id="gestation-weeks"/>
             </p>
           </td>
           <td>
@@ -759,55 +714,6 @@
       <legend>HIV Information</legend>
       <table width="100%" border="0" cellspacing="0" cellpadding="0" id="hiv-information-section">
         <tr>
-          <td>
-            <p>
-              <label>HIV Status</label>
-              <obs conceptId="dce0e886-30ab-102d-86b0-7a5022ba4115" answerConceptIds="dcdf4241-30ab-102d-86b0-7a5022ba4115,dcdf4653-30ab-102d-86b0-7a5022ba4115,1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="dropdown" id="hiv-status" required="true"/>
-            </p>
-          </td>
-          <td>
-            <p>
-              <label>WHO Clinical Stage</label>
-              <obs conceptId="dcdff274-30ab-102d-86b0-7a5022ba4115"
-                   answerConceptIds="dcda2bc2-30ab-102d-86b0-7a5022ba4115,dcda3251-30ab-102d-86b0-7a5022ba4115,dcda3663-30ab-102d-86b0-7a5022ba4115,dcda3a80-30ab-102d-86b0-7a5022ba4115,dd25e735-30ab-102d-86b0-7a5022ba4115,dd2666a5-30ab-102d-86b0-7a5022ba4115,dd266d64-30ab-102d-86b0-7a5022ba4115,dd269c18-30ab-102d-86b0-7a5022ba4115"
-                   answerLabels="1,2,3,4,T1,T2,T3,T4" style="dropdown" />
-            </p>
-          </td>
-          <td>
-            <p>
-              <label>CD4 Date</label>
-              <obs conceptId="159376AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" allowFutureDates="false" />
-            </p>
-          </td>
-          <td>
-            <p>
-              <label>CD4 Count</label>
-              <obs conceptId="dcbcba2c-30ab-102d-86b0-7a5022ba4115" />
-            </p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>
-              <label>Viral Load Date</label>
-              <obs conceptId="0b434cfa-b11c-4d14-aaa2-9aed6ca2da88" allowFutureDates="false"/>
-            </p>
-          </td>
-          <td>
-            <p>
-              <label>Viral Load Results</label>
-              <obs conceptId="dca12261-30ab-102d-86b0-7a5022ba4115" answerConceptIds="dca1269d-30ab-102d-86b0-7a5022ba4115,dca10c94-30ab-102d-86b0-7a5022ba4115,dca11907-30ab-102d-86b0-7a5022ba4115" answerLabels="Not Detected,Detected,Sample Rejected" style="dropdown" id="viral-load-results" />
-            </p>
-          </td>
-          <td>
-            <p>
-              <label>Viral Load (copies/ml)</label>
-              <obs conceptId="dc8d83e3-30ab-102d-86b0-7a5022ba4115" id="viral-load" />
-            </p>
-          </td>
-          <td></td>
-        </tr>
-        <tr>
           <td colspan="2">
             <p>
               <label>eMTCT Code: Woman</label>
@@ -842,7 +748,8 @@
 				              	25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465,
 				              	60155e4d-1d49-4e97-9689-758315967e0f,
 				              	81bd3e58-9389-41e7-be1a-c6723f899e56,
-				              	1f177240-85f6-4f10-964a-cfc7722408b3" 
+				              	1f177240-85f6-4f10-964a-cfc7722408b3,
+				              	8eab745c-24a5-4ba4-906c-b5087e920b66" 
               	answerLabels="C - Counselled but declined HIV testing,
               					T - Counselled and tested but didn't receive results,
               					TR - Counselled tested and results given - Client tested HIV - in maternity,
@@ -850,9 +757,61 @@
               					TRR - Counselled tested and results given - Client tested HIV + in maternity,
               					TRR+ - Client was originally negative but sero-converted at this test,
               					TRK - New ANC clients with Known HIV- status,
-              					TRRK - New ANC clients with Known HIV+ status" 
+              					TRRK - New ANC clients with Known HIV+ status,
+	              				Not Tested"
 	                style="dropdown" class="emtct-code" id="emtct-code-partner" />
             </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>
+              <label>WHO Clinical Stage</label>
+              <obs conceptId="dcdff274-30ab-102d-86b0-7a5022ba4115"
+                   answerConceptIds="dcda2bc2-30ab-102d-86b0-7a5022ba4115,dcda3251-30ab-102d-86b0-7a5022ba4115,dcda3663-30ab-102d-86b0-7a5022ba4115,dcda3a80-30ab-102d-86b0-7a5022ba4115,dd25e735-30ab-102d-86b0-7a5022ba4115,dd2666a5-30ab-102d-86b0-7a5022ba4115,dd266d64-30ab-102d-86b0-7a5022ba4115,dd269c18-30ab-102d-86b0-7a5022ba4115"
+                   answerLabels="1,2,3,4,T1,T2,T3,T4" style="dropdown" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>CD4 Date</label>
+              <obs conceptId="159376AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" allowFutureDates="false" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>CD4 Count</label>
+              <obs conceptId="dcbcba2c-30ab-102d-86b0-7a5022ba4115" />
+            </p>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <p>
+              <label>Viral Load Date</label>
+              <obs conceptId="0b434cfa-b11c-4d14-aaa2-9aed6ca2da88" allowFutureDates="false"/>
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Viral Load Results</label>
+              <obs conceptId="dca12261-30ab-102d-86b0-7a5022ba4115" answerConceptIds="dca1269d-30ab-102d-86b0-7a5022ba4115,dca10c94-30ab-102d-86b0-7a5022ba4115,dca11907-30ab-102d-86b0-7a5022ba4115" answerLabels="Not Detected,Detected,Sample Rejected" style="dropdown" id="viral-load-results" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label>Viral Load (copies/ml)</label>
+              <obs conceptId="dc8d83e3-30ab-102d-86b0-7a5022ba4115" id="viral-load" />
+            </p>
+          </td>
+          <td>
+          	<p>
+          		<label>Viral Load Status</label>
+          		<obs 	conceptId="fcb5ef91-ad8f-44bc-ac5f-9ffb29881e59" 
+          				answerConceptIds="a4089d8e-9ea6-4fff-b273-415c6640203a,f56e8d46-5b2f-488b-861a-94a89d16adf6"
+          				answerLabels="Suppressed,Non-suppressed" id="viral-load-status" />
+          	</p>
           </td>
         </tr>
       </table>
