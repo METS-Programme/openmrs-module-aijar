@@ -27,7 +27,6 @@
 			<version>${project.parent.version}</version>
 		</dependency>
 		
-		
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
 			<artifactId>${project.parent.artifactId}-api</artifactId>
@@ -36,7 +35,7 @@
 			<scope>test</scope>
 		</dependency>
 		
-				
+		
 		<!-- End OpenMRS modules -->
 		
 
@@ -342,7 +341,7 @@
 			<plugin>
 				<groupId>org.openmrs.maven.plugins</groupId>
 				<artifactId>openmrs-sdk-maven-plugin</artifactId>
-				<version>3.7.0</version>
+				<version>3.9.0</version>
 				<executions>
 					<execution>
 						<id>build-distro</id>
