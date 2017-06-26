@@ -13,6 +13,8 @@
  */
 package org.openmrs.module.aijar.api;
 
+import org.openmrs.Patient;
+import org.openmrs.Person;
 import org.openmrs.api.OpenmrsService;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,7 +32,9 @@ import org.springframework.transaction.annotation.Transactional;
 public interface AijarService extends OpenmrsService {
      
 	/*
-	 * Add service methods here
+	 * Link the infant with the A
 	 * 
 	 */
+	public void linkExposedInfantToMotherViaARTNumber(Patient infant, String motherARTNumber);
+	public void linkExposedInfantToMotherViaARTNumber(Person infant, String motherARTNumber);
 }
