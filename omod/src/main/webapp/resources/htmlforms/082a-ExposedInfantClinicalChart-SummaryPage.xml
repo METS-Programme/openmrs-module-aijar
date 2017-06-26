@@ -10,6 +10,7 @@
           formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; patient.person.age &lt; 6 &amp;&amp; sessionLocation.uuid=='e9bc61b5-69ff-414b-9cf0-0c22d6dfca2b'"
           formDisplayStyle="Standard"
           formLabel="EID Card - Summary form">
+    <postSubmissionAction class="org.openmrs.module.aijar.htmlformentry.MotherToBabyPairLinkingPostSubmissionAction"/>
 
     <ifMode mode="EDIT" include="false">
         <lookup complexExpression="
@@ -18,7 +19,7 @@
             #if( $encounter != 0 )
                 &lt;script type=&quot;text/javascript&quot;>
                         if (window.location.href.indexOf('/module/htmlformentry/htmlForm.form') == -1) {
-                            window.location.href = window.location.protocol + &quot;//&quot; + window.location.host + &quot;/&quot;+ OPENMRS_CONTEXT_PATH + &quot;/htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=$encounter.patientId&amp;visitId=$encounter.visit.visitId&amp;formUuid=860c5f2f-cf3c-4c3f-b0c4-9958b6a5a938&amp;encounterId=$encounter.encounterId&amp;returnUrl=%2F&quot; + OPENMRS_CONTEXT_PATH + &quot;%2Fcoreapps%2Fclinicianfacing%2Fpatient.page%3FpatientId%3D$encounter.patientId&quot;;
+                            window.location.href = window.location.protocol + &quot;//&quot; + window.location.host + &quot;/&quot;+ OPENMRS_CONTEXT_PATH + &quot;/htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=$patient.patientId&amp;visitId=$encounter.visit.visitId&amp;formUuid=860c5f2f-cf3c-4c3f-b0c4-9958b6a5a938&amp;encounterId=$encounter.encounterId&amp;returnUrl=%2F&quot; + OPENMRS_CONTEXT_PATH + &quot;%2Fcoreapps%2Fclinicianfacing%2Fpatient.page%3FpatientId%3D$patient.patientId&quot;;
                         }
                 &lt;/script>
             #end"/>
