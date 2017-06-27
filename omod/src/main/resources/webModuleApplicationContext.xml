@@ -52,6 +52,12 @@
 					<property name="resourcePath" value="js/aijar.js" />
 					<property name="priority" value="-200" />
 				</bean>
+				<bean class="org.openmrs.ui.framework.resource.Resource">
+					<property name="category" value="js" />
+					<property name="providerName" value="${project.parent.artifactId}" />
+					<property name="resourcePath" value="js/jquery-migrate.1.4.1.min.js" />
+					<property name="priority" value="-100" />
+				</bean>
 			</list>
 		</property>
 	</bean>
