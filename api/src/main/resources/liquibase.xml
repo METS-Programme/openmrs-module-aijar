@@ -8,6 +8,12 @@
         See http://www.liquibase.org/manual/home#available_database_refactorings
         for a list of supported elements and attributes
     -->
+	<changeSet id="ugandaemr-06272017-2053" author="ssmusoke">
+		<comment>Delete corrupted metadata mapping terms from xstream 2.07 and lower for Encounter Types</comment>
+		<sql>
+		UPDATE metadatamapping_metadata_term_mapping SET metadata_class = 'org.openmrs.EncounterType' WHERE metadata_class = 'org.openmrs.EncounterType_$$_jvstbd5_23'
+		</sql>
+	</changeSet>
 	<changeSet id="ugandaemr-06232017-1639" author="ssmusoke">
 		<preConditions onFail="MARK_RAN">
 			<sqlCheck expectedResult="0">
