@@ -47,6 +47,12 @@
             min-width: 50%;
         }
 
+        form#htmlform div.ai-page-frame table tbody td {
+            background: #B6D6E6;
+            color: #404040;
+            padding: 0px 5px;
+        }
+
         .row {
             width: 100%;
             float: left;
