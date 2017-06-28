@@ -10,7 +10,7 @@
           formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='11d5d2b8-0fdd-42e0-9f53-257c760bb9a3'"
           formDisplayStyle="Standard"
           formLabel="Out-Patient(OPD)">
-  
+	<link href="/openmrs/ms/uiframework/resource/aijar/css/aijar2_0.css" rel="stylesheet" type="text/css">
   <style type="text/css">
   	table.multi td, table.multi th {
 		width: 20% !important;

@@ -10,7 +10,7 @@
           formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.gender=='F' &amp;&amp; patient.person.age &gt; 12 &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='e9bc61b5-69ff-414b-9cf0-0c22d6dfca2b'"
           formDisplayStyle="Standard"
           formLabel="ANC Encounter Form">
-
+    <link href="/openmrs/ms/uiframework/resource/aijar/css/aijar2_0.css" rel="stylesheet" type="text/css">
 	<style type="text/css">
 
 		form#htmlform div.ai-page-frame table>tbody tr:nth-child(odd) td {
