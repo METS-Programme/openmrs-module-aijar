@@ -50,11 +50,13 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(Roles.MID_WIFE);
         log.info("Roles installed");
 
-
         //Install Encounter Type
         log.info("Installing EncounterTypes");
         install(EncounterTypes.PNC_ENCOUNTER_TYPE);
         install(EncounterTypes.SMC_FOLLOW_UP_ENCOUNTER);
+        install(EncounterTypes.VIRAL_LOAD_NON_SUPPRESSED);
+        // Install Encounter Role
         install(encounterRole(EncounterRoles.ASSISTANT_CIRCUMCISER_NAME,EncounterRoles.ASSISTANT_CIRCUMCISER_DESCRIPTION,EncounterRoles.ASSISTANT_CIRCUMCISER_UUID));
+
     }
 }
