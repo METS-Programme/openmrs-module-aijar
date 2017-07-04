@@ -24,6 +24,29 @@
     ]
   },
   {
+    "id": "ugandaemr.dashboardwidget.MCHSummary",
+    "instanceOf": "coreapps.template.dashboardWidget",
+    "description": "coreapps.latestObsForConceptList.app.description",
+    "order": 10,
+    "config": {
+      "widget": "latestobsforconceptlist",
+      "icon": "icon-user-md",
+      "label": "MCH Summary",
+      "concepts": "dcc033e5-30ab-102d-86b0-7a5022ba4115"
+    },
+    "extensions": [
+      {
+        "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardSecondColumn",
+        "appId": "ugandaemr.dashboardwidget.MCHSummary",
+        "extensionPointId": "patientDashboard.secondColumnFragments",
+        "extensionParams": {
+          "provider": "coreapps",
+          "fragment": "dashboardwidgets/dashboardWidget"
+        }
+      }
+    ]
+  },
+  {
     "id": "ugandaemr.dashboardwidget.ARTStatus",
     "instanceOf": "coreapps.template.dashboardWidget",
     "description": "coreapps.latestObsForConceptList.app.description",
