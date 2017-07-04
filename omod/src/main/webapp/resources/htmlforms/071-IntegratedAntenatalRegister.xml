@@ -50,6 +50,7 @@
 	        		NA_CONCEPT_ID = 1175;
 
 	        const 	TRRK_CONCEPT_ID = 99738,
+	        		TRR_TICK_CONCEPT_ID = 164963,
 	        		TRRP_CONCEPT_ID = 99736,
 	        		TRR_CONCEPT_ID = 99315;
 
@@ -416,7 +417,7 @@
 		    };
 
 		    var hideOtherEmtctCodesForKnownHivPositiveStatus = function() {
-				var emtctCodesToHide = [99313,99734,99314,99315,99736,99737,99739];
+				var emtctCodesToHide = [99313,99734,99314,99737,99739,164962];
 				var emtctControlsToHide =  $emtctCodeWomanField.children('option').filter(function() {
 					return emtctCodesToHide.indexOf(parseInt(this.value)) &gt; -1;
 				});
@@ -467,7 +468,7 @@
 	        $anc1TimingField.change(anc1TimingChange);
 	        $emtctCodeWomanField.change(function() {
 	        	var emtctCode = getValue('emtct-code-woman.value');
-	        	if (emtctCode == TRR_CONCEPT_ID || emtctCode == TRRK_CONCEPT_ID || emtctCode == TRRP_CONCEPT_ID ) {
+	        	if (emtctCode == TRR_CONCEPT_ID || emtctCode == TRRK_CONCEPT_ID || emtctCode == TRRP_CONCEPT_ID || emtctCode == TRR_TICK_CONCEPT_ID) {
 		        	hivStatusChange(HIV_POSITIVE_CONCEPT_ID);
 	        	} else {
 		        	hivStatusChange(HIV_NEGATIVE_CONCEPT_ID); 	
@@ -696,12 +697,22 @@
 	            <p>
 	              <label>eMTCT Code: Woman</label>
 	              <obs conceptId="d5b0394c-424f-41db-bc2f-37180dcdbe74" 
-	              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb, 05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7, 86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a, 25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465, 60155e4d-1d49-4e97-9689-758315967e0f, 81bd3e58-9389-41e7-be1a-c6723f899e56,1f177240-85f6-4f10-964a-cfc7722408b3" 
+	              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb, 
+					              	05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7, 
+					              	86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a, 
+					              	25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465, 
+					              	60155e4d-1d49-4e97-9689-758315967e0f, 
+					              	81bd3e58-9389-41e7-be1a-c6723f899e56,
+					              	1f177240-85f6-4f10-964a-cfc7722408b3,
+					              	48723c9c-c931-4fde-81cd-6178c9a9a70b,
+					              	4d301db0-c517-4556-9f7c-d837bac90144"
 	              	answerLabels="C - Counselled but declined HIV testing,
 	              					T - Counselled and tested but didn't receive results,
 	              					TR - Counselled tested and results given - Client tested HIV - in ANC,
 	              					TRR - Counselled tested and results given - Client tested HIV + in ANC,
 	              					TRR+ - Client was originally negative but sero-converted at this test,
+	              					TRK - Clients who tested HIV Negative within 4 weeks prior to arrival in ANC,
+	              					TRRK - Clients who tested HIV Positive prior to arrival in ANC,
 	              					TR&#8730; - New ANC clients with Known HIV- status,
 	              					TRR&#8730; - New ANC clients with Known HIV+ status" 
 	                style="dropdown" required="true" class="emtct-code" id="emtct-code-woman" />
@@ -718,12 +729,16 @@
 					              	60155e4d-1d49-4e97-9689-758315967e0f,
 					              	81bd3e58-9389-41e7-be1a-c6723f899e56,
 					              	1f177240-85f6-4f10-964a-cfc7722408b3,
+					              	48723c9c-c931-4fde-81cd-6178c9a9a70b,
+					              	4d301db0-c517-4556-9f7c-d837bac90144,
 					              	8eab745c-24a5-4ba4-906c-b5087e920b66" 
 	              	answerLabels="C - Counselled but declined HIV testing,
 	              					T - Counselled and tested but didn't receive results,
 	              					TR - Counselled tested and results given - Client tested HIV - in ANC,
 	              					TRR - Counselled tested and results given - Client tested HIV + in ANC,
 	              					TRR+ - Client was originally negative but sero-converted at this test,
+	              					TRK - Clients who tested HIV Negative within 4 weeks prior to arrival in ANC,
+	              					TRRK - Clients who tested HIV Positive prior to arrival in ANC,
 	              					TR&#8730; - New ANC clients with Known HIV- status,
 	              					TRR&#8730; - New ANC clients with Known HIV+ status,
 	              					Not Tested" 
