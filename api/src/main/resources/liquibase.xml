@@ -8,6 +8,12 @@
         See http://www.liquibase.org/manual/home#available_database_refactorings
         for a list of supported elements and attributes
     -->
+	<changeSet id="ugandaemr-07032017-1958" author="ssmusoke">
+		<comment>Delete coded obs with null values from the summary page - most of these seem to be health education related concepts which are not on the summary page</comment>
+		<sql>
+			DELETE FROM obs WHERE concept_id IN (99169, 99170, 99171,99172, 99173,99174, 99175,99176,99177,99178,99179,99180,99181) AND value_coded IS NULL
+		</sql>
+	</changeSet>
 	<changeSet id="ugandaemr-06272017-2053" author="ssmusoke">
 		<comment>Delete corrupted metadata mapping terms from xstream 2.07 and lower for Encounter Types</comment>
 		<sql>
