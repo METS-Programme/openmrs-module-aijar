@@ -240,7 +240,7 @@
 		    };
 
 		    var hideOtherEmtctCodesForKnownHivPositiveStatus = function() {
-				var emtctCodesToHide = [99313,99734,99314,99315,99736,99737,99739,164962];
+				var emtctCodesToHide = [99313,99734,99314,99737,99739,164962];
 				var emtctControlsToHide =  $emtctCodeWomanField.children('option').filter(function() {
 					return emtctCodesToHide.indexOf(parseInt(this.value)) &gt; -1;
 				});
