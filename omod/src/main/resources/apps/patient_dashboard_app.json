@@ -24,6 +24,29 @@
     ]
   },
   {
+    "id": "ugandaemr.dashboardwidget.MCHSummary",
+    "instanceOf": "coreapps.template.dashboardWidget",
+    "description": "Displays obstetric summary of mother receiving MCH services",
+    "order": 5,
+    "config": {
+      "widget": "latestobsforconceptlist",
+      "icon": "icon-user-md",
+      "label": "MCH Summary",
+      "concepts": "5f86d19d-9546-4466-89c0-6f80c101191b,dcc39097-30ab-102d-86b0-7a5022ba4115,1053AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,dca0a383-30ab-102d-86b0-7a5022ba4115,dcc033e5-30ab-102d-86b0-7a5022ba4115,d5b0394c-424f-41db-bc2f-37180dcdbe74"
+    },
+    "extensions": [
+      {
+        "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardFirstColumn",
+        "appId": "ugandaemr.dashboardwidget.MCHSummary",
+        "extensionPointId": "patientDashboard.firstColumnFragments",
+        "extensionParams": {
+          "provider": "coreapps",
+          "fragment": "dashboardwidgets/dashboardWidget"
+        }
+      }
+    ]
+  },
+  {
     "id": "ugandaemr.dashboardwidget.ARTStatus",
     "instanceOf": "coreapps.template.dashboardWidget",
     "description": "coreapps.latestObsForConceptList.app.description",
