@@ -8,6 +8,13 @@
         See http://www.liquibase.org/manual/home#available_database_refactorings
         for a list of supported elements and attributes
     -->
+	<changeSet id="ugandaemr-07052017-1505" author="ssmusoke">
+		<comment>Move the death information from the obs table to the person table</comment>
+		<sql>
+			UPDATE person INNER JOIN obs ON obs.person_id = person.person_id AND concept_id = 99112 AND value_coded = 90003 SET dead = 1;
+			UPDATE person INNER JOIN obs ON obs.person_id = person.person_id AND concept_id = 90272 SET death_date = value_datetime;
+		</sql>
+	</changeSet>
 	<changeSet id="ugandaemr-06272017-2053" author="ssmusoke">
 		<comment>Delete corrupted metadata mapping terms from xstream 2.07 and lower for Encounter Types</comment>
 		<sql>
