@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
- 
+
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
-    <!--
-        See http://www.liquibase.org/manual/home#available_database_refactorings
-        for a list of supported elements and attributes
-    -->
-	<changeSet id="ugandaemr-07032017-1958" author="ssmusoke">
-		<comment>Delete coded obs with null values from the summary page - most of these seem to be health education related concepts which are not on the summary page</comment>
+	<!--
+		See http://www.liquibase.org/manual/home#available_database_refactorings
+		for a list of supported elements and attributes
+	-->
+	<changeSet id="ugandaemr-07112017-1800" author="ssmusoke">
+		<comment>Move all summary pages from form_id 34 to 14</comment>
+		<sql>UPDATE encounter SET form_id = 14 WHERE form_id = 34</sql>
+	</changeSet>
+	<changeSet id="ugandaemr-07112017-1757" author="ssmusoke">
+		<comment>Delete obs without concepts from previous migrations</comment>
 		<sql>
-			DELETE FROM obs WHERE concept_id IN (99169, 99170, 99171,99172, 99173,99174, 99175,99176,99177,99178,99179,99180,99181) AND value_coded IS NULL
+			DELETE FROM obs WHERE concept_id IN (SELECT c.concept_id FROM concept c WHERE c.datatype_id = 2) AND value_coded IS NULL
 		</sql>
 	</changeSet>
 	<changeSet id="ugandaemr-06272017-2053" author="ssmusoke">
 		<comment>Delete corrupted metadata mapping terms from xstream 2.07 and lower for Encounter Types</comment>
 		<sql>
-		UPDATE metadatamapping_metadata_term_mapping SET metadata_class = 'org.openmrs.EncounterType' WHERE metadata_class = 'org.openmrs.EncounterType_$$_jvstbd5_23'
+			UPDATE metadatamapping_metadata_term_mapping SET metadata_class = 'org.openmrs.EncounterType' WHERE metadata_class = 'org.openmrs.EncounterType_$$_jvstbd5_23'
 		</sql>
 	</changeSet>
 	<changeSet id="ugandaemr-06232017-1639" author="ssmusoke">
@@ -87,15 +91,15 @@
 			<column name="started" value="1"/>
 			<column name="uuid" value="d1147982-1fd3-4d03-8b6c-6345a8187b28" />
 		</insert>
-		
+	
 	</changeSet>
-    <changeSet id="ugandaemr-12162016-1052" author="ssmusoke">
+	<changeSet id="ugandaemr-12162016-1052" author="ssmusoke">
 		<comment>Stop scheduled tasks that are not used from starting up</comment>
 		<sql>
 			UPDATE scheduler_task_config SET start_on_startup = 0 WHERE schedulable_class IN ('org.openmrs.module.formentry.ProcessFormEntryQueueTask', 'org.openmrs.scheduler.tasks.ProcessHL7InQueueTask')
 		</sql>
 	</changeSet>
-
+	
 	<changeSet id="ugandaemr-111032017-1130" author="slubwama">
 		<comment>Change concept 162394 datatype to coded concept</comment>
 		<sql>
