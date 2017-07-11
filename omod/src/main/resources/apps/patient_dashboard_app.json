@@ -27,7 +27,7 @@
     "id": "ugandaemr.dashboardwidget.MCHSummary",
     "instanceOf": "coreapps.template.dashboardWidget",
     "description": "Displays obstetric summary of mother receiving MCH services",
-    "order": 5,
+    "order": 10,
     "config": {
       "widget": "latestobsforconceptlist",
       "icon": "icon-user-md",
@@ -50,7 +50,7 @@
     "id": "ugandaemr.dashboardwidget.ARTStatus",
     "instanceOf": "coreapps.template.dashboardWidget",
     "description": "coreapps.latestObsForConceptList.app.description",
-    "order": 10,
+    "order": 5,
     "config": {
       "widget": "latestobsforconceptlist",
       "icon": "icon-user-md",

@@ -57,6 +57,13 @@
 	        const HIV_INFORMATION_SECTION = '#hiv-information-section';
 	        const ARVS_ADMINISTERED_TO_BABY_FIELD = '#arvs-administered-to-baby';
 
+            jq('#anc1-timing > select').attr('tabIndex', -1);
+            jq('#anc1-timing > select').on('mousedown', function(e) {
+            e.preventDefault();
+            this.blur();
+            window.focus();
+            });
+
 	        var $viralLoadResultsField = getField('viral-load-results.value');
 	        var $lmpField = getField('lmp-date.value');
 			var $gestationAgeField = getField('gestational-age.value');
