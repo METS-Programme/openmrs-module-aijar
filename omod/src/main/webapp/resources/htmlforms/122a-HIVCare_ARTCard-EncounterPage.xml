@@ -295,19 +295,30 @@
                 }
 
 
-               /*Validation the regimen on */
-                var art_transfer_regimen = jq("#artTransferRegimen").html();
-                var art_start_regimen = jq("#artStartRegimen").html();
-                var regimen_encounter_page=jq("#90315");
-                var regimen_selected=regimen_encounter_page.find(":selected").text();
+                /* Validation of the ART regimen Selected */
+                jq("#90315").change(function () {
+                    var regimen_encounter_page_value = jq("#90315").find("select").find(":selected").val();
+                    var regimen_encounter_page_text = jq("#90315").find("select").find(":selected").text();
+                    var art_transfer_regimen = jq("#artTransferRegimen").html();
+                    var other_art_transfer_regimen = jq("#otherArtTransferRegimen").html();
+                    var art_start_regimen = jq("#artStartRegimen").html();
+                    var other_art_start_regimen = jq("#otherArtStartRegimen").html();
+                    var first_second_regimen = jq("#firstSecondLineRegimen").html();
+                    var other_first_second_regimen = jq("#otherFirstSecondLineRegimen").html();
+                    var third_second_regimen = jq("#thirdLineRegimen").html();
+                    var other_third_regimen = jq("#otherThirdLineRegimen").html();
+                    var patient_regimen = other_third_regimen + third_second_regimen + other_first_second_regimen + other_first_second_regimen + first_second_regimen + other_art_start_regimen + art_start_regimen + other_art_transfer_regimen + art_transfer_regimen;
 
-                regimen_encounter_page.change(function () {
-                    if (art_start_regimen == "null" &amp;&amp; art_transfer_regimen=="null") {
+                    /* Check if  Patient has art start or tranfer regimen selected on ART Summary Page*/
+                    if (art_start_regimen == "null" &amp;&amp; art_transfer_regimen == "null") {
                         jq().toastmessage('showNoticeToast', "Patient Doesn't have any either ART Start or Transfer regimen on ART Summary selected");
                     }
+
+                    if (!patient_regimen.includes(regimen_encounter_page_value)) {
+                        jq().toastmessage('showNoticeToast', "Regimen: "+regimen_encounter_page_text+" is not in patient regimens on ART Summary page");
+                    }
                 });
-
-
+                /* End of Validation /*
 
                 /* Handle viral load results */
                 jq("#viral-load-results-copies").attr("disabled", true);
@@ -401,6 +412,40 @@
         }
     </script>
 
+    <!-- This section contains lookup tags that pick data from other forms-->
+
+    <lookup complexExpression="#set($art_start_regimen='null') #set($other_art_start_regimen='null') #set($art_transfer_regimen='null') #set($other_art_transfer_regimen='null')"/>
+
+    <lookup complexExpression="#set($first_second_line_regimen='null') #set($other_first_second_line_regimen='null')"/>
+
+    <lookup complexExpression="#set($third_line_regimen='null') #set($other_third_line_regimen='null')"/>
+
+    <span style="display: none" id="artStartRegimen"><lookup
+            complexExpression="#set($art_start_regimen=($fn.latestObs('99061').valueCoded))$art_start_regimen"/></span>
+
+    <span style="display: none" id="otherArtStartRegimen"><lookup
+            complexExpression="#set($other_art_start_regimen=($fn.latestObs('99268').valueText))$other_art_start_regimen"/></span>
+
+    <span style="display: none" id="artTransferRegimen"><lookup
+            complexExpression="#set($art_transfer_regimen=$fn.latestObs('99064').valueCoded)$art_transfer_regimen"/></span>
+
+    <span style="display: none" id="otherArtTransferRegimen"><lookup
+            complexExpression="#set($other_art_transfer_regimen=$fn.latestObs('99269').valueText)$other_art_transfer_regimen"/></span>
+
+    <span style="display: none" id="firstSecondLineRegimen"><lookup
+            complexExpression="#foreach($first_second_line_regimen in $fn.allObs(90315)) $first_second_line_regimen.valueCoded #end"/></span>
+
+    <span style="display: none" id="otherFirstSecondLineRegimen"><lookup
+            complexExpression="#foreach($other_first_second_line_regimen in $fn.allObs(99146)) $other_first_second_line_regimen.valueText #end"/></span>
+
+
+    <span style="display: none" id="thirdLineRegimen"><lookup
+            complexExpression="#foreach($third_line_regimen in $fn.allObs(162990)) $first_second_line_regimen.valueCoded #end"/></span>
+
+    <span style="display: none" id="otherThirdLineRegimen"><lookup
+            complexExpression="#foreach($other_third_line_regimen in $fn.allObs(162989)) $other_first_second_line_regimen.valueText #end"/></span>
+
+    <!--End of Lookup section-->
     <div class="ai-page-frame">
         <div class="headers" style="text-align: center;">
             <h3>HIV Care/ART CARD - Encounter Page</h3>
@@ -457,7 +502,6 @@
                                     <obs id="returndate" conceptId="5096" allowFutureDates="true"
                                          labelText="Return date:"/>
                                 </includeIf>
-
 
                                 <lookup
                                         complexExpression="#set($transfer_out_date=($fn.latestObs('99165').valueDatetime)) $transfer_out_date"/>
@@ -804,14 +848,6 @@
                                 </span>
                             </span>
                     </td>
-                    <lookup
-                            complexExpression="#set($art_start_regimen='null') #set($art_transfer_regimen='null')"/>
-
-                    <span style="display: none" id="artStartRegimen"><lookup
-                            complexExpression="#set($art_start_regimen=($fn.latestObs('99061').valueCoded))$art_start_regimen"/></span>
-
-                    <span style="display: none" id="artTransferRegimen"><lookup
-                            complexExpression="#set($art_transfer_regimen=$fn.latestObs('99064').valueCoded)$art_transfer_regimen"/></span>
                     <td class="EnableDisableAdherenceReason checkboxGroup lablex3">
                             <span class="disableARTAdherence">
                             <span class="AdherenceEnableDisable1">
