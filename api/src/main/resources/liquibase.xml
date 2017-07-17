@@ -15,12 +15,6 @@
 			UPDATE person INNER JOIN obs ON obs.person_id = person.person_id AND concept_id = 90272 SET death_date = value_datetime;
 		</sql>
 	</changeSet>
-	<changeSet id="ugandaemr-07032017-1958" author="ssmusoke">
-		<comment>Delete coded obs with null values from the summary page - most of these seem to be health education related concepts which are not on the summary page</comment>
-	<!--
-		See http://www.liquibase.org/manual/home#available_database_refactorings
-		for a list of supported elements and attributes
-	-->
 	<changeSet id="ugandaemr-07112017-1800" author="ssmusoke">
 		<comment>Move all summary pages from form_id 34 to 14</comment>
 		<sql>UPDATE encounter SET form_id = 14 WHERE form_id = 34</sql>
