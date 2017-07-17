@@ -13,6 +13,7 @@
 	<encounter_type encounter_type_id="23" name="Maternity - Encounter" description="When a mother comes to a health facility to deliver" creator="1" date_created="2016-04-05 16:43:20.0" retired="false" uuid="a9f11592-22e7-45fc-904d-dfe24cb1fc67"/>
 	<encounter_type encounter_type_id="24" name="HTC - Encounter" description="An encounter when a patient gets HCT services" creator="1" date_created="2016-04-05 16:43:20.0" retired="false" uuid="264daIZd-f80e-48fe-nba9-P37f2W1905Pv"/>
 	<encounter_type encounter_type_id="25" name="PNC - Encounter" description="An encounter when a patient gets PNC services" creator="1" date_created="2016-12-07 14:45:59.0" retired="false" uuid="fa6f3ff5-b784-43fb-ab35-a08ab7dbf074"/>
+	<encounter_type encounter_type_id="26" name="TB Encounter" description="An encounter when a patient gets TB services" creator="1" date_created="2016-12-07 14:45:59.0" retired="false" uuid="334bf97e-28e2-4a27-8727-a5ce31c7cd66"/>
 	
 	<!-- relationship types -->
 	<relationship_type  relationship_type_id="1000"  a_is_to_b="Parent"  b_is_to_a="Child"  preferred="0"  weight="0"  description="Relationship from a mother/father to the child"  creator="1"  date_created="2007-05-01 11:38:27"  uuid="8d91a210-c2cc-11de-8d13-0010c6dffd0f"  retired="0" />
@@ -104,6 +105,9 @@
 	<concept concept_id="90012" retired="false" datatype_id="2" class_id="5" is_set="false" creator="1" date_created="2008-08-15 15:51:57.0" version="" uuid="dcd7e8e5-30ab-102d-86b0-7a5022ba4115"/>
 	<concept  concept_id="162874"  retired="0"  datatype_id="3"  class_id="1"  is_set="0"  creator="1"  date_created="2016-01-08 16:24:16"  version=""  uuid="85097a99-4126-4ad3-894e-25c1a7e91dee"/>
 	<concept  concept_id="99428"  retired="0" datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2012-08-12 10:10:57"  version=""  uuid="2099355c-ceb2-482e-9a81-536890ab3d1c"/>
+	<concept concept_id="99031" retired="false" datatype_id="3" class_id="11" is_set="false" creator="1" date_created="2010-08-07 14:01:14.0" changed_by="1" retired_by="1" uuid="67e9ec2f-4c72-408b-8122-3706909d77ec"/>	
+	<concept concept_id="164955" retired="false" datatype_id="3" class_id="7" is_set="false" creator="1" date_created="2017-05-31 12:56:29.0" changed_by="1" retired_by="1" uuid="304df0d0-afe4-4a61-a917-d684b100a65a"/>	
+	<concept concept_id="99370" retired="false" datatype_id="3" class_id="11" is_set="false" creator="1" date_created="2012-08-03 23:35:37.0" changed_by="1" retired_by="1" uuid="d1cda288-4853-4450-afbc-76bd4e65ea70"/>	
 	
 	<!-- visits -->
 	<visit visit_id="10000" patient_id="10000" visit_type_id="1" date_started="2014-01-08 00:00:00.0" location_id="1" creator="1" date_created="2014-01-08 00:00:00.0" voided="false" uuid="d1e83a75-2841-43bc-8684-d2a1f9fb28d9" />
@@ -119,6 +123,8 @@
 	
 	<patient_program patient_program_id="11" patient_id="7" program_id="11" date_enrolled="2008-08-01 00:00:00.0" creator="1" date_created="2008-08-18 11:40:48.0" changed_by="1" date_changed="2008-08-18 12:29:29.0" voided="false" uuid="b75462a0-4c92-451e-b8bc-e98b38b76511"/>
     <patient_program patient_program_id="22" patient_id="8" program_id="12" date_enrolled="2008-08-02 00:00:00.0" creator="1" date_created="2008-08-18 11:41:19.0" voided="false" uuid="2edf272c-bf05-4208-9f93-2fa213ed0422"/>
+	<patient_program patient_program_id="33" patient_id="10001" program_id="11" date_enrolled="2008-08-01 00:00:00.0" creator="1" date_created="2008-08-18 11:40:48.0" changed_by="1" date_changed="2008-08-18 12:29:29.0" voided="false" uuid="b8bd5c91-254e-4e67-9116-eeb42b1a7258"/>
+	<patient_program patient_program_id="44" patient_id="10002" program_id="11" date_enrolled="2008-08-01 00:00:00.0" creator="1" date_created="2008-08-18 11:40:48.0" changed_by="1" date_changed="2008-08-18 12:29:29.0" voided="false" uuid="511391c1-b57f-4564-9a7e-d3a25850675d"/>
 	
 	<encounter encounter_id="3" encounter_type="2" patient_id="8" location_id="1" form_id="1" encounter_datetime="2009-08-01 00:00:00.0" creator="1" date_created="2008-08-18 14:09:05.0" voided="false" uuid="6519d653-393b-4118-9c83-a3715b82d4xz"/>
 
