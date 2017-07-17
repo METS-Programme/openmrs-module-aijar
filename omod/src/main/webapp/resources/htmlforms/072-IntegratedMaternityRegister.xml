@@ -606,6 +606,12 @@
           </td>
         </tr>
         <tr>
+		  <td>
+			<p>
+			  <label>Type of patient:</label>
+			  <obs conceptId="5282AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="977AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5269AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="General,Private" style="radio"/>
+			</p>
+		  </td>
           <td>
             <p>
               <label>Gravida</label>
@@ -624,13 +630,23 @@
               <obs conceptId="dca0a383-30ab-102d-86b0-7a5022ba4115" id="gestation-weeks"/>
             </p>
           </td>
-          <td>
-            <p>
-              <label>Delivery</label>
-              <obs conceptId="161033AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,129218AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Term,Preterm" style="dropdown" id="delivery"/>
-            </p>
-          </td>
         </tr>
+		<tr>
+		  <td>
+			<p>
+			  <label>Delivery</label>
+				<obs conceptId="161033AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,129218AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Term,Preterm" style="dropdown" id="delivery"/>
+			</p>
+		  </td>
+		  <td>
+			<p>
+			  <label>No. of previous cesarean sections</label>
+			  <obs conceptId="160081AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+			</p>
+		  </td>
+		  <td colspan="2">
+		  </td>
+		</tr>
       </table>
     </fieldset>
     <fieldset>
@@ -706,13 +722,10 @@
 				 <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="129211" answerLabel="Premature rapture of Membranes" style="checkbox" />
 			</td>
 			<td>
-				<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Other" showCommentField="true" commentFieldLabel="&lt;label&gt;Specify&lt;/label&gt;" style="checkbox" class="has-comment" />
+				<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="142478AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Pregnancy induced diabetes melitus" style="checkbox"  />
 			</td>
 			<td>
-			  <p>
-				<label>No. of previous cesarean sections</label>
-				<obs conceptId="160081AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
-			  </p>
+				<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Other" showCommentField="true" commentFieldLabel="&lt;label&gt;Specify&lt;/label&gt;" style="checkbox" class="has-comment" />
 			</td>
         </tr>
       </table>
@@ -844,13 +857,13 @@
 		    <obsgroup groupingConceptId="163505AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">
 			  <p>
 				<label>Duration of 1st stage(mins):</label>
-				<obs conceptId="159616AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="1733AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  />
+				<obs conceptId="159616AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  />
 			  </p>
 			</obsgroup>
 			<obsgroup groupingConceptId="163506AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">
 			  <p>
 				<label>Duration of 2nd stage(mins):</label>
-				<obs conceptId="159616AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="1733AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+				<obs conceptId="159616AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
 			  </p>
 			  </obsgroup>
 		  </td>
