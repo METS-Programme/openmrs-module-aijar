@@ -316,9 +316,6 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         // mapping for creating visits without encounters to the default facility visit type
         properties.add(new GlobalProperty("emrapi.EmrApiVisitAssignmentHandler.encounterTypeToNewVisitTypeMap", "default:7b0f5697-27e3-40c4-8bae-f4049abfb4ed"));
 
-        //add a global property to retrieve the report uuid
-        properties.add(new GlobalProperty("ugandaemr.dhis2.organizationuuid", "The organization code in DHIS2"));
-
         return properties;
     }
 

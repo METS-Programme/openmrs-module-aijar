@@ -123,6 +123,10 @@
             Number of days when an MCH mother is considered lost to follow up
         </description>
     </globalProperty>
+    <globalProperty>
+        <property>ugandaemr.dhis2.organizationuuid</property>
+        <description>The organization code in DHIS2</description>
+    </globalProperty>
 
 </module>
 
