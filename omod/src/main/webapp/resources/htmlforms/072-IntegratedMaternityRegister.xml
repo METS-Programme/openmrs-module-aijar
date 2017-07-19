@@ -349,7 +349,9 @@
 				});
 				$emtctCodeWomanField.children('option').attr('disabled', false);
 				emtctControlsToHide.attr('disabled', true);
-				setValue('emtct-code-woman.value', 99738);
+				<ifMode mode="ENTER">
+					setValue('emtct-code-woman.value', 99738);
+				</ifMode>
 		    };
 
 		    var showOtherEmtctCodesForKnownHivNegativeStatus = function() {
@@ -359,7 +361,9 @@
 				});
 				$emtctCodeWomanField.children('option').attr('disabled', false);
 				emtctControlsToHide.attr('disabled', true);
-				setValue('emtct-code-woman.value', '');
+				<ifMode mode="ENTER">
+					setValue('emtct-code-woman.value', '');
+				</ifMode>
 		    };
 
 		    var getHivStatus = function () {
@@ -460,10 +464,6 @@
 
 	            if (!parityValidate()) {
 	            	valid = false;
-	            }
-
-	            if (!babyValidated()) {
-					valid = false;
 	            }
 
 	            if (!isOtherSelectedAndSpecified()) {
@@ -1142,7 +1142,7 @@
 		<td>
 			<p>
 			  <label>Delivered by</label>
-			  <encounterProviderAndRole encounterRole="240b26f9-dd88-4172-823d-4a8bfeb7841f" id="delivered-by" required="true" />
+			  <encounterProviderAndRole encounterRole="240b26f9-dd88-4172-823d-4a8bfeb7841f" id="delivered-by" required="false" />
 			</p>
 		</td>
 	  </tr>
@@ -1156,7 +1156,7 @@
           <td>
             <p>
               <label>Name of person discharging</label>
-			  <encounterProviderAndRole encounterRole="a0b03050-c99b-11e0-9572-0800200c9a66" id="person-discharging" required="true" />
+			  <encounterProviderAndRole encounterRole="a0b03050-c99b-11e0-9572-0800200c9a66" id="person-discharging" required="false" />
             </p>
           </td>
           <td colspan="2"></td>
