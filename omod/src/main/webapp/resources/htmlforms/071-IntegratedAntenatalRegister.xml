@@ -488,6 +488,8 @@
 			toggleOtherSpecify();
 
 			beforeSubmit.push(function() {
+                var encounterDate = changeFieldDateToJavascriptDate(getValue('encounterDate.value'));
+                var returnDate = changeFieldDateToJavascriptDate(getValue('returndate.value'));
 	            var valid = true;
 	            var $errorMessageSpan = jq('span#error-message');
 
@@ -506,6 +508,12 @@
 	            if (!isOtherSelectedAndSpecified()) {
 	            	valid = false;
 	            }
+
+                if (encounterDate &gt;= returnDate) {
+                getField('returndate.error').html('The next appointment date must be after the date of this visit ' +
+                encounterDate).show();
+                valid = false;
+                }
 
 	            if (valid) {
 	            	$errorMessageSpan.hide();
@@ -1066,7 +1074,7 @@
 				<tr>
 					<td>
 						<label>Next appointment date</label>
-						<obs conceptId="dcac04cf-30ab-102d-86b0-7a5022ba4115" allowFutureDates="true" />
+						<obs id="returndate" conceptId="dcac04cf-30ab-102d-86b0-7a5022ba4115" allowFutureDates="true" />
 					</td>
 					<td colspan="3">
 					</td>

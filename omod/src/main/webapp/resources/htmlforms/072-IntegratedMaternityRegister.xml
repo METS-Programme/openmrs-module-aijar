@@ -856,13 +856,13 @@
           <td>
 		    <obsgroup groupingConceptId="163505AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">
 			  <p>
-				<label>Duration of 1st stage(mins):</label>
+				<label>Duration of 1st stage (mins):</label>
 				<obs conceptId="159616AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  />
 			  </p>
 			</obsgroup>
 			<obsgroup groupingConceptId="163506AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">
 			  <p>
-				<label>Duration of 2nd stage(mins):</label>
+				<label>Duration of 2nd stage (mins):</label>
 				<obs conceptId="159616AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
 			  </p>
 			  </obsgroup>
@@ -905,13 +905,13 @@
 		<tr>
 		  <td colspan="2">
 		    <p>
-			  <label>Blood loss(ltrs)</label>
+			  <label>Blood loss (ltrs)</label>
 			  <obs conceptId="161928AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
 			</p>
 		  </td>
 		  <td colspan="2">
 			<p>
-			  <label>Placenta weight(kgs)</label>
+			  <label>Placenta weight (kgs)</label>
 			  <obs conceptId="0d89a66c-2d8f-4aed-8fc9-1ba123edb8a8" />
 			</p>
 		  </td>
