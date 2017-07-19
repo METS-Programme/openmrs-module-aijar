@@ -511,7 +511,7 @@
 
                 if (encounterDate &gt;= returnDate) {
                 getField('returndate.error').html('The next appointment date must be after the date of this visit ' +
-                encounterDate).show();
+					getValue('encounterDate.value')).show();
                 valid = false;
                 }
 
