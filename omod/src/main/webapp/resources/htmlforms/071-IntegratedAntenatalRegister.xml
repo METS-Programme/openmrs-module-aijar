@@ -492,6 +492,8 @@
 			toggleOtherSpecify();
 
 			beforeSubmit.push(function() {
+				var encounterDate = new Date(changeFieldDateToJavascriptDate(getValue('encounterDate.value')));
+                var returnDate = changeFieldDateToJavascriptDate(getValue('returndate.value'));
 	            var valid = true;
 	            var $errorMessageSpan = jq('span#error-message');
 
@@ -510,6 +512,12 @@
 	            if (!isOtherSelectedAndSpecified()) {
 	            	valid = false;
 	            }
+
+                if (encounterDate &gt;= returnDate) {
+                getField('returndate.error').html('The next appointment date must be after the date of this visit ' +
+					encounterDate.toDateString()).show();
+                valid = false;
+                }
 
 	            if (valid) {
 	            	$errorMessageSpan.hide();
@@ -571,6 +579,14 @@
                         </p>
                     </td>
                 </tr>
+				<tr>
+					<td colspan="4">
+						<p>
+							<label>Type of patient:</label>
+							<obs conceptId="5282AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="977AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5269AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="General,Private" style="radio"/>
+						</p>
+					</td>
+				</tr>
             </table>
         </fieldset>
 
@@ -1059,6 +1075,14 @@
                         </p>
                     </td>
                 </tr>
+				<tr>
+					<td>
+						<label>Next appointment date</label>
+						<obs id="returndate" conceptId="dcac04cf-30ab-102d-86b0-7a5022ba4115" allowFutureDates="true" />
+					</td>
+					<td colspan="3">
+					</td>
+				</tr>
             </table>
         </fieldset>
 		<postSubmissionAction class="org.openmrs.module.aijar.htmlformentry.MCHProgramEnrollmentPostSubmissionAction" />
