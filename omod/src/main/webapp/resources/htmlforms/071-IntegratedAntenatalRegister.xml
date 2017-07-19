@@ -488,7 +488,7 @@
 			toggleOtherSpecify();
 
 			beforeSubmit.push(function() {
-                var encounterDate = changeFieldDateToJavascriptDate(getValue('encounterDate.value'));
+				var encounterDate = new Date(changeFieldDateToJavascriptDate(getValue('encounterDate.value')));
                 var returnDate = changeFieldDateToJavascriptDate(getValue('returndate.value'));
 	            var valid = true;
 	            var $errorMessageSpan = jq('span#error-message');
@@ -511,7 +511,7 @@
 
                 if (encounterDate &gt;= returnDate) {
                 getField('returndate.error').html('The next appointment date must be after the date of this visit ' +
-					getValue('encounterDate.value')).show();
+					encounterDate.toDateString()).show();
                 valid = false;
                 }
 
