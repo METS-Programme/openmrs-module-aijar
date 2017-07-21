@@ -349,7 +349,9 @@
 				});
 				$emtctCodeWomanField.children('option').attr('disabled', false);
 				emtctControlsToHide.attr('disabled', true);
-				setValue('emtct-code-woman.value', 99738);
+				<ifMode mode="ENTER">
+					setValue('emtct-code-woman.value', 99738);
+				</ifMode>
 		    };
 
 		    var showOtherEmtctCodesForKnownHivNegativeStatus = function() {
@@ -359,7 +361,9 @@
 				});
 				$emtctCodeWomanField.children('option').attr('disabled', false);
 				emtctControlsToHide.attr('disabled', true);
-				setValue('emtct-code-woman.value', '');
+				<ifMode mode="ENTER">
+					setValue('emtct-code-woman.value', '');
+				</ifMode>
 		    };
 
 		    var getHivStatus = function () {
@@ -460,10 +464,6 @@
 
 	            if (!parityValidate()) {
 	            	valid = false;
-	            }
-
-	            if (!babyValidated()) {
-					valid = false;
 	            }
 
 	            if (!isOtherSelectedAndSpecified()) {
@@ -606,6 +606,12 @@
           </td>
         </tr>
         <tr>
+		  <td>
+			<p>
+			  <label>Type of patient:</label>
+			  <obs conceptId="5282AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="977AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5269AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="General,Private" style="radio"/>
+			</p>
+		  </td>
           <td>
             <p>
               <label>Gravida</label>
@@ -624,13 +630,23 @@
               <obs conceptId="dca0a383-30ab-102d-86b0-7a5022ba4115" id="gestation-weeks"/>
             </p>
           </td>
-          <td>
-            <p>
-              <label>Delivery</label>
-              <obs conceptId="161033AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,129218AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Term,Preterm" style="dropdown" id="delivery"/>
-            </p>
-          </td>
         </tr>
+		<tr>
+		  <td>
+			<p>
+			  <label>Delivery</label>
+				<obs conceptId="161033AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,129218AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Term,Preterm" style="dropdown" id="delivery"/>
+			</p>
+		  </td>
+		  <td>
+			<p>
+			  <label>No. of previous cesarean sections</label>
+			  <obs conceptId="160081AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+			</p>
+		  </td>
+		  <td colspan="2">
+		  </td>
+		</tr>
       </table>
     </fieldset>
     <fieldset>
@@ -705,7 +721,10 @@
 			<td>
 				 <obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="129211" answerLabel="Premature rapture of Membranes" style="checkbox" />
 			</td>
-			<td colspan="2">
+			<td>
+				<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="142478AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Pregnancy induced diabetes melitus" style="checkbox"  />
+			</td>
+			<td>
 				<obs conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Other" showCommentField="true" commentFieldLabel="&lt;label&gt;Specify&lt;/label&gt;" style="checkbox" class="has-comment" />
 			</td>
         </tr>
@@ -834,7 +853,21 @@
               <obs conceptId="f9573837-6a9b-4f2f-9298-aecf27b15fb3" allowTime="true" class="date-and-time" required="false"/>
             </p>
           </td>
-          <td colspan="2">
+          <td>
+		    <obsgroup groupingConceptId="163505AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">
+			  <p>
+				<label>Duration of 1st stage (mins):</label>
+				<obs conceptId="159616AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  />
+			  </p>
+			</obsgroup>
+			<obsgroup groupingConceptId="163506AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">
+			  <p>
+				<label>Duration of 2nd stage (mins):</label>
+				<obs conceptId="159616AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+			  </p>
+			  </obsgroup>
+		  </td>
+          <td>
             <p>
               <label>Management of 3rd stage labour</label>
               <obs conceptId="425458af-d1f7-40e4-a672-7d9e38aedb3c" answerConceptId="e123d685-812a-43c3-bc05-db4e14d8c05c" answerLabel="1 - Ergometrine" class="horizontal-layout-options" />
@@ -869,6 +902,20 @@
             </p>
           </td>
         </tr>
+		<tr>
+		  <td colspan="2">
+		    <p>
+			  <label>Blood loss (ltrs)</label>
+			  <obs conceptId="161928AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+			</p>
+		  </td>
+		  <td colspan="2">
+			<p>
+			  <label>Placenta weight (kgs)</label>
+			  <obs conceptId="0d89a66c-2d8f-4aed-8fc9-1ba123edb8a8" />
+			</p>
+		  </td>
+		</tr>
       </table>
     </fieldset>
     <fieldset id="baby-information">
@@ -1029,8 +1076,10 @@
 							</td>
 							<td>
 							  <obs conceptId="a5638850-0cb4-4ce8-8e87-96fc073de25d" answerConceptId="23ac7575-f0ea-49a5-855e-b3348ad1da01" answerLabel="BDF - Baby born with defect" />
-							</td>	
-							<td colspan="2"></td>
+							</td>
+							<td colspan="2">
+								<obs conceptId="a5638850-0cb4-4ce8-8e87-96fc073de25d" answerConceptId="161936AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="ICU - In Intensive care unit" />
+							</td>
 				        </tr>
 				        <tr>
 				          <td>
@@ -1142,7 +1191,7 @@
 		<td>
 			<p>
 			  <label>Delivered by</label>
-			  <encounterProviderAndRole encounterRole="240b26f9-dd88-4172-823d-4a8bfeb7841f" id="delivered-by" required="true" />
+			  <encounterProviderAndRole encounterRole="240b26f9-dd88-4172-823d-4a8bfeb7841f" id="delivered-by" required="false" />
 			</p>
 		</td>
 	  </tr>
@@ -1156,7 +1205,7 @@
           <td>
             <p>
               <label>Name of person discharging</label>
-			  <encounterProviderAndRole encounterRole="a0b03050-c99b-11e0-9572-0800200c9a66" id="person-discharging" required="true" />
+			  <encounterProviderAndRole encounterRole="a0b03050-c99b-11e0-9572-0800200c9a66" id="person-discharging" required="false" />
             </p>
           </td>
           <td colspan="2"></td>

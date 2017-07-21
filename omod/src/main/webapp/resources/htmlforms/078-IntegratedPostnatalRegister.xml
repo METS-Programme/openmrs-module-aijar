@@ -246,7 +246,9 @@
 				});
 				$emtctCodeWomanField.children('option').attr('disabled', false);
 				emtctControlsToHide.attr('disabled', true);
-				setValue('emtct-code-woman.value', 99738);
+				<ifMode mode="ENTER">
+					setValue('emtct-code-woman.value', 99738);
+				</ifMode>
 		    };
 
 		    var showOtherEmtctCodesForKnownHivNegativeStatus = function() {
@@ -256,7 +258,9 @@
 				});
 				$emtctCodeWomanField.children('option').attr('disabled', false);
 				emtctControlsToHide.attr('disabled', true);
-				setValue('emtct-code-woman.value', '');
+				<ifMode mode="ENTER">
+					setValue('emtct-code-woman.value', '');
+				</ifMode>
 		    };
 
 		    var getHivStatus = function () {
