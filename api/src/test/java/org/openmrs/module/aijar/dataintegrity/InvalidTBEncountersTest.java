@@ -28,7 +28,7 @@ public class InvalidTBEncountersTest extends BaseModuleContextSensitiveTest{
 	}
 	
 	@Test
-	public void testInvalidTBEncounters() {
+	public void patientsWithNoFinalOutcomeNineMonthsAfterStartOfTreatmentTest() {
 		DateTime date = new DateTime("2017-07-19");
 		List<RuleResult<Patient>> result = invalidTBEncounters.patientsWithNoFinalOutcomeNineMonthsAfterStartOfTreatment(date);
 		assertNotNull(result);
