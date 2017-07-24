@@ -21,7 +21,10 @@
 
 		form#htmlform div.ai-page-frame fieldset#baby-information table {
 			margin: 0 0 5px 0;
-		}	
+		}
+		#muac-qualitative select {
+			float:	none !important;
+		}
 	</style>
 
 	<ifMode mode="ENTER">
@@ -903,13 +906,48 @@
           </td>
         </tr>
 		<tr>
-		  <td colspan="2">
+		  <td>
+		 	<p>
+				<label>Vit A Supplement</label>
+				<obs conceptId="88ec2c8b-eb7b-4595-8612-1871568507a5" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" />
+			</p>
+		  </td>
+		  <td>
+		 	<p>
+				<label>M.U.A.C</label>
+				<includeIf velocityTest="$patient.age &lt; 5">
+					<obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+					 answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
+					 answerLabels="Red &lt; 11.5cm, Yellow 11.5cm - &lt;12.5cm,Green &gt;= 12.5cm" id="muac-qualitative" />
+				</includeIf>
+				<includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
+					<obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+					 answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
+					 answerLabels="Red &lt; 13.5cm,Yellow 13.5cm - &lt;14.5cm,Green &gt;=14.5cm" id="muac-qualitative" />
+				</includeIf>
+				<includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
+					<obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+					 answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
+					 answerLabels="Red &lt; 16.5cm, Yellow 16.5cm - &lt;19.0cm,Green &gt;=19.0cm" id="muac-qualitative" />
+				</includeIf>
+				<includeIf velocityTest="$patient.age &gt;=18">
+					<obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+					 answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
+					 answerLabels="Red &lt;19.0cm , Yellow 19.0cm - &lt;22.0cm,Green &gt;=22.0cm" id="muac-qualitative" />
+				</includeIf>
+			</p>
+			<p>
+				<label>I.N.R Number</label>
+				<obs conceptId="b644c29c-9bb0-447e-9f73-2ae89496a709" id="inrNumber" />
+			</p>
+		  </td>
+		  <td>
 		    <p>
 			  <label>Blood loss (ltrs)</label>
 			  <obs conceptId="161928AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
 			</p>
 		  </td>
-		  <td colspan="2">
+		  <td>
 			<p>
 			  <label>Placenta weight (kgs)</label>
 			  <obs conceptId="0d89a66c-2d8f-4aed-8fc9-1ba123edb8a8" />
