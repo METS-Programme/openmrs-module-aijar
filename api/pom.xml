@@ -182,12 +182,6 @@
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>uiframework-api</artifactId>
 		</dependency>
-
-		<dependency>
-			<groupId>org.openmrs.module</groupId>
-			<artifactId>reportingcompatibility-api</artifactId>
-			<scope>provided</scope>
-			</dependency>
 	</dependencies>
 
 	<build>
