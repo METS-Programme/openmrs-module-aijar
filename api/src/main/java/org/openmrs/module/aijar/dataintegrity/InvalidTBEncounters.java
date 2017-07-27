@@ -68,7 +68,7 @@ public class InvalidTBEncounters extends BasePatientRuleDefinition {
 			
 			RuleResult<Patient> ruleResult = new RuleResult<>();
 			ruleResult.setActionUrl("coreapps/patientdashboard/patientDashboard.page?patientId=" + patient.getUuid());
-			ruleResult.setNotes("Patient #" + getTbNumber(patient) + " with similar " + identifierTitle + " identifiers(" + obs.getValueText() + "): duplicated for a single patient,");
+			ruleResult.setNotes("Patient #" + getTbNumber(patient, obs.getEncounter()) + " with similar " + identifierTitle + " identifiers(" + obs.getValueText() + "): duplicated for a single patient,");
 			ruleResult.setEntity(patient);
 			
 			ruleResults.add(ruleResult);
@@ -87,19 +87,19 @@ public class InvalidTBEncounters extends BasePatientRuleDefinition {
 		log.info("Executing rule to find Patients with similar TB identifiers: duplicated for a single patient");
 		String queryString = "SELECT o FROM Obs o WHERE o.voided = false AND o.encounter.patient.dead = 0 AND o.encounter.voided = 0 AND o.concept.uuid = :identifierConceptUuid AND o.obsId IN " 
 				+ " (SELECT min(ob.obsId) FROM Obs ob WHERE ob.concept.uuid = :identifierConceptUuid AND ob.voided = 0 GROUP BY ob.concept.id, ob.valueText HAVING COUNT(ob.valueText) > 1)"; 
-
+		
 		Query query = getSession().createQuery(queryString);
 		query.setParameter("identifierConceptUuid", identifierConceptUuid);
 		
 		List<Obs> obsList = query.list();
 		Set<Patient> uniquePatientList = new HashSet<Patient>();
-
+		
 		List<RuleResult<Patient>> ruleResults = new ArrayList<>();
 		for (Obs obs : obsList) {
 			Patient patient = obs.getEncounter().getPatient();
 			RuleResult<Patient> ruleResult = new RuleResult<>();
 			ruleResult.setActionUrl("coreapps/patientdashboard/patientDashboard.page?patientId=" + patient.getUuid());
-			ruleResult.setNotes("Patient #" + getTbNumber(patient) + " with similar " + identifierTitle + " identifiers(" + obs.getValueText() + "): duplicated for a single patient,");
+			ruleResult.setNotes("Patient #" + getTbNumber(patient, obs.getEncounter()) + " with similar " + identifierTitle + " identifiers(" + obs.getValueText() + "): duplicated for a single patient,");
 			ruleResult.setEntity(patient);
 			
 			ruleResults.add(ruleResult);
@@ -142,7 +142,7 @@ public class InvalidTBEncounters extends BasePatientRuleDefinition {
 			for (Encounter encounter : patientEncounters) {
 				RuleResult<Patient> ruleResult = new RuleResult<>();
 				ruleResult.setActionUrl("htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=" + patient.getUuid() + "&encounterId=" + encounter.getId());
-				ruleResult.setNotes("Client# " + getTbNumber(patient) + ", has missing " + identifierTitle + " identifier");
+				ruleResult.setNotes("Client# " + getTbNumber(patient, encounter) + ", has missing " + identifierTitle + " identifier");
 				ruleResult.setEntity(patient);
 				
 				ruleResults.add(ruleResult);
@@ -180,12 +180,13 @@ public class InvalidTBEncounters extends BasePatientRuleDefinition {
 			List<Encounter> encounterList = encounterQuery.list();
 				RuleResult<Patient> ruleResult = new RuleResult<>();
 				if (encounterList.size() > 0) {
-					Integer encounterId = encounterList.get(0).getId();
-					ruleResult.setActionUrl("htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=" + patient.getUuid() + "&encounterId=" + encounterId);
+					Encounter encounter = encounterList.get(0);
+					ruleResult.setActionUrl("htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=" + patient.getUuid() + "&encounterId=" + encounter);
+					ruleResult.setNotes("Patient #" + getTbNumber(patient, encounter) + " has no final TB Outcome 9 months after start of treatment");
 				} else {
 					ruleResult.setActionUrl("coreapps/patientdashboard/patientDashboard.page?patientId=" + patient.getId());
+					ruleResult.setNotes("Patient #" + patient.getId() + " has no final TB Outcome 9 months after start of treatment");
 				}
-				ruleResult.setNotes("Patient #" + getTbNumber(patient) + " has no final TB Outcome 9 months after start of treatment");
 				ruleResult.setEntity(patient);
 				
 				ruleResults.add(ruleResult);				
