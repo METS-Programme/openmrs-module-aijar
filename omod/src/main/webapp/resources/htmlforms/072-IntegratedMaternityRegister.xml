@@ -22,9 +22,6 @@
 		form#htmlform div.ai-page-frame fieldset#baby-information table {
 			margin: 0 0 5px 0;
 		}
-		#muac-qualitative select {
-			float:	none !important;
-		}
 	</style>
 
 	<ifMode mode="ENTER">
@@ -92,7 +89,12 @@
 	        const ARVS_ADMINISTERED_TO_BABY_FIELD = '#arvs-administered-to-baby';
 	        const IYCF_FIELD = '#iycf';
 
-            var $viralLoadField = getField('viral-load.value');
+			const RED_CONCEPT_ID = 99028;
+			const GREEN_CONCEPT_ID = 99027;
+			const YELLOW_CONCEPT_ID = 99029;
+
+
+			var $viralLoadField = getField('viral-load.value');
 			var $viralLoadStatusField = getField('viral-load-status.value');
 	        var $viralLoadResultsField = getField('viral-load-results.value');
 	        var $iycfField = jq(IYCF_FIELD).find('input');
@@ -102,6 +104,8 @@
 	        var $diagnosisChildFields = $('span.child-diagnoses').find('input[type=checkbox]');
 			var $encounterDateField = jq('#encounterDate').find('input[type="hidden"]');
 			var $encounterDate = jq('#encounterDate').find('input[type="hidden"]').val();
+			var $muacQuantitativeField = getField('muac-quantitative.value');
+			var $muacQualitativeField = getField('muac-qualitative.value');
 			var $emtctCodeWomanField = getField('emtct-code-woman.value');
 			var $preArtNumberField = jq('span#pre-art-number').find('input[type="text"]');
 
@@ -158,6 +162,72 @@
 	            }
 	            viralLoadResultsChange();
 	        };
+
+			var muacChange = function() {
+				var muacQuantitative = getValue('muac-quantitative.value');
+				var muacQualitative = getValue('muac-qualitative.value');
+				var $muacQuantitativeErrorField = getField('muac-quantitative.error');
+				var $muacQualitativeErrorField = getField('muac-qualitative.error');
+
+
+				if (muacQuantitative == '' || muacQualitative =='') {
+					return;
+				}
+
+				var valid = false;
+
+				var validRange = {};
+
+				<includeIf velocityTest="$patient.age &lt; 5">
+					validRange = [
+						{color: RED_CONCEPT_ID, lower:0, upper:11.4},
+						{color: YELLOW_CONCEPT_ID, lower:11.5, upper:12.4},
+						{color: GREEN_CONCEPT_ID, lower:12.5, upper:50}
+						];
+				</includeIf>
+				<includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
+					validRange = [
+						{color: RED_CONCEPT_ID, lower:0, upper:13.4},
+						{color: YELLOW_CONCEPT_ID, lower:13.5, upper:14.4},
+						{color: GREEN_CONCEPT_ID, lower:14.5, upper:50}
+						];
+				</includeIf>
+				<includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
+					validRange = [
+						{color: RED_CONCEPT_ID, lower:0, upper:16.5},
+						{color: YES_CONCEPT_ID, lower:16.5, upper:18.9},
+						{color: GREEN_CONCEPT_ID, lower:19, upper:100}
+						];
+				</includeIf>
+
+				<includeIf velocityTest="$patient.age &gt;=18">
+					validRange = [
+						{color: RED_CONCEPT_ID, lower:0, upper:18.9},
+						{color: YELLOW_CONCEPT_ID, lower:19, upper:21.9},
+						{color: GREEN_CONCEPT_ID, lower:22, upper:100}
+						];
+				</includeIf>
+
+				var selectedValidRange =  validRange.find(function(o) {
+					return o.color == Qualitative;
+				});
+
+				if (muacQuantitative &gt;= selectedValidRange.lower &amp;&amp; muacQuantitative &lt;= selectedValidRange.upper) {
+					valid = true;
+				}
+
+				if (!valid) {
+					$muacQuantitativeErrorField.html('The MUAC Qualitative and Quatitative values do not match, please check').show();
+					$muacQualitativeErrorField.html('The MUAC Qualitative and Quatitative values do not match, please check').show();
+					$muacQuantitativeField.addClass('error');
+					$muacQualitativeField.addClass('error');
+				} else {
+					$muacQuantitativeErrorField.html('').hide();
+					$muacQualitativeErrorField.html('').hide();
+					$muacQuantitativeField.removeClass('error');
+					$muacQualitativeField.removeClass('error');
+				}
+			};
 
 	        var iycfChange = function() {
 	            var $iycf =  getValue('iycf.value');
@@ -428,6 +498,8 @@
 	        $diagnosisParentFields.change(diagnosisParentFieldsChange);
 	        $diagnosisChildFields.change(diagnosisChildFieldsChange);
 	        $encounterDateField.change(getHivStatus);
+			$muacQuantitativeField.change(muacChange);
+			$muacQualitativeField.change(muacChange);
 	        $emtctCodeWomanField.change(function() {
 	        	var emtctCode = getValue('emtct-code-woman.value');
 	        	if (emtctCode == TRR_CONCEPT_ID || emtctCode == TRRK_CONCEPT_ID || emtctCode == TRRP_CONCEPT_ID || emtctCode == TRR_TICK_CONCEPT_ID) {
@@ -889,10 +961,10 @@
           <td>
             <p>
               <label>ARVs to mother</label>
-              <obs 	conceptId="35ae2043-a3b0-48de-8e22-05f377ac39a2" 
-              		answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99007,99008,99044,99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99884,99885,99888,163017,99887,90002"
-					answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,AZT-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,AZT-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-ATV/r,ABC-3TC-LPV/r,TDF-3TC-ATV/r,Other" 
-					style="dropdown" id="arvs-to-mother" />
+              <obs 	conceptId="35ae2043-a3b0-48de-8e22-05f377ac39a2"
+					  answerConceptIds="026e31b7-4a26-44d0-8398-9a41c40ff7d3,2c000b41-f9d7-40c1-8de0-bce91dbae932,dc9b0596-30ab-102d-86b0-7a5022ba4115,dc9825cf-30ab-102d-86b0-7a5022ba4115"
+					  answerLabels="ART,ART&#8730;,NA,ND"
+					  style="dropdown" id="arvs-to-mother" />
             </p>
           </td>
           <td>
@@ -910,6 +982,12 @@
 		 	<p>
 				<label>Vit A Supplement</label>
 				<obs conceptId="88ec2c8b-eb7b-4595-8612-1871568507a5" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" />
+			</p>
+		  </td>
+		  <td>
+			<p>
+		    	<label>M.U.A.C (cm)</label>
+				<obs conceptId="1343AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="muac-quantitative" />
 			</p>
 		  </td>
 		  <td>
@@ -936,11 +1014,15 @@
 					 answerLabels="Red &lt;19.0cm , Yellow 19.0cm - &lt;22.0cm,Green &gt;=22.0cm" id="muac-qualitative" />
 				</includeIf>
 			</p>
+		  </td>
+		  <td>
 			<p>
-				<label>I.N.R Number</label>
-				<obs conceptId="b644c29c-9bb0-447e-9f73-2ae89496a709" id="inrNumber" />
+			  <label>I.N.R Number</label>
+			  <obs conceptId="b644c29c-9bb0-447e-9f73-2ae89496a709" id="inrNumber" />
 			</p>
 		  </td>
+		</tr>
+		<tr>
 		  <td>
 		    <p>
 			  <label>Blood loss (ltrs)</label>
@@ -953,6 +1035,7 @@
 			  <obs conceptId="0d89a66c-2d8f-4aed-8fc9-1ba123edb8a8" />
 			</p>
 		  </td>
+		  <td colspan="2"></td>
 		</tr>
       </table>
     </fieldset>
