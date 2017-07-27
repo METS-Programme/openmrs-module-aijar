@@ -12,7 +12,7 @@ import org.openmrs.Obs;
 import org.openmrs.Patient;
 import org.openmrs.Program;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.aijar.metadata.concept.Concepts;
+import org.openmrs.module.aijar.AijarConstants;
 import org.openmrs.module.aijar.metadata.core.EncounterTypes;
 import org.openmrs.module.aijar.metadata.core.Programs;
 import org.openmrs.module.dataintegrity.DataIntegrityRule;
@@ -36,15 +36,15 @@ public class InvalidTBEncounters extends BasePatientRuleDefinition {
 	public List<RuleResult<Patient>> evaluate() {
 		List<RuleResult<Patient>> ruleResults = new ArrayList<>();
 		
-		ruleResults.addAll(patientsWithMissingTBNumbers(Concepts.UNIT_TB_NUMBER, "Unit TB Number"));
-		ruleResults.addAll(patientsWithMissingTBNumbers(Concepts.HSD_TB_NUMBER, "HSD TB Number"));
-		ruleResults.addAll(patientsWithMissingTBNumbers(Concepts.DISTRICT_TB_NUMBER, "District TB Number"));
-		ruleResults.addAll(singlePatientWithDuplicateTBNumberAcrossMultipleTreatmentPrograms(Concepts.DISTRICT_TB_NUMBER, "District TB Number"));
-		ruleResults.addAll(singlePatientWithDuplicateTBNumberAcrossMultipleTreatmentPrograms(Concepts.UNIT_TB_NUMBER, "Unit TB Number"));
-		ruleResults.addAll(singlePatientWithDuplicateTBNumberAcrossMultipleTreatmentPrograms(Concepts.HSD_TB_NUMBER, "HSD TB Number"));
-		ruleResults.addAll(multiplePatientsWithTheSameTBIdentifiers(Concepts.DISTRICT_TB_NUMBER, "District TB Number"));
-		ruleResults.addAll(multiplePatientsWithTheSameTBIdentifiers(Concepts.UNIT_TB_NUMBER, "Unit TB Number"));
-		ruleResults.addAll(multiplePatientsWithTheSameTBIdentifiers(Concepts.HSD_TB_NUMBER, "HSD TB Number"));
+		ruleResults.addAll(patientsWithMissingTBNumbers(AijarConstants.UNIT_TB_NUMBER, "Unit TB Number"));
+		ruleResults.addAll(patientsWithMissingTBNumbers(AijarConstants.HSD_TB_NUMBER, "HSD TB Number"));
+		ruleResults.addAll(patientsWithMissingTBNumbers(AijarConstants.DISTRICT_TB_NUMBER, "District TB Number"));
+		ruleResults.addAll(singlePatientWithDuplicateTBNumberAcrossMultipleTreatmentPrograms(AijarConstants.DISTRICT_TB_NUMBER, "District TB Number"));
+		ruleResults.addAll(singlePatientWithDuplicateTBNumberAcrossMultipleTreatmentPrograms(AijarConstants.UNIT_TB_NUMBER, "Unit TB Number"));
+		ruleResults.addAll(singlePatientWithDuplicateTBNumberAcrossMultipleTreatmentPrograms(AijarConstants.HSD_TB_NUMBER, "HSD TB Number"));
+		ruleResults.addAll(multiplePatientsWithTheSameTBIdentifiers(AijarConstants.DISTRICT_TB_NUMBER, "District TB Number"));
+		ruleResults.addAll(multiplePatientsWithTheSameTBIdentifiers(AijarConstants.UNIT_TB_NUMBER, "Unit TB Number"));
+		ruleResults.addAll(multiplePatientsWithTheSameTBIdentifiers(AijarConstants.HSD_TB_NUMBER, "HSD TB Number"));
 		ruleResults.addAll(patientsWithNoFinalOutcomeNineMonthsAfterStartOfTreatment(DateTime.now()));
 		return ruleResults;
 	}

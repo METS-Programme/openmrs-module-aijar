@@ -16,7 +16,7 @@ import org.openmrs.PatientProgram;
 import org.openmrs.Program;
 import org.openmrs.api.PatientService;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.aijar.metadata.concept.Concepts;
+import org.openmrs.module.aijar.AijarConstants;
 import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
 import org.openmrs.module.aijar.metadata.core.Programs;
 import org.openmrs.module.dataintegrity.rule.RuleDefinition;
@@ -59,7 +59,7 @@ public abstract class BasePatientRuleDefinition implements RuleDefinition<Patien
 		Program tbProgram = Context.getProgramWorkflowService().getProgramByUuid(Programs.TB_PROGRAM.uuid());
 
 		//Iterate through the possible TB identifiers and return the first occurrence of a TB identifier 
-		String[] tbIdentifierConceptUuids = new String[]{ Concepts.UNIT_TB_NUMBER, Concepts.HSD_TB_NUMBER, Concepts.DISTRICT_TB_NUMBER };
+		String[] tbIdentifierConceptUuids = new String[]{ AijarConstants.UNIT_TB_NUMBER, AijarConstants.HSD_TB_NUMBER, AijarConstants.DISTRICT_TB_NUMBER };
 		for (String tbIdentifierConceptUuid : tbIdentifierConceptUuids) {
 			Concept concept = Context.getConceptService().getConcept(tbIdentifierConceptUuid);
 			List<Obs> patientObs = Context.getObsService().getObservationsByPersonAndConcept(patient.getPerson(), concept);

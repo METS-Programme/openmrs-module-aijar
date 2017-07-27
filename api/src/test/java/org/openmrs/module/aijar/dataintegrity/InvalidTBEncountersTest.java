@@ -9,7 +9,7 @@ import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.openmrs.Patient;
-import org.openmrs.module.aijar.metadata.concept.Concepts;
+import org.openmrs.module.aijar.AijarConstants;
 import org.openmrs.module.dataintegrity.rule.RuleResult;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 
@@ -28,7 +28,7 @@ public class InvalidTBEncountersTest extends BaseModuleContextSensitiveTest{
 		invalidTBEncounters = new InvalidTBEncounters();
 	}
 	
-	//@Test
+	@Test
 	public void patientsWithNoFinalOutcomeNineMonthsAfterStartOfTreatmentTest() {
 		DateTime date = new DateTime("2017-07-19");
 		List<RuleResult<Patient>> result = invalidTBEncounters.patientsWithNoFinalOutcomeNineMonthsAfterStartOfTreatment(date);
@@ -36,9 +36,9 @@ public class InvalidTBEncountersTest extends BaseModuleContextSensitiveTest{
 		assertEquals(3, result.size());
 	}
 	
-	//@Test
+	@Test
 	public void multiplePatientsWithTheSameTBIdentifiersTest() {
-		List<RuleResult<Patient>> result = invalidTBEncounters.multiplePatientsWithTheSameTBIdentifiers(Concepts.DISTRICT_TB_NUMBER, "District TB Number");
+		List<RuleResult<Patient>> result = invalidTBEncounters.multiplePatientsWithTheSameTBIdentifiers(AijarConstants.DISTRICT_TB_NUMBER, "District TB Number");
 		assertNotNull(result);
 		assertEquals(2, result.size());
 		
@@ -46,7 +46,7 @@ public class InvalidTBEncountersTest extends BaseModuleContextSensitiveTest{
 	
 	@Test
 	public void singlePatientWithDuplicateTBNumberAcrossMultipleTreatmentProgramsTest() {
-		List<RuleResult<Patient>> result = invalidTBEncounters.singlePatientWithDuplicateTBNumberAcrossMultipleTreatmentPrograms(Concepts.UNIT_TB_NUMBER, "Unit TB Number");
+		List<RuleResult<Patient>> result = invalidTBEncounters.singlePatientWithDuplicateTBNumberAcrossMultipleTreatmentPrograms(AijarConstants.UNIT_TB_NUMBER, "Unit TB Number");
 		assertNotNull(result);
 		assertEquals(1, result.size());
 		Patient patient = result.get(0).getEntity();
@@ -54,9 +54,9 @@ public class InvalidTBEncountersTest extends BaseModuleContextSensitiveTest{
 		
 	}
 	
-	//@Test
+	@Test
 	public void patientsWithMissingTBNumbersTest() {
-		List<RuleResult<Patient>> result = invalidTBEncounters.patientsWithMissingTBNumbers(Concepts.HSD_TB_NUMBER, "HSD TB Number");
+		List<RuleResult<Patient>> result = invalidTBEncounters.patientsWithMissingTBNumbers(AijarConstants.HSD_TB_NUMBER, "HSD TB Number");
 		assertNotNull(result);
 		assertEquals(2, result.size());
 		
