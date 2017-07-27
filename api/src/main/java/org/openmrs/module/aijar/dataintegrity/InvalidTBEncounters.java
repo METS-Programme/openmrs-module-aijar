@@ -1,19 +1,19 @@
 package org.openmrs.module.aijar.dataintegrity;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Query;
 import org.joda.time.DateTime;
+import org.openmrs.Encounter;
 import org.openmrs.Obs;
 import org.openmrs.Patient;
-import org.openmrs.PatientProgram;
 import org.openmrs.Program;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.aijar.metadata.concept.Dictionary;
+import org.openmrs.module.aijar.metadata.concept.Concepts;
+import org.openmrs.module.aijar.metadata.core.EncounterTypes;
 import org.openmrs.module.aijar.metadata.core.Programs;
 import org.openmrs.module.dataintegrity.DataIntegrityRule;
 import org.openmrs.module.dataintegrity.rule.RuleResult;
@@ -30,19 +30,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class InvalidTBEncounters extends BasePatientRuleDefinition {
 
+
+
 	@Override
 	public List<RuleResult<Patient>> evaluate() {
 		List<RuleResult<Patient>> ruleResults = new ArrayList<>();
 		
-		ruleResults.addAll(patientsWithMissingTBNumberIdentifiers("304df0d0-afe4-4a61-a917-d684b100a65a", "Unit TB Number"));
-		ruleResults.addAll(patientsWithMissingTBNumberIdentifiers("d1cda288-4853-4450-afbc-76bd4e65ea70", "HSD TB Number"));
-		ruleResults.addAll(patientsWithMissingTBNumberIdentifiers("67e9ec2f-4c72-408b-8122-3706909d77ec", "District TB Number"));
-		ruleResults.addAll(patientsWithSimilarTBNumberIdentifiersDuplicatedForASinglePatient("67e9ec2f-4c72-408b-8122-3706909d77ec", "District TB Number"));
-		ruleResults.addAll(patientsWithSimilarTBNumberIdentifiersDuplicatedForASinglePatient("304df0d0-afe4-4a61-a917-d684b100a65a", "Unit TB Number"));
-		ruleResults.addAll(patientsWithSimilarTBNumberIdentifiersDuplicatedForASinglePatient("d1cda288-4853-4450-afbc-76bd4e65ea70", "HSD TB Number"));
-		ruleResults.addAll(patientsWithSimilarTBIdentifiersDuplicatedAcrossMultiplePatients("67e9ec2f-4c72-408b-8122-3706909d77ec", "District TB Number"));
-		ruleResults.addAll(patientsWithSimilarTBIdentifiersDuplicatedAcrossMultiplePatients("304df0d0-afe4-4a61-a917-d684b100a65a", "Unit TB Number"));
-		ruleResults.addAll(patientsWithSimilarTBIdentifiersDuplicatedAcrossMultiplePatients("d1cda288-4853-4450-afbc-76bd4e65ea70", "HSD TB Number"));
+		ruleResults.addAll(patientsWithMissingTBNumbers(Concepts.UNIT_TB_NUMBER, "Unit TB Number"));
+		ruleResults.addAll(patientsWithMissingTBNumbers(Concepts.HSD_TB_NUMBER, "HSD TB Number"));
+		ruleResults.addAll(patientsWithMissingTBNumbers(Concepts.DISTRICT_TB_NUMBER, "District TB Number"));
+		ruleResults.addAll(singlePatientWithDuplicateTBNumberAcrossMultipleTreatmentPrograms(Concepts.DISTRICT_TB_NUMBER, "District TB Number"));
+		ruleResults.addAll(singlePatientWithDuplicateTBNumberAcrossMultipleTreatmentPrograms(Concepts.UNIT_TB_NUMBER, "Unit TB Number"));
+		ruleResults.addAll(singlePatientWithDuplicateTBNumberAcrossMultipleTreatmentPrograms(Concepts.HSD_TB_NUMBER, "HSD TB Number"));
+		ruleResults.addAll(multiplePatientsWithTheSameTBIdentifiers(Concepts.DISTRICT_TB_NUMBER, "District TB Number"));
+		ruleResults.addAll(multiplePatientsWithTheSameTBIdentifiers(Concepts.UNIT_TB_NUMBER, "Unit TB Number"));
+		ruleResults.addAll(multiplePatientsWithTheSameTBIdentifiers(Concepts.HSD_TB_NUMBER, "HSD TB Number"));
 		ruleResults.addAll(patientsWithNoFinalOutcomeNineMonthsAfterStartOfTreatment(DateTime.now()));
 		return ruleResults;
 	}
@@ -51,26 +53,28 @@ public class InvalidTBEncounters extends BasePatientRuleDefinition {
 	 * Patients with similar TB identifiers: duplicated across multiple patients
 	 * @return List<RuleResult<Patient>>
 	 */
-	public List<RuleResult<Patient>> patientsWithSimilarTBIdentifiersDuplicatedAcrossMultiplePatients(String identifierConceptUuid, String identifierTitle) {
+	public List<RuleResult<Patient>> multiplePatientsWithTheSameTBIdentifiers(String identifierConceptUuid, String identifierTitle) {
 		log.info("Executing rule to find Patients with similar TB identifiers: duplicated across multiple patients");
-		String queryString = "SELECT o.encounter.patient FROM Obs o WHERE o.voided = false AND o.encounter.patient.dead = 0 AND o.encounter.voided = 0 AND o.valueText IN " 
+		String queryString = "SELECT o FROM Obs o WHERE o.voided = false AND o.encounter.patient.dead = 0 AND o.encounter.voided = 0 AND o.concept.uuid = :identifierConceptUuid AND o.valueText IN " 
 				+ " (SELECT ob.valueText FROM Obs ob WHERE ob.concept.uuid = :identifierConceptUuid AND ob.voided = 0 GROUP BY ob.concept.conceptId, ob.valueText HAVING COUNT(ob.valueText) > 1)"; 
 		Query query = getSession().createQuery(queryString);
 		query.setParameter("identifierConceptUuid", identifierConceptUuid);
 		
-		List<Patient> patientList = query.list();
-		Set<Patient> uniquePatientList = new HashSet<Patient>(patientList);
-		log.info("There are " + uniquePatientList.size() + " Patients with similar " + identifierTitle + " identifiers: duplicated for a single patient,");
-				
+		List<Obs> obsList = query.list();
+		Set<Patient> uniquePatientList = new HashSet<Patient>();
 		List<RuleResult<Patient>> ruleResults = new ArrayList<>();
-		for (Patient patient : uniquePatientList) {
+		for (Obs obs : obsList) {
+			Patient patient = obs.getEncounter().getPatient();
+			
 			RuleResult<Patient> ruleResult = new RuleResult<>();
 			ruleResult.setActionUrl("coreapps/patientdashboard/patientDashboard.page?patientId=" + patient.getUuid());
-			ruleResult.setNotes("Patient #" + patient.getId() + " with similar " + identifierTitle + " identifiers: duplicated for a single patient,");
+			ruleResult.setNotes("Patient #" + getTbNumber(patient) + " with similar " + identifierTitle + " identifiers(" + obs.getValueText() + "): duplicated for a single patient,");
 			ruleResult.setEntity(patient);
 			
 			ruleResults.add(ruleResult);
+			uniquePatientList.add(patient);
 		}
+		log.info("There are " + uniquePatientList.size() + " Patients with similar " + identifierTitle + " identifiers: duplicated for a single patient,");
 		
 		return ruleResults;
 	}
@@ -79,26 +83,29 @@ public class InvalidTBEncounters extends BasePatientRuleDefinition {
 	 * Patients with similar TB identifiers: duplicated for a single patient,
 	 * @return List<RuleResult<Patient>>
 	 */
-	public List<RuleResult<Patient>> patientsWithSimilarTBNumberIdentifiersDuplicatedForASinglePatient(String identifierConceptUuid, String identifierTitle) {
+	public List<RuleResult<Patient>> singlePatientWithDuplicateTBNumberAcrossMultipleTreatmentPrograms(String identifierConceptUuid, String identifierTitle) {
 		log.info("Executing rule to find Patients with similar TB identifiers: duplicated for a single patient");
-		String queryString = "SELECT o.encounter.patient FROM Obs o WHERE o.concept.uuid = :identifierConceptUuid" 
-							+ " AND o.voided = false AND o.encounter.voided = 0 AND o.encounter.patient.dead = 0 GROUP BY o.person, o.concept.conceptId, o.valueText HAVING COUNT(*) > 1";
+		String queryString = "SELECT o FROM Obs o WHERE o.voided = false AND o.encounter.patient.dead = 0 AND o.encounter.voided = 0 AND o.concept.uuid = :identifierConceptUuid AND o.obsId IN " 
+				+ " (SELECT min(ob.obsId) FROM Obs ob WHERE ob.concept.uuid = :identifierConceptUuid AND ob.voided = 0 GROUP BY ob.concept.id, ob.valueText HAVING COUNT(ob.valueText) > 1)"; 
+
 		Query query = getSession().createQuery(queryString);
 		query.setParameter("identifierConceptUuid", identifierConceptUuid);
 		
-		List<Patient> patientList = query.list();
-		Set<Patient> uniquePatientList = new HashSet<Patient>(patientList);
-		log.info("There are " + uniquePatientList.size() + " Patients with similar " + identifierTitle + " identifiers: duplicated for a single patient,");
+		List<Obs> obsList = query.list();
+		Set<Patient> uniquePatientList = new HashSet<Patient>();
 
 		List<RuleResult<Patient>> ruleResults = new ArrayList<>();
-		for (Patient patient : uniquePatientList) {
+		for (Obs obs : obsList) {
+			Patient patient = obs.getEncounter().getPatient();
 			RuleResult<Patient> ruleResult = new RuleResult<>();
 			ruleResult.setActionUrl("coreapps/patientdashboard/patientDashboard.page?patientId=" + patient.getUuid());
-			ruleResult.setNotes("Patient #" + patient.getId() + " with similar " + identifierTitle + " identifiers: duplicated for a single patient,");
+			ruleResult.setNotes("Patient #" + getTbNumber(patient) + " with similar " + identifierTitle + " identifiers(" + obs.getValueText() + "): duplicated for a single patient,");
 			ruleResult.setEntity(patient);
 			
 			ruleResults.add(ruleResult);
+			uniquePatientList.add(patient);
 		}
+		log.info("There are " + uniquePatientList.size() + " Patients with similar " + identifierTitle + " identifiers: duplicated for a single patient,");
 		
 		return ruleResults;
 	}
@@ -107,7 +114,7 @@ public class InvalidTBEncounters extends BasePatientRuleDefinition {
 	 * Patients with missing TB Number identifiers
 	 * @return List<RuleResult<Patient>>
 	 */
-	public List<RuleResult<Patient>> patientsWithMissingTBNumberIdentifiers(String tbIdentifierConceptUuid, String identifierTitle) {
+	public List<RuleResult<Patient>> patientsWithMissingTBNumbers(String tbIdentifierConceptUuid, String identifierTitle) {
 		log.info("Executing rule to find patients with missing " + identifierTitle + " TB identifiers");
 
 		String queryString = "SELECT pp.patient FROM PatientProgram pp WHERE pp.voided = 0 AND pp.program.uuid = :tbProgramUuid GROUP BY pp.patient.patientId";
@@ -116,40 +123,30 @@ public class InvalidTBEncounters extends BasePatientRuleDefinition {
 		query.setParameter("tbProgramUuid", Programs.TB_PROGRAM.uuid());
 		
 		List<Patient> patientList = query.list();
-		log.info("There are " + patientList.size() + " Enrolled in TB program");
+		log.info("There are " + patientList.size() + " Patients Enrolled in TB program");
 		
 		List<RuleResult<Patient>> ruleResults = new ArrayList<>();
 		Program tbProgram = Context.getProgramWorkflowService().getProgramByUuid(Programs.TB_PROGRAM.uuid());
 		
-		//For each patient enrolled in the TB program, check if the current identifier is missing
+		//For each patient enrolled in the TB program, look for encounters with missing identifier
 		for (Patient patient : patientList) {
-			List<Obs> patientObs = Context.getObsService().getObservationsByPersonAndConcept(patient.getPerson(), Dictionary.getConcept(tbIdentifierConceptUuid));
-			boolean identifierFound = false;
-			if (patientObs.size() == 0) {
-				identifierFound = false;
-			} else {
-				for (Obs obs : patientObs) {
-					if (obs.getValueText() != null ) {
-						PatientProgram pp = Context.getProgramWorkflowService().getPatientPrograms(patient, tbProgram, null, null, null, null, false).get(0);
-						Date treatmentStartDate = obs.getEncounter().getEncounterDatetime();
-						
-						//Compare the TB treatment start date matching the given Obs with the tb program enrollment date. 
-						//If the TB treatment date falls on or after the program enrollment date, consider this a valid identifier 
-						if (treatmentStartDate.equals(pp.getDateEnrolled()) || treatmentStartDate.after(pp.getDateEnrolled())){
-							identifierFound = true;
-						}
-					}
-				}				
-			}
+			String encounterQueryString = "FROM Encounter e WHERE e.patient.id = :patientId AND e.encounterType.uuid = :encounterType AND e.id NOT IN (SELECT o.encounter.id FROM Obs o WHERE o.concept.uuid = :conceptUuid)";
 			
-			if (!identifierFound) {
+			Query encounterQuery = getSession().createQuery(encounterQueryString);
+			encounterQuery.setParameter("patientId", patient.getId());
+			encounterQuery.setParameter("encounterType", EncounterTypes.TB_SUMMARY_ENCOUNTER.uuid());
+			encounterQuery.setParameter("conceptUuid", tbIdentifierConceptUuid);
+			
+			List<Encounter> patientEncounters = encounterQuery.list();
+			
+			for (Encounter encounter : patientEncounters) {
 				RuleResult<Patient> ruleResult = new RuleResult<>();
-				ruleResult.setActionUrl("coreapps/patientdashboard/patientDashboard.page?patientId=" + patient.getUuid());
-				ruleResult.setNotes("Client# " + patient.getId() + ", has missing " + identifierTitle + " identifier");
+				ruleResult.setActionUrl("htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=" + patient.getUuid() + "&encounterId=" + encounter.getId());
+				ruleResult.setNotes("Client# " + getTbNumber(patient) + ", has missing " + identifierTitle + " identifier");
 				ruleResult.setEntity(patient);
 				
-				ruleResults.add(ruleResult);				
-			}
+				ruleResults.add(ruleResult);
+			}				
 		}
 		
 		return ruleResults;		
@@ -170,16 +167,28 @@ public class InvalidTBEncounters extends BasePatientRuleDefinition {
 		List<Patient> patientsInProgramList = query.list();
 				
 		Set<Patient> uniquePatientList = new HashSet<Patient>(patientsInProgramList);
-		log.info("There are " + uniquePatientList.size() + " Patients with no final TB Outcome 9 months after start of treatment");
 		
 		List<RuleResult<Patient>> ruleResults = new ArrayList<>();
 		for (Patient patient : uniquePatientList) {
-			RuleResult<Patient> ruleResult = new RuleResult<>();
-			ruleResult.setActionUrl("coreapps/patientdashboard/patientDashboard.page?patientId=" + patient.getUuid());
-			ruleResult.setNotes("Patient #" + patient.getId() + " has no final TB Outcome 9 months after start of treatment");
-			ruleResult.setEntity(patient);
+			//Fetch the latest encounter for this patient
+			String encounterQueryString = "FROM Encounter e WHERE e.patient.id = :patientId AND e.voided = 0 AND e.encounterType.uuid = :encounterTypeUuid ORDER BY e.encounterDatetime DESC";
+			Query encounterQuery = getSession().createQuery(encounterQueryString);
+			encounterQuery.setMaxResults(1);
+			encounterQuery.setParameter("patientId", patient.getId());
+			encounterQuery.setParameter("encounterTypeUuid", EncounterTypes.TB_SUMMARY_ENCOUNTER.uuid());
 			
-			ruleResults.add(ruleResult);
+			List<Encounter> encounterList = encounterQuery.list();
+				RuleResult<Patient> ruleResult = new RuleResult<>();
+				if (encounterList.size() > 0) {
+					Integer encounterId = encounterList.get(0).getId();
+					ruleResult.setActionUrl("htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=" + patient.getUuid() + "&encounterId=" + encounterId);
+				} else {
+					ruleResult.setActionUrl("coreapps/patientdashboard/patientDashboard.page?patientId=" + patient.getId());
+				}
+				ruleResult.setNotes("Patient #" + getTbNumber(patient) + " has no final TB Outcome 9 months after start of treatment");
+				ruleResult.setEntity(patient);
+				
+				ruleResults.add(ruleResult);				
 		}
 		
 		return ruleResults;
