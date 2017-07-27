@@ -146,6 +146,7 @@
 	            if (hivStatus == HIV_POSITIVE_CONCEPT_ID) {
 	                fieldHelper.enable($hivInformationSection.find('input'));
 	                fieldHelper.enable($arvsAdministeredToBabyField);
+		            fieldHelper.enable($arvsToMotherField);
 	                fieldHelper.enable($hivInformationSection.find('input,select'));
 	                fieldHelper.enable($preArtNumberField);
 	            } else {
@@ -159,6 +160,7 @@
 	                });
 	                fieldHelper.disable($arvsAdministeredToBabyField);
 	                fieldHelper.disable($preArtNumberField);
+					fieldHelper.disable($arvsToMotherField);
 	            }
 	            viralLoadResultsChange();
 	        };
@@ -209,7 +211,7 @@
 				</includeIf>
 
 				var selectedValidRange =  validRange.find(function(o) {
-					return o.color == Qualitative;
+					return o.color == muacQualitative;
 				});
 
 				if (muacQuantitative &gt;= selectedValidRange.lower &amp;&amp; muacQuantitative &lt;= selectedValidRange.upper) {
@@ -217,8 +219,8 @@
 				}
 
 				if (!valid) {
-					$muacQuantitativeErrorField.html('The MUAC Qualitative and Quatitative values do not match, please check').show();
-					$muacQualitativeErrorField.html('The MUAC Qualitative and Quatitative values do not match, please check').show();
+					$muacQuantitativeErrorField.html('The MUAC Qualitative and Quantitative values do not match, please check').show();
+					$muacQualitativeErrorField.html('The MUAC Qualitative and Quantitative values do not match, please check').show();
 					$muacQuantitativeField.addClass('error');
 					$muacQualitativeField.addClass('error');
 				} else {
