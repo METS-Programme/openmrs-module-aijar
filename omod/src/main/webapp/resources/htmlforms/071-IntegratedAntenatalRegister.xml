@@ -383,22 +383,37 @@
 	        	return true
 	        }
 
-	        var eddLmpValidate = function () {
+	        	var eddLmpValidate = function () {
 	        	/**
-	        	* Validate that the visit date falls between the EDD and LNMP
+	        	* Validate that the visit date falls between the LNMP and EDD+10weeks, a visit is possible beyond EDD for mothers with postdatism
 	        	*/
 				var edd = getValue('edd.value');
 				var lmp = getValue('lmp-date.value');
 				var encounterDate = $encounterDate;
-				
+
+				var lmpTimeValue,
+				eddTimeValue,
+				encounterTimeValue;
+
+				edd = new Date(edd);
+				eddTimeValue = edd.getTime();
+
+				lmp = new Date(lmp);
+				lmpTimeValue = lmp.getTime();
+
+				encounterDate = new Date(encounterDate);
+				encounterTimeValue = encounterDate.getTime();
+
+				var adjustedEDD = eddTimeValue + ((10*7)-1)*60*60*24*1000;
+
 				var $eddErrorField = getField('edd.error');
 
-				if (encounterDate &gt;=lmp &amp;&amp; encounterDate&lt;=edd) {
+				if (encounterTimeValue &gt;=lmpTimeValue &amp;&amp; encounterTimeValue&lt;=adjustedEDD) {
 					$eddErrorField.html('').hide();
 					$eddField.removeClass('error');
 					return true;
 				}  else {
-					$eddErrorField.html('The visit date must fall between the Expected Date of Delivery and L.N.M.P').show();
+					$eddErrorField.html('The visit date must fall between the L.N.M.P and Expected Date of Delivery+10weeks').show();
 					$eddField.addClass('error');
 					return false;
 				}
