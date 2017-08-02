@@ -1,20 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
- 
+
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
-    <!--
-        See http://www.liquibase.org/manual/home#available_database_refactorings
-        for a list of supported elements and attributes
-    -->
-    <changeSet id="ugandaemr-12162016-1052" author="ssmusoke">
+	<!--
+		See http://www.liquibase.org/manual/home#available_database_refactorings
+		for a list of supported elements and attributes
+	-->
+	<changeSet id="ugandaemr-07112017-1800" author="ssmusoke">
+		<comment>Move all summary pages from form_id 34 to 14</comment>
+		<sql>UPDATE encounter SET form_id = 14 WHERE form_id = 34</sql>
+	</changeSet>
+	<changeSet id="ugandaemr-07112017-1757" author="ssmusoke">
+		<comment>Delete obs without concepts from previous migrations</comment>
+		<sql>
+			DELETE FROM obs WHERE concept_id IN (SELECT c.concept_id FROM concept c WHERE c.datatype_id = 2) AND value_coded IS NULL
+		</sql>
+	</changeSet>
+	<changeSet id="ugandaemr-06272017-2053" author="ssmusoke">
+		<comment>Delete corrupted metadata mapping terms from xstream 2.07 and lower for Encounter Types</comment>
+		<sql>
+			UPDATE metadatamapping_metadata_term_mapping SET metadata_class = 'org.openmrs.EncounterType' WHERE metadata_class = 'org.openmrs.EncounterType_$$_jvstbd5_23'
+		</sql>
+	</changeSet>
+	<changeSet id="ugandaemr-06232017-1639" author="ssmusoke">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">
+				SELECT COUNT(*) FROM scheduler_task_config
+				WHERE schedulable_class = 'org.openmrs.module.aijar.tasks.LinkExposedInfantToMotherTask'
+			</sqlCheck>
+		</preConditions>
+		<comment>Inserting Exposed Infant Link to Mother Task into 'schedule_task_config' table</comment>
+		<insert tableName="scheduler_task_config">
+			<column name="name" value="Link infants to mothers via ART Number" />
+			<column name="description" value="Exits patients from the TB program who have not come for 90 days" />
+			<column name="schedulable_class" value="org.openmrs.module.aijar.tasks.LinkExposedInfantToMotherTask" />
+			<column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss" />
+			<column name="start_time" valueDate="2017-06-01T11:59:59" />
+			<column name="repeat_interval" value="86400" />
+			<column name="date_created" valueDate="CURRENT_TIMESTAMP" />
+			<column name="created_by" value="1" />
+			<column name="start_on_startup" value="1"/>
+			<column name="started" value="1"/>
+			<column name="uuid" value="29584cdf-37c0-46ec-b942-3b98274e30d8" />
+		</insert>
+	
+	</changeSet>
+	<changeSet id="ugandaemr-06232017-1638" author="ssmusoke">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">
+				SELECT COUNT(*) FROM scheduler_task_config
+				WHERE schedulable_class = 'org.openmrs.module.aijar.tasks.ExitTBProgramASLostToFollowUpTask'
+			</sqlCheck>
+		</preConditions>
+		<comment>Inserting TB Lost to Followup Exit Task into 'schedule_task_config' table</comment>
+		<insert tableName="scheduler_task_config">
+			<column name="name" value="TB Lost to Followup Exit Task" />
+			<column name="description" value="Exits patients from the TB program who have not come for 90 days" />
+			<column name="schedulable_class" value="org.openmrs.module.aijar.tasks.ExitTBProgramASLostToFollowUpTask" />
+			<column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss" />
+			<column name="start_time" valueDate="2017-06-01T11:59:59" />
+			<column name="repeat_interval" value="86400" />
+			<column name="date_created" valueDate="CURRENT_TIMESTAMP" />
+			<column name="created_by" value="1" />
+			<column name="start_on_startup" value="1"/>
+			<column name="started" value="1"/>
+			<column name="uuid" value="415b8d70-6b45-41d8-a0ba-41b1a6b8aa1f" />
+		</insert>
+	
+	</changeSet>
+	<changeSet id="ugandaemr-06232017-1637" author="ssmusoke">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">
+				SELECT COUNT(*) FROM scheduler_task_config
+				WHERE schedulable_class = 'org.openmrs.module.aijar.tasks.ExitMCHProgramASLostToFollowUpTask'
+			</sqlCheck>
+		</preConditions>
+		<comment>Inserting MCH Lost to Followup Exit Task into 'schedule_task_config' table</comment>
+		<insert tableName="scheduler_task_config">
+			<column name="name" value="MCH Lost to Followup Exit Task" />
+			<column name="description" value="Exits mothers from the MCH program who have not come for 90 days" />
+			<column name="schedulable_class" value="org.openmrs.module.aijar.tasks.ExitMCHProgramASLostToFollowUpTask" />
+			<column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss" />
+			<column name="start_time" valueDate="2017-06-01T11:59:59" />
+			<column name="repeat_interval" value="86400" />
+			<column name="date_created" valueDate="CURRENT_TIMESTAMP" />
+			<column name="created_by" value="1" />
+			<column name="start_on_startup" value="1"/>
+			<column name="started" value="1"/>
+			<column name="uuid" value="d1147982-1fd3-4d03-8b6c-6345a8187b28" />
+		</insert>
+	
+	</changeSet>
+	<changeSet id="ugandaemr-12162016-1052" author="ssmusoke">
 		<comment>Stop scheduled tasks that are not used from starting up</comment>
 		<sql>
 			UPDATE scheduler_task_config SET start_on_startup = 0 WHERE schedulable_class IN ('org.openmrs.module.formentry.ProcessFormEntryQueueTask', 'org.openmrs.scheduler.tasks.ProcessHL7InQueueTask')
 		</sql>
 	</changeSet>
-
+	
 	<changeSet id="ugandaemr-111032017-1130" author="slubwama">
 		<comment>Change concept 162394 datatype to coded concept</comment>
 		<sql>

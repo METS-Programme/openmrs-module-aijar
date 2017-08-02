@@ -62,6 +62,12 @@
             vertical-align: top;
         }
 
+        form#htmlform div.ai-page-frame table tbody td {
+            background: #B6D6E6;
+            color: #404040;
+            padding: 0px 5px;
+        }
+
         form select, .form select {
             min-width: 0px;
         }

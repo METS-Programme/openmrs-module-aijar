@@ -7,7 +7,7 @@
           formUILocation="patientDashboard.visitActions"
           formOrder="8"
           formIcon="icon-medkit"
-          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.gender=='F' &amp;&amp; patient.person.age &gt; 12 &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='e9bc61b5-69ff-414b-9cf0-0c22d6dfca2b'"
+          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.gender=='F' &amp;&amp; patient.person.age &gt; 9 &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='e9bc61b5-69ff-414b-9cf0-0c22d6dfca2b'"
           formDisplayStyle="Standard"
           formLabel="ANC Encounter Form">
 
@@ -49,10 +49,21 @@
 	        		NO_CONCEPT_ID = 1066,
 	        		NA_CONCEPT_ID = 1175;
 
+	        const 	TRRK_CONCEPT_ID = 99738,
+	        		TRR_TICK_CONCEPT_ID = 164963,
+	        		TRRP_CONCEPT_ID = 99736,
+	        		TRR_CONCEPT_ID = 99315;
+
 	        const HIV_INFORMATION_SECTION = '#hiv-information-section';
 	        const ARVS_ADMINISTERED_TO_BABY_FIELD = '#arvs-administered-to-baby';
 
-	        var $hivStatusField = getField('hiv-status.value');
+            jq('#anc1-timing > select').attr('tabIndex', -1);
+            jq('#anc1-timing > select').on('mousedown', function(e) {
+            e.preventDefault();
+            this.blur();
+            window.focus();
+            });
+
 	        var $viralLoadResultsField = getField('viral-load-results.value');
 	        var $lmpField = getField('lmp-date.value');
 			var $gestationAgeField = getField('gestational-age.value');
@@ -94,18 +105,11 @@
 	            }
 	        }; 
 
-	        /**
-	        * This function checks if the HIV status field has been locked(Contains the 'locked' class )
-	        */
-	        var isHivStatusFieldLocked = function () {
-	            return $hivStatusField.is('.locked');
-	        }
-
-	        var hivStatusChange = function () {
+	        var hivStatusChange = function (hivStatus) {
 	            var $hivStatus = getValue('hiv-status.value');
 	            var $hivInformationSection = jq(HIV_INFORMATION_SECTION);
 	            var $arvsAdministeredToBabyField = jq(ARVS_ADMINISTERED_TO_BABY_FIELD).find('input');
-	            if ($hivStatus == HIV_POSITIVE_CONCEPT_ID) {
+	            if (hivStatus == HIV_POSITIVE_CONCEPT_ID) {
 	                fieldHelper.enable($hivInformationSection.find('input'));
 	                fieldHelper.enable($arvsAdministeredToBabyField);
 	                fieldHelper.enable($hivInformationSection.find('input,select'));
@@ -114,7 +118,7 @@
 	            } else {
 	                $hivInformationSection.find('input[type="text"],select').each(function() {
 	                	var isEmtctCodeField = jq(this).parents('span:first').length &gt; 0 &amp;&amp; jq(this).parents('span:first').attr('class').indexOf('emtct-code') != -1; //Check if current control is an eMTCT Code field
-	                    if (jq(this).attr('id') == $hivStatusField.attr('id') || isEmtctCodeField ) {
+	                    if ( isEmtctCodeField ) {
 	                        fieldHelper.enable(jq(this));
 	                    } else {
 	                        fieldHelper.disable(jq(this));
@@ -123,8 +127,8 @@
 	                fieldHelper.disable($arvsAdministeredToBabyField);
 	                fieldHelper.disable($arvsGivenField);
 	                fieldHelper.disable($preArtNumberField);
-
 	            }
+	            
 	            viralLoadResultsChange();
 	        };
 
@@ -420,27 +424,30 @@
 		    };
 
 		    var hideOtherEmtctCodesForKnownHivPositiveStatus = function() {
-				var emtctCodesToHide = [99313,99734,99314,99315,99736,99737];
+				var emtctCodesToHide = [99313,99734,99314,99737,99739,164962];
 				var emtctControlsToHide =  $emtctCodeWomanField.children('option').filter(function() {
 					return emtctCodesToHide.indexOf(parseInt(this.value)) &gt; -1;
 				});
-				emtctControlsToHide.remove();
-				setValue('emtct-code-woman.value', 99738);
+				$emtctCodeWomanField.children('option').attr('disabled', false);
+				emtctControlsToHide.attr('disabled', true);
+				<ifMode mode="ENTER">
+					setValue('emtct-code-woman.value', 99738);
+				</ifMode>
+		    };
+
+		    var showOtherEmtctCodesForKnownHivNegativeStatus = function() {
+				var emtctCodesToHide = [];
+				var emtctControlsToHide =  $emtctCodeWomanField.children('option').filter(function() {
+					return emtctCodesToHide.indexOf(parseInt(this.value)) &gt; -1;
+				});
+				$emtctCodeWomanField.children('option').attr('disabled', false);
+				emtctControlsToHide.attr('disabled', true);
+				<ifMode mode="ENTER">
+					setValue('emtct-code-woman.value', '');
+				</ifMode>
 		    };
 
 		    var getHivStatus = function () {
-		    	/**
-		    	* HIV Status field should be selected if patient is HIV +ve 
-		    	*/
-				var hivStatus = <lookup complexExpression="#set ($hivStatus = $fn.earliestObs(HIV_STATUS_CONCEPT_ID).valueCoded)
-															#if ($hivStatus) $hivStatus;
-															#else '';
-															#end" />
-
-				if (hivStatus == HIV_POSITIVE_CONCEPT_ID) {
-					$hivStatusField.val(hivStatus);
-				}
-
 				/**
 				* Make HIV Status field not changeable only if the encounter date of the ART summary 
 				* page encounter (as we shall be entering retrospective data) is before the date of 
@@ -452,24 +459,15 @@
 																		#else '';
 																		#end"/>
 				if (artSummaryEncounterDate !='' &amp;&amp; artSummaryEncounterDate &lt; visitDate) {
-					$hivStatusField.addClass('locked');
-					$hivStatusField.val(HIV_POSITIVE_CONCEPT_ID);
-					$hivStatusField.change();
+					hivStatusChange(HIV_POSITIVE_CONCEPT_ID);
 					hideOtherEmtctCodesForKnownHivPositiveStatus();
 				} else {
-					fieldHelper.enable($hivStatusField);
+					hivStatusChange(HIV_NEGATIVE_CONCEPT_ID);
+					showOtherEmtctCodesForKnownHivNegativeStatus();
 				}
-		    };
+		    };		    
 
 	        $viralLoadResultsField.change(viralLoadResultsChange);
-	        $hivStatusField.change(function(){
-	            if (isHivStatusFieldLocked()) {
-					setValue('hiv-status.value',HIV_POSITIVE_CONCEPT_ID);
-	            } else {
-	            	hivStatusChange();
-	            }
-	        });
-	        $hivStatusField.change(hivStatusChange);
 	        //$lmpField.change(lmpChange);
 	        $eddField.change(eddChange);
 	        $gestationAgeField.change(setAnc1Timing);
@@ -479,14 +477,23 @@
 	        $muacQualitativeField.change(muacChange);
 	        $ancVisitField.change(ancVisitChange);
 	        $anc1TimingField.change(anc1TimingChange);
+	        $emtctCodeWomanField.change(function() {
+	        	var emtctCode = getValue('emtct-code-woman.value');
+	        	if (emtctCode == TRR_CONCEPT_ID || emtctCode == TRRK_CONCEPT_ID || emtctCode == TRRP_CONCEPT_ID || emtctCode == TRR_TICK_CONCEPT_ID) {
+		        	hivStatusChange(HIV_POSITIVE_CONCEPT_ID);
+	        	} else {
+		        	hivStatusChange(HIV_NEGATIVE_CONCEPT_ID); 	
+	        	}
+	        });
 
 			getHivStatus();
 	        viralLoadResultsChange();
-	        hivStatusChange();
 	        ancVisitChange();
 			toggleOtherSpecify();
 
 			beforeSubmit.push(function() {
+				var encounterDate = new Date(changeFieldDateToJavascriptDate(getValue('encounterDate.value')));
+                var returnDate = changeFieldDateToJavascriptDate(getValue('returndate.value'));
 	            var valid = true;
 	            var $errorMessageSpan = jq('span#error-message');
 
@@ -505,6 +512,12 @@
 	            if (!isOtherSelectedAndSpecified()) {
 	            	valid = false;
 	            }
+
+                if (encounterDate &gt;= returnDate) {
+                getField('returndate.error').html('The next appointment date must be after the date of this visit ' +
+					encounterDate.toDateString()).show();
+                valid = false;
+                }
 
 	            if (valid) {
 	            	$errorMessageSpan.hide();
@@ -566,6 +579,66 @@
                         </p>
                     </td>
                 </tr>
+				<tr>
+					<td colspan="4">
+						<p>
+							<label>Type of patient:</label>
+							<obs conceptId="5282AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="977AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5269AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="General,Private" style="radio"/>
+						</p>
+					</td>
+				</tr>
+            </table>
+        </fieldset>
+
+        <fieldset>
+            <legend>Mother's Information</legend>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" id="mothers-information-section">
+                <tr>
+                    <td>
+                        <p>
+                            <label>Gravida</label>
+                            <obs conceptId="dcc39097-30ab-102d-86b0-7a5022ba4115" id="gravida" />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>Parity</label>
+                            <obs conceptId="1053AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="parity" />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>Gestational Age</label>
+                            <obs conceptId="dca0a383-30ab-102d-86b0-7a5022ba4115" id="gestational-age" required="true" />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>Expected Date Of Delivery</label>
+                            <obs conceptId="dcc033e5-30ab-102d-86b0-7a5022ba4115" id="edd" allowFutureDates="true" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <label>L.N.M.P</label>
+                            <obs conceptId="27d8e650-615a-473c-954f-ec934b0131d5" id="lmp-date" />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>ANC 1 Timing</label>
+                            <obs conceptId="3a862ab6-7601-4412-b626-d373c1d4a51e" labelText=""
+                                 answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,dc9b0596-30ab-102d-86b0-7a5022ba4115"
+                                 answerLabels="&#8730; - Yes,X - No ,N/A" id="anc1-timing" />
+                        </p>
+                    </td>
+                    <td>                       
+                    </td>
+                    <td>
+                    </td>
+                </tr>
             </table>
         </fieldset>
 
@@ -575,19 +648,19 @@
                     <tr>
                         <td>
                             <p>
-                                <label>Weight</label>
+                                <label>Weight (kg)</label>
                                 <obs conceptId="5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
                             </p>
                         </td>
                         <td>
                             <p>
-                                <label>Height</label>
+                                <label>Height (cm)</label>
                                 <obs conceptId="5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
                             </p>
                         </td>
                         <td>
                         	<p>
-                        		<label>M.U.A.C(cm)</label>
+                        		<label>M.U.A.C (cm)</label>
                         		<obs conceptId="1343AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="muac-quantitative" />
                         	</p>
                         </td>
@@ -628,14 +701,14 @@
                         </td>
                         <td>
                             <p>
-                                <label>Diastolic B.P</label>
-                                <obs conceptId="5086AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+                                <label>Systolic B.P (mg/dl)</label>
+                                <obs conceptId="5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
                             </p>
                         </td>
                         <td>
                             <p>
-                                <label>Systolic B.P</label>
-                                <obs conceptId="5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+                                <label>Diastolic B.P (mg/dl)</label>
+                                <obs conceptId="5086AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
                             </p>
                         </td>
                         <td></td>
@@ -643,70 +716,64 @@
                 </table>
         </fieldset>
 
-        <fieldset>
-            <legend>Mother's Information</legend>
-            <table width="100%" border="0" cellspacing="0" cellpadding="0" id="mothers-information-section">
-                <tr>
-                    <td>
-                        <p>
-                            <label>Gravida</label>
-                            <obs conceptId="dcc39097-30ab-102d-86b0-7a5022ba4115" id="gravida" />
-                        </p>
-                    </td>
-                    <td>
-                        <p>
-                            <label>Parity</label>
-                            <obs conceptId="1053AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="parity" />
-                        </p>
-                    </td>
-                    <td>
-                        <p>
-                            <label>Gestational Age</label>
-                            <obs conceptId="dca0a383-30ab-102d-86b0-7a5022ba4115" id="gestational-age" required="true" />
-                        </p>
-                    </td>
-                    <td>
-                        <p>
-                            <label>Expected Date Of Delivery</label>
-                            <obs conceptId="dcc033e5-30ab-102d-86b0-7a5022ba4115" id="edd" allowFutureDates="true" required="true" />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>
-                            <label>L.N.M.P</label>
-                            <obs conceptId="27d8e650-615a-473c-954f-ec934b0131d5" id="lmp-date" />
-                        </p>
-                    </td>
-                    <td>
-                        <p>
-                            <label>ANC 1 Timing</label>
-                            <obs conceptId="3a862ab6-7601-4412-b626-d373c1d4a51e" labelText=""
-                                 answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,dc9b0596-30ab-102d-86b0-7a5022ba4115"
-                                 answerLabels="&#8730; - Yes,X - No ,N/A" id="anc1-timing" />
-                        </p>
-                    </td>
-                    <td>                       
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-            </table>
-        </fieldset>
-
 	    <fieldset>
 	      <legend>HIV Information</legend>
 	      <table width="100%" border="0" cellspacing="0" cellpadding="0" id="hiv-information-section">
 	        <tr>
-	          <td>
+	          <td colspan="2">
 	            <p>
-	              <label>HIV Status</label>
-	              <obs conceptId="dce0e886-30ab-102d-86b0-7a5022ba4115" 
-	              	   answerConceptIds="dcdf4241-30ab-102d-86b0-7a5022ba4115,dcdf4653-30ab-102d-86b0-7a5022ba4115,1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
-	              	   style="dropdown" id="hiv-status" required="true" />
+	              <label>eMTCT Code: Woman</label>
+	              <obs conceptId="d5b0394c-424f-41db-bc2f-37180dcdbe74" 
+	              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb, 
+					              	05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7, 
+					              	86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a, 
+					              	25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465, 
+					              	60155e4d-1d49-4e97-9689-758315967e0f, 
+					              	81bd3e58-9389-41e7-be1a-c6723f899e56,
+					              	1f177240-85f6-4f10-964a-cfc7722408b3,
+					              	48723c9c-c931-4fde-81cd-6178c9a9a70b,
+					              	4d301db0-c517-4556-9f7c-d837bac90144"
+	              	answerLabels="C - Counselled but declined HIV testing,
+	              					T - Counselled and tested but didn't receive results,
+	              					TR - Counselled tested and results given - Client tested HIV - in ANC,
+	              					TRR - Counselled tested and results given - Client tested HIV + in ANC,
+	              					TRR+ - Client was originally negative but sero-converted at this test,
+	              					TRK - Clients who tested HIV Negative within 4 weeks prior to arrival in ANC,
+	              					TRRK - Clients who tested HIV Positive prior to arrival in ANC,
+	              					TR&#8730; - New ANC clients with Known HIV- status,
+	              					TRR&#8730; - New ANC clients with Known HIV+ status" 
+	                style="dropdown" required="true" class="emtct-code" id="emtct-code-woman" />
 	            </p>
 	          </td>
+	          <td colspan="2">
+	            <p>
+	              <label>eMTCT Code: Partner</label>
+	              <obs conceptId="62a37075-fc2a-4729-8950-b9fae9b22cfb" 
+	              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,
+					              	05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7,
+					              	86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,
+					              	25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465,
+					              	60155e4d-1d49-4e97-9689-758315967e0f,
+					              	81bd3e58-9389-41e7-be1a-c6723f899e56,
+					              	1f177240-85f6-4f10-964a-cfc7722408b3,
+					              	48723c9c-c931-4fde-81cd-6178c9a9a70b,
+					              	4d301db0-c517-4556-9f7c-d837bac90144,
+					              	8eab745c-24a5-4ba4-906c-b5087e920b66" 
+	              	answerLabels="C - Counselled but declined HIV testing,
+	              					T - Counselled and tested but didn't receive results,
+	              					TR - Counselled tested and results given - Client tested HIV - in ANC,
+	              					TRR - Counselled tested and results given - Client tested HIV + in ANC,
+	              					TRR+ - Client was originally negative but sero-converted at this test,
+	              					TRK - Clients who tested HIV Negative within 4 weeks prior to arrival in ANC,
+	              					TRRK - Clients who tested HIV Positive prior to arrival in ANC,
+	              					TR&#8730; - New ANC clients with Known HIV- status,
+	              					TRR&#8730; - New ANC clients with Known HIV+ status,
+	              					Not Tested" 
+	                style="dropdown" class="emtct-code" id="emtct-code-partner" />
+	            </p>
+	          </td>
+	        </tr>
+	        <tr>
 	          <td>
 	            <p>
 	              <label>WHO Clinical Stage</label>
@@ -727,6 +794,7 @@
 	              <obs conceptId="dcbcba2c-30ab-102d-86b0-7a5022ba4115" />
 	            </p>
 	          </td>
+	          <td></td>
 	        </tr>
 	        <tr>
 	          <td>
@@ -756,38 +824,6 @@
 	          				answerConceptIds="a4089d8e-9ea6-4fff-b273-415c6640203a,f56e8d46-5b2f-488b-861a-94a89d16adf6"
 	          				answerLabels="Suppressed,Non-suppressed" id="viral-load-status" />
 	          	</p>
-	          </td>
-	        </tr>
-	        <tr>
-	          <td colspan="2">
-	            <p>
-	              <label>eMTCT Code: Woman</label>
-	              <obs conceptId="d5b0394c-424f-41db-bc2f-37180dcdbe74" 
-	              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb, 05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7, 86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a, 25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465, 60155e4d-1d49-4e97-9689-758315967e0f, 81bd3e58-9389-41e7-be1a-c6723f899e56,1f177240-85f6-4f10-964a-cfc7722408b3" 
-	              	answerLabels="C - Counselled but declined HIV testing,
-	              					T - Counselled and tested but didn't receive results,
-	              					TR - Counselled tested and results given - Client tested HIV - in ANC,
-	              					TRR - Counselled tested and results given - Client tested HIV + in ANC,
-	              					TRR+ - Client was originally negative but sero-converted at this test,
-	              					TR&#8730; - New ANC clients with Known HIV- status,
-	              					TRR&#8730; - New ANC clients with Known HIV+ status" 
-	                style="dropdown" required="true" class="emtct-code" id="emtct-code-woman" />
-	            </p>
-	          </td>
-	          <td colspan="2">
-	            <p>
-	              <label>eMTCT Code: Partner</label>
-	              <obs conceptId="62a37075-fc2a-4729-8950-b9fae9b22cfb" 
-	              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb, 05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7, 86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a, 25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465, 60155e4d-1d49-4e97-9689-758315967e0f, 81bd3e58-9389-41e7-be1a-c6723f899e56,1f177240-85f6-4f10-964a-cfc7722408b3" 
-	              	answerLabels="C - Counselled but declined HIV testing,
-	              					T - Counselled and tested but didn't receive results,
-	              					TR - Counselled tested and results given - Client tested HIV - in ANC,
-	              					TRR - Counselled tested and results given - Client tested HIV + in ANC,
-	              					TRR+ - Client was originally negative but sero-converted at this test,
-	              					TRK - New ANC clients with Known HIV- status,
-	              					TRRK - New ANC clients with Known HIV+ status" 
-	                style="dropdown" class="emtct-code" id="emtct-code-partner" />
-	            </p>
 	          </td>
 	        </tr>
 	      </table>
@@ -839,7 +875,7 @@
                             <label>ARVs Given</label>
                             <obs conceptId="a615f932-26ee-449c-8e20-e50a15232763"
                                  answerConceptIds="026e31b7-4a26-44d0-8398-9a41c40ff7d3,2aa7d442-6cbb-4609-9dd3-bc2ad6f05016,2c000b41-f9d7-40c1-8de0-bce91dbae932,bbc63761-0741-4583-9396-a34d3a18601c,dc9b0596-30ab-102d-86b0-7a5022ba4115"
-                                 answerLabels="ART,ARTK,ART✔,ARTK✔,NA"
+                                 answerLabels="ART,ARTK,ART&#8730;,ARTK&#8730;,NA"
                                  style="dropdown" id="arvs-given" />
                         </p>
                     </td>
@@ -877,8 +913,14 @@
                         <p>
                             <label>TB Status</label>
                             <obs conceptId="dce02aa1-30ab-102d-86b0-7a5022ba4115"
-                                 answerConceptIds="dcdaccc1-30ab-102d-86b0-7a5022ba4115,dcdaaf0f-30ab-102d-86b0-7a5022ba4115,dcdac38b-30ab-102d-86b0-7a5022ba4115,dcdaa6b4-30ab-102d-86b0-7a5022ba4115"
-                                 answerLabels="No Signs - No signs or symptoms of TB,Presumptive (Suspect) - TB refer or sputum sent,TB Diagnosed - Diagnosed with TB,TB Rx - CUrrently on TB treatment"
+                                 answerConceptIds="dcdaccc1-30ab-102d-86b0-7a5022ba4115,
+					                                 dcdaaf0f-30ab-102d-86b0-7a5022ba4115,
+					                                 dcdac38b-30ab-102d-86b0-7a5022ba4115,
+					                                 dcdaa6b4-30ab-102d-86b0-7a5022ba4115"
+                                 answerLabels="1. No Signs - No signs or symptoms of TB,
+	                                 			2. Presumptive (Suspect) - TB refer or sputum sent,
+	                                 			3. TB Diagnosed - Diagnosed with TB,
+	                                 			4. TB Rx - CUrrently on TB treatment"
                                  style="dropdown" />
                         </p>
                     </td>
@@ -932,7 +974,7 @@
                             <label>IPT Dose</label>
                             <obs conceptId="1da3cb98-59d8-4bfd-b0bb-c9c1bcd058c6"
                                  answerConceptIds="0192ca59-b647-4f88-b07e-8fda991ba6d6,f1d5afce-8dfe-4d2d-b24b-051815d61848,a5497b5a-7da1-42d2-9985-b5ec695b4199,f29f43c6-076a-4f70-9ae8-4563ac3fda80,dca06bae-30ab-102d-86b0-7a5022ba4115,fca28768-50dc-4d6b-a3d2-2aae3b376b27,b0439b8e-469e-43e6-9dda-9b6b49f2147b"
-                                 answerLabels="1 - IPT1,2 - IPT2,3 - IPT3,ND - Not Due,C - Complete,CTX - Initial  septrin prescrition,CTX✔ - Septrin prescribed on prev visit"
+                                 answerLabels="1 - IPT1,2 - IPT2,3 - IPT3,ND - Not Due,C - Complete,CTX - Initial  septrin prescrition,CTX&#8730; - Septrin prescribed on prev visit"
                                  style="dropdown" />
                         </p>
                     </td>
@@ -953,7 +995,7 @@
                             <label>Mebendazole Dose</label>
                             <obs conceptId="9d6abbc4-707a-4ec7-a32a-4090b1c3af87"
                                  answerConceptIds="a7a9d632-b266-4085-9a5e-57fc8dd56f0c,0134c1d3-a255-46b2-ac77-38c0edcd9e53,	beb5523f-ec5a-46fe-a7c9-f3270a05f4b4,dca06bae-30ab-102d-86b0-7a5022ba4115"
-                                 answerLabels="✔ - Received,X - Not Received,ND - Not due,C - Completed"
+                                 answerLabels="&#8730; - Received,X - Not Received,ND - Not due,C - Completed"
                                  style="dropdown" />
                         </p>
                     </td>
@@ -1033,9 +1075,17 @@
                         </p>
                     </td>
                 </tr>
+				<tr>
+					<td>
+						<label>Next appointment date</label>
+						<obs id="returndate" conceptId="dcac04cf-30ab-102d-86b0-7a5022ba4115" allowFutureDates="true" />
+					</td>
+					<td colspan="3">
+					</td>
+				</tr>
             </table>
         </fieldset>
-
+		<postSubmissionAction class="org.openmrs.module.aijar.htmlformentry.MCHProgramEnrollmentPostSubmissionAction" />
         <section>
             <submit/>
 			<span style="clear:none;float:none;margin:5px;display: none;" class="error1" id="error-message">

@@ -14,6 +14,9 @@
 	<encounter_type encounter_type_id="24" name="HTC - Encounter" description="An encounter when a patient gets HCT services" creator="1" date_created="2016-04-05 16:43:20.0" retired="false" uuid="264daIZd-f80e-48fe-nba9-P37f2W1905Pv"/>
 	<encounter_type encounter_type_id="25" name="PNC - Encounter" description="An encounter when a patient gets PNC services" creator="1" date_created="2016-12-07 14:45:59.0" retired="false" uuid="fa6f3ff5-b784-43fb-ab35-a08ab7dbf074"/>
 	
+	<!-- relationship types -->
+	<relationship_type  relationship_type_id="1000"  a_is_to_b="Parent"  b_is_to_a="Child"  preferred="0"  weight="0"  description="Relationship from a mother/father to the child"  creator="1"  date_created="2007-05-01 11:38:27"  uuid="8d91a210-c2cc-11de-8d13-0010c6dffd0f"  retired="0" />
+	
 	<!-- Patient Identifiers -->
 	<patient_identifier_type patient_identifier_type_id="4" name="HIV Clinic No." description="This is the patient's identifier used at the treating facility" creator="1" date_created="2017-01-31 10:59:34.0" required="false" format_description="The first three letters of the facility, followed by / then 5 numbers with no spaces" retired="false" uuid="e1731641-30ab-102d-86b0-7a5022ba4115" location_behavior="NOT_USED"/>
 	<patient_identifier_type patient_identifier_type_id="8" name="Exposed Infant No." description="This is the exposed infant clinic number used at the treating facility" creator="1" date_created="2017-01-31 10:59:35.0" required="false" format_description="Birth Cohort number" retired="false" uuid="2c5b695d-4bf3-452f-8a7c-fe3ee3432ffe" location_behavior="NOT_USED"/>
@@ -49,13 +52,74 @@
 	<patient patient_id="10003" creator="1" date_created="2017-01-03 00:00:00.0" voided="false"/>
 	<patient_identifier patient_identifier_id="10003" patient_id="10003" identifier="EXP-10003" identifier_type="8" preferred="0" location_id="1" creator="1" date_created="2017-01-03 00:00:00.0" voided="false" void_reason="" uuid="d3ca1de0-7144-4a5d-8c42-3f69afc028fc"/>
 	
+	<person person_id="10004" gender="M" birthdate="2017-01-04 00:00:00.0" birthdate_estimated="0" dead="false" creator="1" date_created="2017-01-03 00:00:00.0" voided="false" uuid="8b488d90-4c7c-4a79-aa9e-77a9c711f8f6"/>
+	<person_name person_name_id="100014" preferred="true" person_id="10004" prefix="" given_name="Trevor" middle_name="Noah" family_name="Muganga" family_name_suffix="" creator="1" date_created="2017-01-03 00:00:00.0" voided="false" void_reason="" uuid="2433f7be-4d99-411f-ba37-86f421646b4c"/>
+	<patient patient_id="10004" creator="1" date_created="2017-01-03 00:00:00.0" voided="false"/>
+	<patient_identifier patient_identifier_id="10004" patient_id="10004" identifier="EXP-10004" identifier_type="8" preferred="0" location_id="1" creator="1" date_created="2017-01-03 00:00:00.0" voided="false" void_reason="" uuid="d3ca1de0-7144-4a5d-8c42-3f69afc028fd"/>
+	
+	<person person_id="10005" gender="F" birthdate="2017-01-05 00:00:00.0" birthdate_estimated="0" dead="false" creator="1" date_created="2017-01-03 00:00:00.0" voided="false" uuid="8b488d90-4c7c-4a79-aa9e-77a9c711f8f7"/>
+	<person_name person_name_id="100015" preferred="true" person_id="10005" prefix="" given_name="Jennifer" middle_name="" family_name="Aniston" family_name_suffix="" creator="1" date_created="2017-01-03 00:00:00.0" voided="false" void_reason="" uuid="2433f7be-4d99-411f-ba37-86f421646b4d"/>
+	<patient patient_id="10005" creator="1" date_created="2017-01-03 00:00:00.0" voided="false"/>
+	<patient_identifier patient_identifier_id="10005" patient_id="10005" identifier="EXP-10005" identifier_type="8" preferred="0" location_id="1" creator="1" date_created="2017-01-03 00:00:00.0" voided="false" void_reason="" uuid="d3ca1de0-7144-4a5d-8c42-3f69afc028fe"/>
+	
+	<person person_id="10006" gender="F" birthdate="2017-01-06 00:00:00.0" birthdate_estimated="0" dead="false" creator="1" date_created="2017-01-03 00:00:00.0" voided="false" uuid="8b488d90-4c7c-4a79-aa9e-77a9c711f8f8"/>
+	<person_name person_name_id="100016" preferred="true" person_id="10006" prefix="" given_name="Angelina" middle_name="" family_name="Jolie" family_name_suffix="" creator="1" date_created="2017-01-03 00:00:00.0" voided="false" void_reason="" uuid="2433f7be-4d99-411f-ba37-86f421646b4e"/>
+	<patient patient_id="10006" creator="1" date_created="2017-01-03 00:00:00.0" voided="false"/>
+	<patient_identifier patient_identifier_id="10006" patient_id="10006" identifier="EXP-10006" identifier_type="8" preferred="0" location_id="1" creator="1" date_created="2017-01-03 00:00:00.0" voided="false" void_reason="" uuid="d3ca1de0-7144-4a5d-8c42-3f69afc028ff"/>
+	
+	<!-- Under age mother -->
+	<person person_id="10007" gender="F" dead="false" creator="1" birthdate_estimated="0" date_created="2008-08-15 15:46:47.0" voided="false" uuid="df8ae447-6745-45be-b859-403241d9913d"/>
+	<patient patient_id="10007" creator="1" date_created="2017-01-03 00:00:00.0" voided="false"/>
+	
+	<person person_id="10008" gender="M" birthdate="2017-01-07 00:00:00.0" birthdate_estimated="0" dead="false" creator="1" date_created="2017-01-03 00:00:00.0" voided="false" uuid="8b488d90-4c7c-4a79-aa9e-77a9c711f8f9"/>
+	<person_name person_name_id="100017" preferred="true" person_id="10008" prefix="" given_name="Justin" middle_name="" family_name="Bieber" family_name_suffix="" creator="1" date_created="2017-01-03 00:00:00.0" voided="false" void_reason="" uuid="2433f7be-4d99-411f-ba37-86f421646b4f"/>
+	<patient patient_id="10008" creator="1" date_created="2017-01-03 00:00:00.0" voided="false"/>
+	<patient_identifier patient_identifier_id="10007" patient_id="10008" identifier="EXP-10008" identifier_type="8" preferred="0" location_id="1" creator="1" date_created="2017-01-03 00:00:00.0" voided="false" void_reason="" uuid="d3ca1de0-7144-4a5d-8c42-3f69afc028fg"/>
+	
+	<!-- infant already linked to mother -->
+	<person person_id="10009" gender="M" birthdate="2017-02-07 00:00:00.0" birthdate_estimated="0" dead="false" creator="1" date_created="2017-01-03 00:00:00.0" voided="false" uuid="8b488d90-4c7c-4a79-aa9e-77a9c711f8g1"/>
+	<person_name person_name_id="100018" preferred="true" person_id="10008" prefix="" given_name="Mark" middle_name="" family_name="Hurd" family_name_suffix="" creator="1" date_created="2017-01-03 00:00:00.0" voided="false" void_reason="" uuid="2433f7be-4d99-411f-ba37-86f421646b4g"/>
+	<patient patient_id="10009" creator="1" date_created="2017-01-03 00:00:00.0" voided="false"/>
+	<patient_identifier patient_identifier_id="10008" patient_id="10009" identifier="EXP-10009" identifier_type="8" preferred="0" location_id="1" creator="1" date_created="2017-01-03 00:00:00.0" voided="false" void_reason="" uuid="d3ca1de0-7144-4a5d-8c42-3f69afc028fh"/>
+	<relationship relationship_id="1000" person_a="8" relationship="1000" person_b="10009" creator="1" date_created="2008-08-18 11:50:15.0" voided="false" uuid="c18717dd-5d78-4a0e-84fc-ee62c5f0676b"/>
+	
+	<!-- Mothers ART numbers -->
+	<patient_identifier patient_identifier_id="10100" patient_id="7" identifier="ART-FEMALE-1" identifier_type="14" preferred="0" location_id="1" creator="1" date_created="2014-01-01 00:00:00.0" voided="false" void_reason="" uuid="5ed3149d-e138-4966-af76-09263b034389"/>
+	<patient_identifier patient_identifier_id="10101" patient_id="10007" identifier="ART-FEMALE-UNDERAGE-1" identifier_type="14" preferred="0" location_id="1" creator="1" date_created="2014-01-01 00:00:00.0" voided="false" void_reason="" uuid="5ed3149d-e138-4966-af76-09263b034387"/>
+	<patient_identifier patient_identifier_id="10102" patient_id="2" identifier="ART-MALE-1" identifier_type="14" preferred="0" location_id="1" creator="1" date_created="2014-01-01 00:00:00.0" voided="false" void_reason="" uuid="5ed3149d-e138-4966-af76-09263b034385"/>
+	
 	<!-- Concepts -->
 	<concept concept_id="90200" retired="false" datatype_id="2" class_id="7" is_set="false" creator="1" date_created="2008-08-15 15:51:57.0" version="" uuid="dcdfe3ce-30ab-102d-86b0-7a5022ba4115"/>
 	<concept concept_id="90012" retired="false" datatype_id="2" class_id="5" is_set="false" creator="1" date_created="2008-08-15 15:51:57.0" version="" uuid="dcd7e8e5-30ab-102d-86b0-7a5022ba4115"/>
+	<concept  concept_id="162874"  retired="0"  datatype_id="3"  class_id="1"  is_set="0"  creator="1"  date_created="2016-01-08 16:24:16"  version=""  uuid="85097a99-4126-4ad3-894e-25c1a7e91dee"/>
+	<concept  concept_id="99428"  retired="0" datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2012-08-12 10:10:57"  version=""  uuid="2099355c-ceb2-482e-9a81-536890ab3d1c"/>
+	<concept concept_id="99423" retired="false" datatype_id="2" class_id="3" is_set="false" creator="1" date_created="2008-08-15 15:27:51.0" version="" uuid="e44c8c4c-db50-4d1e-9d6e-092d3b31cfd6"/>
+	<concept concept_id="159787" retired="false" datatype_id="2" class_id="3" is_set="false" creator="1" date_created="2008-08-15 15:27:51.0" version="" uuid="0cbe2ed3-cd5f-4f46-1159-26127c926522"/>
+	<concept concept_id="5240" retired="false" datatype_id="2" class_id="3" is_set="false" creator="1" date_created="2008-08-15 15:27:51.0" version="" uuid="0cbe2ed3-cd5f-4f46-1159-26127c926533"/>
+	<concept concept_id="90306" retired="false" datatype_id="2" class_id="3" is_set="false" creator="1" date_created="2008-08-15 15:27:51.0" version="" uuid="0cbe2ed3-cd5f-4f46-1159-26127c926544"/>
+	
+	<concept_name concept_id="99423" name="Treatment Outcome" locale="en_GB" creator="1" date_created="2004-08-12 00:00:00.0" concept_name_id="1939" concept_name_type="FULLY_SPECIFIED" locale_preferred="1" voided="false" uuid="9bc5693a-f558-40c9-8177-145a4b119cb9"/>
+	<concept_name concept_id="90306" name="Transferred out" locale="en_GB" creator="1" date_created="2004-08-12 00:00:00.0" concept_name_id="2439" concept_name_type="FULLY_SPECIFIED" locale_preferred="1" voided="false" uuid="9bc5693a-f558-40c9-8177-145a4b119cc4"/>
+	<concept_name concept_id="5240" name="Lost to follow up" locale="en_GB" creator="1" date_created="2004-08-12 00:00:00.0" concept_name_id="3439" concept_name_type="FULLY_SPECIFIED" locale_preferred="1" voided="false" uuid="9bc5693a-f558-40c9-8177-145a4b119ce2"/>
+	<concept concept_id="90012" retired="false" datatype_id="2" class_id="5" is_set="false" creator="1" date_created="2008-08-15 15:51:57.0" version="" uuid="dcd7e8e5-30ab-102d-86b0-7a5022ba4115"/>
+	<concept  concept_id="162874"  retired="0"  datatype_id="3"  class_id="1"  is_set="0"  creator="1"  date_created="2016-01-08 16:24:16"  version=""  uuid="85097a99-4126-4ad3-894e-25c1a7e91dee"/>
+	<concept  concept_id="99428"  retired="0" datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2012-08-12 10:10:57"  version=""  uuid="2099355c-ceb2-482e-9a81-536890ab3d1c"/>
 	
 	<!-- visits -->
 	<visit visit_id="10000" patient_id="10000" visit_type_id="1" date_started="2014-01-08 00:00:00.0" location_id="1" creator="1" date_created="2014-01-08 00:00:00.0" voided="false" uuid="d1e83a75-2841-43bc-8684-d2a1f9fb28d9" />
 	<visit visit_id="10001" patient_id="10001" visit_type_id="1" date_started="2017-01-01 00:00:00.0" location_id="1" creator="1" date_created="2017-01-01 00:00:00.0" voided="false" uuid="d8508593-fc33-45e3-89b2-4a0528a99b64" />
 	<visit visit_id="10002" patient_id="10002" visit_type_id="1" date_started="2017-01-02 00:00:00.0" location_id="1" creator="1" date_created="2017-01-02 00:00:00.0" voided="false" uuid="c4fa7456-7458-44e3-bde9-d5d6d5466119" />
+	<visit visit_id="10003" patient_id="10003" visit_type_id="1" date_started="2017-01-02 00:00:00.0" location_id="1" creator="1" date_created="2014-01-08 00:00:00.0" voided="false" uuid="c4fa7456-7458-44e3-bde9-d5d6d5466120" />
+	<visit visit_id="10004" patient_id="10004" visit_type_id="1" date_started="2017-01-02 00:00:00.0" location_id="1" creator="1" date_created="2017-01-02 00:00:00.0" voided="false" uuid="c4fa7456-7458-44e3-bde9-d5d6d5466121" />
+	<visit visit_id="10005" patient_id="10005" visit_type_id="1" date_started="2017-01-02 00:00:00.0" location_id="1" creator="1" date_created="2017-01-02 00:00:00.0" voided="false" uuid="c4fa7456-7458-44e3-bde9-d5d6d5466125" />
+	<visit visit_id="10006" patient_id="10006" visit_type_id="1" date_started="2017-01-02 00:00:00.0" location_id="1" creator="1" date_created="2017-01-02 00:00:00.0" voided="false" uuid="c4fa7456-7458-44e3-bde9-d5d6d5466126" />
 	
+	<program program_id="11" concept_id="9" creator="1" date_created="2008-08-15 16:07:11.0" changed_by="1" date_changed="2008-08-15 17:04:50.0" retired="false" name="TB PROGRAM" description="tb program" uuid="9dc21a72-0971-11e7-8037-507b9dc4c741"/>
+	<program program_id="12" concept_id="9" creator="1" date_created="2008-08-15 16:07:11.0" changed_by="1" date_changed="2008-08-15 17:04:50.0" retired="false" name="MCH PROGRAM" description="mch program" uuid="5e8c094c-0a36-11e7-b779-507b9dc4c741"/>
+	
+	<patient_program patient_program_id="11" patient_id="7" program_id="11" date_enrolled="2008-08-01 00:00:00.0" creator="1" date_created="2008-08-18 11:40:48.0" changed_by="1" date_changed="2008-08-18 12:29:29.0" voided="false" uuid="b75462a0-4c92-451e-b8bc-e98b38b76511"/>
+    <patient_program patient_program_id="22" patient_id="8" program_id="12" date_enrolled="2008-08-02 00:00:00.0" creator="1" date_created="2008-08-18 11:41:19.0" voided="false" uuid="2edf272c-bf05-4208-9f93-2fa213ed0422"/>
+	
+	<encounter encounter_id="3" encounter_type="2" patient_id="8" location_id="1" form_id="1" encounter_datetime="2009-08-01 00:00:00.0" creator="1" date_created="2008-08-18 14:09:05.0" voided="false" uuid="6519d653-393b-4118-9c83-a3715b82d4xz"/>
+
 </dataset>

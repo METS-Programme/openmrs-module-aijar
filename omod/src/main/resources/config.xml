@@ -109,6 +109,24 @@
             Whether or not to show the research identifier
         </description>
     </globalProperty>
+    <globalProperty>
+        <property>ugandaemr.lostToFollowUpDaysTB</property>
+        <defaultValue>60</defaultValue>
+        <description>
+            Number of days when a TB patient is considered lost to follow up
+        </description>
+    </globalProperty>
+    <globalProperty>
+        <property>ugandaemr.lostToFollowUpDaysMCH</property>
+        <defaultValue>315</defaultValue>
+        <description>
+            Number of days when an MCH mother is considered lost to follow up
+        </description>
+    </globalProperty>
+    <globalProperty>
+        <property>ugandaemr.dhis2.organizationuuid</property>
+        <description>The organization code in DHIS2</description>
+    </globalProperty>
 
 </module>
 

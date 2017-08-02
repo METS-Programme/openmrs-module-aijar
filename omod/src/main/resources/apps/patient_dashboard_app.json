@@ -1,0 +1,96 @@
+[
+  {
+    "id": "ugandaemr.dashboardwidget.EIDSummary",
+    "instanceOf": "coreapps.template.dashboardWidget",
+    "description": "coreapps.latestObsForConceptList.app.description",
+    "order": 10,
+    "config": {
+      "widget": "latestobsforconceptlist",
+      "icon": "icon-user-md",
+      "label": "EID Summary",
+      "maxAge": "120m",
+      "concepts": "51941f01-307f-44ca-9351-401bc008a208,b6a6210b-ccdf-45fc-80dd-1567f65e2d98,1f627527-2f97-4f21-9b61-2b79d887950f,e1b4efbf-0dff-4e9e-a2f2-34edcb02a5d0,4092ad52-3db3-47f5-b497-126e1202f1eb,162881AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,977b16f4-2d3e-40d2-ba51-54794c98f7ef"
+    },
+    "extensions": [
+      {
+        "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardSecondColumn",
+        "appId": "ugandaemr.dashboardwidget.EIDSummary",
+        "extensionPointId": "patientDashboard.secondColumnFragments",
+        "extensionParams": {
+          "provider": "coreapps",
+          "fragment": "dashboardwidgets/dashboardWidget"
+        }
+      }
+    ]
+  },
+  {
+    "id": "ugandaemr.dashboardwidget.MCHSummary",
+    "instanceOf": "coreapps.template.dashboardWidget",
+    "description": "Displays obstetric summary of mother receiving MCH services",
+    "order": 10,
+    "config": {
+      "widget": "latestobsforconceptlist",
+      "icon": "icon-user-md",
+      "label": "MCH Summary",
+      "concepts": "5f86d19d-9546-4466-89c0-6f80c101191b,dcc39097-30ab-102d-86b0-7a5022ba4115,1053AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,dca0a383-30ab-102d-86b0-7a5022ba4115,dcc033e5-30ab-102d-86b0-7a5022ba4115,d5b0394c-424f-41db-bc2f-37180dcdbe74"
+    },
+    "extensions": [
+      {
+        "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardFirstColumn",
+        "appId": "ugandaemr.dashboardwidget.MCHSummary",
+        "extensionPointId": "patientDashboard.firstColumnFragments",
+        "extensionParams": {
+          "provider": "coreapps",
+          "fragment": "dashboardwidgets/dashboardWidget"
+        }
+      }
+    ]
+  },
+  {
+    "id": "ugandaemr.dashboardwidget.ARTStatus",
+    "instanceOf": "coreapps.template.dashboardWidget",
+    "description": "coreapps.latestObsForConceptList.app.description",
+    "order": 5,
+    "config": {
+      "widget": "latestobsforconceptlist",
+      "icon": "icon-user-md",
+      "label": "ART Status",
+      "maxAge": "120m",
+      "concepts": "dce12b4f-30ab-102d-86b0-7a5022ba4115,ab505422-26d9-41f1-a079-c3d222000440,c3332e8d-2548-4ad6-931d-6855692694a3,c17bd9df-23e6-4e65-ba42-eb6d9250ca3f"
+    },
+    "extensions": [
+      {
+        "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardFirstColumn",
+        "appId": "ugandaemr.dashboardwidget.ARTStatus",
+        "extensionPointId": "patientDashboard.firstColumnFragments",
+        "extensionParams": {
+          "provider": "coreapps",
+          "fragment": "dashboardwidgets/dashboardWidget"
+        }
+      }
+    ]
+  },
+  {
+    "id": "ugandaemr.dataIntegrityViolations",
+    "instanceOf": "coreapps.template.dashboardWidget",
+    "description": "coreapps.dataIntegrityViolations.app.description",
+    "order": 10,
+    "config": {
+      "widget": "dataintegrityviolations",
+      "icon": "icon-question-sign",
+      "label": "Data Quality Violations",
+      "maxResults": "8"
+    },
+    "extensions": [
+      {
+        "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardFirstColumn",
+        "appId": "ugandaemr.dataIntegrityViolations",
+        "extensionPointId": "patientDashboard.firstColumnFragments",
+        "extensionParams": {
+          "provider": "coreapps",
+          "fragment": "dashboardwidgets/dashboardWidget"
+        }
+      }
+    ]
+  }
+]
