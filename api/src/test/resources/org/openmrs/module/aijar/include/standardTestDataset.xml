@@ -30,6 +30,7 @@
 	<patient_identifier_type patient_identifier_type_id="15" name="Research Identifier" description="An identifier used for patients within research settings" creator="1" date_created="2017-01-31 10:59:36.0" required="false" retired="false" uuid="20653abb-689c-4975-bbfa-00de7b507a95" location_behavior="NOT_USED"/>
 	<patient_identifier_type patient_identifier_type_id="16" name="Postnatal Care No." description="This is the unique serial number given to the child during postnatal visits" creator="1" date_created="2017-01-31 10:59:35.0" required="false" format_description="Begins with 1 at the beginning of the financial year (July)" retired="false" uuid="758ef6e4-9ceb-4137-bc8d-9246dc7b41fe" location_behavior="NOT_USED"/>
 	<patient_identifier_type patient_identifier_type_id="17" name="Safe Male Circumcision Client Number" description="An identifier used for patients who undergo safe male circumcision" creator="1" date_created="2017-01-31 10:59:36.0" required="false" retired="false" uuid="37601abe-2ee0-4493-8ac7-22b4972190cf" location_behavior="NOT_USED"/>
+	<patient_identifier_type patient_identifier_type_id="19" name="OpenMRS Id" description="OpenMRS Id" creator="1" date_created="2017-03-08 09:21:00.0" required="false" retired="false" uuid="05a29f94-c0ed-11e2-94be-8c13b969e334" location_behavior="NOT_USED"/>
 	
 	
 	<!-- Exposed infants -->
