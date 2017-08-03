@@ -1,12 +1,6 @@
 package org.openmrs.module.aijar.api.deploy.bundle;
 
-import org.openmrs.module.aijar.metadata.core.EncounterRoles;
-import org.openmrs.module.aijar.metadata.core.EncounterTypes;
-import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
-import org.openmrs.module.aijar.metadata.core.PersonAttributeTypes;
-import org.openmrs.module.aijar.metadata.core.Programs;
-import org.openmrs.module.aijar.metadata.core.Roles;
-import org.openmrs.module.aijar.metadata.core.Locations;
+import org.openmrs.module.aijar.metadata.core.*;
 import org.openmrs.module.metadatadeploy.bundle.AbstractMetadataBundle;
 import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.encounterRole;
 import org.springframework.stereotype.Component;
@@ -38,7 +32,6 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(PatientIdentifierTypes.ART_PATIENT_NUMBER);
         install(PatientIdentifierTypes.RESEARCH_PATIENT_ID);
         install(PatientIdentifierTypes.SMC_CLIENT_NUMBER);
-        install(PatientIdentifierTypes.INTEGRATED_NUTRITION_REGISTER_NUMBER);
         log.info("Patient IdentifierTypes installed");
 
         // install person attribute types
@@ -64,18 +57,21 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(EncounterTypes.OPD_ENCOUNTER);
         install(EncounterTypes.TB_SUMMARY_ENCOUNTER);
         install(EncounterTypes.TB_FOLLOWUP_ENCOUNTER);
-        
+        install(EncounterTypes.VIRAL_LOAD_NON_SUPPRESSED);
+
         //installing programs metadata
         log.info("Installing Programs");
         install(Programs.HIV_PROGRAM);
         install(Programs.TB_PROGRAM);
         install(Programs.MCH_PROGRAM);
         install(Programs.NUTRITION_PROGRAM);
-        install(encounterRole(EncounterRoles.ASSISTANT_CIRCUMCISER_NAME,EncounterRoles.ASSISTANT_CIRCUMCISER_DESCRIPTION,EncounterRoles.ASSISTANT_CIRCUMCISER_UUID));
-        
+
         //install Locations
         log.info("Installing Locations");
         install(Locations.TB_CLINIC);
         install(Locations.OPD_CLINIC);
+
+        // Install Encounter Role
+        install(encounterRole(EncounterRoles.ASSISTANT_CIRCUMCISER_NAME,EncounterRoles.ASSISTANT_CIRCUMCISER_DESCRIPTION,EncounterRoles.ASSISTANT_CIRCUMCISER_UUID));
     }
 }
