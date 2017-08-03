@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
-				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
-	<!--
-		See http://www.liquibase.org/manual/home#available_database_refactorings
-		for a list of supported elements and attributes
-	-->
+    <!--
+        See http://www.liquibase.org/manual/home#available_database_refactorings
+        for a list of supported elements and attributes
+    -->
+	<changeSet id="ugandaemr-07052017-1505" author="ssmusoke">
+		<comment>Move the death information from the obs table to the person table</comment>
+		<sql>
+			UPDATE person INNER JOIN obs ON obs.person_id = person.person_id AND concept_id = 99112 AND value_coded = 90003 SET dead = 1;
+			UPDATE person INNER JOIN obs ON obs.person_id = person.person_id AND concept_id = 90272 SET death_date = value_datetime;
+		</sql>
+	</changeSet>
 	<changeSet id="ugandaemr-07112017-1800" author="ssmusoke">
 		<comment>Move all summary pages from form_id 34 to 14</comment>
 		<sql>UPDATE encounter SET form_id = 14 WHERE form_id = 34</sql>
@@ -91,15 +98,15 @@
 			<column name="started" value="1"/>
 			<column name="uuid" value="d1147982-1fd3-4d03-8b6c-6345a8187b28" />
 		</insert>
-	
+		
 	</changeSet>
-	<changeSet id="ugandaemr-12162016-1052" author="ssmusoke">
+    <changeSet id="ugandaemr-12162016-1052" author="ssmusoke">
 		<comment>Stop scheduled tasks that are not used from starting up</comment>
 		<sql>
 			UPDATE scheduler_task_config SET start_on_startup = 0 WHERE schedulable_class IN ('org.openmrs.module.formentry.ProcessFormEntryQueueTask', 'org.openmrs.scheduler.tasks.ProcessHL7InQueueTask')
 		</sql>
 	</changeSet>
-	
+
 	<changeSet id="ugandaemr-111032017-1130" author="slubwama">
 		<comment>Change concept 162394 datatype to coded concept</comment>
 		<sql>
