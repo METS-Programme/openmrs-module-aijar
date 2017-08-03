@@ -88,6 +88,20 @@ public abstract class BasePatientRuleDefinition implements RuleDefinition<Patien
 	}
 	
 	/**
+	 * OpenMRS Id for the patient
+	 * 
+	 * @param patient
+	 * @return
+	 */
+	public String getOpenMrsId(Patient patient) { //To be done
+		
+		PatientService patientService = Context.getPatientService();
+		PatientIdentifierType pit = patientService.getPatientIdentifierTypeByUuid(PatientIdentifierTypes.OPENMRS_ID.uuid());
+
+		return patient.getPatientIdentifier(pit) == null ? "" : patient.getPatientIdentifier(pit).toString();		
+	}	
+	
+	/**
 	 * A Session instance used by sub-classes
 	 * 
 	 * @return
