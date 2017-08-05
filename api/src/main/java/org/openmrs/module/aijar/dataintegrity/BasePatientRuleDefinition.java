@@ -64,7 +64,7 @@ public abstract class BasePatientRuleDefinition implements RuleDefinition<Patien
 		
 		for (String tbIdentifierConceptUuid : tbIdentifierConceptUuids) {
 			
-			Concept tbIdentifierConcept = Context.getConceptService().getConcept(tbIdentifierConceptUuid);
+			Concept tbIdentifierConcept = Context.getConceptService().getConceptByUuid(tbIdentifierConceptUuid);
 			
 			Set<Obs> patientObs = encounter.getObs();
 			
