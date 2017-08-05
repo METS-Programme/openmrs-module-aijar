@@ -67,14 +67,14 @@ public class InvalidTBEncounters extends BasePatientRuleDefinition {
 			Patient patient = obs.getEncounter().getPatient();
 			
 			RuleResult<Patient> ruleResult = new RuleResult<>();
-			ruleResult.setActionUrl("coreapps/patientdashboard/patientDashboard.page?patientId=" + patient.getUuid());
-			ruleResult.setNotes("The District TB Number " + getTbNumber(patient, obs.getEncounter()) + " is used by another patient");
+			ruleResult.setActionUrl("htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=" + patient.getUuid() + "&encounterId=" + obs.getEncounter().getId());
+			ruleResult.setNotes("The " + identifierTitle + " is used by another patient");
 			ruleResult.setEntity(patient);
 			
 			ruleResults.add(ruleResult);
 			uniquePatientList.add(patient);
 		}
-		log.info("There are " + uniquePatientList.size() + " Patients with similar " + identifierTitle + " identifiers: duplicated for a single patient,");
+		log.info("There are " + uniquePatientList.size() + " Patients with similar " + identifierTitle);
 		
 		return ruleResults;
 	}
@@ -98,14 +98,14 @@ public class InvalidTBEncounters extends BasePatientRuleDefinition {
 		for (Obs obs : obsList) {
 			Patient patient = obs.getEncounter().getPatient();
 			RuleResult<Patient> ruleResult = new RuleResult<>();
-			ruleResult.setActionUrl("coreapps/patientdashboard/patientDashboard.page?patientId=" + patient.getUuid());
-			ruleResult.setNotes("The District TB Number " + getTbNumber(patient, obs.getEncounter()) + " is used by another patient");
+			ruleResult.setActionUrl("htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=" + patient.getUuid() + "&encounterId=" + obs.getEncounter().getId());
+			ruleResult.setNotes("The " + identifierTitle + " is used by another patient");
 			ruleResult.setEntity(patient);
 			
 			ruleResults.add(ruleResult);
 			uniquePatientList.add(patient);
 		}
-		log.info("There are " + uniquePatientList.size() + " Patients with similar " + identifierTitle + " identifiers: duplicated for a single patient,");
+		log.info("There are " + uniquePatientList.size() + " Sharing the same " + identifierTitle);
 		
 		return ruleResults;
 	}
@@ -177,19 +177,20 @@ public class InvalidTBEncounters extends BasePatientRuleDefinition {
 			encounterQuery.setParameter("patientId", patient.getId());
 			encounterQuery.setParameter("encounterTypeUuid", EncounterTypes.TB_SUMMARY_ENCOUNTER.uuid());
 			
+			RuleResult<Patient> ruleResult = new RuleResult<>();
+			
 			List<Encounter> encounterList = encounterQuery.list();
-				RuleResult<Patient> ruleResult = new RuleResult<>();
-				if (encounterList.size() > 0) {
-					Encounter encounter = encounterList.get(0);
-					ruleResult.setActionUrl("htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=" + patient.getUuid() + "&encounterId=" + encounter);
-					ruleResult.setNotes("Patient #" + getTbNumber(patient, encounter) + " has no final TB Outcome 9 months after start of treatment");
-				} else {
-					ruleResult.setActionUrl("coreapps/patientdashboard/patientDashboard.page?patientId=" + patient.getId());
-					ruleResult.setNotes("Patient #" + getOpenMrsId(patient) + " has no final TB Outcome 9 months after start of treatment");
-				}
-				ruleResult.setEntity(patient);
-				
-				ruleResults.add(ruleResult);				
+			if (encounterList.size() > 0) {
+				Encounter encounter = encounterList.get(0);
+				ruleResult.setActionUrl("htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=" + patient.getUuid() + "&encounterId=" + encounter);
+				ruleResult.setNotes("Patient #" + getTbNumber(patient, encounter) + " has no final TB Outcome 9 months after start of treatment");
+			} else {
+				ruleResult.setActionUrl("coreapps/patientdashboard/patientDashboard.page?patientId=" + patient.getId());
+				ruleResult.setNotes("Patient #" + getOpenMrsId(patient) + " has no final TB Outcome 9 months after start of treatment");
+			}
+			ruleResult.setEntity(patient);
+			
+			ruleResults.add(ruleResult);				
 		}
 		
 		return ruleResults;
