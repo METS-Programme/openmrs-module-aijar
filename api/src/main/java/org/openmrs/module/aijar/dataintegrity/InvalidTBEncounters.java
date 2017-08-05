@@ -68,7 +68,7 @@ public class InvalidTBEncounters extends BasePatientRuleDefinition {
 			
 			RuleResult<Patient> ruleResult = new RuleResult<>();
 			ruleResult.setActionUrl("htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=" + patient.getUuid() + "&encounterId=" + obs.getEncounter().getId());
-			ruleResult.setNotes("The " + identifierTitle + " is used by another patient");
+			ruleResult.setNotes("The " + identifierTitle + "[" + getTbNumber(patient, obs.getEncounter()) + "] is used by another patient");
 			ruleResult.setEntity(patient);
 			
 			ruleResults.add(ruleResult);
@@ -99,7 +99,7 @@ public class InvalidTBEncounters extends BasePatientRuleDefinition {
 			Patient patient = obs.getEncounter().getPatient();
 			RuleResult<Patient> ruleResult = new RuleResult<>();
 			ruleResult.setActionUrl("htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=" + patient.getUuid() + "&encounterId=" + obs.getEncounter().getId());
-			ruleResult.setNotes("The " + identifierTitle + " is used by another patient");
+			ruleResult.setNotes("The " + identifierTitle + "[" + getTbNumber(patient, obs.getEncounter()) + "] is used by another patient");
 			ruleResult.setEntity(patient);
 			
 			ruleResults.add(ruleResult);
@@ -142,7 +142,7 @@ public class InvalidTBEncounters extends BasePatientRuleDefinition {
 			for (Encounter encounter : patientEncounters) {
 				RuleResult<Patient> ruleResult = new RuleResult<>();
 				ruleResult.setActionUrl("htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=" + patient.getUuid() + "&encounterId=" + encounter.getId());
-				ruleResult.setNotes("Patient has a missing " + getTbNumber(patient, encounter) + " " + identifierTitle + " identifier");
+				ruleResult.setNotes("Patient #" + getTbNumber(patient, encounter) + " has a missing " + identifierTitle );
 				ruleResult.setEntity(patient);
 				
 				ruleResults.add(ruleResult);
