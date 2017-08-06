@@ -1,6 +1,7 @@
 package org.openmrs.module.aijar.dataintegrity;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Set;
 
 import org.apache.commons.logging.Log;
@@ -56,11 +57,18 @@ public abstract class BasePatientRuleDefinition implements RuleDefinition<Patien
 	 * @param patient
 	 * @return
 	 */
-	public String getTbNumber(Patient patient, Encounter encounter) { //To be done
+	public String getTbNumber(Patient patient, Encounter encounter, String identifierConceptUuid) { //To be done
 		
 		//Iterate through the possible TB identifiers and return the first occurrence of a TB identifier 
-		String[] tbIdentifierConceptUuids = new String[] { AijarConstants.UNIT_TB_NUMBER, AijarConstants.HSD_TB_NUMBER,
-		        AijarConstants.DISTRICT_TB_NUMBER };
+		ArrayList<String> tbIdentifierConceptUuids = new ArrayList<String>();
+		if (identifierConceptUuid == null || identifierConceptUuid.length() == 0 ) {
+			tbIdentifierConceptUuids.add(AijarConstants.UNIT_TB_NUMBER);
+			tbIdentifierConceptUuids.add(AijarConstants.HSD_TB_NUMBER);
+			tbIdentifierConceptUuids.add(AijarConstants.DISTRICT_TB_NUMBER);
+		}
+		else{
+			tbIdentifierConceptUuids.add(identifierConceptUuid);
+		}
 		
 		for (String tbIdentifierConceptUuid : tbIdentifierConceptUuids) {
 			
@@ -84,7 +92,9 @@ public abstract class BasePatientRuleDefinition implements RuleDefinition<Patien
 			
 		}
 		
-		return "".toString();
+		String openmrsId = getOpenMrsId(patient);
+		
+		return openmrsId;
 	}
 	
 	/**
