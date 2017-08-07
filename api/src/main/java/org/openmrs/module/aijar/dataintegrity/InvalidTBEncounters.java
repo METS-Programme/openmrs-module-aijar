@@ -99,7 +99,7 @@ public class InvalidTBEncounters extends BasePatientRuleDefinition {
 			Patient patient = obs.getEncounter().getPatient();
 			RuleResult<Patient> ruleResult = new RuleResult<>();
 			ruleResult.setActionUrl("htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=" + patient.getUuid() + "&encounterId=" + obs.getEncounter().getId());
-			ruleResult.setNotes("The " + identifierTitle + "[" + getTbNumber(patient, obs.getEncounter(), identifierConceptUuid) + "] is used by another patient");
+			ruleResult.setNotes("The " + identifierTitle + " " + getTbNumber(patient, obs.getEncounter(), identifierConceptUuid) + " is used by the same patient across multiple treatment programs");
 			ruleResult.setEntity(patient);
 			
 			ruleResults.add(ruleResult);
