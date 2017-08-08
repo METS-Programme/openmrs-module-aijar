@@ -108,18 +108,24 @@
         }
     </style>
     <script type="text/javascript">
-        beforeSubmit.push(function() {
-            <!-- Validation rules -->
-            <!-- The next appointment date if specified has to be after the encounterDate -->
-            setValue('next-appointment-date.error', '');
-            if (getValue('next-appointment-date.value') != '') {
-                <!-- has a value -->
-                if (!(changeFieldDateToJavascriptDate(getValue('encounterDate.value'))) > (changeFieldDateToJavascriptDate(getValue('next-appointment-date.value')))) {
-                    getField('next-appointment-date.error').html('The next appointment date must be after the current visit date ').show();
-                    return false;
-                }
-                return true;
+        beforeSubmit.push(function () {
+            var submitVal = true;
+            var submitValStage = [];
+            var message1 = "The next appointment date must be after the current visit date";
+
+            <!-- has a value -->
+            if (getValue('5096.value') != "") {
+                setValue('5096.error', '');
+
+                <!-- The next appointment date if specified has to be after the encounterDate -->
+                submitValStage.push(dateValidator("5096", "encounterDate", "", message1, "", "less_than", true));
             }
+
+            if (submitValStage.indexOf(false) != -1) {
+                submitVal = false;
+                jq().toastmessage('showErrorToast', "  There are errors during the validation of the data on the form. Please correct them and submit again");
+            }
+            return submitVal;
         });
 
 
@@ -669,7 +675,7 @@
                     <tr>
                         <td colspan="2">Next Appointment Date</td>
                         <td>
-                            <obs id="next-appointment-date" conceptId="5096" allowFutureDates="true"/>
+                            <obs id="5096" conceptId="5096" allowFutureDates="true"/>
                         </td>
                     </tr>
                     <tr>
