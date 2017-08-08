@@ -1,0 +1,354 @@
+<htmlform formName="HMIS 117 Viral Load Non Suppressed Form"
+          formDescription="All Viral Loads that are non suppressed"
+          formEncounterType="38cb2232-30fc-4b1f-8df1-47c795771ee9"
+          formUuid="32f56e18-8dbf-4f17-8d09-d1fa3fb84843"
+          formVersion="1.2"
+          formAddMetadata="yes"
+          formUILocation="patientDashboard.visitActions"
+          formOrder="3"
+          formIcon="icon-medkit"
+          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='86863db4-6101-4ecf-9a86-5e716d6504e4'"
+          formDisplayStyle="Standard">
+
+    <ifMode mode="ENTER,EDIT" include="false">
+        <includeIf velocityTest="$fn.allEncounters('8d5b27bc-c2cc-11de-8d13-0010c6dffd0f').size() == 0">
+            <script>
+                jq(function () {
+                    alert('This patient has no Summary page, you will now be forwarded to the patient dashboard');
+
+                    /*
+                     * queryParameters -> handles the query string parameters
+                     * queryString -> the query string without the fist '?' character
+                     * re -> the regular expression
+                     * m -> holds the string matching the regular expression
+                     */
+                    var queryParameters = {}, queryString = location.search.substring(1),
+                            re = /([^&amp;=]+)=([^&amp;]*)/g, m;
+
+                    // Creates a map with the query string parameters
+                    while (m = re.exec(queryString)) {
+                        queryParameters[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+                    }
+
+                    /*
+                     * Replace the query portion of the URL.
+                     * jQuery.param() -> create a serialized representation of an array or
+                     *     object, suitable for use in a URL query string or Ajax request.
+                     */
+                    location.href = window.location.protocol + "//" + window.location.host +
+                            '/' + OPENMRS_CONTEXT_PATH + '/coreapps/clinicianfacing/patient.page?patientId='
+                            + queryParameters['patientId']; // Causes page to reload
+                });
+            </script>
+        </includeIf>
+    </ifMode>
+    <style type="text/css">
+        .error {
+            color: red;
+        }
+
+        table td {
+            background: #B6D6E6;
+            color: #404040;
+        }
+
+        form select, .form select {
+            min-width: 0px;
+        }
+
+        form input, form select, form textarea, form ul.select, .form input, .form select, .form textarea, .form ul.select {
+            background-color: #FBFBFB;
+            border: 1px solid #404040;
+            border-radius: 5px;
+            margin-bottom: 0px;
+            padding: 5px;
+            min-width: 200px;
+        }
+
+        fieldset{
+            width: 98%;
+        }
+
+        .row {
+            width: 100%;
+            float: left;
+            display: inline-flex;
+            clear: both;
+        }
+
+        .row .row-col2 {
+            float: left;
+            width: 50%;
+        }
+
+        table th, table td {
+            border: 1px solid #BDBDBD;
+            text-align: left;
+            vertical-align: top;
+        }
+    </style>
+    <!-- jquery loaded for nonessential purposes. -->
+    <script type="text/javascript">
+        if (jQuery) {
+            jq(document).ready(function () {
+                jq('#1-removeEntry').remove();
+                jq('#10-addEntry').remove();
+                jq('#1-toggleContainer').show();
+
+                jq('#11-removeEntry').remove();
+                jq('#20-addEntry').remove();
+                jq('#11-toggleContainer').show();
+
+                // Enable disable other outcomes
+                jq('#163170').change(function () {
+                    enable_disable('163170', '163171', '5622');
+                });
+
+                jq('#163170').each(function () {
+                    enable_disable('163170', '163171', '5622');
+                });
+
+                // Enable disable other decision
+                jq('#163166').change(function () {
+                    enable_disable('163166', '163168', '5622');
+                });
+
+                jq('#163166').each(function () {
+                    enable_disable('163166', '163168', '5622');
+                });
+
+                jq('#1305').change(function () {
+                    enable_disable('1305', '856', '1301');
+                });
+
+                jq('#1305').each(function () {
+                    enable_disable('1305', '856', '1301');
+                });
+
+            });
+
+
+            function enable_disable(triggerId, enabledDisabledId, conditionValue) {
+                if (getValue(triggerId + '.value') == conditionValue) {
+                    enableContainer('#' + enabledDisabledId);
+                } else {
+                    disableContainer('#' + enabledDisabledId);
+                }
+
+            }
+
+
+            jq(document).ready(function () {
+                jq('a.addEntry').live("click", function () {
+                    var correctedAddButtonId = parseFloat(this.id) + 1;
+                    var contentAddId = "#" + correctedAddButtonId + "-toggleContainer";
+                    jq(contentAddId).toggle(true);
+                    return false;
+                });
+            });
+
+            jq(document).ready(function () {
+                jq('a.removeEntry').live("click", function () {
+                    var correctedRemoveButtonId = parseFloat(this.id) - 1;
+                    var contentAddId = "#" + parseFloat(this.id) + "-toggleContainer";
+                    jq(contentAddId).toggle(false);
+                    jq('#' + correctedRemoveButtonId + '-addEntry').toggle(true);
+                    jq('#' + correctedRemoveButtonId + '-removeEntry').toggle(true);
+                    return false;
+                });
+
+            });
+
+            beforeSubmit.push(function () {
+                var submitVal = true;
+                var submitValStage = [];
+
+                var message1 = "Viral load copies can not be less than 1000";
+
+                // Validate if Viral Load at Initiation not less than 1000
+                if (getValue("856_1" + '.value') &lt; 1000) {
+                    submitValStage.push(false);
+                    getField("856_1" + '.error').html(message1).show();
+                }
+
+                // Check if there are no errors on the form
+                if (submitValStage.indexOf(false) != -1) {
+                    submitVal = false;
+                    jq().toastmessage('showErrorToast', "There were errors during validation. Correct them and submit again");
+                }
+
+                return submitVal;
+            });
+        }
+
+    </script>
+    <div class="ai-page-frame">
+        <div class="headers" style="text-align: center;">
+            <h3 style="background: #FF0000; padding: 10px; color: #ffffff;font-weight: bold">HMIS FORM 117 - Viral Load
+                Non Suppressed
+                Form</h3>
+        </div>
+        <span style="display: none;">
+            <encounterType types="38cb2232-30fc-4b1f-8df1-47c795771ee9" default="38cb2232-30fc-4b1f-8df1-47c795771ee9" />
+            <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
+                               order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
+        </span>
+
+        <fieldset>
+            <legend>None Suppressed Viral Load Results</legend>
+            <table>
+                <tbody>
+                <tr>
+                    <td style="width: 15%;background: #F3F3F3;">
+                        <label>Date Results Recorded In Register</label>
+                        <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
+                    </td>
+                    <td style="width: 15%;background: #F3F3F3;">
+                        <label>Date Results Received at Health Facility</label>
+                        <obs conceptId="163150" allowFutureDates="false"/>
+                    </td>
+                    <td style="width: 15%;background: #F3F3F3;">
+                        <encounterProvider role="Provider" style="autocomplete"/>
+                    </td>
+                </tr>
+                <obsgroup groupingConceptId="163151">
+                    <tr>
+                        <td style="width: 15%;background: #F3F3F3;">
+                            <label>VL Results at Initiation of IAC</label>
+                            <obs required="true" id="856_1" conceptId="856"/>
+                        </td>
+                        <td style="width: 15%;background: #F3F3F3;" colspan="2">
+                            <label>Date Results given to Client</label>
+                            <obs conceptId="163156" allowFutureDates="false"/>
+                        </td>
+                    </tr>
+                </obsgroup>
+
+
+                <obsgroup groupingConceptId="163152">
+                    <tr>
+                        <td style="width: 15%;background: #F3F3F3;">
+                            <label>Regimen At VL test</label>
+                            <obs conceptId="90315"
+                                 answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99007,99008,99044,99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99884,99885,99888,163017,99887,90002"
+                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,AZT-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,AZT-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-ATV/r,ABC-3TC-LPV/r,TDF-3TC-ATV/r,Other"/>
+                        </td>
+                        <td style="width: 15%;background: #F3F3F3;" colspan="2">
+                            <label>Start Date</label>
+                            <obs conceptId="163172" allowFutureDates="false"/>
+                        </td>
+                    </tr>
+                </obsgroup>
+                </tbody>
+            </table>
+        </fieldset>
+
+        <fieldset>
+            <legend>IAC Session</legend>
+            <table>
+                <tbody>
+                <tr>
+                    <td style="width: 15%;background: #F3F3F3;">Session Date</td>
+                    <td style="width: 15%;background: #F3F3F3;">Adherence assessment score</td>
+                    <td style="width: 15%;background: #F3F3F3;">Adherence Codes</td>
+                    <td style="width: 15%;background: #F3F3F3;"></td>
+                </tr>
+                <repeat>
+                    <template>
+                        <obsgroup groupingConceptId="163153">
+                            <tr id="{n}-toggleContainer" style="display:none;">
+                                <td style="width: 15%;background: #F3F3F3;">
+                                    <obs conceptId="163154" allowFutureDates="false"/>
+                                </td>
+                                <td style="width: 15%;background: #F3F3F3;">
+                                    <obs conceptId="163155"/>
+                                </td>
+                                <td style="width: 15%;background: #F3F3F3;">
+                                    <obs conceptId="90221" answerConceptIds="90156,90157,90158"
+                                         answerLabels=" Good, Fair, Poor"/>
+                                </td>
+                                <td style="width: 15%;background: #F3F3F3;">
+                                    <a href="#" id="{n}-addEntry" class="addEntry">Add</a>
+                                    <a href="#" id="{n}-removeEntry" class="removeEntry"> | Remove</a>
+                                </td>
+                            </tr>
+                        </obsgroup>
+                    </template>
+                    <render n="1"/>
+                    <render n="2"/>
+                    <render n="3"/>
+                    <render n="4"/>
+                    <render n="5"/>
+                    <render n="6"/>
+                </repeat>
+                </tbody>
+            </table>
+        </fieldset>
+
+        <fieldset>
+            <legend>VL After IAC Session</legend>
+            <table>
+                <tbody>
+                <obsgroup groupingConceptId="163157">
+                    <tr>
+                        <td style="width: 15%;background: #F3F3F3;">
+                            <label>VL Results After IAC</label>
+                            <obs id="1305" conceptId="1305" answerConceptIds="1301,1306,1304"
+                                 answerLabels="Detected,Not Detected, Sample Rejected"/>
+                        </td>
+                        <td style="width: 15%;background: #F3F3F3;">
+                            <obs id="856" conceptId="856" labelText="(copies/ml)"/>
+                        </td>
+                        <td style="width: 15%;background: #F3F3F3;">
+                            <label>Date Results Received</label>
+                            <obs conceptId="163150" allowFutureDates="false"/>
+                        </td>
+                    </tr>
+                </obsgroup>
+                <tr>
+                    <td style="width: 15%;background: #F3F3F3;">
+                        <label>Clinic decision</label>
+                        <obs id="163166" conceptId="163166"
+                             answerConceptIds="163160,163161,163162,163163,163164,163165,5622"/>
+                    </td>
+                    <td style="width: 15%;background: #F3F3F3;">
+                        <obs id="163168" conceptId="163168" labelText="Other Clinic Decision"/>
+                    </td>
+                    <td style="width: 15%;background: #F3F3F3;">
+                        <label>Decision date</label>
+                        <obs conceptId="163167" allowFutureDates="false"/>
+                    </td>
+                </tr>
+                <obsgroup groupingConceptId="163169">
+                    <tr>
+                        <td style="width: 15%;background: #F3F3F3;">
+                            <label>Regimen After IAC Session</label>
+                            <obs conceptId="90315"/>
+                        </td>
+                        <td style="width: 15%;background: #F3F3F3;" colspan="2">
+                            <label>Date of Initiation</label>
+                            <obs conceptId="163172" allowFutureDates="false"/>
+                        </td>
+                    </tr>
+                </obsgroup>
+                <tr>
+                    <td style="width: 15%;background: #F3F3F3;">
+                        <label>Outcome</label>
+                        <obs id="163170" conceptId="163170" answerConceptIds="163158,163159,90306,1363,5240,99112,5622"
+                             answerLabels="Suppressed,Non suppressed,Transfer out,Stopped treatment,Lost to follow up,Died,Other"/>
+                    </td>
+                    <td style="width: 15%;background: #F3F3F3;">
+                        <label>Other Outome</label>
+                        <obs id="163171" conceptId="163171"/>
+                    </td>
+                    <td style="width: 15%;background: #F3F3F3;">
+                        <label>Comment</label>
+                        <obs style="textarea" conceptId="163173"/>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </fieldset>
+    </div>
+    <submit/>
+</htmlform>
