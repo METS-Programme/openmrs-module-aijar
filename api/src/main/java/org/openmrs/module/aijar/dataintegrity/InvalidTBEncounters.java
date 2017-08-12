@@ -67,13 +67,18 @@ public class InvalidTBEncounters extends BasePatientRuleDefinition {
 			Patient patient = obs.getEncounter().getPatient();
 			
 			RuleResult<Patient> ruleResult = new RuleResult<>();
-			ruleResult.setActionUrl("htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=" + patient.getUuid() + "&encounterId=" + obs.getEncounter().getId());
-			ruleResult.setNotes("The " + identifierTitle + " " + getTbNumber(patient, obs.getEncounter(), identifierConceptUuid) + " is being used by another patient");
-			ruleResult.setEntity(patient);
 			
-			ruleResults.add(ruleResult);
+			if (uniquePatientList.contains(patient) == false) {
+				ruleResult.setActionUrl("htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=" + patient.getUuid() + "&encounterId=" + obs.getEncounter().getId());
+				ruleResult.setNotes("The " + identifierTitle + " " + getTbNumber(patient, obs.getEncounter(), identifierConceptUuid) + " is being used by another patient");
+				ruleResult.setEntity(patient);
+				
+				ruleResults.add(ruleResult);				
+			}
+			
 			uniquePatientList.add(patient);
 		}
+		
 		log.info("There are " + uniquePatientList.size() + " Patients with similar " + identifierTitle);
 		
 		return ruleResults;
@@ -98,13 +103,18 @@ public class InvalidTBEncounters extends BasePatientRuleDefinition {
 		for (Obs obs : obsList) {
 			Patient patient = obs.getEncounter().getPatient();
 			RuleResult<Patient> ruleResult = new RuleResult<>();
-			ruleResult.setActionUrl("htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=" + patient.getUuid() + "&encounterId=" + obs.getEncounter().getId());
-			ruleResult.setNotes("The " + identifierTitle + " " + getTbNumber(patient, obs.getEncounter(), identifierConceptUuid) + " is used by the same patient across multiple treatment programs");
-			ruleResult.setEntity(patient);
 			
-			ruleResults.add(ruleResult);
+			if (uniquePatientList.contains(patient) == false) {
+				ruleResult.setActionUrl("htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=" + patient.getUuid() + "&encounterId=" + obs.getEncounter().getId());
+				ruleResult.setNotes("The " + identifierTitle + " " + getTbNumber(patient, obs.getEncounter(), identifierConceptUuid) + " is used by the same patient across multiple treatment programs");
+				ruleResult.setEntity(patient);
+				
+				ruleResults.add(ruleResult);				
+			}
+			
 			uniquePatientList.add(patient);
 		}
+		
 		log.info("There are " + uniquePatientList.size() + " Sharing the same " + identifierTitle);
 		
 		return ruleResults;
