@@ -91,7 +91,7 @@ public class InvalidTBEncounters extends BasePatientRuleDefinition {
 	public List<RuleResult<Patient>> singlePatientWithDuplicateTBNumberAcrossMultipleTreatmentPrograms(String identifierConceptUuid, String identifierTitle) {
 		log.info("Executing rule to find Patients with similar TB identifiers: duplicated for a single patient");
 		String queryString = "SELECT o FROM Obs o WHERE o.voided = false AND o.encounter.patient.dead = 0 AND o.encounter.voided = 0 AND o.concept.uuid = :identifierConceptUuid AND o.obsId IN " 
-				+ " (SELECT min(ob.obsId) FROM Obs ob WHERE ob.concept.uuid = :identifierConceptUuid AND ob.voided = 0 GROUP BY ob.concept.id, ob.valueText HAVING COUNT(ob.valueText) > 1)"; 
+				+ " (SELECT min(ob.obsId) FROM Obs ob WHERE ob.concept.uuid = :identifierConceptUuid AND ob.voided = 0 GROUP BY ob.person.personId, ob.concept.id, ob.valueText HAVING COUNT(ob.valueText) > 1)"; 
 		
 		Query query = getSession().createQuery(queryString);
 		query.setParameter("identifierConceptUuid", identifierConceptUuid);
