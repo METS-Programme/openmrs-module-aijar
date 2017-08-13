@@ -9,11 +9,11 @@
           formIcon="icon-medkit"
           formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='86863db4-6101-4ecf-9a86-5e716d6504e4'"
           formDisplayStyle="Standard">
-
-    <ifMode mode="ENTER,EDIT">
+    <ifMode mode="ENTER,EDIT" include="false">
         <includeIf velocityTest="$fn.allEncounters('8d5b27bc-c2cc-11de-8d13-0010c6dffd0f').size() == 0">
             <script>
                 jq(function () {
+                    jq().toastmessage('showErrorToast', "This patient has no Summary page");
                     alert('This patient has no Summary page, you will now be forwarded to the patient dashboard');
 
                     /*
@@ -244,7 +244,6 @@
                 setValue('viral-load-results-copies.error', '');
                 setValue('date-viral-load-taken.error', '');
 
-
                 var encounterDate = changeFieldDateToJavascriptDate(getValue('encounterDate.value'));
                 var transfer_out_date_id = changeFieldDateToJavascriptDate(jq("#transfer_out_date_id").html());
                 var returnDate = changeFieldDateToJavascriptDate(getValue('returndate.value'));
@@ -294,6 +293,32 @@
                         jq(this).change();
                     });
                 }
+
+
+                /* Validation of the ART regimen Selected */
+                jq("#90315").change(function () {
+                    var regimen_encounter_page_value = jq("#90315").find("select").find(":selected").val();
+                    var regimen_encounter_page_text = jq("#90315").find("select").find(":selected").text();
+                    var art_transfer_regimen = jq("#artTransferRegimen").html();
+                    var other_art_transfer_regimen = jq("#otherArtTransferRegimen").html();
+                    var art_start_regimen = jq("#artStartRegimen").html();
+                    var other_art_start_regimen = jq("#otherArtStartRegimen").html();
+                    var first_second_regimen = jq("#firstSecondLineRegimen").html();
+                    var other_first_second_regimen = jq("#otherFirstSecondLineRegimen").html();
+                    var third_second_regimen = jq("#thirdLineRegimen").html();
+                    var other_third_regimen = jq("#otherThirdLineRegimen").html();
+                    var patient_regimen = other_third_regimen + third_second_regimen + other_first_second_regimen + other_first_second_regimen + first_second_regimen + other_art_start_regimen + art_start_regimen + other_art_transfer_regimen + art_transfer_regimen;
+
+                    /* Check if  Patient has art start or tranfer regimen selected on ART Summary Page*/
+                    if (art_start_regimen == "null" &amp;&amp; art_transfer_regimen == "null") {
+                        jq().toastmessage('showNoticeToast', "Patient Doesn't have any either ART Start or Transfer regimen on ART Summary selected");
+                    }
+
+                    if (!patient_regimen.includes(regimen_encounter_page_value)) {
+                        jq().toastmessage('showNoticeToast', "Regimen: "+regimen_encounter_page_text+" is not in patient regimens on ART Summary page");
+                    }
+                });
+                /* End of Validation /*
 
                 /* Handle viral load results */
                 jq("#viral-load-results-copies").attr("disabled", true);
@@ -387,6 +412,40 @@
         }
     </script>
 
+    <!-- This section contains lookup tags that pick data from other forms-->
+
+    <lookup complexExpression="#set($art_start_regimen='null') #set($other_art_start_regimen='null') #set($art_transfer_regimen='null') #set($other_art_transfer_regimen='null')"/>
+
+    <lookup complexExpression="#set($first_second_line_regimen='null') #set($other_first_second_line_regimen='null')"/>
+
+    <lookup complexExpression="#set($third_line_regimen='null') #set($other_third_line_regimen='null')"/>
+
+    <span style="display: none" id="artStartRegimen"><lookup
+            complexExpression="#set($art_start_regimen=($fn.latestObs('99061').valueCoded))$art_start_regimen"/></span>
+
+    <span style="display: none" id="otherArtStartRegimen"><lookup
+            complexExpression="#set($other_art_start_regimen=($fn.latestObs('99268').valueText))$other_art_start_regimen"/></span>
+
+    <span style="display: none" id="artTransferRegimen"><lookup
+            complexExpression="#set($art_transfer_regimen=$fn.latestObs('99064').valueCoded)$art_transfer_regimen"/></span>
+
+    <span style="display: none" id="otherArtTransferRegimen"><lookup
+            complexExpression="#set($other_art_transfer_regimen=$fn.latestObs('99269').valueText)$other_art_transfer_regimen"/></span>
+
+    <span style="display: none" id="firstSecondLineRegimen"><lookup
+            complexExpression="#foreach($first_second_line_regimen in $fn.allObs(90315)) $first_second_line_regimen.valueCoded #end"/></span>
+
+    <span style="display: none" id="otherFirstSecondLineRegimen"><lookup
+            complexExpression="#foreach($other_first_second_line_regimen in $fn.allObs(99146)) $other_first_second_line_regimen.valueText #end"/></span>
+
+
+    <span style="display: none" id="thirdLineRegimen"><lookup
+            complexExpression="#foreach($third_line_regimen in $fn.allObs(162990)) $first_second_line_regimen.valueCoded #end"/></span>
+
+    <span style="display: none" id="otherThirdLineRegimen"><lookup
+            complexExpression="#foreach($other_third_line_regimen in $fn.allObs(162989)) $other_first_second_line_regimen.valueText #end"/></span>
+
+    <!--End of Lookup section-->
     <div class="ai-page-frame">
         <div class="headers" style="text-align: center;">
             <h3>HIV Care/ART CARD - Encounter Page</h3>
@@ -443,6 +502,9 @@
                                     <obs id="returndate" conceptId="5096" allowFutureDates="true"
                                          labelText="Return date:"/>
                                 </includeIf>
+
+                                <lookup
+                                        complexExpression="#set($transfer_out_date=($fn.latestObs('99165').valueDatetime)) $transfer_out_date"/>
 
                                 <includeIf velocityTest="$transfer_out!='YES'">
                                     <obs id="returndate" conceptId="5096" required="required" allowFutureDates="true"
@@ -787,11 +849,12 @@
                             </span>
                     </td>
                     <td class="EnableDisableAdherenceReason checkboxGroup lablex3">
+                            <span class="disableARTAdherence">
                             <span class="AdherenceEnableDisable1">
                                 <obs conceptId="90221" answerConceptIds="90156,90157,90158"
                                      answerLabels=" Good, Fair, Poor" labelText="Adhererence:"/>
                             </span>
-                        <span class="AdherenceEnableDisableChild1">
+                            <span class="AdherenceEnableDisableChild1">
                                 Why Poor/Fair:
                                 <br/>
                                 <obs id="br" conceptId="90223" answerConceptId="90040"
@@ -830,17 +893,22 @@
                                     <obs id="br" conceptId="99125" labelText="" size="21"/>
                                 </span>
                             </span>
+                                </span>
                     </td>
                     <td class="RegimenEnableDisable1" style="width:3%;">
-                        <obs id="br" conceptId="90315" labelText="Regimen:"
-                             answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99007,99008,99044,99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99884,99885,99888,163017,99887,90002"
-                             answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,AZT-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,AZT-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-ATV/r,ABC-3TC-LPV/r,TDF-3TC-ATV/r,Other"/>
-                        <span class="RegimenEnableDisableChild1">
+                        <span class="disableARTRegimen">
+                            <obs id="90315" conceptId="90315" labelText="Regimen:"
+                                 answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99007,99008,99044,99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99884,99885,99888,163017,99887,90002"
+                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,AZT-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,AZT-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-ATV/r,ABC-3TC-LPV/r,TDF-3TC-ATV/r,Other"/>
+
+                            <span class="RegimenEnableDisableChild1">
                                 <obs id="br" conceptId="99126" size="18" labelText="Specify"/>
                                 <br/>
                             </span>
-                        <obs id="br" conceptId="99038" labelText="# Pills:"/>
-                        <obs id="br" conceptId="99036" size="5" labelText="Days:"/>
+
+                            <obs id="br" conceptId="99038" labelText="# Pills:"/>
+                            <obs id="br" conceptId="99036" size="5" labelText="Days:"/>
+                                </span>
                     </td>
                 </tr>
                 </tbody>
