@@ -55,8 +55,10 @@ public class InvalidTBEncounters extends BasePatientRuleDefinition {
 	 */
 	public List<RuleResult<Patient>> multiplePatientsWithTheSameTBIdentifiers(String identifierConceptUuid, String identifierTitle) {
 		log.info("Executing rule to find Patients with similar TB identifiers: duplicated across multiple patients");
-		String queryString = "SELECT o FROM Obs o WHERE o.voided = false AND o.encounter.patient.dead = 0 AND o.encounter.voided = 0 AND o.concept.uuid = :identifierConceptUuid AND o.valueText IN " 
-				+ " (SELECT ob.valueText FROM Obs ob WHERE ob.concept.uuid = :identifierConceptUuid AND ob.voided = 0 GROUP BY ob.concept.conceptId, ob.valueText HAVING COUNT(ob.valueText) > 1)"; 
+		String queryString = "SELECT obs FROM Obs obs WHERE obs.obsId IN ("
+				+ "SELECT min(o.obsId) FROM Obs o WHERE o.voided = false AND o.encounter.patient.dead = 0 AND o.encounter.voided = 0 AND o.concept.uuid = :identifierConceptUuid AND o.valueText IN " 
+				+ " (SELECT ob.valueText FROM Obs ob WHERE ob.concept.uuid = :identifierConceptUuid AND ob.voided = 0 GROUP BY ob.concept.conceptId, ob.valueText HAVING COUNT(ob.valueText) > 1)" 
+				+ " GROUP BY o.person.personId, o.concept.id, o.valueText HAVING count(*) = 1)"; 
 		Query query = getSession().createQuery(queryString);
 		query.setParameter("identifierConceptUuid", identifierConceptUuid);
 		

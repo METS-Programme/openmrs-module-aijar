@@ -43,6 +43,14 @@ public class InvalidTBEncountersTest extends BaseModuleContextSensitiveTest{
 		assertEquals(2, result.size());
 		
 	}
+
+	@Test
+	public void multiplePatientsWithTheSameTBIdentifiersTest2() {
+		List<RuleResult<Patient>> result = invalidTBEncounters.multiplePatientsWithTheSameTBIdentifiers(AijarConstants.UNIT_TB_NUMBER, "UNIT TB Number");
+		assertNotNull(result);
+		assertEquals(3, result.size());
+		
+	}
 	
 	@Test
 	public void singlePatientWithDuplicateTBNumberAcrossMultipleTreatmentProgramsTest() {
