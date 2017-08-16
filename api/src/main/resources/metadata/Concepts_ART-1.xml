@@ -26,14 +26,24 @@
     <concept concept_id="163173" retired="false" datatype_id="3" class_id="5" is_set="false" creator="1" date_created="2016-10-17 19:36:28" version="" changed_by="1" date_changed="2016-10-21 10:02:56"  uuid="163173AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
     <concept concept_id="163174" retired="false" datatype_id="3" class_id="5" is_set="false" creator="1" date_created="2016-10-17 19:36:28" version="" changed_by="1" date_changed="2016-10-21 10:02:56"  uuid="163174AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
 
-    <concept_name concept_id="163150" name="Date viral load results received at health center" locale="en" creator="1" date_created="2016-10-17 19:36:28" concept_name_id="135936" voided="false"  uuid="135936BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
-    <concept_name concept_id="163151" name="Intensive adherence counseling initiation set" locale="en" creator="1" date_created="2016-10-17 19:36:28" concept_name_id="135937" voided="false"  uuid="135937BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
-    <concept_name concept_id="163151" name="IAC initiation set" locale="en" creator="1" date_created="2016-10-17 19:36:28" concept_name_id="135938" voided="false"  uuid="135938BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  locale_preferred="false"/>
-    <concept_name concept_id="163152" name="Regimen at viral load test set" locale="en" creator="1" date_created="2016-10-17 19:36:28" concept_name_id="135939" voided="false"  uuid="135939BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
-    <concept_name concept_id="163153" name="Intensive adherence counseling sessions set" locale="en" creator="1" date_created="2016-10-17 19:36:28" concept_name_id="135940" voided="false"  uuid="135940BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
-    <concept_name concept_id="163153" name="IAC sessions set" locale="en" creator="1" date_created="2016-10-17 19:36:28" concept_name_id="135941" voided="false"  uuid="135941BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  locale_preferred="false"/>
-    <concept_name concept_id="163154" name="Session date" locale="en" creator="1" date_created="2017-01-18 23:56:21.0" concept_name_id="135942" voided="false" voided_by="1" uuid="135942BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
-    <concept_name concept_id="163155" name="Adherence assessment score" locale="en" creator="1" date_created="2005-01-22 00:00:00.0" concept_name_id="135943" voided="false" voided_by="1" uuid="135943BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+    <concept  concept_id="160288"  retired="0" datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2012-03-05 07:39:06" changed_by="1"  date_changed="2016-08-22 18:42:17"  retired_by="1" uuid="160288AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+    <concept  concept_id="164975"  retired="0"   datatype_id="3"  class_id="5"  is_set="0"  creator="1"  date_created="2017-08-15 07:38:03"  version="NULL"  changed_by="1"  date_changed="2017-08-15 07:38:03" uuid="e17524f4-4445-417e-9098-ecdd134a6b81"/>
+    <concept  concept_id="164974"  retired="0"   datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2017-08-15 06:45:03"  version="NULL"  changed_by="1"  date_changed="2017-08-15 06:45:03" uuid="3f0f9c04-25a4-4070-84cc-5b49566aeb4c"/>
+    <concept  concept_id="164973"  retired="0"   datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2017-08-15 06:31:25"  version="NULL"  changed_by="1"  date_changed="2017-08-15 06:31:25" uuid="06314cde-eaec-4245-b96a-5f4d6c748204"/>
+    <concept  concept_id="164972"  retired="0"   datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2017-08-15 06:24:16"  version="NULL"  changed_by="1"  date_changed="2017-08-15 06:24:16" uuid="e06ac289-2920-4b85-80c9-805c69b6e5a9"/>
+    <concept  concept_id="164971"  retired="0"   datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2017-08-15 06:23:37"  version="NULL"  changed_by="1"  date_changed="2017-08-15 06:23:37" uuid="5def0b16-460a-494b-ab1f-ac8e398a88fa"/>
+    <concept  concept_id="164970"  retired="0"   datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2017-08-15 05:55:08"  version="NULL"  changed_by="1"  date_changed="2017-08-15 05:55:08" uuid="4b19b253-97c4-4b1b-bb14-41f2c576b8c5"/>
+    <concept  concept_id="164969"  retired="0"   datatype_id="1"  class_id="1"  is_set="0"  creator="1"  date_created="2017-08-14 20:00:08"  version="NULL"  changed_by="1"  date_changed="2017-08-14 20:00:08" uuid="77cd3409-b088-42dd-af70-47673b222042"/>
+    <concept  concept_id="164968"  retired="0"   datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2017-08-14 19:52:16"  version="NULL"  changed_by="1"  date_changed="2017-08-14 19:52:16" uuid="ab4510ac-3feb-4abb-8653-5d252813798f"/>
+
+    <concept_name concept_id="163150" name="Date viral load results received at health center" locale="en" creator="1" date_created="2016-10-17 19:36:28" concept_name_id="135969" voided="false"  uuid="1135969BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+    <concept_name concept_id="163151" name="Intensive adherence counseling initiation set" locale="en" creator="1" date_created="2016-10-17 19:36:28" concept_name_id="135970" voided="false"  uuid="135970BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+    <concept_name concept_id="163151" name="IAC initiation set" locale="en" creator="1" date_created="2016-10-17 19:36:28" concept_name_id="135971" voided="false"  uuid="135971BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  locale_preferred="false"/>
+    <concept_name concept_id="163152" name="Regimen at viral load test set" locale="en" creator="1" date_created="2016-10-17 19:36:28" concept_name_id="135972" voided="false"  uuid="135972BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+    <concept_name concept_id="163153" name="Intensive adherence counseling sessions set" locale="en" creator="1" date_created="2016-10-17 19:36:28" concept_name_id="135973" voided="false"  uuid="135973BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+    <concept_name concept_id="163153" name="IAC sessions set" locale="en" creator="1" date_created="2016-10-17 19:36:28" concept_name_id="135974" voided="false"  uuid="135974BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  locale_preferred="false"/>
+    <concept_name concept_id="163154" name="Session date" locale="en" creator="1" date_created="2017-01-18 23:56:21.0" concept_name_id="135975" voided="false" voided_by="1" uuid="135975BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
+    <concept_name concept_id="163155" name="Adherence assessment score" locale="en" creator="1" date_created="2005-01-22 00:00:00.0" concept_name_id="135976" voided="false" voided_by="1" uuid="135976BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
     <concept_name concept_id="163156" name="Date viral load results given to client/caregiver" locale="en" creator="1" date_created="2016-10-17 19:36:28" concept_name_id="135944" voided="false"  uuid="135944BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
     <concept_name concept_id="163157" name="After intensive adherence counseling set" locale="en" creator="1" date_created="2016-10-17 19:36:28" concept_name_id="135945" voided="false"  uuid="135945BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
     <concept_name concept_id="163157" name="after IAC set" locale="en" creator="1" date_created="2016-10-17 19:36:28" concept_name_id="135946" voided="false"  uuid="135946BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  locale_preferred="false"/>
@@ -54,6 +64,19 @@
     <concept_name concept_id="163172" name="Regimen start date" locale="en" creator="1" date_created="2016-10-17 19:36:28" concept_name_id="135961" voided="false"  uuid="135961BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  locale_preferred="false"/>
     <concept_name concept_id="163173" name="IAC Comment" locale="en" creator="1" date_created="2016-10-17 19:36:28" concept_name_id="135962" voided="false"  uuid="135962BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  locale_preferred="false"/>
     <concept_name concept_id="163174" name="Other Clinic decision" locale="en" creator="1" date_created="2016-10-17 19:36:28" concept_name_id="135960" voided="false"  uuid="135960BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  locale_preferred="false"/>
+
+    <concept_name  concept_id="160288"  name="Reason for appointment/visit"  locale="en"  creator="1"  date_created="2012-03-05 07:39:06"  concept_name_id="108348"  voided="0"  voided_by="1" uuid="108348BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1"/>
+    <concept_name  concept_id="160288"  name="Raison du rendez-vous/visite"  locale="fr"  creator="1"  date_created="2016-08-22 18:42:17"  concept_name_id="139884"  voided="0"  voided_by="1" uuid="139884BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1"/>
+    <concept_name  concept_id="160288"  name="Bi randevou/vizit la"  locale="ht"  creator="1"  date_created="2016-08-22 18:42:17"  concept_name_id="139885"  voided="0"  voided_by="1" uuid="139885BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1"/>
+    <concept_name  concept_name_id="159972"  concept_id="164975"  name="Other reason for appointment"  locale="en"  locale_preferred="1"  creator="1"  date_created="2017-08-15 07:38:03"  concept_name_type="FULLY_SPECIFIED"  voided="false" uuid="e7617ddc-7c53-453f-aadc-56ec1251870e"/>
+    <concept_name  concept_name_id="159971"  concept_id="164974"  name="EID Visit"  locale="en"  locale_preferred="1"  creator="1"  date_created="2017-08-15 06:45:03"  concept_name_type="FULLY_SPECIFIED"  voided="false" uuid="d3d3335a-73bc-48cb-917c-708600015193"/>
+    <concept_name  concept_name_id="159970"  concept_id="164973"  name="T.B Follow-up"  locale="en"  locale_preferred="1"  creator="1"  date_created="2017-08-15 06:31:25"  concept_name_type="FULLY_SPECIFIED"  voided="false" uuid="697131e8-06d8-4bce-b269-5d7fe819f669"/>
+    <concept_name  concept_name_id="159969"  concept_id="164972"  name="ART Refill"  locale="en"  locale_preferred="1"  creator="1"  date_created="2017-08-15 06:24:16"  concept_name_type="FULLY_SPECIFIED"  voided="false" uuid="5e98a43b-6443-4f5f-abbc-197615b065e9"/>
+    <concept_name  concept_name_id="159968"  concept_id="164971"  name="T.B Drug Refill"  locale="en"  locale_preferred="1"  creator="1"  date_created="2017-08-15 06:23:37"  concept_name_type="FULLY_SPECIFIED"  voided="false" uuid="ba25d998-1cfe-4251-87a5-e92a1eefbceb"/>
+    <concept_name  concept_name_id="159967"  concept_id="164970"  name="ART Regimen Switch/ Substitution"  locale="en"  locale_preferred="1"  creator="1"  date_created="2017-08-15 05:55:08"  concept_name_type="FULLY_SPECIFIED"  voided="false" uuid="cb5d0eeb-1fc3-47b2-923e-17722240488e"/>
+    <concept_name  concept_name_id="159966"  concept_id="164969"  name="Refill"  locale="en"  locale_preferred="1"  creator="1"  date_created="2017-08-14 20:00:08"  concept_name_type="FULLY_SPECIFIED"  voided="false" uuid="c3998a71-e516-4b7a-a281-4ab97c16f9f3"/>
+    <concept_name  concept_name_id="159965"  concept_id="164968"  name="ART Initiation"  locale="en"  locale_preferred="1"  creator="1"  date_created="2017-08-14 19:52:16"  concept_name_type="FULLY_SPECIFIED"  voided="false" uuid="a84325c2-d693-4bc7-820e-a4a20f0d683c"/>
+
 
     <concept_numeric concept_id="163155" hi_absolute="100.0" low_absolute="0.0" units="%" precise="true"/>
 
@@ -85,6 +108,29 @@
     <concept_answer concept_answer_id="5650" concept_id="163170" answer_concept="5240" creator="1" date_created="2009-07-14 11:31:52.0" uuid="5650CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" sort_weight="1908.0"/>
     <concept_answer concept_answer_id="5651" concept_id="163170" answer_concept="99112" creator="1" date_created="2009-07-14 11:31:52.0" uuid="5651CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" sort_weight="1908.0"/>
     <concept_answer concept_answer_id="5652" concept_id="163170" answer_concept="5622" creator="1" date_created="2009-07-14 11:31:52.0" uuid="5652CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" sort_weight="1908.0"/>
+
+    <concept_answer  concept_answer_id="6823"  concept_id="160288"  answer_concept="90002" creator="1"  date_created="2017-08-15 07:46:29"  sort_weight="12"  uuid="d1c51914-ef72-4f65-96de-50dbaeaffdd1"/>
+    <concept_answer  concept_answer_id="6825"  concept_id="160288"  answer_concept="90012" creator="1"  date_created="2017-08-15 07:46:29"  sort_weight="9"  uuid="b5e043c4-8a9b-4d74-8ec5-4a0c95637db0"/>
+    <concept_answer  concept_answer_id="6820"  concept_id="160288"  answer_concept="164974" creator="1"  date_created="2017-08-15 07:46:29"  sort_weight="8"  uuid="358529e4-6f85-4d74-8400-a28c8395684c"/>
+    <concept_answer  concept_answer_id="6818"  concept_id="160288"  answer_concept="856" creator="1"  date_created="2017-08-15 07:46:29"  sort_weight="4"  uuid="bcd0470e-d350-40e6-8c53-2fcd3740271a"/>
+    <concept_answer  concept_answer_id="6821"  concept_id="160288"  answer_concept="5484" creator="1"  date_created="2017-08-15 07:46:29"  sort_weight="11"  uuid="0d230f9f-2609-41d7-8c6d-11134d498f2c"/>
+    <concept_answer  concept_answer_id="6824"  concept_id="160288"  answer_concept="164971" creator="1"  date_created="2017-08-15 07:46:29"  sort_weight="6"  uuid="12dc51b4-23db-4e68-9286-87989d017b13"/>
+    <concept_answer  concept_answer_id="6817"  concept_id="160288"  answer_concept="164968" creator="1"  date_created="2017-08-15 07:46:29"  sort_weight="1"  uuid="3103d0a9-0452-4320-a294-cd685503a4be"/>
+    <concept_answer  concept_answer_id="6819"  concept_id="160288"  answer_concept="903" creator="1"  date_created="2017-08-15 07:46:29"  sort_weight="10"  uuid="391c8436-1607-4aa6-ab32-9da7b0546c40"/>
+    <concept_answer  concept_answer_id="6822"  concept_id="160288"  answer_concept="5497" creator="1"  date_created="2017-08-15 07:46:29"  sort_weight="5"  uuid="d5a11fc8-d592-4513-8f93-93d8d9508eb3"/>
+    <concept_answer  concept_answer_id="6826"  concept_id="160288"  answer_concept="99324" creator="1"  date_created="2017-08-15 07:46:29"  sort_weight="7"  uuid="8186c692-3df8-4d5e-95ad-92ce6f142980"/>
+    <concept_answer  concept_answer_id="6828"  concept_id="160288"  answer_concept="164972" creator="1"  date_created="2017-08-15 07:46:29"  sort_weight="2"  uuid="9320b55d-d7ce-4603-951e-38097df7f683"/>
+    <concept_answer  concept_answer_id="6827"  concept_id="160288"  answer_concept="164970" creator="1"  date_created="2017-08-15 07:46:29"  sort_weight="3"  uuid="61e0ab59-9b91-4dfe-a60c-910631a4923d"/>
+    <concept_answer  concept_answer_id="6829"  concept_id="160288"  answer_concept="163153" creator="1"  date_created="2017-08-15 08:58:34"  sort_weight="13"  uuid="56e4a17b-bfdf-45b0-b614-06e70829ed5e"/>
+    
+   <concept_description  concept_description_id="16685"  concept_id="160288"  description="A coded list of reasons for patient appointment or visit to a health provider."  locale="en"  creator="1"  date_created="2012-03-05 07:39:06"  changed_by="1"  date_changed="2016-08-22 18:42:17"  uuid="16685FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"/>
+   <concept_description  concept_description_id="18331"  concept_id="164975"  description="Other Reason for patient appointment"  locale="en"  creator="1"  date_created="2017-08-15 07:38:03" uuid="e6723bf3-0a40-40f5-80cb-332908d7388f"/>
+   <concept_description  concept_description_id="18330"  concept_id="164974"  description="Reason for visit"  locale="en"  creator="1"  date_created="2017-08-15 06:45:03" uuid="aba2b10c-8a19-4900-8f19-9ed054947a94"/>
+   <concept_description  concept_description_id="18329"  concept_id="164972"  description="ART Refill"  locale="en"  creator="1"  date_created="2017-08-15 06:24:16" uuid="9d6b7e12-d278-4344-b140-4a310a557e15"/>
+   <concept_description  concept_description_id="18328"  concept_id="164971"  description="This is to check if visit is on tb refill"  locale="en"  creator="1"  date_created="2017-08-15 06:23:37" uuid="4c179c24-05b9-4c9a-ba90-dec2af5aa088"/>
+   <concept_description  concept_description_id="18327"  concept_id="164970"  description="This is a check to see if a person is being switched or substituted in care for example on their first appointment date"  locale="en"  creator="1"  date_created="2017-08-15 05:55:08" uuid="1c297f81-053b-4fab-bcd9-e8f19d80645b"/>
+   <concept_description  concept_description_id="18326"  concept_id="164969"  description="A question to check if persons appointment is a refill or not."  locale="en"  creator="1"  date_created="2017-08-14 20:00:08" uuid="f2ea74e9-e29a-4b87-8a18-72d52eea8d29"/>
+   <concept_description  concept_description_id="18325"  concept_id="164968"  description="This is a check to see if a person is being initiated in care for example on their first appointment date"  locale="en"  creator="1"  date_created="2017-08-14 19:52:16" uuid="b241c7dc-8f05-4d09-87d2-6b86ca73a38e"/>
 
     <concept_numeric  concept_id="90214" precise="0"/>
     <concept_numeric  concept_id="90222" precise="1"/>
@@ -130,4 +176,5 @@
     <concept_numeric  concept_id="99856" precise="0"/>
     <concept_numeric  concept_id="99865" precise="0"/>
     <concept_numeric  concept_id="99874" precise="0"/>
+
 </dataset>
