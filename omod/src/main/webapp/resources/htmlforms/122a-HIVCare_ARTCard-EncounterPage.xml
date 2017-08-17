@@ -495,33 +495,21 @@
                                 <includeIf velocityTest="$transfer_out=='YES'">
                                     <obs id="returndate" conceptId="5096" allowFutureDates="true"
                                          labelText="Return date:"/>
-
-
-                                    <span class="AppointmentReasonEnableDisable1">
-                                    <obs conceptId="160288" labelText="Reasons for next appointment:"
-                                         answerConceptIds="164968,164972,164970,856,5497,163153,164971,164973,99324,164974,90012,903,5484,90002"
-                                         answerLabels="1.ART Initiation, 2.ART Refill, 3.ART Regimen Switch/ Substitution, 4.Viral Load, 5. CD4, 6.IAC, 7.T.B Drug Refill,8.T.B Follow up, 9.ANC,10.EID,11.PMTCT, 12.Hypertension/ Diabetics, 13.Nutrition,Other"/>
-                                </span>
-                                    <span class="AppointmentReasonEnableDisableChild1">
-                                    <obs conceptId="164975" labelText="Other Reason for next appointment" />
-                                    <br/>
-                                </span>
                                 </includeIf>
 
                                 <includeIf velocityTest="$transfer_out!='YES'">
                                     <obs id="returndate" conceptId="5096" required="required" allowFutureDates="true"
                                          labelText="Return date:"/>
-
-                                    <span class="AppointmentReasonEnableDisable1">
+                                </includeIf>
+                                <span class="AppointmentReasonEnableDisable1">
                                     <obs conceptId="160288" labelText="Reasons for next appointment:"
                                          answerConceptIds="164968,164972,164970,856,5497,163153,164971,164973,99324,164974,90012,903,5484,90002"
-                                         answerLabels="1.ART Initiation, 2.ART Refill, 3.ART Regimen Switch/ Substitution, 4.Viral Load, 5. CD4, 6.IAC, 7.T.B Drug Refill,8.T.B Follow up, 9.ANC,10.EID,11.PMTCT, 12.Hypertension/ Diabetics, 13.Nutrition,Other"/>
+                                         answerLabels="1.ART Initiation, 2.ART Refill, 3.ART Regimen Switch/ Substitution, 4.Viral Load, 5.CD4, 6.IAC, 7.T.B Drug Refill,8.T.B Follow up, 9.ANC,10.EID,11.PMTCT, 12.Hypertension/ Diabetics, 13.Nutrition,Other"/>
                                 </span>
-                                    <span class="AppointmentReasonEnableDisableChild1">
+                                <span class="AppointmentReasonEnableDisableChild1">
                                     <obs conceptId="164975" labelText="Other Reason for next appointment" />
                                     <br/>
                                 </span>
-                                </includeIf>
                             </ifMode>
 
                             <ifMode mode="EDIT">
@@ -530,16 +518,6 @@
                                 <includeIf velocityTest="$transfer_out=='YES'">
                                     <obs id="returndate" conceptId="5096" allowFutureDates="true"
                                          labelText="Return date:"/>
-
-                                    <span class="AppointmentReasonEnableDisable1">
-                                    <obs conceptId="160288" labelText="Reasons for next appointment:"
-                                         answerConceptIds="164968,164972,164970,856,5497,163153,164971,164973,99324,164974,90012,903,5484,90002"
-                                         answerLabels="1.ART Initiation, 2.ART Refill, 3.ART Regimen Switch/ Substitution, 4.Viral Load, 5. CD4, 6.IAC, 7.T.B Drug Refill,8.T.B Follow up, 9.ANC,10.EID,11.PMTCT, 12.Hypertension/ Diabetics, 13.Nutrition,Other"/>
-                                </span>
-                                    <span class="AppointmentReasonEnableDisableChild1">
-                                    <obs conceptId="164975" labelText="Other Reason for next appointment" />
-                                    <br/>
-                                </span>
                                 </includeIf>
 
                                 <lookup
@@ -548,17 +526,17 @@
                                 <includeIf velocityTest="$transfer_out!='YES'">
                                     <obs id="returndate" conceptId="5096" required="required" allowFutureDates="true"
                                          labelText="Return date:"/>
+                                </includeIf>
 
-                                    <span class="AppointmentReasonEnableDisable1">
+                                <span class="AppointmentReasonEnableDisable1">
                                     <obs conceptId="160288" labelText="Reasons for next appointment:"
                                          answerConceptIds="164968,164972,164970,856,5497,163153,164971,164973,99324,164974,90012,903,5484,90002"
-                                         answerLabels="1.ART Initiation, 2.ART Refill, 3.ART Regimen Switch/ Substitution, 4.Viral Load, 5. CD4, 6.IAC, 7.T.B Drug Refill,8.T.B Follow up, 9.ANC,10.EID,11.PMTCT, 12.Hypertension/ Diabetics, 13.Nutrition,Other"/>
+                                         answerLabels="1.ART Initiation, 2.ART Refill, 3.ART Regimen Switch/ Substitution, 4.Viral Load, 5.CD4, 6.IAC, 7.T.B Drug Refill,8.T.B Follow up, 9.ANC,10.EID,11.PMTCT, 12.Hypertension/ Diabetics, 13.Nutrition,Other"/>
                                 </span>
-                                    <span class="AppointmentReasonEnableDisableChild1">
+                                <span class="AppointmentReasonEnableDisableChild1">
                                     <obs conceptId="164975" labelText="Other Reason for next appointment" />
                                     <br/>
                                 </span>
-                                </includeIf>
                             </ifMode>
 
                         </excludeIf>
