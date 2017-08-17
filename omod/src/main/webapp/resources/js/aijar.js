@@ -253,6 +253,19 @@ var fieldHelper = {
 
         this.$jqObj.removeAttr('readonly').fadeTo(250, 1)
     },
+    clear: function (args) {
+        if (args instanceof jQuery) {
+        	this.$jqObj = args;
+        } else if (typeof args === 'string') {
+        	this.$jqObj = jq(args);
+        } 
+        if (this.$jqObj.is('input[type=text], select')) {
+        	this.$jqObj.val('');
+        } else if (this.$jqObj.is('input[type="radio"], input[type="checkbox"]')) {
+        	this.$jqObj.removeAttr('checked');
+        }
+
+    },
     clearAllFields: function (args) {
         if (args instanceof jQuery) {
         	this.$jqObj = args;
