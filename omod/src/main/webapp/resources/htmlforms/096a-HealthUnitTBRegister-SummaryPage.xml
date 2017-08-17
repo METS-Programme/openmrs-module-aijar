@@ -575,6 +575,10 @@
 				jq("span.error:visible:contains('Required'), span.error:visible:contains('Date without value')").html('').hide();
  	
 
+				//Clear validation messages displayed during a previously failed validation check
+				jq("span.error:visible:contains('Required'), span.error:visible:contains('Date without value')").html('').hide();
+ 	
+
 	            if (jq('span.error.field-error:visible').length &gt; 0) {
 	            	valid = false;
 	            }
