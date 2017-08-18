@@ -360,12 +360,12 @@
                     enable_disable(jq(this), "Regimen", 'selected_value == "other"', "select");
                 });
 
-                jq('[class^="AppointmentReasonEnableDisable"]').change(function () {
-                    enable_disable(jq(this), "AppointmentReason", 'selected_value == "other"', "select");
+                jq('[class^="OtherAppointmentReasonEnableDisable"]').change(function () {
+                    enable_disable(jq(this), "OtherAppointmentReason", 'selected_value == "other"', "select");
                 });
 
-                jq('[class^="AppointmentReasonEnableDisable"]').each(function () {
-                    enable_disable(jq(this), "AppointmentReason", 'selected_value == "other"', "select");
+                jq('[class^="OtherAppointmentReasonEnableDisable"]').each(function () {
+                    enable_disable(jq(this), "OtherAppointmentReason", 'selected_value == "other"', "select");
                 });
 
                 jq('[class^="DistrictTbRegEnableDisable"]').change(function () {
@@ -384,6 +384,23 @@
                 jq('[class^="AdherenceEnableDisable"]').each(function () {
                     enable_disable(jq(this), "Adherence", 'selected_value == "poor" || selected_value=="fair"', "select");
                 });
+
+                jq("#returndate").each(function () {
+                    if(jq("#returndate").find("input[type=hidden]").val()!=""){
+                        enableContainer("#reason_for_appointment");
+                    } else {
+                        disableContainer("#reason_for_appointment");
+                    }
+                });
+
+                jq("#returndate").change(function () {
+                    if(jq("#returndate").find("input[type=hidden]").val()!=""){
+                        enableContainer("#reason_for_appointment");
+                    } else {
+                        disableContainer("#reason_for_appointment");
+                    }
+                });
+
 
                 jq(".enableDisable").each(function () {
                     var group = jq(this);
@@ -501,15 +518,6 @@
                                     <obs id="returndate" conceptId="5096" required="required" allowFutureDates="true"
                                          labelText="Return date:"/>
                                 </includeIf>
-                                <span class="AppointmentReasonEnableDisable1">
-                                    <obs conceptId="160288" labelText="Reasons for next appointment:"
-                                         answerConceptIds="164968,164972,164970,856,5497,163153,164971,164973,99324,164974,90012,903,5484,90002"
-                                         answerLabels="1.ART Initiation, 2.ART Refill, 3.ART Regimen Switch/ Substitution, 4.Viral Load, 5.CD4, 6.IAC, 7.T.B Drug Refill,8.T.B Follow up, 9.ANC,10.EID,11.PMTCT, 12.Hypertension/ Diabetics, 13.Nutrition,Other"/>
-                                </span>
-                                <span class="AppointmentReasonEnableDisableChild1">
-                                    <obs conceptId="164975" labelText="Other Reason for next appointment" />
-                                    <br/>
-                                </span>
                             </ifMode>
 
                             <ifMode mode="EDIT">
@@ -527,19 +535,19 @@
                                     <obs id="returndate" conceptId="5096" required="required" allowFutureDates="true"
                                          labelText="Return date:"/>
                                 </includeIf>
-
-                                <span class="AppointmentReasonEnableDisable1">
-                                    <obs conceptId="160288" labelText="Reasons for next appointment:"
-                                         answerConceptIds="164968,164972,164970,856,5497,163153,164971,164973,99324,164974,90012,903,5484,90002"
-                                         answerLabels="1.ART Initiation, 2.ART Refill, 3.ART Regimen Switch/ Substitution, 4.Viral Load, 5.CD4, 6.IAC, 7.T.B Drug Refill,8.T.B Follow up, 9.ANC,10.EID,11.PMTCT, 12.Hypertension/ Diabetics, 13.Nutrition,Other"/>
-                                </span>
-                                <span class="AppointmentReasonEnableDisableChild1">
-                                    <obs conceptId="164975" labelText="Other Reason for next appointment" />
-                                    <br/>
-                                </span>
                             </ifMode>
 
                         </excludeIf>
+
+                        <span class="OtherAppointmentReasonEnableDisable1">
+                                    <obs id="reason_for_appointment" conceptId="160288" labelText="Reasons for next appointment:"
+                                         answerConceptIds="164968,164972,164970,856,5497,163153,164971,164973,99324,164974,90012,903,5484,90002"
+                                         answerLabels="1.ART Initiation, 2.ART Refill, 3.ART Regimen Switch/ Substitution, 4.Viral Load, 5.CD4, 6.IAC, 7.T.B Drug Refill,8.T.B Follow up, 9.ANC,10.EID,11.PMTCT, 12.Hypertension/ Diabetics, 13.Nutrition,Other"/>
+                        </span>
+                        <span class="OtherAppointmentReasonEnableDisableChild1">
+                                    <obs conceptId="164975" labelText="Other Reason for next appointment"/>
+                                    <br/>
+                        </span>
 
                     </td>
                     <td>
