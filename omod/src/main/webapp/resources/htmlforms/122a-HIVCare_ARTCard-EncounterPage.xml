@@ -315,7 +315,7 @@
                     }
 
                     if (!patient_regimen.includes(regimen_encounter_page_value)) {
-                        jq().toastmessage('showNoticeToast', "Regimen: " + regimen_encounter_page_text + " is not in patient regimens on ART Summary page");
+                        jq().toastmessage('showNoticeToast', "The regimen" + regimen_encounter_page_text + "you have selected is different from the current regimen in the Summary page. Please update the summary page with a switch/substitution to the selected regimen");
                     }
                 });
                 /* End of Validation /*
