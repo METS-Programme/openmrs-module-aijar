@@ -47,6 +47,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import static org.openmrs.module.aijar.AijarConstants.*;
+
 /**
  * This class contains the logic that is run every time this module is either started or stopped.
  * <p>
@@ -146,7 +148,8 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 
             // update the name of the default health center with that stored in the global property
             Location healthCenter = locationService.getLocationByUuid("629d78e9-93e5-43b0-ad8a-48313fd99117");
-            healthCenter.setName(administrationService.getGlobalProperty(AijarConstants.GP_HEALTH_CENTER_NAME));
+            healthCenter.setName(administrationService.getGlobalProperty(GP_HEALTH_CENTER_NAME));
+
             locationService.saveLocation(healthCenter);
 
             // cleanup liquibase change logs to enable installation of data integrity module
@@ -315,6 +318,10 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
     
         // mapping for creating visits without encounters to the default facility visit type
         properties.add(new GlobalProperty("emrapi.EmrApiVisitAssignmentHandler.encounterTypeToNewVisitTypeMap", "default:7b0f5697-27e3-40c4-8bae-f4049abfb4ed"));
+
+
+        // adding the master health facility number for health center place holder
+        properties.add(new GlobalProperty(GP_NHPI, GP_NHPI_VALUE, GP_NHPI_DESCRIPTION));
 
         return properties;
     }

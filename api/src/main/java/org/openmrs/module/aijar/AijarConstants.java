@@ -14,7 +14,11 @@ public class AijarConstants {
      * Global property names
      */
     public static final String GP_HEALTH_CENTER_NAME = MODULE_ID + ".healthCenterName";
-    
+
+    public static final String GP_NHPI = MODULE_ID + ".nhpi";
+    public static final String GP_NHPI_VALUE = "HFT2ZBPE8";
+    public static final String GP_NHPI_DESCRIPTION = "Allows one to set the Unique Health Center Code";
+
     /**
      * Concepts
      */
