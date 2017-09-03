@@ -167,6 +167,10 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             if (administrationService.getGlobalProperty(GP_HEALTH_CENTER_NAME).equalsIgnoreCase(GP_HEALTH_CENTER_NAME_VALUE)) {
                 aijarService.setAlertForAllUsers(GP_HEALTH_CENTER_NAME_DEFAULT_ALERT_MESSAGE);
             }
+            // set alert if DHIS2 Organization UUID is not set
+            if (administrationService.getGlobalProperty(GP_DHIS2).equalsIgnoreCase(GP_DHIS2_VALUE)) {
+                aijarService.setAlertForAllUsers(GP_DHIS2_DEFAULT_ALERT_MESSAGE);
+            }
         } catch (Exception e) {
             Module mod = ModuleFactory.getModuleById("aijar");
             ModuleFactory.stopModule(mod);

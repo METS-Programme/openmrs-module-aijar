@@ -17,10 +17,13 @@ public class AijarConstants {
     public static final String GP_HEALTH_CENTER_NAME_VALUE = "Health Center Name";
     public static final String GP_HEALTH_CENTER_NAME_DEFAULT_ALERT_MESSAGE="The Health Center Name is not set please go to admin then Settings then Aijar and set it";
 
+    public static final String GP_DHIS2= "ugandaemr.dhis2.organizationuuid";
+    public static final String GP_DHIS2_VALUE = "";
     public static final String GP_NHPI = MODULE_ID + ".nhpi";
     public static final String GP_NHPI_VALUE = "HFT2ZBPE8";
     public static final String GP_NHPI_DESCRIPTION = "Allows one to set the National Health Provider Identifier";
     public static final String GP_NHPI_DEFAULT_ALERT_MESSAGE="The National Health Provider Identifier is not set please go to admin then Settings then Aijar and set it";
+    public static final String GP_DHIS2_DEFAULT_ALERT_MESSAGE="The organization code in DHIS2 is not set please go to admin then Settings then Ugandaemr and set it";
 
 
     /**x
