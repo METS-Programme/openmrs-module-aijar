@@ -84,5 +84,22 @@ public class EncounterTypes {
         public String uuid() {
             return "455bad1f-5e97-4ee9-9558-ff1df8808732";
         }
-    };    
+    };
+
+
+    public static EncounterTypeDescriptor VIRAL_LOAD_NON_SUPPRESSED  = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Viral Load Non Suppressed Encounter";
+        }
+
+        @Override
+        public String description() {
+            return "Viral Load Non Suppressed Follow up";
+        }
+
+        public String uuid() {
+            return "38cb2232-30fc-4b1f-8df1-47c795771ee9";
+        }
+    };
 }
