@@ -303,7 +303,7 @@ public class PatientIdentifierTypes {
 		
 		@Override
 		public String description() {
-			return "An identifier used for patients with refugee stattus";
+			return "An identifier used for patients with refugee status";
 		}
 		
 		public String uuid() {
