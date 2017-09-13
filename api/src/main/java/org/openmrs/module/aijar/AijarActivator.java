@@ -104,6 +104,9 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             appFrameworkService.disableApp("coreapps.visitByEncounterType");
             appFrameworkService.disableApp("coreapps.dataIntegrityViolations");
             
+            // enable apps
+            appFrameworkService.disableApp("coreapps.relationships");
+            
             // Remove the BIRT reports app since it is no longer supported
             appFrameworkService.disableApp("aijar.referenceapplication.birtReports");
             
