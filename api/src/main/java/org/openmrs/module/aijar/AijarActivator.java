@@ -149,8 +149,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 
             // update the name of the default health center with that stored in the global property
             Location healthCenter = locationService.getLocationByUuid("629d78e9-93e5-43b0-ad8a-48313fd99117");
-            healthCenter.setName(administrationService.getGlobalProperty(GP_HEALTH_CENTER_NAME));
-
+            healthCenter.setName(administrationService.getGlobalProperty(AijarConstants.GP_HEALTH_CENTER_NAME));
             locationService.saveLocation(healthCenter);
 
             // cleanup liquibase change logs to enable installation of data integrity module
@@ -254,7 +253,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             primaryIdentifierTypeMapping.setMappedObject(openmrsIdType);
             metadataMappingService.saveMetadataTermMapping(primaryIdentifierTypeMapping);
         }
-
+        
         String ART_Patient_Number_Identifier = "";
         // check if the ART patient number is to be displayed then add it here
         if (Context.getAdministrationService().getGlobalProperty("ugandaemr.showARTPatientNumberIdentifier").equals("true")) {
@@ -265,15 +264,22 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         String Research_Patient_Identifier = "";
         // check if the ART patient number is to be displayed then add it here
         if (Context.getAdministrationService().getGlobalProperty("ugandaemr.showResearchPatientIdentifier").equals("true")) {
-            log.info("Adding research atient number to extra identifier types property");
+            log.info("Adding research patient number to extra identifier types property");
             Research_Patient_Identifier = "," + PatientIdentifierTypes.RESEARCH_PATIENT_ID.uuid();
+        }
+
+        String Refugee_Identifier = "";
+        // check if the ART patient number is to be displayed then add it here
+        if (Context.getAdministrationService().getGlobalProperty("ugandaemr.showRefugeeIdentifier").equals("true")) {
+            log.info("Adding refugee identifier to extra identifier types property");
+            Refugee_Identifier = "," + PatientIdentifierTypes.REFUGEE_IDENTIFICATION_NUMBER.uuid();
         }
 
         // set the HIV care number and EID number as additional identifiers that can be searched for
         properties.add(new GlobalProperty(EmrApiConstants.GP_EXTRA_PATIENT_IDENTIFIER_TYPES,
                 PatientIdentifierTypes.HIV_CARE_NUMBER.uuid() + "," + PatientIdentifierTypes.EXPOSED_INFANT_NUMBER.uuid()
-                        + "," + PatientIdentifierTypes.IPD_NUMBER.uuid() + "," + PatientIdentifierTypes.ANC_NUMBER.uuid() + "," + PatientIdentifierTypes.PNC_NUMBER.uuid()
-                        + "," + PatientIdentifierTypes.HCT_NUMBER.uuid() + ART_Patient_Number_Identifier + Research_Patient_Identifier));
+                        + "," + PatientIdentifierTypes.IPD_NUMBER.uuid() + "," + PatientIdentifierTypes.ANC_NUMBER.uuid()+ "," + PatientIdentifierTypes.PNC_NUMBER.uuid()
+                        + "," + PatientIdentifierTypes.HCT_NUMBER.uuid() + ART_Patient_Number_Identifier + Research_Patient_Identifier + Refugee_Identifier));
 
         // set the name of the application
         properties.add(new GlobalProperty("application.name", "UgandaEMR - Uganda eHealth Solution"));
@@ -321,13 +327,13 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 
         // Exclude temporary reporting tables by database backup module
         properties.add(new GlobalProperty("databasebackup.tablesExcluded", "aijar_105_eid,aijar_106a1a"));
-
+    
         // the name of the custom registration app
         properties.add(new GlobalProperty("registrationapp.customRegistrationAppId", "aijar.registrationapp.registerPatient"));
-
+    
         // enable the register patient button to appear on the search widget
         properties.add(new GlobalProperty("coreapps.showRegisterPatientOnSearchWidget", "true"));
-
+    
         // mapping for creating visits without encounters to the default facility visit type
         properties.add(new GlobalProperty("emrapi.EmrApiVisitAssignmentHandler.encounterTypeToNewVisitTypeMap", "default:7b0f5697-27e3-40c4-8bae-f4049abfb4ed"));
 
@@ -384,7 +390,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         String gpVal = Context.getAdministrationService().getGlobalProperty("dataintegrity.database_version");
         // remove data integrity locks for an version below 4
         // some gymnastics to get the major version number from semver like 2.5.3
-        if ((gpVal == null) || new Integer(gpVal.substring(0, gpVal.indexOf("."))).intValue() < 4) {
+        if ((gpVal == null) || new Integer(gpVal.substring(0, gpVal.indexOf("."))).intValue() < 4){
             AdministrationService as = Context.getAdministrationService();
             log.warn("Removing liquibase change log locks for previously installed data integrity instance");
             as.executeSQL("delete from liquibasechangelog WHERE ID like 'dataintegrity%';", false);
