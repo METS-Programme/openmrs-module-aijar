@@ -16,11 +16,11 @@
         "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardSecondColumn",
         "appId": "ugandaemr.dashboardwidget.EIDSummary",
         "extensionPointId": "patientDashboard.secondColumnFragments",
-        "require":"patient.person.age < 10",
         "extensionParams": {
           "provider": "coreapps",
           "fragment": "dashboardwidgets/dashboardWidget"
-        }
+        },
+        "require":"patient.person.age < 10"
       }
     ]
   },
@@ -40,11 +40,11 @@
         "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardFirstColumn",
         "appId": "ugandaemr.dashboardwidget.MCHSummary",
         "extensionPointId": "patientDashboard.firstColumnFragments",
-        "require":"patient.person.gender=='F'",
         "extensionParams": {
           "provider": "coreapps",
           "fragment": "dashboardwidgets/dashboardWidget"
-        }
+        },
+        "require":"patient.person.gender=='F'"
       }
     ]
   },
