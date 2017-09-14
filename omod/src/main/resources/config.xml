@@ -109,6 +109,13 @@
             Whether or not to show the research identifier
         </description>
     </globalProperty>
+	<globalProperty>
+		<property>ugandaemr.showRefugeeIdentifier</property>
+		<defaultValue>false</defaultValue>
+		<description>
+			Whether or not to show the refugee identifier
+		</description>
+	</globalProperty>
     <globalProperty>
         <property>ugandaemr.lostToFollowUpDaysTB</property>
         <defaultValue>60</defaultValue>
