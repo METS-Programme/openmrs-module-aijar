@@ -71,6 +71,24 @@
 			var $emtctCodeWomanField = getField('emtct-code-woman.value');
 			var $normalPregnancyField = getField('normal-pregnancy.value');
 
+			jq('#no-fp-method').change(function(){
+			    if (getValue('no-fp-method.value') == 162964){
+				    jq('#other-fp-methods').children('input').each(function(){
+						fieldHelper.disable(jq(this));
+                	});
+				    /** natural and other do not seem to get disabled due to the additional classes they have **/
+				    fieldHelper.disable(getField('natural-fp.value'));
+				    fieldHelper.disable(getField('other-fp.value'));
+				} else {
+                    jq('#other-fp-methods').children('input').each(function(){
+                        fieldHelper.enable(jq(this));
+                    });
+                    fieldHelper.enable(getField('natural-fp.value'));
+                    fieldHelper.enable(getField('other-fp.value'));
+			    }
+
+        	});
+
 			var setNormalDeliveryStatus = function() {
 				var deliveryMethod = <lookup complexExpression="
 										#set ($deliveryMethod = $fn.latestObs('5630').valueCoded.conceptId)
@@ -385,14 +403,20 @@
 	                    <td colspan="4">
 	                        <p>
 	                            <label>Family Planning Given</label>
+								<obs id="no-fp-method" conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
+									 answerConceptId="
+	                                 aaf150a5-92d2-416f-8254-95d34ed9c4ab"
+									 answerLabel="No Family Planning Method Given"
+									 style="checkbox"  class="horizontal-layout-options"/>
+								<div id="other-fp-methods">
 	                            <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
 	                                 answerConceptId="38aa1dc0-1aaa-4bdd-b26f-28f960dfb16c"
 	                                 answerLabel="Oral:Lo-Femenal"
-	                                 style="checkbox" class="horizontal-layout-options" />
+	                                 style="checkbox" />
 	                            <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
 	                                 answerConceptId="4b0899f2-395e-4e0f-8b58-d304b214615e"
 	                                 answerLabel="Oral: Microgynon"
-	                                 style="dropdown" />
+	                                 style="checkbox" />
 	                            <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
 	                                 answerConceptId="670b7048-d71e-483a-b2ec-f10d2326dd84"
 	                                 answerLabel="Oral:Others"
@@ -400,7 +424,7 @@
 	                            <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
 	                                 answerConceptId="dc882c84-30ab-102d-86b0-7a5022ba4115"
 	                                 answerLabel="Female Condoms"
-	                                 style="checkkbox" />
+	                                 style="checkbox" />
 	                            <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
 	                                 answerConceptId="aeee4ccf-cbf8-473c-9d9f-846643afbf11"
 	                                 answerLabel="Male Condoms"
@@ -409,7 +433,7 @@
 	                                 answerConceptId="dcb30ba3-30ab-102d-86b0-7a5022ba4115"
 	                                 answerLabel="Injectable"
 	                                 style="checkbox" />
-	                            <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
+	                            <obs id="natural-fp" conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
 	                            	 answerConceptId="dcb30381-30ab-102d-86b0-7a5022ba4115"
 	                                 answerLabel="Natural"
 	                                 style="checkbox" class="horizontal-layout-options"/>
@@ -429,15 +453,11 @@
 	                                 answerConceptId="dcdd91a7-30ab-102d-86b0-7a5022ba4115"
 	                                 answerLabel="Tubal Ligation"
 	                                 style="checkbox" />
-	                            <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
-	                                 answerConceptId="
-	                                 aaf150a5-92d2-416f-8254-95d34ed9c4ab"
-	                                 answerLabel="No Family Planning Method Given"
-	                                 style="checkbox" />
-	                            <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
+	                            <obs id="other-fp" conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
 	                                 answerConceptId="5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 	                                 answerLabel="Other"
 	                                 style="checkbox" commentFieldLabel="" class="has-comment horizontal-layout-options"/>
+								</div>
 	                        </p>
 	                    </td>
 	                </tr>
