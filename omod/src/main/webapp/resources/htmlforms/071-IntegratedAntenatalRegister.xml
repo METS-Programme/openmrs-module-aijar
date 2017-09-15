@@ -64,8 +64,6 @@
         window.focus();
         });
 
-
-
         var $viralLoadResultsField = getField('viral-load-results.value');
         var $lmpField = getField('lmp-date.value');
         var $gestationAgeField = getField('gestational-age.value');
@@ -80,32 +78,10 @@
         var $emtctCodeWomanField = getField('emtct-code-woman.value');
         var $viralLoadStatusField = getField('viral-load-status.value');
         var $ancVisitField = getField('anc-visit.value');
-        var $ironTabletsGivenField = getField('ironTabletsGiven.value');
-        var $folicAcidTabletsGivenField = getField('folicTabletsGiven.value');
 
         var viralLoadResultsChange = function() {
         var $viralLoadResults = getValue('viral-load-results.value');
         var $viralLoadField = getField('viral-load.value');
-
-        fieldHelper.disable($ironTabletsGivenField);
-        fieldHelper.disable($folicAcidTabletsGivenField);
-
-        jq('#iron').change(function(){
-           if (getValue('iron.value') == 1065) {
-               fieldHelper.enable($ironTabletsGivenField);
-           } else {
-               $ironTabletsGivenField.val('');
-               fieldHelper.disable($ironTabletsGivenField);
-           }
-        });
-        jq('#folic-acid').change(function(){
-            if (getValue('folic-acid.value') == 1065) {
-                fieldHelper.enable($folicAcidTabletsGivenField);
-            } else {
-                $folicAcidTabletsGivenField.val('');
-                fieldHelper.disable($folicAcidTabletsGivenField);
-            }
-        });
 
         fieldHelper.removeReadonly($viralLoadField);
         fieldHelper.enable($viralLoadField);
@@ -914,7 +890,7 @@
                             <label>ARVs Given</label>
                             <obs conceptId="a615f932-26ee-449c-8e20-e50a15232763"
                                  answerConceptIds="026e31b7-4a26-44d0-8398-9a41c40ff7d3,2aa7d442-6cbb-4609-9dd3-bc2ad6f05016,2c000b41-f9d7-40c1-8de0-bce91dbae932,bbc63761-0741-4583-9396-a34d3a18601c,dc9b0596-30ab-102d-86b0-7a5022ba4115"
-                                 answerLabels="ART - Initiated ART for eMTCT on visit,ARTK - Client already on HAART before this pregnancy,ART&#8730; - Client is revist and was prescribed on earlier visit,ARTK&#8730; - Client is revisit was prescribed on earlier visit and was on ART before pregnancy,NA - Not Applicable"
+                                 answerLabels="ART,ARTK,ART&#8730;,ARTK&#8730;,NA"
                                  style="dropdown" id="arvs-given" />
                         </p>
                     </td>
@@ -965,7 +941,7 @@
                     </td>
                     <td>
                         <p>
-                            <label>Haemoglobin (g/dl)</label>
+                            <label>Haemoglobin</label>
                             <obs conceptId="dc548e89-30ab-102d-86b0-7a5022ba4115" />
                         </p>
                     </td>
@@ -1041,7 +1017,7 @@
                     <td>
                         <p>
                             <label>Iron</label>
-                            <obs id="iron" conceptId="315825e8-8ba4-4551-bdd1-aa4e02a36639" answerLabel="Iron"
+                            <obs conceptId="315825e8-8ba4-4551-bdd1-aa4e02a36639" answerLabel="Iron"
                                  answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                  answerLabels="Yes, No"
                                  style="radio" />
@@ -1059,7 +1035,7 @@
                     <td>
                         <p>
                             <label>Folic Acid</label>
-                            <obs id="folic-acid" conceptId="8c346216-c444-4528-a174-5139922218ed"
+                            <obs conceptId="8c346216-c444-4528-a174-5139922218ed"
                                  answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                  answerLabels="Yes, No"
                                  style="radio" />
