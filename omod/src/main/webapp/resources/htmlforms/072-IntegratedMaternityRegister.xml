@@ -24,48 +24,6 @@
 		}
 	</style>
 
-	<ifMode mode="ENTER">
-			<script>
-				jQuery(document).ready(function() {
-					<!--
-					 /*
-					 *When the page is loaded with no providers with the Midwife role - a Javascript message must be shown and the user forwarded to the manage Users page
-					 */
-					var $midwifeField = jq('span#delivered-by').find('select');
-					
-					if ($midwifeField.children('option').size() === 1) {
-	                    alert('No user with a midwife role has been defined in the system. You will now be redirected to the manage users page..');
-
-	                    /*
-	                     * queryParameters -> handles the query string parameters
-	                     * queryString -> the query string without the fist '?' character
-	                     * re -> the regular expression
-	                     * m -> holds the string matching the regular expression
-	                     */
-	                    var queryParameters = {}, queryString = location.search.substring(1),
-	                            re = /([^&amp;=]+)=([^&amp;]*)/g, m;
-
-	                    // Creates a map with the query string parameters
-	                    while (m = re.exec(queryString)) {
-	                        queryParameters[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
-	                    }
-
-	                    /*
-	                     * Replace the query portion of the URL.
-	                     * jQuery.param() -> create a serialized representation of an array or
-	                     *     object, suitable for use in a URL query string or Ajax request.
-	                     */
-	                    location.href = window.location.protocol + "//" + window.location.host +
-	                            '/' + OPENMRS_CONTEXT_PATH + '/admin/users/users.list';
-
-					}-->
-					
-				});
-			</script>
-		
-
-	</ifMode>
-
 	<script type="text/javascript">
 	    jQuery(document).ready(function(jq) {
 	        const VIRAL_LOAD_RESULTS_CONCEPT_ID = 1305;
@@ -965,7 +923,7 @@
               <label>ARVs to mother</label>
               <obs 	conceptId="35ae2043-a3b0-48de-8e22-05f377ac39a2"
 					  answerConceptIds="026e31b7-4a26-44d0-8398-9a41c40ff7d3,2c000b41-f9d7-40c1-8de0-bce91dbae932,dc9b0596-30ab-102d-86b0-7a5022ba4115,dc9825cf-30ab-102d-86b0-7a5022ba4115"
-					  answerLabels="ART,ART&#8730;,NA,ND"
+					  answerLabels="ART - Initiated on ART for eMTCT in Maternity,ART&#8730; - Already on ARVs,NA - Not Applicable,ND - No drugs given"
 					  style="dropdown" id="arvs-to-mother" />
             </p>
           </td>
