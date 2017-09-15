@@ -50,7 +50,7 @@ public class InvalidARTEncounters extends BasePatientRuleDefinition {
 		for (Patient patient : patientList) {
 			RuleResult<Patient> ruleResult = new RuleResult<>();
 			ruleResult.setActionUrl("coreapps/patientdashboard/patientDashboard.page?patientId=" + patient.getUuid());
-			ruleResult.setNotes("Client# " + getHIVClinicNumber(patient) + ", more than one ART Summary Page");
+			ruleResult.setNotes("Client #" + getHIVClinicNumber(patient) + " has more than one ART Summary Page");
 			ruleResult.setEntity(patient);
 			
 			ruleResults.add(ruleResult);
@@ -76,7 +76,7 @@ public class InvalidARTEncounters extends BasePatientRuleDefinition {
 		for (Patient patient : patientList) {
 			RuleResult<Patient> ruleResult = new RuleResult<>();
 			ruleResult.setActionUrl("coreapps/patientdashboard/patientDashboard.page?patientId=" + patient.getUuid());
-			ruleResult.setNotes("Client# " + getHIVClinicNumber(patient) + ", has encounters but no ART Summary Page");
+			ruleResult.setNotes("Client #" + getHIVClinicNumber(patient) + " has encounters but no ART Summary Page");
 			ruleResult.setEntity(patient);
 			
 			ruleResults.add(ruleResult);
@@ -102,7 +102,7 @@ public class InvalidARTEncounters extends BasePatientRuleDefinition {
 		for (Patient patient : patientList) {
 			RuleResult<Patient> ruleResult = new RuleResult<>();
 			ruleResult.setActionUrl("coreapps/patientdashboard/patientDashboard.page?patientId=" + patient.getUuid());
-			ruleResult.setNotes("Client# " + getHIVClinicNumber(patient) + ", has Summary page but no Encounter or Health Education");
+			ruleResult.setNotes("Client #" + getHIVClinicNumber(patient) + " has an ART Summary page but no Encounter or Health Education");
 			ruleResult.setEntity(patient);
 			
 			ruleResults.add(ruleResult);
@@ -128,7 +128,7 @@ public class InvalidARTEncounters extends BasePatientRuleDefinition {
 		for (Visit visit : visitList) {
 			RuleResult<Patient> ruleResult = new RuleResult<>();
 			ruleResult.setActionUrl("coreapps/patientdashboard/patientDashboard.page?patientId=" + visit.getPatient().getPatientId() + "&visitId=" + visit.getVisitId());
-			ruleResult.setNotes("Client# " + getHIVClinicNumber(visit.getPatient()) + " has more than one encounter on " + getDateFormatter().format(visit.getStartDatetime()));
+			ruleResult.setNotes("Client #" + getHIVClinicNumber(visit.getPatient()) + " has more than one encounter on " + getDateFormatter().format(visit.getStartDatetime()));
 			ruleResult.setEntity(visit.getPatient());
 			
 			ruleResults.add(ruleResult);
