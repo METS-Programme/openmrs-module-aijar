@@ -41,7 +41,7 @@
 		<comment>Inserting Exposed Infant Link to Mother Task into 'schedule_task_config' table</comment>
 		<insert tableName="scheduler_task_config">
 			<column name="name" value="Link infants to mothers via ART Number" />
-			<column name="description" value="Exits patients from the TB program who have not come for 90 days" />
+			<column name="description" value="Links exposed infants to mothers through their ART numbers" />
 			<column name="schedulable_class" value="org.openmrs.module.aijar.tasks.LinkExposedInfantToMotherTask" />
 			<column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss" />
 			<column name="start_time" valueDate="2017-06-01T11:59:59" />

@@ -87,6 +87,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         MetadataDeployService deployService = Context.getService(MetadataDeployService.class);
         ConceptService conceptService = Context.getConceptService();
         LocationService locationService = Context.getLocationService();
+
         try {
             // disable the reference app registration page
             appFrameworkService.disableApp("referenceapplication.registrationapp.registerPatient");
@@ -103,6 +104,9 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             appFrameworkService.disableApp("coreapps.obsGraph");
             appFrameworkService.disableApp("coreapps.visitByEncounterType");
             appFrameworkService.disableApp("coreapps.dataIntegrityViolations");
+
+            // enable the relationships dashboard widget
+            appFrameworkService.enableApp("coreapps.relationships");
 
             // Remove the BIRT reports app since it is no longer supported
             appFrameworkService.disableApp("aijar.referenceapplication.birtReports");
@@ -233,9 +237,9 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         MetadataMappingService metadataMappingService = Context.getService(MetadataMappingService.class);
         MetadataTermMapping primaryIdentifierTypeMapping = metadataMappingService.getMetadataTermMapping(EmrApiConstants.EMR_METADATA_SOURCE_NAME, EmrApiConstants.PRIMARY_IDENTIFIER_TYPE);
         PatientIdentifierType openmrsIdType = Context.getPatientService().getPatientIdentifierTypeByUuid(PatientIdentifierTypes.NATIONAL_ID.uuid());
-
+    
         //overwrite if not set yet
-        if (!openmrsIdType.getUuid().equals(primaryIdentifierTypeMapping.getMetadataUuid())) {
+        if(!openmrsIdType.getUuid().equals(primaryIdentifierTypeMapping.getMetadataUuid())){
             primaryIdentifierTypeMapping.setMappedObject(openmrsIdType);
             metadataMappingService.saveMetadataTermMapping(primaryIdentifierTypeMapping);
         }
@@ -253,7 +257,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             log.info("Adding research patient number to extra identifier types property");
             Research_Patient_Identifier = "," + PatientIdentifierTypes.RESEARCH_PATIENT_ID.uuid();
         }
-
+    
         String Refugee_Identifier = "";
         // check if the ART patient number is to be displayed then add it here
         if (Context.getAdministrationService().getGlobalProperty("ugandaemr.showRefugeeIdentifier").equals("true")) {
