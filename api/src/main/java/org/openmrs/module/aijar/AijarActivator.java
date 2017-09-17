@@ -24,10 +24,10 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.Module;
 import org.openmrs.module.ModuleActivator;
 import org.openmrs.module.ModuleFactory;
+import org.openmrs.module.aijar.activator.AlertConfigurationInitializer;
 import org.openmrs.module.aijar.activator.AppConfigurationInitializer;
 import org.openmrs.module.aijar.activator.HtmlFormsInitializer;
 import org.openmrs.module.aijar.activator.Initializer;
-import org.openmrs.module.aijar.api.AijarService;
 import org.openmrs.module.aijar.api.deploy.bundle.CommonMetadataBundle;
 import org.openmrs.module.aijar.api.deploy.bundle.UgandaAddressMetadataBundle;
 import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
@@ -47,8 +47,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
-import static org.openmrs.module.aijar.AijarConstants.*;
 
 /**
  * This class contains the logic that is run every time this module is either started or stopped.
@@ -89,7 +87,6 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         MetadataDeployService deployService = Context.getService(MetadataDeployService.class);
         ConceptService conceptService = Context.getConceptService();
         LocationService locationService = Context.getLocationService();
-        AijarService aijarService = Context.getService(AijarService.class);
         try {
             // disable the reference app registration page
             appFrameworkService.disableApp("referenceapplication.registrationapp.registerPatient");
@@ -158,18 +155,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             // generate OpenMRS ID for patients without the identifier
             generateOpenMRSIdentifierForPatientsWithout();
 
-            // set alert if National Health Provider Identifier is not set
-            if (administrationService.getGlobalProperty(GP_NHPI).equalsIgnoreCase(GP_NHPI_VALUE)) {
-                aijarService.setAlertForAllUsers(GP_NHPI_DEFAULT_ALERT_MESSAGE);
-            }
-            // set alert if Health Center Name is not set
-            if (administrationService.getGlobalProperty(GP_HEALTH_CENTER_NAME).equalsIgnoreCase(GP_HEALTH_CENTER_NAME_VALUE)) {
-                aijarService.setAlertForAllUsers(GP_HEALTH_CENTER_NAME_DEFAULT_ALERT_MESSAGE);
-            }
-            // set alert if DHIS2 Organization UUID is not set
-            if (administrationService.getGlobalProperty(GP_DHIS2).equalsIgnoreCase(GP_DHIS2_VALUE)) {
-                aijarService.setAlertForAllUsers(GP_DHIS2_DEFAULT_ALERT_MESSAGE);
-            }
+
         } catch (Exception e) {
             Module mod = ModuleFactory.getModuleById("aijar");
             ModuleFactory.stopModule(mod);
@@ -416,6 +402,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         List<Initializer> l = new ArrayList<Initializer>();
         l.add(new AppConfigurationInitializer());
         l.add(new HtmlFormsInitializer());
+        l.add(new AlertConfigurationInitializer());
         return l;
     }
 }
