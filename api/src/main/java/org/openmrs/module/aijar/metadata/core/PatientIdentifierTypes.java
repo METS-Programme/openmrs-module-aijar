@@ -271,27 +271,44 @@ public class PatientIdentifierTypes {
             return "37601abe-2ee0-4493-8ac7-22b4972190cf";
         }
     };
-
+    
 	public static PatientIdentifierTypeDescriptor INTEGRATED_NUTRITION_REGISTER_NUMBER = new PatientIdentifierTypeDescriptor() {
-
-		@Override
-		public String name() {
+        
+        @Override
+        public String name() {
 			return "Integrated Nutrition Register (INR) No.";
-		}
-
-		@Override
-		public String description() {
+        }
+        
+        @Override
+        public String description() {
 			return "Number given to a patient who has been confirmed to have mulnutrition";
-		}
-
-		public String uuid() {
+        }
+        
+        public String uuid() {
 			return "d4b21726-e908-4b1a-abab-b5f87cd01c18";
 		}
 
 		public String formatDescription() {
 			return " The first 3 digits of the case number then / then "
 					+ "two digits for the year";
+        }
+    };
+	
+	public static PatientIdentifierTypeDescriptor REFUGEE_IDENTIFICATION_NUMBER = new PatientIdentifierTypeDescriptor() {
+		
+		@Override
+		public String name() {
+			return "Refugee Identification Number";
 		}
-	};  	
+		
+		@Override
+		public String description() {
+			return "An identifier used for patients with refugee status";
+		}
+		
+		public String uuid() {
+			return "cedbf89d-f0ef-453a-9a69-f45dc197fd3d";
+		}
+	};
 	
 }

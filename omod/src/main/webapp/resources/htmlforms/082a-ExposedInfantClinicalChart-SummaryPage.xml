@@ -225,10 +225,38 @@
 
                 /* add the validator on the beforeSubmit*/
                 beforeSubmit.push(function () {
-                            jq("#htmlform").validate();
-                            return jq("#htmlform").valid();
-                        }
-                )
+
+                    var pcrDateValidationErrors = [];
+
+                    /* Repeat PCR can be done after the first PCR results */
+                    if (getValue('pcr1Results.value') == 703) {
+                        pcrDateValidationErrors.push(dateValidator("repeatPCRDate", "1stpcrDate", "", "The repeat PCR date must be after the date of the 1st PCR", "", "less_than", true));
+                    }
+
+                    /* Validate the 2nd PCR date if the 1st PCR date is provided */
+                    if (getValue('1stpcrDate.value') != '') {
+                        pcrDateValidationErrors.push(dateValidator("2ndpcrDate", "1stpcrDate", "", "The date of the second PCR must be after the date of the 1st PCR", "", "less_than", true));
+
+                    }
+
+                    /* Repeat PCR can be done after the 2nd PCR results */
+                    if (getValue('pcr2Results.value') == 703) {
+                        pcrDateValidationErrors.push(dateValidator("repeatPCRDate", "2ndpcrDate", "", "The repeat PCR date must be after the date of the 2nd PCR", "", "less_than", true));
+                    }
+
+                    /* Validate the Rapid Test date if the 2nd PCR date is provided */
+                    if (getValue('2ndpcrDate.value') != '') {
+                        pcrDateValidationErrors.push(dateValidator("rapidTestDate", "2ndpcrDate", "", "The rapid test date must be after the date of the 2nd PCR", "", "less_than", true));
+                    }
+
+                    if (pcrDateValidationErrors.indexOf(false) != -1) {
+                        jq().toastmessage('showErrorToast', "  There are errors during the valdation of the data on the form. Please correct them and submit again");
+                        return false;
+                    }
+
+                    jq("#htmlform").validate();
+                    return jq("#htmlform").valid();
+                });
 
                 var gender = jq("span.gender").html();
                 var age = jq("span.age").html();
@@ -533,7 +561,7 @@
                     <tr>
                         <td><label>1st PCR</label></td>
                         <td class="PCRTestResultEnableDisable1">
-                            <obs conceptId="99606" id="pcr1stDate"></obs>
+                            <obs conceptId="99606" id="1stpcrDate"></obs>
                         </td>
                         <td>
                             <obs conceptId="99434" id="pcr1FeedingMethod"></obs>
@@ -548,13 +576,13 @@
                     <tr>
                         <td><label>2nd PCR</label></td>
                         <td class="PCRTestResultEnableDisable2">
-                            <obs conceptId="99436"></obs>
+                            <obs conceptId="99436" id="2ndpcrDate"></obs>
                         </td>
                         <td>
                             <obs conceptId="99794"></obs>
                         </td>
                         <td class="PCRTestResultEnableDisableChild2">
-                            <obs conceptId="99440"></obs>
+                            <obs conceptId="99440" id="pcr2Results"></obs>
                         </td>
                         <td class="PCRTestResultEnableDisableChild2">
                             <obs conceptId="99442"></obs>
@@ -566,13 +594,13 @@
                             (if necessary)
                         </td>
                         <td class="PCRTestResultEnableDisable3">
-                            <obs conceptId="162876"/>
+                            <obs conceptId="162876" id="repeatPCRDate"/>
                         </td>
                         <td>
                             <obs conceptId="162877"/>
                         </td>
                         <td class="PCRTestResultEnableDisableChild3">
-                            <obs conceptId="162881"/>
+                            <obs conceptId="164980"/>
                         </td>
                         <td class="PCRTestResultEnableDisableChild3">
                             <obs conceptId="162882"/>
@@ -581,7 +609,7 @@
                     <tr>
                         <td><label>18 Month Rapid Test</label></td>
                         <td class="PCRTestResultEnableDisable4">
-                            <obs conceptId="162879"/>
+                            <obs conceptId="162879" id="rapidTestDate"/>
                         </td>
                         <td>
                             <obs conceptId="162878"/>

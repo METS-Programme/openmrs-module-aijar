@@ -19,7 +19,8 @@
         "extensionParams": {
           "provider": "coreapps",
           "fragment": "dashboardwidgets/dashboardWidget"
-        }
+        },
+        "require":"patient.person.age < 10"
       }
     ]
   },
@@ -42,7 +43,8 @@
         "extensionParams": {
           "provider": "coreapps",
           "fragment": "dashboardwidgets/dashboardWidget"
-        }
+        },
+        "require":"patient.person.gender=='F'"
       }
     ]
   },
