@@ -31,7 +31,7 @@
 			UPDATE metadatamapping_metadata_term_mapping SET metadata_class = 'org.openmrs.EncounterType' WHERE metadata_class = 'org.openmrs.EncounterType_$$_jvstbd5_23'
 		</sql>
 	</changeSet>
-	<changeSet id="ugandaemr-06232017-1639" author="ssmusoke">
+	<changeSet id="ugandaemr-09182017-0839" author="ssmusoke">
 		<preConditions onFail="MARK_RAN">
 			<sqlCheck expectedResult="0">
 				SELECT COUNT(*) FROM scheduler_task_config
