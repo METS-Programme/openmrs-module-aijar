@@ -2,6 +2,7 @@ package org.openmrs.module.aijar.activator;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.GlobalProperty;
 import org.openmrs.api.AdministrationService;
 import org.openmrs.module.aijar.api.AijarService;
 
@@ -39,9 +40,16 @@ public class AlertConfigurationInitializer implements Initializer {
     private void createAlertWhenDefaultIsNotSet(String globalPropertyName, String globalPropertyDefault, String messageAlert) {
         AijarService aijarService = org.openmrs.api.context.Context.getService(AijarService.class);
         AdministrationService administrationService = org.openmrs.api.context.Context.getAdministrationService();
-        if (administrationService.getGlobalProperty(globalPropertyName).equalsIgnoreCase(globalPropertyDefault)) {
+        GlobalProperty globalProperty = new GlobalProperty();
+        globalProperty = administrationService.getGlobalPropertyObject(globalPropertyName);
+        if (globalProperty.getPropertyValue() == null) {
             aijarService.setAlertForAllUsers(messageAlert);
             log.info("Creating alert " + messageAlert);
+        } else {
+            if (globalProperty.getPropertyValue().equalsIgnoreCase(globalPropertyDefault)) {
+                aijarService.setAlertForAllUsers(messageAlert);
+                log.info("Creating alert " + messageAlert);
+            }
         }
     }
 }
