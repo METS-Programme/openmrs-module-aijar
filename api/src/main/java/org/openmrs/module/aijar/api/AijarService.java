@@ -37,4 +37,5 @@ public interface AijarService extends OpenmrsService {
 	 */
 	public void linkExposedInfantToMotherViaARTNumber(Patient infant, String motherARTNumber);
 	public void linkExposedInfantToMotherViaARTNumber(Person infant, String motherARTNumber);
+	public void setAlertForAllUsers(String alertMessage);
 }

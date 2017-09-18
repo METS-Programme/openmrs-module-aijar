@@ -96,6 +96,13 @@
 		</description>
     </globalProperty>
     <globalProperty>
+        <property>aijar.nhpi</property>
+        <defaultValue>HFT2ZBPE8</defaultValue>
+        <description>
+            Allows one to set the National Health Provider Identifier
+        </description>
+    </globalProperty>
+    <globalProperty>
 		<property>ugandaemr.showARTPatientNumberIdentifier</property>
 		<defaultValue>false</defaultValue>
 		<description>
@@ -133,6 +140,7 @@
     <globalProperty>
         <property>ugandaemr.dhis2.organizationuuid</property>
         <description>The organization code in DHIS2</description>
+        <defaultValue>eg d06ace3e-9c46-11e7-abc4-cec278b6b50a</defaultValue>
     </globalProperty>
 
 </module>

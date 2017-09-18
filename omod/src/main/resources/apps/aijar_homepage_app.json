@@ -76,5 +76,20 @@
     "config": {
       "registrationAppLink": "registrationapp/registerPatient.page?appId=aijar.registrationapp.registerPatient"
     }
-  }
+  },{
+  "id": "aijar.configs",
+  "description": "Configurations for Health Center",
+  "order": 5,
+  "extensions": [
+    {
+      "id": "coreapps.activeVisitsHomepageLink",
+      "extensionPointId": "systemAdministration.apps",
+      "type": "link",
+      "label": "Health Center Configurations",
+      "url": "admin/maintenance/settings.list?show=Aijar",
+      "icon": " icon-cog",
+      "requiredPrivilege": "App: coreapps.systemAdministration"
+    }
+  ]
+}
 ]
