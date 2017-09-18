@@ -54,7 +54,7 @@
 		</insert>
 	
 	</changeSet>
-	<changeSet id="ugandaemr-06232017-1638" author="ssmusoke">
+	<changeSet id="ugandaemr-06232017-1639" author="ssmusoke">
 		<preConditions onFail="MARK_RAN">
 			<sqlCheck expectedResult="0">
 				SELECT COUNT(*) FROM scheduler_task_config
