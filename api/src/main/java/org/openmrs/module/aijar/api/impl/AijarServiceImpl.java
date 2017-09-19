@@ -19,6 +19,7 @@ import java.util.List;
 import org.openmrs.Patient;
 import org.openmrs.Person;
 import org.openmrs.Relationship;
+import org.openmrs.User;
 import org.openmrs.api.PatientService;
 import org.openmrs.api.PersonService;
 import org.openmrs.api.context.Context;
@@ -28,6 +29,7 @@ import org.apache.commons.logging.LogFactory;
 import org.openmrs.module.aijar.api.AijarService;
 import org.openmrs.module.aijar.api.db.AijarDAO;
 import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
+import org.openmrs.notification.Alert;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -86,5 +88,14 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 	@Override
 	public void linkExposedInfantToMotherViaARTNumber(Patient infant, String motherARTNumber) {
     	linkExposedInfantToMotherViaARTNumber(infant.getPerson(), motherARTNumber);
+	}
+	public void setAlertForAllUsers(String alertMessage) {
+		List<User> userList = Context.getUserService().getAllUsers();
+		Alert alert = new Alert();
+		for (User user : userList) {
+			alert.addRecipient(user);
+		}
+		alert.setText(alertMessage);
+		Context.getAlertService().saveAlert(alert);
 	}
 }

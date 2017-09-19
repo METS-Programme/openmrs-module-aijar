@@ -24,6 +24,7 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.Module;
 import org.openmrs.module.ModuleActivator;
 import org.openmrs.module.ModuleFactory;
+import org.openmrs.module.aijar.activator.AlertConfigurationInitializer;
 import org.openmrs.module.aijar.activator.AppConfigurationInitializer;
 import org.openmrs.module.aijar.activator.HtmlFormsInitializer;
 import org.openmrs.module.aijar.activator.Initializer;
@@ -94,7 +95,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             appFrameworkService.disableExtension("org.openmrs.module.coreapps.createVisit");
             // the extension to the edit person details
             appFrameworkService.disableExtension("org.openmrs.module.registrationapp.editPatientDemographics");
-    
+
             // disable apps on the Clinican facing dashboard added through coreapps 1.12.0
             appFrameworkService.disableApp("coreapps.mostRecentVitals");
             appFrameworkService.disableApp("coreapps.diagnoses");
@@ -103,13 +104,13 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             appFrameworkService.disableApp("coreapps.obsGraph");
             appFrameworkService.disableApp("coreapps.visitByEncounterType");
             appFrameworkService.disableApp("coreapps.dataIntegrityViolations");
-            
+
             // enable the relationships dashboard widget
             appFrameworkService.enableApp("coreapps.relationships");
-            
+
             // Remove the BIRT reports app since it is no longer supported
             appFrameworkService.disableApp("aijar.referenceapplication.birtReports");
-            
+
             // Home page apps clean up
             appFrameworkService.disableApp("referenceapplication.vitals"); // Capture Vitals
             appFrameworkService.disableApp("coreapps.activeVisits"); // Active Visits
@@ -170,7 +171,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 
     /**
      * Generate patientIdentifier for old OpenMRS Migration to the new
-     * */
+     */
 
     protected PatientIdentifier generatePatientIdentifier() {
         IdentifierSourceService iss = Context.getService(IdentifierSourceService.class);
@@ -405,6 +406,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         List<Initializer> l = new ArrayList<Initializer>();
         l.add(new AppConfigurationInitializer());
         l.add(new HtmlFormsInitializer());
+        l.add(new AlertConfigurationInitializer());
         return l;
     }
 }
