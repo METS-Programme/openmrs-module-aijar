@@ -15,7 +15,12 @@
 			UPDATE person INNER JOIN obs ON obs.person_id = person.person_id AND concept_id = 90272 SET death_date = value_datetime;
 		</sql>
 	</changeSet>
-	<changeSet id="ugandaemr-07112017-1800" author="ssmusoke">
+	<changeSet id="ugandaemr-09262017-2245" author="ssmusoke">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="1">
+				SELECT count(form_id) FROM form WHERE form_id = 14
+			</sqlCheck>
+		</preConditions>
 		<comment>Move all summary pages from form_id 34 to 14</comment>
 		<sql>UPDATE encounter SET form_id = 14 WHERE form_id = 34</sql>
 	</changeSet>
