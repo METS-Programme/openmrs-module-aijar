@@ -394,8 +394,12 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2"><label><span class="required">*</span>Counsellor</label>
+                    <td><label><span class="required">*</span>Counsellor</label>
                         <encounterProvider required="true"/>
+                    </td>
+                    <td>
+                        <label>Service Point</label>
+                        <obs conceptId="164981"/>
                     </td>
                 </tr>
                 </tbody>
