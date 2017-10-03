@@ -72,6 +72,7 @@ public class AijarLoginPageController {
 		}
 		
 		model.addAttribute(REQUEST_PARAMETER_NAME_REDIRECT_URL, getRelativeUrl(redirectUrl, pageRequest));
+		model.addAttribute("healthCenter", Context.getAdministrationService().getGlobalProperty("aijar.healthCenterName"));
 		
 		Location lastSessionLocation = null;
 		try {
