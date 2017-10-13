@@ -60,6 +60,57 @@
 
 
     <script type="text/javascript">
+        function enable_disable(field, class_name_prefix, conditions, input_type) {
+
+            var class_name = jq(field).attr("class");
+
+            var length = class_name.length;
+
+            var class_id = parseInt(class_name.substring(length - 1, length));
+            var childClass = "Child" + class_id;
+
+            var disable = true;
+            var requires = true;
+
+            var row = '[class^="' + class_name_prefix + '"][class*="' + childClass + '"]';
+
+            var selected_value = null;
+
+            if (input_type == "select") {
+                selected_value = jq(field).find(":selected").text().trim().toLowerCase();
+            }
+            else if (input_type == "hidden") {
+                selected_value = jq(field).find("input[type=hidden]").val().trim().toLowerCase();
+            }
+
+
+            if (eval(conditions)) {
+                disable = false;
+            }
+
+
+            jq(row).each(function () {
+                var group = jq(this);
+
+                if (class_name.indexOf('Child') == -1) {
+                    /*group.find("input").attr("value", ""); */
+                    /* group.find('select').prop("selectedIndex", 0);*/
+                    group.find("input").attr("disabled", disable);
+                    group.find('select').attr("disabled", disable);
+
+                    if (disable) {
+                        /* fade out the fields that are disabled */
+                        group.find("input").fadeTo(250, 0.25);
+                        group.find("select").fadeTo(250, 0.25);
+                    } else {
+                        /* remove the fade on the fields */
+                        group.find("input").fadeTo(250, 1);
+                        group.find("select").fadeTo(250, 1);
+                    }
+                }
+            });
+        }
+
         function enable_disable_fpm(enableDisable_fpmethod) {
 
             var fp_combo = $(enableDisable_fpmethod).find('select');
@@ -68,18 +119,6 @@
 
             var disable = selected_value.toUpperCase() != "YES"
             $(".EnableDisablefpmethodchild").find("input").attr("disabled", disable);
-
-        }
-
-        function enable_disable_partner(enableDisable_partner) {
-
-            var fp_combo = $(enableDisable_partner).find('select');
-
-            var selected_value = jQuery.trim(fp_combo.find(":selected").text());
-
-            var disable = selected_value.toUpperCase()
-                    != "YES"
-            $(".EnableDisablepartnerchild").find("input").attr("disabled", disable);
 
         }
 
@@ -161,12 +200,54 @@
                     });
                 }
 
-                jq('[class^="HCTEnableDisable"]').change(function () {
-                    enable_disable_ati(jq(this));
+                jq('[class^="PreTestCounselingEnableDisable"]').change(function () {
+                    enable_disable(jq(this), "PreTestCounseling", 'selected_value == "yes"', "select");
                 });
 
-                jq('[class^="HCTEnableDisable"]').each(function () {
-                    enable_disable_ati(jq(this))
+                jq('[class^="PreTestCounselingEnableDisable"]').each(function () {
+                    enable_disable(jq(this), "PreTestCounseling", 'selected_value == "yes"', "select");
+                });
+
+                jq('[class^="TestedBeforeEnableDisable"]').change(function () {
+                    enable_disable(jq(this), "TestedBefore", 'selected_value == "yes"', "select");
+                });
+
+                jq('[class^="TestedBeforeEnableDisable"]').each(function () {
+                    enable_disable(jq(this), "TestedBefore", 'selected_value == "yes"', "select");
+                });
+
+                jq('[class^="PartnerTestedBeforeEnableDisable"]').change(function () {
+                    enable_disable(jq(this), "PartnerTestedBefore", 'selected_value == "yes"', "select");
+                });
+
+                jq('[class^="PartnerTestedBeforeEnableDisable"]').each(function () {
+                    enable_disable(jq(this), "PartnerTestedBefore", 'selected_value == "yes"', "select");
+                });
+
+                jq('[class^="CounseledAsCoupleEnableDisable"]').change(function () {
+                    enable_disable(jq(this), "CounseledAsCouple", 'selected_value != "individual" &amp; selected_value != ""', "select");
+
+                    enable_disable(jq(".ResultAsCoupleEnableDisable1"), "ResultAsCouple", 'selected_value == "yes"', "select");
+                });
+
+                jq('[class^="CounseledAsCoupleEnableDisable"]').each(function () {
+                    enable_disable(jq(this), "CounseledAsCouple", 'selected_value != "individual" &amp; selected_value != ""', "select");
+                });
+
+                jq('[class^="ResultAsCoupleEnableDisable"]').change(function () {
+                    enable_disable(jq(this), "ResultAsCouple", 'selected_value == "yes"', "select");
+                });
+
+                jq('[class^="ResultAsCoupleEnableDisable"]').each(function () {
+                    enable_disable(jq(this), "ResultAsCouple", 'selected_value == "yes"', "select");
+                });
+
+                jq('[class^="LinkedToCareEnableDisable"]').change(function () {
+                    enable_disable(jq(this), "LinkedToCare", 'selected_value == "yes"', "select");
+                });
+
+                jq('[class^="LinkedToCareEnableDisable"]').each(function () {
+                    enable_disable(jq(this), "LinkedToCare", 'selected_value == "yes"', "select");
                 });
             });
         }
@@ -226,7 +307,7 @@
                     <td style="width: 20%">
                         <label>Pre -Test Counseling done/information given:</label>
                     </td>
-                    <td colspan="3" class="HCTEnableDisable1">
+                    <td colspan="3" class="PreTestCounselingEnableDisable1">
                         <obs conceptId="162918" answerConceptIds="90003, 90004" answerLabels="Yes, No"/>
                     </td>
                 </tr>
@@ -234,9 +315,11 @@
                     <td>
                         <label>Counseled as:</label>
                     </td>
-                    <td colspan="3" class="HCTEnableDisableChild1">
+                    <td colspan="3" class="PreTestCounselingEnableDisableChild1">
+                        <span class="CounseledAsCoupleEnableDisable1">
                         <obs conceptId="99368" answerConceptIds="99365,99367,99366"
-                             answerLabels="Individual, Couple, Group"/>
+                             answerLabels="Individual,Couple,Group"/>
+                            </span>
                     </td>
                 </tr>
                 <tr>
@@ -266,7 +349,7 @@
                         <label>Have you ever tested for HIV before?:</label>
 
                     </td>
-                    <td colspan="3" class="HCTEnableDisable2">
+                    <td colspan="3" class="TestedBeforeEnableDisable1">
                         <obs id="br" conceptId="99464" answerConceptIds="1065,1066" answerLabels="Yes,No"/>
                     </td>
                 </tr>
@@ -275,7 +358,7 @@
                         <label>How many times have you tested in the last 12 months?:</label>
 
                     </td>
-                    <td colspan="3" class="HCTEnableDisableChild2">
+                    <td colspan="3" class="TestedBeforeEnableDisableChild1">
                         <obs id="br" conceptId="162965"/>
                     </td>
                 </tr>
@@ -292,7 +375,7 @@
                         <td>
                             <label>Has your spouse /partner been tested for HIV before? :</label>
                         </td>
-                        <td colspan="3" class="HCTEnableDisable3">
+                        <td colspan="3" class="PartnerTestedBeforeEnableDisable1">
                             <obs id="br" conceptId="99472" answerConceptIds="1065,1066,99480"
                                  answerLabels="Yes,No,Don't Know"/>
                         </td>
@@ -302,7 +385,7 @@
                     <td>
                         <label style="float:right"><i>If yes What were the Results</i></label>
                     </td>
-                    <td class="HCTEnableDisableChild3">
+                    <td class="PartnerTestedBeforeEnableDisableChild1">
                         <obs conceptId="99477" answerConceptIds="90166,90167,90001"
                              answerLabels="HIV +ve,HIV -ve,Unknown"/>
                     </td>
@@ -351,13 +434,18 @@
                 </tr>
                 <excludeIf velocityTest="$patient.age &lt; 9">
                     <tr>
-                        <td class="HCTEnableDisable4" colspan="2"><label>Results received as a couple:</label>
+                        <td class="ResultAsCoupleEnableDisable1" colspan="2"><label>Results received as a
+                            couple:</label>
+                            <span class="CounseledAsCoupleEnableDisableChild1">
                             <obs conceptId="99494" answerConceptIds="1065,1066" answerLabels="Yes,No"/>
+                                </span>
                         </td>
                     </tr>
                     <tr>
-                        <td class="HCTEnableDisableChild4" colspan="2"><label>Couple results:</label>
+                        <td class="CounseledAsCoupleEnableDisableChild1" colspan="2"><label>Couple results:</label>
+                            <span class="ResultAsCoupleEnableDisableChild1">
                             <obs conceptId="99497" answerConceptIds="6096,99496" answerLabels="Discordant,Cordant"/>
+                            </span>
                         </td>
                     </tr>
                 </excludeIf>
@@ -373,10 +461,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="HCTEnableDisable5"><label>Has client been linked to care or any other services?:</label>
+                    <td class="LinkedToCareEnableDisable1"><label>Has client been linked to care or any other services?:</label>
                         <obs conceptId="162982" answerConceptIds="1065,1066" answerLabels="Yes,No"/>
                     </td>
-                    <td class="HCTEnableDisableChild5"><label>Where?:
+                    <td class="LinkedToCareEnableDisableChild1"><label>Where?:
                         <obs conceptId="90200"/>
                     </label>
 
