@@ -275,8 +275,7 @@
                     </td>
                     <td>
                         <label>Reg Number:</label>
-                        <patient field="identifier" identifierTypeId="c9e42035-7112-45b3-bfcf-4b37e1091dd4"
-                                 required="true"/>
+                        <obs conceptId="164985" required="required"/>
                     </td>
                     <td>
                         <label>National ID:</label>
@@ -444,7 +443,7 @@
                     <tr>
                         <td class="CounseledAsCoupleEnableDisableChild1" colspan="2"><label>Couple results:</label>
                             <span class="ResultAsCoupleEnableDisableChild1">
-                            <obs conceptId="99497" answerConceptIds="6096,99496" answerLabels="Discordant,Cordant"/>
+                            <obs conceptId="99497" answerConceptIds="6096,99496" answerLabels="Discordant,Concordant"/>
                             </span>
                         </td>
                     </tr>
