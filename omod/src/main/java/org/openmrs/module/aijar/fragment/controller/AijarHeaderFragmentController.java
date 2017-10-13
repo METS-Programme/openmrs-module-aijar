@@ -46,6 +46,7 @@ public class AijarHeaderFragmentController {
 			List<Extension> userAccountMenuItems = appFrameworkService.getExtensionsForCurrentUser(
 					AppUiExtensions.HEADER_USER_ACCOUNT_MENU_ITEMS_EXTENSION);
 			fragmentModel.addAttribute("userAccountMenuItems", userAccountMenuItems);
+			fragmentModel.addAttribute("healthCenter", Context.getAdministrationService().getGlobalProperty("aijar.healthCenterName"));
 		}
 		finally {
 			Context.removeProxyPrivilege(GET_LOCATIONS);

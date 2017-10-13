@@ -101,6 +101,9 @@
         </div>
         <span style="color: #848484;font-size: 0.9em;float: left; width: 100%; text-align: center;">Electronic Medical Records System</span>
     </div>
+    <div style="float: left; font-size: 1.6em; text-align: center; margin: 25px 0 10px 20px; width: 50%;">
+        ${healthCenter}
+    </div>
 
     <% if (context.authenticated) { %>
     <ul class="user-options" style="padding: 20px;">

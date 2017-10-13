@@ -225,6 +225,7 @@
 
     ${ui.includeFragment("referenceapplication", "infoAndErrorMessages")}
     <div id="content">
+        <div style="width: 100%; font-size: 1.6em; text-align: center; margin: 25px 0 10px 20px;">${healthCenter}</div>
         <form id="login-form" method="post" autocomplete="off">
             <fieldset>
 
