@@ -167,4 +167,14 @@
 			ON (A.encounter_id = B.encounter_id));
 		</sql>
 	</changeSet>
+	
+	<changeSet id="uganademr-10202017-2138" author="ssmusoke">
+		<preConditions>
+			<columnExists tableName="serialized_object" columnName="serialized_data" />
+		</preConditions>
+		<comment>Change column to utf8 to enable saving of multi-byte characters</comment>
+		<sql>
+			ALTER TABLE `serialized_object` MODIFY `serialized_data` MEDIUMTEXT CHARACTER SET utf8 NOT NULL;
+		</sql>
+	</changeSet>
 </databaseChangeLog>
