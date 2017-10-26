@@ -179,16 +179,4 @@
 			select patient_identifier.patient_id, "164985",encounter.encounter_id,encounter.location_id,identifier,encounter.date_created,encounter.date_created,encounter.creator,UUID() from encounter inner JOIN patient_identifier on(encounter.patient_id=patient_identifier.patient_id) WHERE encounter_type=15 and patient_identifier.identifier_type=9
 		</sql>
 	</changeSet>
-
-	<changeSet id="ugandaemr-26102017-0729" author="slubwama">
-		<preConditions onFail="CONTINUE">
-			<sqlCheck expectedResult="1">
-				select count(*) from liquibasechangelog where id="ugandaemr-17102017-0839"
-			</sqlCheck>
-		</preConditions>
-		<comment>Delete HTC Identifier</comment>
-		<sql>
-			DELETE from patient_identifier where identifier_type=9
-		</sql>
-	</changeSet>
 </databaseChangeLog>
