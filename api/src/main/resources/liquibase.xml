@@ -176,7 +176,7 @@
 		<comment>Migrate HTC Identifier value to Concept</comment>
 		<sql>
 			INSERT INTO obs (person_id, concept_id, encounter_id, location_id,value_text,obs_datetime,date_created,creator,uuid)
-			select patient_identifier.patient_id, "164985",encounter.encounter_id,encounter.location_id,identifier,encounter.date_created,encounter.date_created,encounter.creator,UUID() from encounter inner JOIN patient_identifier on(encounter.patient_id=patient_identifier.patient_id) WHERE encounter_type=15 and patient_identifier.identifier in (Select patient_identifier.identifier from patient_identifier where patient_identifier.identifier_type=9)
+			select patient_identifier.patient_id, "164985",encounter.encounter_id,encounter.location_id,identifier,encounter.date_created,encounter.date_created,encounter.creator,UUID() from encounter inner JOIN patient_identifier on(encounter.patient_id=patient_identifier.patient_id) WHERE encounter_type=15 and patient_identifier.identifier_type=9
 		</sql>
 	</changeSet>
 
