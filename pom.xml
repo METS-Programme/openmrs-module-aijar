@@ -526,7 +526,7 @@
 		<snapshotRepository>
 			<id>openmrs-repo-snapshots</id>
 			<name>OpenMRS Snapshots</name>
-			<url>https://mavenrepo.openmrs.org/nexus/content/repositories/snapshots</url>
+			<url>https://openmrs.jfrog.io/openmrs/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
 
