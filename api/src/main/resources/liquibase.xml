@@ -167,4 +167,16 @@
 			ON (A.encounter_id = B.encounter_id));
 		</sql>
 	</changeSet>
+	<changeSet id="ugandaemr-17102017-0839" author="slubwama">
+		<preConditions onFail="CONTINUE">
+			<sqlCheck expectedResult="1">
+				SELECT COUNT(*) FROM concept WHERE concept_id = '164985'
+			</sqlCheck>
+		</preConditions>
+		<comment>Migrate HTC Identifier value to Concept</comment>
+		<sql>
+			INSERT INTO obs (person_id, concept_id, encounter_id, location_id,value_text,obs_datetime,date_created,creator,uuid)
+			select patient_identifier.patient_id, "164985",encounter.encounter_id,encounter.location_id,identifier,encounter.date_created,encounter.date_created,encounter.creator,UUID() from encounter inner JOIN patient_identifier on(encounter.patient_id=patient_identifier.patient_id) WHERE encounter_type=15 and patient_identifier.identifier_type=9
+		</sql>
+	</changeSet>
 </databaseChangeLog>

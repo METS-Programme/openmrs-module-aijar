@@ -201,25 +201,6 @@ public class PatientIdentifierTypes {
         }
     };
 
-    public static PatientIdentifierTypeDescriptor HCT_NUMBER = new PatientIdentifierTypeDescriptor() {
-        @Override
-        public String name() {
-            return "HCT No.";
-        }
-
-        @Override
-        public String description() {
-            return "This is the unique serial number given to a client during HCT visits";
-        }
-
-        public String uuid() { return "c9e42035-7112-45b3-bfcf-4b37e1091dd4"; }
-        
-        public String formatDescription() {
-            return "Begins with 1 at the beginning of the financial year (July), has 4 "
-                    + "digits followed by a / then 2 digits for the year";
-        }
-    };
-
     public static PatientIdentifierTypeDescriptor NATIONAL_ID = new PatientIdentifierTypeDescriptor() {
 
         @Override

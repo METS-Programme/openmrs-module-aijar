@@ -27,7 +27,6 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(PatientIdentifierTypes.ANC_NUMBER);
         install(PatientIdentifierTypes.PNC_NUMBER);
         install(PatientIdentifierTypes.IPD_NUMBER);
-        install(PatientIdentifierTypes.HCT_NUMBER);
         install(PatientIdentifierTypes.NATIONAL_ID);
         install(PatientIdentifierTypes.ART_PATIENT_NUMBER);
         install(PatientIdentifierTypes.RESEARCH_PATIENT_ID);
