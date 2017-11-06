@@ -75,6 +75,7 @@
     <concept  concept_id="164983"  retired="0" datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2017-10-03 07:02:20" version="NULL" changed_by="1"  date_changed="2017-10-03 07:02:20" uuid="164983AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
     <concept  concept_id="164982"  retired="0" datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2017-10-03 07:00:16" version="NULL" changed_by="1"  date_changed="2017-10-03 07:00:16" uuid="164982AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
     <concept  concept_id="164981"  retired="0" datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2017-10-03 06:59:42" version="NULL" changed_by="1"  date_changed="2017-10-03 06:59:42" uuid="164981AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+    <concept  concept_id="164985"  retired="0" datatype_id="3"  class_id="5"  is_set="0"  creator="1"  date_created="2017-10-13 15:50:22"  version="NULL"  changed_by="1" date_changed="2017-10-13 15:50:22" uuid="164985AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
 
     <concept_name concept_id="163150" name="Date viral load results received at health center" locale="en" creator="1" date_created="2016-10-17 19:36:28" concept_name_id="135969" voided="false"  uuid="1135969BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
     <concept_name concept_id="163151" name="Intensive adherence counseling initiation set" locale="en" creator="1" date_created="2016-10-17 19:36:28" concept_name_id="135970" voided="false"  uuid="135970BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
@@ -200,6 +201,8 @@
     <concept_name  concept_name_id="159979"  concept_id="164981"  name="Mother Baby pair point"  locale="en"  locale_preferred="0"  creator="1"  date_created="2017-10-03 06:59:42" voided="0" uuid="159979BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
     <concept_name  concept_name_id="159980"  concept_id="164981"  name="Mother Baby Pair Clinic"  locale="en"  locale_preferred="1"  creator="1"  date_created="2017-10-03 06:59:42"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="159980BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
     <concept_name  concept_name_id="159981"  concept_id="164981"  name="Mother baby pair department"  locale="en"  locale_preferred="0"  creator="1"  date_created="2017-10-03 06:59:42" voided="0" uuid="159981BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
+    <concept_name  concept_name_id="159989"  concept_id="164985"  name="HTS Reg No."  locale="en"  locale_preferred="0"  creator="1"  date_created="2017-10-13 15:50:22"  concept_name_type="SHORT"  voided="0" uuid="159989BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
+    <concept_name  concept_name_id="159990"  concept_id="164985"  name="HTS Registration Number"  locale="en"  locale_preferred="1"  creator="1"  date_created="2017-10-13 15:50:22"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="159990BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
 
     <concept_set concept_set_id="2173" concept_id="163154" concept_set="163153" sort_weight="1.0" creator="1" date_created="2016-07-28 13:26:18.0" uuid="2172AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>
     <concept_set concept_set_id="2174" concept_id="163155" concept_set="163153" sort_weight="2.0" creator="1" date_created="2016-07-28 13:26:18.0" uuid="2173AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>
