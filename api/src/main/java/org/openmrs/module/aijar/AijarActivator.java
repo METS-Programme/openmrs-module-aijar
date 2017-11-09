@@ -30,6 +30,7 @@ import org.openmrs.module.aijar.activator.HtmlFormsInitializer;
 import org.openmrs.module.aijar.activator.Initializer;
 import org.openmrs.module.aijar.api.deploy.bundle.CommonMetadataBundle;
 import org.openmrs.module.aijar.api.deploy.bundle.UgandaAddressMetadataBundle;
+import org.openmrs.module.aijar.api.deploy.bundle.UgandaEMRPatientFlagMetadataBundle;
 import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
 import org.openmrs.module.appframework.service.AppFrameworkService;
 import org.openmrs.module.dataexchange.DataImporter;
@@ -339,6 +340,9 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             log.info("Installing address hierarchy");
             deployService.installBundle(Context.getRegisteredComponents(UgandaAddressMetadataBundle.class).get(0));
             log.info("Finished installing addresshierarchy");
+            log.info("Installing patient flags");
+            deployService.installBundle(Context.getRegisteredComponents(UgandaEMRPatientFlagMetadataBundle.class).get(0));
+            log.info("Finished installing patient flags");
 
             // retire concepts that are duplicated in the
             // concept metadata package
