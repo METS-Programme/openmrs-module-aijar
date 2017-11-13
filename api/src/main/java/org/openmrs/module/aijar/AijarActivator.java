@@ -159,7 +159,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 
             // generate OpenMRS ID for patients without the identifier
             generateOpenMRSIdentifierForPatientsWithout();
-
+            log.info("aijar Module started");
 
         } catch (Exception e) {
             Module mod = ModuleFactory.getModuleById("aijar");
@@ -167,7 +167,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             throw new RuntimeException("failed to setup the module ", e);
         }
 
-        log.info("aijar Module started");
+
     }
 
     /**
@@ -340,38 +340,15 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             log.info("Installing address hierarchy");
             deployService.installBundle(Context.getRegisteredComponents(UgandaAddressMetadataBundle.class).get(0));
             log.info("Finished installing addresshierarchy");
-            log.info("Installing patient flags");
-            deployService.installBundle(Context.getRegisteredComponents(UgandaEMRPatientFlagMetadataBundle.class).get(0));
-            log.info("Finished installing patient flags");
-
-            // retire concepts that are duplicated in the
-            // concept metadata package
-            /*ConceptService conceptService = Context.getConceptService();
-            List<String> conceptsToRetire = Arrays.asList("8b64f9e1-196a-4802-a287-fd160fb97002", // YES
-			        "b1629d9a-91a5-4895-b6bc-647f3a944534" // NO
-			        , "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" // YES
-			        , "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" // NO
-			        , "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" // UNKNOWN
-			        , "1499AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  // MODERATE
-			        , "1500AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  // SEVERE
-			        , "1734AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  // YEARS
-			        , "111633AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" // URINARY TRACT INFECTION
-			        , "117543AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" // HERPES ZOSTER
-	        );
-	        for (String uuid : conceptsToRetire) {
-		        Concept concept = conceptService.getConceptByUuid(uuid);
-		        if (concept != null) {
-			        // retire the concept
-			        log.info("Retiring concept " + concept.toString());
-			        conceptService.retireConcept(concept, "Duplicated in MDS import");
-			        log.info("Retired concept " + concept.toString());
-		        }
-	        }*/
 
             // install concepts
             log.info("Installing standard metadata using the packages.xml file");
             MetadataUtil.setupStandardMetadata(getClass().getClassLoader());
             log.info("Standard metadata installed");
+
+            log.info("Installing patient flags");
+            deployService.installBundle(Context.getRegisteredComponents(UgandaEMRPatientFlagMetadataBundle.class).get(0));
+            log.info("Finished installing patient flags");
 
         } catch (Exception e) {
             Module mod = ModuleFactory.getModuleById("aijar");
