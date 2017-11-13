@@ -15,11 +15,6 @@ public class Flags {
         }
 
         @Override
-        public String evaluator() {
-            return "org.openmrs.module.patientflags.evaluator.SQLFlagEvaluator";
-        }
-
-        @Override
         public String message() {
             return "Due for 1st Viral Load";
         }
