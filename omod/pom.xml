@@ -162,7 +162,7 @@
 
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
-			<artifactId>patientflags-omod</artifactId>
+			<artifactId>patientflags-api</artifactId>
 		</dependency>
 
 		<dependency>
