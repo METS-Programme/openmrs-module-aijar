@@ -30,6 +30,11 @@ public class UgandaEMRPatientFlagMetadataBundle extends PatientFlagMetadataBundl
 
         // Flags
         log.info("Installing flags");
-        install(Flags.DUE_FOR_VIRAL_LOAD);
+        install(Flags.DUE_FOR_FIRST_VIRAL_LOAD);
+        install(Flags.OVERDUE_FOR_FIRST_VIRAL_LOAD);
+        install(Flags.MISSED_APPOINTMENT);
+        install(Flags.UPCOMING_APPOINTMENT);
+        install(Flags.PATIENT_LOST);
+        install(Flags.PATIENT_LOST_TO_FOLLOWUP);
     }
 }
