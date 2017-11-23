@@ -86,4 +86,19 @@ public class EncounterTypes {
             return "38cb2232-30fc-4b1f-8df1-47c795771ee9";
         }
     };
+
+    public static EncounterTypeDescriptor NUTRITION_ENCOUNTER  = new EncounterTypeDescriptor() {
+        @Override
+        public String name(){
+            return "Integrated Nutrition Encounter";
+        }
+
+        @Override
+        public String description() { return "An Encounter At The Nutrition Clinic";
+        }
+
+        public String uuid() { return "8eb80838-fd4f-404f-b432-d65fdcba8c44"; }
+    };
+
+
 }

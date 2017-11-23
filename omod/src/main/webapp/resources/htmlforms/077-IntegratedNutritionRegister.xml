@@ -1,0 +1,19 @@
+<htmlform
+        formName="HMIS 077 Intergrated Nutrition Register"
+        formDescription="Captures clients undergoing Nutrition Program"
+        formEncounterType="8eb80838-fd4f-404f-b432-d65fdcba8c44"
+        formUuid="3a9ba2b4-5191-4ea0-a0e3-d392aa53690e"
+        formVersion="1.0"
+        formAddMetadata="yes"
+        formUILocation="patientDashboard.visitActions"
+        formOrder="21"
+        formIcon="icon-medkit"
+        formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false"
+        formDisplayStyle="Standard"
+        formLabel="Integrated Nutrition Form">
+    <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
+    <encounterProvider role="Provider" style="autocomplete"/>
+    <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117" order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
+This is our new form as group 077
+    <submit/>
+</htmlform>
