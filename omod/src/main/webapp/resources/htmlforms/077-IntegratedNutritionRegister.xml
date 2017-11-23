@@ -9,11 +9,284 @@
         formOrder="21"
         formIcon="icon-medkit"
         formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false"
-        formDisplayStyle="Standard"
-        formLabel="Integrated Nutrition Form">
-    <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
-    <encounterProvider role="Provider" style="autocomplete"/>
-    <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117" order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
-This is our new form as group 077
-    <submit/>
+        formDisplayStyle="Standard">
+
+    <style type="text/css">
+
+        form#htmlform div.ai-page-frame table>tbody tr:nth-child(odd) td {
+        background: #eeeeee;
+        }
+
+        form#htmlform div.ai-page-frame table>tbody tr:nth-child(even) td {
+        background: #f9f9f9;
+        }
+
+        form#htmlform div.ai-page-frame fieldset#child-information table {
+        margin: 0 0 5px 0;
+        }
+
+    </style>
+    <!-- Beging of HTML Form -->
+    <div class="ai-page-frame">
+        <div class="headers" style="text-align: center;">
+            <h3 style="background: #D5D8DC; padding: 10px;">Integrated Nutrition Form</h3>
+        </div>
+
+        <fieldset>
+            <span class="hidden">
+                <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
+                                   order="629d78e9-93e5-43b0-ad8a-48313fd99117" />
+                <encounterProvider role="Provider" type="autocomplete" default="currentUser" />
+            </span>
+            <legend>Client Summary</legend>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td>
+                        <p>
+                            <label>Client Number</label>
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>Date</label>
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>Next of kin</label>
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>Next of kin contact</label>
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>
+                            <label>Infant feeding practices</label>
+                            <obs 	conceptId="1151"
+                                    answerConceptIds="5526,99089,6046"
+                                    answerLabels="EB,RF,MF" style="dropdown" />
+                        </p>
+                    </td>
+
+                    <td>
+                        <p>
+                            <label>Pregnancy/Lactating Status</label>
+                        </p>
+                    </td>
+
+                    <td>
+                        <p>
+                            <label>Type of Admission</label>
+                        </p>
+                    </td>
+
+                    <td>
+                        <p>
+                            <label>Type of Nutrition Management</label>
+                        </p>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <label>Entry Care Point</label>
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>Nutrition Status At Enrollment</label>
+                        </p>
+                    </td>
+
+                    <td>
+                        <p>
+                            <label>HIV Status At Enrolment</label>
+                            <obs conceptId="90253"
+                            answerConceptIds="90166,90167,90001,99087"
+                            answerLabels="Pos,Neg,Unknown,Exposed" style="dropdown" />
+                        </p>
+                    </td>
+
+                    <td>
+                        <p>
+                            <label>ART Services At Enrolment</label>
+                        </p>
+                    </td>
+
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset>
+            <legend>Enrollment And Revisits</legend>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td>
+                        <p>
+                            <label>Visit Date</label>
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>Oedema</label>
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>Weight (Kg)</label>
+                            <obs conceptId="5089"/>
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>Height (cm)</label>
+                            <obs conceptId="5090"/>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <label>MUAC : </label>
+                            <obs conceptId="99030"
+                            answerConceptIds="99028,99029,99027"
+                            answerLabels="R,Y,G" style="radio" />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>Z-Score : </label>
+                        </p>
+                    </td>
+
+                    <td>
+                        <p>
+                            <label>Therapeutic/Supplementary Feeds </label>
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>Counseling Code </label>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset>
+            <legend>Nutrition Visits</legend>
+            <h5>Visit 1</h5>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td>
+                        <p>
+                            <label>Visit Date</label>
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>Oedema</label>
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>Weight (Kg)</label>
+                            <obs conceptId="5089"/>
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>Height (cm)</label>
+                            <obs conceptId="5090"/>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <label>MUAC : </label>
+                            <obs conceptId="99030"
+                                 answerConceptIds="99028,99029,99027"
+                                 answerLabels="R,Y,G" style="radio" />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>Z-Score : </label>
+                        </p>
+                    </td>
+
+                    <td>
+                        <p>
+                            <label>Therapeutic/Supplementary Feeds </label>
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>Counseling Code </label>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset>
+            <legend>Assesment At Exit</legend>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td>
+                        <p>
+                            <label>Oedema</label>
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>Weight (Kg)</label>
+                            <obs conceptId="5089"/>
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>Height (cm)</label>
+                            <obs conceptId="5090"/>
+                        </p>
+                    </td>
+
+                    <td>
+                        <p>
+                            <label>MUAC : </label>
+                            <obs conceptId="99030"
+                                 answerConceptIds="99028,99029,99027"
+                                 answerLabels="R,Y,G" style="radio" />
+                        </p>
+                    </td>
+                    <tr>
+                    </tr>
+                    <td>
+                        <p>
+                            <label>Z-Score : </label>
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>Date Of Exit</label>
+                        </p>
+                    </td>
+
+                    <td>
+                        <p>
+                            <label>Exit Outcome </label>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </div>
+    <section>
+        <submit/>
+    </section>
 </htmlform>
+
