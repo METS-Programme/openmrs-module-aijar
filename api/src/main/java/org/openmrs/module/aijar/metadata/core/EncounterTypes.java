@@ -86,4 +86,20 @@ public class EncounterTypes {
             return "38cb2232-30fc-4b1f-8df1-47c795771ee9";
         }
     };
+
+    public static EncounterTypeDescriptor CHILD_ENCOUNTER_TYPE  = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Child Encounter";
+        }
+
+        @Override
+        public String description() {
+            return "An encounter when a child gets immunisation services";
+        }
+
+        public String uuid() {
+            return "e345e3f0-0b8d-4d41-94d6-ffb77525bf31";
+        }
+    };
 }
