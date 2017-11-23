@@ -11,12 +11,266 @@
           formDisplayStyle="Standard"
           formLabel="HPV/TT Form">
 
+    <style type="text/css">
 
-    <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
-    <encounterProvider role="Provider" style="autocomplete"/>
-    <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117" order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
+        form#htmlform div.ai-page-frame table>tbody tr:nth-child(odd) td {
+        background: #eeeeee;
+        }
 
-    This is an HPV/TT New Form
-    <br/>
-    <submit/>
+        form#htmlform div.ai-page-frame table>tbody tr:nth-child(even) td {
+        background: #f9f9f9;
+        }
+
+        form#htmlform div.ai-page-frame fieldset#child-information table {
+        margin: 0 0 5px 0;
+        }
+
+    </style>
+
+    <!-- Beging of HTML Form -->
+    <div class="ai-page-frame">
+        <div class="headers" style="text-align: center;">
+            <h3 style="background: #FFC0CB; padding: 10px;">Human Papilloma Virus/Tetanus Form</h3>
+        </div>
+
+        <fieldset>
+            <span class="hidden">
+                <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
+                                   order="629d78e9-93e5-43b0-ad8a-48313fd99117" />
+                <encounterProvider role="Provider" type="autocomplete" default="currentUser" />
+            </span>
+            <legend>SECTION A</legend>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td>
+                        <p id="encounter-date">
+                            <label>Date</label>
+                            <encounterDate default="today" disallowMultipleEncountersOnDate="block" />
+                        </p>
+                    </td>
+                    <td>
+                        <p class="">
+                            <label>Serial</label>
+                        </p>
+                        <p>
+                            <obs conceptId="1646" required="true"/>
+                        </p>
+                    </td>
+
+                    <td>
+                        <p>
+                            <label>Mother/Guardian</label>
+
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+
+        <fieldset>
+
+            <legend>SECTION B</legend>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td>
+                        <p>
+                            <label>Age at first Dose</label>
+                        </p>
+                        <p>
+
+
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>Class</label>
+
+                        </p>
+                    </td>
+
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset>
+            <legend>SECTION C: VACCINES</legend>
+            <legend>Human Papilloma Virus</legend>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td>
+                    <p>
+                        <label>HPV 1</label>
+                    </p>
+                </td>
+                <td>
+                    <p >
+                        <label>Date</label>
+                        <encounterDate  disallowMultipleEncountersOnDate="block" />
+                    </p>
+                </td>
+                <td>
+                    <p>
+                        <label>POC</label>
+                    </p>
+                    <p>
+
+
+                    </p>
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <p>
+                        <label>HPV 2</label>
+                    </p>
+                </td>
+                <td>
+                    <p >
+                        <label>Date</label>
+                        <encounterDate disallowMultipleEncountersOnDate="block" />
+                    </p>
+                </td>
+                <td>
+                    <p>
+                        <label>POC</label>
+                    </p>
+
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <p>
+                        <label>HPV 3</label>
+                    </p>
+                </td>
+                <td>
+                    <p >
+                        <label>Date</label>
+                        <encounterDate  disallowMultipleEncountersOnDate="block" />
+                    </p>
+                </td>
+                <td>
+                    <p>
+                        <label>POC</label>
+                    </p>
+
+                </td>
+
+            </tr>
+        </table>
+            <legend>Tetanus Toxoid</legend>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td>
+                        <p>
+                            <label>TT 1</label>
+                        </p>
+                    </td>
+                    <td>
+                        <p >
+                            <label>Date</label>
+                            <encounterDate  disallowMultipleEncountersOnDate="block" />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>POC</label>
+                        </p>
+
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <label>TT 2</label>
+                        </p>
+                    </td>
+                    <td>
+                        <p >
+                            <label>Date</label>
+                            <encounterDate  disallowMultipleEncountersOnDate="block" />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>POC</label>
+                        </p>
+
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <label>TT 3</label>
+                        </p>
+                    </td>
+                    <td>
+                        <p >
+                            <label>Date</label>
+                            <encounterDate  disallowMultipleEncountersOnDate="block" />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>POC</label>
+                        </p>
+
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <label>TT 4</label>
+                        </p>
+                    </td>
+                    <td>
+                        <p >
+                            <label>Date</label>
+                            <encounterDate  disallowMultipleEncountersOnDate="block" />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>POC</label>
+                        </p>
+
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <label>TT 5</label>
+                        </p>
+                    </td>
+                    <td>
+                        <p >
+                            <label>Date</label>
+                            <encounterDate  disallowMultipleEncountersOnDate="block" />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>POC</label>
+                        </p>
+
+                    </td>
+
+                </tr>
+            </table>
+
+        </fieldset>
+        <section>
+            <submit/>
+            <span style="clear:none;float:none;margin:5px;display: none;"
+                  class="error1" id="error-message">
+                You have errors in your form, please scroll up to see them.
+            </span>
+        </section>
+    </div>
+
 </htmlform>
