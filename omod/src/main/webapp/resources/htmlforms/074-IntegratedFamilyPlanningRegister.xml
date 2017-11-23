@@ -1,0 +1,21 @@
+<htmlform
+        formName="HMIS  074 Integrated Family Planning Register"
+        formDescription="Captures Client Information about Family Planning"
+        formEncounterType="557d09b4-a00d-4795-bf59-441ff847270f"
+        formUuid="15d601bf-e7eb-489a-9bcf-fccf9e137c53"
+        formVersion="1.0"
+        formAddMetadata="yes"
+        formUILocation="patientDashboard.visitActions"
+        formOrder="23"
+        formIcon="icon-medkit"
+        formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.age &gt;9 &amp;&amp; patient.person.dead==false "
+        formDisplayStyle="Standard"
+        formLabel="Integrated Family Planning  HMIS-074">
+
+    <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
+    <encounterProvider role="Provider" style="autocomplete"/>
+    <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117" order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
+
+    This is a new form
+    <submit/>
+</htmlform>
