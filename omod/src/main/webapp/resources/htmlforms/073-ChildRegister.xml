@@ -10,10 +10,509 @@
           formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.age &lt; 15  &amp;&amp; patient.person.dead==false "
           formDisplayStyle="Standard"
           formLabel="Child Register">
-    <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
-    <encounterProvider role="Provider" style="autocomplete"/>
-    <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117" order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
-    THIS IS A NEW FORM
-    <submit/>
+    <style type="text/css">
+
+        form#htmlform div.ai-page-frame table>tbody tr:nth-child(odd) td {
+        background: #eeeeee;
+        }
+
+        form#htmlform div.ai-page-frame table>tbody tr:nth-child(even) td {
+        background: #f9f9f9;
+        }
+
+        form#htmlform div.ai-page-frame fieldset#child-information table {
+        margin: 0 0 5px 0;
+        }
+
+    </style>
+
+    <!-- Beging of HTML Form -->
+    <div class="ai-page-frame">
+        <div class="headers" style="text-align: center;">
+            <h3 style="background: #FFFF7D; padding: 10px;">Child Form</h3>
+        </div>
+
+        <fieldset>
+            <span class="hidden">
+                <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
+                                   order="629d78e9-93e5-43b0-ad8a-48313fd99117" />
+                <encounterProvider role="Provider" type="autocomplete" default="currentUser" />
+            </span>
+
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td>
+                        <p id="encounter-date">
+                            <label>Date</label>
+                            <encounterDate default="today" disallowMultipleEncountersOnDate="block" />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>Child No.</label>
+                        </p>
+                        <p>
+
+
+                        </p>
+                    </td>
+
+
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset>
+
+            <legend>Parents Information</legend>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+
+                    <td>
+                        <p>
+                            <label>Mother's Name</label>
+                        </p>
+                        <p>
+
+
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>Father's Name</label>
+
+                        </p>
+                    </td>
+
+                </tr>
+            </table>
+        </fieldset>
+
+
+        <fieldset>
+
+            <legend>Vital Signs Information</legend>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+
+                    <td>
+                        <p>
+                            <label>Height(cm)</label>
+                        </p>
+                        <p>
+                            <obs conceptId="5090" />
+
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>Weight(Kg)</label>
+                            <obs conceptId="5089" />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>M.U.A.C(cm)</label>
+                            <obs conceptId="1343" />
+                        </p>
+                    </td>
+
+                    <td>
+                        <p>
+                            <label>M.U.A.C</label>
+                            <includeIf velocityTest="$patient.age &lt; 5">
+                                <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                                     answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
+                                     answerLabels="Red &lt; 11.5cm, Yellow 11.5cm - &lt;12.5cm,Green &gt;= 12.5cm" id="muac-qualitative" />
+                            </includeIf>
+                            <includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
+                                <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                                     answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
+                                     answerLabels="Red &lt; 13.5cm,Yellow 13.5cm - &lt;14.5cm,Green &gt;=14.5cm" id="muac-qualitative" />
+                            </includeIf>
+                            <includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
+                                <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                                     answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
+                                     answerLabels="Red &lt; 16.5cm, Yellow 16.5cm - &lt;19.0cm,Green &gt;=19.0cm" id="muac-qualitative" />
+                            </includeIf>
+
+                            <includeIf velocityTest="$patient.age &gt;=18">
+                                <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                                     answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
+                                     answerLabels="Red &lt;19.0cm , Yellow 19.0cm - &lt;22.0cm,Green &gt;=22.0cm" id="muac-qualitative" />
+                            </includeIf>
+
+                        </p>
+                    </td>
+
+                </tr>
+
+
+
+                <tr>
+
+                    <td>
+                        <p>
+
+                        <label>Weight for Age Z Score</label>
+                        </p>
+                        <p> <!--<obs conceptId=""-->
+                        <!--answerConceptIds="1115,99271,99272"-->
+                        <!--answerLabels="N,MAM,SAM" style="dropdown" />-->
+
+                    </p>
+
+                    </td>
+                    <td>
+                        <p>
+
+                            <label>INR No</label>
+                        </p>
+                        <p> <!--<obs conceptId=""-->
+
+
+
+                        </p>
+
+                    </td>
+
+                </tr>
+            </table>
+        </fieldset>
+
+        <fieldset>
+
+            <legend>PAB and LLIN Information </legend>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+
+                    <td>
+                        <p>
+                            <label> Protection at Birth </label>
+                        </p>
+                        <p>
+
+
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>Receieved LLIN </label>
+
+                        </p>
+                    </td>
+
+                    <td>
+                        <p>
+                            <label>Date Receieved LLIN </label>
+
+                        </p>
+                    </td>
+
+                </tr>
+            </table>
+        </fieldset>
+
+        <fieldset>
+
+        <legend>Immunisation Information</legend>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+
+                <td>
+                    <p>
+                        <label>Date BCG</label>
+                    </p>
+                    <p>
+
+
+                    </p>
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>
+                    <p>
+                        <label>Date Polio 0 </label>
+                    </p>
+                    <p>
+
+
+                    </p>
+                </td>
+
+                <td>
+                    <p>
+                        <label>Date Polio 1 </label>
+                    </p>
+                    <p>
+
+
+                    </p>
+                </td>
+                <td>
+                    <p>
+                        <label>Date Polio 2 </label>
+                    </p>
+                    <p>
+
+
+                    </p>
+                </td>
+                <td>
+                    <p>
+                        <label>Date Polio 3 </label>
+                    </p>
+                    <p>
+
+
+                    </p>
+                </td>
+            </tr>
+            <tr>
+
+                <td>
+                    <p>
+                        <label>Date IPV</label>
+                    </p>
+                    <p>
+
+
+                    </p>
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>
+                    <p>
+                        <label>Date DPT-HEP B-HIB 1 </label>
+                    </p>
+                    <p>
+
+
+                    </p>
+                </td>
+
+                <td>
+                    <p>
+                        <label>Date DPT-HEP B-HIB 2 </label>
+                    </p>
+                    <p>
+
+
+                    </p>
+                </td>
+                <td>
+                    <p>
+                        <label>Date DPT-HEP B-HIB 3 </label>
+                    </p>
+                    <p>
+
+
+                    </p>
+                </td>
+
+            </tr>
+            <tr>
+
+                <td>
+                    <p>
+                        <label>Date PCV 1 </label>
+                    </p>
+                    <p>
+
+
+                    </p>
+                </td>
+
+                <td>
+                    <p>
+                        <label>Date PCV 2 </label>
+                    </p>
+                    <p>
+
+
+                    </p>
+                </td>
+                <td>
+                    <p>
+                        <label>Date PCV 3</label>
+                    </p>
+                    <p>
+
+
+                    </p>
+                </td>
+
+            </tr>
+        <tr>
+
+            <td>
+                <p>
+                    <label> Date Rota Virus 1 </label>
+                </p>
+                <p>
+
+
+                </p>
+            </td>
+
+            <td>
+                <p>
+                    <label>Date Rota Virus 2 </label>
+                </p>
+                <p>
+
+
+                </p>
+            </td>
+            <td>
+                <p>
+                    <label>Date Rota Virus 3</label>
+                </p>
+                <p>
+
+
+                </p>
+            </td>
+
+        </tr>
+        <tr>
+
+            <td>
+                <p>
+                    <label> Date of Measles Vaccination </label>
+                </p>
+                <p>
+
+
+                </p>
+            </td>
+
+            <td>
+                <p>
+                    <label>Weight at Measles Vaccination </label>
+                </p>
+                <p>
+
+
+                </p>
+            </td>
+            <td>
+                <p>
+                    <label>Weight Status </label>
+                </p>
+                <p>
+
+
+                </p>
+            </td>
+
+        </tr>
+        </table>
+    </fieldset>
+
+        <fieldset>
+
+            <legend>Last Visit Vital Signs Information</legend>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+
+
+                    <td>
+                        <p>
+                            <label>Weight(Kg)</label>
+                            <obs conceptId="5089" />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>M.U.A.C(cm)</label>
+                            <obs conceptId="1343" />
+                        </p>
+                    </td>
+
+                    <td>
+                        <p>
+                            <label>M.U.A.C</label>
+                            <includeIf velocityTest="$patient.age &lt; 5">
+                                <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                                     answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
+                                     answerLabels="Red &lt; 11.5cm, Yellow 11.5cm - &lt;12.5cm,Green &gt;= 12.5cm" id="muac-qualitative" />
+                            </includeIf>
+                            <includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
+                                <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                                     answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
+                                     answerLabels="Red &lt; 13.5cm,Yellow 13.5cm - &lt;14.5cm,Green &gt;=14.5cm" id="muac-qualitative" />
+                            </includeIf>
+                            <includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
+                                <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                                     answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
+                                     answerLabels="Red &lt; 16.5cm, Yellow 16.5cm - &lt;19.0cm,Green &gt;=19.0cm" id="muac-qualitative" />
+                            </includeIf>
+
+                            <includeIf velocityTest="$patient.age &gt;=18">
+                                <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                                     answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
+                                     answerLabels="Red &lt;19.0cm , Yellow 19.0cm - &lt;22.0cm,Green &gt;=22.0cm" id="muac-qualitative" />
+                            </includeIf>
+
+                        </p>
+                    </td>
+
+                    <td>
+                        <p>
+
+                            <label>INR No</label>
+                        </p>
+                        <p> <!--<obs conceptId=""-->
+
+
+
+                        </p>
+
+                    </td>
+
+                </tr>
+
+
+            </table>
+        </fieldset>
+
+        <fieldset>
+
+            <legend>IMMUNISATION AND IYCF </legend>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+
+                    <td>
+                        <p>
+                            <label> Fully Immunised by 1 year </label>
+                        </p>
+                        <p>
+
+
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>IYCF Counseling </label>
+
+                        </p>
+                    </td>
+
+                    
+
+                </tr>
+            </table>
+        </fieldset>
+
+
+
+    </div>
+
 </htmlform>
 
