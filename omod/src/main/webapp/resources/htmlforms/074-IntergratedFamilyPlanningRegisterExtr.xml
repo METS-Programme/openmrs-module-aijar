@@ -1,0 +1,32 @@
+<!--Tech Guide   https://metsprogram.gitbooks.io/ugandaemr-technical-guide/content/form-management.html --> 
+<!--<htmlform formName="HMIS 074 INTEGRATED FAMILY PLANNING REGISTER" 
+          formDescription="Captures clients practing family planning" 
+          formEncounterType="244da86d-f80e-48fe-aba9-067f241905ee" 
+          formUuid="9d9193e7-b038-4c44-a7a3-830baa288565" 
+          formVersion="1.2" formAddMetadata="yes" 
+          formUILocation="patientDashboard.visitActions" 
+          formOrder="7" formIcon="icon-medkit" 
+          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.gender=='M' &amp;&amp;
+           patient.person.dead==false &amp;&amp; sessionLocation.uuid=='8f96e239-8586-4ec6-9375-04c6e19628ae'" 
+          formDisplayStyle="Standard" formLabel="IFPR Client Card"> 
+          
+</htmlform>-->
+<htmlform formName="HMIS 074 INTEGRATED FAMILY PLANNING REGISTER" 
+          formDescription="Captures clients practing family planning" 
+          formEncounterType="8513e07b-7a94-4f65-8cd4-2f93933d9f77" 
+          formUuid="dd82b5ac-4cac-43ca-94f2-f906713c5689" 
+          formVersion="1.0" formAddMetadata="yes" 
+          formUILocation="patientDashboard.visitActions" 
+          formOrder="39" formIcon="icon-medkit" 
+          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.persion.age &lt; 10 &amp;&amp;
+           patient.person.dead==false &amp;&amp; sessionLocation.uuid=='8f96e239-8586-4ec6-9375-04c6e19628ae'" 
+          formDisplayStyle="Standard" formLabel="Integrated family planning register bootcamp Nov-2017"> 
+          
+    <encounterDate default="today" disallowMultipleEncountersOnDate="block"/> 
+    <encounterProvider role="Provider" style="autocomplete"/>
+    <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117" order="629d78e9-93e5-43b0-ad8a-48313fd99117"/> 
+    
+    <h1>Java is Life</h1>
+
+
+</htmlform>

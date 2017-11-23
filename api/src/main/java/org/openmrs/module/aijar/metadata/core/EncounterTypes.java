@@ -86,4 +86,19 @@ public class EncounterTypes {
             return "38cb2232-30fc-4b1f-8df1-47c795771ee9";
         }
     };
+   public static EncounterTypeDescriptor IFPR_ENCOUNTER_TYPE = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "IFPR - Encounter";
+        }
+
+        @Override
+        public String description() {
+            return "An encounter when a patient gets Integrated Family Planning services";
+        }
+
+        public String uuid() {
+            return "8513e07b-7a94-4f65-8cd4-2f93933d9f77";
+        }
+    };
 }
