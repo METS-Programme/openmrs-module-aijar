@@ -61,6 +61,7 @@
                 </tr>
             </table>
         </fieldset>
+
         <fieldset>
 
             <legend>Parents Information</legend>
@@ -150,7 +151,7 @@
 
                 <tr>
 
-                    <td>
+                    <td colspan="2">
                         <p>
 
                         <label>Weight for Age Z Score</label>
@@ -162,7 +163,7 @@
                     </p>
 
                     </td>
-                    <td>
+                    <td colspan="2">
                         <p>
 
                             <label>INR No</label>
@@ -187,7 +188,7 @@
 
                     <td>
                         <p>
-                            <label> Protection at Birth </label>
+                            <label>PAB (Protection at Birth) </label>
                         </p>
                         <p>
 
@@ -218,7 +219,7 @@
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
 
-                <td>
+                <td colspan="4">
                     <p>
                         <label>Date BCG</label>
                     </p>
@@ -272,7 +273,7 @@
             </tr>
             <tr>
 
-                <td>
+                <td colspan="4">
                     <p>
                         <label>Date IPV</label>
                     </p>
@@ -280,7 +281,7 @@
 
 
                     </p>
-                </td>
+                </td >
 
             </tr>
 
@@ -296,7 +297,7 @@
                     </p>
                 </td>
 
-                <td>
+                <td >
                     <p>
                         <label>Date DPT-HEP B-HIB 2 </label>
                     </p>
@@ -305,7 +306,8 @@
 
                     </p>
                 </td>
-                <td>
+
+                <td colspan="2">
                     <p>
                         <label>Date DPT-HEP B-HIB 3 </label>
                     </p>
@@ -318,7 +320,7 @@
             </tr>
             <tr>
 
-                <td>
+                <td >
                     <p>
                         <label>Date PCV 1 </label>
                     </p>
@@ -337,7 +339,8 @@
 
                     </p>
                 </td>
-                <td>
+
+                <td colspan="2">
                     <p>
                         <label>Date PCV 3</label>
                     </p>
@@ -350,7 +353,7 @@
             </tr>
         <tr>
 
-            <td>
+            <td >
                 <p>
                     <label> Date Rota Virus 1 </label>
                 </p>
@@ -369,7 +372,7 @@
 
                 </p>
             </td>
-            <td>
+            <td colspan="2">
                 <p>
                     <label>Date Rota Virus 3</label>
                 </p>
@@ -401,7 +404,8 @@
 
                 </p>
             </td>
-            <td>
+
+            <td colspan="2">
                 <p>
                     <label>Weight Status </label>
                 </p>
@@ -422,13 +426,13 @@
                 <tr>
 
 
-                    <td>
+                    <td >
                         <p>
                             <label>Weight(Kg)</label>
                             <obs conceptId="5089" />
                         </p>
                     </td>
-                    <td>
+                    <td >
                         <p>
                             <label>M.U.A.C(cm)</label>
                             <obs conceptId="1343" />
@@ -463,7 +467,7 @@
                         </p>
                     </td>
 
-                    <td>
+                    <td colspan="2">
                         <p>
 
                             <label>INR No</label>
@@ -504,6 +508,115 @@
                         </p>
                     </td>
 
+
+
+                </tr>
+            </table>
+        </fieldset>
+
+        <fieldset>
+
+            <legend>Vitamin A Administration</legend>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+               <legend>1st Dose administered within this year</legend>
+                <tr>
+
+                    <td>
+                        <p>
+                            <label>Children between 6 to 11 months</label>
+                        </p>
+                        <p>
+
+                        </p>
+                    </td>
+
+                    <td>
+                        <p>
+                            <label>Children between 12 to 59 months</label>
+
+                        </p>
+                    </td>
+
+                </tr>
+
+
+
+            </table>
+
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <legend>2nd Dose administered within this year</legend>
+                <tr>
+
+                    <td>
+                        <p>
+                            <label>Children between 6 to 11 months</label>
+                        </p>
+                        <p>
+
+                        </p>
+                    </td>
+
+                    <td>
+                        <p>
+                            <label>Children between 12 to 59 months</label>
+
+                        </p>
+                    </td>
+
+                </tr>
+
+
+
+            </table>
+        </fieldset>
+
+        <fieldset>
+
+            <legend>DE-WORMING</legend>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <legend>1st Dose administered within this year</legend>
+                <tr>
+
+                    <td>
+                        <p>
+                            <label>1st dose administered within this year</label>
+                        </p>
+                        <p>
+
+                        </p>
+                    </td>
+
+                    <td>
+                        <p>
+                            <label>2n dose administered within this year</label>
+
+                        </p>
+                    </td>
+
+                </tr>
+
+
+
+            </table>
+
+
+        </fieldset>
+
+        <fieldset>
+
+            <legend>OTHER INFORMATION </legend>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+
+                    <td>
+                        <p>
+                            <label> REMARKS </label>
+                        </p>
+                        <p>
+
+
+                        </p>
+                    </td>
 
 
                 </tr>
