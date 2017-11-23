@@ -44,6 +44,8 @@
                                    order="629d78e9-93e5-43b0-ad8a-48313fd99117" />
                 <encounterProvider role="Provider" type="autocomplete" default="currentUser" />
             </span>
+
+        <fieldset>
             <legend>Patient Information</legend>
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
@@ -68,7 +70,7 @@
                 <tr>
                     <td colspan="1">
                         <p>
-                        <label>New User</label><br/>
+                            <label>New User</label><br/>
                             <obs conceptId="99112"
 
                                  answerConceptIds="90003,90004"
@@ -99,6 +101,138 @@
 
 
             </table>
+        </fieldset>
+
+
+            <fieldset>
+                <legend>Amount of Contraceptives Dispenced</legend>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+
+                        <td colspan="1">
+                            <p>
+                                <label>Oral Pills</label>
+                            </p>
+                            <p>
+                                <obs conceptId="1646AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+
+                            </p>
+                        </td>
+                        <td colspan="1">
+                            <p>
+                                <label>Male Condoms</label>
+                                <obs conceptId="ef1f4c7a-2b90-4412-83bb-87ae8094ce4c" />
+                            </p>
+                        </td>
+                        <td colspan="2">
+                            <p>
+                                <label>Female Condoms</label>
+                                <obs conceptId="ef1f4c7a-2b90-4412-83bb-87ae8094ce4c" />
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <td colspan="2">
+                            <fieldset>
+                            <legend>IUD</legend>
+                                <p>
+                                <obs conceptId="99112"
+                                     answerConceptIds="90003,90004,90003,90004"
+                                     answerLabels="PAC,PPIUD,INTERVAL,REM"
+                                style="radio" />
+                                </p>
+                            </fieldset>
+                        </td>
+
+                        <td colspan="2">
+
+                            <fieldset>
+                            <legend>Injectables</legend>
+                                <p>
+                                <obs conceptId="99112"
+                                answerConceptIds="90003,90004,90003"
+                                answerLabels="X,O,EC"
+                                style="radio" />
+                                </p>
+                            </fieldset>
+                        </td>
+
+
+                    </tr>
+
+
+                </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>OTHER FAMILY PLANNING METHODS</legend>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td colspan="1">
+                            <p>
+                                <label>Natural Methods</label><br/>
+                                <obs conceptId="99112"
+
+                                     answerConceptIds="90003,90004"
+                                     answerLabels="YES,NO"
+                                     style="radio" />
+                            </p>
+                        </td>
+
+                        <td colspan="1">
+                            <p>
+                                <label>Tubal Ligation</label><br/>
+                                <obs conceptId="99112"
+                                     answerConceptIds="90003,90004"
+                                     answerLabels="YES,NO"
+                                     style="radio" />
+                            </p>
+                        </td>
+                        <td colspan="2"><p>
+                            <label>Vasectomy</label><br/>
+                            <obs conceptId="99112"
+                                 answerConceptIds="90003,90004"
+                                 answerLabels="YES,NO"
+                                 style="radio" />
+                        </p>
+                        </td>
+
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset>
+                <legend>Implants</legend>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+
+                        <td colspan="1">
+                            <p>
+                                <label>New Users</label>
+                            </p>
+                            <p>
+                                <obs conceptId="1646AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+
+                            </p>
+                        </td>
+                        <td colspan="1">
+                            <p>
+                                <label>Revisits</label>
+                                <obs conceptId="ef1f4c7a-2b90-4412-83bb-87ae8094ce4c" />
+                            </p>
+                        </td>
+                        <td colspan="2">
+                            <p>
+                                <label>Removals</label>
+                                <obs conceptId="ef1f4c7a-2b90-4412-83bb-87ae8094ce4c" />
+                            </p>
+                        </td>
+                    </tr>
+
+
+                </table>
+            </fieldset>
+
         </fieldset>
     </div>
 </htmlform>
