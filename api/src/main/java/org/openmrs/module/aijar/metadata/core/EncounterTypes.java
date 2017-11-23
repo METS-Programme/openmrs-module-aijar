@@ -86,4 +86,20 @@ public class EncounterTypes {
             return "38cb2232-30fc-4b1f-8df1-47c795771ee9";
         }
     };
+    
+     public static EncounterTypeDescriptor CHILD_ENCOUNTER_TYPE = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Child encounter type";
+        }
+
+        @Override
+        public String description() {
+            return "An encounter of a child for information";
+        }
+
+        public String uuid() {
+            return "2d7b9d91-2181-4c6d-8b17-3de9cd33f402";
+        }
+    };
 }

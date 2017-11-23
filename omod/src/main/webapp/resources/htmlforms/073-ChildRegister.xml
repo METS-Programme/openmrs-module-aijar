@@ -1,0 +1,22 @@
+<htmlform 
+formName="HMIS 073 Child Register" 
+formDescription="Captures children information" 
+formEncounterType="2d7b9d91-2181-4c6d-8b17-3de9cd33f402" 
+formUuid="678721ff-c0f4-488c-bfb6-5cf01a2c2136" 
+formVersion="1.0" 
+formAddMetadata="yes" 
+formUILocation="patientDashboard.visitActions" 
+formOrder="7" 
+formIcon="icon-medkit" 
+formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.age &lt; 15 &amp;&amp;
+patient.person.dead==false " 
+formDisplayStyle="Standard" 
+formLabel="Child Form">
+
+<encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
+<encounterProvider role="Provider" style="autocomplete"/>
+<encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117" order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
+
+TEST FORM
+<submit/>
+</htmlform >
