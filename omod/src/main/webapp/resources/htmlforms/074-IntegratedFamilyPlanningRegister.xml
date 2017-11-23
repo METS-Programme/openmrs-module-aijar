@@ -12,10 +12,93 @@
         formDisplayStyle="Standard"
         formLabel="Integrated Family Planning  HMIS-074">
 
-    <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
-    <encounterProvider role="Provider" style="autocomplete"/>
-    <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117" order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
+    <style type="text/css">
 
-    This is a new form
-    <submit/>
+        form#htmlform div.ai-page-frame table>tbody tr:nth-child(odd) td {
+        background: #eeeeee;
+        }
+
+        form#htmlform div.ai-page-frame table>tbody tr:nth-child(even) td {
+        background: #f9f9f9;
+        }
+
+        form#htmlform div.ai-page-frame fieldset#child-information table {
+        margin: 0 0 5px 0;
+        }
+
+    </style>
+    <!-- Beging of HTML Form -->
+    <div class="ai-page-frame">
+        <div class="headers" style="text-align: center;">
+            <h3 style="background: #FFFF7D; padding: 10px;">Integrated Family Planning Form</h3>
+        </div>
+
+
+
+
+
+
+        <fieldset>
+            <span class="hidden">
+                <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
+                                   order="629d78e9-93e5-43b0-ad8a-48313fd99117" />
+                <encounterProvider role="Provider" type="autocomplete" default="currentUser" />
+            </span>
+            <legend>Patient Information</legend>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+
+                    <td colspan="2">
+                        <p>
+                            <label>Serial Number</label>
+                        </p>
+                        <p>
+                            <obs conceptId="1646AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+
+                        </p>
+                    </td>
+                    <td colspan="2">
+                        <p>
+                            <label>Client Number</label>
+                            <obs conceptId="ef1f4c7a-2b90-4412-83bb-87ae8094ce4c" />
+                        </p>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td colspan="1">
+                        <p>
+                        <label>New User</label><br/>
+                            <obs conceptId="99112"
+
+                                 answerConceptIds="90003,90004"
+                                 answerLabels="YES,NO"
+                                 style="radio" />
+                        </p>
+                    </td>
+
+                    <td colspan="1">
+                        <p>
+                            <label>Re-Attendance</label><br/>
+                            <obs conceptId="99112"
+                                 answerConceptIds="90003,90004"
+                                 answerLabels="YES,NO"
+                                 style="radio" />
+                        </p>
+                    </td>
+                    <td colspan="2"><p>
+                        <label>First Visit of the year</label><br/>
+                        <obs conceptId="99112"
+                             answerConceptIds="90003,90004"
+                             answerLabels="YES,NO"
+                             style="radio" />
+                    </p>
+                    </td>
+
+                </tr>
+
+
+            </table>
+        </fieldset>
+    </div>
 </htmlform>
