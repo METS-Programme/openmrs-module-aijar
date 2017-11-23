@@ -86,4 +86,20 @@ public class EncounterTypes {
             return "38cb2232-30fc-4b1f-8df1-47c795771ee9";
         }
     };
+
+    public static EncounterTypeDescriptor MY_BOOTCAMP_ENCOUNTER  = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "My  bootcamp Encounter";
+        }
+
+        @Override
+        public String description() {
+            return "Bootcamp visit ";
+        }
+
+        public String uuid() {
+            return "eca34467-07c7-45c6-a767-c6f69b871420";
+        }
+    };
 }
