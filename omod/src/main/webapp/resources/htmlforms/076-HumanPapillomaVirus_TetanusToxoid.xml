@@ -1,0 +1,22 @@
+<htmlform formName="HMIS 076 Human Papilloma Virus/Tetanus Toxoid"
+          formDescription="Captures female clients receiving HPV/TT vaccines"
+          formEncounterType="9c61b498-92a5-4528-a730-16696a5d63ce"
+          formUuid="58bc6ab6-3830-4fbd-9c9b-63720a5fd775"
+          formVersion="1.0"
+          formAddMetadata="yes"
+          formUILocation="patientDashboard.visitActions"
+          formOrder="20"
+          formIcon="icon-medkit"
+          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.gender=='F' &amp;&amp; ( patient.person.age &gt; 8 &amp;&amp; patient.person.age &lt; 19 ) &amp;&amp; patient.person.dead==false"
+          formDisplayStyle="Standard"
+          formLabel="HPV/TT Form">
+
+
+    <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
+    <encounterProvider role="Provider" style="autocomplete"/>
+    <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117" order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
+
+    This is an HPV/TT New Form
+    <br/>
+    <submit/>
+</htmlform>
