@@ -232,7 +232,44 @@
 
                 </table>
             </fieldset>
+            <!--nct Codes -->
+            <fieldset>
+                <legend>Hct Codes</legend>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td  colspan="4">
+                            <p>
+                                <label>C</label>
+                                <obs conceptId="99112"
 
+                                     answerConceptIds="90003"
+                                     answerLabels=""
+                                     style="radio" />
+
+                                <label>TR</label>
+                                <obs conceptId="99112"
+                                     answerConceptIds="90003"
+                                     answerLabels=""
+                                     style="radio" />
+
+                            <label>TRR</label>
+                            <obs conceptId="99112"
+                                 answerConceptIds="90003"
+                                 answerLabels=""
+                                 style="radio" />
+                        </p><br/>
+                            <label>Tick if results are known</label>
+                            <obs conceptId="99112"
+                                 answerConceptIds="90003"
+                                 answerLabels=""
+                                 style="radio"/>
+
+                        </td>
+
+                    </tr>
+
+                </table>
+            </fieldset>
         </fieldset>
     </div>
 </htmlform>
