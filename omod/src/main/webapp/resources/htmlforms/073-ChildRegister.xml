@@ -1,4 +1,4 @@
-<htmlform formName="HMIS 073 Child Register"
+<htmlform formName="HMIS 073 Child Form"
           formDescription="Captures child information"
           formEncounterType="e345e3f0-0b8d-4d41-94d6-ffb77525bf31"
           formUuid="dc434b96-3cdd-44f7-bcca-1e639c10d1fb"
@@ -24,7 +24,35 @@
         margin: 0 0 5px 0;
         }
 
+        form input[type="checkbox"], form input[type="radio"], .form input[type="checkbox"], .form input[type="radio"] {
+        margin: 10px 15px;
+        }
+
     </style>
+
+    <script type="text/javascript">
+
+        if (jQuery) {
+        jq(document).ready(function () {
+        if (jq.browser.msie) {
+        jq(":checkbox").click(function () {
+        jq(this).change();
+        });
+        }
+
+        jq('#smc_presence_of_ae').click(function () {
+        if (getValue('smc_presence_of_ae.value') == 90002) {
+        showContainer('#smc_presence_of_ae_other');
+
+        } else {
+        hideContainer('#smc_presence_of_ae_other');
+        }
+        });
+
+        jq('#smc_presence_of_ae').trigger('click');
+        });
+        }
+    </script>
 
     <!-- Beging of HTML Form -->
     <div class="ai-page-frame">
@@ -50,6 +78,7 @@
                     <td>
                         <p>
                             <label>Child No.</label>
+                            <obs conceptId="5090" />
                         </p>
                         <p>
 
@@ -71,6 +100,7 @@
                     <td>
                         <p>
                             <label>Mother's Name</label>
+                            <obs conceptId="159395" />
                         </p>
                         <p>
 
@@ -80,6 +110,7 @@
                     <td>
                         <p>
                             <label>Father's Name</label>
+                            <obs conceptId="159395" />
 
                         </p>
                     </td>
@@ -156,9 +187,8 @@
 
                         <label>Weight for Age Z Score</label>
                         </p>
-                        <p> <!--<obs conceptId=""-->
-                        <!--answerConceptIds="1115,99271,99272"-->
-                        <!--answerLabels="N,MAM,SAM" style="dropdown" />-->
+                        <p>  <obs conceptId="1854" answerConceptIds="1115, 99271, 99272"
+                                  answerLabels="N - Normal,MAM - Moderate Acute Malnutrition,SAM - Severe Acute Malnutrition"/>
 
                     </p>
 
@@ -168,10 +198,8 @@
 
                             <label>INR No</label>
                         </p>
-                        <p> <!--<obs conceptId=""-->
-
-
-
+                        <p>
+                            <obs conceptId="b644c29c-9bb0-447e-9f73-2ae89496a709" id="inrNumber" />
                         </p>
 
                     </td>
@@ -182,13 +210,14 @@
 
         <fieldset>
 
-            <legend>PAB and LLIN Information </legend>
+            <legend>Protection At Birth (PAB) and LLIN Information </legend>
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
 
                     <td>
                         <p>
-                            <label>PAB (Protection at Birth) </label>
+                            <label>Protection At Birth (PAB)</label>
+                            <obs conceptId="5090" />
                         </p>
                         <p>
 
@@ -198,6 +227,7 @@
                     <td>
                         <p>
                             <label>Receieved LLIN </label>
+                            <obs conceptId="5090" />
 
                         </p>
                     </td>
@@ -205,6 +235,7 @@
                     <td>
                         <p>
                             <label>Date Receieved LLIN </label>
+                            <obs conceptId="dcc033e5-30ab-102d-86b0-7a5022ba4115" id="edd" allowFutureDates="true" />
 
                         </p>
                     </td>
@@ -222,6 +253,7 @@
                 <td colspan="4">
                     <p>
                         <label>Date BCG</label>
+                        <obs conceptId="dcc033e5-30ab-102d-86b0-7a5022ba4115" id="edd" allowFutureDates="true" />
                     </p>
                     <p>
 
@@ -236,6 +268,7 @@
                 <td>
                     <p>
                         <label>Date Polio 0 </label>
+                        <obs conceptId="dcc033e5-30ab-102d-86b0-7a5022ba4115" id="edd" allowFutureDates="true" />
                     </p>
                     <p>
 
@@ -246,6 +279,7 @@
                 <td>
                     <p>
                         <label>Date Polio 1 </label>
+                        <obs conceptId="dcc033e5-30ab-102d-86b0-7a5022ba4115" id="edd" allowFutureDates="true" />
                     </p>
                     <p>
 
@@ -255,6 +289,7 @@
                 <td>
                     <p>
                         <label>Date Polio 2 </label>
+                        <obs conceptId="dcc033e5-30ab-102d-86b0-7a5022ba4115" id="edd" allowFutureDates="true" />
                     </p>
                     <p>
 
@@ -264,6 +299,7 @@
                 <td>
                     <p>
                         <label>Date Polio 3 </label>
+                        <obs conceptId="dcc033e5-30ab-102d-86b0-7a5022ba4115" id="edd" allowFutureDates="true" />
                     </p>
                     <p>
 
@@ -276,6 +312,7 @@
                 <td colspan="4">
                     <p>
                         <label>Date IPV</label>
+                        <obs conceptId="dcc033e5-30ab-102d-86b0-7a5022ba4115" id="edd" allowFutureDates="true" />
                     </p>
                     <p>
 
@@ -290,6 +327,7 @@
                 <td>
                     <p>
                         <label>Date DPT-HEP B-HIB 1 </label>
+                        <obs conceptId="dcc033e5-30ab-102d-86b0-7a5022ba4115" id="edd" allowFutureDates="true" />
                     </p>
                     <p>
 
@@ -300,6 +338,7 @@
                 <td >
                     <p>
                         <label>Date DPT-HEP B-HIB 2 </label>
+                        <obs conceptId="dcc033e5-30ab-102d-86b0-7a5022ba4115" id="edd" allowFutureDates="true" />
                     </p>
                     <p>
 
@@ -310,6 +349,7 @@
                 <td colspan="2">
                     <p>
                         <label>Date DPT-HEP B-HIB 3 </label>
+                        <obs conceptId="dcc033e5-30ab-102d-86b0-7a5022ba4115" id="edd" allowFutureDates="true" />
                     </p>
                     <p>
 
@@ -323,6 +363,7 @@
                 <td >
                     <p>
                         <label>Date PCV 1 </label>
+                        <obs conceptId="dcc033e5-30ab-102d-86b0-7a5022ba4115" id="edd" allowFutureDates="true" />
                     </p>
                     <p>
 
@@ -333,6 +374,7 @@
                 <td>
                     <p>
                         <label>Date PCV 2 </label>
+                        <obs conceptId="dcc033e5-30ab-102d-86b0-7a5022ba4115" id="edd" allowFutureDates="true" />
                     </p>
                     <p>
 
@@ -343,6 +385,7 @@
                 <td colspan="2">
                     <p>
                         <label>Date PCV 3</label>
+                        <obs conceptId="dcc033e5-30ab-102d-86b0-7a5022ba4115" id="edd" allowFutureDates="true" />
                     </p>
                     <p>
 
@@ -356,6 +399,7 @@
             <td >
                 <p>
                     <label> Date Rota Virus 1 </label>
+                    <obs conceptId="dcc033e5-30ab-102d-86b0-7a5022ba4115" id="edd" allowFutureDates="true" />
                 </p>
                 <p>
 
@@ -366,6 +410,7 @@
             <td>
                 <p>
                     <label>Date Rota Virus 2 </label>
+                    <obs conceptId="dcc033e5-30ab-102d-86b0-7a5022ba4115" id="edd" allowFutureDates="true" />
                 </p>
                 <p>
 
@@ -375,6 +420,7 @@
             <td colspan="2">
                 <p>
                     <label>Date Rota Virus 3</label>
+                    <obs conceptId="dcc033e5-30ab-102d-86b0-7a5022ba4115" id="edd" allowFutureDates="true" />
                 </p>
                 <p>
 
@@ -388,6 +434,7 @@
             <td>
                 <p>
                     <label> Date of Measles Vaccination </label>
+                    <obs conceptId="dcc033e5-30ab-102d-86b0-7a5022ba4115" id="edd" allowFutureDates="true" />
                 </p>
                 <p>
 
@@ -398,6 +445,7 @@
             <td>
                 <p>
                     <label>Weight at Measles Vaccination </label>
+                    <obs conceptId="5090" />
                 </p>
                 <p>
 
@@ -408,6 +456,7 @@
             <td colspan="2">
                 <p>
                     <label>Weight Status </label>
+                    <obs conceptId="5090" />
                 </p>
                 <p>
 
@@ -472,12 +521,7 @@
 
                             <label>INR No</label>
                         </p>
-                        <p> <!--<obs conceptId=""-->
-
-
-
-                        </p>
-
+                        <obs conceptId="b644c29c-9bb0-447e-9f73-2ae89496a709" id="inrNumber" />
                     </td>
 
                 </tr>
@@ -495,16 +539,22 @@
                     <td>
                         <p>
                             <label> Fully Immunised by 1 year </label>
+
                         </p>
                         <p>
-
-
+                            <obs conceptId="99711" answerConceptIds="1065,1066" answerLabels="Yes, No"
+                                 style="radio" answerSeparator=""/>
                         </p>
                     </td>
                     <td>
                         <p>
                             <label>IYCF Counseling </label>
 
+                        </p>
+
+                        <p>
+                            <obs conceptId="99711" answerConceptIds="1065,1066" answerLabels="Yes, No"
+                                 style="radio" answerSeparator=""/>
                         </p>
                     </td>
 
@@ -524,9 +574,11 @@
                     <td>
                         <p>
                             <label>Children between 6 to 11 months</label>
+
                         </p>
                         <p>
-
+                            <obs conceptId="99711" answerConceptIds="1065,1066" answerLabels="Yes, No"
+                                 style="radio" answerSeparator=""/>
                         </p>
                     </td>
 
@@ -534,7 +586,14 @@
                         <p>
                             <label>Children between 12 to 59 months</label>
 
+
                         </p>
+
+                        <p>
+                            <obs conceptId="99711" answerConceptIds="1065,1066" answerLabels="Yes, No"
+                                 style="radio" answerSeparator=""/>
+                        </p>
+
                     </td>
 
                 </tr>
@@ -550,8 +609,14 @@
                     <td>
                         <p>
                             <label>Children between 6 to 11 months</label>
+
                         </p>
                         <p>
+
+                            <p>
+                                <obs conceptId="99711" answerConceptIds="1065,1066" answerLabels="Yes, No"
+                                     style="radio" answerSeparator=""/>
+                            </p>
 
                         </p>
                     </td>
@@ -561,6 +626,12 @@
                             <label>Children between 12 to 59 months</label>
 
                         </p>
+
+                        <p>
+                            <obs conceptId="99711" answerConceptIds="1065,1066" answerLabels="Yes, No"
+                                 style="radio" answerSeparator=""/>
+                        </p>
+
                     </td>
 
                 </tr>
@@ -574,15 +645,17 @@
 
             <legend>DE-WORMING</legend>
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                <legend>1st Dose administered within this year</legend>
+
                 <tr>
 
                     <td>
                         <p>
                             <label>1st dose administered within this year</label>
+
                         </p>
                         <p>
-
+                            <obs conceptId="99711" answerConceptIds="1065,1066" answerLabels="Yes, No"
+                                 style="radio" />
                         </p>
                     </td>
 
@@ -590,7 +663,15 @@
                         <p>
                             <label>2n dose administered within this year</label>
 
+
                         </p>
+
+                        <p>
+                            <obs conceptId="99711" answerConceptIds="1065,1066" answerLabels="Yes, No"
+                                 style="radio" answerSeparator=""/>
+                        </p>
+
+
                     </td>
 
                 </tr>
@@ -611,6 +692,7 @@
                     <td>
                         <p>
                             <label> REMARKS </label>
+                            <obs conceptId="159395" />
                         </p>
                         <p>
 
@@ -622,6 +704,8 @@
                 </tr>
             </table>
         </fieldset>
+
+        <submit/>
 
 
 
