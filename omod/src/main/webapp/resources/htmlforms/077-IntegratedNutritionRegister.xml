@@ -47,6 +47,11 @@
             margin: 0 0 5px 0;
         }
 
+        fieldset {
+            border-color:#D5D8DC !important;
+            border-radius:5px;
+        }
+
     </style>
     <script type="text/javascript">
         jQuery(document).ready(function(jq) {
@@ -340,13 +345,12 @@
                             <template>
                                 <obsgroup groupingConceptId="160741">
                                     <tr>
+                                        <td style="width:5% !important">#{id}</td>
                                         <td>
                                             <p>
-                                                <label>
-                                                    Appointment Date
-                                                </label>
+                                                <label>Appointment Date</label>
                                             </p>
-                                            <p>
+                                            <p style="clear:left">
                                                 <label>M.U.A.C (cm)</label>
                                                 <obs conceptId="1343AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="muac-quantitative" />
                                             </p>
@@ -355,7 +359,7 @@
                                             <p>
                                                 <label>Visit Date</label>
                                             </p>
-                                            <p>
+                                            <p style="clear:left">
                                                 <label>M.U.A.C</label>
                                                 <includeIf velocityTest="$patient.age &lt; 5">
                                                     <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
@@ -385,7 +389,7 @@
                                             <p>
                                                 <label>Oedema</label>
                                             </p>
-                                            <p>
+                                            <p style="clear:left">
                                                 <label>Z-Score : </label>
                                             </p>
                                         </td>
@@ -394,7 +398,7 @@
                                                 <label>Weight (Kg)</label>
                                                 <obs conceptId="5089"/>
                                             </p>
-                                            <p>
+                                            <p style="clear:left">
                                                 <label>Therapeutic/Supplementary Feeds </label>
                                             </p>
                                         </td>
@@ -403,7 +407,7 @@
                                                 <label>Height (cm)</label>
                                                 <obs conceptId="5090"/>
                                             </p>
-                                            <p>
+                                            <p style="clear:left">
                                                 <label>Counseling Code </label>
                                             </p>
 
@@ -411,7 +415,7 @@
 
 
                                         <td>
-                                            <a href="#" class="add">Add</a> | <a href="#" class="remove">Remove</a>
+                                            <a href="#" class="add">Add Visit</a> | <a href="#" class="remove">Remove</a>
                                         </td>
                                     </tr>
 
