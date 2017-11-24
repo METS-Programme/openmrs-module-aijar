@@ -30,7 +30,7 @@
     <!-- Beging of HTML Form -->
     <div class="ai-page-frame">
         <div class="headers" style="text-align: center;">
-            <h3 style="background: #FFC0CB; padding: 10px;">Human Papilloma Virus/Tetanus Form</h3>
+            <h3 style="padding: 10px;">HPV/TT REGISTER (HMIS FORM 076)</h3>
         </div>
 
         <fieldset>
@@ -39,7 +39,7 @@
                                    order="629d78e9-93e5-43b0-ad8a-48313fd99117" />
                 <encounterProvider role="Provider" type="autocomplete" default="currentUser" />
             </span>
-            <legend>SECTION A</legend>
+            <legend>SUMMARY INFORMATION</legend>
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                     <td>
@@ -50,7 +50,7 @@
                     </td>
                     <td>
                         <p class="">
-                            <label>Serial</label>
+                            <label>S/ No./ Identification</label>
                         </p>
                         <p>
                             <obs conceptId="1646" required="true"/>
@@ -59,32 +59,87 @@
 
                     <td>
                         <p>
-                            <label>Mother/Guardian</label>
+                            <label>Mother/ Guardian's Name</label>
 
                         </p>
                     </td>
                 </tr>
-            </table>
+
+                <tr>
+                    <td colspan="2">
+                        <p>
+                            <label>Age at 1st Dose</label>
+                        </p>
+
+                    </td>
+                    <td>
+                        <p>
+                            <label>Class in school</label>
+
+                        </p>
+                    </td>
+
+                </tr>
+        </table>
         </fieldset>
 
         <fieldset>
-
-            <legend>SECTION B</legend>
+            <legend>HPV IMMUNISATION</legend>
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                     <td>
                         <p>
-                            <label>Age at first Dose</label>
+                            <label>HPV 1</label>
                         </p>
-                        <p>
-
+                    </td>
+                    <td>
+                        <p >
+                            <label>Date</label>
 
                         </p>
                     </td>
                     <td>
                         <p>
-                            <label>Class</label>
+                            <label>POC</label>
+                        </p>
 
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <label>HPV 2</label>
+                        </p>
+                    </td>
+                    <td>
+                        <p >
+                            <label>Date</label>
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>POC</label>
+                        </p>
+
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <label>HPV 3</label>
+                        </p>
+                    </td>
+                    <td>
+                        <p >
+                            <label>Date</label>
+
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>POC</label>
                         </p>
                     </td>
 
@@ -92,74 +147,7 @@
             </table>
         </fieldset>
         <fieldset>
-            <legend>SECTION C: VACCINES</legend>
-            <legend>Human Papilloma Virus</legend>
-            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-                <td>
-                    <p>
-                        <label>HPV 1</label>
-                    </p>
-                </td>
-                <td>
-                    <p >
-                        <label>Date</label>
-                        <encounterDate  disallowMultipleEncountersOnDate="block" />
-                    </p>
-                </td>
-                <td>
-                    <p>
-                        <label>POC</label>
-                    </p>
-                    <p>
-
-
-                    </p>
-                </td>
-
-            </tr>
-            <tr>
-                <td>
-                    <p>
-                        <label>HPV 2</label>
-                    </p>
-                </td>
-                <td>
-                    <p >
-                        <label>Date</label>
-                        <encounterDate disallowMultipleEncountersOnDate="block" />
-                    </p>
-                </td>
-                <td>
-                    <p>
-                        <label>POC</label>
-                    </p>
-
-                </td>
-
-            </tr>
-            <tr>
-                <td>
-                    <p>
-                        <label>HPV 3</label>
-                    </p>
-                </td>
-                <td>
-                    <p >
-                        <label>Date</label>
-                        <encounterDate  disallowMultipleEncountersOnDate="block" />
-                    </p>
-                </td>
-                <td>
-                    <p>
-                        <label>POC</label>
-                    </p>
-
-                </td>
-
-            </tr>
-        </table>
-            <legend>Tetanus Toxoid</legend>
+            <legend>TT IMMUNISATION</legend>
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                     <td>
@@ -170,7 +158,7 @@
                     <td>
                         <p >
                             <label>Date</label>
-                            <encounterDate  disallowMultipleEncountersOnDate="block" />
+
                         </p>
                     </td>
                     <td>
@@ -190,7 +178,7 @@
                     <td>
                         <p >
                             <label>Date</label>
-                            <encounterDate  disallowMultipleEncountersOnDate="block" />
+
                         </p>
                     </td>
                     <td>
@@ -210,7 +198,7 @@
                     <td>
                         <p >
                             <label>Date</label>
-                            <encounterDate  disallowMultipleEncountersOnDate="block" />
+
                         </p>
                     </td>
                     <td>
@@ -230,7 +218,7 @@
                     <td>
                         <p >
                             <label>Date</label>
-                            <encounterDate  disallowMultipleEncountersOnDate="block" />
+
                         </p>
                     </td>
                     <td>
@@ -250,7 +238,7 @@
                     <td>
                         <p >
                             <label>Date</label>
-                            <encounterDate  disallowMultipleEncountersOnDate="block" />
+
                         </p>
                     </td>
                     <td>
