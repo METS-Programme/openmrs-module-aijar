@@ -1,6 +1,5 @@
 package org.openmrs.module.aijar.metadata.core;
 
-import org.apache.velocity.util.ArrayListWrapper;
 import org.openmrs.module.patientflags.metadatadeploy.descriptor.FlagDescriptor;
 
 import java.util.Arrays;
@@ -11,7 +10,11 @@ public class Flags {
     public static FlagDescriptor DUE_FOR_FIRST_VIRAL_LOAD = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT p.patient_id FROM patient p INNER JOIN obs o ON p.patient_id = o.person_id WHERE o.concept_id = 99161 AND o.voided = FALSE AND (CURRENT_DATE() BETWEEN DATE_ADD(o.value_datetime, INTERVAL 5 MONTH) AND DATE_ADD(o.value_datetime, INTERVAL 6 MONTH)) AND o.person_id NOT IN (SELECT o.person_id FROM obs o WHERE o.concept_id = 1305)";
+            return "SELECT p.patient_id FROM patient p " +
+                    "INNER JOIN obs o ON p.patient_id = o.person_id " +
+                    "INNER JOIN encounter e ON o.encounter_id = e.encounter_id" +
+                    "INNER JOIN encounter_type et ON e.encounter_type = et.encounter_type_id " +
+                    "WHERE ((o.concept_id = 99161 AND o.voided = FALSE AND e.voided = FALSE AND ((CURRENT_DATE() BETWEEN DATE_ADD(o.value_datetime, INTERVAL 5 MONTH) AND DATE_ADD(o.value_datetime, INTERVAL 6 MONTH)) AND et.uuid='8d5b27bc-c2cc-11de-8d13-0010c6dffd0f'))) AND o.person_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 1305 AND oo.voided = FALSE)";
         }
 
         @Override
@@ -48,7 +51,7 @@ public class Flags {
     public static FlagDescriptor OVERDUE_FOR_FIRST_VIRAL_LOAD = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT p.patient_id, DATE_FORMAT(DATE_ADD(o.value_datetime, INTERVAL 6 MONTH), '%d.%b.%Y') FROM patient p INNER JOIN obs o ON p.patient_id = o.person_id WHERE o.concept_id = 99161 AND o.voided = FALSE AND CURRENT_DATE() >= DATE_ADD(o.value_datetime, INTERVAL 6 MONTH) AND o.person_id NOT IN (SELECT o.person_id FROM obs o WHERE o.concept_id = 1305)";
+            return "SELECT p.patient_id, DATE_FORMAT(DATE_ADD(o.value_datetime, INTERVAL 6 MONTH), '%d.%b.%Y') FROM patient p INNER JOIN obs o ON p.patient_id = o.person_id WHERE o.concept_id = 99161 AND o.voided = FALSE AND CURRENT_DATE() >= DATE_ADD(o.value_datetime, INTERVAL 6 MONTH) AND o.person_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 1305 AND oo.voided = FALSE)";
         }
 
         @Override
