@@ -100,5 +100,21 @@ public class EncounterTypes {
         public String uuid() {
             return "8513e07b-7a94-4f65-8cd4-2f93933d9f77";
         }
+    };   
+   
+    public static EncounterTypeDescriptor INTERGRATED_FAMILY_PLANNING_REGISTER  = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Intergrated Family Planning";
+        }
+
+        @Override
+        public String description() {
+            return "Family planning followup";
+        }
+
+        public String uuid() { return     "8761118b-63d4-4427-b3a4-9e92ebfaf6ec";
+//        public String uuid() { return     "557d09b4-a00d-4795-bf59-441ff847270f";
+        }
     };
 }

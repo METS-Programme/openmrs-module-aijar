@@ -1,0 +1,360 @@
+<htmlform
+        formName="HMIS  074 Integrated Family Planning Register"
+        formDescription="Captures Client Information about Family Planning"
+        formEncounterType="557d09b4-a00d-4795-bf59-441ff847270f"
+        formUuid="15d601bf-e7eb-489a-9bcf-fccf9e137c53"
+        formVersion="1.0"
+        formAddMetadata="yes"
+        formUILocation="patientDashboard.visitActions"
+        formOrder="23"
+        formIcon="icon-medkit"
+        formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.age &gt;9 &amp;&amp; patient.person.dead==false "
+        formDisplayStyle="Standard"
+        formLabel="Integrated Family Planning  HMIS-074">
+
+    <style type="text/css">
+
+        form#htmlform div.ai-page-frame table>tbody tr:nth-child(odd) td {
+        background: #eeeeee;
+        }
+
+        form#htmlform div.ai-page-frame table>tbody tr:nth-child(even) td {
+        background: #f9f9f9;
+        }
+
+        form#htmlform div.ai-page-frame fieldset#child-information table {
+        margin: 0 0 5px 0;
+        }
+
+    </style>
+    <!-- Beging of HTML Form -->
+    <div class="ai-page-frame">
+        <div class="headers" style="text-align: center;">
+            <h3 style="background: #FFFF7D; padding: 10px;">Integrated Family Planning Form</h3>
+        </div>
+
+
+
+
+
+
+        <fieldset>
+            <span class="hidden">
+                <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
+                                   order="629d78e9-93e5-43b0-ad8a-48313fd99117" />
+                <encounterProvider role="Provider" type="autocomplete" default="currentUser" />
+            </span>
+
+        <fieldset>
+            <legend>Patient Information</legend>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+
+                    <td colspan="2">
+                        <p>
+                            <label>Serial Number</label>
+                        </p>
+                        <p>
+                            <obs conceptId="1646" />
+
+                        </p>
+                    </td>
+                    <td colspan="2">
+                        <p>
+                            <label>Client Number</label>
+                            <obs conceptId="99704" />
+                        </p>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td colspan="1">
+                        <p>
+                            <label>New User</label><br/>
+                            <input style="" id="includeVerbose" type="checkbox"/>
+                            <!--<obs conceptId="99112"-->
+
+                                 <!--answerConceptIds="90003,90004"-->
+                                 <!--answerLabels="YES,NO"-->
+                                 <!--style="radio" />-->
+                        </p>
+                    </td>
+
+                    <td colspan="1">
+                        <p>
+                            <label>Re-Attendance</label><br/>
+                            <input style="" id="includeVerbose" type="checkbox"/>
+
+                            <!--<obs conceptId="99112"-->
+                                 <!--answerConceptIds="90003,90004"-->
+                                 <!--answerLabels="YES,NO"-->
+                                 <!--style="radio" />-->
+                        </p>
+                    </td>
+                    <td colspan="2"><p>
+                        <label>First Visit of the year</label><br/>
+                        <input style="" id="includeVerbose" type="checkbox"/>
+
+                        <!--<obs conceptId="99112"-->
+                             <!--answerConceptIds="90003,90004"-->
+                             <!--answerLabels="YES,NO"-->
+                             <!--style="radio" />-->
+                    </p>
+                    </td>
+
+                </tr>
+
+
+            </table>
+        </fieldset>
+
+
+            <fieldset>
+                <legend>Amount of Contraceptives Dispensed</legend>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+
+                        <td colspan="1">
+                            <p>
+                                <label>Oral Pills</label>
+                            </p>
+                            <p>
+                                <obs conceptId="1646AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+
+                            </p>
+                        </td>
+                        <td colspan="1">
+                            <p>
+                                <label>Male Condoms</label>
+                                <obs conceptId="ef1f4c7a-2b90-4412-83bb-87ae8094ce4c" />
+                            </p>
+                        </td>
+                        <td colspan="2">
+                            <p>
+                                <label>Female Condoms</label>
+                                <obs conceptId="ef1f4c7a-2b90-4412-83bb-87ae8094ce4c" />
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <td colspan="2">
+                            <fieldset>
+                            <legend>Intra Uterine Devices (IUD'S)</legend>
+                                <p>
+                                <obs conceptId="99112"
+                                     answerConceptIds="90003,90004,90003,90004"
+                                     answerLabels="PAC-(When Inserted Post Abortion),PPIUD-(When Inserted Within 48 Hour Of Delivery),INTERVAL-(When Inserted Routinely),REM-(When Removed)"
+                                style="radio" />
+                                </p>
+                            </fieldset>
+                        </td>
+
+                        <td colspan="2">
+
+                            <fieldset>
+                            <legend>Injectables</legend>
+                                <p>
+                                <obs conceptId="99112"
+                                answerConceptIds="90003,90004,90003"
+                                answerLabels="X-(Current User Visiting),O-(Back-Up Contraceptive),EC-(Emergency Contraceptive)"
+                                style="radio" />
+                                </p>
+                            </fieldset>
+                        </td>
+
+
+                    </tr>
+
+
+                </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>OTHER FAMILY PLANNING METHODS</legend>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td colspan="1">
+                            <p>
+                                <label>Natural Methods</label><br/>
+                                <input style="" id="includeVerbose" type="checkbox"/>
+                                <!--<obs conceptId="99112"-->
+
+                                     <!--answerConceptIds="90003,90004"-->
+                                     <!--answerLabels="YES,NO"-->
+                                     <!--style="radio" />-->
+                            </p>
+                        </td>
+                        <td colspan="1">
+                            <p>
+                                <label>Tubal Ligation</label><br/>
+                                <input style="" id="includeVerbose" type="checkbox"/>
+                                <!--<obs conceptId="99112"-->
+                                     <!--answerConceptIds="90003,90004"-->
+                                     <!--answerLabels="YES,NO"-->
+                                     <!--style="radio" />-->
+                            </p>
+                        </td>
+                        <td colspan="2">
+                            <p>
+                            <label>Vasectomy</label><br/>
+                            <input style="" id="includeVerbose" type="checkbox"/>
+                            <!--<obs conceptId="99112"-->
+                                 <!--answerConceptIds="90003,90004"-->
+                                 <!--answerLabels="YES,NO"-->
+                                 <!--style="radio" />-->
+                        </p>
+                        </td>
+
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset>
+                <legend>Implants</legend>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+
+                        <td colspan="1">
+                            <p>
+                                <label>New Users</label>
+                            </p>
+                            <p>
+                                <obs conceptId="1646AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+
+                            </p>
+                        </td>
+                        <td colspan="1">
+                            <p>
+                                <label>Revisits</label>
+                                <obs conceptId="ef1f4c7a-2b90-4412-83bb-87ae8094ce4c" />
+                            </p>
+                        </td>
+                        <td colspan="2">
+                            <p>
+                                <label>Removals</label>
+                                <obs conceptId="ef1f4c7a-2b90-4412-83bb-87ae8094ce4c" />
+                            </p>
+                        </td>
+                    </tr>
+
+
+                </table>
+            </fieldset>
+            <!--nct Codes -->
+            <fieldset>
+                <legend>Hct Codes</legend>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td  colspan="4">
+                            <p>
+                                <obs conceptId="99112"
+
+                                     answerConceptIds="90003"
+                                     answerLabels=""
+                                     style="radio" />
+                                <label>C-(If client is counseled or given information but declined HIV testing)</label></p><br/>
+                            <p>
+                                <obs conceptId="99112"
+                                     answerConceptIds="90003"
+                                     answerLabels=""
+                                     style="radio" />
+                                <label>TR-(If client is tested results given , client tested HIV negative)</label></p><br/>
+<p>
+                                <obs conceptId="99112"
+                                     answerConceptIds="90003"
+                                     answerLabels=""
+                                     style="radio" />
+    <label>TRR -(If client is tested results given ,client tested HIV Positive)</label></p><br/>
+
+
+                        </td>
+<td> <p>
+    <input style="" id="includeVerbose" type="checkbox"/>
+
+    <label>Tick if results are known</label></p></td>
+                    </tr>
+
+                </table>
+            </fieldset>
+
+        <fieldset>
+            <legend>OTHER SERVICES</legend>
+
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                  <td>
+                      <label>HIV + Using Family Planning For The First Time</label> <br/>
+                  <p>
+                  <obs conceptId="99112"
+                       answerConceptIds="90003,90004"
+                       answerLabels="YES,NO"
+                       style="radio" />
+              </p>
+              </td><td>
+                  <label>ARV Regimes</label><obs conceptId="99112"
+                                                        answerConceptIds="90003,90004"
+                                                        answerLabels="YES,NO"
+                                                        style="no_yes_dropdown" /> </td>
+                <br>
+                    <td><label>Cancer Of The Cervix Screening</label>
+                        <obs conceptId="99112"
+                                            answerConceptIds="90003,90004"
+                                            answerLabels="YES,NO"
+                                            style="no_yes_dropdown" /></td></br>
+
+
+                    <br><td><label>Cancer of The Breast Screening</label><obs conceptId="99112"
+                                                answerConceptIds="90003,90004"
+                                                answerLabels="YES,NO"
+                                                style="no_yes_dropdown" /></td></br>
+
+
+</tr><tr>
+
+                    <br><td colspan="2"><label>Counselled For Gender Based Violence</label><obs conceptId="99112"
+                                                                                    answerConceptIds="90003,90004"
+                                                                                    answerLabels="YES,NO"
+                                                                                    style="no_yes_dropdown" /></td></br>
+
+               <td colspan="2"><label>Other Services</label>
+                   <obs conceptId="99112"
+                                                           answerConceptIds="90003,90004"
+                                                           answerLabels="YES,NO"
+                                                           style="no_yes_dropdown"/></td>
+                </tr>
+
+
+                </table>
+        </fieldset>
+
+        <fieldset>
+            <legend>Referral Out</legend>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+
+                    <td colspan="2">
+                        <p>
+                            <label>Referral Number</label>
+                        </p>
+                        <p>
+                            <obs conceptId="99767" />
+
+                        </p>
+                    </td>
+                    <td colspan="2">
+                        <p>
+                            <label>Brief Reason</label>
+                            <obs conceptId="99387" />
+                        </p>
+                    </td>
+
+                </tr>
+
+            </table>
+        </fieldset>
+         <section>
+                <submit />
+            </section>
+    </fieldset>
+    </div>
+</htmlform>
