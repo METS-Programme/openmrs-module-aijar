@@ -47,7 +47,7 @@
 	</modules>
 
 	<properties>
-		<openMRSVersion>2.0.5</openMRSVersion>
+		<openMRSVersion>2.0.6</openMRSVersion>
 		<openmrsTestutilsVersion>1.3</openmrsTestutilsVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<webservices.restModuleVersion>2.21.0</webservices.restModuleVersion>
@@ -98,7 +98,7 @@
 		<reportingCompatibilityVersion>2.0.4</reportingCompatibilityVersion>
 		<reportingUIVersion>1.5.0</reportingUIVersion>
 		<serializationxstreamVersion>0.2.13</serializationxstreamVersion>
-		<uicommonsVersion>2.4.0</uicommonsVersion>
+		<uicommonsVersion>2.5.1</uicommonsVersion>
 		<uiframeworkVersion>3.13.0</uiframeworkVersion>
 		<uilibraryVersion>2.0.6</uilibraryVersion>
 		<ugandaemrfingerprintVersion>1.0.1</ugandaemrfingerprintVersion>
