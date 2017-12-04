@@ -1,0 +1,111 @@
+<htmlform formName="HMIS 053 Appointment Followup"
+          formDescription="Followup for the appoinment"
+          formEncounterType="dc551efc-024d-4c40-aeb8-2147c4033778"
+          formUuid="2641baf2-fcc7-4aeb-ad3c-51a02ec7e556"
+          formVersion="1.0"
+          formAddMetadata="yes"
+          formUILocation="patientDashboard.visitActions"
+          formOrder="10"
+          formIcon="icon-user"
+          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false"
+          formDisplayStyle="Standard"
+          formLabel="Appointment Followup">
+    <style type="text/css">
+        form#htmlform div.ai-page-frame table>tbody tr:nth-child(odd) td {
+        background: #eeeeee;
+        }
+
+        form#htmlform div.ai-page-frame table>tbody tr:nth-child(even) td {
+        background: #f9f9f9;
+        }
+
+        form#htmlform div.ai-page-frame fieldset#baby-information table {
+        margin: 0 0 5px 0;
+        }
+    </style>
+    <div class="ai-page-frame">
+        <div class="headers" style="text-align: center;">
+            <h3 style="background: #000000; padding: 10px;color:#07c1ae">HMIS 053 Appointment Book - Followup</h3>
+        </div>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td>
+                    <p>
+                        <label>Followup Date</label>
+                    </p>
+                </td>
+                <td>
+                        <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
+                        <span style="display: none;">
+                            <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
+                                               order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
+                        </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>
+                        <label>Type of Care</label>
+                    </p>
+                </td>
+                <td>
+                    <!-- TODO: Add a validation to ensure that a user does not click Pre-ART and ART at the same time -->
+                        <obs conceptId="160530" answerConceptId="160525" answerLabel="Pre ART" class="horizontal-layout-options"/><br/>
+                        <obs conceptId="160530" answerConceptId="160524" answerLabel="ART" class="horizontal-layout-options"/><br/>
+                        <obs conceptId="160530" answerConceptId="160526" answerLabel="HIV Exposed Infant" class="horizontal-layout-options"/><br/>
+                        <obs conceptId="160530" answerConceptId="160446" answerLabel="Antenatal Clinic (ANC)" class="horizontal-layout-options"/><br/>
+                        <obs conceptId="160530" answerConceptId="160529" answerLabel="Tuberculosis (TB)" class="horizontal-layout-options"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>
+                        <label>Followup Type</label>
+
+                    </p>
+                </td>
+            <td>
+                <obs conceptId="165000" answerConceptId="165001" answerLabel="SMS Message" class="horizontal-layout-options"/><br/>
+                <obs conceptId="165000" answerConceptId="165002" answerLabel="Phone Call" class="horizontal-layout-options"/><br/>
+                <obs conceptId="165000" answerConceptId="165003" answerLabel="Home Visit" class="horizontal-layout-options"/><br/>
+                <obs conceptId="165000" answerConceptId="5622" answerLabel="Other Specify:" commentFieldLabel="" class="horizontal-layout-options"/>
+            </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>
+                        <label>Outcome</label>
+
+
+                    </p>
+                </td>
+                <td>
+                    <obs conceptId="165004" answerConceptId="165005" answerLabel="SMS Message Not Delivered" class="horizontal-layout-options"/><br/>
+                    <obs conceptId="165004" answerConceptId="165006" answerLabel="SMS Message Received" class="horizontal-layout-options"/><br/>
+                    <obs conceptId="165004" answerConceptId="165007" answerLabel="Client Visit Rescheduled to " class="horizontal-layout-options"/><obs conceptId="165008"/> <br/>
+                    <obs conceptId="165004" answerConceptId="165009" answerLabel="Telephone off" class="horizontal-layout-options"/><br/>
+                    <obs conceptId="165004" answerConceptId="165010" answerLabel="Telephone not answered" class="horizontal-layout-options"/><br/>
+                    <obs conceptId="165004" answerConceptId="165011" answerLabel="Spoke with patient" class="horizontal-layout-options"/><br/>
+                    <obs conceptId="165004" answerConceptId="165012" answerLabel="Spoke with someone else" class="horizontal-layout-options"/><br/>
+                    <obs conceptId="165000" answerConceptId="5622" answerLabel="Other Specify:" commentFieldLabel="" class="horizontal-layout-options"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>
+                        <label>Next Step</label>
+
+                    </p>
+                </td>
+                <td>
+                    <obs conceptId="165013" answerConceptId="165014" answerLabel="Call Treatment Supporter" class="horizontal-layout-options"/><br/>
+                    <obs conceptId="165013" answerConceptId="165015" answerLabel="Try to followup patient again on " class="horizontal-layout-options"/><obs conceptId="165016"/><br/>
+                    <obs conceptId="165013" answerConceptId="165003" answerLabel="Home visit on" class="horizontal-layout-options"/><obs conceptId="165017"/><br/>
+                </td>
+            </tr>
+        </table>
+        <section>
+            <submit/>
+        </section>
+    </div>
+</htmlform>
