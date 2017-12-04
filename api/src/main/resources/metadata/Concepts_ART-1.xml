@@ -76,6 +76,10 @@
     <concept  concept_id="164982"  retired="0" datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2017-10-03 07:00:16" version="NULL" changed_by="1"  date_changed="2017-10-03 07:00:16" uuid="164982AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
     <concept  concept_id="164981"  retired="0" datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2017-10-03 06:59:42" version="NULL" changed_by="1"  date_changed="2017-10-03 06:59:42" uuid="164981AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
     <concept  concept_id="164985"  retired="0" datatype_id="3"  class_id="5"  is_set="0"  creator="1"  date_created="2017-10-13 15:50:22"  version="NULL"  changed_by="1" date_changed="2017-10-13 15:50:22" uuid="164985AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+    <concept  concept_id="164989"  retired="0"  datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2017-11-23 12:46:38"  version="1.0"  changed_by="1"  date_changed="2017-11-23 12:46:38" uuid="164989AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+    <concept  concept_id="164988"  retired="0"  datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2017-11-23 12:45:43"  version="1.0"  changed_by="1"  date_changed="2017-11-23 12:45:43" uuid="164988AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+    <concept  concept_id="164987"  retired="0"  datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2017-11-23 12:44:15"  version="1.0"  changed_by="1"  date_changed="2017-11-23 12:44:15" uuid="164987AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+    <concept  concept_id="164986"  retired="0"  datatype_id="3"  class_id="5"  is_set="0"  creator="1"  date_created="2017-11-23 12:42:49"  version="1.0"  changed_by="1"  date_changed="2017-11-23 12:44:05" uuid="164986AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
 
     <concept_name concept_id="163150" name="Date viral load results received at health center" locale="en" creator="1" date_created="2016-10-17 19:36:28" concept_name_id="135969" voided="false"  uuid="1135969BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
     <concept_name concept_id="163151" name="Intensive adherence counseling initiation set" locale="en" creator="1" date_created="2016-10-17 19:36:28" concept_name_id="135970" voided="false"  uuid="135970BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
@@ -203,6 +207,10 @@
     <concept_name  concept_name_id="159981"  concept_id="164981"  name="Mother baby pair department"  locale="en"  locale_preferred="0"  creator="1"  date_created="2017-10-03 06:59:42" voided="0" uuid="159981BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
     <concept_name  concept_name_id="159989"  concept_id="164985"  name="HTS Reg No."  locale="en"  locale_preferred="0"  creator="1"  date_created="2017-10-13 15:50:22"  concept_name_type="SHORT"  voided="0" uuid="159989BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
     <concept_name  concept_name_id="159990"  concept_id="164985"  name="HTS Registration Number"  locale="en"  locale_preferred="1"  creator="1"  date_created="2017-10-13 15:50:22"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="159990BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
+    <concept_name  concept_name_id="159994"  concept_id="164989"  name="HIVDR Sample Collected"  locale="en"  locale_preferred="1"  creator="1"  date_created="2017-11-23 12:46:38"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="159994BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
+    <concept_name  concept_name_id="159993"  concept_id="164988"  name="Restarted IAC"  locale="en"  locale_preferred="1"  creator="1"  date_created="2017-11-23 12:45:43"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="159993BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
+    <concept_name  concept_name_id="159992"  concept_id="164987"  name="Serum Crag Screening"  locale="en"  locale_preferred="1"  creator="1"  date_created="2017-11-23 12:44:15"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="159992BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
+    <concept_name  concept_name_id="159991"  concept_id="164986"  name="Serum Crag Screening Result"  locale="en"  locale_preferred="1"  creator="1"  date_created="2017-11-23 12:44:05"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="159991BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
 
     <concept_set concept_set_id="2173" concept_id="163154" concept_set="163153" sort_weight="1.0" creator="1" date_created="2016-07-28 13:26:18.0" uuid="2172AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>
     <concept_set concept_set_id="2174" concept_id="163155" concept_set="163153" sort_weight="2.0" creator="1" date_created="2016-07-28 13:26:18.0" uuid="2173AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>
@@ -216,6 +224,9 @@
     <concept_set concept_set_id="2182" concept_id="90315" concept_set="163169" sort_weight="2.0" creator="1" date_created="2016-07-28 13:26:18.0" uuid="2181AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>
     <concept_set concept_set_id="2183" concept_id="163172" concept_set="163169" sort_weight="2.0" creator="1" date_created="2016-07-28 13:26:18.0" uuid="2182AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>
     <concept_set concept_set_id="2184" concept_id="1305" concept_set="163157" sort_weight="2.0" creator="1" date_created="2016-07-28 13:26:18.0" uuid="2184AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>
+    <concept_set concept_set_id="2404" concept_id="1305" concept_set="163151" sort_weight="2.0"  creator="52"  date_created="2017-11-14 13:07:48"  uuid="2404AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>
+    <concept_set  concept_set_id="2405"  concept_id="1305"  concept_set="163151"  sort_weight="2"  creator="1"  date_created="2017-11-23 13:11:12"  uuid="10da49c3-a1bc-4ca2-b4c2-c67ffedcfc34"/>
+    <concept_set  concept_set_id="2404"  concept_id="163023"  concept_set="163157"  sort_weight="3"  creator="1"  date_created="2017-11-23 12:49:27"  uuid="e293fdc0-cefd-47e6-ad40-4fc0d8558535"/>
 
     <concept_answer concept_answer_id="5638" concept_id="163166" answer_concept="163160" creator="1" date_created="2009-07-14 11:31:52.0" uuid="5638CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" sort_weight="1908.0"/>
     <concept_answer concept_answer_id="5639" concept_id="163166" answer_concept="163161" creator="1" date_created="2009-07-14 11:31:52.0" uuid="5639CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" sort_weight="1908.0"/>
@@ -264,6 +275,13 @@
     <concept_answer  concept_answer_id="6848"  concept_id="162925"  answer_concept="164983" creator="1"  date_created="2017-10-03 07:34:41"  sort_weight="9"  uuid="c8d298f0-fed8-4bbe-8d56-46a335e34474"/>
     <concept_answer  concept_answer_id="6851"  concept_id="162925"  answer_concept="160542" creator="1"  date_created="2017-10-03 07:34:41"  sort_weight="12"  uuid="9c9442c5-835b-4298-a21e-2e96c969a9b2"/>
     <concept_answer  concept_answer_id="6852"  concept_id="162925"  answer_concept="160473" creator="1"  date_created="2017-10-03 07:34:41"  sort_weight="13"  uuid="a6e08637-aaf6-47b7-92ea-076b02800362"/>
+    <concept_answer  concept_answer_id="6859"  concept_id="164989"  answer_concept="1065" creator="1"  date_created="2017-11-23 12:46:38"  sort_weight="1"  uuid="6859CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"/>
+    <concept_answer  concept_answer_id="6860"  concept_id="164989"  answer_concept="1066" creator="1"  date_created="2017-11-23 12:46:38"  sort_weight="2"  uuid="6860CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"/>
+    <concept_answer  concept_answer_id="6857"  concept_id="164988"  answer_concept="1065" creator="1"  date_created="2017-11-23 12:45:43"  sort_weight="1"  uuid="6857CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"/>
+    <concept_answer  concept_answer_id="6858"  concept_id="164988"  answer_concept="1066" creator="1"  date_created="2017-11-23 12:45:43"  sort_weight="2"  uuid="6858CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"/>
+    <concept_answer  concept_answer_id="6855"  concept_id="164987"  answer_concept="1066" creator="1"  date_created="2017-11-23 12:44:15"  sort_weight="2"  uuid="6855CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"/>
+    <concept_answer  concept_answer_id="6856"  concept_id="164987"  answer_concept="1065" creator="1"  date_created="2017-11-23 12:44:15"  sort_weight="1"  uuid="6856CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"/>
+
 
     <concept_description  concept_description_id="16685"  concept_id="160288"  description="A coded list of reasons for patient appointment or visit to a health provider."  locale="en"  creator="1"  date_created="2012-03-05 07:39:06"  changed_by="1"  date_changed="2016-08-22 18:42:17"  uuid="16685FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"/>
     <concept_description  concept_description_id="18331"  concept_id="164975"  description="Other Reason for patient appointment"  locale="en"  creator="1"  date_created="2017-08-15 07:38:03" uuid="e6723bf3-0a40-40f5-80cb-332908d7388f"/>
