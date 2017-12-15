@@ -36,5 +36,13 @@ public class UgandaEMRPatientFlagMetadataBundle extends PatientFlagMetadataBundl
         install(Flags.UPCOMING_APPOINTMENT);
         install(Flags.PATIENT_LOST);
         install(Flags.PATIENT_LOST_TO_FOLLOWUP);
+        install(Flags.DUE_FOR_ROUTINE_VIRAL_LOAD);
+        install(Flags.OVERDUE_FOR_ROUTINE_VIRAL_LOAD);
+        install(Flags.DUE_FOR_FIRST_DNA_PCR);
+        install(Flags.OVERDUE_FOR_FIRST_DNA_PCR);
+        install(Flags.DUE_FOR_SECOND_DNA_PCR);
+        install(Flags.OVERDUE_FOR_SECOND_DNA_PCR);
+        install(Flags.DUE_FOR_RAPID_TEST);
+        install(Flags.OVERDUE_FOR_RAPID_TEST);
     }
 }
