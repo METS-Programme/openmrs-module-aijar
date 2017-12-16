@@ -52,104 +52,123 @@
             border-radius:5px;
         }
 
+        label {
+
+        }
+
     </style>
     <script type="text/javascript">
         jQuery(document).ready(function(jq) {
-        //Adding new form
-        var $allTables,
-        $allRows,
-        $otherRows,
-        $firstRow,
-        $thisRow,
-        $nextRow,
-        $hiddenRows,
-        $lastVisibleRow,
-        $nonEmptyBoxes;
+            //Adding new form
+            var $allTables,
+            $allRows,
+            $otherRows,
+            $firstRow,
+            $thisRow,
+            $nextRow,
+            $hiddenRows,
+            $lastVisibleRow,
+            $nonEmptyBoxes;
 
-        var showAddButtonForLastVisibleRow = function($container) {
-        $lastVisibleRow = $container.find('tr:visible:last');
-        $lastVisibleRow.find('.add').show();
-        };
+            var showAddButtonForLastVisibleRow = function($container) {
+                $lastVisibleRow = $container.find('tr:visible:last');
+                $lastVisibleRow.find('.add').show();
+            };
 
-        $firstRow = jq('table.multi tbody tr:first-of-type');
-        $otherRows = jq('table.multi tbody tr:not(:first-of-type)');
+            $firstRow = jq('table.multi tbody tr:first-of-type');
+            $otherRows = jq('table.multi tbody tr:not(:first-of-type)');
 
-        <ifMode mode="ENTER">
-            $otherRows.hide(); //Hide all rows apart from first row if adding new form
-            $firstRow.find('.remove').hide(); //Hide the remove button from the first row
-        </ifMode>
+            <ifMode mode="ENTER">
+                $otherRows.hide(); //Hide all rows apart from first row if adding new form
+                $firstRow.find('.remove').hide(); //Hide the remove button from the first row
+            </ifMode>
 
-        <ifMode mode="EDIT">
-            //Handle loading of existing obs
-            $allTables = jq('table.multi');
-            $allTables.each(function() {
-            $allRows = jq(this).find('tbody &gt; tr');
-            $allRows.hide();
-            $nonEmptyBoxes = jq(this).find('input').filter(function() {
-            return this.value.length &gt; 0;
+            <ifMode mode="EDIT">
+                //Handle loading of existing obs
+                $allTables = jq('table.multi');
+                $allTables.each(function() {
+                $allRows = jq(this).find('tbody &gt; tr');
+                $allRows.hide();
+                $nonEmptyBoxes = jq(this).find('input').filter(function() {
+                    return this.value.length &gt; 0;
+                });
+
+                if ($nonEmptyBoxes.length &gt; 0 ) {
+                    $nonEmptyBoxes.each(function() {
+                        $thisRow = jq(this).parents('tr:first');
+                        $thisRow.show();
+                        if ($thisRow.is($firstRow)) {
+                            $firstRow.find('.remove').hide();
+                        }
+                    });
+
+                    if ($nonEmptyBoxes.length == 1) {
+                        $nonEmptyBoxes.parents('tr:first').find('.remove').hide(); //Hide the remove button if there is only one visible row
+                    }
+                } else {
+                    $firstRow.show();
+                    $firstRow.find('.remove').hide();
+                }
+                });
+            </ifMode>
+
+            jq('.add').click(function(e) { //Handle add button event
+                e.preventDefault();
+                $thisRow = jq(this).parents('tr:first');
+                $nextRow = $thisRow.next();
+
+                if ($nextRow.length &gt; 0) {
+                    $nextRow.show('slow');
+                    $thisRow.find('.add').hide();
+                }
+                showAddButtonForLastVisibleRow($thisRow.parents('table:first'));
             });
 
-            if ($nonEmptyBoxes.length &gt; 0 ) {
-            $nonEmptyBoxes.each(function() {
-            $thisRow = jq(this).parents('tr:first');
-            $thisRow.show();
-            if ($thisRow.is($firstRow)) {
-            $firstRow.find('.remove').hide();
-            }
+            jq('.remove').click(function(e) { //Handle remove button event
+                e.preventDefault();
+                $thisRow = jq(this).parents('tr:first');
+                if (confirm('Are you sure you want to remove this record? All fields for this record will be cleared.') == 1) {
+                    $thisRow = jq(this).parents('tr:first');
+                    $thisRow.hide('slow', function() {
+                        showAddButtonForLastVisibleRow($thisRow.parents('table:first'));
+                        fieldHelper.clearAllFields($thisRow);
+                    });
+                }
             });
 
-            if ($nonEmptyBoxes.length == 1) {
-            $nonEmptyBoxes.parents('tr:first').find('.remove').hide(); //Hide the remove button if there is only one visible row
-            }
+            // Disallow an entry from being selected twice in the autocomplete multiple entry sections
+            jq(".autoCompleteText").on( "autocompleteselect", function( event, ui ) {
+
+                var $similarSelections = jq(this).parents('table:first').find('input.autoCompleteText:visible[type=text]').filter(function() {
+                return (jq(this).val() == ui.item.label);
+            });
+
+            if ($similarSelections.length &gt; 0 ) {
+                alert('The entry \'' + ui.item.label + '\' has already been selected');
+                return false;
             } else {
-            $firstRow.show();
-            $firstRow.find('.remove').hide();
+                return true;
             }
             });
-        </ifMode>
 
-        jq('.add').click(function(e) { //Handle add button event
-        e.preventDefault();
-        $thisRow = jq(this).parents('tr:first');
-        $nextRow = $thisRow.next();
-
-        if ($nextRow.length &gt; 0) {
-        $nextRow.show('slow');
-        $thisRow.find('.add').hide();
-        }
-        showAddButtonForLastVisibleRow($thisRow.parents('table:first'));
-        });
-
-        jq('.remove').click(function(e) { //Handle remove button event
-        e.preventDefault();
-        $thisRow = jq(this).parents('tr:first');
-        if (confirm('Are you sure you want to remove this record? All fields for this record will be cleared.') == 1) {
-        $thisRow = jq(this).parents('tr:first');
-        $thisRow.hide('slow', function() {
-        showAddButtonForLastVisibleRow($thisRow.parents('table:first'));
-        fieldHelper.clearAllFields($thisRow);
-        });
-        }
-        });
-
-        // Disallow an entry from being selected twice in the autocomplete multiple entry sections
-        jq(".autoCompleteText").on( "autocompleteselect", function( event, ui ) {
-
-        var $similarSelections = jq(this).parents('table:first').find('input.autoCompleteText:visible[type=text]').filter(function() {
-        return (jq(this).val() == ui.item.label);
-        });
-
-        if ($similarSelections.length &gt; 0 ) {
-        alert('The entry \'' + ui.item.label + '\' has already been selected');
-        return false;
-        } else {
-        return true;
-        }
-        });
-
+            //Show/hide oedema status at enrollment
+            jq('#sam-with-oedema').children('input').each(function(){
+                fieldHelper.disable(jq(this));
+            });
+            jq('#status-at-enrollment').change(function(){
+                if (getValue('status-at-enrollment.value') == 99273){
+                    jq('#sam-with-oedema').children('input').each(function(){
+                    fieldHelper.enable(jq(this));
+                    });
+                }else{
+                    jq('#sam-with-oedema').children('input').each(function(){
+                        fieldHelper.disable(jq(this));
+                    });
+                }
+            });
         });
     </script>
-    <!-- Beging of HTML Form -->
+    <!-- Beginning of HTML Form -->
     <div class="ai-page-frame">
         <div class="headers" style="text-align: center;">
             <h3 style="background: #D5D8DC; padding: 10px;">Integrated Nutrition Form</h3>
@@ -167,6 +186,7 @@
                     <td>
                         <p>
                             <label>Client Number</label>
+                            <obs conceptId="165027"/>
                         </p>
                     </td>
                     <td>
@@ -189,6 +209,7 @@
                     <td>
                         <p>
                             <label>Next of kin contact</label>
+                            <obs conceptId="165052"/>
                         </p>
                     </td>
                 </tr>
@@ -197,10 +218,10 @@
                     <td>
                         <p>
                             <label>Infant feeding practices</label>
-                            <obs 	conceptId="1151"
-                                    answerConceptIds="5526,99089,6046"
-                                    answerLabels=
-                                            "Exclusive Breastfeeding - EB,Replacement Feeding - RF,Mixed feeding - MF" style="dropdown" />
+                            <obs conceptId="1151"
+                                    answerConceptIds="5526,99089,6046,159854,1152"
+                                    answerLabels="Exclusive Breastfeeding - EB,Replacement Feeding - RF,
+                                    Mixed feeding - MF,Complementary Feeding - CF, Nolonger Breast Feeding - NLB" style="dropdown" />
                         </p>
                     </td>
 
@@ -214,11 +235,21 @@
                         <p>
                             <label>Type of Admission</label>
                         </p>
+                        <p style="clear:left;">
+                            <obs conceptId="165044"
+                                 answerConceptIds="165043,165042"
+                                 answerLabels="New Admission,Re-Admission" style="radio" />
+                        </p>
                     </td>
 
                     <td>
                         <p>
                             <label>Type of Nutrition Management</label>
+                        </p>
+                        <p style="clear:left;">
+                            <obs conceptId="165040"
+                                 answerConceptIds="90018,90013,165041"
+                                 answerLabels="ITC,OTC,SFP" style="radio" />
                         </p>
                     </td>
 
@@ -228,11 +259,32 @@
                         <p>
                             <label>Entry Care Point</label>
                         </p>
+                        <p style="clear:left;">
+                            <obs conceptId="164993"
+                                 answerConceptIds="99593,165046,165047,165048,99323"
+                                 answerLabels="Young Child Clinic - YCC, Postnatal Clinic - PNC,
+                                 AntiRetro Viral Treatment Clinic - ART,Tuberculosis Clinic - TB,
+                                 Referral by Community Health Worker - CHW" style="dropdown" />
+                        </p>
                     </td>
                     <td>
                         <p>
                             <label>Nutrition Status At Enrollment</label>
                         </p>
+                        <p style="clear:left;">
+                            <obs id="status-at-enrollment" conceptId="165050"
+                                 answerConceptIds="99271,99272,99273"
+                                 answerLabels="Moderate Acute Malnutrition - MAM,SAM without Oedema,
+                                 SAM with Oedema" style="dropdown" />
+                        </p>
+                        <div style="clear:left;">
+                            <label>Oedema Status</label>
+                            <p style="clear:left;">
+                                <obs id="sam-with-oedema" conceptId="165039"
+                                     answerConceptIds="165036,165037,165038"
+                                     answerLabels="Oedema +,Oedema ++,Oedema +++" style="radio" />
+                            </p>
+                        </div>
                     </td>
 
                     <td>
@@ -240,13 +292,18 @@
                             <label>HIV Status At Enrolment</label>
                             <obs conceptId="90253"
                             answerConceptIds="90166,90167,90001,99087"
-                            answerLabels="Pos,Neg,Unknown,Exposed" style="dropdown" />
+                            answerLabels="Positive - Pos,Negative - Neg,Unknown,Exposed" style="dropdown" />
                         </p>
                     </td>
 
                     <td>
                         <p>
                             <label>ART Services At Enrolment</label>
+                        </p>
+                        <p style="clear:left">
+                            <obs conceptId="165049"
+                                 answerConceptIds="99415,99055"
+                                 answerLabels="ART,Pre_ART" style="radio" />
                         </p>
                     </td>
 
@@ -262,11 +319,17 @@
                         <td>
                             <p>
                                 <label>Visit Date</label>
+                                <obs conceptId="165068" allowFutureDates="false"/>
                             </p>
                         </td>
                         <td>
                             <p>
                                 <label>Oedema</label>
+                            </p>
+                            <p style="clear:left;">
+                                <obs id="sam-with-oedema" conceptId="165039"
+                                     answerConceptIds="165036,165037,165038"
+                                     answerLabels="+ ,++ ,+++" style="radio" />
                             </p>
                         </td>
                         <td>
@@ -286,32 +349,32 @@
                         <td>
                             <p>
                                 <label>M.U.A.C (cm)</label>
-                                <obs conceptId="1343AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="muac-quantitative" />
+                                <obs conceptId="1343" id="muac-quantitative" />
                             </p>
                         </td>
                         <td>
                             <p>
-                                <label>M.U.A.C</label>
+                                <label>M.U.A.C Colour Code</label>
                                 <includeIf velocityTest="$patient.age &lt; 5">
                                     <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
                                          answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
-                                         answerLabels="Red &lt; 11.5cm, Yellow 11.5cm - &lt;12.5cm,Green &gt;= 12.5cm" id="muac-qualitative" />
+                                         answerLabels="Red (R) &lt; 11.5cm, Yellow (Y) 11.5cm - &lt;12.5cm,Green (G) &gt;= 12.5cm" id="muac-qualitative" />
                                 </includeIf>
                                 <includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
                                     <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
                                          answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
-                                         answerLabels="Red &lt; 13.5cm,Yellow 13.5cm - &lt;14.5cm,Green &gt;=14.5cm" id="muac-qualitative" />
+                                         answerLabels="Red (R) &lt; 13.5cm,Yellow (Y) 13.5cm - &lt;14.5cm,Green (G) &gt;=14.5cm" id="muac-qualitative" />
                                 </includeIf>
                                 <includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
                                     <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
                                          answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
-                                         answerLabels="Red &lt; 16.5cm, Yellow 16.5cm - &lt;19.0cm,Green &gt;=19.0cm" id="muac-qualitative" />
+                                         answerLabels="Red (R) &lt; 16.5cm, Yellow (Y) 16.5cm - &lt;19.0cm,Green (G) &gt;=19.0cm" id="muac-qualitative" />
                                 </includeIf>
 
                                 <includeIf velocityTest="$patient.age &gt;=18">
                                     <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
                                          answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
-                                         answerLabels="Red &lt;19.0cm , Yellow 19.0cm - &lt;22.0cm,Green &gt;=22.0cm" id="muac-qualitative" />
+                                         answerLabels="Red (R) &lt;19.0cm , Yellow (Y) 19.0cm - &lt;22.0cm,Green (G) &gt;=22.0cm" id="muac-qualitative" />
                                 </includeIf>
                             </p>
                         </td>
@@ -320,7 +383,12 @@
                     <tr>
                         <td>
                             <p>
-                                <label>Z-Score : </label>
+                                <label>Weight for Height/Length Z-Score : </label>
+                            </p>
+                            <p style="clear:left;">
+                                <obs conceptId="165062"
+                                     answerConceptIds="1115,99271,99272"
+                                     answerLabels="Normal - N,MAM,SAM" style="radio" />
                             </p>
                         </td>
 
@@ -328,10 +396,40 @@
                             <p>
                                 <label>Therapeutic/Supplementary Feeds </label>
                             </p>
+                            <div style="clear:left;">
+                                <div style="float:left;clear:none">
+                                    <obs conceptId="165060"
+                                         answerConceptId="165054"
+                                         answerLabel="Ready To Use Therapeutic Food - RUTF" style="checkbox" />
+                                    <p style="clear:left;">
+                                        <obs conceptId="165060"
+                                             answerConceptId="165058"
+                                             answerLabel="Fortified Blended Foods - FBF" style="checkbox" />
+                                    </p>
+                                    <p style="clear:left;">
+                                        <obs conceptId="165060"
+                                             answerConceptId="165055"
+                                             answerLabel="F75" style="checkbox" />
+                                        <obs conceptId="165060"
+                                             answerConceptId="165056"
+                                             answerLabel="F100" style="checkbox" />
+                                        <obs conceptId="165060"
+                                             answerConceptId="165057"
+                                             answerLabel="ReSoMal" style="checkbox" />
+                                    </p>
+                                </div>
+                            </div>
                         </td>
                         <td>
                             <p>
                                 <label>Counseling Code </label>
+                                <p style="clear:left;">
+                                    <obs conceptId="165064"
+                                         answerConceptIds="99053,99749,165065,5488,90002"
+                                         answerLabels="2 - Therapeutic Foods,3 - Infant &amp; Young Child Feeding (IYCF)
+                                         ,4 - Water; Hygiene &amp; Sanitation (WASH),5 - ART Adherence,
+                                         6 - Others" style="dropdown" />
+                                </p>
                             </p>
                         </td>
                     </tr>
@@ -343,54 +441,66 @@
                     <tbody>
                         <repeat>
                             <template>
-                                <obsgroup groupingConceptId="160741">
+                                <obsgroup groupingConceptId="165069">
                                     <tr>
-                                        <td style="width:5% !important">#{id}</td>
+                                        <td style="width:3% !important">#{id}</td>
                                         <td>
                                             <p>
                                                 <label>Appointment Date</label>
+                                                <obs conceptId="5096" allowFutureDates="true"/>
                                             </p>
                                             <p style="clear:left">
                                                 <label>M.U.A.C (cm)</label>
-                                                <obs conceptId="1343AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="muac-quantitative" />
+                                                <obs conceptId="1343" />
                                             </p>
                                         </td>
                                         <td>
                                             <p>
                                                 <label>Visit Date</label>
+                                                <obs conceptId="165068" allowFutureDates="false"/>
                                             </p>
                                             <p style="clear:left">
-                                                <label>M.U.A.C</label>
+                                                <label>M.U.A.C Colour Code</label>
                                                 <includeIf velocityTest="$patient.age &lt; 5">
                                                     <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
                                                          answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
-                                                         answerLabels="Red &lt; 11.5cm, Yellow 11.5cm - &lt;12.5cm,Green &gt;= 12.5cm" id="muac-qualitative" />
+                                                         answerLabels="Red (R) &lt; 11.5cm, Yellow (Y) 11.5cm - &lt;12.5cm,Green (G) &gt;= 12.5cm" id="muac-qualitative" />
                                                 </includeIf>
                                                 <includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
                                                     <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
                                                          answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
-                                                         answerLabels="Red &lt; 13.5cm,Yellow 13.5cm - &lt;14.5cm,Green &gt;=14.5cm" id="muac-qualitative" />
+                                                         answerLabels="Red (R) &lt; 13.5cm,Yellow (Y) 13.5cm - &lt;14.5cm,Green (G) &gt;=14.5cm" id="muac-qualitative" />
                                                 </includeIf>
                                                 <includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
                                                     <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
                                                          answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
-                                                         answerLabels="Red &lt; 16.5cm, Yellow 16.5cm - &lt;19.0cm,Green &gt;=19.0cm" id="muac-qualitative" />
+                                                         answerLabels="Red (R) &lt; 16.5cm, Yellow (Y) 16.5cm - &lt;19.0cm,Green (G) &gt;=19.0cm" id="muac-qualitative" />
                                                 </includeIf>
 
                                                 <includeIf velocityTest="$patient.age &gt;=18">
                                                     <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
                                                          answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
-                                                         answerLabels="Red &lt;19.0cm , Yellow 19.0cm - &lt;22.0cm,Green &gt;=22.0cm" id="muac-qualitative" />
+                                                         answerLabels="Red (R) &lt;19.0cm , Yellow (Y) 19.0cm - &lt;22.0cm,Green (G) &gt;=22.0cm" id="muac-qualitative" />
                                                 </includeIf>
                                             </p>
 
                                         </td>
                                         <td>
                                             <p>
-                                                <label>Oedema</label>
+                                                <label>Oedema : </label>
                                             </p>
-                                            <p style="clear:left">
-                                                <label>Z-Score : </label>
+                                            <p style="clear:left;">
+                                                <obs id="sam-with-oedema" conceptId="165039"
+                                                     answerConceptIds="165036,165037,165038"
+                                                     answerLabels="+ ,++ ,+++" style="radio" />
+                                            </p>
+                                            <p style="clear:left;">
+                                                <label>Weight for Height/Length Z-Score : </label>
+                                            </p>
+                                            <p style="clear:left;">
+                                                <obs conceptId="165062"
+                                                     answerConceptIds="1115,99271,99272"
+                                                     answerLabels="Normal - N,MAM,SAM" style="radio" />
                                             </p>
                                         </td>
                                         <td>
@@ -398,17 +508,48 @@
                                                 <label>Weight (Kg)</label>
                                                 <obs conceptId="5089"/>
                                             </p>
-                                            <p style="clear:left">
+                                            <p style="clear:left;">
                                                 <label>Therapeutic/Supplementary Feeds </label>
                                             </p>
+                                            <div style="clear:left;">
+                                                <div style="float:left;clear:none">
+                                                    <obs conceptId="165060"
+                                                         answerConceptId="165054"
+                                                         answerLabel="RUTF" style="checkbox" />
+                                                    <p style="clear:left;">
+                                                        <obs conceptId="165060"
+                                                             answerConceptId="165058"
+                                                             answerLabel="Fortified Blended Foods - FBF" style="checkbox" />
+                                                    </p>
+                                                    <p style="clear:left;">
+                                                        <obs conceptId="165060"
+                                                             answerConceptId="165055"
+                                                             answerLabel="F75" style="checkbox" />
+                                                        <obs conceptId="165060"
+                                                             answerConceptId="165056"
+                                                             answerLabel="F100" style="checkbox" />
+                                                        <obs conceptId="165060"
+                                                             answerConceptId="165057"
+                                                             answerLabel="ReSoMal" style="checkbox" />
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </td>
                                         <td>
-                                            <p class="list-unstyled">
+                                            <p>
                                                 <label>Height (cm)</label>
                                                 <obs conceptId="5090"/>
                                             </p>
                                             <p style="clear:left">
                                                 <label>Counseling Code </label>
+                                            </p>
+                                            <p style="clear:left;">
+                                                <obs conceptId="165064"
+                                                     answerConceptIds="99053,99749,165065,5488,90002"
+                                                     answerLabels="2 - Therapeutic Foods,
+                                                     3 - Infant &amp; Young Child Feeding (IYCF)
+                                                     ,4 - Water; Hygiene &amp; Sanitation (WASH),5 - ART Adherence,
+                                                     6 - Others" style="dropdown" />
                                             </p>
 
                                         </td>
@@ -429,8 +570,6 @@
                             <render id="6"/>
                             <render id="7"/>
                             <render id="8"/>
-                            <render id="9"/>
-                            <render id="10"/>
                         </repeat>
                     </tbody>
                 </table>
@@ -442,6 +581,11 @@
                         <td>
                             <p>
                                 <label>Oedema</label>
+                                <p style="clear:left;">
+                                    <obs id="sam-with-oedema" conceptId="165039"
+                                         answerConceptIds="165036,165037,165038"
+                                         answerLabels="+ ,++ ,+++" style="radio" />
+                                </p>
                             </p>
                         </td>
                         <td>
@@ -460,7 +604,7 @@
                         <td>
                             <p>
                                 <label>M.U.A.C (cm)</label>
-                                <obs conceptId="1343AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="muac-quantitative" />
+                                <obs conceptId="1343" />
                             </p>
                         </td>
 
@@ -468,44 +612,79 @@
                     <tr>
                         <td>
                             <p>
-                                <label>M.U.A.C</label>
+                                <label>M.U.A.C Colour Code</label>
                                 <includeIf velocityTest="$patient.age &lt; 5">
                                     <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
                                          answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
-                                         answerLabels="Red &lt; 11.5cm, Yellow 11.5cm - &lt;12.5cm,Green &gt;= 12.5cm" id="muac-qualitative" />
+                                         answerLabels="Red (R) &lt; 11.5cm, Yellow (Y) 11.5cm - &lt;12.5cm,Green (G) &gt;= 12.5cm" id="muac-qualitative" />
                                 </includeIf>
                                 <includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
                                     <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
                                          answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
-                                         answerLabels="Red &lt; 13.5cm,Yellow 13.5cm - &lt;14.5cm,Green &gt;=14.5cm" id="muac-qualitative" />
+                                         answerLabels="Red (R) &lt; 13.5cm,Yellow (Y) 13.5cm - &lt;14.5cm,Green (G) &gt;=14.5cm" id="muac-qualitative" />
                                 </includeIf>
                                 <includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
                                     <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
                                          answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
-                                         answerLabels="Red &lt; 16.5cm, Yellow 16.5cm - &lt;19.0cm,Green &gt;=19.0cm" id="muac-qualitative" />
+                                         answerLabels="Red (R) &lt; 16.5cm, Yellow (Y) 16.5cm - &lt;19.0cm,Green (G) &gt;=19.0cm" id="muac-qualitative" />
                                 </includeIf>
 
                                 <includeIf velocityTest="$patient.age &gt;=18">
                                     <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
                                          answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
-                                         answerLabels="Red &lt;19.0cm , Yellow 19.0cm - &lt;22.0cm,Green &gt;=22.0cm" id="muac-qualitative" />
+                                         answerLabels="Red (R) &lt;19.0cm , Yellow (Y) 19.0cm - &lt;22.0cm,Green (G) &gt;=22.0cm" id="muac-qualitative" />
                                 </includeIf>
                             </p>
                         </td>
                         <td>
                             <p>
-                                <label>Z-Score : </label>
+                                <label>Weight for Height/Length Z-Score : </label>
                             </p>
-                        </td>
-                        <td>
-                            <p>
-                                <label>Date Of Exit</label>
+                            <p style="clear:left;">
+                                <obs conceptId="165062"
+                                     answerConceptIds="1115,99271,99272"
+                                     answerLabels="Normal - N,MAM,SAM" style="radio" />
                             </p>
                         </td>
 
                         <td>
                             <p>
-                                <label>Exit Outcome </label>
+                                <label>Therapeutic/Supplementary Feeds </label>
+                            </p>
+                            <div style="clear:left;">
+                                <div style="float:left;clear:none">
+                                    <obs conceptId="165060"
+                                         answerConceptId="165054"
+                                         answerLabel="Ready To Use Therapeutic Food - RUTF" style="checkbox" />
+                                    <p style="clear:left;">
+                                        <obs conceptId="165060"
+                                             answerConceptId="165058"
+                                             answerLabel="Fortified Blended Foods - FBF" style="checkbox" />
+                                    </p>
+                                    <p style="clear:left;">
+                                        <obs conceptId="165060"
+                                             answerConceptId="165055"
+                                             answerLabel="F75" style="checkbox" />
+                                        <obs conceptId="165060"
+                                             answerConceptId="165056"
+                                             answerLabel="F100" style="checkbox" />
+                                        <obs conceptId="165060"
+                                             answerConceptId="165057"
+                                             answerLabel="ReSoMal" style="checkbox" />
+                                    </p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <p>
+                                <label>Counseling Code </label>
+                                <p style="clear:left;">
+                                    <obs conceptId="165064"
+                                         answerConceptIds="99053,99749,165065,5488,90002"
+                                         answerLabels="2 - Therapeutic Foods,3 - Infant &amp; Young Child Feeding (IYCF)
+                                         ,4 - Water; Hygiene &amp; Sanitation (WASH),5 - ART Adherence,
+                                         6 - Others" style="dropdown" />
+                                </p>
                             </p>
                         </td>
                     </tr>
@@ -521,13 +700,18 @@
                     <td>
                         <p>
                             <label>M.U.A.C Cut-Off at Exit</label>
-                            <obs conceptId="1343AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="muac-quantitative" />
+                            <obs conceptId="1343" />
                         </p>
                     </td>
 
                     <td>
                         <p>
-                            <label>Z-Score : </label>
+                            <label>Weight for Height/Length Z-Score : </label>
+                        </p>
+                        <p style="clear:left;">
+                            <obs conceptId="165062"
+                                 answerConceptIds="1115,99271,99272"
+                                 answerLabels="Normal - N,MAM,SAM" style="radio" />
                         </p>
                     </td>
                 </tr>
@@ -539,7 +723,7 @@
                 <tr>
                     <td>
                         <p>
-                            <label>Date Of Exit</label>
+                            <label>Exit Date</label>
                         </p>
                     </td>
 
