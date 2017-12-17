@@ -53,10 +53,7 @@ formLabel="Child Form">
                     <td>
                         <p>
                             <label>Child No.</label>
-                            <obs conceptId="5090" />
-                        </p>
-                        <p>
-
+                            <obs conceptId="165028" required="true" />
                         </p>
                     </td>
                 </tr>
@@ -71,17 +68,13 @@ formLabel="Child Form">
                     <td>
                         <p>
                             <label>Mother's Name</label>
-                            <obs conceptId="5090" />
-                        </p>
-                        <p>
-                           
-
+                            <obs conceptId="1593" />
                         </p>
                     </td>
                     <td>
                         <p>
                             <label>Father's Name</label>
-                            <obs conceptId="5090" />
+                            <obs conceptId="1594" />
                           
                         </p>
                     </td>
@@ -97,10 +90,7 @@ formLabel="Child Form">
                     <td>
                         <p>
                             <label>Height(cm)</label>
-                        </p>
-                        <p>
                             <obs conceptId="5090" />
-
                         </p>
                     </td>
                     <td>
@@ -114,8 +104,8 @@ formLabel="Child Form">
                         		<label>M.U.A.C(cm)</label>
                         		<obs conceptId="1343" id="muac-quantitative" />
                         	</p>
-                </td> 
-                	                    <td>
+                    </td>
+                    <td>
 	                        <p>
                                 <label>M.U.A.C</label>
                                 <includeIf velocityTest="$patient.age &lt; 5">
@@ -141,26 +131,58 @@ formLabel="Child Form">
                                 </includeIf>
 
 	                        </p>
-	                    </td> 
+                    </td>
                 </tr>
                 <tr>
                 <td colspan="2">
-                <p>
-                <label>Weight for age Z score</label>
-                
-                </p>
-                <p>
-					 <obs conceptId="1854" answerConceptIds="1115, 99271, 99272"
+                    <p>
+                        <label>Weight for age Z score</label>
+                            <obs conceptId="1854" answerConceptIds="1115, 99271, 99272"
                                  answerLabels="N - Normal,MAM - Moderate Acute Malnutrition,SAM - Severe Acute Malnutrition"/>
- 				</p>
+                        </p>
                 </td>
 
                  <td colspan="2">
                         	<p>
                         		<label>INR No.</label>
-                        		<obs conceptId="b644c29c-9bb0-447e-9f73-2ae89496a709" id="inrNumber" />
+                        		<obs conceptId="165027" id="inrNumber" />
                         	</p>
                 </td>
+                </tr>
+            </table>
+        </fieldset>
+
+        <fieldset>
+
+            <legend>Protection At Birth (PAB) and LLIN Information </legend>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+
+                    <td>
+                        <p>
+                            <label>Protection At Birth (PAB)</label>
+                            <obs conceptId="164826" answerConceptIds="1065, 1066, 1067" answerLabels="Yes, No, Unknown" style="radio"
+                                 class="horizontal-layout-options"/>
+                        </p>
+
+                    </td>
+                    <td>
+                        <p>
+                            <label>Receieved LLIN </label>
+                            <obs conceptId="165025" answerConceptIds="1065, 1066" answerLabels="Yes, No" style="radio"
+                                 class="horizontal-layout-options" />
+
+                        </p>
+                    </td>
+
+                    <td>
+                        <p>
+                            <label>Date Receieved LLIN </label>
+                            <obs conceptId="165026" />
+
+                        </p>
+                    </td>
+
                 </tr>
             </table>
         </fieldset>
@@ -173,12 +195,9 @@ formLabel="Child Form">
                     <td colspan="4">
                         <p>
                             <label>Date BCG</label>
-                            <obs conceptId="5090" />
+                            <obs conceptId="165012"/>
                         </p>
-                        <p>
 
-
-                        </p>
                     </td>
     
                 </tr>
@@ -186,42 +205,28 @@ formLabel="Child Form">
                     <td>
                         <p>
                             <label>Date Polio 0</label>
-                            <obs conceptId="5090" />
+                            <obs conceptId="165006" answerConceptSetId="165010"   />
                         </p>
-                        <p>
 
-
-                        </p>
                     </td>
                     
                     <td>
                         <p>
                             <label>Date Polio 1</label>
-                            <obs conceptId="5090" />
-                        </p>
-                        <p>
-
-
+                            <obs conceptId="165006" answerConceptSetId="165007"  />
                         </p>
                     </td>
                     <td>
                         <p>
                             <label>Date Polio 2</label>
-                            <obs conceptId="5090" />
+                            <obs conceptId="165006" answerConceptSetId="165008"  />
                         </p>
-                        <p>
 
-
-                        </p>
                     </td>
                     <td>
                         <p>
                             <label>Date Polio 3</label>
-                            <obs conceptId="5090" />
-                        </p>
-                        <p>
-
-
+                            <obs conceptId="165006" answerConceptSetId="165009" />
                         </p>
                     </td>
     
@@ -230,47 +235,34 @@ formLabel="Child Form">
                     <td colspan="4">
                         <p>
                             <label>Date IPV</label>
-                            <obs conceptId="5090" />
+                            <obs conceptId="165011" />
                         </p>
-                        <p>
 
-
-                        </p>
                     </td>
-    
+
                 </tr>
                 
                 <tr>
                     <td>
                         <p>
                             <label>Date DPT - HEP B - HIB 1</label>
-                            <obs conceptId="5090" />
-                        </p>
-                        <p>
-
-
+                            <obs conceptId="165013" answerConceptSetId="165014" />
                         </p>
                     </td>
                     
                     <td>
                         <p>
                             <label>Date DPT - HEP B - HIB 2</label>
-                            <obs conceptId="5090" />
+                            <obs conceptId="165013" answerConceptSetId="165015" />
                         </p>
-                        <p>
 
-
-                        </p>
                     </td>
                     <td colspan="2">
                         <p>
                             <label>Date DPT - HEP B - HIB 3</label>
-                            <obs conceptId="5090" />
+                            <obs conceptId="165013" answerConceptSetId="165016" />
                         </p>
-                        <p>
 
-
-                        </p>
                     </td>
     
                 </tr>
@@ -279,18 +271,15 @@ formLabel="Child Form">
                     <td>
                         <p>
                             <label>Date PCV 1</label>
-                            <obs conceptId="5090" />
+                            <obs conceptId="165017" answerConceptSetId="165018" />
                         </p>
-                        <p>
 
-
-                        </p>
                     </td>
                     
                     <td>
                         <p>
                             <label>Date PCV 2</label>
-                            <obs conceptId="5090" />
+                            <obs conceptId="165017" answerConceptSetId="165019" />
                         </p>
                         <p>
 
@@ -300,11 +289,7 @@ formLabel="Child Form">
                     <td colspan="2">
                         <p>
                             <label>Date PCV 3</label>
-                            <obs conceptId="5090" />
-                        </p>
-                        <p>
-
-
+                            <obs conceptId="165017" answerConceptSetId="165020" />
                         </p>
                     </td>
     
@@ -314,32 +299,20 @@ formLabel="Child Form">
                     <td>
                         <p>
                             <label>Date Rota Virus 1</label>
-                            <obs conceptId="5090" />
-                        </p>
-                        <p>
-
-
+                            <obs conceptId="165021" answerConceptId="165022" />
                         </p>
                     </td>
                     
                     <td>
                         <p>
                             <label>Date Rota Virus 2</label>
-                            <obs conceptId="5090" />
-                        </p>
-                        <p>
-
-
+                            <obs conceptId="165021" answerConceptId="165023" />
                         </p>
                     </td>
                     <td colspan="2">
                         <p>
                             <label>Date Rota Virus 3</label>
-                            <obs conceptId="5090" />
-                        </p>
-                        <p>
-
-
+                            <obs conceptId="165021" answerConceptId="165024" />
                         </p>
                     </td>
     
@@ -349,32 +322,23 @@ formLabel="Child Form">
                     <td>
                         <p>
                             <label>Date of Measles Vaccination</label>
-                            <obs conceptId="5090" />
-                        </p>
-                        <p>
-
-
+                            <obs conceptId="165029" answerConceptId="165030"/>
                         </p>
                     </td>
                     
                     <td>
                         <p>
                             <label>Weight at Measles Vaccination</label>
-                            <obs conceptId="5090" />
-                        </p>
-                        <p>
-
-
+                            <obs conceptId="5089" answerConceptId="165030" />
                         </p>
                     </td>
                     <td colspan="2">
                         <p>
                             <label>Weight Status</label>
-                            <obs conceptId="5090" />
-                        </p>
-                        <p>
-
-
+                            <obs conceptId="1854" answerConceptId="114413"
+                                 answerLabel="Over weight" style="checkbox" class="horizontal-layout-options"/>
+                            <obs conceptId="1854" answerConceptId="123814"
+                                 answerLabels="Under weight" style="checkbox"  />
                         </p>
                     </td>
     
@@ -382,6 +346,67 @@ formLabel="Child Form">
                 
             </table>
         </fieldset>
+
+     <fieldset>
+        <legend>Last Visit Vital Signs Information</legend>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+
+
+                <td >
+                    <p>
+                        <label>Weight(Kg)</label>
+                        <obs conceptId="5089" />
+                    </p>
+                </td>
+                <td >
+                    <p>
+                        <label>M.U.A.C(cm)</label>
+                        <obs conceptId="1343" />
+                    </p>
+                </td>
+
+                <td>
+                    <p>
+                        <label>M.U.A.C</label>
+                        <includeIf velocityTest="$patient.age &lt; 5">
+                            <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                                 answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
+                                 answerLabels="Red &lt; 11.5cm, Yellow 11.5cm - &lt;12.5cm,Green &gt;= 12.5cm" id="muac-qualitative" />
+                        </includeIf>
+                        <includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
+                            <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                                 answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
+                                 answerLabels="Red &lt; 13.5cm,Yellow 13.5cm - &lt;14.5cm,Green &gt;=14.5cm" id="muac-qualitative" />
+                        </includeIf>
+                        <includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
+                            <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                                 answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
+                                 answerLabels="Red &lt; 16.5cm, Yellow 16.5cm - &lt;19.0cm,Green &gt;=19.0cm" id="muac-qualitative" />
+                        </includeIf>
+
+                        <includeIf velocityTest="$patient.age &gt;=18">
+                            <obs conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                                 answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
+                                 answerLabels="Red &lt;19.0cm , Yellow 19.0cm - &lt;22.0cm,Green &gt;=22.0cm" id="muac-qualitative" />
+                        </includeIf>
+
+                    </p>
+                </td>
+
+                <td colspan="2">
+                    <p>
+
+                        <label>INR No</label>
+                    </p>
+                    <obs conceptId="165027" />
+                </td>
+
+            </tr>
+
+
+        </table>
+    </fieldset>
 
         <fieldset>
 
@@ -391,17 +416,15 @@ formLabel="Child Form">
                     <td>
                         <p>
                             <label>Fully Immunized by 1 Year</label>
-                            <obs conceptId="5090" />
-                        </p>
-                        <p>
-
-
+                            <obs conceptId="165031" answerConceptIds="1065, 1066" answerLabels="Yes, No" style="radio"
+                                 class="horizontal-layout-options"/>
                         </p>
                     </td>
                     <td>
                         <p>
                             <label>IYCF Counselling</label>
-                            <obs conceptId="5090" />
+                            <obs conceptId="5d993591-9334-43d9-a208-11b10adfad85" answerConceptIds="1065, 1066"
+                                 answerLabels="Yes, No"  style="radio" class="horizontal-layout-options" />
 
                         </p>
                     </td>
@@ -413,44 +436,18 @@ formLabel="Child Form">
         <fieldset>
 
             <legend>Vitamin A Administration</legend>
-            <legend>1st dose administered with in this year</legend>
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                     <td>
                         <p>
-                            <label>Children 6 to 11 months</label>
-                            <obs conceptId="5090" />
-                        </p>
-                        <p>
+                            <label>1st dose administered with in this year</label>
+                            <obs conceptId="165032" style="checkbox"  />
                         </p>
                     </td>
-                    
                     <td>
                         <p>
-                            <label>Children 12 to 59 months</label>
-                            <obs conceptId="5090" />
-
-                        </p>
-                    </td>
-                </tr>
-            </table>
-            <p></p>
-            <legend>2nd dose administered with in this year</legend>
-            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                    <td>
-                        <p>
-                            <label>Children 6 to 11 months</label>
-                            <obs conceptId="5090" />
-                        </p>
-                        <p>
-                        </p>
-                    </td>
-                    
-                    <td>
-                        <p>
-                            <label>Children 12 to 59 months</label>
-                            <obs conceptId="5090" />
+                            <label>2nd dose administered with in this year</label>
+                            <obs conceptId="165033"  style="checkbox"/>
 
                         </p>
                     </td>
@@ -466,17 +463,13 @@ formLabel="Child Form">
                     <td>
                         <p>
                             <label>1st dose administered with in this year</label>
-                            <obs conceptId="5090" />
-                        </p>
-                        <p>
-
-
+                            <obs conceptId="165035" style="checkbox"  />
                         </p>
                     </td>
                     <td>
                         <p>
                             <label>2nd dose administered with in this year</label>
-                            <obs conceptId="5090" />
+                            <obs conceptId="165034"  style="checkbox"/>
 
                         </p>
                     </td>
@@ -493,10 +486,6 @@ formLabel="Child Form">
                         <p>
                             <label>Remarks</label>
                             <obs conceptId="159395" />
-                        </p>
-                        <p>
-
-
                         </p>
                     </td>
                 </tr>
