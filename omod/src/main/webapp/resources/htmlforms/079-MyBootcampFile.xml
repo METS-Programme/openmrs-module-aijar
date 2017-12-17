@@ -1,0 +1,20 @@
+<htmlform
+        formName="HMIS 079 My Bootcamp File"
+        formDescription="Captures clients undergoing UgandaEMR Bootcamp training"
+        formEncounterType="eca34467-07c7-45c6-a767-c6f69b871420"
+        formUuid="10b22a65-048b-415d-b52e-332e95cd96c2"
+        formVersion="1.0"
+        formAddMetadata="yes"
+        formUILocation="patientDashboard.visitActions"
+        formOrder="24"
+        formIcon="icon-medkit"
+        formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.age &lt; 10 &amp;&amp; patient.person.dead==false"
+        formDisplayStyle="Standard"
+        formLabel="My Bootcamp File">
+    <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
+    <encounterProvider role="Provider" style="autocomplete"/>
+    <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117" order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
+
+    This is a new form
+    <submit/>
+</htmlform>
