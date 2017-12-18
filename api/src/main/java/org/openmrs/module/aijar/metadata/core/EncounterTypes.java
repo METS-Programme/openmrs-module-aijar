@@ -86,4 +86,20 @@ public class EncounterTypes {
             return "38cb2232-30fc-4b1f-8df1-47c795771ee9";
         }
     };
+
+    public static EncounterTypeDescriptor HPV_TT_ENCOUNTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "HPV/TT Encounter";
+        }
+
+        @Override
+        public String description() {
+            return "Female clients receiving HPV/TT vaccines";
+        }
+
+        public String uuid() {
+            return "9c61b498-92a5-4528-a730-16696a5d63ce";
+        }
+    };
 }
