@@ -60,6 +60,9 @@
                     <td>
                         <p>
                             <label>Mother/ Guardian's Name</label>
+                            <p>
+                                <obs conceptId="99073" required="true"/>
+                            </p>
 
                         </p>
                     </td>
@@ -71,11 +74,15 @@
                             <label>Age at 1st Dose</label>
                         </p>
 
+
                     </td>
                     <td>
                         <p>
                             <label>Class in school</label>
 
+                        </p>
+                        <p>
+                            <obs conceptId="164991" />
                         </p>
                     </td>
 
@@ -87,168 +94,236 @@
             <legend>HPV IMMUNISATION</legend>
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                    <td>
-                        <p>
-                            <label>HPV 1</label>
-                        </p>
-                    </td>
-                    <td>
-                        <p >
-                            <label>Date</label>
+                    <obsgroup groupingConceptId="164994">
+                        <td>
+                            <p>
+                                <label>HPV 1</label>
+                            </p>
+                        </td>
+                        <td>
+                            <p >
+                                <label>Date</label>
+                                <obs conceptId="164992"/>
+                            </p>
+                        </td>
+                        <td>
+                            <p>
+                                <label>POC</label>
+                            </p>
+                            <p>
+                                <obs conceptId="164993"
+                                     answerConceptIds="1275,99456,159928"
+                                     answerLabels="St (Facility),O/R (Outreach),Sch (School)"
 
-                        </p>
-                    </td>
-                    <td>
-                        <p>
-                            <label>POC</label>
-                        </p>
+                                />
 
-                    </td>
+                            </p>
+                        </td>
+                    </obsgroup>
+                </tr>
 
+                <tr>
+                    <obsgroup groupingConceptId="164995">
+                        <td>
+                            <p>
+                                <label>HPV 2</label>
+                            </p>
+                        </td>
+                        <td>
+                            <p >
+                                <label>Date</label>
+                                <obs conceptId="164992"/>
+                            </p>
+                        </td>
+                        <td>
+                            <p>
+                                <label>POC</label>
+                            </p>
+                            <p>
+                                <obs conceptId="164993"
+                                     answerConceptIds="1275,99456,159928"
+                                     answerLabels="St (Facility),O/R (Outreach),Sch (School)"
+
+                                />
+
+                            </p>
+                        </td>
+                    </obsgroup>
                 </tr>
                 <tr>
-                    <td>
-                        <p>
-                            <label>HPV 2</label>
-                        </p>
-                    </td>
-                    <td>
-                        <p >
-                            <label>Date</label>
-                        </p>
-                    </td>
-                    <td>
-                        <p>
-                            <label>POC</label>
-                        </p>
+                    <obsgroup groupingConceptId="164996">
+                        <td>
+                            <p>
+                                <label>HPV 3</label>
+                            </p>
+                        </td>
+                        <td>
+                            <p >
+                                <label>Date</label>
+                                <obs conceptId="164992"/>
+                            </p>
+                        </td>
+                        <td text-align="center">
+                            <p>
+                                <label>POC</label>
+                            </p>
+                            <p>
+                                <obs conceptId="164993"
+                                     answerConceptIds="1275,99456,159928"
+                                     answerLabels="St (Facility),O/R (Outreach),Sch (School)"
 
-                    </td>
+                                />
 
+                            </p>
+                        </td>
+                    </obsgroup>
                 </tr>
-                <tr>
-                    <td>
-                        <p>
-                            <label>HPV 3</label>
-                        </p>
-                    </td>
-                    <td>
-                        <p >
-                            <label>Date</label>
 
-                        </p>
-                    </td>
-                    <td>
-                        <p>
-                            <label>POC</label>
-                        </p>
-                    </td>
-
-                </tr>
             </table>
         </fieldset>
         <fieldset>
             <legend>TT IMMUNISATION</legend>
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                    <td>
-                        <p>
-                            <label>TT 1</label>
-                        </p>
-                    </td>
-                    <td>
-                        <p >
-                            <label>Date</label>
+                    <obsgroup groupingConceptId="164998">
+                        <td>
+                            <p>
+                                <label>TT 1</label>
+                            </p>
+                        </td>
+                        <td>
+                            <p >
+                                <label>Date</label>
+                                <obs conceptId="164997"/>
+                            </p>
+                        </td>
+                        <td>
+                            <p>
+                                <label>POC</label>
+                            </p>
+                            <p>
+                                <obs conceptId="164993"
+                                     answerConceptIds="1275,99456,159928"
+                                     answerLabels="F (Facility),C (Community/Outreach),S (School)"
+                                />
 
-                        </p>
-                    </td>
-                    <td>
-                        <p>
-                            <label>POC</label>
-                        </p>
-
-                    </td>
-
+                            </p>
+                        </td>
+                    </obsgroup>
                 </tr>
+
                 <tr>
-                    <td>
-                        <p>
-                            <label>TT 2</label>
-                        </p>
-                    </td>
-                    <td>
-                        <p >
-                            <label>Date</label>
+                    <obsgroup groupingConceptId="164999">
+                        <td>
+                            <p>
+                                <label>TT 2</label>
+                            </p>
+                        </td>
+                        <td>
+                            <p >
+                                <label>Date</label>
+                                <obs conceptId="164997"/>
+                            </p>
+                        </td>
+                        <td>
+                            <p>
+                                <label>POC</label>
+                            </p>
+                            <p>
+                                <obs conceptId="164993"
+                                     answerConceptIds="1275,99456,159928"
+                                     answerLabels="F (Facility),C (Community/Outreach),S (School)"
+                                />
 
-                        </p>
-                    </td>
-                    <td>
-                        <p>
-                            <label>POC</label>
-                        </p>
-
-                    </td>
-
+                            </p>
+                        </td>
+                    </obsgroup>
                 </tr>
+
                 <tr>
-                    <td>
-                        <p>
-                            <label>TT 3</label>
-                        </p>
-                    </td>
-                    <td>
-                        <p >
-                            <label>Date</label>
+                    <obsgroup groupingConceptId="165000">
+                        <td>
+                            <p>
+                                <label>TT 3</label>
+                            </p>
+                        </td>
+                        <td>
+                            <p >
+                                <label>Date</label>
+                                <obs conceptId="164997"/>
+                            </p>
+                        </td>
+                        <td>
+                            <p>
+                                <label>POC</label>
+                            </p>
+                            <p>
+                                <obs conceptId="164993"
+                                     answerConceptIds="1275,99456,159928"
+                                     answerLabels="F (Facility),C (Community/Outreach),S (School)"
+                                />
 
-                        </p>
-                    </td>
-                    <td>
-                        <p>
-                            <label>POC</label>
-                        </p>
-
-                    </td>
-
+                            </p>
+                        </td>
+                    </obsgroup>
                 </tr>
+
                 <tr>
-                    <td>
-                        <p>
-                            <label>TT 4</label>
-                        </p>
-                    </td>
-                    <td>
-                        <p >
-                            <label>Date</label>
+                    <obsgroup groupingConceptId="165001">
+                        <td>
+                            <p>
+                                <label>TT 4</label>
+                            </p>
+                        </td>
+                        <td>
+                            <p >
+                                <label>Date</label>
+                                <obs conceptId="164997"/>
+                            </p>
+                        </td>
+                        <td>
+                            <p>
+                                <label>POC</label>
+                            </p>
+                            <p>
+                                <obs conceptId="164993"
+                                     answerConceptIds="1275,99456,159928"
+                                     answerLabels="F (Facility),C (Community/Outreach),S (School)"
+                                />
 
-                        </p>
-                    </td>
-                    <td>
-                        <p>
-                            <label>POC</label>
-                        </p>
-
-                    </td>
-
+                            </p>
+                        </td>
+                    </obsgroup>
                 </tr>
+
                 <tr>
-                    <td>
-                        <p>
-                            <label>TT 5</label>
-                        </p>
-                    </td>
-                    <td>
-                        <p >
-                            <label>Date</label>
+                    <obsgroup groupingConceptId="165002">
+                        <td>
+                            <p>
+                                <label>TT 5</label>
+                            </p>
+                        </td>
+                        <td>
+                            <p >
+                                <label>Date</label>
+                                <obs conceptId="164997"/>
+                            </p>
+                        </td>
+                        <td>
+                            <p>
+                                <label>POC</label>
+                            </p>
+                            <p>
+                                <obs conceptId="164993"
+                                     answerConceptIds="1275,99456,159928"
+                                     answerLabels="F (Facility),C (Community/Outreach),S (School)"
+                                />
 
-                        </p>
-                    </td>
-                    <td>
-                        <p>
-                            <label>POC</label>
-                        </p>
-
-                    </td>
-
+                            </p>
+                        </td>
+                    </obsgroup>
                 </tr>
+
             </table>
 
         </fieldset>
@@ -260,5 +335,6 @@
             </span>
         </section>
     </div>
+
 
 </htmlform>
