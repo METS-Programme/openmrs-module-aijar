@@ -124,18 +124,9 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 
             // install concepts
             DataImporter dataImporter = Context.getRegisteredComponent("dataImporter", DataImporter.class);
-            dataImporter.importData("metadata/Concepts_ART-1.xml");
-            log.info("ART concepts imported");
-            dataImporter.importData("metadata/Concepts_MCH-1.xml");
-            log.info("MCH concepts imported");
-            dataImporter.importData("metadata/Concepts_TB-1.xml");
-            log.info("TB concepts imported");
-            dataImporter.importData("metadata/Concepts_OPD-1.xml");
-            log.info("OPD concepts imported");
-            dataImporter.importData("metadata/Concepts_Programs-1.xml");
-            log.info("Programs concepts imported");
-            dataImporter.importData("metadata/Concepts_SMC-1.xml");
-            log.info("SMC concepts imported");
+
+            dataImporter.importData("metadata/Custom_Concepts.xml");
+            log.info("Custom Concepts imported");
 
             // install commonly used metadata
             installCommonMetadata(deployService);
