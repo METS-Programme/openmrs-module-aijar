@@ -543,7 +543,7 @@
                                     </div>
 
                                     <div style="width: 100%">
-                                        <label>Pregnant:</label>
+                                        <label>EDD:</label>
                                         <lookup class="results_style" expression="fn.latestObs('5596').valueDatetime"/>
                                         <br/>
                                     </div>
