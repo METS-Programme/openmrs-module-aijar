@@ -71,7 +71,7 @@ public class EncounterTypes {
     };
 
 
-    public static EncounterTypeDescriptor VIRAL_LOAD_NON_SUPPRESSED  = new EncounterTypeDescriptor() {
+    public static EncounterTypeDescriptor VIRAL_LOAD_NON_SUPPRESSED = new EncounterTypeDescriptor() {
         @Override
         public String name() {
             return "Viral Load Non Suppressed Encounter";
@@ -84,6 +84,38 @@ public class EncounterTypes {
 
         public String uuid() {
             return "38cb2232-30fc-4b1f-8df1-47c795771ee9";
+        }
+    };
+
+    public static EncounterTypeDescriptor TRANSFER_IN = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "TRANSFER IN";
+        }
+
+        @Override
+        public String description() {
+            return "Transfer in encounter";
+        }
+
+        public String uuid() {
+            return "3e8354f7-31b3-4862-a52e-ff41a1ee60af";
+        }
+    };
+
+    public static EncounterTypeDescriptor TRANSFER_OUT = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "TRANSFER OUT";
+        }
+
+        @Override
+        public String description() {
+            return "Transfer out encounter";
+        }
+
+        public String uuid() {
+            return "e305d98a-d6a2-45ba-ba2a-682b497ce27c";
         }
     };
 }
