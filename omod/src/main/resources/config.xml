@@ -69,9 +69,6 @@
         <require_module>
             org.openmrs.module.metadatadeploy
         </require_module>
-        <require_module>
-            org.openmrs.module.patientflags
-        </require_module>
 		<require_module>
 			org.openmrs.module.referenceapplication
 		</require_module>
@@ -143,7 +140,7 @@
     <globalProperty>
         <property>ugandaemr.dhis2.organizationuuid</property>
         <description>The organization code in DHIS2</description>
-        <defaultValue></defaultValue>
+        <defaultValue>eg d06ace3e-9c46-11e7-abc4-cec278b6b50a</defaultValue>
     </globalProperty>
 
 </module>
