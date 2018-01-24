@@ -6,9 +6,7 @@ import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.encounte
 import org.springframework.stereotype.Component;
 
 /**
- * Installs the most common metadata
- * <p/>
- * Created by ssmusoke on 06/01/2016.
+ * Installs the common metadata
  */
 @Component
 public class CommonMetadataBundle extends AbstractMetadataBundle {
