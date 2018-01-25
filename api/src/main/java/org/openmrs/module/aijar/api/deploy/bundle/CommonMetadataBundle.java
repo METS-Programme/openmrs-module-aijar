@@ -55,7 +55,7 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(EncounterTypes.OPD_ENCOUNTER);
         install(EncounterTypes.TB_SUMMARY_ENCOUNTER);
         install(EncounterTypes.VIRAL_LOAD_NON_SUPPRESSED);
-        install(EncounterTypes.FOLLOW_UP);
+        install(EncounterTypes.APPOINTMENT_FOLLOW_UP);
 
         //installing programs metadata
         log.info("Installing Programs");

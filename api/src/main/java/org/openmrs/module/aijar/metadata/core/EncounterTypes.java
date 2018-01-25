@@ -87,10 +87,10 @@ public class EncounterTypes {
         }
     };
 
-    public static EncounterTypeDescriptor FOLLOW_UP  = new EncounterTypeDescriptor() {
+    public static EncounterTypeDescriptor APPOINTMENT_FOLLOW_UP = new EncounterTypeDescriptor() {
         @Override
         public String name() {
-            return "Patient follow up ";
+            return "Appointment Follow-up ";
         }
 
         @Override
