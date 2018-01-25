@@ -273,6 +273,13 @@
 
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
+				<artifactId>htmlformentry-api-2.0</artifactId>
+				<version>${htmlformentryVersion}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
 				<artifactId>idgen-api</artifactId>
 				<version>${idgenVersion}</version>
 				<scope>provided</scope>
