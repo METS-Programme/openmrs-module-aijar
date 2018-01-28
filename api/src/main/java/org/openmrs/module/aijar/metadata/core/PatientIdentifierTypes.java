@@ -291,5 +291,5 @@ public class PatientIdentifierTypes {
 			return "cedbf89d-f0ef-453a-9a69-f45dc197fd3d";
 		}
 	};
-	
+
 }
