@@ -77,6 +77,8 @@
 		<formfilterVersion>1.0.0</formfilterVersion>
 		<htmlformentryuiVersion>1.6.4</htmlformentryuiVersion>
 		<htmlformentryVersion>3.3.2</htmlformentryVersion>
+		<htmlformentryuiVersion>1.6.3</htmlformentryuiVersion>
+		<htmlformentryVersion>3.6.0</htmlformentryVersion>
 		<htmlwidgetsVersion>1.9.0</htmlwidgetsVersion>
 		<idgenVersion>4.4.0</idgenVersion>
 		<jacksonVersion>1.8.3</jacksonVersion>
@@ -267,6 +269,13 @@
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>htmlformentry-api-1.10</artifactId>
+				<version>${htmlformentryVersion}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>htmlformentry-api-2.0</artifactId>
 				<version>${htmlformentryVersion}</version>
 				<scope>test</scope>
 			</dependency>
