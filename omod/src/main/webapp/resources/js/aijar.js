@@ -41,7 +41,7 @@ jq(document).ready(function () {
  * @param dateValue
  */
 function changeFieldDateToJavascriptDate(dateValue) {
-    return jq.datepicker.formatDate('dd/mm/yy', jq.datepicker.parseDate('yy-mm-dd', dateValue));
+    return jq.datepicker.formatDate('mm/dd/yy', jq.datepicker.parseDate('yy-mm-dd', dateValue));
 }
 
 
