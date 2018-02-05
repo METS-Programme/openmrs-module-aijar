@@ -29,6 +29,10 @@
                 <ifMode mode="ENTER">
                     disableContainer('#outcomeContainer');
                     <!-- disableContainer('#nextstepsContainer'); -->
+                    <!-- set follow up dates to only allow dates in the future -->
+                    getField('new-visit-date.value').datepicker('option', 'minDate', changeFieldDateToJavascriptDate(getValue('encounterDate.value')));
+                    getField('new-followup-date.value').datepicker('option', 'minDate', changeFieldDateToJavascriptDate(getValue('encounterDate.value')));
+                    getField('home-visit-date.value').datepicker('option', 'minDate', changeFieldDateToJavascriptDate(getValue('encounterDate.value')));
                 </ifMode>
                 <!-- enable SMS Message outcomes -->
                 jq('#sms-message').click(function(){
