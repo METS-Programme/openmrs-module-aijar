@@ -76,8 +76,6 @@
 		<formentryappVersion>1.4.2</formentryappVersion>
 		<formfilterVersion>1.0.0</formfilterVersion>
 		<htmlformentryuiVersion>1.6.4</htmlformentryuiVersion>
-		<htmlformentryVersion>3.3.2</htmlformentryVersion>
-		<htmlformentryuiVersion>1.6.3</htmlformentryuiVersion>
 		<htmlformentryVersion>3.6.0</htmlformentryVersion>
 		<htmlwidgetsVersion>1.9.0</htmlwidgetsVersion>
 		<idgenVersion>4.4.0</idgenVersion>
@@ -124,7 +122,7 @@
 				<scope>compile</scope>
 			</dependency>
 			-->
-			
+
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>javax.servlet-api</artifactId>
@@ -221,7 +219,7 @@
 				<version>${dataexchangeVersion}</version>
 				<scope>provided</scope>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>dataintegrity-api</artifactId>
@@ -265,7 +263,7 @@
 				<version>${htmlformentryVersion}</version>
 				<scope>provided</scope>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>htmlformentry-api-1.10</artifactId>
@@ -286,7 +284,7 @@
 				<version>${idgenVersion}</version>
 				<scope>provided</scope>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>legacyui-omod</artifactId>
@@ -342,7 +340,7 @@
 				<version>${registrationcoreVersion}</version>
 				<scope>provided</scope>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>registrationapp-api</artifactId>
@@ -363,7 +361,7 @@
 				<version>${reportingVersion}</version>
 				<scope>test</scope>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>reportingcompatibility-api</artifactId>
@@ -377,7 +375,7 @@
 				<version>${serializationxstreamVersion}</version>
 				<scope>provided</scope>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>serialization.xstream-api-2.0</artifactId>

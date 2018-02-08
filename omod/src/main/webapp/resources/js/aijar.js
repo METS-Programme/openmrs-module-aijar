@@ -37,12 +37,11 @@ jq(document).ready(function () {
 });
 
 /**
- * Changes a field date in the format yy-mm-dd to dd/mm/yy which eas
+ * Changes a field date in the format yy-mm-dd to dd/mm/yy which is easier to read
  * @param dateValue
  */
 function changeFieldDateToJavascriptDate(dateValue) {
-    new Date();
-    return new Date(dateValue);
+    return jq.datepicker.formatDate('dd/mm/yy', jq.datepicker.parseDate('yy-mm-dd', dateValue));
 }
 
 
@@ -222,7 +221,7 @@ var fieldHelper = {
             this.$jqObj = jq(args);
         }
 
-        this.$jqObj.attr('disabled', true);
+        this.$jqObj.attr('disabled', true).fadeTo(250, 0.25);
 
     },
     enable: function (args) {
@@ -232,7 +231,7 @@ var fieldHelper = {
             this.$jqObj = jq(args);
         }
 
-        this.$jqObj.removeAttr('disabled');        
+        this.$jqObj.removeAttr('disabled').fadeTo(250, 1);
     },
     makeReadonly: function (args) {
         if (args instanceof jQuery) {
