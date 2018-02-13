@@ -222,8 +222,8 @@
                 <td>
                     <p id="nextstepsContainer">
                         <obs id="call-treatmentsupporter" conceptId="165113" answerConceptId="165114" answerLabel="Call Treatment Supporter" class="horizontal-layout-options"/><br/>
-                        <obs id="try-followup-again" conceptId="165113" answerConceptId="165115" answerLabel="Try to followup patient again on " class="horizontal-layout-options"/><obs id="new-followup-date" conceptId="165116" allowFutureDates="true"/>
-                        <obs id="home-visit-on" conceptId="165113" answerConceptId="165103" answerLabel="Home visit on" class="horizontal-layout-options" toggle="{id: 'new-followup-date', style: 'dim'}"/><obs id="home-visit-date" conceptId="165117" allowFutureDates="true"/>
+                        <obs id="try-followup-again" conceptId="165113" answerConceptId="165115" answerLabel="Try to followup patient again on " class="horizontal-layout-options" toggle="{id: 'new-followup-date', style: 'dim'}"/><obs id="new-followup-date" conceptId="165116" allowFutureDates="true"/>
+                        <obs id="home-visit-on" conceptId="165113" answerConceptId="165103" answerLabel="Home visit on" class="horizontal-layout-options" toggle="{id: 'home-visit-date', style: 'dim'}"/><obs id="home-visit-date" conceptId="165117" allowFutureDates="true"/>
                     </p>
                 </td>
             </tr>
