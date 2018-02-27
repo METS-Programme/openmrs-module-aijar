@@ -34,6 +34,20 @@ jq(document).ready(function () {
         return this.optional(element) || phone_number.length == 10 &&
             phone_number.match(/^[0-9]{1,10}$/);
     }, "Please specify a valid mobile number without any spaces like 0712345678");
+
+    /* Validation of NIN on patient registration page */
+    $( "#registration" ).validate({
+        rules: {
+            confirm_nationalid: {
+                equalTo: "nationalid"
+            }
+        },
+        messages: {
+            confirm_nationalid: {
+                equalTo: "Please confirm the National ID you have entered"
+            }
+        }
+    });
 });
 
 /**
@@ -293,3 +307,4 @@ var fieldHelper = {
 	    $('.hfe-hours').before($timeLabel);
     }
 };
+
