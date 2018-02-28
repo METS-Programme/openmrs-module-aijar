@@ -188,4 +188,10 @@
             ALTER TABLE `serialized_object` MODIFY `serialized_data` MEDIUMTEXT CHARACTER SET utf8 NOT NULL;
         </sql>
     </changeSet>
+	<changeSet id="ugandaemr-28022018-1624" author="ssmusoke">
+		<comment>Delete any blank person attribute values from previous upgrades which prevents editing of patient</comment>
+		<sql>
+			DELETE FROM person_attribute WHERE value IS NULL OR value = '';
+		</sql>
+	</changeSet>
 </databaseChangeLog>
