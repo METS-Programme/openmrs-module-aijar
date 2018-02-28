@@ -58,6 +58,17 @@ function changeFieldDateToJavascriptDate(dateValue) {
     return jq.datepicker.formatDate('dd/mm/yy', jq.datepicker.parseDate('yy-mm-dd', dateValue));
 }
 
+/**
+ * Format a date for display on the screen
+ *
+ * TODO: Replace this with a function from OpenMRS JS Library
+ * @param date
+ * @returns {*}
+ */
+function formatDateForDisplay(date) {
+    return jq.datepicker.formatDate('dd/mm/yy', date);
+}
+
 
 /**
  *
