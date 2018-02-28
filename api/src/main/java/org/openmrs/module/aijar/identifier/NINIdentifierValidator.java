@@ -32,7 +32,7 @@ public class NINIdentifierValidator implements IdentifierValidator {
      */
     public boolean isValid(String identifier) throws UnallowedIdentifierException {
         // check the NIN number first
-        String exp_regex = "^[A-Z][FM]\\d{5}([A-Z0-9]){7}$";
+        String exp_regex = "^$|^[A-Z][FM]\\d{5}([A-Z0-9]){7}$";
         Pattern pattern = Pattern.compile(exp_regex);
         Matcher matcher = pattern.matcher(identifier);
         return matcher.matches();

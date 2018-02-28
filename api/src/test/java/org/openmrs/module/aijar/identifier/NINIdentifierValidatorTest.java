@@ -50,7 +50,8 @@ public class NINIdentifierValidatorTest {
                 "5M8905210H3W5K, false, Does not begin with alpha",
                 "!M8905210H3W5K, false, Does not begin with alpha",
                 "CX8905210H3W5K, false, Second character must be F or M",
-                "CM8F05210H3W5K, false, Characters after first two must be 5 digits"
+                "CM8F05210H3W5K, false, Characters after first two must be 5 digits",
+                ", true, Can be an empty string"
         };
     }
 

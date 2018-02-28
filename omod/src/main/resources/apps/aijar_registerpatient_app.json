@@ -139,7 +139,7 @@
                     "fragmentId": "field/text",
                     "config": {
                       "id": "nationalid",
-                      "regex": "^[A-Z][FM]\\d{5}([A-Z0-9]){7}$"
+                      "regex": "^$|^[A-Z][FM]\\d{5}([A-Z0-9]){7}$"
                     }
                   },
                   "cssClasses": [
@@ -155,7 +155,7 @@
                     "fragmentId": "field/text",
                     "config": {
                       "id": "confirm_nationalid",
-                      "regex": "^[A-Z][FM]\\d{5}([A-Z0-9]){7}$"
+                      "regex": "^$|^[A-Z][FM]\\d{5}([A-Z0-9]){7}$"
                     }
                   },
                   "cssClasses": [
