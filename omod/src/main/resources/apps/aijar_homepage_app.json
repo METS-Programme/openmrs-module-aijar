@@ -24,7 +24,8 @@
         "label": "aijar.app.backupdatabase.list.label",
         "url": "module/databasebackup/backup.form",
         "icon": "icon-cloud-download",
-        "order": 115
+        "order": 115,
+        "requiredPrivilege": "App: databasebackup"
       }
     ]
   },

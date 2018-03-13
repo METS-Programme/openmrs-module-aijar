@@ -35,6 +35,7 @@
       "label": "MCH Summary",
       "concepts": "5f86d19d-9546-4466-89c0-6f80c101191b,dcc39097-30ab-102d-86b0-7a5022ba4115,1053AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,dca0a383-30ab-102d-86b0-7a5022ba4115,dcc033e5-30ab-102d-86b0-7a5022ba4115,d5b0394c-424f-41db-bc2f-37180dcdbe74,dc548e89-30ab-102d-86b0-7a5022ba4115,1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160081AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
     },
+    "requiredPrivilege": "App: mch.clinic.access",
     "extensions": [
       {
         "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardFirstColumn",
@@ -60,6 +61,7 @@
       "maxAge": "120m",
       "concepts": "dce12b4f-30ab-102d-86b0-7a5022ba4115,ab505422-26d9-41f1-a079-c3d222000440,c3332e8d-2548-4ad6-931d-6855692694a3,c17bd9df-23e6-4e65-ba42-eb6d9250ca3f"
     },
+    "requiredPrivilege": "HIV Clinic Access",
     "extensions": [
       {
         "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardFirstColumn",
@@ -83,6 +85,7 @@
       "label": "Data Quality Violations",
       "maxResults": "8"
     },
+    "requiredPrivilege": "App: dataintegrity",
     "extensions": [
       {
         "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardFirstColumn",
