@@ -125,6 +125,44 @@
                   ]
                 }
               ]
+            },
+            {
+              "legend": "aijar.registrationapp.nationalid",
+              "fields": [
+                {
+                  "type": "patientIdentifier",
+                  "label": "aijar.registrationapp.nationalid.question",
+                  "formFieldName": "nationalid",
+                  "uuid": "f0c16a6d-dc5f-4118-a803-616d0075d282",
+                  "widget": {
+                    "providerName": "uicommons",
+                    "fragmentId": "field/text",
+                    "config": {
+                      "id": "nationalid",
+                      "regex": "^$|^[A-Z][FM]\\d{5}([A-Z0-9]){7}$"
+                    }
+                  },
+                  "cssClasses": [
+                    "regex"
+                  ]
+                },{
+                  "type": "obs",
+                  "label": "aijar.registrationapp.nationalid.confirm",
+                  "formFieldName": "confirm_nationalid",
+                  "uuid": "dce11ec2-30ab-102d-86b0-7a5022ba4115",
+                  "widget": {
+                    "providerName": "uicommons",
+                    "fragmentId": "field/text",
+                    "config": {
+                      "id": "confirm_nationalid",
+                      "regex": "^$|^[A-Z][FM]\\d{5}([A-Z0-9]){7}$"
+                    }
+                  },
+                  "cssClasses": [
+                    "regex"
+                  ]
+                }
+              ]
             }
           ]
         }

@@ -1,5 +1,6 @@
 package org.openmrs.module.aijar.metadata.core;
 
+import org.openmrs.module.aijar.identifier.NINIdentifierValidator;
 import org.openmrs.module.idgen.validator.LuhnMod30IdentifierValidator;
 import org.openmrs.module.idgen.validator.LuhnModNIdentifierValidator;
 import org.openmrs.module.metadatadeploy.descriptor.PatientIdentifierTypeDescriptor;
@@ -216,7 +217,11 @@ public class PatientIdentifierTypes {
         public String uuid() {
             return "f0c16a6d-dc5f-4118-a803-616d0075d282";
         }
-        
+
+        @Override
+        public Class<? extends IdentifierValidator> validator() {
+            return NINIdentifierValidator.class;
+        }
     };
 
     public static PatientIdentifierTypeDescriptor RESEARCH_PATIENT_ID = new PatientIdentifierTypeDescriptor() {
