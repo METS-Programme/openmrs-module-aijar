@@ -1,17 +1,14 @@
 package org.openmrs.module.aijar.tasks;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.openmrs.*;
-import org.openmrs.api.EncounterService;
-import org.openmrs.api.ObsService;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.aijar.AijarConstants;
 import org.openmrs.module.aijar.metadata.core.EncounterTypes;
 import org.openmrs.scheduler.SchedulerException;
-import org.openmrs.scheduler.SchedulerService;
-import org.openmrs.scheduler.Task;
 import org.openmrs.scheduler.TaskDefinition;
 import org.openmrs.scheduler.tasks.AbstractTask;
 
@@ -23,6 +20,7 @@ import java.util.List;
 import static org.openmrs.module.aijar.AijarConstants.*;
 
 public class MigrateARTPatientTransfersTask extends AbstractTask {
+    protected final Log log = LogFactory.getLog(this.getClass());
 
     public void execute() {
         String queryStringTransferOut = "from Obs obs where obs.concept =" + TRANSFER_OUT_DATE_CONCEPT_ID + " and voided=false";
@@ -31,11 +29,10 @@ public class MigrateARTPatientTransfersTask extends AbstractTask {
         List<Encounter> encounters = new ArrayList<>();
         for (Obs obs : obsList) {
             if (!encounters.contains(obs.getEncounter())) {
-                generateTransferOutEncounter(obs);
+                Encounter encounter = generateTransferOutEncounter(obs);
             }
         }
         stopTransferService();
-
     }
 
     private void stopTransferService() {
@@ -88,14 +85,14 @@ public class MigrateARTPatientTransfersTask extends AbstractTask {
         encounter.setCreator(obs.getCreator());
         encounter.setLocation(obs.getLocation());
         encounter.setDateCreated(obs.getValueDatetime());
-        obs1.add(createObs(getObs(obs.getEncounter()).getConcept(), getObs(obs.getEncounter()).getValueText(), obs.getEncounter(),encounter));
-        obs1.add(createObs(getConceptFromString(TRANSFER_FROM_CLINIC_CONCEPT_ID), ART_CLINIC_CONCEPT_ID, obs.getEncounter(),encounter));
-        Context.getEncounterService().saveEncounter(encounter);
+        encounter = Context.getEncounterService().saveEncounter(encounter);
+        createObs(getConceptFromString(TRANSFER_FROM_CLINIC_CONCEPT_ID), "", getConceptFromString(ART_CLINIC_CONCEPT_ID), true, encounter);
+        createObs(getConceptFromString(TRANSFER_OUT_PLACE_CONCEPT_ID), getTransferPlaceObs(obs.getEncounter()).getValueText(), null, false, encounter);
         return encounter;
     }
 
 
-    private Obs getObs(Encounter encounter) {
+    private Obs getTransferPlaceObs(Encounter encounter) {
         List<Obs> obsList = new ArrayList<>();
         Obs obs = new Obs();
         Concept concept = Context.getConceptService().getConcept(TRANSFER_OUT_PLACE_CONCEPT_ID);
@@ -106,36 +103,52 @@ public class MigrateARTPatientTransfersTask extends AbstractTask {
         return obs;
     }
 
-    private Obs createObs(Concept concept, String answer, Encounter oldEncounter,Encounter newEncounter) {
-        Obs obs = new Obs();
-        obs.setCreator(oldEncounter.getCreator());
-        obs.setPerson(oldEncounter.getPatient().getPerson());
-        obs.setLocation(oldEncounter.getLocation());
-        obs.setConcept(concept);
-        obs.setValueCoded(getConceptFromString(answer));
-        obs.setValueText(answer);
-        obs.setDateCreated(newEncounter.getDateCreated());
-        obs.setEncounter(newEncounter);
-        obs.setObsDatetime(newEncounter.getEncounterDatetime());
-        return obs;
+    private Obs createObs(Concept concept, String answer, Concept conceptAnswer, boolean answerIsConcept, Encounter newEncounter) {
+        if (concept != null) {
+            Obs obs = new Obs(newEncounter.getPatient(), concept, newEncounter.getEncounterDatetime(), newEncounter.getLocation());
+            if (conceptAnswer != null && answerIsConcept && answer != "") {
+                obs.setValueCoded(conceptAnswer);
+            } else if (answer != "" && conceptAnswer == null && !answerIsConcept) {
+                obs.setValueText(answer);
+            } else if (answer == "") {
+                obs.setValueText("Unknown");
+            }
+
+            if (answer != "" || obs.getValueCoded() != null) {
+                try {
+                    Context.getObsService().saveObs(obs,CHANGE_MESSAGE_FOR_TRANSFERS);
+                }catch (Exception e){
+                    log.error(e);
+                    return null;
+                }
+
+                return obs;
+
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+
     }
 
 
     private Concept getConceptFromString(String conceptString) {
-        Concept concept = new Concept();
-
-        if (concept == null) {
-            concept = Context.getConceptService().getConcept(conceptString);
+        if (Context.getConceptService().getConcept(conceptString) != null) {
+            return Context.getConceptService().getConcept(conceptString);
+        } else {
+            return null;
         }
-        return concept;
     }
 
     private Date getTransformDate(Date date, long time) {
-
         return date;
     }
 
     public Session getSession() {
         return Context.getRegisteredComponent("sessionFactory", SessionFactory.class).getCurrentSession();
     }
+
+
 }

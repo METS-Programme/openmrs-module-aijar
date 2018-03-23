@@ -43,5 +43,6 @@ public class AijarConstants {
 
     public static final String  FACILITY_VISIT_TYPE_UUID="7b0f5697-27e3-40c4-8bae-f4049abfb4ed";
     public  static final String ART_TRANSFER_SCHEDULE_NAME="ART Summary Patient Transfer Migration";
+    public static final String CHANGE_MESSAGE_FOR_TRANSFERS = "New Observation on patient transfers";
 
 }

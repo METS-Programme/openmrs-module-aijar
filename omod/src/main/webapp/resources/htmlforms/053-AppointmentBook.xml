@@ -1,0 +1,231 @@
+<htmlform formName="HMIS 053 Appointment Followup"
+          formDescription="Followup for the appoinment"
+          formEncounterType="dc551efc-024d-4c40-aeb8-2147c4033778"
+          formUuid="2641baf2-fcc7-4aeb-ad3c-51a02ec7e556"
+          formVersion="1.0"
+          formAddMetadata="yes"
+          formUILocation="patientDashboard.visitActions"
+          formOrder="10"
+          formIcon="icon-user"
+          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false"
+          formDisplayStyle="Standard"
+          formLabel="Appointment Followup">
+    <style type="text/css">
+        form#htmlform div.ai-page-frame table>tbody tr:nth-child(odd) td {
+        background: #eeeeee;
+        }
+
+        form#htmlform div.ai-page-frame table>tbody tr:nth-child(even) td {
+        background: #f9f9f9;
+        }
+
+        form#htmlform div.ai-page-frame fieldset#baby-information table {
+        margin: 0 0 5px 0;
+        }
+    </style>
+
+        <script>
+            jq(document).ready(function() {
+                <ifMode mode="ENTER">
+                    disableContainer('#outcomeContainer');
+                    <!-- disableContainer('#nextstepsContainer'); -->
+                </ifMode>
+                <!-- enable SMS Message outcomes -->
+                jq('#sms-message').click(function(){
+                    if (getValue('sms-message.value')) {
+                        fieldHelper.enable(getField('sms-not-delivered.value'));
+                        fieldHelper.enable(getField('sms-received.value'));
+                        fieldHelper.enable(getField('client-visit-rescheduled.value'));
+                        fieldHelper.enable(getField('new-visit-date.value'));
+                        fieldHelper.enable(getField('outcome-other.value'));
+                        enableContainer('#nextstepsContainer');
+                    } else {
+                        fieldHelper.disable(getField('sms-not-delivered.value'));
+                        fieldHelper.disable(getField('sms-received.value'));
+                    }
+                });
+
+                <!-- enable Phone call  outcomes -->
+                jq('#phone-call').click(function(){
+                    if (getValue('phone-call.value')) {
+                        fieldHelper.enable(getField('phone-off.value'));
+                        fieldHelper.enable(getField('phone-not-answered.value'));
+                        fieldHelper.enable(getField('spoke-with-patient.value'));
+                        fieldHelper.enable(getField('spoke-with-someone-else.value'));
+                        fieldHelper.enable(getField('client-visit-rescheduled.value'));
+                        fieldHelper.enable(getField('new-visit-date.value'));
+                        fieldHelper.enable(getField('outcome-other.value'));
+                        enableContainer('#nextstepsContainer');
+                    } else {
+                        fieldHelper.disable(getField('phone-off.value'));
+                        fieldHelper.disable(getField('phone-not-answered.value'));
+                        fieldHelper.disable(getField('spoke-with-patient.value'));
+                        fieldHelper.disable(getField('spoke-with-someone-else.value'));
+                    }
+                });
+
+                <!-- enable home visit outcomes -->
+                jq('#home-visit').click(function(){
+                    if (getValue('home-visit.value')) {
+                        fieldHelper.enable(getField('spoke-with-patient.value'));
+                        fieldHelper.enable(getField('spoke-with-someone-else.value'));
+                        fieldHelper.enable(getField('client-visit-rescheduled.value'));
+                        fieldHelper.enable(getField('new-visit-date.value'));
+                        fieldHelper.enable(getField('outcome-other.value'));
+                        enableContainer('#nextstepsContainer');
+                    } else {
+                        fieldHelper.disable(getField('phone-off.value'));
+                        fieldHelper.disable(getField('phone-not-answered.value'));
+                        fieldHelper.disable(getField('spoke-with-patient.value'));
+                        fieldHelper.disable(getField('spoke-with-someone-else.value'));
+                    }
+                });
+
+                <!-- additional validations -->
+                beforeSubmit.push(function() {
+                    <!-- clear the error fields -->
+                    setValue('new-visit-date.error', '');
+                    setValue('new-followup-date.error', '');
+                    setValue('home-visit-date.error', '');
+                    <!-- New visit date must be after today -->
+                    var new_visit_date = new Date(changeFieldDateToJavascriptDate(getValue('new-visit-date.value')));
+                    var new_followup_date = new Date(changeFieldDateToJavascriptDate(getValue('new-followup-date.value')));
+                    var home_visit_date = new Date(changeFieldDateToJavascriptDate(getValue('home-visit-date.value')));
+                    var encounterDate = new Date(changeFieldDateToJavascriptDate(getValue('encounterDate.value')));
+
+                        <!-- if the visit was rescheduled then the new visit date has to be provided -->
+                        if (getValue('client-visit-rescheduled.value')) {
+                            if (getValue('new-visit-date.value') == '') {
+                                getField('new-visit-date.error').html('The date when the client visit has been rescheduled to has to be provided').show();
+                                return false;
+                            } else {
+                                if (new_visit_date &lt;= encounterDate) {
+                                    getField('new-visit-date.error').html('The date when the client visit has been rescheduled has to be after ' + changeFieldDateToJavascriptDate(getValue('encounterDate.value'))).show();
+                                    return false;
+                                }
+                            }
+                        }
+                        <!-- if the next step is to a follow up again then a new followup date has to be provided -->
+                        if (getValue('try-followup-again.value')) {
+                            if (getValue('new-followup-date.value') == '') {
+                                getField('new-followup-date.error').html('The date of the next follow up has to be provided').show();
+                                return false;
+                            } else {
+                                if (new_followup_date &lt;= encounterDate) {
+                                    getField('new-followup-date.error').html('The date of the next follow up has to be after ' + changeFieldDateToJavascriptDate(getValue('encounterDate.value'))).show();
+                                    return false;
+                                }
+                            }
+                        }
+                        <!-- if the visit was rescheduled then the new visit date has to be provided -->
+                        if (getValue('home-visit-on.value')) {
+                            if (getValue('home-visit-date.value') == '') {
+                                getField('home-visit-date.error').html('The date of the home visit has to be provided ').show();
+                                return false;
+                            } else {
+                                if (home_visit_date &lt;= encounterDate) {
+                                    getField('home-visit-date.error').html('The date of the home visit has to be after ' + changeFieldDateToJavascriptDate(getValue('encounterDate.value'))).show();
+                                    return false;
+                                }
+                            }
+                        }
+                });
+            });
+        </script>
+
+    <div class="ai-page-frame">
+        <div class="headers" style="text-align: center;">
+            <h3 style="background: #000000; padding: 10px;color:#07c1ae">HMIS 053 Appointment Book - Followup</h3>
+        </div>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td>
+                    <p>
+                        <label>Followup Date</label>
+                    </p>
+                </td>
+                <td>
+                        <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
+                        <span style="display: none;">
+                            <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
+                                               order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
+                        </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>
+                        <label>Type of Care</label>
+                    </p>
+                </td>
+                <td>
+                    <!-- TODO: Add a validation to ensure that a user does not click Pre-ART and ART at the same time -->
+                        <obs id="pre-art"  conceptId="160530" answerConceptId="160525" answerLabel="Pre ART" class="horizontal-layout-options"/><br/>
+                        <obs id="art" conceptId="160530" answerConceptId="160524" answerLabel="ART" class="horizontal-layout-options"/><br/>
+                        <includeIf velocityTest="$patient.age &gt; 5">
+                            <obs id="exposed-infant" conceptId="160530" answerConceptId="160526" answerLabel="HIV Exposed Infant" class="horizontal-layout-options"/><br/>
+                        </includeIf>
+                        <includeIf velocityTest="$patient.gender == 'F'">
+                            <obs id="anc" conceptId="160530" answerConceptId="160446" answerLabel="Antenatal Clinic (ANC)" class="horizontal-layout-options"/><br/>
+                        </includeIf>
+                        <obs id="tb" conceptId="160530" answerConceptId="160529" answerLabel="Tuberculosis (TB)" class="horizontal-layout-options"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>
+                        <label>Followup Type</label>
+
+                    </p>
+                </td>
+            <td>
+                <p id="followupTypeContainer">
+                    <obs id="sms-message" conceptId="165100" answerConceptId="165101" answerLabel="SMS Message" class="horizontal-layout-options"/><br/>
+                    <obs id="phone-call" conceptId="165100" answerConceptId="165102" answerLabel="Phone Call" class="horizontal-layout-options"/><br/>
+                    <obs id="home-visit" conceptId="165100" answerConceptId="165103" answerLabel="Home Visit" class="horizontal-layout-options"/><br/><br/>
+                    <obs id="followup-type-other" conceptId="165100" answerConceptId="5622" answerLabel="Other Specify:" commentFieldLabel="" class="horizontal-layout-options"/>
+                </p>
+            </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>
+                        <label>Outcome</label>
+
+
+                    </p>
+                </td>
+                <td>
+                    <p id="outcomeContainer">
+                        <obs id="sms-not-delivered" conceptId="165104" answerConceptId="165105" answerLabel="SMS Message Not Delivered" class="horizontal-layout-options"/><br/>
+                        <obs id="sms-received" conceptId="165104" answerConceptId="165106" answerLabel="SMS Message Received" class="horizontal-layout-options"/><br/>
+                        <obs id="client-visit-rescheduled" conceptId="165104" answerConceptId="165107" answerLabel="Client Visit Rescheduled to " class="horizontal-layout-options"/><obs id="new-visit-date" conceptId="165108" allowFutureDates="true"/>
+                        <obs id="phone-off" conceptId="165104" answerConceptId="165109" answerLabel="Telephone off" class="horizontal-layout-options"/><br/>
+                        <obs id="phone-not-answered" conceptId="165104" answerConceptId="165110" answerLabel="Telephone not answered" class="horizontal-layout-options"/><br/>
+                        <obs id="spoke-with-patient" conceptId="165104" answerConceptId="165111" answerLabel="Spoke with patient" class="horizontal-layout-options"/><br/>
+                        <obs id="spoke-with-someone-else" conceptId="165104" answerConceptId="165112" answerLabel="Spoke with someone else" class="horizontal-layout-options"/><br/><br/>
+                        <obs id="outcome-other" conceptId="165100" answerConceptId="5622" answerLabel="Other Specify:" commentFieldLabel="" class="horizontal-layout-options"/>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>
+                        <label>Next Step</label>
+
+                    </p>
+                </td>
+                <td>
+                    <p id="nextstepsContainer">
+                        <obs id="call-treatmentsupporter" conceptId="165113" answerConceptId="165114" answerLabel="Call Treatment Supporter" class="horizontal-layout-options"/><br/>
+                        <obs id="try-followup-again" conceptId="165113" answerConceptId="165115" answerLabel="Try to followup patient again on " class="horizontal-layout-options"/><obs id="new-followup-date" conceptId="165116" allowFutureDates="true"/>
+                        <obs id="home-visit-on" conceptId="165113" answerConceptId="165103" answerLabel="Home visit on" class="horizontal-layout-options" toggle="{id: 'new-followup-date', style: 'dim'}"/><obs id="home-visit-date" conceptId="165117" allowFutureDates="true"/>
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <section>
+            <submit/>
+        </section>
+    </div>
+</htmlform>
