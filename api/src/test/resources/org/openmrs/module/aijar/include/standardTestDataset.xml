@@ -14,7 +14,8 @@
 	<encounter_type encounter_type_id="24" name="HTC - Encounter" description="An encounter when a patient gets HCT services" creator="1" date_created="2016-04-05 16:43:20.0" retired="false" uuid="264daIZd-f80e-48fe-nba9-P37f2W1905Pv"/>
 	<encounter_type encounter_type_id="25" name="PNC - Encounter" description="An encounter when a patient gets PNC services" creator="1" date_created="2016-12-07 14:45:59.0" retired="false" uuid="fa6f3ff5-b784-43fb-ab35-a08ab7dbf074"/>
 	<encounter_type encounter_type_id="26" name="TB Encounter" description="An encounter when a patient gets TB services" creator="1" date_created="2016-12-07 14:45:59.0" retired="false" uuid="334bf97e-28e2-4a27-8727-a5ce31c7cd66"/>
-	
+	<encounter_type  encounter_type_id="27"  name="Appointment Follow-up"  description="Followup actions for patients especially after missing a facility visit"  creator="1"  date_created="2018-02-27 12:19:43"  retired="false"  uuid="dc551efc-024d-4c40-aeb8-2147c4033778" />
+
 	<!-- relationship types -->
 	<relationship_type  relationship_type_id="1000"  a_is_to_b="Parent"  b_is_to_a="Child"  preferred="0"  weight="0"  description="Relationship from a mother/father to the child"  creator="1"  date_created="2007-05-01 11:38:27"  uuid="8d91a210-c2cc-11de-8d13-0010c6dffd0f"  retired="0" />
 	

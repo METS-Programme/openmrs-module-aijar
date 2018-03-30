@@ -25,6 +25,30 @@
     ]
   },
   {
+    "id": "ugandaemr.viralLoadHistory",
+    "instanceOf": "coreapps.template.dashboardWidget",
+    "description": "Viral Load History",
+    "order": 5,
+    "config": {
+      "widget": "obsacrossencounters",
+      "icon": "icon-user-md",
+      "label": "Viral Load History",
+      "concepts": "0b434cfa-b11c-4d14-aaa2-9aed6ca2da88,dca12261-30ab-102d-86b0-7a5022ba4115,fcb5ef91-ad8f-44bc-ac5f-9ffb29881e59",
+      "maxRecords": "5"
+    },
+    "extensions": [
+      {
+        "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardFirstColumn",
+        "appId": "ugandaemr.viralLoadHistory",
+        "extensionPointId": "patientDashboard.firstColumnFragments",
+        "extensionParams": {
+          "provider": "coreapps",
+          "fragment": "dashboardwidgets/dashboardWidget"
+        }
+      }
+    ]
+  },
+  {
     "id": "ugandaemr.dashboardwidget.MCHSummary",
     "instanceOf": "coreapps.template.dashboardWidget",
     "description": "Displays obstetric summary of mother receiving MCH services",

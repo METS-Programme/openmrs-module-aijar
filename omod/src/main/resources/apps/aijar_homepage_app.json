@@ -76,20 +76,35 @@
     "config": {
       "registrationAppLink": "registrationapp/registerPatient.page?appId=aijar.registrationapp.registerPatient"
     }
-  },{
-  "id": "aijar.configs",
-  "description": "Configurations for Health Center",
-  "order": 5,
-  "extensions": [
-    {
-      "id": "coreapps.activeVisitsHomepageLink",
-      "extensionPointId": "systemAdministration.apps",
-      "type": "link",
-      "label": "Health Center Configurations",
-      "url": "admin/maintenance/settings.list?show=Aijar",
-      "icon": " icon-cog",
-      "requiredPrivilege": "App: coreapps.systemAdministration"
-    }
-  ]
-}
+  },
+  {
+    "id": "aijar.configs",
+    "description": "Configurations for Health Center",
+    "order": 5,
+    "extensions": [
+      {
+        "id": "ugandaemr.config.healthcenter",
+        "extensionPointId": "systemAdministration.apps",
+        "type": "link",
+        "label": "Health Center Configurations",
+        "url": "admin/maintenance/settings.list?show=Aijar",
+        "icon": " icon-cog",
+        "requiredPrivilege": "App: coreapps.systemAdministration"
+      }
+    ]
+  },
+  {
+    "id": "ugandaemr.import.emtct",
+    "order": 50,
+    "extensions": [
+      {
+        "id": "ugandaemr.import.emtct",
+        "extensionPointId": "systemAdministration.apps",
+        "type": "link",
+        "label": "Import from EMTCT Module",
+        "url": "aijar/emtctDataImport.page",
+        "icon": "icon-exchange"
+      }
+    ]
+  }
 ]
