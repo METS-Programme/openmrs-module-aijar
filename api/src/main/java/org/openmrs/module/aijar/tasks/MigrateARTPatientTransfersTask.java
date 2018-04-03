@@ -23,16 +23,42 @@ public class MigrateARTPatientTransfersTask extends AbstractTask {
     protected final Log log = LogFactory.getLog(this.getClass());
 
     public void execute() {
+        log.info("Start Migrate Transfer Outs From Art Summary Page To Transfer Out Encounters");
+        transferOut();
+        log.info("Completed Transfer Out Migration");
+
+        log.info("Start Migrate Transfer Ins From Art Summary Page To Transfer Out Encounters");
+        transferIn();
+        log.info("Completed Transfer In Migration");
+        stopTransferService();
+    }
+
+
+    private void transferOut() {
         String queryStringTransferOut = "from Obs obs where obs.concept =" + TRANSFER_OUT_DATE_CONCEPT_ID + " and voided=false";
         Query query = getSession().createQuery(queryStringTransferOut);
         List<Obs> obsList = query.list();
         List<Encounter> encounters = new ArrayList<>();
+        List<Encounter> transferEncounters = new ArrayList<>();
         for (Obs obs : obsList) {
             if (!encounters.contains(obs.getEncounter())) {
-                Encounter encounter = generateTransferOutEncounter(obs);
+                Encounter encounter = generateTransferInOutEncounter(obs, TRANSFER_OUT_PLACE_CONCEPT_ID, EncounterTypes.TRANSFER_OUT.name(), obs.getValueDate());
             }
         }
-        stopTransferService();
+    }
+
+    private void transferIn() {
+        String queryStringTransferOut = "from Obs obs where obs.concept =" + TRANSFER_IN_CONCEPT_ID + " and voided=false";
+        Query query = getSession().createQuery(queryStringTransferOut);
+        List<Obs> obsList = query.list();
+        List<Encounter> encounters = new ArrayList<>();
+        List<Encounter> transferEncounters = new ArrayList<>();
+        for (Obs obs : obsList) {
+            if (!encounters.contains(obs.getEncounter())) {
+                Encounter encounter = generateTransferInOutEncounter(obs, TRANSFER_IN_FROM_PLACE_CONCEPT_ID, EncounterTypes.TRANSFER_IN.name(), obs.getEncounter().getEncounterDatetime());
+                ;
+            }
+        }
     }
 
     private void stopTransferService() {
@@ -53,19 +79,22 @@ public class MigrateARTPatientTransfersTask extends AbstractTask {
      * @param obs
      * @return
      */
-    private Encounter generateTransferOutEncounter(Obs obs) {
+    private Encounter generateTransferInOutEncounter(Obs obs, String transferPlace, String encounterTypeName, Date visitEncounterDate) {
         Visit visit = new Visit();
+        Encounter encounter = new Encounter();
+        EncounterType encounterType = Context.getEncounterService().getEncounterType(encounterTypeName);
+        Form form = Context.getFormService().getFormByUuid("45d9db68-e4b5-11e7-80c1-9a214cf093ae");
 
         Collection<Patient> patients = new ArrayList<>();
         patients.add(obs.getEncounter().getPatient());
 
-        List<Visit> visits = Context.getVisitService().getVisits(null, patients, null, null, getTransformDate(obs.getValueDatetime(), 000000), getTransformDate(obs.getValueDatetime(), 000000), getTransformDate(obs.getValueDatetime(), 235959), getTransformDate(obs.getValueDatetime(), 235959), null, true, false);
+        List<Visit> visits = Context.getVisitService().getVisits(null, patients, null, null, getTransformDate(visitEncounterDate, 000000), getTransformDate(visitEncounterDate, 000000), getTransformDate(visitEncounterDate, 235959), getTransformDate(visitEncounterDate, 235959), null, true, false);
 
         if (visits.size() <= 0) {
             visit.setLocation(Context.getLocationService().getLocation("ART Clinic"));
             visit.setPatient(obs.getEncounter().getPatient());
-            visit.setStartDatetime(obs.getValueDatetime());
-            visit.setStopDatetime(obs.getValueDatetime());
+            visit.setStartDatetime(visitEncounterDate);
+            visit.setStopDatetime(visitEncounterDate);
             visit.setVisitType(Context.getVisitService().getVisitTypeByUuid(FACILITY_VISIT_TYPE_UUID));
             visit.setCreator(Context.getAuthenticatedUser());
             visit.setDateCreated(obs.getDateCreated());
@@ -74,28 +103,27 @@ public class MigrateARTPatientTransfersTask extends AbstractTask {
             visit = visits.get(0);
         }
 
-        Encounter encounter = new Encounter();
+
         List<Obs> obs1 = new ArrayList<>();
-        encounter.setEncounterDatetime(obs.getValueDatetime());
+        encounter.setEncounterDatetime(visitEncounterDate);
         encounter.setVisit(visit);
         encounter.setLocation(visit.getLocation());
-        encounter.setEncounterType(Context.getEncounterService().getEncounterType(EncounterTypes.TRANSFER_OUT.name()));
-        encounter.setForm(Context.getFormService().getFormByUuid("45d9db68-e4b5-11e7-80c1-9a214cf093ae"));
+        encounter.setEncounterType(encounterType);
+        encounter.setForm(form);
         encounter.setPatient(obs.getEncounter().getPatient());
         encounter.setCreator(obs.getCreator());
         encounter.setLocation(obs.getLocation());
-        encounter.setDateCreated(obs.getValueDatetime());
+        encounter.setDateCreated(visitEncounterDate);
+        encounter.addObs(createObs(getConceptFromString(TRANSFER_FROM_CLINIC_CONCEPT_ID), "", getConceptFromString(ART_CLINIC_CONCEPT_ID), encounter));
+        encounter.addObs(createObs(getConceptFromString(transferPlace), getTransferPlaceObs(obs.getEncounter(), transferPlace).getValueText(), null, encounter));
         encounter = Context.getEncounterService().saveEncounter(encounter);
-        createObs(getConceptFromString(TRANSFER_FROM_CLINIC_CONCEPT_ID), "", getConceptFromString(ART_CLINIC_CONCEPT_ID), true, encounter);
-        createObs(getConceptFromString(TRANSFER_OUT_PLACE_CONCEPT_ID), getTransferPlaceObs(obs.getEncounter()).getValueText(), null, false, encounter);
         return encounter;
     }
 
-
-    private Obs getTransferPlaceObs(Encounter encounter) {
+    private Obs getTransferPlaceObs(Encounter encounter, String transferPlace) {
         List<Obs> obsList = new ArrayList<>();
         Obs obs = new Obs();
-        Concept concept = Context.getConceptService().getConcept(TRANSFER_OUT_PLACE_CONCEPT_ID);
+        Concept concept = Context.getConceptService().getConcept(transferPlace);
         obsList = Context.getObsService().getObservationsByPersonAndConcept(encounter.getPatient().getPerson(), concept);
         if (obsList.size() > 0) {
             obs = obsList.get(0);
@@ -103,34 +131,25 @@ public class MigrateARTPatientTransfersTask extends AbstractTask {
         return obs;
     }
 
-    private Obs createObs(Concept concept, String answer, Concept conceptAnswer, boolean answerIsConcept, Encounter newEncounter) {
+    private Obs createObs(Concept concept, String answer, Concept conceptAnswer, Encounter newEncounter) {
         if (concept != null) {
             Obs obs = new Obs(newEncounter.getPatient(), concept, newEncounter.getEncounterDatetime(), newEncounter.getLocation());
-            if (conceptAnswer != null && answerIsConcept && answer != "") {
+            if (conceptAnswer != null && concept.getDatatype().isCoded()) {
                 obs.setValueCoded(conceptAnswer);
-            } else if (answer != "" && conceptAnswer == null && !answerIsConcept) {
-                obs.setValueText(answer);
-            } else if (answer == "") {
-                obs.setValueText("Unknown");
-            }
-
-            if (answer != "" || obs.getValueCoded() != null) {
-                try {
-                    Context.getObsService().saveObs(obs,CHANGE_MESSAGE_FOR_TRANSFERS);
-                }catch (Exception e){
-                    log.error(e);
-                    return null;
-                }
-
                 return obs;
-
+            } else if (answer != null && concept.getDatatype().isText()) {
+                obs.setValueText(answer);
+                return obs;
+            } else if (answer == null && concept.getDatatype().isText()) {
+                obs.setValueText("Unknown");
+                return obs;
             } else {
                 return null;
             }
+
         } else {
             return null;
         }
-
     }
 
 
