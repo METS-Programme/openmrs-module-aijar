@@ -244,19 +244,23 @@
                 setValue('viral-load-results-copies.error', '');
                 setValue('date-viral-load-taken.error', '');
 
-                var encounterDate = changeFieldDateToJavascriptDate(getValue('encounterDate.value'));
-                var transfer_out_date_id = changeFieldDateToJavascriptDate(jq("#transfer_out_date_id").html());
-                var returnDate = changeFieldDateToJavascriptDate(getValue('returndate.value'));
+                var encounterDate = new Date((getValue('encounterDate.value')));
+                var returnDate = new Date((getValue('returndate.value')));
 
                 if (encounterDate &gt;= returnDate) {
                     getField('returndate.error').html('The return date must be after the date of this visit ' +
-                            encounterDate).show();
+        formatDateForDisplay(encounterDate)).show();
                     return false;
                 }
 
-                else if (returnDate &gt;= transfer_out_date_id) {
-                    getField('returndate.error').html('The return date must be before the transfer out date. Transer Out Date: ' +
-                            transfer_out_date_id).show();
+                <!-- Check that the return date is before the transfer out date only if there is a transfer out date -->
+                if (jq('#transfer_out_date_id').html().replace(/\s+/, "").length > 0) {
+                    var transfer_out_date_id = new Date(jq('#transfer_out_date_id').html());
+                    if (returnDate &gt;= transfer_out_date_id) {
+                        getField('returndate.error').html('The return date must be before the transfer out date of ' +
+        formatDateForDisplay(transfer_out_date_id)).show();
+                        return false;
+                    }
                     return false;
                 }
 
@@ -506,6 +510,7 @@
                     <td>
 
                         <excludeIf velocityTest="$patient.person.dead ==true">
+                            <lookup complexExpression="#set($transfer_out_date = '')" />
                             <ifMode mode="ENTER">
                                 <span id="transfer_out_date_id" style="display: none"><lookup
                                         complexExpression="#set($transfer_out_date=($fn.latestObs('99165').valueDatetime)) #set($lost_to_follow_date=$fn.latestObs('99165').valueDatetime) #set($transfer_out=$fn.latestObs('90306').valueCoded.name) $transfer_out_date"/></span>
@@ -522,14 +527,13 @@
 
                             <ifMode mode="EDIT">
                                 <span id="transfer_out_date_id" style="display: none"><lookup
-                                        complexExpression="#set($transfer_out_date=($fn.latestObs('99165').valueDatetime)) #set($lost_to_follow_date=$fn.latestObs('99165').valueDatetime) #set($transfer_out=$fn.latestObs('90306').valueCoded.name) $transfer_out_date"/></span>
+                                        complexExpression="#set($transfer_out_date=($fn.latestObs('99165').valueDatetime)) #set($lost_to_follow_date=$fn.latestObs('99165').valueDatetime) #set($transfer_out=$fn.latestObs('90306').valueCoded.name) $transfer_out_date"/>
+                                </span>
                                 <includeIf velocityTest="$transfer_out=='YES'">
                                     <obs id="returndate" conceptId="5096" allowFutureDates="true"
                                          labelText="Return date:"/>
                                 </includeIf>
 
-                                <lookup
-                                        complexExpression="#set($transfer_out_date=($fn.latestObs('99165').valueDatetime)) $transfer_out_date"/>
 
                                 <includeIf velocityTest="$transfer_out!='YES'">
                                     <obs id="returndate" conceptId="5096" required="required" allowFutureDates="true"

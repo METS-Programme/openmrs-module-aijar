@@ -193,7 +193,7 @@ form#htmlform div.ai-page-frame fieldset span.date-and-time select.hfe-hours {
 	clear:left;
 }
 
-form#htmlform div.ai-page-frame span.error,form#htmlform div.ai-page-frame span.error1 {
+form#htmlform div.ai-page-frame span.error,form#htmlform div.ai-page-frame span.error1, label.error {
 	float: left;
 	border: 2px dotted #fb0303;
 	color: #fb0303;
