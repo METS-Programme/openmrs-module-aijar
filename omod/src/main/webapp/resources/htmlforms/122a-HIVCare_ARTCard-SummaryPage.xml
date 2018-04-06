@@ -50,7 +50,7 @@
             submitValStage.push(dateValidator("90267", "encounterDate", "", message4, "", "greater_than", true));
 
             //Validation for Start ART date
-            if (getValue("99161" + '.value') != "") {
+            if (getValue("99161" + '.value') != "" &amp;&amp; getValue("99160" + '.value') == "") {
                 submitValStage.push(dateValidator("99161", "90299", "encounterDate", message3, message1, "less_than", false));
             }
             //Validation for ART Transfer Date
@@ -1737,16 +1737,17 @@
                     <td class="HIVCareEnableDisable1">
                         <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
                     </td>
-                    <td class="checkboxGroup"><span class="enableDisable">
-                        <p id="trigger">
+                    <td class="checkboxGroup">
+                        <div class="enableDisable">
+                        <span id="trigger">
                             <obs conceptId="99110" answerConceptId="90003"
                                  answerLabel="HIV care"/>
-                        </p>
-                        <p id="disabled">
+                        </span>
+                        <span id="disabled">
                             <b>Transfer in from</b>
                             <obs conceptId="99109" labelText=""/>
-                        </p>
-                    </span>
+                        </span>
+                    </div>
                     </td>
                 </tr>
                 <tr>
