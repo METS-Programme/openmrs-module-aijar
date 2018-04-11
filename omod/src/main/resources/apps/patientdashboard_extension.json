@@ -9,12 +9,13 @@
     }
   },
   {
-  "id": "${project.parent.groupId}.${project.parent.artifactId}.patientDashboard.secondColumnFragments.patientTransfer",
-  "extensionPointId": "patientDashboard.secondColumnFragments",
-  "order": -11,
-  "extensionParams": {
-    "provider": "${project.parent.artifactId}",
-    "fragment": "patientTransferInfo"
+    "id": "${project.parent.groupId}.${project.parent.artifactId}.patientDashboard.secondColumnFragments.patientTransfer",
+    "extensionPointId": "patientDashboard.secondColumnFragments",
+    "order": -11,
+    "icon": "icon-exchange",
+    "extensionParams": {
+      "provider": "${project.parent.artifactId}",
+      "fragment": "patientTransferInfo"
+    }
   }
-}
 ]
