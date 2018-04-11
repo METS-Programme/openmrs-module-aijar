@@ -49,4 +49,12 @@ public class AijarConstants {
     public  static final String ART_TRANSFER_SCHEDULE_NAME="ART Summary Patient Transfer Migration";
     public static final String CHANGE_MESSAGE_FOR_TRANSFERS = "New Observation on patient transfers";
 
+    public static final String PATIENT_TRANSERRED_OUT ="transferredOut";
+    public  static final String PATIENT_TRANSFERED_OUT_LOCATION ="transferredOutTo";
+    public static final String PATIENT_TRANSFERED_OUT_DATE = "dateTransferredOut";
+
+    public static final String PATIENT_TRANSERRED_IN ="transferredIn";
+    public  static final String PATIENT_TRANSFERED_IN_LOCATION ="transferredInTo";
+    public static final String PATIENT_TRANSFERED_IN_DATE = "dateTransferredIn";
+
 }
