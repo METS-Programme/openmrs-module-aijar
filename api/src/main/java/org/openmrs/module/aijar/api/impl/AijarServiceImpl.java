@@ -158,6 +158,8 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
             } else {
                 map.put(PATIENT_TRANSFERED_IN_DATE, encounters.get(0).getEncounterDatetime());
             }
+        }else {
+            map.put(PATIENT_TRANSERRED_IN, false);
         }
         return map;
     }
