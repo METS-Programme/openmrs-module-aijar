@@ -92,22 +92,27 @@ public class EncounterTypes {
         @Override
         public String name() {
             return "Child encounter type";
+        }
+         
+        @Override
+        public String description() {
+            return "An encounter of a child for information";
+        }
 
+        public String uuid() {
+            return "2d7b9d91-2181-4c6d-8b17-3de9cd33f402";
+        } 
+     };   
+         
     public static EncounterTypeDescriptor APPOINTMENT_FOLLOW_UP = new EncounterTypeDescriptor() {
         @Override
         public String name() {
             return "Appointment Follow-up ";
 
         }
-
         @Override
         public String description() {
 
-            return "An encounter of a child for information";
-        }
-
-        public String uuid() {
-            return "2d7b9d91-2181-4c6d-8b17-3de9cd33f402";
             return "Followup actions for patients especially after missing a facility visit";
         }
 
