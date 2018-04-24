@@ -34,15 +34,39 @@ jq(document).ready(function () {
         return this.optional(element) || phone_number.length == 10 &&
             phone_number.match(/^[0-9]{1,10}$/);
     }, "Please specify a valid mobile number without any spaces like 0712345678");
+
+    /* Validation of NIN on patient registration page */
+    $( "#registration" ).validate({
+        rules: {
+            confirm_nationalid: {
+                equalTo: "nationalid"
+            }
+        },
+        messages: {
+            confirm_nationalid: {
+                equalTo: "Please confirm the National ID you have entered"
+            }
+        }
+    });
 });
 
 /**
- * Changes a field date in the format yy-mm-dd to dd/mm/yy which eas
+ * Changes a field date in the format yy-mm-dd to dd/mm/yy which is easier to read
  * @param dateValue
  */
 function changeFieldDateToJavascriptDate(dateValue) {
-    new Date();
-    return new Date(dateValue);
+    return jq.datepicker.formatDate('dd/mm/yy', jq.datepicker.parseDate('yy-mm-dd', dateValue));
+}
+
+/**
+ * Format a date for display on the screen
+ *
+ * TODO: Replace this with a function from OpenMRS JS Library
+ * @param date
+ * @returns {*}
+ */
+function formatDateForDisplay(date) {
+    return jq.datepicker.formatDate('dd/mm/yy', date);
 }
 
 
@@ -222,7 +246,7 @@ var fieldHelper = {
             this.$jqObj = jq(args);
         }
 
-        this.$jqObj.attr('disabled', true);
+        this.$jqObj.attr('disabled', true).fadeTo(250, 0.25);
 
     },
     enable: function (args) {
@@ -232,7 +256,7 @@ var fieldHelper = {
             this.$jqObj = jq(args);
         }
 
-        this.$jqObj.removeAttr('disabled');        
+        this.$jqObj.removeAttr('disabled').fadeTo(250, 1);
     },
     makeReadonly: function (args) {
         if (args instanceof jQuery) {
@@ -294,3 +318,4 @@ var fieldHelper = {
 	    $('.hfe-hours').before($timeLabel);
     }
 };
+

@@ -86,20 +86,34 @@ public class EncounterTypes {
             return "38cb2232-30fc-4b1f-8df1-47c795771ee9";
         }
     };
+
     
      public static EncounterTypeDescriptor CHILD_ENCOUNTER_TYPE = new EncounterTypeDescriptor() {
         @Override
         public String name() {
             return "Child encounter type";
+
+    public static EncounterTypeDescriptor APPOINTMENT_FOLLOW_UP = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Appointment Follow-up ";
+
         }
 
         @Override
         public String description() {
+
             return "An encounter of a child for information";
         }
 
         public String uuid() {
             return "2d7b9d91-2181-4c6d-8b17-3de9cd33f402";
+            return "Followup actions for patients especially after missing a facility visit";
+        }
+
+        public String uuid() {
+            return "dc551efc-024d-4c40-aeb8-2147c4033778";
+
         }
     };
 }
