@@ -115,7 +115,7 @@ formLabel="Child Form">
                                 </includeIf>
                                 <includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
                                     <obs conceptId="99030"
-                                         answerConceptIds="de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9,8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3"
+                                         answerConceptIds="99028,99029,99027"
                                          answerLabels="Red &lt; 13.5cm,Yellow 13.5cm - &lt;14.5cm,Green &gt;=14.5cm" id="muac-qualitative" />
                                 </includeIf>
                                 <includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
