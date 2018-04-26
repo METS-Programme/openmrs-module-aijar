@@ -3,9 +3,12 @@ package org.openmrs.module.aijar.page.controller;
 import au.com.bytecode.opencsv.CSVReader;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.Encounter;
+import org.openmrs.api.EncounterService;
 import org.openmrs.ui.framework.UiUtils;
 import org.openmrs.ui.framework.page.PageModel;
 import org.openmrs.ui.framework.page.PageRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,13 +17,19 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Data import from the EMTCT module
  */
 @Controller
 public class EmtctDataImportPageController {
+
+    @Autowired
+    EncounterService encounterService;
 
     protected final Log log = LogFactory.getLog(getClass());
 
@@ -41,7 +50,13 @@ public class EmtctDataImportPageController {
 
             // process the file
             try {
-                results = importEMTCTData(new CSVReader(new InputStreamReader(multipartFile.getInputStream())));
+                CSVReader reader = new CSVReader(new InputStreamReader(multipartFile.getInputStream()));
+                List<String[]> lines = reader.readAll();
+                List<Encounter> encounters = new ArrayList<Encounter>();
+                for(String[] row : lines){
+                    encounters.add(generateFollowUpEncounterFromEMTCTEcounterFromData(row));
+                }
+
             } catch (IOException ioe) {
                 log.error(ioe.getMessage(), ioe);
                 throw new RuntimeException("Unable to process uploaded file ", ioe);
@@ -55,9 +70,11 @@ public class EmtctDataImportPageController {
         return results;
     }
 
-    public String importEMTCTData(CSVReader reader) {
+    public Encounter generateFollowUpEncounterFromEMTCTEcounterFromData(String[] row) throws IOException {
+        Encounter e = new Encounter();
 
 
-        return "done";
+
+        return e;
     }
 }
