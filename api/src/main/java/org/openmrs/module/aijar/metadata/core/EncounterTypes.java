@@ -90,13 +90,11 @@ public class EncounterTypes {
     
      public static EncounterTypeDescriptor CHILD_ENCOUNTER_TYPE = new EncounterTypeDescriptor() {
         @Override
-        public String name() {
-            return "Child encounter type";
-        }
+        public String name() { return "Child Immunization Encounter"; }
          
         @Override
         public String description() {
-            return "An encounter of a child for information";
+            return "Visit of a child for immunization and other services";
         }
 
         public String uuid() {
