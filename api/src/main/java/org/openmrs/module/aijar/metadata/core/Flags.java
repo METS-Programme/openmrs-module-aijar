@@ -249,7 +249,7 @@ public class Flags {
     public static FlagDescriptor PATIENT_LOST = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT p.patient_id, DATE_FORMAT(MAX(o.value_datetime), '%d.%b.%Y') FROM patient p INNER JOIN obs o ON p.patient_id = o.person_id WHERE o.concept_id = 5096 AND o.voided = FALSE GROUP BY o.person_id HAVING MAX(o.value_datetime) BETWEEN DATE_SUB(CURRENT_DATE(), INTERVAL 89 DAY) AND DATE_SUB(CURRENT_DATE(), INTERVAL 30 DAY)";
+            return "SELECT p.patient_id, DATE_FORMAT(DATE_ADD(MAX(o.value_datetime), INTERVAL 30 DAY), '%d.%b.%Y') FROM patient p INNER JOIN obs o ON p.patient_id = o.person_id WHERE o.concept_id = 5096 AND o.voided = FALSE GROUP BY o.person_id HAVING MAX(o.value_datetime) BETWEEN DATE_SUB(CURRENT_DATE(), INTERVAL 89 DAY) AND DATE_SUB(CURRENT_DATE(), INTERVAL 30 DAY)";
         }
 
         @Override
@@ -286,7 +286,7 @@ public class Flags {
     public static FlagDescriptor PATIENT_LOST_TO_FOLLOWUP = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT p.patient_id, DATE_FORMAT(MAX(o.value_datetime), '%d.%b.%Y') FROM patient p INNER JOIN obs o ON p.patient_id = o.person_id WHERE o.concept_id = 5096 AND o.voided = FALSE GROUP BY o.person_id HAVING MAX(o.value_datetime) <= DATE_SUB(CURRENT_DATE(), INTERVAL 90 DAY)";
+            return "SELECT p.patient_id, DATE_FORMAT(DATE_ADD(MAX(o.value_datetime), INTERVAL 90 DAY), '%d.%b.%Y') FROM patient p INNER JOIN obs o ON p.patient_id = o.person_id WHERE o.concept_id = 5096 AND o.voided = FALSE GROUP BY o.person_id HAVING MAX(o.value_datetime) <= DATE_SUB(CURRENT_DATE(), INTERVAL 90 DAY)";
         }
 
         @Override
