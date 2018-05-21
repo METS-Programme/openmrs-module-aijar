@@ -34,6 +34,20 @@ jq(document).ready(function () {
         return this.optional(element) || phone_number.length == 10 &&
             phone_number.match(/^[0-9]{1,10}$/);
     }, "Please specify a valid mobile number without any spaces like 0712345678");
+
+    /* Validation of NIN on patient registration page */
+    $( "#registration" ).validate({
+        rules: {
+            confirm_nationalid: {
+                equalTo: "nationalid"
+            }
+        },
+        messages: {
+            confirm_nationalid: {
+                equalTo: "Please confirm the National ID you have entered"
+            }
+        }
+    });
 });
 
 /**
@@ -42,6 +56,17 @@ jq(document).ready(function () {
  */
 function changeFieldDateToJavascriptDate(dateValue) {
     return jq.datepicker.formatDate('dd/mm/yy', jq.datepicker.parseDate('yy-mm-dd', dateValue));
+}
+
+/**
+ * Format a date for display on the screen
+ *
+ * TODO: Replace this with a function from OpenMRS JS Library
+ * @param date
+ * @returns {*}
+ */
+function formatDateForDisplay(date) {
+    return jq.datepicker.formatDate('dd/mm/yy', date);
 }
 
 
@@ -60,56 +85,56 @@ function dateValidator(prime, factor, alternative_factor, message_to_throw, alte
 
     getField(prime + '.error').html("").hide;
 
-    if (getValue(factor + '.value') == '' && getValue(prime + '.value') != '' && factorRequired == true) {
+    if (getValue(factor + '.value') === '' && getValue(prime + '.value') !== '' && factorRequired === true) {
         getField(factor + '.error').html("Can Not Be Null").show;
         evaluationResult = false;
     }
-    else if (getValue(factor + '.value') == '' && getValue(alternative_factor + '.value') == '' && getValue(prime + '.value') != '' && factorRequired == false) {
+    else if (getValue(factor + '.value') === '' && getValue(alternative_factor + '.value') === '' && getValue(prime + '.value') !== '' && factorRequired == false) {
         getField(alternative_factor + '.error').html("Can Not Be Null").show();
         evaluationResult = false;
     }
 
-    if (getValue(factor + '.value') == '' && getValue(alternative_factor + '.value') != "" && factorRequired == false) {
+    if (getValue(factor + '.value') === '' && getValue(alternative_factor + '.value') !== "" && factorRequired === false) {
         factor = alternative_factor;
         message_to_throw = alternative_message_to_throw;
     }
 
-    if (getValue(prime + '.value') != '' && getValue(factor + '.value') != '') {
+    if (getValue(prime + '.value') !== '' && getValue(factor + '.value') !== '') {
         <!-- has a value -->
 
         switch (condition) {
             case "greater_than":
-                if (changeFieldDateToJavascriptDate(getValue(prime + '.value')) > changeFieldDateToJavascriptDate(getValue(factor + '.value'))) {
+                if (getValue(prime + '.value') > getValue(factor + '.value')) {
                     getField(prime + '.error').html(message_to_throw).show();
                     evaluationResult = false;
                 }
                 break;
             case "less_than":
-                if (changeFieldDateToJavascriptDate(getValue(prime + '.value')) < changeFieldDateToJavascriptDate(getValue(factor + '.value'))) {
+                if (getValue(prime + '.value') < getValue(factor + '.value')) {
                     getField(prime + '.error').html(message_to_throw).show();
                     evaluationResult = false;
                 }
                 break;
             case "equal_to":
-                if (!(changeFieldDateToJavascriptDate(getValue(prime + '.value')) == changeFieldDateToJavascriptDate(getValue(factor + '.value')))) {
+                if (!(getValue(prime + '.value') === getValue(factor + '.value'))) {
                     getField(prime + '.error').html(message_to_throw).show();
                     evaluationResult = false;
                 }
                 break;
             case "greater_or_equal":
-                if (changeFieldDateToJavascriptDate(getValue(prime + '.value')) >= changeFieldDateToJavascriptDate(getValue(factor + '.value'))) {
+                if (getValue(prime + '.value') >= getValue(factor + '.value')) {
                     getField(prime + '.error').html(message_to_throw).show();
                     evaluationResult = false;
                 }
                 break;
             case "less_or_equal":
-                if (changeFieldDateToJavascriptDate(getValue(prime + '.value')) <= changeFieldDateToJavascriptDate(getValue(factor + '.value'))) {
+                if (getValue(prime + '.value') <= getValue(factor + '.value')) {
                     getField(prime + '.error').html(message_to_throw).show();
                     evaluationResult = false;
                 }
                 break;
             case "not_equal":
-                if (changeFieldDateToJavascriptDate(getValue(prime + '.value') != changeFieldDateToJavascriptDate(getValue(factor + '.value')))) {
+                if (getValue(prime + '.value') !== getValue(factor + '.value')) {
                     getField(prime + '.error').html(message_to_throw).show();
                     evaluationResult = false;
                 }
@@ -256,7 +281,7 @@ var fieldHelper = {
         	this.$jqObj = args;
         } else if (typeof args === 'string') {
         	this.$jqObj = jq(args);
-        } 
+        }
         if (this.$jqObj.is('input[type=text], select')) {
         	this.$jqObj.val('');
         } else if (this.$jqObj.is('input[type="radio"], input[type="checkbox"]')) {
@@ -269,7 +294,7 @@ var fieldHelper = {
         	this.$jqObj = args;
         } else if (typeof args === 'string') {
         	this.$jqObj = jq(args);
-        } 
+        }
 
         this.$jqObj.find('input[type="text"], select').val('').change();
 
@@ -293,3 +318,4 @@ var fieldHelper = {
 	    $('.hfe-hours').before($timeLabel);
     }
 };
+
