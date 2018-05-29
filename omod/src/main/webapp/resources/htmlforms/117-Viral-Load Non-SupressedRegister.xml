@@ -232,7 +232,7 @@
                         <patient field="identifier" identifierTypeId="f0c16a6d-dc5f-4118-a803-616d0075d282"
                                  required="false"/>
                     </td>
-                    <td style="width: 15%;background: #F3F3F3;">
+                    <td style="width: 15%;background: #F3F3F3;" rowspan="4">
                         <excludeIf velocityTest="$patient.gender =='M' ">
                             <div>
                                 <obs id="90012" conceptId="90012" labelText="eMTCT" answerConceptIds="90003,90004"
@@ -256,13 +256,9 @@
 
                     <obsgroup groupingConceptId="163151">
                         <td style="width: 15%;background: #F3F3F3;">
-                            <label>VL Results at Initiation of IAC</label>
+                            <label>VL Results at Initiation of IAC (copies/ml)</label>
                             <div>
-                                <obs id="1305_1" conceptId="1305" answerConceptIds="1301,1306,1304"
-                                     answerLabels="Detected,Not Detected, Sample Rejected"/>
-                            </div>
-                            <div>
-                                <obs id="856_1" conceptId="856" labelText="(copies/ml)"/>
+                                <obs id="856_1" conceptId="856"/>
                             </div>
                         </td>
 
@@ -271,9 +267,6 @@
                             <obs conceptId="163156" allowFutureDates="false"/>
                         </td>
                     </obsgroup>
-                    <td style="width: 15%;background: #F3F3F3;" rowspan="3">
-                        <encounterProvider role="Provider" style="autocomplete"/>
-                    </td>
                 </tr>
 
                 <tr>
@@ -397,12 +390,12 @@
                     <td style="width: 15%;background: #F3F3F3;">
                         <label>Clinic decision</label>
                         <obs id="163166" conceptId="163166"
-                             answerConceptIds="163160,163161,163162,163163,163164,163165,5622"/>
+                             answerConceptIds="163160,163161,163162,163163,163164,163165,5622" answerLabels="1. Suppressed and continues with 1st line regimen,2. Suppressed and Continue with 2nd line,3. Non-suppressed Switch to 2nd line,4. Non-suppressed Referred for HIV resistance testing,5. Non-suppressed Referred for 3rd line regimen,6. Treat as per resistance profile,7. Other"/>
+                    <br/>
+                        <label>Other Clinic Decision</label>
+                        <obs id="163168" conceptId="163168"/>
                     </td>
-                    <td style="width: 15%;background: #F3F3F3;">
-                        <obs id="163168" conceptId="163168" labelText="Other Clinic Decision"/>
-                    </td>
-                    <td style="width: 15%;background: #F3F3F3;">
+                    <td style="width: 15%;background: #F3F3F3;" colspan="2">
                         <label>Decision date</label>
                         <obs conceptId="163167" allowFutureDates="false"/>
                     </td>
@@ -424,14 +417,15 @@
                         <label>Outcome</label>
                         <obs id="163170" conceptId="163170" answerConceptIds="163158,163159,90306,1363,5240,99112,5622"
                              answerLabels="Suppressed,Non suppressed,Transfer out,Stopped treatment,Lost to follow up,Died,Other"/>
-                    </td>
-                    <td style="width: 15%;background: #F3F3F3;">
+                        <br/>
                         <label>Other Outome</label>
+                        <br/>
                         <obs id="163171" conceptId="163171"/>
                     </td>
-                    <td style="width: 15%;background: #F3F3F3;">
+                    <td style="width: 15%;background: #F3F3F3;" colspan="2">
                         <label>Comment</label>
-                        <obs style="textarea" conceptId="163173"/>
+                        <br/>
+                        <obs style="textarea" conceptId="163173" rows="8" cols="80"/>
                     </td>
                 </tr>
                 </tbody>
