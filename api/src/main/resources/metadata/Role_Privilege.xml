@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
     <!-- PRIVILEGES-->
-    <privilege  privilege="HIV Clinic Access"  description="Able to access HIV patient clinic information"  uuid="7e0465e4-2119-11e8-b467-0ed5f89f718b"/>
+    <privilege  privilege="Task: HIV Clinic Access"  description="Able to access HIV patient clinic information"  uuid="7e0465e4-2119-11e8-b467-0ed5f89f718b"/>
 
     <!-- ROLES-->
     <role  role="Base Role"  description="This Role is the default Role for basic functionality with less privileges"  uuid="6ec3134b-3e0d-430b-890b-3a7ac8f31e86"/>
@@ -61,5 +61,5 @@
     <role_privilege  role="Base Role"  privilege="View People"/>
 
     <!-- HIV PROVIDER-->
-    <role_privilege  role="HIV Provider"  privilege="HIV Clinic Access"/>
+    <role_privilege  role="HIV Provider"  privilege="Task: HIV Clinic Access"/>
 </dataset>

@@ -9,7 +9,8 @@
           formIcon="icon-medkit"
           formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false"
           formDisplayStyle="Standard"
-          formLabel="HCT Client Card">
+          formLabel="HCT Client Card"
+          formRequiredPrivilege="Task: HIV Clinic Access">
 
     <style>
 

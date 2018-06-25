@@ -3,7 +3,7 @@
     "id": "${project.parent.groupId}.${project.parent.artifactId}.patientDashboard.firstColumnFragments.patientsummary",
     "extensionPointId": "patientDashboard.firstColumnFragments",
     "order": -10,
-    "requiredPrivilege": "HIV Clinic Access",
+    "requiredPrivilege": "Task: HIV Clinic Access",
     "extensionParams": {
       "provider": "${project.parent.artifactId}",
       "fragment": "patientSummary"
