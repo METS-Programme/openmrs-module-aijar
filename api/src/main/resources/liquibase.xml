@@ -195,4 +195,26 @@
 			DELETE FROM person_attribute WHERE value IS NULL OR value = '';
 		</sql>
 	</changeSet>
+    <changeSet id="ugandaemr-20032018-1531" author="slubwama">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) FROM scheduler_task_config
+                WHERE schedulable_class = 'org.openmrs.module.aijar.tasks.MigrateARTPatientTransfersTask'
+            </sqlCheck>
+        </preConditions>
+        <comment>Inserting ART Summary Patient Transfer Migration into 'schedule_task_config' table</comment>
+        <insert tableName="scheduler_task_config">
+            <column name="name" value="ART Summary Patient Transfer Migration" />
+            <column name="description" value="Migrates Patients Transfer Data and Created a new Transfer out encounter" />
+            <column name="schedulable_class" value="org.openmrs.module.aijar.tasks.MigrateARTPatientTransfersTask" />
+            <column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss" />
+            <column name="start_time" valueDate="2018-03-20T12:59:59" />
+            <column name="repeat_interval" value="86400" />
+            <column name="date_created" valueDate="CURRENT_TIMESTAMP" />
+            <column name="created_by" value="1" />
+            <column name="start_on_startup" value="0"/>
+            <column name="started" value="1"/>
+            <column name="uuid" value="8b5caeea-2c3b-11e8-b467-0ed5f89f718b" />
+        </insert>
+    </changeSet>
 </databaseChangeLog>
