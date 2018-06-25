@@ -102,4 +102,36 @@ public class EncounterTypes {
             return "dc551efc-024d-4c40-aeb8-2147c4033778";
         }
     };
+
+    public static EncounterTypeDescriptor TRANSFER_IN = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "TRANSFER IN";
+        }
+
+        @Override
+        public String description() {
+            return "Transfer in encounter";
+        }
+
+        public String uuid() {
+            return "3e8354f7-31b3-4862-a52e-ff41a1ee60af";
+        }
+    };
+
+    public static EncounterTypeDescriptor TRANSFER_OUT = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "TRANSFER OUT";
+        }
+
+        @Override
+        public String description() {
+            return "Transfer out encounter";
+        }
+
+        public String uuid() {
+            return "e305d98a-d6a2-45ba-ba2a-682b497ce27c";
+        }
+    };
 }
