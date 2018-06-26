@@ -23,7 +23,7 @@
                      * m -> holds the string matching the regular expression
                      */
                     var queryParameters = {}, queryString = location.search.substring(1),
-                            re = /([^&amp;=]+)=([^&amp;]*)/g, m;
+                        re = /([^&amp;=]+)=([^&amp;]*)/g, m;
 
                     // Creates a map with the query string parameters
                     while (m = re.exec(queryString)) {
@@ -36,8 +36,8 @@
                      *     object, suitable for use in a URL query string or Ajax request.
                      */
                     location.href = window.location.protocol + "//" + window.location.host +
-                            '/' + OPENMRS_CONTEXT_PATH + '/coreapps/clinicianfacing/patient.page?patientId='
-                            + queryParameters['patientId']; // Causes page to reload
+                        '/' + OPENMRS_CONTEXT_PATH + '/coreapps/clinicianfacing/patient.page?patientId='
+                        + queryParameters['patientId']; // Causes page to reload
                 });
             </script>
         </includeIf>
@@ -65,7 +65,7 @@
             min-width: 200px;
         }
 
-        fieldset{
+        fieldset {
             width: 98%;
         }
 
@@ -123,6 +123,24 @@
 
                 jq('#1305').each(function () {
                     enable_disable('1305', '856', '1301');
+                });
+
+                jq('#1305_1').change(function () {
+                    enable_disable('1305_1', '856_1', '1301');
+                });
+
+                jq('#1305_1').each(function () {
+                    enable_disable('1305_1', '856_1', '1301');
+                });
+
+                jq('#90012').change(function () {
+                    enable_disable('90012', '99601', '90003');
+                    enable_disable('90012', '99602', '90003');
+                });
+
+                jq('#90012').each(function () {
+                    enable_disable('90012', '99601', '90003');
+                    enable_disable('90012', '99602', '90003');
                 });
 
             });
@@ -189,7 +207,7 @@
                 Form</h3>
         </div>
         <span style="display: none;">
-            <encounterType types="38cb2232-30fc-4b1f-8df1-47c795771ee9" default="38cb2232-30fc-4b1f-8df1-47c795771ee9" />
+            <encounterType types="38cb2232-30fc-4b1f-8df1-47c795771ee9" default="38cb2232-30fc-4b1f-8df1-47c795771ee9"/>
             <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
                                order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
         </span>
@@ -200,33 +218,62 @@
                 <tbody>
                 <tr>
                     <td style="width: 15%;background: #F3F3F3;">
-                        <label>Date Results Recorded In Register</label>
+                        <label>Date of Registration</label>
                         <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
                     </td>
+                    <td style="width: 15%;background: #F3F3F3;">
+                        <label>Pt Clinic ID:</label>
+                        <patient field="identifier" identifierTypeId="e1731641-30ab-102d-86b0-7a5022ba4115"
+                                 required="false"/>
+                    </td>
+
+                    <td style="width: 15%;background: #F3F3F3;">
+                        <label>Unique Identifier:</label>
+                        <patient field="identifier" identifierTypeId="f0c16a6d-dc5f-4118-a803-616d0075d282"
+                                 required="false"/>
+                    </td>
+                    <td style="width: 15%;background: #F3F3F3;" rowspan="4">
+                        <excludeIf velocityTest="$patient.gender =='M' ">
+                            <label>EMTCT</label>
+                            <obs id="90012" conceptId="90012" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <obs id="99601" conceptId="99601" style="checkbox" labelText="Breast feeding"/>
+                            <obs id="99602" conceptId="99602" style="checkbox" labelText="Pregnancy"/>
+                            <div>
+
+                            </div>
+                        </excludeIf>
+                    </td>
+                </tr>
+                <tr>
                     <td style="width: 15%;background: #F3F3F3;">
                         <label>Date Results Received at Health Facility</label>
                         <obs conceptId="163150" allowFutureDates="false"/>
                     </td>
-                    <td style="width: 15%;background: #F3F3F3;">
-                        <encounterProvider role="Provider" style="autocomplete"/>
-                    </td>
-                </tr>
-                <obsgroup groupingConceptId="163151">
-                    <tr>
+
+                    <obsgroup groupingConceptId="163151">
                         <td style="width: 15%;background: #F3F3F3;">
-                            <label>VL Results at Initiation of IAC</label>
-                            <obs required="true" id="856_1" conceptId="856"/>
+                            <label>VL Results at Initiation of IAC (copies/ml)</label>
+                            <div>
+                                <obs id="" conceptId="1305" defaulValue="1301" class="hidden"/>
+                            </div>
+                            <div>
+                                <obs id="856_1" conceptId="856"/>
+                            </div>
                         </td>
-                        <td style="width: 15%;background: #F3F3F3;" colspan="2">
+
+                        <td style="width: 15%;background: #F3F3F3;">
                             <label>Date Results given to Client</label>
                             <obs conceptId="163156" allowFutureDates="false"/>
                         </td>
-                    </tr>
-                </obsgroup>
+                    </obsgroup>
+                </tr>
 
-
-                <obsgroup groupingConceptId="163152">
-                    <tr>
+                <tr>
+                    <obsgroup groupingConceptId="163152">
                         <td style="width: 15%;background: #F3F3F3;">
                             <label>Regimen At VL test</label>
                             <obs conceptId="90315"
@@ -237,8 +284,25 @@
                             <label>Start Date</label>
                             <obs conceptId="163172" allowFutureDates="false"/>
                         </td>
-                    </tr>
-                </obsgroup>
+                    </obsgroup>
+                </tr>
+                <tr>
+                    <td style="width: 15%;background: #F3F3F3;">
+                        <label>Serum Crag Screening</label>
+                        <obs conceptId="164987"
+                             answerConceptIds="1065,1066"
+                             answerLabels="Yes,No"/>
+                    </td>
+                    <td style="width: 15%;background: #F3F3F3;">
+                        <label>Serum Crag Screening Result</label>
+                        <obs conceptId="164986"/>
+                    </td>
+                    <td style="width: 15%;background: #F3F3F3;">
+                        <label>Restart IAC</label>
+                        <obs conceptId="164988" answerConceptIds="1065,1066"
+                             answerLabels="Yes,No"/>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </fieldset>
@@ -289,32 +353,60 @@
             <legend>VL After IAC Session</legend>
             <table>
                 <tbody>
-                <obsgroup groupingConceptId="163157">
-                    <tr>
+
+                <tr>
+                    <obsgroup groupingConceptId="163157">
+                        <td style="width: 15%;background: #F3F3F3;">
+                            <label>Date of VL repeat</label>
+                            <obs conceptId="163023" allowFutureDates="false"/>
+                        </td>
+                    </obsgroup>
+                    <td style="width: 15%;background: #F3F3F3;">
+                        <label>HIVDR Sample Collected</label>
+                        <obs conceptId="164989" answerConceptIds="1065,1066"
+                             answerLabels="Yes,No"/>
+                    </td>
+
+                    <obsgroup groupingConceptId="163157">
                         <td style="width: 15%;background: #F3F3F3;">
                             <label>VL Results After IAC</label>
-                            <obs id="1305" conceptId="1305" answerConceptIds="1301,1306,1304"
-                                 answerLabels="Detected,Not Detected, Sample Rejected"/>
+                            <div>
+                                <obs id="1305" conceptId="1305" answerConceptIds="1301,1306,1304"
+                                     answerLabels="Detected,Not Detected, Sample Rejected"/>
+                            </div>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <div>
+                                <obs id="856" conceptId="856" showUnits="copies/ml" required="required"/>
+                            </div>
                         </td>
-                        <td style="width: 15%;background: #F3F3F3;">
-                            <obs id="856" conceptId="856" labelText="(copies/ml)"/>
-                        </td>
-                        <td style="width: 15%;background: #F3F3F3;">
+                        <td style="width: 15%;background: #F3F3F3;" colspan="2">
                             <label>Date Results Received</label>
-                            <obs conceptId="163150" allowFutureDates="false"/>
+                            <obs conceptId="163023" allowFutureDates="false" required="required"/>
                         </td>
-                    </tr>
-                </obsgroup>
+                    </obsgroup>
+                </tr>
+
+                </tbody>
+            </table>
+        </fieldset>
+
+        <fieldset>
+            <legend>Decision And Outcomes</legend>
+            <table>
+                <tbody>
                 <tr>
                     <td style="width: 15%;background: #F3F3F3;">
                         <label>Clinic decision</label>
                         <obs id="163166" conceptId="163166"
-                             answerConceptIds="163160,163161,163162,163163,163164,163165,5622"/>
+                             answerConceptIds="163160,163161,163162,163163,163164,163165,5622"
+                             answerLabels="1. Suppressed and continues with 1st line regimen,2. Suppressed and Continue with 2nd line,3. Non-suppressed Switch to 2nd line,4. Non-suppressed Referred for HIV resistance testing,5. Non-suppressed Referred for 3rd line regimen,6. Treat as per resistance profile,7. Other"/>
+                        <br/>
+                        <label>Other Clinic Decision</label>
+                        <obs id="163168" conceptId="163168"/>
                     </td>
-                    <td style="width: 15%;background: #F3F3F3;">
-                        <obs id="163168" conceptId="163168" labelText="Other Clinic Decision"/>
-                    </td>
-                    <td style="width: 15%;background: #F3F3F3;">
+                    <td style="width: 15%;background: #F3F3F3;" colspan="2">
                         <label>Decision date</label>
                         <obs conceptId="163167" allowFutureDates="false"/>
                     </td>
@@ -336,14 +428,15 @@
                         <label>Outcome</label>
                         <obs id="163170" conceptId="163170" answerConceptIds="163158,163159,90306,1363,5240,99112,5622"
                              answerLabels="Suppressed,Non suppressed,Transfer out,Stopped treatment,Lost to follow up,Died,Other"/>
-                    </td>
-                    <td style="width: 15%;background: #F3F3F3;">
+                        <br/>
                         <label>Other Outome</label>
+                        <br/>
                         <obs id="163171" conceptId="163171"/>
                     </td>
-                    <td style="width: 15%;background: #F3F3F3;">
+                    <td style="width: 15%;background: #F3F3F3;" colspan="2">
                         <label>Comment</label>
-                        <obs style="textarea" conceptId="163173"/>
+                        <br/>
+                        <obs style="textarea" conceptId="163173" rows="8" cols="80"/>
                     </td>
                 </tr>
                 </tbody>
