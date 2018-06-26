@@ -36,8 +36,8 @@
                      *     object, suitable for use in a URL query string or Ajax request.
                      */
                     location.href = window.location.protocol + "//" + window.location.host +
-                        '/' + OPENMRS_CONTEXT_PATH + '/coreapps/clinicianfacing/patient.page?patientId='
-                        + queryParameters['patientId']; // Causes page to reload
+                            '/' + OPENMRS_CONTEXT_PATH + '/coreapps/clinicianfacing/patient.page?patientId='
+                            + queryParameters['patientId']; // Causes page to reload
                 });
             </script>
         </includeIf>
