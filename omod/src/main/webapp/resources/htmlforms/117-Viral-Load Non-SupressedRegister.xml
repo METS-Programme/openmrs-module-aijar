@@ -234,16 +234,16 @@
                     </td>
                     <td style="width: 15%;background: #F3F3F3;" rowspan="4">
                         <excludeIf velocityTest="$patient.gender =='M' ">
+                            <label>EMTCT</label>
+                            <obs id="90012" conceptId="90012" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <obs id="99601" conceptId="99601" style="checkbox" labelText="Breast feeding"/>
+                            <obs id="99602" conceptId="99602" style="checkbox" labelText="Pregnancy"/>
                             <div>
-                                <obs id="90012" conceptId="90012" labelText="eMTCT" answerConceptIds="90003,90004"
-                                     answerLabels="Yes,No"/>
-                            </div>
-                            <div>
-                                <obs id="99601" conceptId="99601" style="checkbox" labelText="Breast feeding"/>
-                            </div>
 
-                            <div>
-                                <obs id="99602" conceptId="99602" style="checkbox" labelText="Pregnancy"/>
                             </div>
                         </excludeIf>
                     </td>
@@ -257,6 +257,9 @@
                     <obsgroup groupingConceptId="163151">
                         <td style="width: 15%;background: #F3F3F3;">
                             <label>VL Results at Initiation of IAC (copies/ml)</label>
+                            <div>
+                                <obs id="" conceptId="1305" defaulValue="1301" class="hidden"/>
+                            </div>
                             <div>
                                 <obs id="856_1" conceptId="856"/>
                             </div>
@@ -350,34 +353,41 @@
             <legend>VL After IAC Session</legend>
             <table>
                 <tbody>
-                <obsgroup groupingConceptId="163157">
-                    <tr>
+
+                <tr>
+                    <obsgroup groupingConceptId="163157">
                         <td style="width: 15%;background: #F3F3F3;">
                             <label>Date of VL repeat</label>
                             <obs conceptId="163023" allowFutureDates="false"/>
                         </td>
-                        <td style="width: 15%;background: #F3F3F3;">
-                            <label>HIVDR Sample Collected</label>
-                            <obs conceptId="164989" answerConceptIds="1065,1066"
-                                 answerLabels="Yes,No"/>
-                        </td>
+                    </obsgroup>
+                    <td style="width: 15%;background: #F3F3F3;">
+                        <label>HIVDR Sample Collected</label>
+                        <obs conceptId="164989" answerConceptIds="1065,1066"
+                             answerLabels="Yes,No"/>
+                    </td>
 
+                    <obsgroup groupingConceptId="163157">
                         <td style="width: 15%;background: #F3F3F3;">
                             <label>VL Results After IAC</label>
                             <div>
                                 <obs id="1305" conceptId="1305" answerConceptIds="1301,1306,1304"
                                      answerLabels="Detected,Not Detected, Sample Rejected"/>
                             </div>
+                            <br/>
+                            <br/>
+                            <br/>
                             <div>
-                                <obs id="856" conceptId="856" labelText="(copies/ml)"/>
+                                <obs id="856" conceptId="856" showUnits="copies/ml" required="required"/>
                             </div>
                         </td>
                         <td style="width: 15%;background: #F3F3F3;" colspan="2">
                             <label>Date Results Received</label>
-                            <obs conceptId="163150" allowFutureDates="false"/>
+                            <obs conceptId="163023" allowFutureDates="false" required="required"/>
                         </td>
-                    </tr>
-                </obsgroup>
+                    </obsgroup>
+                </tr>
+
                 </tbody>
             </table>
         </fieldset>
@@ -390,8 +400,9 @@
                     <td style="width: 15%;background: #F3F3F3;">
                         <label>Clinic decision</label>
                         <obs id="163166" conceptId="163166"
-                             answerConceptIds="163160,163161,163162,163163,163164,163165,5622" answerLabels="1. Suppressed and continues with 1st line regimen,2. Suppressed and Continue with 2nd line,3. Non-suppressed Switch to 2nd line,4. Non-suppressed Referred for HIV resistance testing,5. Non-suppressed Referred for 3rd line regimen,6. Treat as per resistance profile,7. Other"/>
-                    <br/>
+                             answerConceptIds="163160,163161,163162,163163,163164,163165,5622"
+                             answerLabels="1. Suppressed and continues with 1st line regimen,2. Suppressed and Continue with 2nd line,3. Non-suppressed Switch to 2nd line,4. Non-suppressed Referred for HIV resistance testing,5. Non-suppressed Referred for 3rd line regimen,6. Treat as per resistance profile,7. Other"/>
+                        <br/>
                         <label>Other Clinic Decision</label>
                         <obs id="163168" conceptId="163168"/>
                     </td>
