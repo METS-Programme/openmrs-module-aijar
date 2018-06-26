@@ -105,6 +105,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             appFrameworkService.disableApp("coreapps.obsGraph");
             appFrameworkService.enableApp("coreapps.visitByEncounterType");
             appFrameworkService.disableApp("coreapps.dataIntegrityViolations");
+            appFrameworkService.disableApp("coreapps.conditionlist");
 
             // enable the relationships dashboard widget
             appFrameworkService.enableApp("coreapps.relationships");
