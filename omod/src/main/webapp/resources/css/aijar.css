@@ -47,6 +47,11 @@ form label, .form label {
     display:none;
 }
 
+/* Hide the attachments link in the Overall actions */
+#attachments\.attachments\.overallActions\.default, .info-section .icon-share-alt {
+	display: none;
+}
+
 /* Color for the HTML Form values displayed in the view  */
 span.value {
     color: blue;
@@ -251,4 +256,13 @@ form#htmlform div.ai-page-frame span.obs-field.vertical-layout-options input {
 	form#htmlform div.ai-page-frame input, form#htmlform div.ai-page-frame select, form#htmlform div.ai-page-frame textarea, form#htmlform div.ai-page-frame ul.select, form#htmlform .form input, form#htmlform .form select, form#htmlform .form textarea, form#htmlform .form ul.select {
 	    font-size: 0.8rem;
 	}
+}
+
+/* Force all dashboard widgets to be capitalized */
+.dashboard .info-header  h3 {
+	text-transform: uppercase;
+}
+
+table th, table td {
+	padding: 4px 4px;
 }
