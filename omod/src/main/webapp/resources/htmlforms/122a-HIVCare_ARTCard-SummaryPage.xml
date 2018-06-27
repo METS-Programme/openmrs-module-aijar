@@ -1887,8 +1887,8 @@
                         <td rowspan="3" class="ARTStartEnableDisableChild1" style="width:20%;">
                             <span class="ArtCareEnableDisable2">
                             <obs conceptId="99061"
-                                 answerConceptIds="99005,99006,99015,99016,99039,99040,99041,99042,99884,99885,163017,99143"
-                                 answerLabels="AZT-3TC-NVP, AZT-3TC-EFV, D4T-3TC-NVP, D4T-3TC-EFV, TDF-3TC-NVP, TDF-3TC-EFV, TDF-FTC-NVP, TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-LPV/r,OTHER"
+                                 answerConceptIds="99005,99006,164979,99015,99016,99039,99040,164977,99041,99042,99884,99885,164978,163017,99143"
+                                 answerLabels="AZT-3TC-NVP, AZT-3TC-EFV,AZT-3TC-DTG, D4T-3TC-NVP, D4T-3TC-EFV, TDF-3TC-NVP, TDF-3TC-EFV, TDF-3TC-DTG, TDF-FTC-NVP, TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-DTG,ABC-3TC-LPV/r,OTHER"
                                  labelText="Initial Regimen"/>
                                 </span>
                             <span class="ArtCareEnableDisableChild2">
