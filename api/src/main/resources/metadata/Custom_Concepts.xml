@@ -688,6 +688,7 @@
     <concept concept_id="163756" retired="false" datatype_id="3" class_id="11" is_set="false" creator="1" date_created="2016-07-30 22:50:31.0" version="" uuid="163756AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
     <concept concept_id="164960" retired="false" datatype_id="4" class_id="3" is_set="false" creator="1" date_created="2017-06-19 06:01:17.0" uuid="7f47837f-1ea5-4a99-b4dd-5ca268d24ba8"/>
     <concept concept_id="164961" retired="false" datatype_id="4" class_id="3" is_set="false" creator="1" date_created="2017-06-19 06:02:20.0" uuid="eb1f1131-d0e2-414a-94a5-d5c7ad126c9f"/>
+    <concept concept_id="165118" retired="false" datatype_id="1" class_id="5" is_set="false" creator="1" date_created="2018-07-04 12:21:57.0" uuid="ed19c180-c4ac-4549-8310-60bffca1575b"/>
 
     <!-- EMTCT Module Concept List -->
     <concept  concept_id="160446"  retired="false"  datatype_id="4"  class_id="11"  is_set="false"  creator="1"  date_created="2012-06-07 17:32:55"  version="NULL"  changed_by="1" uuid="160446AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
@@ -786,6 +787,7 @@
     <concept_numeric concept_id="163155" hi_absolute="100.0" low_absolute="0.0" units="%" precise="true"/>
     <concept_numeric concept_id="159368" units="" precise="false"/>
     <concept_numeric concept_id="160856" units="" precise="false"/>
+    <concept_numeric concept_id="165118" units="Pills" precise="1"/>
 
     <!--TB-->
     <concept_numeric concept_id="162584" units="" precise="false"/>
@@ -815,6 +817,7 @@
     <concept_description  concept_description_id="18334"  concept_id="164978"  description="A combination of ABACAVIR, LAMIVUDINE and DOLUTEGRAVIR"  locale="en"  creator="1"  date_created="2017-08-17 07:30:36" uuid="72d3a6c1-2c06-403b-a808-0782ff0947c5"/>
     <concept_description  concept_description_id="18333"  concept_id="164977"  description="A combination of TENOFOVIR, LAMIVUDINE and DOLUTEGRAVIR"  locale="en"  creator="1"  date_created="2017-08-17 07:26:23" uuid="428e3cc1-b372-4fbc-b963-ae00cac0ae91"/>
     <concept_description  concept_description_id="18332"  concept_id="164976"  description="This regimen is a has been suggested in the new treatment guidelines for Uganda"  locale="en"  creator="1"  date_created="2017-08-17 07:17:06" uuid="5eb17470-1598-48d7-a6b0-0aa31966af0f"/>
+    <concept_description  concept_description_id="18336"  concept_id="165118"  description="Number of ART pills left at the next visit"  locale="en"  creator="1"  date_created="2018-07-04 12:21:58"  uuid="1186b4d3-15b4-416a-a89d-27366022c30b"/>
 
     <!--MCH-->
     <concept_description  concept_description_id="16259"  concept_id="159616"  description="Time duration between true labor and birth. Numeric portion to be used with duration units concept (1732)"  locale="en"  creator="1"  date_created="2010-10-29 19:11:29"  changed_by="1"  date_changed="2014-08-13 19:28:22"  uuid="16259FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"/>
@@ -1242,6 +1245,8 @@
     <concept_name  concept_name_id="159981"  concept_id="164981"  name="Mother baby pair department"  locale="en"  locale_preferred="0"  creator="1"  date_created="2017-10-03 06:59:42" voided="0" uuid="159981BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
     <concept_name  concept_name_id="159989"  concept_id="164985"  name="HTS Reg No."  locale="en"  locale_preferred="0"  creator="1"  date_created="2017-10-13 15:50:22"  concept_name_type="SHORT"  voided="0" uuid="159989BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
     <concept_name  concept_name_id="159990"  concept_id="164985"  name="HTS Registration Number"  locale="en"  locale_preferred="1"  creator="1"  date_created="2017-10-13 15:50:22"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="159990BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
+    <concept_name  concept_name_id="160145"  concept_id="165118"  name="ART PILL BALANCE"  locale="en"  locale_preferred="1"  creator="1"  date_created="2018-07-04 12:21:58"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="62b69d7a-96b0-4246-9972-81c49241a5e8"/>
+
 
 
     <!--OPD-->
