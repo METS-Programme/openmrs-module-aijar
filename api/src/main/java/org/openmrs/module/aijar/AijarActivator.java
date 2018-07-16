@@ -378,7 +378,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
     private List<Initializer> getInitializers() {
         List<Initializer> l = new ArrayList<Initializer>();
         l.add(new AppConfigurationInitializer());
-        l.add(new HtmlFormsInitializer());
+        l.add(new HtmlFormsInitializer(AijarConstants.MODULE_ID));
         l.add(new AlertConfigurationInitializer());
         return l;
     }
