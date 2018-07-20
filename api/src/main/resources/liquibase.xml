@@ -8,6 +8,13 @@
         See http://www.liquibase.org/manual/home#available_database_refactorings
         for a list of supported elements and attributes
     -->
+	<changeSet id="ugandaemr-iss-19072018-1002" author="ssmusoke">
+		<comment>Correct the sticky note concept</comment>
+		<sql>
+			UPDATE global_property SET property_value = 'CIEL:162169' WHERE property = 'coreapps.conceptStickyNote';
+		</sql>
+	</changeSet>
+
 	<changeSet id="ugandaemr-07052017-1505" author="ssmusoke">
 		<comment>Move the death information from the obs table to the person table</comment>
 		<sql>
