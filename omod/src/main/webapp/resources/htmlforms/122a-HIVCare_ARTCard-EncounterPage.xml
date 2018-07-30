@@ -365,11 +365,11 @@
                 });
 
                 jq('[class^="OtherAppointmentReasonEnableDisable"]').change(function () {
-                    enable_disable(jq(this), "OtherAppointmentReason", 'selected_value == "other specify"', "select");
+                    enable_disable(jq(this), "OtherAppointmentReason", 'selected_value == "14. other specify"', "select");
                 });
 
                 jq('[class^="OtherAppointmentReasonEnableDisable"]').each(function () {
-                    enable_disable(jq(this), "OtherAppointmentReason", 'selected_value == "other specify"', "select");
+                    enable_disable(jq(this), "OtherAppointmentReason", 'selected_value == "14. other specify"', "select");
                 });
 
                 jq('[class^="DistrictTbRegEnableDisable"]').change(function () {
@@ -546,7 +546,7 @@
                         <span class="OtherAppointmentReasonEnableDisable1">
                                     <obs id="reason_for_appointment" conceptId="160288" labelText="Reasons for next appointment:"
                                          answerConceptIds="164968,164972,164970,856,5497,163153,164971,164973,99324,164974,90012,903,5484,90002"
-                                         answerLabels="1. ART Initiation, 2. ART Refill, 3. ART Regimen Switch/ Substitution, 4. Viral Load, 5. CD4, 6. IAC, 7. T.B Drug Refill,8. T.B Follow up, 9. ANC,10. EID,11. PMTCT, 12. Hypertension/ Diabetics, 13. Nutrition,Other Specify"/>
+                                         answerLabels="1. ART Initiation, 2. ART Refill, 3. ART Regimen Switch/ Substitution, 4. Viral Load, 5. CD4, 6. IAC, 7. T.B Drug Refill,8. T.B Follow up, 9. ANC,10. EID,11. PMTCT, 12. Hypertension/ Diabetes, 13. Nutrition,14. Other Specify"/>
                         </span>
                         <span class="OtherAppointmentReasonEnableDisableChild1">
                                     <obs conceptId="164975" labelText="Other Reason for next appointment"/>
