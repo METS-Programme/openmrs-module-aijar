@@ -1887,8 +1887,8 @@
                         <td rowspan="3" class="ARTStartEnableDisableChild1" style="width:20%;">
                             <span class="ArtCareEnableDisable2">
                             <obs conceptId="99061"
-                                 answerConceptIds="99005,99006,99015,99016,99039,99040,99041,99042,99884,99885,163017,99143"
-                                 answerLabels="AZT-3TC-NVP, AZT-3TC-EFV, D4T-3TC-NVP, D4T-3TC-EFV, TDF-3TC-NVP, TDF-3TC-EFV, TDF-FTC-NVP, TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-LPV/r,OTHER"
+                                 answerConceptIds="99005,99006,164979,99015,99016,99039,99040,164977,99041,99042,99884,99885,164978,163017,99143"
+                                 answerLabels="AZT-3TC-NVP, AZT-3TC-EFV,AZT-3TC-DTG, D4T-3TC-NVP, D4T-3TC-EFV, TDF-3TC-NVP, TDF-3TC-EFV, TDF-3TC-DTG, TDF-FTC-NVP, TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-DTG,ABC-3TC-LPV/r,OTHER"
                                  labelText="Initial Regimen"/>
                                 </span>
                             <span class="ArtCareEnableDisableChild2">
@@ -1938,8 +1938,8 @@
                         <span class="ArtCareEnableDisable1">
                         <small>
                             <obs labelText="ARVs" conceptId="99064"
-                                 answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99007,99008,99044,99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99046,163017,90002"
-                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,ZDV-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,ZDV-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,AZT-3TC-LPV/r,ABC-3TC-LPV/r,Other"/>
+                                 answerConceptIds="99015,99016,99005,99006,164979,99039,99040,99041,99042,164977,99007,99008,99044,99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99046,164978,163017,90002"
+                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,AZT-3TC-DTG,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,TDF-3TC-DTG,ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,ZDV-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,ZDV-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,AZT-3TC-LPV/r,ABC-3TC-DTG,ABC-3TC-LPV/r,Other"/>
                         </small>
                             </span>
                         <span class="ArtCareEnableDisableChild1">
@@ -1964,8 +1964,8 @@
                         <td class="ARTStartEnableDisableChild3">
                             <span class="ArtCareEnableDisable3">
                             <obs conceptId="90315"
-                                 answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99884,99885,163017,99143"
-                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3CT-LPV/r,Other"/>
+                                 answerConceptIds="99015,99016,99005,99006,164979,99039,99040,99041,99042,164977,99884,99885,164978,163017,99143"
+                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,AZT-3TC-DTG,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,TDF-3TC-DTG,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-DTG,ABC-3CT-LPV/r,Other"/>
                             </span>
                             <span class="ArtCareEnableDisableChild3">
                                 <obs size="20" conceptId="99146" labelText="Other"/>
@@ -1985,8 +1985,8 @@
                         <td class="ARTStartEnableDisableChild4">
                             <span class="ArtCareEnableDisable4">
                             <obs conceptId="90315"
-                                 answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99884,99885,163017,99143"
-                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3CT-LPV/r,Other"/>
+                                 answerConceptIds="99015,99016,99005,99006,164979,99039,99040,99041,99042,164977,99884,99885,164978,163017,99143"
+                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,AZT-3TC-DTG,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,TDF-3TC-DTG,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-DTG,ABC-3CT-LPV/r,Other"/>
                             </span>
                             <span class="ArtCareEnableDisableChild4">
                                 <obs size="20" conceptId="99146" labelText="Other"/>
@@ -2006,8 +2006,8 @@
                         <td class="ARTStartEnableDisableChild5">
                             <span class="ArtCareEnableDisable5">
                             <obs conceptId="90315"
-                                 answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99884,99885,163017,99143"
-                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3CT-LPV/r,Other"/>
+                                 answerConceptIds="99015,99016,99005,99006,164979,99039,99040,99041,99042,164977,99884,99885,164978,163017,99143"
+                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,AZT-3TC-DTG,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,TDF-3TC-DTG,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-DTG,ABC-3CT-LPV/r,Other"/>
                             </span>
                             <span class="ArtCareEnableDisableChild5">
                                 <obs size="20" conceptId="99146" labelText="Other"/>
@@ -2027,8 +2027,8 @@
                         <td class="ARTStartEnableDisableChild6">
                         <span class="ArtCareEnableDisable6">
                             <obs conceptId="90315"
-                                 answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99884,99885,163017,99143"
-                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3CT-LPV/r,Other"/>
+                                 answerConceptIds="99015,99016,99005,99006,164979,99039,99040,99041,99042,164977,99884,99885,164978,163017,99143"
+                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,AZT-3TC-DTG,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,TDF-3TC-DTG,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-DTG,ABC-3CT-LPV/r,Other"/>
                             </span>
                             <span class="ArtCareEnableDisableChild6">
                                 <obs size="20" conceptId="99146" labelText="Other"/>
