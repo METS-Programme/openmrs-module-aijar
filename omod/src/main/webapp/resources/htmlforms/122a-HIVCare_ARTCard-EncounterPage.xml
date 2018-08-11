@@ -98,7 +98,6 @@
         }
 
         form .lablex span {
-            width: 26%;
             float: left;
             margin: 1px 0px;
         }
@@ -113,7 +112,7 @@
         }
 
         form .lablex3 span {
-            min-width: 50%;
+            min-width: 70%;
             float: left;
             margin: 1px 0px;
         }
@@ -717,7 +716,7 @@
 
                         <br/>
                     </td>
-                    <td>
+                    <td class="lablex2">
                         <obs id="br" conceptId="90227" answerConceptId="90100" answerLabel="AB"/>
                         <obs id="br" conceptId="90227" answerConceptId="90099" answerLabel="Anaemia"/>
                         <obs id="br" conceptId="90227" answerConceptId="90095" answerLabel="BN"/>
@@ -739,7 +738,7 @@
                                 </span>
                             </span>
                     </td>
-                    <td class="lablex">
+                    <td class="lablex2">
                         <obs id="br" conceptId="90251" answerConceptId="90132" answerLabel="Cough"/>
                         <obs id="br" conceptId="90251" answerConceptId="90133"
                              answerLabel="DB"/>
@@ -960,7 +959,7 @@
                     <td style="width: 5%;background: #F3F3F3;padding: 20px; text-align: center;" colspan="2">
                         Investigations
                     </td>
-                    <td style="width: 5%;background: #F3F3F3;padding: 20px;">Refer or consult or link / provide</td>
+                    <td style="width: 10%;background: #F3F3F3;padding: 20px;">Refer or consult or link / provide</td>
                     <td style="width: 15%;background: #F3F3F3;padding: 20px;">Name of Attending Clinician</td>
                 </tr>
                 <tr>
@@ -988,7 +987,7 @@
 
                         <obs id="viral-load-results-copies" conceptId="856"/>
                     </td>
-                    <td class="lablex2" style="width: 40%;">
+                    <td class="lablex2">
                         <b>Tests ordered:</b>
                         <br/>
                         <obs id="br" conceptId="1271" answerConceptId="1019"
@@ -1016,14 +1015,10 @@
                                     <obs id="br" conceptId="99114" size="16" labelText=""/>
                                 </span>
                             </span>
-                        <hr style="width: 100%; border: 0.5px solid #BDBDBD;"/>
-                        <div style="width: 100%;">
+                        <hr style="width: 100%; border: 0.5px solid #BDBDBD; " class="clearfix"/>
+                        <div style="width: 100%;" class="lablex3">
                             <label>Test results:</label>
-                            <hr style="width: 100%; border: 0.5px solid #BDBDBD;"/>
-                            <p></p>
                             <obs id="br" conceptId="21" labelText="Hb:" dateLabel="HB Date:"/>
-                            <br/><br/>
-
                             <obsgroup groupingConceptId="99292">
                                 <obs conceptId="99290" answerConceptIds="1019,99152,12,307,99149"
                                      answerLabels="CBC,RPR,CXR,Sputums,PCR" labelText="Other Results:"
@@ -1032,19 +1027,19 @@
                             </obsgroup>
                         </div>
                     </td>
-                    <td class="lablex2">
+                    <td class="lablex3">
                         <b>Referred for</b>
                         <br/>
                         <obs id="br" conceptId="99054" answerConceptId="99053"
-                             answerLabel="Theraputic Feeding"/>
+                             answerLabel="TF - Theraputic Feeding"/>
                         <obs id="br" conceptId="99054" answerConceptId="99051"
-                             answerLabel="Infant F C"/>
+                             answerLabel="IFC - Infant Feeding Counselling  &lt; 2 years"/>
                         <obs id="br" conceptId="99054" answerConceptId="99052"
-                             answerLabel="Nutrition C"/>
+                             answerLabel="NC - Nutrition Counselling if &gt; 2 years"/>
                         <obs id="br" conceptId="99054" answerConceptId="99050"
-                             answerLabel="Food Support"/>
-                        <br/>
-                        <obs id="br" size="15" conceptId="99267" labelText="Other referral:"/>
+                             answerLabel="FC - Food Support"/>
+                        <br/><br/>
+                        <obs id="br" size="15" conceptId="99267" labelText="Other referral:  "/>
                         <br/>
 
                         <obs id="br" conceptId="1151" answerConceptIds="5526,99089,6046"
