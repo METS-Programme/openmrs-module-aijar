@@ -595,7 +595,7 @@ public class Flags {
         public String criteria() {
             return "SELECT p.patient_id, o.value_numeric, DATE_FORMAT((o.obs_datetime), '%d.%b.%Y') FROM patient p, obs o " +
                     " WHERE o.person_id = p.patient_id AND o.voided = FALSE AND o.concept_id = 856 " +
-                    " AND o.obs_id = (SELECT oo.obs_id FROM obs oo WHERE oo.person_id = o.person_id ORDER BY oo.obs_datetime DESC LIMIT 1) " +
+                    " AND o.obs_id = (SELECT oo.obs_id FROM obs oo WHERE oo.person_id = o.person_id AND oo.concept_id = 856 AND oo.voided = false ORDER BY oo.obs_datetime DESC LIMIT 1) " +
                     " GROUP BY o.person_id HAVING o.value_numeric > 1 ";
         }
 
