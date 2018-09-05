@@ -8,6 +8,12 @@
         See http://www.liquibase.org/manual/home#available_database_refactorings
         for a list of supported elements and attributes
     -->
+	<changeSet id="ugandaemr-05092018-1043" author="ssmusoke">
+		<comment>Fix bad data for the ART care section which is causing an error when saving the summary page</comment>
+		<sql>
+			UPDATE obs SET value_numeric = NULL WHERE concept_id = 99162 AND value_numeric IS NOT NULL;
+		</sql>
+	</changeSet>
 	<changeSet id="ugandaemr-iss-19072018-1002" author="ssmusoke">
 		<comment>Correct the sticky note concept</comment>
 		<sql>
