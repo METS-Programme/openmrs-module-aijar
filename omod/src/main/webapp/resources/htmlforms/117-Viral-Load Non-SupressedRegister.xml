@@ -190,10 +190,33 @@
                 }
 
                 // Check if there are no errors on the form
+
+                submitValStage.push(dateValidator("163172", "encounterDate", "", "Must be greater than Registration Date", "", "less_than", true));
+
+                submitValStage.push(dateValidator("163156", "163150_1", "", "Must be greater than Date Results Received at Health Facility", "", "less_than", true));
+
+                submitValStage.push(dateValidator("encounterDate", "163150_1", "", "Must be greater than Date Results Received at Health Facility", "", "less_than", true));
+
+                var lastIAC="";
+                for (var i = 1; i &lt; 10; i++) {
+                    var field = getField(("163154_" + i + ".error"));
+                    if (field !== null) {
+                        if (jq("#163154_"+i).find("input:hidden").val() !== "") {
+                            lastIAC = "163154_" + i;
+                            submitValStage.push(dateValidator("163154_" + i, "encounterDate", "", "Must be greater than Registration Date", "", "less_than", true));
+                        }
+                    }
+                }
+
+                submitValStage.push(dateValidator("163023", lastIAC, "", "Must After Last IAC Session Date", "", "less_than", true));
+                submitValStage.push(dateValidator("163150_2", "163023", "", "Must be after Date of VL repeat", "", "less_than", true));
+                submitValStage.push(dateValidator("163167", "163150_2", "", "Must be after Date of VL repeat", "", "less_than", true));
+
                 if (submitValStage.indexOf(false) != -1) {
                     submitVal = false;
                     jq().toastmessage('showErrorToast', "There were errors during validation. Correct them and submit again");
                 }
+
 
                 return submitVal;
             });
@@ -251,7 +274,7 @@
                 <tr>
                     <td style="width: 15%;background: #F3F3F3;">
                         <label>Date Results Received at Health Facility</label>
-                        <obs conceptId="163150" allowFutureDates="false" required="true"/>
+                        <obs id="163150_1" conceptId="163150" allowFutureDates="false" required="true"/>
                     </td>
 
                     <obsgroup groupingConceptId="163151">
@@ -267,7 +290,7 @@
 
                         <td style="width: 15%;background: #F3F3F3;">
                             <label>Date Results given to Client</label>
-                            <obs conceptId="163156" allowFutureDates="false" required="true"/>
+                            <obs id="163156" conceptId="163156" allowFutureDates="false" required="true"/>
                         </td>
                     </obsgroup>
                 </tr>
@@ -282,7 +305,7 @@
                         </td>
                         <td style="width: 15%;background: #F3F3F3;" colspan="2">
                             <label>Start Date</label>
-                            <obs conceptId="163172" allowFutureDates="false" required="true"/>
+                            <obs id="163172" conceptId="163172" allowFutureDates="false" required="true"/>
                         </td>
                     </obsgroup>
                 </tr>
@@ -322,7 +345,7 @@
                         <obsgroup groupingConceptId="163153">
                             <tr id="{n}-toggleContainer" style="display:none;">
                                 <td style="width: 15%;background: #F3F3F3;">
-                                    <obs conceptId="163154" allowFutureDates="false"/>
+                                    <obs id="163154_{n}" conceptId="163154" allowFutureDates="false"/>
                                 </td>
                                 <td style="width: 15%;background: #F3F3F3;">
                                     <obs conceptId="163155"/>
@@ -344,6 +367,10 @@
                     <render n="4"/>
                     <render n="5"/>
                     <render n="6"/>
+                    <render n="7"/>
+                    <render n="8"/>
+                    <render n="9"/>
+                    <render n="10"/>
                 </repeat>
                 </tbody>
             </table>
@@ -358,7 +385,7 @@
                     <obsgroup groupingConceptId="163157">
                         <td style="width: 15%;background: #F3F3F3;">
                             <label>Date of VL repeat</label>
-                            <obs conceptId="163023" allowFutureDates="false"/>
+                            <obs id="163023" conceptId="163023" allowFutureDates="false"/>
                         </td>
                     </obsgroup>
                     <td style="width: 15%;background: #F3F3F3;">
@@ -378,12 +405,12 @@
                             <br/>
                             <br/>
                             <div>
-                                <obs id="856" conceptId="856" showUnits="copies/ml" required="true"/>
+                                <obs id="856" conceptId="856" showUnits="copies/ml"/>
                             </div>
                         </td>
                         <td style="width: 15%;background: #F3F3F3;" colspan="2">
                             <label>Date Results Received</label>
-                            <obs conceptId="163023" allowFutureDates="false" required="true"/>
+                            <obs id="163150_2" conceptId="163150" allowFutureDates="false"/>
                         </td>
                     </obsgroup>
                 </tr>
