@@ -36,8 +36,8 @@
                      *     object, suitable for use in a URL query string or Ajax request.
                      */
                     location.href = window.location.protocol + "//" + window.location.host +
-                            '/' + OPENMRS_CONTEXT_PATH + '/coreapps/clinicianfacing/patient.page?patientId='
-                            + queryParameters['patientId']; // Causes page to reload
+                        '/' + OPENMRS_CONTEXT_PATH + '/coreapps/clinicianfacing/patient.page?patientId='
+                        + queryParameters['patientId']; // Causes page to reload
                 });
             </script>
         </includeIf>
@@ -143,6 +143,17 @@
                     enable_disable('90012', '99602', '90003');
                 });
 
+
+                /* add JQuery validator classes and rules*/
+                jq("#nationalid input:text").addClass("nationalid");
+
+                /* add the validator on the beforeSubmit*/
+                beforeSubmit.push(function () {
+                        jq("#htmlform").validate();
+                        return jq("#htmlform").valid();
+                    }
+                );
+
             });
 
 
@@ -191,19 +202,31 @@
 
                 // Check if there are no errors on the form
 
+
                 submitValStage.push(dateValidator("163172", "encounterDate", "", "Must be greater than Registration Date", "", "less_than", true));
 
                 submitValStage.push(dateValidator("163156", "163150_1", "", "Must be greater than Date Results Received at Health Facility", "", "less_than", true));
 
-                submitValStage.push(dateValidator("encounterDate", "163150_1", "", "Must be greater than Date Results Received at Health Facility", "", "less_than", true));
+                submitValStage.push(dateValidator("163150_1", "encounterDate", "", "Must be less or equal to the Registration Date", "", "greater_than", true));
 
-                var lastIAC="";
+                var lastIAC = "";
+                var required_message = "Required";
                 for (var i = 1; i &lt; 10; i++) {
                     var field = getField(("163154_" + i + ".error"));
                     if (field !== null) {
-                        if (jq("#163154_"+i).find("input:hidden").val() !== "") {
+                        if (jq("#163154_" + i).find("input:hidden").val() !== "") {
                             lastIAC = "163154_" + i;
-                            submitValStage.push(dateValidator("163154_" + i, "encounterDate", "", "Must be greater than Registration Date", "", "less_than", true));
+                            submitValStage.push(validateRequiredField("163155_" + i, "163154_" + i, required_message, "hidden"));
+                            submitValStage.push(validateRequiredField("90221_" + i, "163154_" + i, required_message, "hidden"));
+                        }
+                        if (jq("#163155_" + i).find("input:text").val() !== "") {
+                            submitValStage.push(validateRequiredField("163154_" + i, "163155_" + i, required_message, "text"));
+                            submitValStage.push(validateRequiredField("90221_" + i, "163155_" + i, required_message, "text"));
+                        }
+
+                        if (jq("#90221_" + i).find(":selected").text().trim() !== "") {
+                            submitValStage.push(validateRequiredField("163155_" + i, "90221_" + i, required_message, "select"));
+                            submitValStage.push(validateRequiredField("163154_" + i, "90221_" + i, required_message, "select"));
                         }
                     }
                 }
@@ -251,9 +274,12 @@
                     </td>
 
                     <td style="width: 15%;background: #F3F3F3;">
-                        <label>Unique Identifier:</label>
-                        <patient field="identifier" identifierTypeId="f0c16a6d-dc5f-4118-a803-616d0075d282"
+                        <label>National ID:</label>
+                        <span id="nationalid">
+                        <patient field="identifier"
+                                 identifierTypeId="f0c16a6d-dc5f-4118-a803-616d0075d282"
                                  required="false"/>
+                             </span>
                     </td>
                     <td style="width: 15%;background: #F3F3F3;" rowspan="4">
                         <excludeIf velocityTest="$patient.gender =='M' ">
@@ -323,7 +349,7 @@
                     <td style="width: 15%;background: #F3F3F3;">
                         <label>Restart IAC</label>
                         <obs conceptId="164988" answerConceptIds="1065,1066"
-                             answerLabels="Yes,No"/>
+                             answerLabels="Yes,No" required="true"/>
                     </td>
                 </tr>
                 </tbody>
@@ -348,10 +374,10 @@
                                     <obs id="163154_{n}" conceptId="163154" allowFutureDates="false"/>
                                 </td>
                                 <td style="width: 15%;background: #F3F3F3;">
-                                    <obs conceptId="163155"/>
+                                    <obs id="163155_{n}" conceptId="163155"/>
                                 </td>
                                 <td style="width: 15%;background: #F3F3F3;">
-                                    <obs conceptId="90221" answerConceptIds="90156,90157,90158"
+                                    <obs id="90221_{n}" conceptId="90221" answerConceptIds="90156,90157,90158"
                                          answerLabels=" Good, Fair, Poor"/>
                                 </td>
                                 <td style="width: 15%;background: #F3F3F3;">
@@ -430,12 +456,14 @@
                              answerConceptIds="163160,163161,163162,163163,163164,163165,5622"
                              answerLabels="1. Suppressed and continues with 1st line regimen,2. Suppressed and Continue with 2nd line,3. Non-suppressed Switch to 2nd line,4. Non-suppressed Referred for HIV resistance testing,5. Non-suppressed Referred for 3rd line regimen,6. Treat as per resistance profile,7. Other"/>
                         <br/>
+                    </td>
+                    <td>
                         <label>Other Clinic Decision</label>
                         <obs id="163168" conceptId="163168"/>
                     </td>
                     <td style="width: 15%;background: #F3F3F3;" colspan="2">
                         <label>Decision date</label>
-                        <obs conceptId="163167" allowFutureDates="false"/>
+                        <obs id="163167" conceptId="163167" allowFutureDates="false"/>
                     </td>
                 </tr>
                 <obsgroup groupingConceptId="163169">
@@ -458,6 +486,8 @@
                         <obs id="163170" conceptId="163170" answerConceptIds="163158,163159,90306,1363,5240,99112,5622"
                              answerLabels="Suppressed,Non suppressed,Transfer out,Stopped treatment,Lost to follow up,Died,Other"/>
                         <br/>
+                    </td>
+                    <td>
                         <label>Other Outome</label>
                         <br/>
                         <obs id="163171" conceptId="163171"/>
