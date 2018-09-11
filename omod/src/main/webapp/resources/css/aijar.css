@@ -222,7 +222,7 @@ form#htmlform div.ai-page-frame span.obs-field.vertical-layout-options input {
 
 @media (max-width: 1400px) {
 	form#htmlform div.ai-page-frame input[type="checkbox"], form#htmlform div.ai-page-frame input[type="radio"], form#htmlform .form input[type="checkbox"], form#htmlform .form input[type="radio"] {
-	    margin: 8px 5px;
+		margin: 1px 1.5px;
 	}
 
 	form#htmlform div.ai-page-frame fieldset, form#htmlform .form fieldset {
@@ -251,4 +251,42 @@ form#htmlform div.ai-page-frame span.obs-field.vertical-layout-options input {
 	form#htmlform div.ai-page-frame input, form#htmlform div.ai-page-frame select, form#htmlform div.ai-page-frame textarea, form#htmlform div.ai-page-frame ul.select, form#htmlform .form input, form#htmlform .form select, form#htmlform .form textarea, form#htmlform .form ul.select {
 	    font-size: 0.8rem;
 	}
+}
+
+.checkbox-styling{
+	float: left;
+	width: 33%;
+}
+
+.div-table{
+	display: table;
+	width: 100%;
+}
+.div.row{
+	display: table-row;
+	width: 100%;
+}
+.div-col1{
+	display: table-cell;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+}
+.div-col2{
+	display: table-cell;
+	margin-right: auto;
+	margin-left: auto;
+	width: 50%;
+}
+.div-col3{
+	display: table-cell;
+	margin-right: auto;
+	margin-left: auto;
+	width: 33%;
+}
+.div-col4{
+	display: table-cell;
+	margin-right: auto;
+	margin-left: auto;
+	width: 25%;
 }

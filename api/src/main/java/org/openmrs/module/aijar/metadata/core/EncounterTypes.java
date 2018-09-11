@@ -106,7 +106,7 @@ public class EncounterTypes {
     public static EncounterTypeDescriptor TRANSFER_IN = new EncounterTypeDescriptor() {
         @Override
         public String name() {
-            return "TRANSFER IN";
+            return "Transfer In";
         }
 
         @Override
@@ -122,7 +122,7 @@ public class EncounterTypes {
     public static EncounterTypeDescriptor TRANSFER_OUT = new EncounterTypeDescriptor() {
         @Override
         public String name() {
-            return "TRANSFER OUT";
+            return "Transfer Out";
         }
 
         @Override

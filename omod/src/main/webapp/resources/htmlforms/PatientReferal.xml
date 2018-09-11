@@ -59,6 +59,21 @@
         table th, table td {
             border: 1px solid #AFAFAF;
         }
+        #br{
+            white-space: pre;
+        }
+        input[type="checkbox"]{
+            margin: 0px 2px;
+        }
+        .obs-field{
+
+        }
+        .div-col2 {
+            display: table-cell;
+            margin-right: auto;
+            margin-left: auto;
+            width: 20%;
+        }
     </style>
     <script type="text/javascript">
         if (jQuery) {
@@ -80,58 +95,106 @@
 
                 // Enable disable other outcomes
                 jq('#encounter_type').change(function () {
-                    enable_disable('encounter_type', '99109', 'TRANSFER IN');
+                    enable_disable_show_hide('encounter_type', '99109', 'Transfer In');
                 });
 
                 jq('#encounter_type').each(function () {
-                    enable_disable('encounter_type', '99109', 'TRANSFER IN');
+                    enable_disable_show_hide('encounter_type', '99109', 'Transfer In');
                 });
 
                 jq('#encounter_type').change(function () {
-                    enable_disable('encounter_type', 'transfer_in', 'TRANSFER IN');
+                    enable_disable_show_hide('encounter_type', 'transfer_in', 'Transfer In');
                 });
 
                 jq('#encounter_type').each(function () {
-                    enable_disable('encounter_type', 'transfer_in', 'TRANSFER IN');
+                    enable_disable_show_hide('encounter_type', 'transfer_in', 'Transfer In');
                 });
 
                 jq('#encounter_type').change(function () {
-                    enable_disable('encounter_type', 'transfer_out', 'TRANSFER OUT');
+                    enable_disable_show_hide('encounter_type', 'transfer_out', 'Transfer Out');
                 });
 
                 jq('#encounter_type').each(function () {
-                    enable_disable('encounter_type', 'transfer_out', 'TRANSFER OUT');
+                    enable_disable_show_hide('encounter_type', 'transfer_out', 'Transfer Out');
                 });
 
                 // Enable disable other outcomes
                 jq('#encounter_type').change(function () {
-                    enable_disable('encounter_type', '90211', 'TRANSFER OUT');
+                    enable_disable_show_hide('encounter_type', '90211', 'Transfer Out');
                 });
 
                 jq('#encounter_type').each(function () {
-                    enable_disable('encounter_type', '90211', 'TRANSFER OUT');
+                    enable_disable_show_hide('encounter_type', '90211', 'Transfer Out');
                 });
 
 
                 jq('#164993').change(function () {
-                    enable_disable('164993', 'comprehensive_transfer', 'ART Clinic');
+                    enable_disable_show_hide('164993', 'comprehensive_transfer', 'ART Clinic');
                 });
 
                 jq('#164993').each(function () {
-                    enable_disable('164993', 'comprehensive_transfer', 'ART Clinic');
+                    enable_disable_show_hide('164993', 'comprehensive_transfer', 'ART Clinic');
                 });
 
+                jq('#90216').change(function () {
+                    enable_disable_show_hide('90216', '90217', 'Tb Rx');
+                });
+
+                jq('#90216').each(function () {
+                    enable_disable_show_hide('90216', '90217', 'Tb Rx');
+                });
+
+                /* Handle viral load results */
+                jq("#viral-load-results-copies").attr("disabled", true);
+                jq("#viral-load-results-qualitative").change(function () {
+                    var viral_load_status = getValue('viral-load-results-qualitative.value');
+                    if (viral_load_status == 1301) {
+                        /* Detected */
+                        enableContainer("#viral-load-results-copies");
+                        setValue('viral-load-results-copies.value', '');
+                    }
+                    if (viral_load_status == 1306) {
+                        /* Not Detected */
+                        disableContainer("#iral-load-results-copies");
+                        setValue('viral-load-results-copies.value', 1);
+                    }
+                    if (viral_load_status == "" || viral_load_status == 1304) {
+                        /* Sample Rejected and no data */
+                        disableContainer("#iral-load-results-copies");
+                        setValue('viral-load-results-copies.value', '');
+                    }
+                });
+                // trigger a change when the form loads
+                jq("#viral-load-results-qualitative").change();
             });
 
-            function enable_disable(triggerId, enabledDisabledId, conditionValue) {
+            function enable_disable_show_hide(triggerId, enabledDisabledId, conditionValue) {
                 if (jq("#" + triggerId + " :selected").text() == conditionValue) {
+                    enableContainer('#' + enabledDisabledId);
                     showContainer('#' + enabledDisabledId);
                 } else if (jq('#' + triggerId).find('span').text() == conditionValue) {
+                    enableContainer('#' + enabledDisabledId);
                     showContainer('#' + enabledDisabledId);
                 } else {
+                    disableContainer('#' + enabledDisabledId);
                     hideContainer('#' + enabledDisabledId);
+
                 }
             }
+
+            beforeSubmit.push(function () {
+                var submitVal = true;
+                var submitValStage = [];
+
+
+                // Check if there are no errors on the form
+                if (submitValStage.indexOf(false) != -1) {
+                    submitVal = false;
+                    jq().toastmessage('showErrorToast', "There were errors during validation. Correct them and submit again");
+                }
+
+                return submitVal;
+            });
         }
     </script>
     <div class="ai-page-frame">
@@ -148,27 +211,26 @@
                         <br/>
                         <encounterType id="encounter_type"
                                        types="3e8354f7-31b3-4862-a52e-ff41a1ee60af,e305d98a-d6a2-45ba-ba2a-682b497ce27c"
-                                       default="Select Referral Type"/>
+                                       default="Select Referral Type" required="true"/>
                     </td>
                     <td>
                         Date:
-                        <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
+                        <encounterDate default="today" disallowMultipleEncountersOnDate="block" required="true"/>
                         <span style="display: none;">
                                             <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
                                                                order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
                                         </span>
                     </td>
-                    <td id="99109">
-                        <obs conceptId="99109" labelText=" From Where"/>
-                    </td>
-                    <td id="90211">
-                        <obs conceptId="90211" labelText=" To Where"/>
+                    <td>
+                        <obs id="99109" conceptId="99109" labelText=" From Where" required="true"/>
+
+                        <obs id="90211" conceptId="90211" labelText=" To Where" required="true"/>
                     </td>
                     <td>
                         <label>Clinic Referred to:</label>
                         <br/>
                         <obs id="164993" conceptId="164993" answerConceptIds="90013,90014,165048,90018,165047,99610"
-                             answerLabels="OPD Clinic,PED OPD Clinic,TB Clinic,IPD,ART Clinic,SMC Care"/>
+                             answerLabels="OPD Clinic,PED OPD Clinic,TB Clinic,IPD,ART Clinic,SMC Care" defalut="" required="true"/>
                     </td>
                 </tr>
 
@@ -187,15 +249,15 @@
                         <tr>
                             <th>Patient ART History</th>
                             <th>Baseline Lab (At Start of ART)</th>
-                            <th>Baseline Clinic Stage</th>
+                            <th>Baseline Clinic Status</th>
                         </tr>
                         <tr>
                             <td>
                         <span class="ArtCareEnableDisable1">
                             <obs id="99061" conceptId="99061"
-                                 answerConceptIds="99005,99006,99015,99016,99039,99040,99041,99042,99884,99885,163017,99143"
-                                 answerLabels="AZT-3TC-NVP, AZT-3TC-EFV, D4T-3TC-NVP, D4T-3TC-EFV, TDF-3TC-NVP, TDF-3TC-EFV, TDF-FTC-NVP, TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-LPV/r,OTHER"
-                                 labelText="Initial Regimen"/>
+                                 answerConceptIds="99005,99006,164979,99015,99016,99039,99040,164977,99041,99042,99884,99885,164978,163017,99143"
+                                 answerLabels="AZT-3TC-NVP, AZT-3TC-EFV,AZT-3TC-DTG, D4T-3TC-NVP, D4T-3TC-EFV, TDF-3TC-NVP, TDF-3TC-EFV, TDF-3TC-DTG, TDF-FTC-NVP, TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-DTG,ABC-3TC-LPV/r,OTHER"
+                                 labelText="Baseline ART Regimen"/>
                                 </span>
                                 <span class="ArtCareEnableDisableChild1">
                                 <obs id="99268" conceptId="99268" labelText="Others"/>
@@ -206,27 +268,40 @@
                                 </p>
                             </td>
                             <td>
+                                <div class="div-table">
+                                    <div class="div-row">
+                                        <div class="div-col2">
+                                            <obs id="viral-load-results-qualitative" conceptId="1305" answerConceptIds="1301,1306,1304"
+                                                 answerLabels="Detected,Not Detected, Sample Rejected" labelText="Viral Load"/>
 
-                                <obs id="163029" conceptId="163029" labelText="Viral Load"/>
-                                <br/>
-                                <obs id="163028" conceptId="163028" labelText="HB"/>
-                                <br/>
 
-                                <obs id="99071" conceptId="99071" labelText="CD4"/>
-                                <br/>
-                                <obs id="99145" conceptId="99145" labelText="CD4 (%)"/>
-                                <br/>
-                                <obs id="163024" conceptId="163024" labelText="TLC"/>
+                                            <obs id="viral-load-results-copies" conceptId="163029" labelText="(copies/ml)"/>
 
+                                            <obs id="163028" conceptId="163028" labelText="HB"/>
+                                        </div>
+                                        <div class="div-col2">
+                                            <obs id="99071" conceptId="99071" labelText="CD4"/>
+                                            <obs id="99145" conceptId="99145" labelText="CD4 (%)"/>
+                                            <obs id="163024" conceptId="163024" labelText="TLC"/>
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
                             <td>
-                                <obs id="99069" conceptId="99069" labelText="Weight"/>
-                                <br/>
-                                <obs id="163025" conceptId="163025" labelText="Height (Children)"/>
-                                <br/>
-                                <obs id="163026" conceptId="163026" labelText="WHO Clinic Status"/>
-                                <br/>
-                                <obs id="163027" conceptId="163027" labelText="Functional Status"/>
+                                <div class="div-table">
+                                    <div class="div-row">
+                                        <div class="div-col2">
+                                            <obs id="99069" conceptId="99069" labelText="Weight"/>
+
+                                            <obs id="163025" conceptId="163025" labelText="Height (cm)"/>
+                                        </div>
+                                        <div class="div-col2">
+                                            <obs id="163026" conceptId="163026" labelText="WHO Clinic Status"/>
+
+                                            <obs id="163027" conceptId="163027" labelText="Functional Status"/>
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         </tbody>
@@ -237,48 +312,56 @@
                     <table class="enrollment">
                         <tbody>
                         <tr>
-                            <th>Current Regiment</th>
+                            <th>Current Regimen</th>
                             <th>Most Recent Lab(Date done)</th>
-                            <th>Current Clinic Stage</th>
+                            <th>Current Clinic Status</th>
                         </tr>
                         <tr>
                             <td>
                         <span class="ArtCareEnableDisable2">
                             <obs id="90315" conceptId="90315"
-                                 answerConceptIds="99005,99006,99015,99016,99039,99040,99041,99042,99884,99885,163017,99143"
-                                 answerLabels="AZT-3TC-NVP, AZT-3TC-EFV, D4T-3TC-NVP, D4T-3TC-EFV, TDF-3TC-NVP, TDF-3TC-EFV, TDF-FTC-NVP, TDF-FTC-EFV,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-LPV/r,OTHER"
-                                 labelText="Initial Regimen"/>
+                                                 answerConceptIds="99015,99016,99005,99006,164979,99039,99040,99041,99042,164977,99884,99885,164978,163017,99143"
+                                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,AZT-3TC-DTG,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,TDF-3TC-DTG,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-DTG,ABC-3CT-LPV/r,Other" label="Current Regimen"/>
                                 </span>
                                 <span class="ArtCareEnableDisableChild2">
                                 <obs id="99126" conceptId="99126" labelText="Others"/>
                             </span>
 
                                 <p>
-                                    <obs id="163030" conceptId="163030" labelText="Regiment Issued till"/>
+                                    <obs id="163030" conceptId="163030" labelText="Regimen Issued till"/>
                                 </p>
                             </td>
                             <td>
-                                <obs id="856" conceptId="856" labelText="Viral Load"/>
-                                <br/>
-                                <obs id="21" conceptId="21" labelText="HB"/>
-                                <br/>
+                                <div class="div-table">
+                                    <div class="div-row">
+                                        <div class="div-col2">
+                                            <obs id="856" conceptId="856" labelText="Viral Load"/>
 
-                                <obs id="5497" conceptId="5497" labelText="CD4"/>
-                                <br/>
-                                <obs id="730" conceptId="730" labelText="CD4 (%)"/>
-                                <br/>
-                                <obs id="1021" conceptId="1021" labelText="TLC"/>
+                                            <obs id="21" conceptId="21" labelText="HB"/>
 
+                                            <obs id="5497" conceptId="5497" labelText="CD4"/>
+                                        </div>
+                                        <div class="div-col2">
+                                            <obs id="730" conceptId="730" labelText="CD4 (%)"/>
+
+                                            <obs id="1021" conceptId="1021" labelText="TLC"/>
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
                             <td>
-                                <obs id="5089" conceptId="5089" labelText="Weight"/>
-                                <br/>
-                                <obs id="5090" conceptId="5090" labelText="Height (Children)"/>
-                                <br/>
-                                <obs id="90203" conceptId="90203" labelText="WHO Clinic Status"/>
-                                <br/>
-                                <obs id="90235" conceptId="90235" labelText="Functional Status"/>
+                                <div class="div-row">
+                                    <div class="div-col2">
+                                        <obs id="5089" conceptId="5089" labelText="Weight"/>
 
+                                        <obs id="5090" conceptId="5090" labelText="Height (cm)"/>
+                                    </div>
+                                    <div class="div-col2">
+                                        <obs id="90203" conceptId="90203" labelText="WHO Clinic Status"/>
+
+                                        <obs id="90235" conceptId="90235" labelText="Functional Status"/>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         </tbody>
@@ -290,11 +373,11 @@
                         <tbody>
                         <tr>
                             <th>TB Status</th>
-                            <th>Other Opportunist Infections<br/> and Medications</th>
+                            <th>Other Opportunist Infections</th>
                             <th>Pregnancy Status</th>
                         </tr>
                         <tr>
-                            <td>
+                            <td rowspan="3">
                         <span class="DistrictTbRegEnableDisable1">
                                 <obs id="90216" conceptId="90216" labelText="Tb Status"
                                      answerConceptIds="90079,90073,90078,90071"
@@ -306,11 +389,53 @@
                             </td>
 
                             <td>
-                                <obs id="99032" conceptId="99032" labelText="Other Opportunist Infections"/>
-
-                                <obs id="99032" conceptId="99032" labelText="Other Medications"/>
+                                <obs class="checkbox-styling" conceptId="90251" answerConceptId="90132" answerLabel="Cough" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="90251" answerConceptId="90133"
+                                     answerLabel="DB" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="90251" answerConceptId="90128"
+                                     answerLabel="Dementia" style="checkbox"/>
+                                <br/>
+                                <obs class="checkbox-styling" conceptId="90251" answerConceptId="90129"
+                                     answerLabel="Enceph" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="90251" answerConceptId="90131"
+                                     answerLabel="Fever" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="90251" answerConceptId="90138"
+                                     answerLabel="GUD" style="checkbox"/>
+                                <br/>
+                                <obs class="checkbox-styling" conceptId="90251" answerConceptId="90094"
+                                     answerLabel="Headache" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="90251" answerConceptId="90134"
+                                     answerLabel="IRIS" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="90251" answerConceptId="123"
+                                     answerLabel="Malaria" style="checkbox"/>
+                                <br/>
+                                <obs class="checkbox-styling" conceptId="90251" answerConceptId="90127"
+                                     answerLabel="Pneumonia" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="90251" answerConceptId="90137"
+                                     answerLabel="PID" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="90251" answerConceptId="999"
+                                     answerLabel="RTI" style="checkbox"/>
+                                <br/>
+                                <obs class="checkbox-styling" conceptId="90251" answerConceptId="90130"
+                                     answerLabel="Thrush" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="90251" answerConceptId="90136"
+                                     answerLabel="UD" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="90251" answerConceptId="90139"
+                                     answerLabel="Ulcers" style="checkbox"/>
+                                <br/>
+                                <obs class="checkbox-styling" conceptId="90251" answerConceptId="106"
+                                     answerLabel="URTI" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="90251" answerConceptId="90135"
+                                     answerLabel="Weight loss" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="90251" answerConceptId="90126"
+                                     answerLabel="Zoster" style="checkbox"/>
+                                <br/>
+                                <obs class="checkbox-styling" conceptId="90251" answerConceptId="507"
+                                     answerLabel="KS" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="90251" answerConceptId="1294"
+                                     answerLabel="CCM" style="checkbox"/>
                             </td>
-                            <td>
+                            <td rowspan="3">
                                 <excludeIf velocityTest="$patient.gender =='M' || $patient.age &lt; 9">
                                 <span class="PregnantEnableDisable1">
                                     <obs id="90041" conceptId="90041" style="checkbox" answerConceptIds="1066,1065"
@@ -324,15 +449,73 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="3">
-                                <label>Any Drug Allergies</label>
-                                <obs id="142" conceptId="142" size="30" style="textarea" rows="5" cols="80"/>
+                            <th>Other Medication Dispensed</th>
+                        </tr>
+                        <tr>
+                            <td style="width: 50%;">
+                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="931"
+                                     answerLabels="Amitriptilline" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="265"
+                                     answerLabel="Amoxicillin" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="779"
+                                     answerLabel="Cetrizine" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="740"
+                                     answerLabel="Ciprofloxacine" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="922"
+                                     answerLabel="Cloxacillin" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="99266"
+                                     answerLabel="Coartem" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="90171"
+                                     answerLabel="Dapsone" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="95"
+                                     answerLabel="Doxycycline" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="1108" answerLabel="EH" style="checkbox" />
+                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="272"
+                                     answerLabel="Erythromycin" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="747"
+                                     answerLabel="Fluconazole" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="912"
+                                     answerLabel="Ibuprofen" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="926"
+                                     answerLabel="Ketoconazole" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="244"
+                                     answerLabel="Mebendazole" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="237"
+                                     answerLabel="Metronidazole" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="461"
+                                     answerLabel="Multivitamins" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="99054"
+                                     answerLabel="Nutrition Support" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="919"
+                                     answerLabel="Nystatin" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="89"
+                                     answerLabel="Paracetamol" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="1194" answerLabel="RH" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="99127" answerLabel="RHE" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="768" answerLabel="RHZ" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="1131"
+                                     answerLabel="RHZE" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="99128" answerLabel="RHZES" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="916"
+                                     answerLabel="Septrin" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="329"
+                                     answerLabel="Vit B Complex" style="checkbox"/>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="3">
-                                <label>Reasons For Transfer</label>
-                                <obs id="99387" conceptId="99387" size="30" style="textarea" rows="5" cols="80"/>
+                                <div class="div-row">
+                                    <div class="div-col2">
+                                        <label>Any Drug Allergies</label>
+                                        <obs id="142" conceptId="142" size="30" style="textarea" rows="5" cols="60"/>
+                                    </div>
+                                    <div class="div-col2">
+                                        <label>Reasons For Transfer</label>
+                                        <obs id="99387" conceptId="99387" size="30" style="textarea" rows="5" cols="60"/>
+                                    </div>
+                                </div>
+
+
                             </td>
                         </tr>
                         </tbody>
@@ -351,7 +534,7 @@
                         <tr>
                             <th>Patient ART History</th>
                             <th>Baseline Lab (At Start of ART)</th>
-                            <th>Baseline Clinic Stage</th>
+                            <th>Baseline Clinic Status</th>
                         </tr>
                         <tr>
                             <td>
@@ -427,9 +610,9 @@
                     <table class="enrollment">
                         <tbody>
                         <tr>
-                            <th>Current Regiment</th>
+                            <th>Current Regimen</th>
                             <th>Most Recent Lab(Date done)</th>
-                            <th>Current Clinic Stage</th>
+                            <th>Current Clinic Status</th>
                         </tr>
                         <tr>
                             <td>
@@ -439,7 +622,7 @@
                                     <lookup class="results_style" expression="fn.latestObs('99126').valueText"/>
                                 </div>
                                 <div style="width: 100%">
-                                    <label>Regiment Issued until:</label>
+                                    <label>Regimen Issued until:</label>
                                     <lookup class="results_style" expression="fn.latestObs('90315').dateCreated"/>
                                     <lookup class="results_style" expression="fn.latestObs('99126').dateCreated"/>
                                 </div>
@@ -563,7 +746,7 @@
                         <tr>
                             <td colspan="3">
                                 <label>Reasons For Transfer</label>
-                                <obs conceptId="99387" size="30" style="textarea" rows="5" cols="80"/>
+                                <obs class="text-box-styling" conceptId="99387" size="30" style="textarea" rows="5" cols="80"/>
                             </td>
                         </tr>
                         </tbody>
