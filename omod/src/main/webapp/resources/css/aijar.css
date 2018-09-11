@@ -266,3 +266,10 @@ form#htmlform div.ai-page-frame span.obs-field.vertical-layout-options input {
 table th, table td {
 	padding: 4px 4px;
 }
+
+/** Clear any floats */
+.clearfix::after {
+	content: "";
+	clear: both;
+	display: table;
+}
