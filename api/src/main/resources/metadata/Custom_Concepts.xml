@@ -322,6 +322,10 @@
     <concept  concept_id="164982"  retired="0" datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2017-10-03 07:00:16" version="NULL" changed_by="1"  date_changed="2017-10-03 07:00:16" uuid="164982AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
     <concept  concept_id="164981"  retired="0" datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2017-10-03 06:59:42" version="NULL" changed_by="1"  date_changed="2017-10-03 06:59:42" uuid="164981AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
     <concept  concept_id="164985"  retired="0" datatype_id="3"  class_id="5"  is_set="0"  creator="1"  date_created="2017-10-13 15:50:22"  version="NULL"  changed_by="1" date_changed="2017-10-13 15:50:22" uuid="164985AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+    <concept  concept_id="1628"  retired="0"  datatype_id="2"  class_id="4"  is_set="0"  creator="1"  date_created="2009-01-08 14:49:30"  version="NULL" uuid="1628AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+
+    <concept  concept_id="116023"  retired="0"  datatype_id="4"  class_id="4"  is_set="0"  creator="1"  date_created="2007-11-03 00:00:00"  version="NULL"  changed_by="1"  date_changed="2016-03-07 16:12:50"  uuid="116023AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+
 
     <!--KP-->
     <concept  concept_id="1533"  retired="0" datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2008-02-16 13:51:15"  version="NULL"  changed_by="1"  date_changed="2008-02-16 13:51:15"  retired_by="1" uuid="1533AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
@@ -353,6 +357,8 @@
     <concept  concept_id="165126"  retired="0" datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2018-07-25 17:44:41"  version="NULL"  changed_by="1"  date_changed="2018-07-25 17:44:41" uuid="165126AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
     <concept  concept_id="165125"  retired="0" datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2018-07-25 17:40:37"  version="NULL"  changed_by="1"  date_changed="2018-07-25 17:40:37" uuid="165125AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
     <concept  concept_id="165124"  retired="0" datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2018-07-25 13:13:02"  version="NULL"  changed_by="1"  date_changed="2018-07-25 13:13:02" uuid="165124AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+    <concept  concept_id="165135"  retired="0" datatype_id="3"  class_id="11"  is_set="0"  creator="1"  date_created="2018-08-13 21:20:48"  version="NULL"  changed_by="1"  date_changed="2018-08-13 21:20:48" uuid="bc53cab2-6cad-47fd-a2bc-9a6ba68edb78"/>
+    <concept  concept_id="165136"  retired="0" datatype_id="3"  class_id="5"  is_set="0"  creator="1"  date_created="2018-08-13 21:31:27"  version="NULL"  changed_by="1"  date_changed="2018-08-13 21:31:27" uuid="b167617f-609d-4ed3-95d8-5c65ccef63b5"/>
 
     <!--OPD-->
     <concept concept_id="1597" retired="false" datatype_id="10" class_id="7" is_set="false" creator="1" date_created="2008-06-29 00:00:00.0" uuid="1597AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
@@ -719,6 +725,7 @@
     <concept concept_id="163756" retired="false" datatype_id="3" class_id="11" is_set="false" creator="1" date_created="2016-07-30 22:50:31.0" version="" uuid="163756AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
     <concept concept_id="164960" retired="false" datatype_id="4" class_id="3" is_set="false" creator="1" date_created="2017-06-19 06:01:17.0" uuid="7f47837f-1ea5-4a99-b4dd-5ca268d24ba8"/>
     <concept concept_id="164961" retired="false" datatype_id="4" class_id="3" is_set="false" creator="1" date_created="2017-06-19 06:02:20.0" uuid="eb1f1131-d0e2-414a-94a5-d5c7ad126c9f"/>
+    <concept concept_id="165118" retired="false" datatype_id="1" class_id="5" is_set="false" creator="1" date_created="2018-07-04 12:21:57.0" uuid="ed19c180-c4ac-4549-8310-60bffca1575b"/>
 
     <!-- EMTCT Module Concept List -->
     <concept  concept_id="160446"  retired="false"  datatype_id="4"  class_id="11"  is_set="false"  creator="1"  date_created="2012-06-07 17:32:55"  version="NULL"  changed_by="1" uuid="160446AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
@@ -817,6 +824,7 @@
     <concept_numeric concept_id="163155" hi_absolute="100.0" low_absolute="0.0" units="%" precise="true"/>
     <concept_numeric concept_id="159368" units="" precise="false"/>
     <concept_numeric concept_id="160856" units="" precise="false"/>
+    <concept_numeric concept_id="165118" units="Pills" precise="1"/>
 
     <!--TB-->
     <concept_numeric concept_id="162584" units="" precise="false"/>
@@ -846,6 +854,9 @@
     <concept_description  concept_description_id="18334"  concept_id="164978"  description="A combination of ABACAVIR, LAMIVUDINE and DOLUTEGRAVIR"  locale="en"  creator="1"  date_created="2017-08-17 07:30:36" uuid="72d3a6c1-2c06-403b-a808-0782ff0947c5"/>
     <concept_description  concept_description_id="18333"  concept_id="164977"  description="A combination of TENOFOVIR, LAMIVUDINE and DOLUTEGRAVIR"  locale="en"  creator="1"  date_created="2017-08-17 07:26:23" uuid="428e3cc1-b372-4fbc-b963-ae00cac0ae91"/>
     <concept_description  concept_description_id="18332"  concept_id="164976"  description="This regimen is a has been suggested in the new treatment guidelines for Uganda"  locale="en"  creator="1"  date_created="2017-08-17 07:17:06" uuid="5eb17470-1598-48d7-a6b0-0aa31966af0f"/>
+    <concept_description  concept_description_id="18336"  concept_id="165118"  description="Number of ART pills left at the next visit"  locale="en"  creator="1"  date_created="2018-07-04 12:21:58"  uuid="1186b4d3-15b4-416a-a89d-27366022c30b"/>
+    <concept_description  concept_description_id="18337"  concept_id="1628"  description="Coded list of past medical history problems but not procedures which are coded under Past Surgical History."  locale="en"  creator="1"  date_created="2009-01-08 14:49:30"  uuid="1470FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"/>
+    <concept_description  concept_description_id="4566"  concept_id="116023"  description="Tumors or cancer of the uterine cervix."  locale="en"  creator="1"  date_created="2007-10-18 04:28:24"  uuid="4566FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"/>
 
     <!--MCH-->
     <concept_description  concept_description_id="16259"  concept_id="159616"  description="Time duration between true labor and birth. Numeric portion to be used with duration units concept (1732)"  locale="en"  creator="1"  date_created="2010-10-29 19:11:29"  changed_by="1"  date_changed="2014-08-13 19:28:22"  uuid="16259FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"/>
@@ -1143,7 +1154,8 @@
     <concept_description concept_description_id="9270" concept_id="130576" description="A recurrent disease of the oral mucosa of unknown etiology. It is characterized by small white ulcerative lesions, single or multiple, round or oval. Two to eight crops of lesions occur per year, lasting for 7 to 14 days and then heal without scarring. (From Jablonski&apos;s Dictionary of Dentistry, 1992, p742)" locale="en" creator="1" date_created="2007-10-18 04:28:24.0" uuid="9270FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"/>
     <concept_description concept_description_id="11958" concept_id="138680" description="A recurrent disease of the oral mucosa of unknown etiology. It is characterized by small white ulcerative lesions, single or multiple, round or oval. Two to eight crops of lesions occur per year, lasting for 7 to 14 days and then heal without scarring. (From Jablonski&apos;s Dictionary of Dentistry, 1992, p742)" locale="en" creator="1" date_created="2007-10-18 04:28:24.0" uuid="11958FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"/>
     <concept_description concept_description_id="15044" concept_id="148531" description="A recurrent disease of the oral mucosa of unknown etiology. It is characterized by small white ulcerative lesions, single or multiple, round or oval. Two to eight crops of lesions occur per year, lasting for 7 to 14 days and then heal without scarring. (From Jablonski&apos;s Dictionary of Dentistry, 1992, p742)" locale="en" creator="1" date_created="2007-10-18 04:28:24.0" date_changed="2015-07-17 21:16:34.0" uuid="15044FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"/>
-
+    <concept_description  concept_description_id="18338"  concept_id="165135"  description="other gender"  locale="en"  creator="1"  date_created="2018-08-13 21:20:48" uuid="1e751a04-d801-4404-bfa8-8f141354f251"/>
+    <concept_description  concept_description_id="18339"  concept_id="165136"  description="Occupations not available in coded lists"  locale="en"  creator="1"  date_created="2018-08-13 21:31:27" uuid="23cc2570-2175-4f81-925a-9bb35d7ad719"/>
 
     <!--CONCEPT NAME-->
     <!--ART-->
@@ -1273,6 +1285,11 @@
     <concept_name  concept_name_id="159981"  concept_id="164981"  name="Mother baby pair department"  locale="en"  locale_preferred="0"  creator="1"  date_created="2017-10-03 06:59:42" voided="0" uuid="159981BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
     <concept_name  concept_name_id="159989"  concept_id="164985"  name="HTS Reg No."  locale="en"  locale_preferred="0"  creator="1"  date_created="2017-10-13 15:50:22"  concept_name_type="SHORT"  voided="0" uuid="159989BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
     <concept_name  concept_name_id="159990"  concept_id="164985"  name="HTS Registration Number"  locale="en"  locale_preferred="1"  creator="1"  date_created="2017-10-13 15:50:22"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="159990BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
+    <concept_name  concept_name_id="160145"  concept_id="165118"  name="ART PILL BALANCE"  locale="en"  locale_preferred="1"  creator="1"  date_created="2018-07-04 12:21:58"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="62b69d7a-96b0-4246-9972-81c49241a5e8"/>
+    <concept_name  concept_id="1628"  name="PAST MEDICAL HISTORY ADDED"  locale="en"  creator="1"  date_created="2009-01-08 14:49:30"  concept_name_id="1908"  voided="0"  uuid="1908BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1"/>
+    <concept_name  concept_id="1628"  name="PMH Added"  locale="en"  creator="1"  date_created="2009-01-08 14:49:30"  concept_name_id="86911"  voided="0" uuid="86911BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="SHORT"  locale_preferred="0"/>
+    <concept_name  concept_id="116023"  name="Malignant Neoplasm of Cervix Uteri"  locale="en"  creator="1"  date_created="2007-10-18 04:28:24"  concept_name_id="16502"  voided="0"  uuid="16502BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  locale_preferred="0"/>
+    <concept_name  concept_id="116023"  name="CERVICAL CANCER"  locale="en"  creator="1"  date_created="2010-04-22 15:09:23"  concept_name_id="100612"  voided="0" uuid="100612BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1"/>
 
     <!--KP-->
     <concept_name  concept_id="1533"  name="RESPONDENT GENDER"  locale="en"  creator="1"  date_created="2008-02-16 13:53:50"  concept_name_id="1792"  voided="0"  voided_by="1" uuid="1792BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1"/>
@@ -1338,7 +1355,8 @@
     <concept_name  concept_name_id="160153"  concept_id="165125"  name="Uniformed Officer"  locale="en"  locale_preferred="1"  creator="1"  date_created="2018-07-25 17:40:37"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="160153BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
     <concept_name  concept_name_id="160152"  concept_id="160109"  name="Sexually active with"  locale="en"  locale_preferred="1"  creator="1"  date_created="2018-07-25 13:17:51"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="160152BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
     <concept_name  concept_name_id="160151"  concept_id="165124"  name="CURRENT RESPONDENT GENDER"  locale="en"  locale_preferred="1"  creator="1"  date_created="2018-07-25 13:13:02"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="160151BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
-
+    <concept_name  concept_name_id="160164"  concept_id="165135"  name="OTHER GENDER"  locale="en"  locale_preferred="1"  creator="1"  date_created="2018-08-13 21:20:48"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="99c623ca-9ff3-4a8d-b475-184c9a8e8795"/>
+    <concept_name  concept_name_id="160165"  concept_id="165136"  name="OTHER OCCUPATION"  locale="en"  locale_preferred="1"  creator="1"  date_created="2018-08-13 21:31:27"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="8a4e2069-2d3a-4cc2-aae5-d0b3bc435404"/>
 
     <!--OPD-->
     <concept_name concept_id="1090" name="Never" locale="en" creator="1" date_created="2005-01-12 00:00:00.0" concept_name_id="151164" voided="false" uuid="1164BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
@@ -3933,7 +3951,6 @@
     <concept_answer  concept_answer_id="7008"  concept_id="160530"  answer_concept="160526"  creator="1"  date_created="2012-06-10 17:25:09"  uuid="3669CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"  sort_weight="3669"/>
     <concept_answer  concept_answer_id="7009"  concept_id="160530"  answer_concept="160525"  creator="1"  date_created="2012-06-10 17:25:09"  uuid="3670CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"  sort_weight="3670"/>
     <concept_answer  concept_answer_id="7010"  concept_id="160530"  answer_concept="160529"  creator="1"  date_created="2012-06-10 17:25:09"  uuid="3671CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"  sort_weight="3671"/>
-
 
     <concept_answer  concept_answer_id="7011"  concept_id="165100"  answer_concept="165101"  creator="1"  date_created="2017-12-04 16:09:31"  sort_weight="1"  uuid="86d3f3ba-414d-435a-b151-0ddb40b6007b"/>
     <concept_answer  concept_answer_id="7012"  concept_id="165100"  answer_concept="165102"  creator="1"  date_created="2017-12-04 16:09:31"  sort_weight="2"  uuid="e8f83751-8d80-40b4-8813-835973e5facd"/>
