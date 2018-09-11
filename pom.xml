@@ -107,6 +107,9 @@
 		<!-- core configuration library -->
 		<ugandaemrReportsVersion>2.0.3-SNAPSHOT</ugandaemrReportsVersion>
 
+		<!-- Open Web Apps -->
+		<sysadminVersion>1.1</sysadminVersion>
+
 	</properties>
 
 	<dependencyManagement>
