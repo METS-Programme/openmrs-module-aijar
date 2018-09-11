@@ -14,7 +14,7 @@
 			UPDATE obs SET value_numeric = NULL WHERE concept_id = 99162 AND value_numeric IS NOT NULL;
 		</sql>
 	</changeSet>
-	<changeSet id="ugandaemr-iss-19072018-1002" author="ssmusoke">
+	<changeSet id="ugandaemr-19072018-1002" author="ssmusoke">
 		<comment>Correct the sticky note concept</comment>
 		<sql>
 			UPDATE global_property SET property_value = 'CIEL:162169' WHERE property = 'coreapps.conceptStickyNote';
