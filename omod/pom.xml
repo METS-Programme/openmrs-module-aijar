@@ -107,6 +107,11 @@
 
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
+			<artifactId>emrapi-api-pre2.2</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
 			<artifactId>formentryapp-omod</artifactId>
 		</dependency>
 		
@@ -124,11 +129,6 @@
             <groupId>org.openmrs.module</groupId>
             <artifactId>htmlformentry-api-2.0</artifactId>
         </dependency>
-
-		<dependency>
-			<groupId>org.openmrs.module</groupId>
-			<artifactId>htmlformentry-api-2.0</artifactId>
-		</dependency>
 
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
@@ -356,7 +356,7 @@
 			<plugin>
 				<groupId>org.openmrs.maven.plugins</groupId>
 				<artifactId>openmrs-sdk-maven-plugin</artifactId>
-				<version>3.9.0</version>
+				<version>3.13.1</version>
 				<executions>
 					<execution>
 						<id>build-distro</id>

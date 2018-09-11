@@ -8,6 +8,19 @@
         See http://www.liquibase.org/manual/home#available_database_refactorings
         for a list of supported elements and attributes
     -->
+	<changeSet id="ugandaemr-05092018-1043" author="ssmusoke">
+		<comment>Fix bad data for the ART care section which is causing an error when saving the summary page</comment>
+		<sql>
+			UPDATE obs SET value_numeric = NULL WHERE concept_id = 99162 AND value_numeric IS NOT NULL;
+		</sql>
+	</changeSet>
+	<changeSet id="ugandaemr-19072018-1002" author="ssmusoke">
+		<comment>Correct the sticky note concept</comment>
+		<sql>
+			UPDATE global_property SET property_value = 'CIEL:162169' WHERE property = 'coreapps.conceptStickyNote';
+		</sql>
+	</changeSet>
+
 	<changeSet id="ugandaemr-07052017-1505" author="ssmusoke">
 		<comment>Move the death information from the obs table to the person table</comment>
 		<sql>
@@ -165,18 +178,6 @@
 			FROM obs
 			WHERE concept_id = 163023) B
 			ON (A.encounter_id = B.encounter_id));
-		</sql>
-	</changeSet>
-	<changeSet id="ugandaemr-17102017-0839" author="slubwama">
-		<preConditions onFail="CONTINUE">
-			<sqlCheck expectedResult="1">
-				SELECT COUNT(*) FROM concept WHERE concept_id = '164985'
-			</sqlCheck>
-		</preConditions>
-		<comment>Migrate HTC Identifier value to Concept</comment>
-		<sql>
-			INSERT INTO obs (person_id, concept_id, encounter_id, location_id,value_text,obs_datetime,date_created,creator,uuid)
-			select patient_identifier.patient_id, "164985",encounter.encounter_id,encounter.location_id,identifier,encounter.date_created,encounter.date_created,encounter.creator,UUID() from encounter inner JOIN patient_identifier on(encounter.patient_id=patient_identifier.patient_id) WHERE encounter_type=15 and patient_identifier.identifier_type=9
 		</sql>
 	</changeSet>
     <changeSet id="uganademr-10202017-2138" author="ssmusoke">

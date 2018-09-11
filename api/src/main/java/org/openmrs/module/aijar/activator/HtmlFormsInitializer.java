@@ -30,23 +30,28 @@ public class HtmlFormsInitializer implements Initializer {
 
     protected static final Log log = LogFactory.getLog(HtmlFormsInitializer.class);
 
-    protected static final String providerName = "aijar";
     protected static final String formsPath = "htmlforms/";
+
+    protected String providerName;
+
+    public HtmlFormsInitializer(String newProviderName) {
+        this.providerName = newProviderName;
+    }
 
     /**
      * @see Initializer#started()
      */
     public synchronized void started() {
-        log.info("Setting HFE forms for " + AijarConstants.MODULE_ID);
+        log.info("Setting HFE forms for " + getProviderName());
 
         final ResourceFactory resourceFactory = ResourceFactory.getInstance();
-        final ResourceProvider resourceProvider = resourceFactory.getResourceProviders().get(providerName);
+        final ResourceProvider resourceProvider = resourceFactory.getResourceProviders().get(getProviderName());
 
         // Scanning the forms resources folder
         final List<String> formPaths = new ArrayList<String>();
         final File formsDir = resourceProvider.getResource(formsPath); // The ResourceFactory can't return File instances, hence the ResourceProvider need
         if (formsDir == null || formsDir.isDirectory() == false) {
-            log.error("No HTML forms could be retrieved from the provided folder: " + providerName + ":" + formsPath);
+            log.error("No HTML forms could be retrieved from the provided folder: " + getProviderName() + ":" + formsPath);
             return;
         }
         for (File file : formsDir.listFiles())
@@ -61,10 +66,10 @@ public class HtmlFormsInitializer implements Initializer {
             // Save form
             HtmlForm htmlForm = null;
             try {
-                htmlForm = HtmlFormUtil.getHtmlFormFromUiResource(resourceFactory, formService, hfeService, providerName, formPath);
+                htmlForm = HtmlFormUtil.getHtmlFormFromUiResource(resourceFactory, formService, hfeService, getProviderName(), formPath);
                 try {
                     // Adds meta data
-                    ExtensionForm extensionForm = ExtensionFormUtil.getExtensionFormFromUiResourceAndForm(resourceFactory, providerName, formPath, hfeAppService, formManager, htmlForm.getForm());
+                    ExtensionForm extensionForm = ExtensionFormUtil.getExtensionFormFromUiResourceAndForm(resourceFactory, getProviderName(), formPath, hfeAppService, formManager, htmlForm.getForm());
                     log.info("The form at " + formPath + " has been successfully loaded with its metadata");
                 } catch (Exception e) {
                     log.error("The form was created but its extension point could not be created in Manage Forms \\ Configure Metadata: " + formPath, e);
@@ -86,6 +91,15 @@ public class HtmlFormsInitializer implements Initializer {
      */
     public void stopped() {
         //TODO: Perhaps disable the forms?
+    }
+
+    /**
+     * Get the name of the provider where the forms are located - useful when extending this functionlality
+     *
+     * @return the name of the provider
+     */
+    public String getProviderName() {
+        return this.providerName;
     }
 
 }

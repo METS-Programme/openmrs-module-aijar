@@ -47,6 +47,11 @@ form label, .form label {
     display:none;
 }
 
+/* Hide the attachments link in the Overall actions */
+#attachments\.attachments\.overallActions\.default, .info-section .icon-share-alt {
+	display: none;
+}
+
 /* Color for the HTML Form values displayed in the view  */
 span.value {
     color: blue;
@@ -253,40 +258,57 @@ form#htmlform div.ai-page-frame span.obs-field.vertical-layout-options input {
 	}
 }
 
+/* Force all dashboard widgets to be capitalized */
+.dashboard .info-header  h3 {
+	text-transform: uppercase;
+}
+
+table th, table td {
+	padding: 4px 4px;
+}
+
+/** Clear any floats */
+.clearfix::after {
+	content: "";
+	clear: both;
+	display: table;
+}
+
+
 .checkbox-styling{
-	float: left;
-	width: 33%;
+    float: left;
+    width: 33%;
 }
 
 .div-table{
-	display: table;
-	width: 100%;
+    display: table;
+    width: 100%;
 }
 .div.row{
-	display: table-row;
-	width: 100%;
+    display: table-row;
+    width: 100%;
 }
 .div-col1{
-	display: table-cell;
-	margin-left: auto;
-	margin-right: auto;
-	width: 100%;
+    display: table-cell;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
 }
 .div-col2{
-	display: table-cell;
-	margin-right: auto;
-	margin-left: auto;
-	width: 50%;
+    display: table-cell;
+    margin-right: auto;
+    margin-left: auto;
+    width: 50%;
 }
 .div-col3{
-	display: table-cell;
-	margin-right: auto;
-	margin-left: auto;
-	width: 33%;
+    display: table-cell;
+    margin-right: auto;
+    margin-left: auto;
+    width: 33%;
 }
 .div-col4{
-	display: table-cell;
-	margin-right: auto;
-	margin-left: auto;
-	width: 25%;
+    display: table-cell;
+    margin-right: auto;
+    margin-left: auto;
+    width: 25%;
 }
