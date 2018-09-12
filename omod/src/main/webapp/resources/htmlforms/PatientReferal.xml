@@ -59,19 +59,15 @@
         table th, table td {
             border: 1px solid #AFAFAF;
         }
-
-        #br {
+        #br{
             white-space: pre;
         }
-
-        input[type="checkbox"] {
+        input[type="checkbox"]{
             margin: 0px 2px;
         }
-
-        .obs-field {
+        .obs-field{
 
         }
-
         .div-col2 {
             display: table-cell;
             margin-right: auto;
@@ -141,82 +137,48 @@
                 });
 
                 jq('#90216').change(function () {
-                    enable_disable('90216', '90217', 'Tb Rx');
+                    enable_disable_show_hide('90216', '90217', 'Tb Rx');
                 });
 
                 jq('#90216').each(function () {
-                    enable_disable('90216', '90217', 'Tb Rx');
+                    enable_disable_show_hide('90216', '90217', 'Tb Rx');
                 });
 
-                jq('#90041').change(function () {
-                    enable_disable('90041', '5596', 'Yes');
-                });
-
-                jq('#90041').each(function () {
-                    enable_disable('90041', '5596', 'Yes');
-                });
-
-
-                // trigger a change when the form loads
-                jq("#viral-load-results-qualitative").change(function () {
-                    viral_load_widget('viral-load-results-qualitative', 'viral-load-results-copies');
-                });
-
-                jq("#viral-load-results-qualitative").each(function () {
-                    viral_load_widget('viral-load-results-qualitative', 'viral-load-results-copies');
-                });
-
-                // trigger a change when the form loads
-                jq("#viral-load-results-qualitative_1").change(function () {
-                    viral_load_widget('viral-load-results-qualitative_1', 'viral-load-results-copies_1');
-                });
-
-                jq("#viral-load-results-qualitative_1").each(function () {
-                    viral_load_widget('viral-load-results-qualitative_1', 'viral-load-results-copies_1');
-                });
-            });
-
-            function viral_load_widget(triger,enabledDisabledId) {
                 /* Handle viral load results */
-                jq("#"+enabledDisabledId).attr("disabled", true);
-                jq("#"+triger).change(function () {
-                    var viral_load_status = getValue(triger+".value");
+                jq("#viral-load-results-copies").attr("disabled", true);
+                jq("#viral-load-results-qualitative").change(function () {
+                    var viral_load_status = getValue('viral-load-results-qualitative.value');
                     if (viral_load_status == 1301) {
                         /* Detected */
-                        enableContainer("#"+enabledDisabledId);
-                        setValue(enabledDisabledId+".value", '');
+                        enableContainer("#viral-load-results-copies");
+                        setValue('viral-load-results-copies.value', '');
                     }
                     if (viral_load_status == 1306) {
                         /* Not Detected */
-                        disableContainer("#"+enabledDisabledId);
-                        setValue(enabledDisabledId+".value", 1);
+                        disableContainer("#iral-load-results-copies");
+                        setValue('viral-load-results-copies.value', 1);
                     }
                     if (viral_load_status == "" || viral_load_status == 1304) {
                         /* Sample Rejected and no data */
-                        disableContainer("#"+enabledDisabledId);
-                        setValue(enabledDisabledId+".value", '');
+                        disableContainer("#iral-load-results-copies");
+                        setValue('viral-load-results-copies.value', '');
                     }
                 });
-            }
+                // trigger a change when the form loads
+                jq("#viral-load-results-qualitative").change();
+            });
 
             function enable_disable_show_hide(triggerId, enabledDisabledId, conditionValue) {
                 if (jq("#" + triggerId + " :selected").text() == conditionValue) {
+                    enableContainer('#' + enabledDisabledId);
                     showContainer('#' + enabledDisabledId);
                 } else if (jq('#' + triggerId).find('span').text() == conditionValue) {
+                    enableContainer('#' + enabledDisabledId);
                     showContainer('#' + enabledDisabledId);
-                } else {
-                    hideContainer('#' + enabledDisabledId);
-
-                }
-            }
-
-            function enable_disable(triggerId, enabledDisabledId, conditionValue) {
-                if (jq("#" + triggerId + " :selected").text() == conditionValue) {
-                    enableContainer('#' + enabledDisabledId);
-                } else if (jq('#' + triggerId).find('span').text() == conditionValue) {
-                    enableContainer('#' + enabledDisabledId);
                 } else {
                     disableContainer('#' + enabledDisabledId);
+                    hideContainer('#' + enabledDisabledId);
+
                 }
             }
 
@@ -260,16 +222,15 @@
                                         </span>
                     </td>
                     <td>
-                        <obs id="99109" conceptId="99109" labelText=" From Where"/>
+                        <obs id="99109" conceptId="99109" labelText=" From Where" required="true"/>
 
-                        <obs id="90211" conceptId="90211" labelText=" To Where"/>
+                        <obs id="90211" conceptId="90211" labelText=" To Where" required="true"/>
                     </td>
                     <td>
                         <label>Clinic Referred to:</label>
                         <br/>
                         <obs id="164993" conceptId="164993" answerConceptIds="90013,90014,165048,90018,165047,99610"
-                             answerLabels="OPD Clinic,PED OPD Clinic,TB Clinic,IPD,ART Clinic,SMC Care" defalut=""
-                             required="true"/>
+                             answerLabels="OPD Clinic,PED OPD Clinic,TB Clinic,IPD,ART Clinic,SMC Care" defalut="" required="true"/>
                     </td>
                 </tr>
 
@@ -310,15 +271,11 @@
                                 <div class="div-table">
                                     <div class="div-row">
                                         <div class="div-col2">
-                                            <obsgroup groupingConceptId="165137">
-                                                <obs id="viral-load-results-qualitative" conceptId="1305"
-                                                     answerConceptIds="1301,1306,1304"
-                                                     answerLabels="Detected,Not Detected, Sample Rejected"
-                                                     labelText="Viral Load"/>
+                                            <obs id="viral-load-results-qualitative" conceptId="1305" answerConceptIds="1301,1306,1304"
+                                                 answerLabels="Detected,Not Detected, Sample Rejected" labelText="Viral Load"/>
 
-                                                <obs id="viral-load-results-copies" conceptId="856"
-                                                     labelText="(copies/ml)"/>
-                                            </obsgroup>
+
+                                            <obs id="viral-load-results-copies" conceptId="163029" labelText="(copies/ml)"/>
 
                                             <obs id="163028" conceptId="163028" labelText="HB"/>
                                         </div>
@@ -363,9 +320,8 @@
                             <td>
                         <span class="ArtCareEnableDisable2">
                             <obs id="90315" conceptId="90315"
-                                 answerConceptIds="99015,99016,99005,99006,164979,99039,99040,99041,99042,164977,99884,99885,164978,163017,99143"
-                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,AZT-3TC-DTG,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,TDF-3TC-DTG,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-DTG,ABC-3CT-LPV/r,Other"
-                                 label="Current Regimen"/>
+                                                 answerConceptIds="99015,99016,99005,99006,164979,99039,99040,99041,99042,164977,99884,99885,164978,163017,99143"
+                                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,AZT-3TC-DTG,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,TDF-3TC-DTG,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-DTG,ABC-3CT-LPV/r,Other" label="Current Regimen"/>
                                 </span>
                                 <span class="ArtCareEnableDisableChild2">
                                 <obs id="99126" conceptId="99126" labelText="Others"/>
@@ -379,20 +335,13 @@
                                 <div class="div-table">
                                     <div class="div-row">
                                         <div class="div-col2">
-                                            <obs id="viral-load-results-qualitative_1" conceptId="1305"
-                                                 answerConceptIds="1301,1306,1304"
-                                                 answerLabels="Detected,Not Detected, Sample Rejected"
-                                                 labelText="Viral Load"/>
-
-                                            <obs id="viral-load-results-copies_1" conceptId="856"
-                                                 labelText="(copies/ml)"/>
+                                            <obs id="856" conceptId="856" labelText="Viral Load"/>
 
                                             <obs id="21" conceptId="21" labelText="HB"/>
 
+                                            <obs id="5497" conceptId="5497" labelText="CD4"/>
                                         </div>
                                         <div class="div-col2">
-                                            <obs id="5497" conceptId="5497" labelText="CD4"/>
-
                                             <obs id="730" conceptId="730" labelText="CD4 (%)"/>
 
                                             <obs id="1021" conceptId="1021" labelText="TLC"/>
@@ -440,8 +389,7 @@
                             </td>
 
                             <td>
-                                <obs class="checkbox-styling" conceptId="90251" answerConceptId="90132"
-                                     answerLabel="Cough" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="90251" answerConceptId="90132" answerLabel="Cough" style="checkbox"/>
                                 <obs class="checkbox-styling" conceptId="90251" answerConceptId="90133"
                                      answerLabel="DB" style="checkbox"/>
                                 <obs class="checkbox-styling" conceptId="90251" answerConceptId="90128"
@@ -521,8 +469,7 @@
                                      answerLabel="Dapsone" style="checkbox"/>
                                 <obs class="checkbox-styling" conceptId="1193" answerConceptId="95"
                                      answerLabel="Doxycycline" style="checkbox"/>
-                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="1108" answerLabel="EH"
-                                     style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="1108" answerLabel="EH" style="checkbox" />
                                 <obs class="checkbox-styling" conceptId="1193" answerConceptId="272"
                                      answerLabel="Erythromycin" style="checkbox"/>
                                 <obs class="checkbox-styling" conceptId="1193" answerConceptId="747"
@@ -543,16 +490,12 @@
                                      answerLabel="Nystatin" style="checkbox"/>
                                 <obs class="checkbox-styling" conceptId="1193" answerConceptId="89"
                                      answerLabel="Paracetamol" style="checkbox"/>
-                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="1194" answerLabel="RH"
-                                     style="checkbox"/>
-                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="99127" answerLabel="RHE"
-                                     style="checkbox"/>
-                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="768" answerLabel="RHZ"
-                                     style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="1194" answerLabel="RH" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="99127" answerLabel="RHE" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="768" answerLabel="RHZ" style="checkbox"/>
                                 <obs class="checkbox-styling" conceptId="1193" answerConceptId="1131"
                                      answerLabel="RHZE" style="checkbox"/>
-                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="99128"
-                                     answerLabel="RHZES" style="checkbox"/>
+                                <obs class="checkbox-styling" conceptId="1193" answerConceptId="99128" answerLabel="RHZES" style="checkbox"/>
                                 <obs class="checkbox-styling" conceptId="1193" answerConceptId="916"
                                      answerLabel="Septrin" style="checkbox"/>
                                 <obs class="checkbox-styling" conceptId="1193" answerConceptId="329"
@@ -568,8 +511,7 @@
                                     </div>
                                     <div class="div-col2">
                                         <label>Reasons For Transfer</label>
-                                        <obs id="99387" conceptId="99387" size="30" style="textarea" rows="5"
-                                             cols="60"/>
+                                        <obs id="99387" conceptId="99387" size="30" style="textarea" rows="5" cols="60"/>
                                     </div>
                                 </div>
 
@@ -804,8 +746,7 @@
                         <tr>
                             <td colspan="3">
                                 <label>Reasons For Transfer</label>
-                                <obs class="text-box-styling" conceptId="99387" size="30" style="textarea" rows="5"
-                                     cols="80"/>
+                                <obs class="text-box-styling" conceptId="99387" size="30" style="textarea" rows="5" cols="80"/>
                             </td>
                         </tr>
                         </tbody>
