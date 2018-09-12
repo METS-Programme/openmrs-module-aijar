@@ -32,14 +32,14 @@
                 </ifMode>
 
             <!--disable and enable other follow up type-->
-            jq("#other-followuptype").find("input[type$='text']").attr("disabled",true);
 
+            jq("#followup-type-other").find("input[type$='text']").attr("disabled",true);
                 jq('#followup-type-other').change(function(){
                     if(!jq('#followup-type-other').find(':checkbox').prop('checked')){
-                    jq("#other-followuptype").find("input[type$='text']").attr("disabled",true);
-                    jq("#other-followuptype").find("input[type$='text']").val("");
+                    jq("#followup-type-other").find("input[type$='text']").attr("disabled",true);
+                    jq("#followup-type-other").find("input[type$='text']").val("");
                     }else{
-                    jq("#other-followuptype").find("input[type$='text']").attr("disabled",false); }
+                    jq("#followup-type-other").find("input[type$='text']").attr("disabled",false); }
                 });
 
 
@@ -52,7 +52,7 @@
                         fieldHelper.enable(getField('client-visit-rescheduled.value'));
                         <!--fieldHelper.enable(getField('new-visit-date.value'));-->
                         fieldHelper.enable(getField('outcome-other.value'));
-                        enableContainer('#nextstepsContainer');
+                        <!--enableContainer('#nextstepsContainer');-->
                     } else {
                         fieldHelper.disable(getField('sms-not-delivered.value'));
                         fieldHelper.disable(getField('sms-received.value'));
@@ -69,7 +69,7 @@
                         fieldHelper.enable(getField('client-visit-rescheduled.value'));
                         <!--fieldHelper.enable(getField('new-visit-date.value'));-->
                         fieldHelper.enable(getField('outcome-other.value'));
-                        enableContainer('#nextstepsContainer');
+                        <!--enableContainer('#nextstepsContainer');-->
                     } else {
                         fieldHelper.disable(getField('phone-off.value'));
                         fieldHelper.disable(getField('phone-not-answered.value'));
@@ -86,7 +86,7 @@
                         fieldHelper.enable(getField('client-visit-rescheduled.value'));
                         <!--fieldHelper.enable(getField('new-visit-date.value'));-->
                         fieldHelper.enable(getField('outcome-other.value'));
-                        enableContainer('#nextstepsContainer');
+                        <!--enableContainer('#nextstepsContainer');-->
                     } else {
                         fieldHelper.disable(getField('phone-off.value'));
                         fieldHelper.disable(getField('phone-not-answered.value'));
@@ -106,10 +106,10 @@
 
                 jq('#outcome-other').click(function(){
                 if (getValue('outcome-other.value')) {
-                    fieldHelper.enable(getField('other-outcome.value'));
+                     jq("#outcome-other").find("input[type$='text']").attr("disabled",false);
                 }else{
-                    fieldHelper.disable(getField('other-outcome.value'));
-                jq('#other-outcome').find("input").val("");
+                    jq("#outcome-other").find("input[type$='text']").attr("disabled",true);
+                    jq("#outcome-other").find("input[type$='text']").val("");
                 }
                 });
 
@@ -195,7 +195,20 @@
                             getField('outcome-other.error').html('Required Field').show();
                         <!--getField('tb.error').focus()-->
                         }
-                });
+
+                        if(getValue('outcome-other.value')){
+                            if(jq('#outcome-other').find("input[type$='text']").val()==""){
+                                    getField('outcome-other.error').html('Please specify the other outcome').show();
+                            }
+                        }
+                        if(getValue('followup-type-other.value')){
+                            if(jq('#followup-type-other').find("input[type$='text']").val()==""){
+                                 getField('followup-type-other.error').html('Please specify the other Followup type').show();
+                            }
+                        }
+                return jq("#htmlform").valid();
+
+            });
             });
         </script>
 
@@ -249,8 +262,7 @@
                     <obs id="sms-message" conceptId="165100" answerConceptId="165101" answerLabel="SMS Message" class="horizontal-layout-options"/><br/>
                     <obs id="phone-call" conceptId="165100" answerConceptId="165102" answerLabel="Phone Call" class="horizontal-layout-options"/><br/>
                     <obs id="home-visit" conceptId="165100" answerConceptId="165103" answerLabel="Home Visit" class="horizontal-layout-options"/><br/><br/><br/>
-                    <obs id="followup-type-other" conceptId="165100" answerConceptId="5622" answerLabel="Other Specify:" class="horizontal-layout-options"/>
-                    <obs id="other-followuptype" conceptId="165135"  />
+                    <obs id="followup-type-other" conceptId="165100" answerConceptId="5622" answerLabel="Other Specify:" commentFieldLabel="" class="horizontal-layout-options"/>
                 </p>
             </td>
             </tr>
@@ -271,8 +283,7 @@
                         <obs id="phone-not-answered" conceptId="165104" answerConceptId="165110" answerLabel="Telephone not answered" class="horizontal-layout-options"/><br/>
                         <obs id="spoke-with-patient" conceptId="165104" answerConceptId="165111" answerLabel="Spoke with patient" class="horizontal-layout-options"/><br/><br/>
                         <obs id="spoke-with-someone-else" conceptId="165104" answerConceptId="165112" answerLabel="Spoke with someone else" class="horizontal-layout-options"/><br/><br/><br/>
-                        <obs id="outcome-other" conceptId="165100" answerConceptId="5622" answerLabel="Other Specify:"  class="horizontal-layout-options"/>
-                        <obs id="other-outcome" conceptId="165135" />
+                        <obs id="outcome-other" conceptId="165100" answerConceptId="5622" answerLabel="Other Specify:" commentFieldLabel=""  class="horizontal-layout-options"/>
                     </p>
                 </td>
             </tr>
