@@ -18,8 +18,6 @@ import org.openmrs.Person;
 import org.openmrs.api.OpenmrsService;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Map;
-
 /**
  * This service exposes module's core functionality. It is a Spring managed bean which is configured in moduleApplicationContext.xml.
  * <p>
@@ -40,34 +38,4 @@ public interface AijarService extends OpenmrsService {
 	public void linkExposedInfantToMotherViaARTNumber(Patient infant, String motherARTNumber);
 	public void linkExposedInfantToMotherViaARTNumber(Person infant, String motherARTNumber);
 	public void setAlertForAllUsers(String alertMessage);
-
-	/**
-	 * Transfer out Information for patient
-	 * @param patient
-	 * @return Map
-	 */
-	public Map transferredOut(Patient patient);
-
-
-	/**
-	 * Transfer In Information for patient
-	 * @param patient
-	 * @return Map
-	 */
-	public Map transferredIn(Patient patient);
-
-	/**
-	 * Check if Patient is transferred out. This method depends on transferredOut(Patient patient) method
-	 * @param patient
-	 * @return boolean
-	 */
-	public boolean isTransferredOut(Patient patient);
-
-
-	/**
-	 * Check if Patient is a transfer in. This method depends on transferredIn(Patient patient) method
-	 * @param patient
-	 * @return boolean
-	 */
-	public boolean isTransferredIn(Patient patient);
 }
