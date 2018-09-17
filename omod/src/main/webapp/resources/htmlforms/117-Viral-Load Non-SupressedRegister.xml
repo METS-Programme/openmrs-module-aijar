@@ -307,7 +307,7 @@
                         <td style="width: 15%;background: #F3F3F3;">
                             <label>VL Results at Initiation of IAC (copies/ml)</label>
                             <div>
-                                <obs id="" conceptId="1305" defaulValue="1301" class="hidden"/>
+                                <obs id="" conceptId="1305" defaultValue="1301" class="hidden"/>
                             </div>
                             <div>
                                 <obs id="856_1" conceptId="856" required="true"/>
