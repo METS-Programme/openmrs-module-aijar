@@ -38,7 +38,7 @@ jq(document).ready(function () {
     jq.validator.addMethod("nationalid", function(nationalid, element) {
         nationalid = nationalid.replace(/\(|\)|\s+|-/g, "");
         return this.optional(element) || nationalid.match(/^$|^[A-Z][FM]\d{5}([A-Z0-9]){7}$/);
-    }, "Enter a valid National ID example XX11112222XYX5");
+    }, "Enter a valid National ID example CF12345678ABCD");
 
 
     /* Validation of NIN on patient registration page */
