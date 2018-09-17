@@ -183,7 +183,7 @@ function validateRequiredField(prime, factor, message_to_throw, input_type) {
             evaluationResult = false;
         }
     }
-    else if (input_type == "check_box") {
+    else if (input_type === "check_box") {
         selected_value = jq("#" + factor).find(":checkbox:first").attr("checked");
         if (selected_value === "checked" && getValue(prime + '.value') === '') {
             getField(prime + '.error').html(message_to_throw).show;
@@ -191,7 +191,7 @@ function validateRequiredField(prime, factor, message_to_throw, input_type) {
             evaluationResult = false;
         }
     }
-    else if (input_type == "text") {
+    else if (input_type === "text") {
         selected_value = selected_value = jq("#" + factor).find("input:text").val();
         if (selected_value !== "" && getValue(prime + '.value') === '') {
             getField(prime + '.error').html(message_to_throw).show;
