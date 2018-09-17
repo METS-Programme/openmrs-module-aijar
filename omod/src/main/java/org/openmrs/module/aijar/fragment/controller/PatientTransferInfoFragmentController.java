@@ -41,5 +41,7 @@ public class PatientTransferInfoFragmentController {
         } else {
             model.addAttribute(PATIENT_TRANSERRED_IN, transferInMap.get(PATIENT_TRANSERRED_IN));
         }
+
+        model.addAttribute("TransferHistory", aijarService.getTransferHistory(patient));
     }
 }

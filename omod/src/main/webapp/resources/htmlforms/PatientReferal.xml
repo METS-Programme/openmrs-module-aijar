@@ -176,25 +176,25 @@
                 });
             });
 
-            function viral_load_widget(triger,enabledDisabledId) {
+            function viral_load_widget(triger, enabledDisabledId) {
                 /* Handle viral load results */
-                jq("#"+enabledDisabledId).attr("disabled", true);
-                jq("#"+triger).change(function () {
-                    var viral_load_status = getValue(triger+".value");
+                jq("#" + enabledDisabledId).attr("disabled", true);
+                jq("#" + triger).change(function () {
+                    var viral_load_status = getValue(triger + ".value");
                     if (viral_load_status == 1301) {
                         /* Detected */
-                        enableContainer("#"+enabledDisabledId);
-                        setValue(enabledDisabledId+".value", '');
+                        enableContainer("#" + enabledDisabledId);
+                        setValue(enabledDisabledId + ".value", '');
                     }
                     if (viral_load_status == 1306) {
                         /* Not Detected */
-                        disableContainer("#"+enabledDisabledId);
-                        setValue(enabledDisabledId+".value", 1);
+                        disableContainer("#" + enabledDisabledId);
+                        setValue(enabledDisabledId + ".value", 1);
                     }
                     if (viral_load_status == "" || viral_load_status == 1304) {
                         /* Sample Rejected and no data */
-                        disableContainer("#"+enabledDisabledId);
-                        setValue(enabledDisabledId+".value", '');
+                        disableContainer("#" + enabledDisabledId);
+                        setValue(enabledDisabledId + ".value", '');
                     }
                 });
             }
@@ -220,11 +220,35 @@
                 }
             }
 
+            function validateRequiredFieldsByValue(triggerId, validateFieldId, triggerValue, message_to_throw, validateFieldType) {
+                var selected_value = jq("#" + triggerId).find(":selected").text().trim().toLowerCase();
+                var validateFieldValue = "";
+
+                if (validateFieldType === "input_text") {
+                    validateFieldValue = jq("#" + validateFieldId).find("input:text").val();
+                } else if (validateFieldType === "textarea") {
+                    validateFieldValue = jq("#" + validateFieldId).find("textarea").value;
+                }
+
+                if (selected_value === triggerValue &amp;&amp; validateFieldValue === "") {
+                    getField(validateFieldId + '.error').html(message_to_throw).show;
+                    jq('#' + validateFieldId).find("span").removeAttr("style");
+
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            }
+
+
             beforeSubmit.push(function () {
                 var submitVal = true;
                 var submitValStage = [];
 
-
+                submitValStage.push(validateRequiredFieldsByValue("encounter_type", "99109", "transfer in", "required","input_text"));
+                submitValStage.push(validateRequiredFieldsByValue("encounter_type", "90211", "transfer out", "required","input_text"));
+                submitValStage.push(validateRequiredFieldsByValue("encounter_type", "99387_2", "transfer out", "required","textarea"));
                 // Check if there are no errors on the form
                 if (submitValStage.indexOf(false) != -1) {
                     submitVal = false;
@@ -264,11 +288,11 @@
 
                         <obs id="90211" conceptId="90211" labelText=" To Where"/>
                     </td>
-                    <td>
+                    <td hidden="hidden">
                         <label>Clinic Referred to:</label>
                         <br/>
-                        <obs id="164993" conceptId="164993" answerConceptIds="90013,90014,165048,90018,165047,99610"
-                             answerLabels="OPD Clinic,PED OPD Clinic,TB Clinic,IPD,ART Clinic,SMC Care" defalut=""
+                        <obs id="164993" conceptId="164993"  answerConceptIds="90013,90014,165048,90018,165047,99610"
+                             answerLabels="OPD Clinic,PED OPD Clinic,TB Clinic,IPD,ART Clinic,SMC Care" defaultValue="165047"
                              required="true"/>
                     </td>
                 </tr>
@@ -804,7 +828,8 @@
                         <tr>
                             <td colspan="3">
                                 <label>Reasons For Transfer</label>
-                                <obs class="text-box-styling" conceptId="99387" size="30" style="textarea" rows="5"
+                                <obs id="99387_2" class="text-box-styling" conceptId="99387" size="30" style="textarea"
+                                     rows="5"
                                      cols="80"/>
                             </td>
                         </tr>

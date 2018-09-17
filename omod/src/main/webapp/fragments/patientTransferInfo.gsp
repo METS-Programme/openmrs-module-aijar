@@ -19,7 +19,7 @@
         </div>
     </div>
     <% } %>
-    <% if (transferredIn == true) { %>
+    <% if (transferredIn == true && transferredOut==false) { %>
     <div class="info-body" style="">
 
         <div>
@@ -33,4 +33,19 @@
         </div>
     </div>
     <% } %>
+<% if(TransferHistory.size>0){%>
+    <table>
+        <thead>
+        <tr><th>Transfer Type</th><th>Date</th></tr>
+        </thead>
+
+        <tbody>
+        <%TransferHistory.reverse().each{%>
+        <tr><td>${it.encounterType.name}</td><td>${Date.parse("yyyy-M-d H:m:s",it.encounterDatetime.toString()).format("d.MMM.yyyy")}</td></tr>
+        <%}%>
+        </tbody>
+    </table>
+    <%} else{%>
+    <div class="info-body" style="background: yellow">${ui.message("aijar.patient.transfer.nodata")}</div>
+    <%}%>
 </div>

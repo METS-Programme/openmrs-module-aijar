@@ -156,7 +156,7 @@ function dateValidator(prime, factor, alternative_factor, message_to_throw, alte
  * @param factorRequired this
  * @returns {boolean}
  */
-function validateRequiredField(prime, factor, message_to_throw, input_type) {
+function validateRequiredField(prime, factor, message_to_throw, input_type,factorValue) {
     var evaluationResult = true;
     var selected_value = null;
     getField(prime + '.error').html("").hide;

@@ -13,11 +13,13 @@
  */
 package org.openmrs.module.aijar.api;
 
+import org.openmrs.Encounter;
 import org.openmrs.Patient;
 import org.openmrs.Person;
 import org.openmrs.api.OpenmrsService;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -70,4 +72,11 @@ public interface AijarService extends OpenmrsService {
 	 * @return boolean
 	 */
 	public boolean isTransferredIn(Patient patient);
+
+	/**
+	 * Transfer Information for patient
+	 * @param patient
+	 * @return Map
+	 */
+	public List<Encounter> getTransferHistory(Patient patient);
 }
