@@ -116,13 +116,6 @@
                     enable_disable('163166', '163168', '5622');
                 });
 
-                jq('#1305').change(function () {
-                    enable_disable('1305', '856', '1301');
-                });
-
-                jq('#1305').each(function () {
-                    enable_disable('1305', '856', '1301');
-                });
 
                 jq('#1305_1').change(function () {
                     enable_disable('1305_1', '856_1', '1301');
@@ -142,6 +135,24 @@
                     enable_disable('90012', '99602', '90003');
                 });
 
+                jq('#164987').change(function () {
+                    enable_disable('164987', '164986', '1065');
+                });
+
+                jq('#164987').each(function () {
+                    enable_disable('164987', '164986', '1065');
+                });
+
+
+                // trigger a change when the form loads
+                jq("#1305").change(function () {
+                    viral_load_widget('1305', '856_2');
+                });
+
+                jq("#1305").each(function () {
+                    viral_load_widget('1305', '856_2','1301');
+                });
+
 
                 /* add JQuery validator classes and rules*/
                 jq("#nationalid input:text").addClass("nationalid");
@@ -154,6 +165,29 @@
                 );
 
             });
+
+            function viral_load_widget(triger, enabledDisabledId) {
+                /* Handle viral load results */
+                disableContainer("#" + enabledDisabledId);
+                jq("#" + triger).change(function () {
+                    var viral_load_status = getValue(triger + ".value");
+                    if (viral_load_status == 1301) {
+                        /* Detected */
+                        enableContainer("#" + enabledDisabledId);
+                        setValue(enabledDisabledId + ".value", '');
+                    }
+                    if (viral_load_status == 1306) {
+                        /* Not Detected */
+                        disableContainer("#" + enabledDisabledId);
+                        setValue(enabledDisabledId + ".value", 1);
+                    }
+                    if (viral_load_status == "" || viral_load_status == 1304) {
+                        /* Sample Rejected and no data */
+                        disableContainer("#" + enabledDisabledId);
+                        setValue(enabledDisabledId + ".value", '');
+                    }
+                });
+            }
 
 
             function enable_disable(triggerId, enabledDisabledId, conditionValue) {
@@ -202,11 +236,13 @@
                 // Check if there are no errors on the form
 
 
-                submitValStage.push(dateValidator("163172", "encounterDate", "", "Must be greater than Registration Date", "", "less_than", true));
+                submitValStage.push(dateValidator("163172", "encounterDate", "", "Must be on or before Registration Date", "", "greater_than", true));
 
                 submitValStage.push(dateValidator("163156", "163150_1", "", "Must be greater than Date Results Received at Health Facility", "", "less_than", true));
 
                 submitValStage.push(dateValidator("163150_1", "encounterDate", "", "Must be less or equal to the Registration Date", "", "greater_than", true));
+
+                submitValStage.push(dateValidator("163156", "encounterDate", "", "Must be on or before the Registration Date", "", "greater_than", true));
 
                 var lastIAC = "";
                 var required_message = "Required";
@@ -227,7 +263,7 @@
                             submitValStage.push(validateRequiredField("163155_" + i, "90221_" + i, required_message, "select"));
                             submitValStage.push(validateRequiredField("163154_" + i, "90221_" + i, required_message, "select"));
                         }
-                        submitValStage.push(dateValidator("163154_" + i, "163172", "", "Must be on or after Start Date", "", "less_than", true));
+                        submitValStage.push(dateValidator("163154_" + i, "encounterDate", "", "Must be on or after date of Registration", "", "less_than", true));
                     }
                 }
 
@@ -307,7 +343,7 @@
                         <td style="width: 15%;background: #F3F3F3;">
                             <label>VL Results at Initiation of IAC (copies/ml)</label>
                             <div>
-                                <obs id="" conceptId="1305" defaultValue="1301" class="hidden"/>
+                                <obs conceptId="1305" defaultValue="1301" class="hidden"/>
                             </div>
                             <div>
                                 <obs id="856_1" conceptId="856" required="true"/>
@@ -330,7 +366,7 @@
                                  answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,AZT-3TC-DTG,TDF-3TC-NVP,TDF-3TC-EFV,TDF-3TC-DTG,TDF-FTC-NVP,TDF-FTC-EFV,ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,AZT-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,AZT-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-DTG,ABC-3TC-ATV/r,ABC-3TC-LPV/r,TDF-3TC-ATV/r,Other"/>
                         </td>
                         <td style="width: 15%;background: #F3F3F3;" colspan="2">
-                            <label>Start Date</label>
+                            <label>Regimen Start Date</label>
                             <obs id="163172" conceptId="163172" allowFutureDates="false" required="true"/>
                         </td>
                     </obsgroup>
@@ -338,13 +374,13 @@
                 <tr>
                     <td style="width: 15%;background: #F3F3F3;">
                         <label>Serum Crag Screening</label>
-                        <obs conceptId="164987"
+                        <obs id="164987" conceptId="164987"
                              answerConceptIds="1065,1066"
                              answerLabels="Yes,No"/>
                     </td>
                     <td style="width: 15%;background: #F3F3F3;">
                         <label>Serum Crag Screening Result</label>
-                        <obs conceptId="164986"/>
+                        <obs id="164986" conceptId="164986"/>
                     </td>
                     <td style="width: 15%;background: #F3F3F3;">
                         <label>Restart IAC</label>
@@ -431,7 +467,7 @@
                             <br/>
                             <br/>
                             <div>
-                                <obs id="856" conceptId="856" showUnits="copies/ml"/>
+                                <obs id="856_2" conceptId="856" showUnits="copies/ml"/>
                             </div>
                         </td>
                         <td style="width: 15%;background: #F3F3F3;" colspan="2">
