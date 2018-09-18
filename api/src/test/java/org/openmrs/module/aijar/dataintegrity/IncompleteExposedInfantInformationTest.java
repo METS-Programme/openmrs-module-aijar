@@ -45,7 +45,7 @@ public class IncompleteExposedInfantInformationTest extends BaseModuleContextSen
 		assertNotNull(result);
 		
 		for (RuleResult<Patient> ruleResult: result) {
-			System.out.println("No outcome patient Id " + ruleResult.getEntity().getPatientId());
+			System.out.println("No final outcome after 18 months for patient Id " + ruleResult.getEntity().getPatientId());
 		}
 		assertEquals(1, result.size());
 		Patient patient = result.get(0).getEntity();
