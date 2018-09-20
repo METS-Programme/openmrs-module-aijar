@@ -156,6 +156,14 @@
                     enable_disable('90041', '5596', 'Yes');
                 });
 
+                jq('#99061').change(function () {
+                    enable_disable('99061', '99268', 'OTHER');
+                });
+
+                jq('#99061').each(function () {
+                    enable_disable('99061', '99268', 'OTHER');
+                });
+
 
                 // trigger a change when the form loads
                 jq("#viral-load-results-qualitative").change(function () {
@@ -200,9 +208,9 @@
             }
 
             function enable_disable_show_hide(triggerId, enabledDisabledId, conditionValue) {
-                if (jq("#" + triggerId + " :selected").text() == conditionValue) {
+                if (jq("#" + triggerId + " :selected").text() === conditionValue) {
                     showContainer('#' + enabledDisabledId);
-                } else if (jq('#' + triggerId).find('span').text() == conditionValue) {
+                } else if (jq('#' + triggerId).find('span').text() === conditionValue) {
                     showContainer('#' + enabledDisabledId);
                 } else {
                     hideContainer('#' + enabledDisabledId);
@@ -211,9 +219,10 @@
             }
 
             function enable_disable(triggerId, enabledDisabledId, conditionValue) {
-                if (jq("#" + triggerId + " :selected").text() == conditionValue) {
+                disableContainer('#'+enabledDisabledId);
+                if (jq("#" + triggerId + " :selected").text() === conditionValue) {
                     enableContainer('#' + enabledDisabledId);
-                } else if (jq('#' + triggerId).find('span').text() == conditionValue) {
+                } else if (jq('#' + triggerId).find('span').text() === conditionValue) {
                     enableContainer('#' + enabledDisabledId);
                 } else {
                     disableContainer('#' + enabledDisabledId);
@@ -246,9 +255,9 @@
                 var submitVal = true;
                 var submitValStage = [];
 
-                submitValStage.push(validateRequiredFieldsByValue("encounter_type", "99109", "transfer in", "required","input_text"));
-                submitValStage.push(validateRequiredFieldsByValue("encounter_type", "90211", "transfer out", "required","input_text"));
-                submitValStage.push(validateRequiredFieldsByValue("encounter_type", "99387_2", "transfer out", "required","textarea"));
+                submitValStage.push(validateRequiredFieldsByValue("encounter_type", "99109", "transfer in", "required", "input_text"));
+                submitValStage.push(validateRequiredFieldsByValue("encounter_type", "90211", "transfer out", "required", "input_text"));
+                submitValStage.push(validateRequiredFieldsByValue("encounter_type", "99387_2", "transfer out", "required", "textarea"));
                 // Check if there are no errors on the form
                 if (submitValStage.indexOf(false) != -1) {
                     submitVal = false;
@@ -277,7 +286,7 @@
                     </td>
                     <td>
                         Date:
-                        <encounterDate default="today" disallowMultipleEncountersOnDate="block" required="true"/>
+                        <encounterDate required="true"/>
                         <span style="display: none;">
                                             <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
                                                                order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
@@ -291,8 +300,9 @@
                     <td hidden="hidden">
                         <label>Clinic Referred to:</label>
                         <br/>
-                        <obs id="164993" conceptId="164993"  answerConceptIds="90013,90014,165048,90018,165047,99610"
-                             answerLabels="OPD Clinic,PED OPD Clinic,TB Clinic,IPD,ART Clinic,SMC Care" defaultValue="165047"
+                        <obs id="164993" conceptId="164993" answerConceptIds="90013,90014,165048,90018,165047,99610"
+                             answerLabels="OPD Clinic,PED OPD Clinic,TB Clinic,IPD,ART Clinic,SMC Care"
+                             defaultValue="165047"
                              required="true"/>
                     </td>
                 </tr>
@@ -327,7 +337,7 @@
                             </span>
 
                                 <p>
-                                    <obs id="99161" conceptId="99161" labelText="Date started:"/>
+                                    <obs id="99161" conceptId="99161" labelText="ART Start Date:"/>
                                 </p>
                             </td>
                             <td>
@@ -380,7 +390,7 @@
                         <tbody>
                         <tr>
                             <th>Current Regimen</th>
-                            <th>Most Recent Lab(Date done)</th>
+                            <th>Most Recent Lab: (Date done)</th>
                             <th>Current Clinic Status</th>
                         </tr>
                         <tr>
