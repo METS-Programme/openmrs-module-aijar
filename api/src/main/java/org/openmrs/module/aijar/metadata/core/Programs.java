@@ -114,4 +114,120 @@ public class Programs {
         }
     };
 
+
+    public static ProgramDescriptor FBIM_PROGRAM = new ProgramDescriptor() {
+
+        @Override
+        public String conceptUuid() {
+            return "165138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+        }
+
+        @Override
+        public String name() {
+            return "Facility Based Individual Management";
+        }
+
+        @Override
+        public String description() {
+            return "This is a DSDM model for patients that need extra management at the health centre";
+        }
+
+        @Override
+        public String uuid() {
+            return "de5d54ae-c304-11e8-9ad0-529269fb1459";
+        }
+    };
+
+    public static ProgramDescriptor FTR_PROGRAM = new ProgramDescriptor() {
+
+        @Override
+        public String conceptUuid() {
+            return "165139AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+        }
+
+        @Override
+        public String name() {
+            return "Fast Track Drug Refill";
+        }
+
+        @Override
+        public String description() {
+            return "DSDM Model for patients who only pick drugs at the health centre";
+        }
+
+        @Override
+        public String uuid() {
+            return "de5d5896-c304-11e8-9ad0-529269fb1459";
+        }
+    };
+
+    public static ProgramDescriptor FBG_PROGRAM = new ProgramDescriptor() {
+
+        @Override
+        public String conceptUuid() {
+            return "165140AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+        }
+
+        @Override
+        public String name() {
+            return "Facility Based Groups";
+        }
+
+        @Override
+        public String description() {
+            return "DSDM for stable or unstable clients who need peer support";
+        }
+
+        @Override
+        public String uuid() {
+            return "de5d5b34-c304-11e8-9ad0-529269fb1459";
+        }
+    };
+
+    public static ProgramDescriptor CCLAD_PROGRAM = new ProgramDescriptor() {
+
+        @Override
+        public String conceptUuid() {
+            return "165141AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+        }
+
+        @Override
+        public String name() {
+            return "Community Client Led ART Delivery";
+        }
+
+        @Override
+        public String description() {
+            return "DSDM Model with client lead groups with rotation drug pickup by client them selves and distribution";
+        }
+
+        @Override
+        public String uuid() {
+            return "de5d5da0-c304-11e8-9ad0-529269fb1459";
+        }
+    };
+
+    public static ProgramDescriptor CDDP_PROGRAM = new ProgramDescriptor() {
+
+        @Override
+        public String conceptUuid() {
+            return "165142AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+        }
+
+        @Override
+        public String name() {
+            return "Community Drug Distribution Point";
+        }
+
+        @Override
+        public String description() {
+            return "DSDM Model in community where patients pick drugs from a distribution point in community set by their health centre";
+        }
+
+        @Override
+        public String uuid() {
+            return "de5d6034-c304-11e8-9ad0-529269fb1459";
+        }
+    };
 }
+
