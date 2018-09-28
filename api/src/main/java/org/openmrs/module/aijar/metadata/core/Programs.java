@@ -119,7 +119,7 @@ public class Programs {
 
         @Override
         public String conceptUuid() {
-            return "165138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+            return "733144c0-c321-11e8-a355-529269fb1459";
         }
 
         @Override
@@ -142,7 +142,7 @@ public class Programs {
 
         @Override
         public String conceptUuid() {
-            return "165139AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+            return "73313f20-c321-11e8-a355-529269fb1459";
         }
 
         @Override
@@ -165,7 +165,7 @@ public class Programs {
 
         @Override
         public String conceptUuid() {
-            return "165140AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+            return "73313c96-c321-11e8-a355-529269fb1459";
         }
 
         @Override
@@ -188,7 +188,7 @@ public class Programs {
 
         @Override
         public String conceptUuid() {
-            return "165141AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+            return "733139e4-c321-11e8-a355-529269fb1459";
         }
 
         @Override
@@ -211,7 +211,7 @@ public class Programs {
 
         @Override
         public String conceptUuid() {
-            return "165142AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+            return "73313728-c321-11e8-a355-529269fb1459";
         }
 
         @Override
