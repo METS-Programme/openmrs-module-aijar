@@ -195,4 +195,11 @@
 			DELETE FROM person_attribute WHERE value IS NULL OR value = '';
 		</sql>
 	</changeSet>
+	<changeSet id="ugandaemr-01-10-2018-1200" author="slubwama">
+		<comment>Move all Patients Ever enrolled in Facility Based Individual Management DSDM </comment>
+		<sql>
+			INSERT INTO patient_program (patient_id, program_id, date_enrolled, location_id, creator, date_created, voided, uuid)
+			select patient_id,5,encounter_datetime as date_enrolled,location_id,creator,date_created,0,uuid() as uuid from encounter where encounter_type=8;
+		</sql>
+	</changeSet>
 </databaseChangeLog>
