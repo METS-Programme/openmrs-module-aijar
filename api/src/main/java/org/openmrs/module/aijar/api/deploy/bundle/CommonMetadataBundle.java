@@ -63,6 +63,11 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(Programs.TB_PROGRAM);
         install(Programs.MCH_PROGRAM);
         install(Programs.NUTRITION_PROGRAM);
+        install(Programs.FBIM_PROGRAM);
+        install(Programs.FBG_PROGRAM);
+        install(Programs.FTR_PROGRAM);
+        install(Programs.CCLAD_PROGRAM);
+        install(Programs.CDDP_PROGRAM);
 
         //install Locations
         log.info("Installing Locations");
