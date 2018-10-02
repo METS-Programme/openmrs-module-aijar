@@ -238,11 +238,9 @@
 
                 submitValStage.push(dateValidator("163172", "encounterDate", "", "Must be on or before Registration Date", "", "greater_than", true));
 
-                submitValStage.push(dateValidator("163156", "163150_1", "", "Must be greater than Date Results Received at Health Facility", "", "less_than", true));
-
                 submitValStage.push(dateValidator("163150_1", "encounterDate", "", "Must be less or equal to the Registration Date", "", "greater_than", true));
 
-                submitValStage.push(dateValidator("163156", "encounterDate", "", "Must be on or before the Registration Date", "", "greater_than", true));
+                submitValStage.push(dateValidator("163156", "163150_1", "", "Must be greater than Date Results Received at Health Facility", "", "less_than", true));
 
                 var lastIAC = "";
                 var required_message = "Required";
