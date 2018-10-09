@@ -199,28 +199,6 @@
 
             }
 
-
-            jq(document).ready(function () {
-                jq('a.addEntry').live("click", function () {
-                    var correctedAddButtonId = parseFloat(this.id) + 1;
-                    var contentAddId = "#" + correctedAddButtonId + "-toggleContainer";
-                    jq(contentAddId).toggle(true);
-                    return false;
-                });
-            });
-
-            jq(document).ready(function () {
-                jq('a.removeEntry').live("click", function () {
-                    var correctedRemoveButtonId = parseFloat(this.id) - 1;
-                    var contentAddId = "#" + parseFloat(this.id) + "-toggleContainer";
-                    jq(contentAddId).toggle(false);
-                    jq('#' + correctedRemoveButtonId + '-addEntry').toggle(true);
-                    jq('#' + correctedRemoveButtonId + '-removeEntry').toggle(true);
-                    return false;
-                });
-
-            });
-
             beforeSubmit.push(function () {
                 var submitVal = true;
                 var submitValStage = [];
@@ -278,6 +256,101 @@
                 return submitVal;
             });
         }
+
+        jQuery(document).ready(function(jq) {
+            //Adding new form
+            var $allTables,
+                $allRows,
+                $otherRows,
+                $firstRow,
+                $thisRow,
+                $nextRow,
+                $hiddenRows,
+                $lastVisibleRow,
+                $nonEmptyBoxes;
+
+            var showAddButtonForLastVisibleRow = function($container) {
+                $lastVisibleRow = $container.find('tr:visible:last');
+                $lastVisibleRow.find('.add').show();
+            };
+
+            $firstRow = jq('table.multi tbody tr:first-of-type');
+            $otherRows = jq('table.multi tbody tr:not(:first-of-type)');
+
+        <ifMode mode="ENTER">
+                $otherRows.hide(); //Hide all rows apart from first row if adding new form
+            $firstRow.find('.remove').hide(); //Hide the remove button from the first row
+        </ifMode>
+
+            <ifMode mode="EDIT">
+            //Handle loading of existing obs
+            $allTables = jq('table.multi');
+            $allTables.each(function() {
+                $allRows = jq(this).find('tbody &gt; tr');
+                $allRows.hide();
+                $nonEmptyBoxes = jq(this).find('input').filter(function() {
+                    return this.value.length &gt; 0;
+                });
+
+                if ($nonEmptyBoxes.length &gt; 0 ) {
+                    $nonEmptyBoxes.each(function() {
+                        $thisRow = jq(this).parents('tr:first');
+                        $thisRow.show();
+                        if ($thisRow.is($firstRow)) {
+                            $firstRow.find('.remove').hide();
+                        }
+                    });
+
+                    if ($nonEmptyBoxes.length == 1) {
+                        $nonEmptyBoxes.parents('tr:first').find('.remove').hide(); //Hide the remove button if there is only one visible row
+                    }
+                } else {
+                    $firstRow.show();
+                    $firstRow.find('.remove').hide();
+                }
+            });
+        </ifMode>
+
+            jq('.add').click(function(e) { //Handle add button event
+                e.preventDefault();
+                $thisRow = jq(this).parents('tr:first');
+                $nextRow = $thisRow.next();
+
+                if ($nextRow.length &gt; 0) {
+                    $nextRow.show('slow');
+                    $thisRow.find('.add').hide();
+                }
+                showAddButtonForLastVisibleRow($thisRow.parents('table:first'));
+            });
+
+            jq('.remove').click(function(e) { //Handle remove button event
+                e.preventDefault();
+                $thisRow = jq(this).parents('tr:first');
+                if (confirm('Are you sure you want to remove this record? All fields for this record will be cleared.') == 1) {
+                    $thisRow = jq(this).parents('tr:first');
+                    $thisRow.hide('slow', function() {
+                        showAddButtonForLastVisibleRow($thisRow.parents('table:first'));
+                        fieldHelper.clearAllFields($thisRow);
+                    });
+                }
+            });
+
+            // Disallow an entry from being selected twice in the autocomplete multiple entry sections
+            jq(".autoCompleteText").on( "autocompleteselect", function( event, ui ) {
+
+                var $similarSelections = jq(this).parents('table:first').find('input.autoCompleteText:visible[type=text]').filter(function() {
+                    return (jq(this).val() == ui.item.label);
+                });
+
+                if ($similarSelections.length &gt; 0 ) {
+                    alert('The entry \'' + ui.item.label + '\' has already been selected');
+                    return false;
+                } else {
+                    return true;
+                }
+            });
+
+        });
 
     </script>
     <div class="ai-page-frame">
@@ -383,7 +456,7 @@
                     <td style="width: 15%;background: #F3F3F3;">
                         <label>Restart IAC</label>
                         <obs conceptId="164988" answerConceptIds="1065,1066"
-                             answerLabels="Yes,No" required="true"/>
+                             answerLabels="Yes,No" required="true" style="radio"/>
                     </td>
                 </tr>
                 </tbody>
@@ -392,7 +465,7 @@
 
         <fieldset>
             <legend>IAC Session</legend>
-            <table>
+            <table class="multi">
                 <tbody>
                 <tr>
                     <td style="width: 15%;background: #F3F3F3;">Session Date</td>
@@ -403,7 +476,7 @@
                 <repeat>
                     <template>
                         <obsgroup groupingConceptId="163153">
-                            <tr id="{n}-toggleContainer" style="display:none;">
+                            <tr id="{n}-toggleContainer">
                                 <td style="width: 15%;background: #F3F3F3;">
                                     <obs id="163154_{n}" conceptId="163154" allowFutureDates="false"/>
                                 </td>
@@ -414,10 +487,7 @@
                                     <obs id="90221_{n}" conceptId="90221" answerConceptIds="90156,90157,90158"
                                          answerLabels=" Good, Fair, Poor"/>
                                 </td>
-                                <td style="width: 15%;background: #F3F3F3;">
-                                    <a href="#" id="{n}-addEntry" class="addEntry">Add</a>
-                                    <a href="#" id="{n}-removeEntry" class="removeEntry"> | Remove</a>
-                                </td>
+                                <td><a href="#" class="add">Add</a>| <a href="#" class="remove">Remove</a></td>
                             </tr>
                         </obsgroup>
                     </template>
@@ -451,7 +521,7 @@
                     <td style="width: 15%;background: #F3F3F3;">
                         <label>HIVDR Sample Collected</label>
                         <obs conceptId="164989" answerConceptIds="1065,1066"
-                             answerLabels="Yes,No"/>
+                             answerLabels="Yes,No" style="radio"/>
                     </td>
 
                     <obsgroup groupingConceptId="163157">
