@@ -391,7 +391,7 @@
                     <td style="width: 15%;background: #F3F3F3;" rowspan="4">
                         <excludeIf velocityTest="$patient.gender =='M' ">
                             <label>EMTCT</label>
-                            <obs id="90012" conceptId="90012" answerConceptIds="90003,90004" answerLabels="Yes,No"/>
+                            <obs id="90012" conceptId="90012" answerConceptIds="90003,90004" answerLabels="Yes,No" style="radio"/>
                             <br/>
                             <br/>
                             <br/>
@@ -447,7 +447,7 @@
                         <label>Serum Crag Screening</label>
                         <obs id="164987" conceptId="164987"
                              answerConceptIds="1065,1066"
-                             answerLabels="Yes,No"/>
+                             answerLabels="Yes,No" style="radio"/>
                     </td>
                     <td style="width: 15%;background: #F3F3F3;">
                         <label>Serum Crag Screening Result</label>
