@@ -629,4 +629,44 @@ public class Flags {
             return "151801e2-0742-457f-8610-95530a4db232";
         }
     };
+
+    public static FlagDescriptor STABLE_PATIENT = new FlagDescriptor() {
+        @Override
+        public String criteria() {
+            return "SELECT p.patient_id, o.value_numeric, DATE_FORMAT((o.obs_datetime), '%d.%b.%Y') FROM patient p, obs o " +
+                    " WHERE o.person_id = p.patient_id AND o.voided = FALSE AND o.concept_id = 856 " +
+                    " AND o.obs_id = (SELECT oo.obs_id FROM obs oo WHERE oo.person_id = o.person_id AND oo.concept_id = 856 AND oo.voided = false ORDER BY oo.obs_datetime DESC LIMIT 1) " +
+                    " GROUP BY o.person_id HAVING o.value_numeric > 1 ";
+        }
+
+        @Override
+        public String message() {
+            return "Un-supressed Viral Load of ${1} from ${2} due for IAC";
+        }
+
+        @Override
+        public String priority() {
+            return Priorites.GREEN.uuid();
+        }
+
+        @Override
+        public List<String> tags() {
+            return Arrays.asList(Tags.PATIENT_STATUS.uuid());
+        }
+
+        @Override
+        public String name() {
+            return "Stable Patient";
+        }
+
+        @Override
+        public String description() {
+            return "Patients who are ";
+        }
+
+        @Override
+        public String uuid() {
+            return "151801e2-0742-457f-8610-95530a4db232";
+        }
+    };
 }

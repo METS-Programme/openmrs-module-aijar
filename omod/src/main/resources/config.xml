@@ -146,5 +146,16 @@
         <defaultValue></defaultValue>
     </globalProperty>
 
+    <globalProperty>
+        <property>ugandaemr.dsdm.programsuuid</property>
+        <description>List of Programs in DSDM</description>
+        <defaultValue>de5d54ae-c304-11e8-9ad0-529269fb1459,de5d5b34-c304-11e8-9ad0-529269fb1459,de5d5896-c304-11e8-9ad0-529269fb1459,de5d5da0-c304-11e8-9ad0-529269fb1459,de5d6034-c304-11e8-9ad0-529269fb1459</defaultValue>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.dsdm.conceptId</property>
+        <description>A concept for DSDM</description>
+        <defaultValue>165143</defaultValue>
+    </globalProperty>
 </module>
 

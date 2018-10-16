@@ -959,12 +959,12 @@
                     <td style="width: 5%;background: #F3F3F3;padding: 20px; text-align: center;" colspan="2">
                         Investigations
                     </td>
+                    <td style="width: 10%;background: #F3F3F3;padding: 20px;">DSMD Model</td>
                     <td style="width: 10%;background: #F3F3F3;padding: 20px;">Refer or consult or link / provide</td>
                     <td style="width: 15%;background: #F3F3F3;padding: 20px;">Name of Attending Clinician</td>
                 </tr>
                 <tr>
                     <td>
-
                         <obs id="br" conceptId="5497" dateLabel="Date:" labelText="CD4:"/>
                         <br/>
                         <obs id="br" conceptId="730" dateLabel="Date:" labelText="CD4%:"/>
@@ -1027,6 +1027,8 @@
                             </obsgroup>
                         </div>
                     </td>
+                    <td><obs id="dsdm-model" conceptId="165143" answerConceptIds="165138,165140,165139,165142,165141"
+                             answerLabels="FBIM,FBG,FTR,CDDP,CCLAD" required="required"/></td>
                     <td class="lablex3">
                         <b>Referred for</b>
                         <br/>
@@ -1059,6 +1061,7 @@
             </table>
         </section>
     </div>
+    <postSubmissionAction class="org.openmrs.module.aijar.htmlformentry.DSDSProgramSubmissionAction" />
     <section>
         <submit/>
     </section>
