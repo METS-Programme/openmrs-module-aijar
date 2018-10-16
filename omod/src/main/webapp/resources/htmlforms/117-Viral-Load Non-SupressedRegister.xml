@@ -90,14 +90,6 @@
     <script type="text/javascript">
         if (jQuery) {
             jq(document).ready(function () {
-                jq('#1-removeEntry').remove();
-                jq('#10-addEntry').remove();
-                jq('#1-toggleContainer').show();
-
-                jq('#11-removeEntry').remove();
-                jq('#20-addEntry').remove();
-                jq('#11-toggleContainer').show();
-
                 // Enable disable other outcomes
                 jq('#163170').change(function () {
                     enable_disable('163170', '163171', '5622');
@@ -269,6 +261,7 @@
                 $lastVisibleRow,
                 $nonEmptyBoxes;
 
+
             var showAddButtonForLastVisibleRow = function($container) {
                 $lastVisibleRow = $container.find('tr:visible:last');
                 $lastVisibleRow.find('.add').show();
@@ -349,7 +342,7 @@
                     return true;
                 }
             });
-
+            jq('#1-toggleContainer').show();
         });
 
     </script>
@@ -468,10 +461,10 @@
             <table class="multi">
                 <tbody>
                 <tr>
-                    <td style="width: 15%;background: #F3F3F3;">Session Date</td>
-                    <td style="width: 15%;background: #F3F3F3;">Adherence assessment score</td>
-                    <td style="width: 15%;background: #F3F3F3;">Adherence Codes</td>
-                    <td style="width: 15%;background: #F3F3F3;"></td>
+                    <td style="background: #F3F3F3;">Session Date</td>
+                    <td style="background: #F3F3F3;">Adherence assessment score</td>
+                    <td style="background: #F3F3F3;">Adherence Codes</td>
+                    <td style="background: #F3F3F3;"></td>
                 </tr>
                 <repeat>
                     <template>
