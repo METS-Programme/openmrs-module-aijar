@@ -772,15 +772,15 @@
           <td colspan="2">
             <p>
               <label>eMTCT Code: Woman</label>
-              <obs conceptId="d5b0394c-424f-41db-bc2f-37180dcdbe74" 
-              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,
-				              	05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7,
-				              	86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,
-				              	a08d9331-b437-485c-8eff-1923f3d43630,
-				              	25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465,
-				              	60155e4d-1d49-4e97-9689-758315967e0f,
-				              	48723c9c-c931-4fde-81cd-6178c9a9a70b,
-				              	4d301db0-c517-4556-9f7c-d837bac90144"
+              <obs conceptId="99317"
+              	answerConceptIds="99313,
+				              	99734,
+				              	99314,
+				              	99739,
+				              	99315,
+				              	99736,
+				              	164962,
+				              	164963"
               	answerLabels=	"C - Counselled but declined HIV testing,
               					T - Counselled and tested but didn't receive results,
               					TR - Counselled tested and results given - Client tested HIV - in maternity,
@@ -795,16 +795,16 @@
           <td colspan="2">
             <p>
               <label>eMTCT Code: Partner</label>
-              <obs conceptId="62a37075-fc2a-4729-8950-b9fae9b22cfb" 
-              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,
-				              	05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7,
-				              	86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,
-				              	a08d9331-b437-485c-8eff-1923f3d43630,
-				              	25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465,
-				              	60155e4d-1d49-4e97-9689-758315967e0f,
-				              	48723c9c-c931-4fde-81cd-6178c9a9a70b,
-				              	4d301db0-c517-4556-9f7c-d837bac90144,
-				              	8eab745c-24a5-4ba4-906c-b5087e920b66" 
+              <obs conceptId="99342"
+              	answerConceptIds="99313,
+				              	99734,
+				              	99314,
+				              	99739,
+				              	99315,
+				              	99736,
+				              	164962,
+				              	164963,
+				              	162927"
               	answerLabels="C - Counselled but declined HIV testing,
               					T - Counselled and tested but didn't receive results,
               					TR - Counselled tested and results given - Client tested HIV - in maternity,
