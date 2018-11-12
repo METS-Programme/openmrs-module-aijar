@@ -11,8 +11,8 @@ import org.openmrs.module.htmlformentry.FormEntryContext;
 import org.openmrs.module.htmlformentry.FormEntryContext.Mode;
 import org.openmrs.module.htmlformentry.FormEntrySession;
 
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -33,13 +33,16 @@ public class DSDSProgramSubmissionAction implements CustomFormSubmissionAction {
         Patient patient = session.getPatient();
         Set<Obs> obsList = session.getEncounter().getAllObs();
         AddPatientProgramPageController addPatientProgramPageController = new AddPatientProgramPageController();
-        List<PatientProgram> patientPrograms = addPatientProgramPageController.getPatientActiveProgram(patient);
+        List<PatientProgram> patientPrograms = getActivePatientProgramAfterThisEncounter(patient, null, session.getEncounter().getEncounterDatetime());
 
         /**
          * Terminate wen patient is already enrolled in the program selected.
          */
         for (PatientProgram patientProgram : patientPrograms) {
-            if (patientProgram.getProgram() == getProgramByConceptFromObs(obsList)) {
+            /**
+             * Check if Same program is enrolled on the same date
+             */
+            if (patientProgram.getProgram() == getProgramByConceptFromObs(obsList) && patientProgram.getDateEnrolled() == session.getEncounter().getEncounterDatetime()) {
                 return;
             }
         }
@@ -49,9 +52,14 @@ public class DSDSProgramSubmissionAction implements CustomFormSubmissionAction {
          */
         if (!patientPrograms.isEmpty()) {
             for (PatientProgram previousPatientDSDMProgram : patientPrograms) {
-                if (addPatientProgramPageController.getDSDMPrograms().contains(previousPatientDSDMProgram.getProgram())) {
-                    previousPatientDSDMProgram.setDateCompleted(session.getEncounter().getEncounterDatetime());
-                    getProgramWorkflowService().savePatientProgram(previousPatientDSDMProgram);
+                /**
+                 * Check if program to enroll is greater than
+                 */
+                if (session.getEncounter().getEncounterDatetime().compareTo(previousPatientDSDMProgram.getDateEnrolled()) > 0) {
+                    if (addPatientProgramPageController.getDSDMPrograms().contains(previousPatientDSDMProgram.getProgram())) {
+                        previousPatientDSDMProgram.setDateCompleted(session.getEncounter().getEncounterDatetime());
+                        getProgramWorkflowService().savePatientProgram(previousPatientDSDMProgram);
+                    }
                 }
             }
         }
@@ -64,6 +72,7 @@ public class DSDSProgramSubmissionAction implements CustomFormSubmissionAction {
             newPatientDSDMProgram.setPatient(patient);
             newPatientDSDMProgram.setDateEnrolled(session.getEncounter().getEncounterDatetime());
             newPatientDSDMProgram.setProgram(getProgramByConceptFromObs(obsList));
+            newPatientDSDMProgram.setDateCompleted(null);
             getProgramWorkflowService().savePatientProgram(newPatientDSDMProgram);
         }
     }
@@ -89,5 +98,27 @@ public class DSDSProgramSubmissionAction implements CustomFormSubmissionAction {
         }
 
         return program;
+    }
+
+
+    /**
+     * This takes in a patient program and weather previous or after search and determines if there is a previous program or there is an after program
+     *
+     * @param patient
+     * @param maxEnrollmentDate
+     * @return
+     */
+    private List<PatientProgram> getActivePatientProgramAfterThisEncounter(Patient patient, Date minEnrollmentDate, Date maxEnrollmentDate) {
+       List<PatientProgram> patientPrograms=new ArrayList<>();
+
+        patientPrograms = Context.getProgramWorkflowService().getPatientPrograms(patient, null, minEnrollmentDate, maxEnrollmentDate, null, null, false);
+        if (patientPrograms.size() > 0) {
+            for (PatientProgram patientProgram : patientPrograms) {
+                if (patientProgram.getActive()) {
+                    patientPrograms.add(patientProgram);
+                }
+            }
+        }
+        return patientPrograms;
     }
 }

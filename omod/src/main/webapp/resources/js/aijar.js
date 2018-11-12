@@ -50,6 +50,19 @@ jq(document).ready(function () {
     });
 });
 
+
+/**
+ * Difference in Dates in months
+ * @param dt2
+ * @param dt1
+ * @returns {number}
+ */
+function diff_months(dt2, dt1) {
+    var diff =(dt2.getTime() - dt1.getTime()) / 1000;
+    diff /= (60 * 60 * 24 * 7 * 4);
+    return Math.abs(Math.round(diff));
+}
+
 /**
  * Changes a field date in the format yy-mm-dd to dd/mm/yy which is easier to read
  * @param dateValue

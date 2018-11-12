@@ -15,6 +15,7 @@ package org.openmrs.module.aijar.api.impl;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.openmrs.Patient;
 import org.openmrs.Person;

@@ -23,7 +23,7 @@
                      * m -> holds the string matching the regular expression
                      */
                     var queryParameters = {}, queryString = location.search.substring(1),
-                            re = /([^&amp;=]+)=([^&amp;]*)/g, m;
+                        re = /([^&amp;=]+)=([^&amp;]*)/g, m;
 
                     // Creates a map with the query string parameters
                     while (m = re.exec(queryString)) {
@@ -36,8 +36,8 @@
                      *     object, suitable for use in a URL query string or Ajax request.
                      */
                     location.href = window.location.protocol + "//" + window.location.host +
-                            '/' + OPENMRS_CONTEXT_PATH + '/coreapps/clinicianfacing/patient.page?patientId='
-                            + queryParameters['patientId']; // Causes page to reload
+                        '/' + OPENMRS_CONTEXT_PATH + '/coreapps/clinicianfacing/patient.page?patientId='
+                        + queryParameters['patientId']; // Causes page to reload
                 });
             </script>
         </includeIf>
@@ -248,7 +248,7 @@
 
                 if (encounterDate &gt;= returnDate) {
                     getField('returndate.error').html('The return date must be after the date of this visit ' +
-        formatDateForDisplay(encounterDate)).show();
+                        formatDateForDisplay(encounterDate)).show();
                     return false;
                 }
 
@@ -257,7 +257,7 @@
                     var transfer_out_date_id = new Date(jq('#transfer_out_date_id').html());
                     if (returnDate &gt;= transfer_out_date_id) {
                         getField('returndate.error').html('The return date must be before the transfer out date of ' +
-        formatDateForDisplay(transfer_out_date_id)).show();
+                            formatDateForDisplay(transfer_out_date_id)).show();
                         return false;
                     }
                     return false;
@@ -290,6 +290,7 @@
 
                 return true;
             });
+
             jq(document).ready(function () {
                 if (jq.browser.msie) {
                     jq(":checkbox").click(function () {
@@ -297,6 +298,24 @@
                     });
                 }
 
+                var stableArray=[];
+
+                var previousVl = jq("#vl").text().trim();
+                var currentRegimen = jq("#regimen").text().trim();
+                var regimenStartedDate = jq("#regimen_started_date").text().trim();
+                var onThirdLine = jq("#on_third_line").text().trim();
+                var adherence = jq("#adherence").text().trim();
+                var clinicStaging = jq("#clinic_staging").text().trim();
+                var sputumDate = jq("#sputum_date").text().trim();
+                var teatmentStartDate = jq("#teatment_start_date").text().trim();
+                var sputumValue = jq("#sputum_value").text().trim();
+
+
+                if(sputumValue  && sputumValue ===664 && (sputumDate && sputumDate)){
+
+                }else {
+                    stableArray.push(false)
+                }
 
                 /* Validation of the ART regimen Selected */
                 jq("#90315").change(function () {
@@ -389,7 +408,7 @@
                 });
 
                 jq("#returndate").each(function () {
-                    if(jq("#returndate").find("input[type=hidden]").val()!=""){
+                    if (jq("#returndate").find("input[type=hidden]").val() != "") {
                         enableContainer("#reason_for_appointment");
                     } else {
                         disableContainer("#reason_for_appointment");
@@ -397,7 +416,7 @@
                 });
 
                 jq("#returndate").change(function () {
-                    if(jq("#returndate").find("input[type=hidden]").val()!=""){
+                    if (jq("#returndate").find("input[type=hidden]").val() != "") {
                         enableContainer("#reason_for_appointment");
                     } else {
                         disableContainer("#reason_for_appointment");
@@ -509,7 +528,7 @@
                     <td>
 
                         <excludeIf velocityTest="$patient.person.dead ==true">
-                            <lookup complexExpression="#set($transfer_out_date = '')" />
+                            <lookup complexExpression="#set($transfer_out_date = '')"/>
                             <ifMode mode="ENTER">
                                 <span id="transfer_out_date_id" style="display: none"><lookup
                                         complexExpression="#set($transfer_out_date=($fn.latestObs('99165').valueDatetime)) #set($lost_to_follow_date=$fn.latestObs('99165').valueDatetime) #set($transfer_out=$fn.latestObs('90306').valueCoded.name) $transfer_out_date"/></span>
@@ -543,7 +562,8 @@
                         </excludeIf>
 
                         <span class="OtherAppointmentReasonEnableDisable1">
-                                    <obs id="reason_for_appointment" conceptId="160288" labelText="Reasons for next appointment:"
+                                    <obs id="reason_for_appointment" conceptId="160288"
+                                         labelText="Reasons for next appointment:"
                                          answerConceptIds="164968,164972,164970,856,5497,163153,164971,164973,99324,164974,90012,903,5484,90002"
                                          answerLabels="1. ART Initiation, 2. ART Refill, 3. ART Regimen Switch/ Substitution, 4. Viral Load, 5. CD4, 6. IAC, 7. T.B Drug Refill,8. T.B Follow up, 9. ANC,10. EID,11. PMTCT, 12. Hypertension/ Diabetes, 13. Nutrition,14. Other Specify"/>
                         </span>
@@ -1027,8 +1047,14 @@
                             </obsgroup>
                         </div>
                     </td>
-                    <td><obs id="dsdm-model" conceptId="165143" answerConceptIds="165138,165140,165139,165142,165141"
-                             answerLabels="FBIM,FBG,FTR,CDDP,CCLAD" required="required"/></td>
+                    <td>
+                        <div>
+                            <uiInclude provider="aijar" fragment="patientStability"/>
+                        </div>
+
+                        <obs id="dsdm-model" conceptId="165143" answerConceptIds="165138,165140,165139,165142,165141"
+                             answerLabels="FBIM,FBG,FTR,CDDP,CCLAD" required="required"/>
+                    </td>
                     <td class="lablex3">
                         <b>Referred for</b>
                         <br/>
@@ -1061,7 +1087,7 @@
             </table>
         </section>
     </div>
-    <postSubmissionAction class="org.openmrs.module.aijar.htmlformentry.DSDSProgramSubmissionAction" />
+    <postSubmissionAction class="org.openmrs.module.aijar.htmlformentry.DSDSProgramSubmissionAction"/>
     <section>
         <submit/>
     </section>
