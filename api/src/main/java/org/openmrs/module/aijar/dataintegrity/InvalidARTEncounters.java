@@ -117,7 +117,7 @@ public class InvalidARTEncounters extends BasePatientRuleDefinition {
 	 */
 	private List<RuleResult<Patient>> patientsWithMoreThanOneEncounterOnTheSameDate() {
 		log.info("Executing rule to find patients with more than one encounters on a single date");
-		String queryString = "SELECT visit FROM Encounter e WHERE e.encounterType.uuid='8d5b2be0-c2cc-11de-8d13-0010c6dffd0f' GROUP BY e.encounterType.encounterTypeId, e.visit.visitId HAVING count(e.visit.visitId) > 1";
+		String queryString = "SELECT visit FROM Encounter e WHERE e.encounterType.uuid='8d5b2be0-c2cc-11de-8d13-0010c6dffd0f' AND e.voided = false GROUP BY e.encounterType.encounterTypeId, e.visit.visitId HAVING count(e.visit.visitId) > 1";
 		
 		Query query = getSession().createQuery(queryString);
 		
