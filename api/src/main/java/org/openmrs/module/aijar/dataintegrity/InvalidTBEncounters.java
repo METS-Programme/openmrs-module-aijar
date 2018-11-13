@@ -142,7 +142,7 @@ public class InvalidTBEncounters extends BasePatientRuleDefinition {
 		
 		//For each patient enrolled in the TB program, look for encounters with missing identifier
 		for (Patient patient : patientList) {
-			String encounterQueryString = "FROM Encounter e WHERE e.patient.id = :patientId AND e.encounterType.uuid = :encounterType AND e.id NOT IN (SELECT o.encounter.id FROM Obs o WHERE o.concept.uuid = :conceptUuid)";
+			String encounterQueryString = "FROM Encounter e WHERE e.voided = false AND e.patient.id = :patientId AND e.encounterType.uuid = :encounterType AND e.id NOT IN (SELECT o.encounter.id FROM Obs o WHERE o.concept.uuid = :conceptUuid)";
 			
 			Query encounterQuery = getSession().createQuery(encounterQueryString);
 			encounterQuery.setParameter("patientId", patient.getId());
@@ -183,7 +183,7 @@ public class InvalidTBEncounters extends BasePatientRuleDefinition {
 		List<RuleResult<Patient>> ruleResults = new ArrayList<>();
 		for (Patient patient : uniquePatientList) {
 			//Fetch the latest encounter for this patient
-			String encounterQueryString = "FROM Encounter e WHERE e.patient.id = :patientId AND e.voided = 0 AND e.encounterType.uuid = :encounterTypeUuid ORDER BY e.encounterDatetime DESC";
+			String encounterQueryString = "FROM Encounter e WHERE e.voided = false  AND e.patient.id = :patientId AND e.voided = 0 AND e.encounterType.uuid = :encounterTypeUuid ORDER BY e.encounterDatetime DESC";
 			Query encounterQuery = getSession().createQuery(encounterQueryString);
 			encounterQuery.setMaxResults(1);
 			encounterQuery.setParameter("patientId", patient.getId());
