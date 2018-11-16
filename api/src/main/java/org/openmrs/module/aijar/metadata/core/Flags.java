@@ -593,10 +593,12 @@ public class Flags {
     public static FlagDescriptor HAS_UNSUPRESSED_VIRAL_LOAD = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT p.patient_id, o.value_numeric, DATE_FORMAT((o.obs_datetime), '%d.%b.%Y') FROM patient p, obs o " +
-                    " WHERE o.person_id = p.patient_id AND o.voided = FALSE AND o.concept_id = 856 " +
-                    " AND o.obs_id = (SELECT oo.obs_id FROM obs oo WHERE oo.person_id = o.person_id AND oo.concept_id = 856 AND oo.voided = false ORDER BY oo.obs_datetime DESC LIMIT 1) " +
-                    " GROUP BY o.person_id HAVING o.value_numeric > 1 ";
+            return " SELECT non_suppressed.patient_id, non_suppressed.value_numeric, DATE_FORMAT((non_suppressed.obs_datetime), '%d. %b. %Y')\n" +
+                    " FROM (SELECT person_id, MAX(obs_datetime) as dt FROM obs b\n" +
+                    "        WHERE b.concept_id = 856 AND b.voided = 0 group by person_id) latest_vl\n" +
+                    "      INNER JOIN (SELECT c.person_id as patient_id, obs_datetime, value_numeric\n" +
+                    "                  FROM obs c WHERE c.concept_id = 856 AND c.voided = 0 AND c.value_numeric > 1) non_suppressed\n" +
+                    "      ON (latest_vl.person_id = non_suppressed.patient_id and latest_vl.dt = non_suppressed.obs_datetime) ";
         }
 
         @Override

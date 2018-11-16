@@ -35,6 +35,12 @@ jq(document).ready(function () {
             phone_number.match(/^[0-9]{1,10}$/);
     }, "Please specify a valid mobile number without any spaces like 0712345678");
 
+    jq.validator.addMethod("nationalid", function(nationalid, element) {
+        nationalid = nationalid.replace(/\(|\)|\s+|-/g, "");
+        return this.optional(element) || nationalid.match(/^$|^[A-Z][FM]\d{5}([A-Z0-9]){7}$/);
+    }, "Enter a valid National ID example CF12345678ABCD");
+
+
     /* Validation of NIN on patient registration page */
     $( "#registration" ).validate({
         rules: {
@@ -174,25 +180,33 @@ function validateRequiredField(prime, factor, message_to_throw, input_type) {
     var selected_value = null;
     getField(prime + '.error').html("").hide;
 
-    if (input_type == "select") {
-        selected_value = jq(factor).find(":selected").text().trim().toLowerCase();
-        if (selected_value != '' && getValue(prime + '.value') == '') {
+    if (input_type === "select") {
+        selected_value = jq("#" + factor).find(":selected").text().trim().toLowerCase();
+        if (selected_value !== '' && getValue(prime + '.value') === '') {
             getField(prime + '.error').html(message_to_throw).show;
             jq('#' + prime).find("span").removeAttr("style");
             evaluationResult = false;
         }
     }
-    else if (input_type == "hidden") {
-        selected_value = jq(factor).find("input[type=hidden]").val().trim().toLowerCase();
-        if (selected_value != '' && getValue(prime + '.value') == '') {
+    else if (input_type === "hidden") {
+        selected_value = jq("#" + factor).find("input:hidden").val();
+        if (selected_value !== '' && getValue(prime + '.value') === '') {
             getField(prime + '.error').html(message_to_throw).show;
             jq('#' + prime).find("span").removeAttr("style");
             evaluationResult = false;
         }
     }
-    else if (input_type == "check_box") {
+    else if (input_type === "check_box") {
         selected_value = jq("#" + factor).find(":checkbox:first").attr("checked");
-        if (selected_value == "checked" && getValue(prime + '.value') == '') {
+        if (selected_value === "checked" && getValue(prime + '.value') === '') {
+            getField(prime + '.error').html(message_to_throw).show;
+            jq('#' + prime).find("span").removeAttr("style");
+            evaluationResult = false;
+        }
+    }
+    else if (input_type === "text") {
+        selected_value = selected_value = jq("#" + factor).find("input:text").val();
+        if (selected_value !== "" && getValue(prime + '.value') === '') {
             getField(prime + '.error').html(message_to_throw).show;
             jq('#' + prime).find("span").removeAttr("style");
             evaluationResult = false;
