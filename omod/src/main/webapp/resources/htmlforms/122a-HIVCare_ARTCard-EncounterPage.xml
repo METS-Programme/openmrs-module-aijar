@@ -284,12 +284,18 @@
                 /* If the viral load is detected, the number of copies must be greater than 20 which is the lowest detectable level for a machine */
                 if ((viral_load_qualitative == 1301) &amp;&amp; (getValue('viral-load-results-copies.value') &lt; 20)) {
                     getField('viral-load-results-copies.error').html('Please enter the number of virus copies per ml. the minimum number of copies is 20').show();
-
                     return false;
                 }
 
                 return true;
             });
+
+            function diff_months(dt2, dt1) {
+                var diff = (dt2.getTime() - dt1.getTime()) / 1000;
+                diff /= (60 * 60 * 24 * 7 * 4);
+                return Math.abs(Math.round(diff));
+            }
+
 
             jq(document).ready(function () {
                 if (jq.browser.msie) {
@@ -298,24 +304,18 @@
                     });
                 }
 
-                var stableArray=[];
+                var stableArray = [];
 
                 var previousVl = jq("#vl").text().trim();
                 var currentRegimen = jq("#regimen").text().trim();
-                var regimenStartedDate = jq("#regimen_started_date").text().trim();
                 var onThirdLine = jq("#on_third_line").text().trim();
                 var adherence = jq("#adherence").text().trim();
                 var clinicStaging = jq("#clinic_staging").text().trim();
+                var regimenStartedDate = jq("#regimen_started_date").text().trim();
                 var sputumDate = jq("#sputum_date").text().trim();
                 var teatmentStartDate = jq("#teatment_start_date").text().trim();
                 var sputumValue = jq("#sputum_value").text().trim();
 
-
-                if(sputumValue  && sputumValue ===664 && (sputumDate && sputumDate)){
-
-                }else {
-                    stableArray.push(false)
-                }
 
                 /* Validation of the ART regimen Selected */
                 jq("#90315").change(function () {
@@ -340,9 +340,10 @@
                         jq().toastmessage('showNoticeToast', "The regimen" + regimen_encounter_page_text + "you have selected is different from the current regimen in the Summary page. Please update the summary page with a switch/substitution to the selected regimen");
                     }
                 });
-                /* End of Validation /*
+                /* End of Validation */
 
-                 /* Handle viral load results */
+
+                /* Handle viral load results */
                 jq("#viral-load-results-copies").attr("disabled", true);
                 jq("#viral-load-results-qualitative").change(function () {
                     var viral_load_status = getValue('viral-load-results-qualitative.value');
@@ -361,6 +362,7 @@
                         jq("#viral-load-results-copies").attr("disabled", true).attr("readonly", true).fadeTo(250, 0.25);
                         setValue('viral-load-results-copies.value', '');
                     }
+                    previousVl = viral_load_status;
                 });
                 // trigger a change when the form loads
                 jq("#viral-load-results-qualitative").change();
@@ -406,6 +408,11 @@
                 jq('[class^="AdherenceEnableDisable"]').each(function () {
                     enable_disable(jq(this), "Adherence", 'selected_value == "poor" || selected_value=="fair"', "select");
                 });
+
+
+                jq("#90203").change(function () {
+                    clinicStaging=jq(this).options[this.selectedIndex].value;
+                })
 
                 jq("#returndate").each(function () {
                     if (jq("#returndate").find("input[type=hidden]").val() != "") {
@@ -455,6 +462,44 @@
                         }
                     });
                 });
+
+
+                /*Viral Load Check*/
+
+                if (previousVl === "1306") {
+                    stableArray.push(true);
+                } else {
+                    stableArray.push(false);
+                }
+
+                /* Third Line*/
+
+                if (onThirdLine !== "true") {
+                    stableArray.push(true);
+                } else {
+                    stableArray.push(false);
+                }
+
+                /* Adherence Check*/
+
+                if (adherence.length &lt;= 0 || adherence.includes("POOR")) {
+                    stableArray.push(false);
+                } else {
+                    stableArray.push(true);
+                }
+
+                /* Clinic staging */
+                if (clinicStaging === "90033" || clinicStaging === "90034" || clinicStaging === "90293" || clinicStaging === "90294") {
+                    stableArray.push(true);
+                } else {
+                    stableArray.push(false);
+                }
+
+                if (currentRegimen !== "" &amp;&amp; (currentRegimen === jq("#90315").find("select").find(":selected").val()) &amp;&amp; diff_months(new Date(jq("#encounter_date").find("input[type=hidden]").val()), new Date(regimenStartedDate)) &gt; 12) {
+                    stableArray.push(true);
+                } else {
+                    stableArray.push(false);
+                }
             });
         }
     </script>
@@ -521,7 +566,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
+                        <encounterDate id="encounter_date" default="today" disallowMultipleEncountersOnDate="block"/>
                         <br/>
                         <obs id="br" conceptId="90069" labelText="Scheduled?" style="checkbox"/>
                     </td>
@@ -816,7 +861,7 @@
                              answerLabels="Amb,Work, Bed" labelText=""/>
                     </td>
                     <td>
-                        <obs id="br" conceptId="90203"
+                        <obs id="90203" conceptId="90203"
                              answerConceptIds="90033,90034,90035,90036,90293,90294,90295,90296"
                              answerLabels="1,2,3,4,T1,T2,T3,T4" labelText=""/>
                     </td>
