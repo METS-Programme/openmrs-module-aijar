@@ -565,6 +565,20 @@
                                 }
                             });
                         });
+                        /* enabling and disabling immunization code not done fields */
+                            jq("#imm-not-done").find("input[type$='text']").attr("disabled",true);
+                        jq("#imm-not-done").each(function () {
+
+                            jq("#imm-not-done").find("#trigger").find(":checkbox:first").change(function () {
+                                var checked = jq(this).attr("checked");
+                                if (checked == "checked") {
+                                        jq("#imm-not-done").find("#value").find("input[type$='text']").attr("disabled", false);
+                            } else {
+                                jq("#imm-not-done").find("input[type$='text']").attr("disabled",true);
+                                jq("#imm-not-done").find("input[type$='text']").val("");
+                            }
+                            });
+                        });
 
 
                         jq(".checkboxGroup").each(function () {
@@ -721,14 +735,14 @@
                             <obs conceptId="162839" answerConceptId="163014" answerLabel="PCV-1"/>
                             <obs conceptId="162839" answerConceptId="163015" answerLabel="PCV-2"/>
                             <obs conceptId="162839" answerConceptId="163016" answerLabel="PCV-3"/>
-                            <span class="enableDisable">
+                            <span id="imm-not-done">
                                         <span id="trigger">
                                             <obs conceptId="162839" answerConceptId="90002" answerLabel="Not Done"/>
                                         </span>
-                                        <span id="disabled">
+                                        <span id="value">
                                             <obs conceptId="162890"/>
                                         </span>
-                                </span>
+                            </span>
                         </td>
                     </tr>
                     <tr>
