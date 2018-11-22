@@ -590,7 +590,7 @@ public class Flags {
         }
     };
 
-    public static FlagDescriptor HAS_UNSUPRESSED_VIRAL_LOAD = new FlagDescriptor() {
+    public static FlagDescriptor HAS_DETECTABLE_VIRAL_LOAD = new FlagDescriptor() {
         @Override
         public String criteria() {
             return " SELECT non_suppressed.patient_id, non_suppressed.value_numeric, DATE_FORMAT((non_suppressed.obs_datetime), '%d. %b. %Y')\n" +
@@ -603,7 +603,7 @@ public class Flags {
 
         @Override
         public String message() {
-            return "Un-supressed Viral Load of ${1} from ${2} due for IAC";
+            return "Detectable Viral Load of ${1} from ${2} may be due for IAC";
         }
 
         @Override
