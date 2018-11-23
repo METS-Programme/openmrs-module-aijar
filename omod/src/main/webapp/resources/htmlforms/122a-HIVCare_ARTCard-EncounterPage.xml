@@ -116,6 +116,13 @@
             float: left;
             margin: 1px 0px;
         }
+        .stability{
+            display: none;
+        }
+
+        form#htmlform div.ai-page-frame input[disabled="disabled"], form#htmlform div.ai-page-frame input[readonly="readonly"], form#htmlform div.ai-page-frame select[disabled="disabled"], form#htmlform div.ai-page-frame input.locked, form#htmlform div.ai-page-frame select.locked {
+            background-color: #ffffff !important
+        }
 
     </style>
     <!-- jquery loaded for nonessential purposes. -->
@@ -317,6 +324,11 @@
                 var sputumValue = jq("#sputum_value").text().trim();
 
 
+                disableContainer("#165144");
+
+                stabilityCheck();
+
+
                 /* Validation of the ART regimen Selected */
                 jq("#90315").change(function () {
                     var regimen_encounter_page_value = jq("#90315").find("select").find(":selected").val();
@@ -339,6 +351,7 @@
                     if (!patient_regimen.includes(regimen_encounter_page_value)) {
                         jq().toastmessage('showNoticeToast', "The regimen" + regimen_encounter_page_text + "you have selected is different from the current regimen in the Summary page. Please update the summary page with a switch/substitution to the selected regimen");
                     }
+                    stabilityCheck();
                 });
                 /* End of Validation */
 
@@ -363,6 +376,7 @@
                         setValue('viral-load-results-copies.value', '');
                     }
                     previousVl = viral_load_status;
+                    stabilityCheck();
                 });
                 // trigger a change when the form loads
                 jq("#viral-load-results-qualitative").change();
@@ -411,7 +425,8 @@
 
 
                 jq("#90203").change(function () {
-                    clinicStaging=jq(this).options[this.selectedIndex].value;
+                    clinicStaging = jq(this).find(":selected").val();
+                    stabilityCheck();
                 })
 
                 jq("#returndate").each(function () {
@@ -464,41 +479,58 @@
                 });
 
 
-                /*Viral Load Check*/
+                function stabilityCheck() {
+                    /*Viral Load Check*/
 
-                if (previousVl === "1306") {
-                    stableArray.push(true);
-                } else {
-                    stableArray.push(false);
-                }
+                    stableArray = [];
 
-                /* Third Line*/
+                    if (previousVl === "1306") {
+                        stableArray.push(true);
+                    } else {
+                        stableArray.push(false);
+                    }
 
-                if (onThirdLine !== "true") {
-                    stableArray.push(true);
-                } else {
-                    stableArray.push(false);
-                }
+                    /* Third Line*/
 
-                /* Adherence Check*/
+                    if (onThirdLine !== "true") {
+                        stableArray.push(true);
+                    } else {
+                        stableArray.push(false);
+                    }
 
-                if (adherence.length &lt;= 0 || adherence.includes("POOR")) {
-                    stableArray.push(false);
-                } else {
-                    stableArray.push(true);
-                }
+                    /* Adherence Check*/
 
-                /* Clinic staging */
-                if (clinicStaging === "90033" || clinicStaging === "90034" || clinicStaging === "90293" || clinicStaging === "90294") {
-                    stableArray.push(true);
-                } else {
-                    stableArray.push(false);
-                }
+                    if (adherence.length &lt;= 0 || adherence.trim().includes("POOR")) {
+                        stableArray.push(false);
+                    } else {
+                        stableArray.push(true);
+                    }
 
-                if (currentRegimen !== "" &amp;&amp; (currentRegimen === jq("#90315").find("select").find(":selected").val()) &amp;&amp; diff_months(new Date(jq("#encounter_date").find("input[type=hidden]").val()), new Date(regimenStartedDate)) &gt; 12) {
-                    stableArray.push(true);
-                } else {
-                    stableArray.push(false);
+                    /* Clinic staging */
+                    if (clinicStaging === "90033" || clinicStaging === "90034" || clinicStaging === "90293" || clinicStaging === "90294") {
+                        stableArray.push(true);
+                    } else {
+                        stableArray.push(false);
+                    }
+
+                    if (currentRegimen !== "" &amp;&amp; (currentRegimen === jq("#90315").find("select").find(":selected").val()) &amp;&amp; diff_months(new Date(jq("#encounter_date").find("input[type=hidden]").val()), new Date(regimenStartedDate)) &gt; 12) {
+                        stableArray.push(true);
+                    } else {
+                        stableArray.push(false);
+                    }
+
+                    if (sputumValue !== "" &amp;&amp; sputumValue !== "664" &amp;&amp; diff_months(new Date(jq("#encounter_date").find("input[type=hidden]").val()), new Date(teatmentStartDate)) &lt; 2) {
+                        stableArray.push(false);
+                    } else {
+                        stableArray.push(true);
+                    }
+
+                    if (stableArray.indexOf(false) != -1) {
+                        jq("#165144 select").val("90004");
+                    } else {
+                        jq("#165144 select").val("90003");
+                    }
+
                 }
             });
         }
@@ -1097,8 +1129,11 @@
                             <uiInclude provider="aijar" fragment="patientStability"/>
                         </div>
 
+                        <obs id="165144" conceptId="165144" answerConceptIds="90003,90004" answerLabels="Yes,No"
+                             defaultValue="90004" labelText="Stable"/>
+
                         <obs id="dsdm-model" conceptId="165143" answerConceptIds="165138,165140,165139,165142,165141"
-                             answerLabels="FBIM,FBG,FTR,CDDP,CCLAD" required="required"/>
+                             answerLabels="FBIM,FBG,FTR,CDDP,CCLAD" required="required" labelText="DSDM Model"/>
                     </td>
                     <td class="lablex3">
                         <b>Referred for</b>

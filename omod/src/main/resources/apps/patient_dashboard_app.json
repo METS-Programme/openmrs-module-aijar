@@ -189,19 +189,5 @@
         }
       }
     ]
-  },
-  {
-    "id": "aijar.program.addPatientProgram",
-    "extensions": [
-      {
-        "id": "aijar.program.addPatientProgram.overallActionLink",
-        "extensionPointId": "patientDashboard.overallActions",
-        "type": "link",
-        "label": "aijar.dsdm.program.addPatientProgram",
-        "url": "aijar/addPatientProgram.page?patientId={{patient.uuid}}",
-        "icon": "icon-question-sign",
-        "order": 10
-      }
-    ]
   }
 ]

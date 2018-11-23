@@ -35,7 +35,7 @@ public class PatientStabilityFragmentController {
         /**
          * Last Viral Load
          */
-        List<Obs> vlObsList = getObsListFromIdList("SELECT obs_id FROM obs where  obs.obs_datetime BETWEEN '" + getDateBefore(encounterVisit.getStartDatetime(), -12) + "' AND '" + encounterVisit.getStartDatetime() + "' AND obs.person_id='" + patient.getPatientId() + "' AND obs.concept_id = 1305  ORDER BY  obs.encounter_id DESC");
+        List<Obs> vlObsList = getObsListFromIdList("SELECT obs_id FROM obs where  obs.obs_datetime BETWEEN '" + getDateBefore(encounterVisit.getStartDatetime(), -12) + "' AND '" + encounterVisit.getStartDatetime() + "' AND obs.person_id='" + patient.getPatientId() + "' AND obs.concept_id = 1305 AND obs.voided = false  ORDER BY  obs.encounter_id DESC");
         if (vlObsList.size() > 0) {
             model.addAttribute("vlObs", vlObsList.get(0));
         } else {
@@ -52,7 +52,7 @@ public class PatientStabilityFragmentController {
         /**
          * Current regimen
          */
-        List<Obs> regimenObsList = getObsListFromIdList("SELECT obs_id FROM obs where  obs.obs_datetime BETWEEN '" + getDateBefore(encounterVisit.getStartDatetime(), -12) + "' AND '" + encounterVisit.getStartDatetime() + "' AND obs.person_id='" + patient.getPatientId() + "' AND obs.value_coded = " + patientSummaryFragmentController.getMostRecentObservation(obsService, personList, currentRegimentConcept).getValueCoded().getConceptId() + "  ORDER BY  obs.encounter_id DESC");
+        List<Obs> regimenObsList = getObsListFromIdList("SELECT obs_id FROM obs where  obs.obs_datetime BETWEEN '" + getDateBefore(encounterVisit.getStartDatetime(), -12) + "' AND '" + encounterVisit.getStartDatetime() + "' AND obs.person_id='" + patient.getPatientId() + "' AND obs.value_coded = " + patientSummaryFragmentController.getMostRecentObservation(obsService, personList, currentRegimentConcept).getValueCoded().getConceptId() + " AND obs.voided = false ORDER BY  obs.encounter_id ASC");
         if (regimenObsList.size() > 0) {
             model.addAttribute("regimenObs", regimenObsList.get(0));
         } else {
@@ -63,7 +63,7 @@ public class PatientStabilityFragmentController {
         /**
          * Adherence
          */
-        List<Obs> adherenceObsList = getObsListFromIdList("SELECT obs_id FROM obs where  obs.obs_datetime BETWEEN '" + getDateBefore(encounterVisit.getStartDatetime(), -6) + "' AND '" + encounterVisit.getStartDatetime() + "' AND obs.person_id='" + patient.getPatientId() + "' AND obs.concept_id = 90221  ORDER BY  obs.encounter_id DESC");
+        List<Obs> adherenceObsList = getObsListFromIdList("SELECT obs_id FROM obs where  obs.obs_datetime BETWEEN '" + getDateBefore(encounterVisit.getStartDatetime(), -6) + "' AND '" + encounterVisit.getStartDatetime() + "' AND obs.person_id='" + patient.getPatientId() + "' AND obs.concept_id = 90221 AND obs.voided = false ORDER BY  obs.encounter_id DESC");
 
         if (adherenceObsList.size() > 0) {
             model.addAttribute("adherenceObs", adherenceObsList);
@@ -93,10 +93,10 @@ public class PatientStabilityFragmentController {
          */
 
         List<Concept> clinicStage = new ArrayList<>();
-        clinicStage.add(Context.getConceptService().getConcept(99083));
-        Integer conceptForClinicStage = patientSummaryFragmentController.getMostRecentObservation(obsService, personList, clinicStage).getValueCoded().getConceptId();
-        if (conceptForClinicStage != null) {
-            model.addAttribute("conceptForClinicStage", conceptForClinicStage);
+        List<Obs> clinicStageObsList=getObsListFromIdList("SELECT obs_id FROM obs where obs.person_id='" + patient.getPatientId() + "' AND obs.concept_id IN (99083,90203) AND obs.voided = false  ORDER BY  obs.encounter_id DESC");
+
+        if (clinicStageObsList.size()>0) {
+            model.addAttribute("conceptForClinicStage", clinicStageObsList.get(0).getValueCoded().getConceptId());
         } else {
             model.addAttribute("conceptForClinicStage", null);
         }

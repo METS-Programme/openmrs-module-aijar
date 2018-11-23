@@ -5,19 +5,16 @@ import org.openmrs.Patient;
 import org.openmrs.PatientProgram;
 import org.openmrs.Program;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.aijar.page.controller.AddPatientProgramPageController;
 import org.openmrs.module.htmlformentry.CustomFormSubmissionAction;
 import org.openmrs.module.htmlformentry.FormEntryContext;
 import org.openmrs.module.htmlformentry.FormEntryContext.Mode;
 import org.openmrs.module.htmlformentry.FormEntrySession;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.openmrs.api.context.Context.getProgramWorkflowService;
 import static org.openmrs.module.aijar.AijarConstants.GP_DSDM_CONCEPT_ID;
+import static org.openmrs.module.aijar.AijarConstants.GP_DSDM_PROGRAM_UUID_NAME;
 
 /**
  * Enrolls patients into the TB program
@@ -32,7 +29,6 @@ public class DSDSProgramSubmissionAction implements CustomFormSubmissionAction {
 
         Patient patient = session.getPatient();
         Set<Obs> obsList = session.getEncounter().getAllObs();
-        AddPatientProgramPageController addPatientProgramPageController = new AddPatientProgramPageController();
         List<PatientProgram> patientPrograms = getActivePatientProgramAfterThisEncounter(patient, null, session.getEncounter().getEncounterDatetime());
 
         /**
@@ -56,7 +52,7 @@ public class DSDSProgramSubmissionAction implements CustomFormSubmissionAction {
                  * Check if program to enroll is greater than
                  */
                 if (session.getEncounter().getEncounterDatetime().compareTo(previousPatientDSDMProgram.getDateEnrolled()) > 0) {
-                    if (addPatientProgramPageController.getDSDMPrograms().contains(previousPatientDSDMProgram.getProgram())) {
+                    if (getDSDMPrograms().contains(previousPatientDSDMProgram.getProgram())) {
                         previousPatientDSDMProgram.setDateCompleted(session.getEncounter().getEncounterDatetime());
                         getProgramWorkflowService().savePatientProgram(previousPatientDSDMProgram);
                     }
@@ -88,7 +84,6 @@ public class DSDSProgramSubmissionAction implements CustomFormSubmissionAction {
         Program program = null;
         String dsdmConceptId = Context.getAdministrationService().getGlobalProperty(GP_DSDM_CONCEPT_ID);
         for (Obs obs : obsList) {
-            AddPatientProgramPageController addPatientProgramPageController = new AddPatientProgramPageController();
             if (obs.getConcept().getConceptId() == Integer.parseInt(dsdmConceptId) && obs.getConcept().getDatatype() == Context.getConceptService().getConceptDatatypeByName("Coded")) {
                 programList = Context.getProgramWorkflowService().getProgramsByConcept(obs.getValueCoded());
             }
@@ -96,7 +91,6 @@ public class DSDSProgramSubmissionAction implements CustomFormSubmissionAction {
         if (!programList.isEmpty()) {
             program = programList.get(0);
         }
-
         return program;
     }
 
@@ -109,16 +103,37 @@ public class DSDSProgramSubmissionAction implements CustomFormSubmissionAction {
      * @return
      */
     private List<PatientProgram> getActivePatientProgramAfterThisEncounter(Patient patient, Date minEnrollmentDate, Date maxEnrollmentDate) {
-       List<PatientProgram> patientPrograms=new ArrayList<>();
+       List<PatientProgram> patientPrograms=new ArrayList<PatientProgram>();
 
         patientPrograms = Context.getProgramWorkflowService().getPatientPrograms(patient, null, minEnrollmentDate, maxEnrollmentDate, null, null, false);
         if (patientPrograms.size() > 0) {
             for (PatientProgram patientProgram : patientPrograms) {
-                if (patientProgram.getActive()) {
-                    patientPrograms.add(patientProgram);
+                if (!patientProgram.getActive()) {
+                    patientPrograms.remove(patientProgram);
                 }
             }
         }
         return patientPrograms;
+    }
+    /**
+     * Get List of DSDM Programs
+     *
+     * @return
+     */
+    public List<Program> getDSDMPrograms() {
+        String dsdmuuids = Context.getAdministrationService().getGlobalProperty(GP_DSDM_PROGRAM_UUID_NAME);
+
+        List<String> listOfDSDMPrograms = Arrays.asList(dsdmuuids.split("\\s*,\\s*"));
+        List<Program> dsdmPrograms = new ArrayList<>();
+
+        for (String s : listOfDSDMPrograms) {
+
+            Program dsdmProgram = Context.getProgramWorkflowService().getProgramByUuid(s);
+            if (dsdmProgram != null) {
+                dsdmPrograms.add(dsdmProgram);
+            }
+        }
+
+        return dsdmPrograms;
     }
 }

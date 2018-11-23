@@ -16,7 +16,7 @@ img {
         <div id="on_third_line">${onThirdRegimen}</div>
 
         <div id="adherence"><% adherenceObs?.each { %>
-            ${it?.valueCoded?.conceptId}<% } %></div>
+            ${it?.valueCoded?.name}<% } %></div>
 
         <div id="clinic_staging">${conceptForClinicStage}</div>
 
