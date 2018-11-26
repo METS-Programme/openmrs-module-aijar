@@ -52,7 +52,7 @@ public class PatientStabilityFragmentController {
         /**
          * Current regimen
          */
-        List<Obs> regimenObsList = getObsListFromIdList("SELECT obs_id FROM obs where  obs.obs_datetime BETWEEN '" + getDateBefore(encounterVisit.getStartDatetime(), -12) + "' AND '" + encounterVisit.getStartDatetime() + "' AND obs.person_id='" + patient.getPatientId() + "' AND obs.value_coded = " + patientSummaryFragmentController.getMostRecentObservation(obsService, personList, currentRegimentConcept).getValueCoded().getConceptId() + " AND obs.voided = false ORDER BY  obs.encounter_id ASC");
+        List<Obs> regimenObsList = getObsListFromIdList("SELECT obs_id FROM obs where  obs.obs_datetime <= DATE('" + getDateBefore(encounterVisit.getStartDatetime(), -12) + "') AND obs.person_id='" + patient.getPatientId() + "' AND obs.value_coded = " + patientSummaryFragmentController.getMostRecentObservation(obsService, personList, currentRegimentConcept).getValueCoded().getConceptId() + " AND obs.voided = false ORDER BY  obs.encounter_id DESC");
         if (regimenObsList.size() > 0) {
             model.addAttribute("regimenObs", regimenObsList.get(0));
         } else {

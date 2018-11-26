@@ -10,9 +10,9 @@ import org.openmrs.module.htmlformentry.FormEntryContext;
 import org.openmrs.module.htmlformentry.FormEntryContext.Mode;
 import org.openmrs.module.htmlformentry.FormEntrySession;
 
+
 import java.util.*;
 
-import static org.openmrs.api.context.Context.getProgramWorkflowService;
 import static org.openmrs.module.aijar.AijarConstants.GP_DSDM_CONCEPT_ID;
 import static org.openmrs.module.aijar.AijarConstants.GP_DSDM_PROGRAM_UUID_NAME;
 
@@ -54,7 +54,7 @@ public class DSDSProgramSubmissionAction implements CustomFormSubmissionAction {
                 if (session.getEncounter().getEncounterDatetime().compareTo(previousPatientDSDMProgram.getDateEnrolled()) > 0) {
                     if (getDSDMPrograms().contains(previousPatientDSDMProgram.getProgram())) {
                         previousPatientDSDMProgram.setDateCompleted(session.getEncounter().getEncounterDatetime());
-                        getProgramWorkflowService().savePatientProgram(previousPatientDSDMProgram);
+                        Context.getProgramWorkflowService().savePatientProgram(previousPatientDSDMProgram);
                     }
                 }
             }
@@ -69,7 +69,7 @@ public class DSDSProgramSubmissionAction implements CustomFormSubmissionAction {
             newPatientDSDMProgram.setDateEnrolled(session.getEncounter().getEncounterDatetime());
             newPatientDSDMProgram.setProgram(getProgramByConceptFromObs(obsList));
             newPatientDSDMProgram.setDateCompleted(null);
-            getProgramWorkflowService().savePatientProgram(newPatientDSDMProgram);
+            Context.getProgramWorkflowService().savePatientProgram(newPatientDSDMProgram);
         }
     }
 
