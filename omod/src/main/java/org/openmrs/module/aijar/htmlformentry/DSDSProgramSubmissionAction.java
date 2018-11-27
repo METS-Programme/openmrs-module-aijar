@@ -17,7 +17,7 @@ import static org.openmrs.module.aijar.AijarConstants.GP_DSDM_CONCEPT_ID;
 import static org.openmrs.module.aijar.AijarConstants.GP_DSDM_PROGRAM_UUID_NAME;
 
 /**
- * Enrolls patients into the TB program
+ * Enrolls patients into DSDM programs
  */
 public class DSDSProgramSubmissionAction implements CustomFormSubmissionAction {
     @Override
@@ -61,7 +61,7 @@ public class DSDSProgramSubmissionAction implements CustomFormSubmissionAction {
         }
 
         /**
-         * Create new PatientProgram
+         * Enroll patient in  new PatientProgram
          */
         if (getProgramByConceptFromObs(obsList) != null) {
             PatientProgram newPatientDSDMProgram = new PatientProgram();
@@ -94,11 +94,10 @@ public class DSDSProgramSubmissionAction implements CustomFormSubmissionAction {
         return program;
     }
 
-
     /**
      * This takes in a patient program and weather previous or after search and determines if there is a previous program or there is an after program
-     *
      * @param patient
+     * @param minEnrollmentDate
      * @param maxEnrollmentDate
      * @return
      */
