@@ -1,15 +1,14 @@
 package org.openmrs.module.aijar.htmlformentry;
 
-import org.openmrs.Obs;
-import org.openmrs.Patient;
-import org.openmrs.PatientProgram;
-import org.openmrs.Program;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.openmrs.*;
 import org.openmrs.api.context.Context;
+import org.openmrs.module.aijar.fragment.controller.PatientSummaryFragmentController;
 import org.openmrs.module.htmlformentry.CustomFormSubmissionAction;
 import org.openmrs.module.htmlformentry.FormEntryContext;
 import org.openmrs.module.htmlformentry.FormEntryContext.Mode;
 import org.openmrs.module.htmlformentry.FormEntrySession;
-
 
 import java.util.*;
 
@@ -20,6 +19,8 @@ import static org.openmrs.module.aijar.AijarConstants.GP_DSDM_PROGRAM_UUID_NAME;
  * Enrolls patients into DSDM programs
  */
 public class DSDSProgramSubmissionAction implements CustomFormSubmissionAction {
+    private static final Log log = LogFactory.getLog(PatientSummaryFragmentController.class);
+
     @Override
     public void applyAction(FormEntrySession session) {
         Mode mode = session.getContext().getMode();
@@ -27,9 +28,50 @@ public class DSDSProgramSubmissionAction implements CustomFormSubmissionAction {
             return;
         }
 
+
         Patient patient = session.getPatient();
         Set<Obs> obsList = session.getEncounter().getAllObs();
         List<PatientProgram> patientPrograms = getActivePatientProgramAfterThisEncounter(patient, null, session.getEncounter().getEncounterDatetime());
+
+        List<Program> dsdmPrograms = getDSDMPrograms();
+
+        if (mode.equals(FormEntryContext.Mode.EDIT)) {
+            List<PatientProgram> patientProgramOnEncounterDate = getActivePatientProgramAfterThisEncounter(patient, session.getEncounter().getEncounterDatetime(), session.getEncounter().getEncounterDatetime());
+
+            if (obsList != null && getProgramByConceptFromObs(obsList) == null && patientProgramOnEncounterDate.size() > 0) {
+                for (PatientProgram currentPatientProgram : patientProgramOnEncounterDate) {
+                    /**
+                     * Void DSDM Program whose obs has been voided
+                     */
+                    voidPatientProgram(currentPatientProgram, "Matching Observation voided", session.getEncounter().getChangedBy(), session.getEncounter().getDateChanged());
+
+                    List<PatientProgram> previousPatientPrograms = openPreviouslyClosedPatientProgram(patient, currentPatientProgram.getDateEnrolled(), session.getEncounter().getChangedBy());
+
+                    if (previousPatientPrograms.size() > 0) {
+                        for (PatientProgram previousPatientProgram : previousPatientPrograms) {
+                            if (dsdmPrograms.contains(currentPatientProgram.getProgram())) {
+
+                                /**
+                                 * Void Previous DSDM Program
+                                 */
+                                voidPatientProgram(previousPatientProgram, "Matching Observation voided", session.getEncounter().getChangedBy(), session.getEncounter().getDateChanged());
+
+                                /**
+                                 * Recreate Voided Program
+                                 */
+                                createPatientProgram(patient, previousPatientProgram.getDateEnrolled(), previousPatientProgram.getProgram());
+                            }
+                        }
+                    }
+                }
+
+            } else if (obsList != null && patientProgramOnEncounterDate.size() > 0 && getProgramByConceptFromObs(obsList) != null && getProgramByConceptFromObs(obsList) != patientProgramOnEncounterDate.get(0).getProgram()) {
+
+                for (PatientProgram patientProgram : patientProgramOnEncounterDate) {
+                    voidPatientProgram(patientProgram, "Matching Observation voided", session.getEncounter().getChangedBy(), session.getEncounter().getDateChanged());
+                }
+            }
+        }
 
         /**
          * Terminate wen patient is already enrolled in the program selected.
@@ -64,13 +106,30 @@ public class DSDSProgramSubmissionAction implements CustomFormSubmissionAction {
          * Enroll patient in  new PatientProgram
          */
         if (getProgramByConceptFromObs(obsList) != null) {
-            PatientProgram newPatientDSDMProgram = new PatientProgram();
-            newPatientDSDMProgram.setPatient(patient);
-            newPatientDSDMProgram.setDateEnrolled(session.getEncounter().getEncounterDatetime());
-            newPatientDSDMProgram.setProgram(getProgramByConceptFromObs(obsList));
-            newPatientDSDMProgram.setDateCompleted(null);
-            Context.getProgramWorkflowService().savePatientProgram(newPatientDSDMProgram);
+            createPatientProgram(patient, session.getEncounter().getEncounterDatetime(), getProgramByConceptFromObs(obsList));
         }
+    }
+
+    private PatientProgram createPatientProgram(Patient patient, Date enrollmentDate, Program program) {
+        PatientProgram patientProgram = new PatientProgram();
+        patientProgram.setPatient(patient);
+        patientProgram.setDateEnrolled(enrollmentDate);
+        patientProgram.setProgram(program);
+        patientProgram.setDateCompleted(null);
+        return Context.getProgramWorkflowService().savePatientProgram(patientProgram);
+    }
+
+    private PatientProgram voidPatientProgram(PatientProgram patientProgram, String reason, User user, Date changedDated) {
+        patientProgram.setVoided(true);
+        patientProgram.setVoidedBy(user);
+        patientProgram.setVoidReason(reason);
+        patientProgram.setDateChanged(changedDated);
+        return Context.getProgramWorkflowService().savePatientProgram(patientProgram);
+    }
+
+
+    private List<PatientProgram> openPreviouslyClosedPatientProgram(Patient patient, Date date, User user) {
+        return getCompletedPatientProgramOnDate(patient, date);
     }
 
     /**
@@ -96,24 +155,34 @@ public class DSDSProgramSubmissionAction implements CustomFormSubmissionAction {
 
     /**
      * This takes in a patient program and weather previous or after search and determines if there is a previous program or there is an after program
+     *
      * @param patient
      * @param minEnrollmentDate
      * @param maxEnrollmentDate
      * @return
      */
     private List<PatientProgram> getActivePatientProgramAfterThisEncounter(Patient patient, Date minEnrollmentDate, Date maxEnrollmentDate) {
-       List<PatientProgram> patientPrograms=new ArrayList<PatientProgram>();
+        List<PatientProgram> patientPrograms = new ArrayList<PatientProgram>();
 
         patientPrograms = Context.getProgramWorkflowService().getPatientPrograms(patient, null, minEnrollmentDate, maxEnrollmentDate, null, null, false);
-        if (patientPrograms.size() > 0) {
-            for (PatientProgram patientProgram : patientPrograms) {
-                if (!patientProgram.getActive()) {
-                    patientPrograms.remove(patientProgram);
-                }
-            }
-        }
         return patientPrograms;
     }
+
+
+    /**
+     * This takes in a patient program and weather previous or after search and determines if there is a previous program or there is an after program
+     *
+     * @param patient
+     * @param completionDate
+     * @return
+     */
+    private List<PatientProgram> getCompletedPatientProgramOnDate(Patient patient, Date completionDate) {
+        List<PatientProgram> patientPrograms = new ArrayList<PatientProgram>();
+
+        patientPrograms = Context.getProgramWorkflowService().getPatientPrograms(patient, null, null, null, completionDate, completionDate, false);
+        return patientPrograms;
+    }
+
     /**
      * Get List of DSDM Programs
      *
@@ -132,7 +201,6 @@ public class DSDSProgramSubmissionAction implements CustomFormSubmissionAction {
                 dsdmPrograms.add(dsdmProgram);
             }
         }
-
         return dsdmPrograms;
     }
 }
