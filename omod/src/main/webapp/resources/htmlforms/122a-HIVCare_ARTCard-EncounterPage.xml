@@ -294,6 +294,12 @@
                     return false;
                 }
 
+                if(jq("#165144").find("select").find(":selected").val()!=="90003" &amp;&amp; jq("#165143").find("select").find(":selected").val()!=="165138"){
+                    getField('165143.error').html('Patient Not Stable. Only Stable Patients can be enrolled in '+jq("#165143").find("select").find(":selected").text()).show();
+                    jq().toastmessage('showErrorToast', " Patient Not Stable. Only Stable Patients can be enrolled in "+jq("#165143").find("select").find(":selected").text());
+                    return false;
+                }
+
                 return true;
             });
 
@@ -1132,7 +1138,7 @@
                         <obs id="165144" conceptId="165144" answerConceptIds="90003,90004" answerLabels="Yes,No"
                              defaultValue="90004" labelText="Stable"/>
 
-                        <obs id="dsdm-model" conceptId="165143" answerConceptIds="165138,165140,165139,165142,165141"
+                        <obs id="165143" conceptId="165143" answerConceptIds="165138,165140,165139,165142,165141"
                              answerLabels="FBIM,FBG,FTR,CDDP,CCLAD" required="required" labelText="DSDM Model"/>
                     </td>
                     <td class="lablex3">
