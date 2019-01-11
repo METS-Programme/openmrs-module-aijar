@@ -1,3 +1,5 @@
+Build Status [![Build Status](https://travis-ci.org/METS-Programme/openmrs-module-aijar.svg?branch=master)](https://travis-ci.org/METS-Programme/openmrs-module-aijar)
+
 # openmrs-module-aijar
 Configuration module for the UgandaEMR distribution being rolled out in Uganda
 
