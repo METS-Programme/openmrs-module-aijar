@@ -59,6 +59,6 @@ public class UgandaAddressMetadataBundle extends AddressMetadataBundle {
      */
     @Override
     public int getVersion() {
-        return 1;
+        return 3;
     }
 }
