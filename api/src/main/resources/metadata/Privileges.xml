@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <privilege  privilege="App: ugandaemr.widget.artStatus"  description="Access ART Status on patient dashboard"  uuid="76faf32f-8e77-493e-b290-7697b165bffb"/>
+    <privilege  privilege="App: ugandaemr.backup.backupDatabase"  description="Access App to the Backup"  uuid="96c5dbe1-2c73-4f95-9b37-b24277617f6d"/>
+    <privilege  privilege="App: ugandaemr.widget.dataIntegrityViolation"  description="Access data integrity Violations on patient dashboard"  uuid="e6280dd4-52b0-47f9-81f1-670774b5af8e"/>
+    <privilege  privilege="App: ugandaemr.widget.directionsToResidence"  description="Access Directions to Residence on patient dashboard"  uuid="56edc97f-5acd-4334-bfef-8883a6e8a04c"/>
+    <privilege  privilege="App: ugandaemr.widget.eidSummary"  description="Access eidSummary On Patient Dashboard"  uuid="2dc27a93-a7d3-496e-b5ba-f8449ec90c12"/>
+    <privilege  privilege="App: ugandaemr.widget.lastARTVisitSummary"  description="Access Last ART Visit Summary on patient dashborad"  uuid="b1147517-c28d-4ad0-9f21-ef84e2e50414"/>
+    <privilege  privilege="App: ugandaemr.report.cohortBuilder"  description="Access Link to Manage cohort builder reports"  uuid="515a0ce8-a4e5-4b7e-b210-3f64ad96302e"/>
+    <privilege  privilege="App: ugandaemr.widget.mchSummary"  description="Access MCH Summary on patient Dashboard"  uuid="014fa1f5-7862-47d9-a977-a0b75bc33af9"/>
+    <privilege  privilege="App: ugandaemr.widget.patientSummary"  description="Access Patient Summary on patient dashboard"  uuid="cffc1f04-5b67-4e16-9844-18d331a79809"/>
+    <privilege  privilege="App: ugandaemr.widget.viralLoadHistory"  description="Access Viral load History on patient dashboard"  uuid="4f8329f8-77ff-4a6f-a1a2-309c99f2224a"/>
+    <privilege  privilege="App: ugandaemr.widget.dsdmPatientHistory"  description="For Widget that shows the patient history in DSDM Models"  uuid="332fd951-ca78-4c85-97cb-f4146c69f823"/>
+</dataset>
