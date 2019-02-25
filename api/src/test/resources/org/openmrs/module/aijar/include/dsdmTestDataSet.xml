@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+
+    <global_property  property="ugandaemr.dsdm.conceptId"  property_value="165143"  description="A concept for DSDM"  uuid="8ac64fa8-4515-4bf6-8f0e-160e8f85c81d"/>
+    <global_property  property="ugandaemr.dsdm.programsuuid"  property_value="de5d54ae-c304-11e8-9ad0-529269fb1459,de5d5b34-c304-11e8-9ad0-529269fb1459,de5d5896-c304-11e8-9ad0-529269fb1459,de5d5da0-c304-11e8-9ad0-529269fb1459,de5d6034-c304-11e8-9ad0-529269fb1459"  description="List of Programs in DSDM"  uuid="b3aa5de4-9ebe-45a2-a386-41a420c77ebe"/>
+
+    <patient_identifier_type patient_identifier_type_id="4" name="HIV Clinic No." description="This is the patient's identifier used at the treating facility" creator="1" date_created="2017-01-31 10:59:34.0" required="false" format_description="The first three letters of the facility, followed by / then 5 numbers with no spaces" retired="false" uuid="e1731641-30ab-102d-86b0-7a5022ba4115" location_behavior="NOT_USED"/>
+
+    <person  person_id="1393"  gender="F"  birthdate="1978-01-01"  birthdate_estimated="1"  dead="0"  creator="1"  date_created="2015-02-18 17:18:32" voided="0" uuid="98830cae-930e-4edf-9ae6-f327aa38d774"  deathdate_estimated="0"/>
+    <person_name  person_name_id="1394"  preferred="1"  person_id="1393"  given_name="Noel" family_name="Cathleen"  creator="1"  date_created="2015-02-18 17:18:32"  voided="0" changed_by="1"  date_changed="2016-09-20 15:08:04"  uuid="791b44aa-5b79-43fa-b0f2-96ec747d9344"/>
+    <patient  patient_id="1393"  creator="1"  date_created="2015-02-18 17:18:32"  voided="0" allergy_status="Unknown"/>
+    <patient_identifier  patient_identifier_id="1752"  patient_id="1393"  identifier="P/A 1322"  identifier_type="4"  preferred="0"  location_id="1"  creator="1"  date_created="2015-02-18 17:18:32" voided="0"  uuid="10e6d24c-4ce8-4760-b431-2c0914774cb3"/>
+
+
+    <concept  concept_id="165138"  retired="0" datatype_id="4"  class_id="18"  is_set="0"  creator="1"  date_created="2018-09-28 11:56:02" uuid="733144c0-c321-11e8-a355-529269fb1459"/>
+    <concept  concept_id="165139"  retired="0" datatype_id="4"  class_id="18"  is_set="0"  creator="1"  date_created="2018-09-28 11:58:02" uuid="73313f20-c321-11e8-a355-529269fb1459"/>
+    <concept  concept_id="165140"  retired="0" datatype_id="4"  class_id="18"  is_set="0"  creator="1"  date_created="2018-09-28 12:01:04" uuid="73313c96-c321-11e8-a355-529269fb1459"/>
+    <concept  concept_id="165141"  retired="0" datatype_id="4"  class_id="18"  is_set="0"  creator="1"  date_created="2018-09-28 12:07:25" uuid="733139e4-c321-11e8-a355-529269fb1459"/>
+    <concept  concept_id="165142"  retired="0" datatype_id="4"  class_id="18"  is_set="0"  creator="1"  date_created="2018-09-28 12:10:10" uuid="73313728-c321-11e8-a355-529269fb1459"/>
+    <concept  concept_id="165143"  retired="0" datatype_id="2"  class_id="18"  is_set="1"  creator="1"  date_created="2018-09-28 12:18:23" uuid="73312fee-c321-11e8-a355-529269fb1459"/>
+
+
+    <concept_name  concept_name_id="160167"  concept_id="165138"  name="FBIM"  locale="en"  locale_preferred="0"  creator="1"  date_created="2018-09-28 11:56:02"  concept_name_type="SHORT"  voided="0" uuid="733175bc-c321-11e8-a355-529269fb1459"/>
+    <concept_name  concept_name_id="160168"  concept_id="165138"  name="Facility Based Individual Management"  locale="en"  locale_preferred="1"  creator="1"  date_created="2018-09-28 11:56:02"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="73317832-c321-11e8-a355-529269fb1459"/>
+    <concept_name  concept_name_id="160169"  concept_id="165139"  name="Fast Track Drug Refill"  locale="en"  locale_preferred="1"  creator="1"  date_created="2018-09-28 11:58:02"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="7331703a-c321-11e8-a355-529269fb1459"/>
+    <concept_name  concept_name_id="160170"  concept_id="165139"  name="FTR"  locale="en"  locale_preferred="0"  creator="1"  date_created="2018-09-28 11:58:02"  concept_name_type="SHORT"  voided="0" uuid="733172c4-c321-11e8-a355-529269fb1459"/>
+    <concept_name  concept_name_id="160171"  concept_id="165140"  name="Facility Based Groups"  locale="en"  locale_preferred="1"  creator="1"  date_created="2018-09-28 12:01:04"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="73316716-c321-11e8-a355-529269fb1459"/>
+    <concept_name  concept_name_id="160172"  concept_id="165140"  name="FBG"  locale="en"  locale_preferred="0"  creator="1"  date_created="2018-09-28 12:01:04"  concept_name_type="SHORT"  voided="0" uuid="73316d88-c321-11e8-a355-529269fb1459"/>
+    <concept_name  concept_name_id="160173"  concept_id="165141"  name="CCLAD"  locale="en"  locale_preferred="0"  creator="1"  date_created="2018-09-28 12:07:25"  concept_name_type="SHORT"  voided="0" uuid="73316234-c321-11e8-a355-529269fb1459"/>
+    <concept_name  concept_name_id="160174"  concept_id="165141"  name="Community Client Led ART Delivery"  locale="en"  locale_preferred="1"  creator="1"  date_created="2018-09-28 12:07:25"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="733164aa-c321-11e8-a355-529269fb1459"/>
+    <concept_name  concept_name_id="160175"  concept_id="165142"  name="Community Drug Distribution Point"  locale="en"  locale_preferred="1"  creator="1"  date_created="2018-09-28 12:10:10"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="73315d5c-c321-11e8-a355-529269fb1459"/>
+    <concept_name  concept_name_id="160176"  concept_id="165142"  name="CDDP"  locale="en"  locale_preferred="0"  creator="1"  date_created="2018-09-28 12:10:10"  concept_name_type="SHORT"  voided="0" uuid="73315fc8-c321-11e8-a355-529269fb1459"/>
+    <concept_name  concept_name_id="160177"  concept_id="165143"  name="Differentiated Service Delivery"  locale="en"  locale_preferred="1"  creator="1"  date_created="2018-09-28 12:18:23"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="73315848-c321-11e8-a355-529269fb1459"/>
+    <concept_name  concept_name_id="160178"  concept_id="165143"  name="DSDM"  locale="en"  locale_preferred="0"  creator="1"  date_created="2018-09-28 12:18:23"  concept_name_type="SHORT"  voided="0" uuid="73315b0e-c321-11e8-a355-529269fb1459"/>
+
+
+    <concept_answer  concept_answer_id="7086"  concept_id="165143"  answer_concept="165138"  creator="1"  date_created="2018-10-15 13:02:40"  sort_weight="1"  uuid="2faf6c05-3a99-41ef-be84-9fca5412b36c"/>
+    <concept_answer  concept_answer_id="7087"  concept_id="165143"  answer_concept="165140"  creator="1"  date_created="2018-10-15 13:02:40"  sort_weight="2"  uuid="7e9c8a31-3aee-4cd1-b3b8-32d18df2292a"/>
+    <concept_answer  concept_answer_id="7088"  concept_id="165143"  answer_concept="165139"  creator="1"  date_created="2018-10-15 13:02:40"  sort_weight="3"  uuid="84b93497-934c-44c8-b3c2-86b188b0751d"/>
+    <concept_answer  concept_answer_id="7089"  concept_id="165143"  answer_concept="165141"  creator="1"  date_created="2018-10-15 13:02:40"  sort_weight="4"  uuid="0a2ac1f3-69ca-4b7d-99ba-0f55a512fa29"/>
+    <concept_answer  concept_answer_id="7090"  concept_id="165143"  answer_concept="165142"  creator="1"  date_created="2018-10-15 13:02:40"  sort_weight="5"  uuid="cf6cea6f-c3e7-49f6-a447-15613f36504e"/>
+
+    <visit_type  visit_type_id="1"  name="Facility Visit"  description="Patient visits the clinic/hospital (as opposed to a home visit, or telephone contact)"  creator="1"  date_created="2013-08-02 03:39:43"  changed_by="1"  date_changed="2016-08-30 03:52:10"  retired="0"  uuid="7b0f5697-27e3-40c4-8bae-f4049abfb4ed"/>
+
+    <visit  visit_id="31165"  patient_id="1393"  visit_type_id="1"  date_started="2015-02-10 00:00:00"  date_stopped="2015-02-10 00:00:00"  location_id="2"  creator="1"  date_created="2015-02-10 00:00:00"  changed_by="1"  date_changed="2015-02-10 00:00:00"  voided="0" uuid="63194d2e-79ad-11e6-84c4-001e101f0000"/>
+
+    <encounter_type  encounter_type_id="15"  name="ART Card - Encounter"  description="Outpatient Adult &amp; Child Return Visit"  creator="1"  date_created="2016-04-05 16:43:20"  retired="0"   uuid="8d5b2be0-c2cc-11de-8d13-0010c6dffd0f"  changed_by="1"  date_changed="2019-01-18 11:38:10"/>
+
+    <form  form_id="8"  name="HMIS 122a HIV Care ART Card - Encounter Form"  version="1.2"  published="0"  description="A visit for a client to an ART clinic"  encounter_type="15"  creator="1"  date_created="2016-08-30 03:52:36"  changed_by="1"  date_changed="2016-09-13 12:17:45"  retired="0"  uuid="12de5bc5-352e-4faf-9961-a2125085a75c"/>
+
+    <encounter  encounter_id="31182"  encounter_type="15"  patient_id="1393"  location_id="2"  form_id="8"  encounter_datetime="2015-02-10 00:00:00"  creator="1"  date_created="2015-02-18 17:25:27"  voided="0"  visit_id="31165"  uuid="edbdd9ff-51c7-4be5-892f-05b581ed750e"/>
+
+    <obs  obs_id="655624"  person_id="1393"  concept_id="165143"  encounter_id="31182"  obs_datetime="2015-02-10 00:00:00"  location_id="2"  value_coded="165138"  creator="1"  date_created="2019-01-18 14:26:45"  voided="0" uuid="b5d9efaf-c99e-4581-b834-3d5c3448d746"/>
+
+
+    <program  program_id="16"  concept_id="165138" creator="1"  date_created="2019-01-18 11:37:46"  changed_by="1"  date_changed="2019-01-18 11:37:46"  retired="0"  name="FBIM"  description="Facility Based Individual Management a DSDM model for patients that need extra management at the health centre"  uuid="de5d54ae-c304-11e8-9ad0-529269fb1459"/>
+    <program  program_id="17"  concept_id="165140" creator="1"  date_created="2019-01-18 11:37:46"  changed_by="1"  date_changed="2019-01-18 11:37:46"  retired="0"  name="FGB"  description="Facility Based Groups a DSDM for stable or unstable clients who need peer support"  uuid="de5d5b34-c304-11e8-9ad0-529269fb1459"/>
+    <program  program_id="18"  concept_id="165139" creator="1"  date_created="2019-01-18 11:37:46"  changed_by="1"  date_changed="2019-01-18 11:37:46"  retired="0"  name="FTR"  description="Fast Track Drug Refill is a DSDM Model for patients who only pick drugs at the health centre"  uuid="de5d5896-c304-11e8-9ad0-529269fb1459"/>
+    <program  program_id="19"  concept_id="165141" creator="1"  date_created="2019-01-18 11:37:46"  changed_by="1"  date_changed="2019-01-18 11:37:46"  retired="0"  name="CCLAD"  description="Community Client Led ART Delivery is a DSDM  Model with client lead groups with rotation drug pickup by client them selves and distribution"  uuid="de5d5da0-c304-11e8-9ad0-529269fb1459"/>
+    <program  program_id="20"  concept_id="165142" creator="1"  date_created="2019-01-18 11:37:46"  changed_by="1"  date_changed="2019-01-18 11:37:47"  retired="0"  name="CDDP"  description="Community Drug Distribution Point DSDM Model in community where patients pick drugs from a distribution point in community set by their health centre"  uuid="de5d6034-c304-11e8-9ad0-529269fb1459"/>
+    <patient_program  patient_program_id="2069"  patient_id="1393"  program_id="16"  date_enrolled="2015-02-10 00:00:00" creator="1"  date_created="2019-01-18 14:33:27"  voided="0"   uuid="acbbc577-e95c-472c-9f17-86d05b614c13"/>
+</dataset>
+

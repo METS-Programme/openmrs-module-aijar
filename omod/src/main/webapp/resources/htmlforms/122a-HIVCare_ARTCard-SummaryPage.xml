@@ -897,6 +897,8 @@
                     enable_disable(jq(this), "PriorYesNo", 'selected_value == "yes"', "select");
                 });
 
+                jq("#165143").addClass('hidden');
+
                 jq(".enableDisable").each(function () {
                     var group = jq(this);
 
@@ -2435,6 +2437,7 @@
             </table>
         </section>
     </div>
+    <postSubmissionAction class="org.openmrs.module.aijar.htmlformentry.DSDSProgramSubmissionAction"/>
     <section>
         <submit/>
     </section>

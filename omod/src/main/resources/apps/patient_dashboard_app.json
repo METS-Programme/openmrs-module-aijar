@@ -164,5 +164,30 @@
         }
       }
     ]
+  },
+  {
+    "id": "ugandaemr.dsdm.programs",
+    "instanceOf": "coreapps.template.dashboardWidget",
+    "description": "List of DSDM Programs",
+    "order": 10,
+    "config": {
+      "widget": "programs",
+      "icon": "icon-stethoscope",
+      "label": "Patient DSDM Model History",
+      "dateFormat": "dd.MMM.yyyy",
+      "supportedPrograms": "de5d54ae-c304-11e8-9ad0-529269fb1459,de5d5b34-c304-11e8-9ad0-529269fb1459,de5d5896-c304-11e8-9ad0-529269fb1459,de5d5da0-c304-11e8-9ad0-529269fb1459,de5d6034-c304-11e8-9ad0-529269fb1459",
+      "enableProgramDashboards": false
+    },
+    "extensions": [
+      {
+        "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardSecondColumn",
+        "appId": "ugandaemr.dsdm.programs",
+        "extensionPointId": "patientDashboard.secondColumnFragments",
+        "extensionParams": {
+          "provider": "coreapps",
+          "fragment": "dashboardwidgets/dashboardWidget"
+        }
+      }
+    ]
   }
 ]

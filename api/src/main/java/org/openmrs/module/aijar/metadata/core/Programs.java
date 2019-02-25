@@ -124,12 +124,12 @@ public class Programs {
 
         @Override
         public String name() {
-            return "Facility Based Individual Management";
+            return "FBIM";
         }
 
         @Override
         public String description() {
-            return "This is a DSDM model for patients that need extra management at the health centre";
+            return "Facility Based Individual Management a DSDM model for patients that need extra management at the health centre";
         }
 
         @Override
@@ -147,12 +147,12 @@ public class Programs {
 
         @Override
         public String name() {
-            return "Fast Track Drug Refill";
+            return "FTR";
         }
 
         @Override
         public String description() {
-            return "DSDM Model for patients who only pick drugs at the health centre";
+            return "Fast Track Drug Refill is a DSDM Model for patients who only pick drugs at the health centre";
         }
 
         @Override
@@ -170,12 +170,12 @@ public class Programs {
 
         @Override
         public String name() {
-            return "Facility Based Groups";
+            return "FGB";
         }
 
         @Override
         public String description() {
-            return "DSDM for stable or unstable clients who need peer support";
+            return "Facility Based Groups a DSDM for stable or unstable clients who need peer support";
         }
 
         @Override
@@ -193,12 +193,12 @@ public class Programs {
 
         @Override
         public String name() {
-            return "Community Client Led ART Delivery";
+            return "CCLAD";
         }
 
         @Override
         public String description() {
-            return "DSDM Model with client lead groups with rotation drug pickup by client them selves and distribution";
+            return "Community Client Led ART Delivery is a DSDM  Model with client lead groups with rotation drug pickup by client them selves and distribution";
         }
 
         @Override
@@ -216,12 +216,12 @@ public class Programs {
 
         @Override
         public String name() {
-            return "Community Drug Distribution Point";
+            return "CDDP";
         }
 
         @Override
         public String description() {
-            return "DSDM Model in community where patients pick drugs from a distribution point in community set by their health centre";
+            return " Community Drug Distribution Point DSDM Model in community where patients pick drugs from a distribution point in community set by their health centre";
         }
 
         @Override
