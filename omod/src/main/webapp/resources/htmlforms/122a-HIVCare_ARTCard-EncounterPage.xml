@@ -322,13 +322,19 @@
 
                 var previousVl = jq("#vl").text().trim();
                 var currentRegimen = jq("#regimen").text().trim();
+                var regimenBeforeDTG = jq("#regimen_before_dtg").text().trim();
                 var onThirdLine = jq("#on_third_line").text().trim();
                 var adherence = jq("#adherence").text().trim();
                 var clinicStaging = jq("#clinic_staging").text().trim();
                 var regimenStartedDate = jq("#regimen_started_date").text().trim();
+                var regimenBeforeDTGStartedDate = jq("#regimen_started_date_before_dtg").text().trim();
                 var sputumDate = jq("#sputum_date").text().trim();
                 var teatmentStartDate = jq("#teatment_start_date").text().trim();
                 var sputumValue = jq("#sputum_value").text().trim();
+
+                if(regimenBeforeDTG &amp;&amp; regimenBeforeDTG!==""){
+                    regimenStartedDate=regimenBeforeDTGStartedDate;
+                }
 
 
                 disableContainer("#165144");
@@ -521,8 +527,10 @@
                     } else {
                         stableArray.push(false);
                     }
+                    var pageCurrentRegimen=jq("#90315").find("select").find(":selected").val();
+                    var pageEncounterDate=jq("#encounterDate").find("input[type=hidden]").val();
 
-                    if (currentRegimen !== "" &amp;&amp; (currentRegimen === jq("#90315").find("select").find(":selected").val()) &amp;&amp; diff_months(new Date(jq("#encounterDate").find("input[type=hidden]").val()), new Date(regimenStartedDate)) &gt; 12) {
+                    if (currentRegimen !== "" &amp;&amp; (currentRegimen === pageCurrentRegimen) &amp;&amp; diff_months(new Date(pageEncounterDate), new Date(regimenStartedDate)) &gt; 12) {
                         stableArray.push(true);
                     } else {
                         stableArray.push(false);
