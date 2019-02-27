@@ -28,7 +28,7 @@ public class EncounterTemplateFragmentRequestMapper implements FragmentRequestMa
 				// change to the custom login provided by the module
 				request.setProviderNameOverride("aijar");
 				request.setFragmentIdOverride("patientdashboard/encountertemplate/ugandaEMREncounterTemplate");
-				
+
 				log.info(request.toString());
 				return true;
 			}
