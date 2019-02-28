@@ -84,6 +84,7 @@ public class PatientStabilityFragmentController {
             model.addAttribute("regimenObs", regimenObsList.get(0));
         } else {
             model.addAttribute("regimenObs", null);
+            model.addAttribute("regimenBeforeDTGObs", "");
         }
 
 
