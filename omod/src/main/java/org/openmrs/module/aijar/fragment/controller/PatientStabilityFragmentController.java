@@ -35,12 +35,25 @@ public class PatientStabilityFragmentController {
         /**
          * Last Viral Load
          */
-        List<Obs> vlObsList = getObsListFromIdList("SELECT obs_id FROM obs where  obs.obs_datetime BETWEEN '" + getDateBefore(encounterVisit.getStartDatetime(), -12) + "' AND '" + encounterVisit.getStartDatetime() + "' AND obs.person_id='" + patient.getPatientId() + "' AND obs.concept_id = 1305 AND obs.voided = false  ORDER BY  obs.encounter_id DESC");
-        if (vlObsList.size() > 0) {
-            model.addAttribute("vlObs", vlObsList.get(0));
-        } else {
+        List<Obs> vlDateObsList = getObsListFromIdList("SELECT obs_id FROM obs where  obs.value_datetime BETWEEN '"+getDateBefore(encounterVisit.getStartDatetime(), -12)+"' AND '"+encounterVisit.getStartDatetime()+"' AND obs.person_id='"+patient.getPatientId()+"' AND obs.concept_id = 163023 AND obs.voided = false  ORDER BY  obs.encounter_id DESC");
+
+        if(vlDateObsList.size()>0){
+            List<Obs> vlObsList = getObsListFromIdList("SELECT obs_id FROM obs where obs.person_id='" + patient.getPatientId() + "' AND obs.concept_id = 856 AND encounter_id='"+vlDateObsList.get(0).getEncounter().getEncounterId()+"' AND obs.voided = false  ORDER BY  obs.encounter_id DESC");
+
+            if (vlObsList.size() > 0) {
+                model.addAttribute("vlObs", vlObsList.get(0));
+                model.addAttribute("vlDateObs", vlDateObsList.get(0));
+            } else {
+                model.addAttribute("vlObs", null);
+                model.addAttribute("vlDateObs", null);
+            }
+        }else {
+            model.addAttribute("vlDateObs", null);
             model.addAttribute("vlObs", null);
         }
+
+
+
 
         List<Concept> currentRegimentConcept = new ArrayList<>();
         currentRegimentConcept.add(Context.getConceptService().getConcept(90315));
