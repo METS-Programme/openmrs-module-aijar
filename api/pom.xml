@@ -21,12 +21,12 @@
 			<artifactId>library-name</artifactId>
 		</dependency>
 		-->
-		
+
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 		</dependency>
-		
+
 		<!-- Begin OpenMRS core -->
 
 		<dependency>

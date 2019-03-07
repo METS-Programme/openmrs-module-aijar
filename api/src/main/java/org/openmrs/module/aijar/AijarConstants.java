@@ -38,4 +38,18 @@ public class AijarConstants {
     public static final String HSD_TB_NUMBER = "d1cda288-4853-4450-afbc-76bd4e65ea70";
     
     public static final String DISTRICT_TB_NUMBER = "67e9ec2f-4c72-408b-8122-3706909d77ec";
+
+
+    public static final int VL_SAMPLE_ID_CELL_NO=0;
+    public static final int VL_FORM_NUMBER_CELL_NO=1;
+    public static final int VL_DATE_COLLECTION_CELL_NO=2;
+    public static final int VL_DATE_RECIEVED_CELL_NO=3;
+    public static final int VL_RELEASED_CELL_NO=4;
+    public static final int VL_RELEASE_TIME_CELL_NO=5;
+    public static final int VL_FACILITY_NAME_CELL_NO=6;
+    public static final int VL_FACILITY_DHIS2_ID_CELL_NO=7;
+    public static final int VL_PATIENT_ART_ID_CELL_NO=8;
+    public static final int VL_RESULTS_NUMERIC_CELL_NO=9;
+    public static final int VL_RESULTS_ALHPA_NUMERIC_CELL_NO=10;
+    public static final int VL_SUPPRESSED_CELL_NO=11;
 }
