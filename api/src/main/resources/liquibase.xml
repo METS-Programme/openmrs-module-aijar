@@ -210,4 +210,13 @@
 			SELECT patient_id,(SELECT program.program_id FROM program WHERE program.uuid='de5d54ae-c304-11e8-9ad0-529269fb1459') AS program,encounter_datetime AS date_enrolled,location_id,encounter.creator,NOW(),0,UUID() AS uuid FROM encounter INNER JOIN encounter_type ON(encounter_type.encounter_type_id=encounter.encounter_type) WHERE  encounter_type.uuid='8d5b27bc-c2cc-11de-8d13-0010c6dffd0f' GROUP BY patient_id;
 		</sql>
 	</changeSet>
+
+	<changeSet id="ugandaemr-19072018-1002" author="dbaluku">
+		<comment>Setting  modules to be UgandaEMR Fingerprint,FHIR,Data Entry Statistics to be started manually</comment>
+		<sql>
+			UPDATE global_property SET property_value = 'false' WHERE property = 'ugandaemrfingerprint.started';
+			UPDATE global_property SET property_value = 'false' WHERE property = 'fhir.started';
+			UPDATE global_property SET property_value = 'false' WHERE property = 'dataentrystatistics.started';
+		</sql>
+	</changeSet>
 </databaseChangeLog>
