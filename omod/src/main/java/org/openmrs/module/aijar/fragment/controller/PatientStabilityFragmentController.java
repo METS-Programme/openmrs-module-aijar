@@ -2,13 +2,7 @@ package org.openmrs.module.aijar.fragment.controller;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openmrs.Encounter;
-import org.openmrs.Obs;
-import org.openmrs.Patient;
-import org.openmrs.Visit;
-import org.openmrs.Concept;
-import org.openmrs.ConceptAnswer;
-import org.openmrs.Person;
+import org.openmrs.*;
 import org.openmrs.api.ConceptService;
 import org.openmrs.api.ObsService;
 import org.openmrs.api.PatientService;
@@ -20,12 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
-import java.util.Calendar;
+import java.util.*;
 
 public class PatientStabilityFragmentController {
 
@@ -46,12 +35,25 @@ public class PatientStabilityFragmentController {
         /**
          * Last Viral Load
          */
-        List<Obs> vlObsList = getObsListFromIdList("SELECT obs_id FROM obs where  obs.obs_datetime BETWEEN '" + getDateBefore(encounterVisit.getStartDatetime(), -12) + "' AND '" + encounterVisit.getStartDatetime() + "' AND obs.person_id='" + patient.getPatientId() + "' AND obs.concept_id = 1305 AND obs.voided = false  ORDER BY  obs.encounter_id DESC");
-        if (vlObsList.size() > 0) {
-            model.addAttribute("vlObs", vlObsList.get(0));
-        } else {
+        List<Obs> vlDateObsList = getObsListFromIdList("SELECT obs_id FROM obs where  obs.value_datetime BETWEEN '"+getDateBefore(encounterVisit.getStartDatetime(), 0,-1)+"' AND '"+encounterVisit.getStartDatetime()+"' AND obs.person_id='"+patient.getPatientId()+"' AND obs.concept_id = 163023 AND obs.voided = false  ORDER BY  obs.encounter_id DESC");
+
+        if(vlDateObsList.size()>0){
+            List<Obs> vlObsList = getObsListFromIdList("SELECT obs_id FROM obs where obs.person_id='" + patient.getPatientId() + "' AND obs.concept_id = 856 AND encounter_id='"+vlDateObsList.get(0).getEncounter().getEncounterId()+"' AND obs.voided = false  ORDER BY  obs.encounter_id DESC");
+
+            if (vlObsList.size() > 0) {
+                model.addAttribute("vlObs", vlObsList.get(0));
+                model.addAttribute("vlDateObs", vlDateObsList.get(0));
+            } else {
+                model.addAttribute("vlObs", null);
+                model.addAttribute("vlDateObs", null);
+            }
+        }else {
+            model.addAttribute("vlDateObs", null);
             model.addAttribute("vlObs", null);
         }
+
+
+
 
         List<Concept> currentRegimentConcept = new ArrayList<>();
         currentRegimentConcept.add(Context.getConceptService().getConcept(90315));
@@ -63,18 +65,46 @@ public class PatientStabilityFragmentController {
         /**
          * Current regimen
          */
-        List<Obs> regimenObsList = getObsListFromIdList("SELECT obs_id FROM obs where  obs.obs_datetime <= DATE('" + getDateBefore(encounterVisit.getStartDatetime(), -12) + "') AND obs.person_id='" + patient.getPatientId() + "' AND obs.value_coded = " + patientSummaryFragmentController.getMostRecentObservation(obsService, personList, currentRegimentConcept).getValueCoded().getConceptId() + " AND obs.voided = false ORDER BY  obs.encounter_id DESC");
+
+        int monthOffSet = -12;
+        Date date = null;
+
+        Obs obs = patientSummaryFragmentController.getMostRecentObservation(obsService, personList, currentRegimentConcept);
+
+        String query = "";
+
+        if ("164976,164977,164978,164979".contains(obs.getValueCoded().getConceptId().toString())) {
+            monthOffSet = 0;
+            query = "SELECT obs_id FROM obs where  obs.obs_datetime <= DATE('" + encounterVisit.getStartDatetime() + "') AND obs.person_id='" + patient.getPatientId() + "' AND concept_id= 90315 AND obs.voided = false ORDER BY  obs.encounter_id DESC";
+        } else {
+            query = "SELECT obs_id FROM obs where  obs.obs_datetime <= DATE('" + getDateBefore(encounterVisit.getStartDatetime(), monthOffSet,0) + "') AND obs.person_id='" + patient.getPatientId() + "' AND obs.value_coded = " + patientSummaryFragmentController.getMostRecentObservation(obsService, personList, currentRegimentConcept).getValueCoded().getConceptId() + " AND obs.voided = false ORDER BY  obs.encounter_id DESC";
+        }
+
+        List<Obs> regimenObsList = getObsListFromIdList(query);
+
         if (regimenObsList.size() > 0) {
+
+            if ("164976,164977,164978,164979".contains(regimenObsList.get(0).getValueCoded().getConceptId().toString()) && regimenObsList.size() > 1) {
+                List<Obs> regimenBeforeDTGObs = getObsListFromIdList("SELECT obs_id FROM obs where  obs.obs_datetime <= DATE('" + getDateBefore(encounterVisit.getStartDatetime(), -12,0) + "') AND obs.person_id='" + patient.getPatientId() + "' AND obs.value_coded = " + regimenObsList.get(1).getValueCoded().getConceptId() + " AND obs.voided = false ORDER BY  obs.encounter_id DESC");
+                if (regimenBeforeDTGObs.size() > 0) {
+                    model.addAttribute("regimenBeforeDTGObs", regimenBeforeDTGObs.get(0));
+                } else {
+                    model.addAttribute("regimenBeforeDTGObs", "");
+                }
+            } else {
+                model.addAttribute("regimenBeforeDTGObs", "");
+            }
             model.addAttribute("regimenObs", regimenObsList.get(0));
         } else {
             model.addAttribute("regimenObs", null);
+            model.addAttribute("regimenBeforeDTGObs", "");
         }
 
 
         /**
          * Adherence
          */
-        List<Obs> adherenceObsList = getObsListFromIdList("SELECT obs_id FROM obs where  obs.obs_datetime BETWEEN '" + getDateBefore(encounterVisit.getStartDatetime(), -6) + "' AND '" + encounterVisit.getStartDatetime() + "' AND obs.person_id='" + patient.getPatientId() + "' AND obs.concept_id = 90221 AND obs.voided = false ORDER BY  obs.encounter_id DESC");
+        List<Obs> adherenceObsList = getObsListFromIdList("SELECT obs_id FROM obs where  obs.obs_datetime BETWEEN '" + getDateBefore(encounterVisit.getStartDatetime(), -6,0) + "' AND '" + encounterVisit.getStartDatetime() + "' AND obs.person_id='" + patient.getPatientId() + "' AND obs.concept_id = 90221 AND obs.voided = false ORDER BY  obs.encounter_id DESC");
 
         if (adherenceObsList.size() > 0) {
             model.addAttribute("adherenceObs", adherenceObsList);
@@ -93,7 +123,7 @@ public class PatientStabilityFragmentController {
                 concepts.add(conceptAnswer.getAnswerConcept());
             }
         }
-        if (regimenObsList.size()>0 && concepts.contains(regimenObsList.get(0).getValueCoded())) {
+        if (regimenObsList.size() > 0 && concepts.contains(regimenObsList.get(0).getValueCoded())) {
             model.addAttribute("onThirdRegimen", true);
         } else {
             model.addAttribute("onThirdRegimen", false);
@@ -104,9 +134,9 @@ public class PatientStabilityFragmentController {
          */
 
         List<Concept> clinicStage = new ArrayList<>();
-        List<Obs> clinicStageObsList=getObsListFromIdList("SELECT obs_id FROM obs where obs.person_id='" + patient.getPatientId() + "' AND obs.concept_id IN (99083,90203) AND obs.voided = false  ORDER BY  obs.encounter_id DESC");
+        List<Obs> clinicStageObsList = getObsListFromIdList("SELECT obs_id FROM obs where obs.person_id='" + patient.getPatientId() + "' AND obs.concept_id IN (99083,90203) AND obs.voided = false  ORDER BY  obs.encounter_id DESC");
 
-        if (clinicStageObsList.size()>0) {
+        if (clinicStageObsList.size() > 0) {
             model.addAttribute("conceptForClinicStage", clinicStageObsList.get(0).getValueCoded().getConceptId());
         } else {
             model.addAttribute("conceptForClinicStage", null);
@@ -137,11 +167,14 @@ public class PatientStabilityFragmentController {
      * @param noOfMoths
      * @return
      */
-    public String getDateBefore(Date referenceDate, int noOfMoths) {
+    public String getDateBefore(Date referenceDate, int noOfMoths,int noOfYears) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(referenceDate);
-        cal.set(Calendar.DAY_OF_MONTH, cal.getActualMinimum(Calendar.DAY_OF_MONTH));
+        if(noOfMoths!=0) {
+            cal.set(Calendar.DAY_OF_MONTH, cal.getActualMinimum(Calendar.DAY_OF_MONTH));
+        }
         cal.add(Calendar.MONTH, noOfMoths);
+        cal.add(Calendar.YEAR, noOfYears);
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String finalDate = null;
         try {
