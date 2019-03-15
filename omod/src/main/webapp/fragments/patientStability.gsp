@@ -7,8 +7,9 @@ img {
 
 <div>
     <div class="stability">
-        <div id="vl">
-            ${vlObs?.valueCoded?.conceptId ?: ""}</div>
+        <div id="vl">${vlObs?.valueNumeric?: ""}</div>
+
+        <div id="vlDate">${vlDateObs?.valueDatetime?:""}</div>
 
         <div id="regimen">${regimenObs?.valueCoded?.conceptId ?: ""}</div>
 

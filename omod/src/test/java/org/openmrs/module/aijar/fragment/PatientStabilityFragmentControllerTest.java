@@ -11,6 +11,6 @@ public class PatientStabilityFragmentControllerTest {
     public void testDateSubtraction() {
         PatientStabilityFragmentController patientStabilityFragmentController = new PatientStabilityFragmentController();
 
-        patientStabilityFragmentController.getDateBefore(new Date(), -12);
+        patientStabilityFragmentController.getDateBefore(new Date(), -12,0);
     }
 }

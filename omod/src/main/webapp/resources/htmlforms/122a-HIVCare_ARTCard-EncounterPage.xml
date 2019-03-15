@@ -243,66 +243,7 @@
 
         if (jQuery) {
 
-            <!-- Validation rules -->
-            beforeSubmit.push(function () {
-                <!-- clear the previous errors -->
-                setValue('returndate.error', '');
-                setValue('viral-load-results-copies.error', '');
-                setValue('date-viral-load-taken.error', '');
-
-                var encounterDate = new Date((getValue('encounterDate.value')));
-                var returnDate = new Date((getValue('returndate.value')));
-
-                if (encounterDate &gt;= returnDate) {
-                    getField('returndate.error').html('The return date must be after the date of this visit ' +
-                        formatDateForDisplay(encounterDate)).show();
-                    return false;
-                }
-
-                <!-- Check that the return date is before the transfer out date only if there is a transfer out date -->
-                if (jq('#transfer_out_date_id').html().replace(/\s+/, "").length > 0) {
-                    var transfer_out_date_id = new Date(jq('#transfer_out_date_id').html());
-                    if (returnDate &gt;= transfer_out_date_id) {
-                        getField('returndate.error').html('The return date must be before the transfer out date of ' +
-                            formatDateForDisplay(transfer_out_date_id)).show();
-                        return false;
-                    }
-                    return false;
-                }
-
-                var viral_load_qualitative = getValue('viral-load-results-qualitative.value');
-                var date_viral_load_taken = getValue('date-viral-load-taken.value');
-                /* The date that the viral load was taken is required if a qualitative result is selected */
-                if (viral_load_qualitative != "") {
-                    if (date_viral_load_taken == "") {
-                        getField('date-viral-load-taken.error').html('Please enter the date when the viral load sample was taken').show();
-                        return false;
-                    }
-                }
-
-                /** The date the viral load was taken cannot be after the encounter date */
-                if (date_viral_load_taken != "") {
-                    if (encounterDate &lt; date_viral_load_taken) {
-                        getField('date-viral-load-taken.error').html('The date the viral load sample was taken cannot be after the date of this visit ' + encounterDate).show();
-                        return false;
-                    }
-                }
-
-                /* If the viral load is detected, the number of copies must be greater than 20 which is the lowest detectable level for a machine */
-                if ((viral_load_qualitative == 1301) &amp;&amp; (getValue('viral-load-results-copies.value') &lt; 20)) {
-                    getField('viral-load-results-copies.error').html('Please enter the number of virus copies per ml. the minimum number of copies is 20').show();
-                    return false;
-                }
-
-                /* if DSDM is not FBIM or FTR or Empty and patient is not stable should not save.*/
-                if(jq("#165144").find("select").find(":selected").val()!=="90003" &amp;&amp; (jq("#165143").find("select").find(":selected").val()!=="165138" &amp;&amp; jq("#165143").find("select").find(":selected").val()!=="165140" &amp;&amp; jq("#165143").find("select").find(":selected").val()!=="")){
-                    getField('165143.error').html('Patient Not Stable. Only Stable Patients can be enrolled in '+jq("#165143").find("select").find(":selected").text()).show();
-                    jq().toastmessage('showErrorToast', " Patient Not Stable. Only Stable Patients can be enrolled in "+jq("#165143").find("select").find(":selected").text());
-                    return false;
-                }
-
-                return true;
-            });
+            var instabilityCause="";
 
             function diff_months(dt2, dt1) {
                 var diff = (dt2.getTime() - dt1.getTime()) / 1000;
@@ -377,22 +318,25 @@
                         /* Detected */
                         jq("#viral-load-results-copies").attr("disabled", false).attr("readonly", false).fadeTo(250, 1);
                         setValue('viral-load-results-copies.value', '');
-                        previousVl = viral_load_status;
                     }
                     if (viral_load_status == 1306) {
                         /* Not Detected */
                         jq("#viral-load-results-copies").attr("disabled", false).attr("readonly", true).fadeTo(250, 0.25);
                         setValue('viral-load-results-copies.value', 1);
-                        previousVl = viral_load_status;
                     }
                     if (viral_load_status == "" || viral_load_status == 1304) {
                         /* Sample Rejected and no data */
                         jq("#viral-load-results-copies").attr("disabled", true).attr("readonly", true).fadeTo(250, 0.25);
                         setValue('viral-load-results-copies.value', '');
                     }
+                });
 
+                jq("#viral-load-results-copies").change(function () {
+                    previousVl = jq("#viral-load-results-copies").find("input").val();
                     stabilityCheck();
                 });
+
+
                 // trigger a change when the form loads
                 jq("#viral-load-results-qualitative").change();
 
@@ -498,11 +442,13 @@
                     /*Viral Load Check*/
 
                     stableArray = [];
+                    instabilityCause="";
 
-                    if (previousVl === "1306") {
+                    if (previousVl!=="" &amp;&amp; previousVl &lt;= 1000) {
                         stableArray.push(true);
                     } else {
                         stableArray.push(false);
+                        instabilityCause=instabilityCause+"Viral Load is Not Suppressed \n ";
                     }
 
                     /* Third Line*/
@@ -511,12 +457,14 @@
                         stableArray.push(true);
                     } else {
                         stableArray.push(false);
+                        instabilityCause+="Current regimen is a third line regimen \n "
                     }
 
                     /* Adherence Check*/
 
                     if (adherence.length &lt;= 0 || adherence.trim().includes("POOR")) {
                         stableArray.push(false);
+                        instabilityCause+="Adherence is not Good \n "
                     } else {
                         stableArray.push(true);
                     }
@@ -526,6 +474,7 @@
                         stableArray.push(true);
                     } else {
                         stableArray.push(false);
+                        instabilityCause+="Clinic stage is neither 1 or 2 \n";
                     }
                     var pageCurrentRegimen=jq("#90315").find("select").find(":selected").val();
                     var pageEncounterDate=jq("#encounterDate").find("input[type=hidden]").val();
@@ -534,13 +483,16 @@
                         stableArray.push(true);
                     } else {
                         stableArray.push(false);
+                        instabilityCause+="Patient has not spent more than 12 moths on current Regiment \n "
                     }
 
                     if (sputumValue !== "" &amp;&amp; sputumValue !== "664" &amp;&amp; diff_months(new Date(jq("#encounterDate").find("input[type=hidden]").val()), new Date(teatmentStartDate)) &lt; 2) {
                         stableArray.push(false);
+                        instabilityCause+="Patient has not been on treatment for TB for at least 2 months"
                     } else {
                         stableArray.push(true);
                     }
+                    instabilityCause.trim().replace()
 
                     if (stableArray.indexOf(false) != -1) {
                         jq("#165144 select").val("90004");
@@ -549,6 +501,69 @@
                     }
 
                 }
+            });
+
+
+            <!-- Validation rules -->
+            beforeSubmit.push(function () {
+                <!-- clear the previous errors -->
+                setValue('returndate.error', '');
+                setValue('viral-load-results-copies.error', '');
+                setValue('date-viral-load-taken.error', '');
+
+                var encounterDate = new Date((getValue('encounterDate.value')));
+                var returnDate = new Date((getValue('returndate.value')));
+
+                if (encounterDate &gt;= returnDate) {
+                    getField('returndate.error').html('The return date must be after the date of this visit ' +
+                        formatDateForDisplay(encounterDate)).show();
+                    return false;
+                }
+
+                <!-- Check that the return date is before the transfer out date only if there is a transfer out date -->
+                if (jq('#transfer_out_date_id').html().replace(/\s+/, "").length > 0) {
+                    var transfer_out_date_id = new Date(jq('#transfer_out_date_id').html());
+                    if (returnDate &gt;= transfer_out_date_id) {
+                        getField('returndate.error').html('The return date must be before the transfer out date of ' +
+                            formatDateForDisplay(transfer_out_date_id)).show();
+                        return false;
+                    }
+                    return false;
+                }
+
+                var viral_load_qualitative = getValue('viral-load-results-qualitative.value');
+                var date_viral_load_taken = getValue('date-viral-load-taken.value');
+                /* The date that the viral load was taken is required if a qualitative result is selected */
+                if (viral_load_qualitative != "") {
+                    if (date_viral_load_taken == "") {
+                        getField('date-viral-load-taken.error').html('Please enter the date when the viral load sample was taken').show();
+                        return false;
+                    }
+                }
+
+                /** The date the viral load was taken cannot be after the encounter date */
+                if (date_viral_load_taken != "") {
+                    if (encounterDate &lt; date_viral_load_taken) {
+                        getField('date-viral-load-taken.error').html('The date the viral load sample was taken cannot be after the date of this visit ' + encounterDate).show();
+                        return false;
+                    }
+                }
+
+                /* If the viral load is detected, the number of copies must be greater than 20 which is the lowest detectable level for a machine */
+                if ((viral_load_qualitative == 1301) &amp;&amp; (getValue('viral-load-results-copies.value') &lt; 20)) {
+                    getField('viral-load-results-copies.error').html('Please enter the number of virus copies per ml. the minimum number of copies is 20').show();
+                    return false;
+                }
+
+                /* if DSDM is not FBIM or FTR or Empty and patient is not stable should not save.*/
+                if(jq("#165144").find("select").find(":selected").val()!=="90003" &amp;&amp; (jq("#165143").find("select").find(":selected").val()!=="165138" &amp;&amp; jq("#165143").find("select").find(":selected").val()!=="165140" &amp;&amp; jq("#165143").find("select").find(":selected").val()!=="")){
+                    getField('165143.error').html('Patient Not Stable due to '+instabilityCause+ '. \n Only Stable Patients can be enrolled in '+jq("#165143").find("select").find(":selected").text()).show();
+
+                    jq().toastmessage('showErrorToast', " Patient Not Stable "+instabilityCause+ ". \n Only Stable Patients can be enrolled in "+jq("#165143").find("select").find(":selected").text());
+                    return false;
+                }
+
+                return true;
             });
         }
     </script>

@@ -42,7 +42,7 @@ jq(document).ready(function () {
 
 
     /* Validation of NIN on patient registration page */
-    $( "#registration" ).validate({
+    jq( "#registration" ).validate({
         rules: {
             confirm_nationalid: {
                 equalTo: "nationalid"
@@ -54,6 +54,9 @@ jq(document).ready(function () {
             }
         }
     });
+
+    /* Reconfigure the toast message to stay for 15 seconds instead of the default 3 seconds */
+    jq().toastmessage({stayTime : 15000});
 });
 
 
