@@ -116,7 +116,8 @@
             float: left;
             margin: 1px 0px;
         }
-        .stability{
+
+        .stability {
             display: none;
         }
 
@@ -243,7 +244,7 @@
 
         if (jQuery) {
 
-            var instabilityCause="";
+            var instabilityCause = "";
 
             function diff_months(dt2, dt1) {
                 var diff = (dt2.getTime() - dt1.getTime()) / 1000;
@@ -270,12 +271,30 @@
                 var regimenStartedDate = jq("#regimen_started_date").text().trim();
                 var regimenBeforeDTGStartedDate = jq("#regimen_started_date_before_dtg").text().trim();
                 var sputumDate = jq("#sputum_date").text().trim();
+                var artStartDate = jq("#art_start_date").text().trim();
                 var teatmentStartDate = jq("#teatment_start_date").text().trim();
                 var sputumValue = jq("#sputum_value").text().trim();
+                var currentRegimenStartDate = regimenStartedDate;
 
-                if(regimenBeforeDTG &amp;&amp; regimenBeforeDTG!==""){
-                    regimenStartedDate=regimenBeforeDTGStartedDate;
+                if (regimenBeforeDTG &amp;&amp; regimenBeforeDTG !== "") {
+                    regimenStartedDate = regimenBeforeDTGStartedDate;
                 }
+
+                var durationOnART;
+                var durationOnCurrentRegimen;
+
+                if (artStartDate !== "") {
+                    durationOnART = diff_months(new Date(artStartDate), new Date(jq("#encounterDate").find("input[type=hidden]").val()));
+                    jq("#99024 input").val(durationOnART);
+                }
+
+                if (currentRegimenStartDate !== "") {
+                    durationOnCurrentRegimen = diff_months(new Date(currentRegimenStartDate), new Date(jq("#encounterDate").find("input[type=hidden]").val()));
+                    jq("#99025 input").val(durationOnCurrentRegimen);
+                }
+
+                fieldHelper.makeReadonly(jq("#99025 input"));
+                fieldHelper.makeReadonly(jq("#99024 input"));
 
 
                 disableContainer("#165144");
@@ -304,6 +323,12 @@
 
                     if (!patient_regimen.includes(regimen_encounter_page_value)) {
                         jq().toastmessage('showNoticeToast', "The regimen" + regimen_encounter_page_text + "you have selected is different from the current regimen in the Summary page. Please update the summary page with a switch/substitution to the selected regimen");
+                    }
+
+                    if (currentRegimen !== jq("#90315").find("select").find(":selected").val()) {
+                        jq("#99025 input").val(0);
+                    }else {
+                        jq("#99025 input").val(durationOnCurrentRegimen);
                     }
                     stabilityCheck();
                 });
@@ -442,13 +467,13 @@
                     /*Viral Load Check*/
 
                     stableArray = [];
-                    instabilityCause="";
+                    instabilityCause = "";
 
-                    if (previousVl!=="" &amp;&amp; previousVl &lt;= 1000) {
+                    if (previousVl !== "" &amp;&amp; previousVl &lt;= 1000) {
                         stableArray.push(true);
                     } else {
                         stableArray.push(false);
-                        instabilityCause=instabilityCause+"Viral Load is Not Suppressed \n ";
+                        instabilityCause = instabilityCause + "Viral Load is Not Suppressed \n ";
                     }
 
                     /* Third Line*/
@@ -457,14 +482,14 @@
                         stableArray.push(true);
                     } else {
                         stableArray.push(false);
-                        instabilityCause+="Current regimen is a third line regimen \n "
+                        instabilityCause += "Current regimen is a third line regimen \n "
                     }
 
                     /* Adherence Check*/
 
                     if (adherence.length &lt;= 0 || adherence.trim().includes("POOR")) {
                         stableArray.push(false);
-                        instabilityCause+="Adherence is not Good \n "
+                        instabilityCause += "Adherence is not Good \n "
                     } else {
                         stableArray.push(true);
                     }
@@ -474,21 +499,21 @@
                         stableArray.push(true);
                     } else {
                         stableArray.push(false);
-                        instabilityCause+="Clinic stage is neither 1 or 2 \n";
+                        instabilityCause += "Clinic stage is neither 1 or 2 \n";
                     }
-                    var pageCurrentRegimen=jq("#90315").find("select").find(":selected").val();
-                    var pageEncounterDate=jq("#encounterDate").find("input[type=hidden]").val();
+                    var pageCurrentRegimen = jq("#90315").find("select").find(":selected").val();
+                    var pageEncounterDate = jq("#encounterDate").find("input[type=hidden]").val();
 
                     if (currentRegimen !== "" &amp;&amp; (currentRegimen === pageCurrentRegimen) &amp;&amp; diff_months(new Date(pageEncounterDate), new Date(regimenStartedDate)) &gt; 12) {
                         stableArray.push(true);
                     } else {
                         stableArray.push(false);
-                        instabilityCause+="Patient has not spent more than 12 moths on current Regiment \n "
+                        instabilityCause += "Patient has not spent more than 12 moths on current Regiment \n "
                     }
 
                     if (sputumValue !== "" &amp;&amp; sputumValue !== "664" &amp;&amp; diff_months(new Date(jq("#encounterDate").find("input[type=hidden]").val()), new Date(teatmentStartDate)) &lt; 2) {
                         stableArray.push(false);
-                        instabilityCause+="Patient has not been on treatment for TB for at least 2 months"
+                        instabilityCause += "Patient has not been on treatment for TB for at least 2 months"
                     } else {
                         stableArray.push(true);
                     }
@@ -556,10 +581,10 @@
                 }
 
                 /* if DSDM is not FBIM or FTR or Empty and patient is not stable should not save.*/
-                if(jq("#165144").find("select").find(":selected").val()!=="90003" &amp;&amp; (jq("#165143").find("select").find(":selected").val()!=="165138" &amp;&amp; jq("#165143").find("select").find(":selected").val()!=="165140" &amp;&amp; jq("#165143").find("select").find(":selected").val()!=="")){
-                    getField('165143.error').html('Patient Not Stable due to '+instabilityCause+ '. \n Only Stable Patients can be enrolled in '+jq("#165143").find("select").find(":selected").text()).show();
+                if (jq("#165144").find("select").find(":selected").val() !== "90003" &amp;&amp; (jq("#165143").find("select").find(":selected").val() !== "165138" &amp;&amp; jq("#165143").find("select").find(":selected").val() !== "165140" &amp;&amp; jq("#165143").find("select").find(":selected").val() !== "")) {
+                    getField('165143.error').html('Patient Not Stable due to ' + instabilityCause + '. \n Only Stable Patients can be enrolled in ' + jq("#165143").find("select").find(":selected").text()).show();
 
-                    jq().toastmessage('showErrorToast', " Patient Not Stable "+instabilityCause+ ". \n Only Stable Patients can be enrolled in "+jq("#165143").find("select").find(":selected").text());
+                    jq().toastmessage('showErrorToast', " Patient Not Stable " + instabilityCause + ". \n Only Stable Patients can be enrolled in " + jq("#165143").find("select").find(":selected").text());
                     return false;
                 }
 
@@ -683,9 +708,9 @@
 
                     </td>
                     <td>
-                        <obs id="br" conceptId="99024" labelText="Duration(Months since baseline):"/>
+                        <obs id="99024" conceptId="99024" labelText="Duration(Months since baseline):"/>
                         <br/>
-                        <obs id="br" conceptId="99025" labelText="Duration:(Months on current regimen)"/>
+                        <obs id="99025" conceptId="99025" labelText="Duration:(Months on current regimen)"/>
                     </td>
                     <td>
                         <obs class="horizontal" conceptId="90236" labelText="Weight"
@@ -1164,7 +1189,8 @@
                         <obs id="165144" conceptId="165144" answerConceptIds="90003,90004" answerLabels="Yes,No"
                              defaultValue="90004" labelText="Stable"/>
 
-                        <obs id="165143" conceptId="165143" answerConceptIds="165138,165140,165139,165142,165141" answerLabels="FBIM,FBG,FTR,CDDP,CCLAD" required="required" labelText="DSDM Model"/>
+                        <obs id="165143" conceptId="165143" answerConceptIds="165138,165140,165139,165142,165141"
+                             answerLabels="FBIM,FBG,FTR,CDDP,CCLAD" required="required" labelText="DSDM Model"/>
                     </td>
                     <td class="lablex3">
                         <b>Referred for</b>

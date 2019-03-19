@@ -11,6 +11,9 @@
     <patient  patient_id="1393"  creator="1"  date_created="2015-02-18 17:18:32"  voided="0" allergy_status="Unknown"/>
     <patient_identifier  patient_identifier_id="1752"  patient_id="1393"  identifier="P/A 1322"  identifier_type="4"  preferred="0"  location_id="1"  creator="1"  date_created="2015-02-18 17:18:32" voided="0"  uuid="10e6d24c-4ce8-4760-b431-2c0914774cb3"/>
 
+    <concept_datatype  concept_datatype_id="6"  name="Date"  hl7_abbreviation="DT"  description="Absolute date"  creator="1"  date_created="2004-07-22 00:00:00"  retired="0"  retired_by="1" uuid="8d4a505e-c2cc-11de-8d13-0010c6dffd0f"/>
+
+    <concept_class  concept_class_id="7"  name="Question"  description="Question (eg, patient history, SF36 items)"  creator="1"  date_created="2004-03-02 00:00:00"  retired="0"  retired_by="1" uuid="8d491e50-c2cc-11de-8d13-0010c6dffd0f"/>
 
     <concept  concept_id="165138"  retired="0" datatype_id="4"  class_id="18"  is_set="0"  creator="1"  date_created="2018-09-28 11:56:02" uuid="733144c0-c321-11e8-a355-529269fb1459"/>
     <concept  concept_id="165139"  retired="0" datatype_id="4"  class_id="18"  is_set="0"  creator="1"  date_created="2018-09-28 11:58:02" uuid="73313f20-c321-11e8-a355-529269fb1459"/>
@@ -18,6 +21,8 @@
     <concept  concept_id="165141"  retired="0" datatype_id="4"  class_id="18"  is_set="0"  creator="1"  date_created="2018-09-28 12:07:25" uuid="733139e4-c321-11e8-a355-529269fb1459"/>
     <concept  concept_id="165142"  retired="0" datatype_id="4"  class_id="18"  is_set="0"  creator="1"  date_created="2018-09-28 12:10:10" uuid="73313728-c321-11e8-a355-529269fb1459"/>
     <concept  concept_id="165143"  retired="0" datatype_id="2"  class_id="18"  is_set="1"  creator="1"  date_created="2018-09-28 12:18:23" uuid="73312fee-c321-11e8-a355-529269fb1459"/>
+    <concept  concept_id="99161"   retired="0" datatype_id="6"   class_id="7"  is_set="0"  creator="1"  date_created="2011-02-26 12:54:13" uuid="ab505422-26d9-41f1-a079-c3d222000440"/>
+
 
 
     <concept_name  concept_name_id="160167"  concept_id="165138"  name="FBIM"  locale="en"  locale_preferred="0"  creator="1"  date_created="2018-09-28 11:56:02"  concept_name_type="SHORT"  voided="0" uuid="733175bc-c321-11e8-a355-529269fb1459"/>
@@ -32,6 +37,7 @@
     <concept_name  concept_name_id="160176"  concept_id="165142"  name="CDDP"  locale="en"  locale_preferred="0"  creator="1"  date_created="2018-09-28 12:10:10"  concept_name_type="SHORT"  voided="0" uuid="73315fc8-c321-11e8-a355-529269fb1459"/>
     <concept_name  concept_name_id="160177"  concept_id="165143"  name="Differentiated Service Delivery"  locale="en"  locale_preferred="1"  creator="1"  date_created="2018-09-28 12:18:23"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="73315848-c321-11e8-a355-529269fb1459"/>
     <concept_name  concept_name_id="160178"  concept_id="165143"  name="DSDM"  locale="en"  locale_preferred="0"  creator="1"  date_created="2018-09-28 12:18:23"  concept_name_type="SHORT"  voided="0" uuid="73315b0e-c321-11e8-a355-529269fb1459"/>
+    <concept_name  concept_name_id="4357"  concept_id="99161"  name="BASELINE REGIMEN START DATE"  locale="en"  locale_preferred="0"  creator="1"  date_created="2011-02-26 12:54:13"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="df9960e6-25d9-4b9a-af04-5fffbc526ab5"/>
 
 
     <concept_answer  concept_answer_id="7086"  concept_id="165143"  answer_concept="165138"  creator="1"  date_created="2018-10-15 13:02:40"  sort_weight="1"  uuid="2faf6c05-3a99-41ef-be84-9fca5412b36c"/>
@@ -43,15 +49,23 @@
     <visit_type  visit_type_id="1"  name="Facility Visit"  description="Patient visits the clinic/hospital (as opposed to a home visit, or telephone contact)"  creator="1"  date_created="2013-08-02 03:39:43"  changed_by="1"  date_changed="2016-08-30 03:52:10"  retired="0"  uuid="7b0f5697-27e3-40c4-8bae-f4049abfb4ed"/>
 
     <visit  visit_id="31165"  patient_id="1393"  visit_type_id="1"  date_started="2015-02-10 00:00:00"  date_stopped="2015-02-10 00:00:00"  location_id="2"  creator="1"  date_created="2015-02-10 00:00:00"  changed_by="1"  date_changed="2015-02-10 00:00:00"  voided="0" uuid="63194d2e-79ad-11e6-84c4-001e101f0000"/>
+    <visit  visit_id="31164"  patient_id="1393"  visit_type_id="1"  date_started="2010-03-12 00:00:00"  date_stopped="2010-03-12 00:00:00"  location_id="2"  creator="1" date_created="2010-03-12 00:00:00" changed_by="1"  date_changed="2010-03-12 00:00:00"  voided="0" uuid="63194beb-79ad-11e6-84c4-001e101f0000"/>
+
 
     <encounter_type  encounter_type_id="15"  name="ART Card - Encounter"  description="Outpatient Adult &amp; Child Return Visit"  creator="1"  date_created="2016-04-05 16:43:20"  retired="0"   uuid="8d5b2be0-c2cc-11de-8d13-0010c6dffd0f"  changed_by="1"  date_changed="2019-01-18 11:38:10"/>
 
+    <encounter_type  encounter_type_id="8"  name="ART Card - Summary"  description="Outpatient Adult Initial Visit"  creator="1"  date_created="2016-04-05 16:43:19"  retired="0" uuid="8d5b27bc-c2cc-11de-8d13-0010c6dffd0f" changed_by="1"  date_changed="2019-03-17 19:31:52"/>
+
+
+
     <form  form_id="8"  name="HMIS 122a HIV Care ART Card - Encounter Form"  version="1.2"  published="0"  description="A visit for a client to an ART clinic"  encounter_type="15"  creator="1"  date_created="2016-08-30 03:52:36"  changed_by="1"  date_changed="2016-09-13 12:17:45"  retired="0"  uuid="12de5bc5-352e-4faf-9961-a2125085a75c"/>
+    <form  form_id="14" name="HMIS 122a HIV Care ART Card - Summary Form"    version="1.2" description="Summary entry form for patients enrolled for ART"       encounter_type="8"   creator="1"  date_created="2016-04-05 10:08:09"  changed_by="1"  date_changed="2016-04-05 10:19:52"  retired="0"  uuid="52653a60-8300-4c13-be4d-4b746da06fee"/>
 
     <encounter  encounter_id="31182"  encounter_type="15"  patient_id="1393"  location_id="2"  form_id="8"  encounter_datetime="2015-02-10 00:00:00"  creator="1"  date_created="2015-02-18 17:25:27"  voided="0"  visit_id="31165"  uuid="edbdd9ff-51c7-4be5-892f-05b581ed750e"/>
+    <encounter  encounter_id="31181"  encounter_type="8"  patient_id="1393"  location_id="2"  form_id="14"  encounter_datetime="2010-03-12 00:00:00"  creator="1"  date_created="2015-02-18 17:23:55"  voided="0" visit_id="31164"  uuid="86c32a7e-6f94-4022-829c-cf3d74ad5c2f"/>
 
     <obs  obs_id="655624"  person_id="1393"  concept_id="165143"  encounter_id="31182"  obs_datetime="2015-02-10 00:00:00"  location_id="2"  value_coded="165138"  creator="1"  date_created="2019-01-18 14:26:45"  voided="0" uuid="b5d9efaf-c99e-4581-b834-3d5c3448d746"/>
-
+    <obs  obs_id="357324"  person_id="1393"  concept_id="99161"  encounter_id="31181" obs_datetime="2010-03-12 00:00:00"    location_id="2"  value_datetime="2013-02-06 00:00:00" creator="1"  date_created="2015-02-18 17:23:55"  voided="0" uuid="8d131f53-66b6-4552-bbd9-c178e4470b6b"/>
 
     <program  program_id="16"  concept_id="165138" creator="1"  date_created="2019-01-18 11:37:46"  changed_by="1"  date_changed="2019-01-18 11:37:46"  retired="0"  name="FBIM"  description="Facility Based Individual Management a DSDM model for patients that need extra management at the health centre"  uuid="de5d54ae-c304-11e8-9ad0-529269fb1459"/>
     <program  program_id="17"  concept_id="165140" creator="1"  date_created="2019-01-18 11:37:46"  changed_by="1"  date_changed="2019-01-18 11:37:46"  retired="0"  name="FGB"  description="Facility Based Groups a DSDM for stable or unstable clients who need peer support"  uuid="de5d5b34-c304-11e8-9ad0-529269fb1459"/>
