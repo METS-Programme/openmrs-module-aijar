@@ -10,11 +10,13 @@ public class Flags {
     public static FlagDescriptor DUE_FOR_FIRST_VIRAL_LOAD = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT p.patient_id, DATE_FORMAT(DATE_ADD(o.value_datetime, INTERVAL 6 MONTH), '%d.%b.%Y') FROM patient p " +
-                    " INNER JOIN obs o ON p.patient_id = o.person_id " +
-                    " INNER JOIN encounter e ON o.encounter_id = e.encounter_id " +
-                    " INNER JOIN encounter_type et ON e.encounter_type = et.encounter_type_id " +
-                    " WHERE ((o.concept_id = 99161 AND o.voided = FALSE AND e.voided = FALSE AND ((CURRENT_DATE() BETWEEN DATE_ADD(o.value_datetime, INTERVAL 5 MONTH) AND DATE_ADD(o.value_datetime, INTERVAL 6 MONTH)) AND et.uuid='8d5b27bc-c2cc-11de-8d13-0010c6dffd0f'))) AND o.person_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 1305 AND oo.voided = FALSE)";
+            return "SELECT p.patient_id, DATE_FORMAT(DATE_ADD(o.value_datetime, INTERVAL 6 MONTH), '%d.%b.%Y') FROM patient p \n" +
+                    " INNER JOIN obs o ON p.patient_id = o.person_id  INNER JOIN encounter e ON o.encounter_id = e.encounter_id  \n" +
+                    " INNER JOIN encounter_type et ON e.encounter_type = et.encounter_type_id \n" +
+                    " INNER JOIN person pp ON pp.person_id=p.patient_id  WHERE  pp.dead =false \n" +
+                    "  AND ((o.concept_id = 99161 AND o.voided = FALSE AND e.voided = FALSE AND ((CURRENT_DATE() BETWEEN DATE_ADD(o.value_datetime, INTERVAL 5 MONTH) AND DATE_ADD(o.value_datetime, INTERVAL 6 MONTH)) AND et.uuid='8d5b27bc-c2cc-11de-8d13-0010c6dffd0f'))) AND o.person_id \n" +
+                    "  NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 1305 AND oo.voided = FALSE)\n" +
+                    " AND p.patient_id NOT IN (select o.person_id from obs o where concept_id=90306 and o.voided=FALSE)";
         }
 
         @Override
@@ -51,10 +53,12 @@ public class Flags {
     public static FlagDescriptor OVERDUE_FOR_FIRST_VIRAL_LOAD = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT p.patient_id, DATE_FORMAT(DATE_ADD(o.value_datetime, INTERVAL 6 MONTH), '%d.%b.%Y') FROM patient p " +
-                    " INNER JOIN obs o ON p.patient_id = o.person_id " +
-                    " WHERE o.concept_id = 99161 AND o.voided = FALSE AND CURRENT_DATE() >= DATE_ADD(o.value_datetime, INTERVAL 6 MONTH) " +
-                    " AND o.person_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 1305 AND oo.voided = FALSE)";
+            return "SELECT p.patient_id, DATE_FORMAT(DATE_ADD(o.value_datetime, INTERVAL 6 MONTH), '%d.%b.%Y') FROM patient p\n" +
+                    "                     INNER JOIN obs o ON p.patient_id = o.person_id\n" +
+                    "                     INNER JOIN person pp ON pp.person_id = p.patient_id WHERE pp.dead = FALSE \n" +
+                    "                     AND  o.concept_id = 99161 AND o.voided = FALSE AND CURRENT_DATE() >= DATE_ADD(o.value_datetime, INTERVAL 6 MONTH)\n" +
+                    "                     AND o.person_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 1305 AND oo.voided = FALSE)\n" +
+                    "                     AND p.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 90306 AND oo.voided = FALSE)";
         }
 
         @Override
@@ -91,12 +95,14 @@ public class Flags {
     public static FlagDescriptor DUE_FOR_ROUTINE_VIRAL_LOAD = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT p.patient_id, DATE_FORMAT(IF(TIMESTAMPDIFF(YEAR, pe.birthdate, CURDATE()) < 16, DATE_ADD(MAX(o.value_datetime), INTERVAL 6 MONTH), DATE_ADD(MAX(o.value_datetime), INTERVAL 12 MONTH)), '%d.%b.%Y') FROM patient p " +
-                    "  INNER JOIN obs o ON p.patient_id = o.person_id " +
-                    "  INNER JOIN person pe ON o.person_id = pe.person_id " +
-                    " WHERE o.concept_id = 163023 AND o.voided = FALSE " +
-                    " GROUP BY pe.person_id, pe.birthdate " +
-                    " HAVING DATEDIFF(IF(TIMESTAMPDIFF(YEAR, pe.birthdate, CURDATE()) < 16, DATE_ADD(MAX(o.value_datetime), INTERVAL 6 MONTH), DATE_ADD(MAX(o.value_datetime), INTERVAL 12 MONTH)), CURRENT_DATE()) BETWEEN 0 AND 30";
+            return "SELECT p.patient_id, DATE_FORMAT(IF(TIMESTAMPDIFF(YEAR, pe.birthdate, CURDATE()) < 16, DATE_ADD(MAX(o.value_datetime), INTERVAL 6 MONTH), DATE_ADD(MAX(o.value_datetime), INTERVAL 12 MONTH)), '%d.%b.%Y') FROM patient p\n" +
+                    "INNER JOIN obs o ON p.patient_id = o.person_id \n" +
+                    "INNER JOIN person pe ON o.person_id = pe.person_id \n" +
+                    "WHERE pe.dead=FALSE\n" +
+                    "AND o.concept_id = 163023 AND o.voided = FALSE \n" +
+                    "GROUP BY pe.person_id, pe.birthdate \n" +
+                    "HAVING DATEDIFF(IF(TIMESTAMPDIFF(YEAR, pe.birthdate, CURDATE()) < 16, DATE_ADD(MAX(o.value_datetime), INTERVAL 6 MONTH), DATE_ADD(MAX(o.value_datetime), INTERVAL 12 MONTH)), CURRENT_DATE()) BETWEEN 0 AND 30\n" +
+                    "AND p.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 90306 AND oo.voided = FALSE)";
         }
 
         @Override
@@ -133,12 +139,14 @@ public class Flags {
     public static FlagDescriptor OVERDUE_FOR_ROUTINE_VIRAL_LOAD = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT p.patient_id, DATE_FORMAT(IF(TIMESTAMPDIFF(YEAR, pe.birthdate, CURDATE()) < 16, DATE_ADD(MAX(o.value_datetime), INTERVAL 6 MONTH), DATE_ADD(MAX(o.value_datetime), INTERVAL 12 MONTH)), '%d.%b.%Y') FROM patient p " +
-                    "  INNER JOIN obs o ON p.patient_id = o.person_id " +
-                    "  INNER JOIN person pe ON o.person_id = pe.person_id " +
-                    " WHERE o.concept_id = 163023 AND o.voided = FALSE " +
-                    " GROUP BY pe.person_id, pe.birthdate " +
-                    " HAVING CURRENT_DATE() > IF(TIMESTAMPDIFF(YEAR, pe.birthdate, CURDATE()) < 16, DATE_ADD(MAX(o.value_datetime), INTERVAL 6 MONTH), DATE_ADD(MAX(o.value_datetime), INTERVAL 12 MONTH))";
+            return "SELECT p.patient_id, DATE_FORMAT(IF(TIMESTAMPDIFF(YEAR, pe.birthdate, CURDATE()) < 16, DATE_ADD(MAX(o.value_datetime), INTERVAL 6 MONTH), DATE_ADD(MAX(o.value_datetime), INTERVAL 12 MONTH)), '%d.%b.%Y') FROM patient p \n" +
+                    "INNER JOIN obs o ON p.patient_id = o.person_id\n" +
+                    "INNER JOIN person pe ON o.person_id = pe.person_id \n" +
+                    " WHERE pe.dead=FALSE\n" +
+                    "AND  o.concept_id = 163023 AND o.voided = FALSE\n" +
+                    "GROUP BY pe.person_id, pe.birthdate \n" +
+                    "HAVING CURRENT_DATE() > IF(TIMESTAMPDIFF(YEAR, pe.birthdate, CURDATE()) < 16, DATE_ADD(MAX(o.value_datetime), INTERVAL 6 MONTH), DATE_ADD(MAX(o.value_datetime), INTERVAL 12 MONTH))\n" +
+                    "AND p.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 90306 AND oo.voided = FALSE)";
         }
 
         @Override
@@ -175,7 +183,12 @@ public class Flags {
     public static FlagDescriptor UPCOMING_APPOINTMENT = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT p.patient_id, DATE_FORMAT(MAX(o.value_datetime), '%d.%b.%Y') FROM patient p INNER JOIN obs o ON p.patient_id = o.person_id WHERE o.concept_id = 5096 AND o.voided = FALSE  GROUP BY o.person_id HAVING MAX(o.value_datetime) >= CURRENT_DATE()";
+            return "SELECT p.patient_id, DATE_FORMAT(MAX(o.value_datetime), '%d.%b.%Y') FROM patient p \n" +
+                    "INNER JOIN obs o ON p.patient_id = o.person_id \n" +
+                    "INNER JOIN person pe on pe.person_id=p.patient_id\n" +
+                    " WHERE pe.dead=FALSE\n" +
+                    "AND  o.concept_id = 5096 AND o.voided = FALSE  GROUP BY o.person_id HAVING MAX(o.value_datetime) >= CURRENT_DATE()\n" +
+                    "AND p.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 90306 AND oo.voided = FALSE)";
         }
 
         @Override
@@ -212,7 +225,14 @@ public class Flags {
     public static FlagDescriptor MISSED_APPOINTMENT = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT p.patient_id, DATE_FORMAT(MAX(o.value_datetime), '%d.%b.%Y') FROM patient p INNER JOIN obs o ON p.patient_id = o.person_id WHERE o.concept_id = 5096 AND o.voided = FALSE GROUP BY o.person_id HAVING MAX(o.value_datetime) BETWEEN DATE_SUB(CURRENT_DATE(), INTERVAL 29 DAY) AND DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY)";
+            return "SELECT p.patient_id, DATE_FORMAT(MAX(o.value_datetime), '%d.%b.%Y') \n" +
+                    "FROM patient p\n" +
+                    " INNER JOIN obs o ON p.patient_id = o.person_id \n" +
+                    " INNER JOIN person pe on pe.person_id=p.patient_id\n" +
+                    " WHERE pe.dead=FALSE\n" +
+                    " AND o.concept_id = 5096 AND o.voided = FALSE GROUP BY o.person_id \n" +
+                    " HAVING MAX(o.value_datetime) BETWEEN DATE_SUB(CURRENT_DATE(), INTERVAL 29 DAY) AND DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY)\n" +
+                    " AND p.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 90306 AND oo.voided = FALSE)";
         }
 
         @Override
@@ -249,7 +269,13 @@ public class Flags {
     public static FlagDescriptor PATIENT_LOST = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT p.patient_id, DATE_FORMAT(DATE_ADD(MAX(o.value_datetime), INTERVAL 30 DAY), '%d.%b.%Y') FROM patient p INNER JOIN obs o ON p.patient_id = o.person_id WHERE o.concept_id = 5096 AND o.voided = FALSE GROUP BY o.person_id HAVING MAX(o.value_datetime) BETWEEN DATE_SUB(CURRENT_DATE(), INTERVAL 89 DAY) AND DATE_SUB(CURRENT_DATE(), INTERVAL 30 DAY)";
+            return "SELECT p.patient_id, DATE_FORMAT(DATE_ADD(MAX(o.value_datetime), INTERVAL 30 DAY), '%d.%b.%Y') FROM patient p\n" +
+                    "   INNER JOIN obs o ON p.patient_id = o.person_id\n" +
+                    "   INNER JOIN person pe on pe.person_id=p.patient_id\n" +
+                    "   WHERE pe.dead=FALSE \n" +
+                    "    AND o.concept_id = 5096 AND o.voided = FALSE GROUP BY o.person_id \n" +
+                    "   HAVING MAX(o.value_datetime) BETWEEN DATE_SUB(CURRENT_DATE(), INTERVAL 89 DAY) AND DATE_SUB(CURRENT_DATE(), INTERVAL 30 DAY)\n" +
+                    "   AND p.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 90306 AND oo.voided = FALSE)";
         }
 
         @Override
@@ -286,7 +312,12 @@ public class Flags {
     public static FlagDescriptor PATIENT_LOST_TO_FOLLOWUP = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT p.patient_id, DATE_FORMAT(DATE_ADD(MAX(o.value_datetime), INTERVAL 90 DAY), '%d.%b.%Y') FROM patient p INNER JOIN obs o ON p.patient_id = o.person_id WHERE o.concept_id = 5096 AND o.voided = FALSE GROUP BY o.person_id HAVING MAX(o.value_datetime) <= DATE_SUB(CURRENT_DATE(), INTERVAL 90 DAY)";
+            return "SELECT p.patient_id, DATE_FORMAT(DATE_ADD(MAX(o.value_datetime), INTERVAL 90 DAY), '%d.%b.%Y') FROM patient p\n" +
+                    " INNER JOIN obs o ON p.patient_id = o.person_id \n" +
+                    "INNER JOIN person pp ON pp.person_id=p.patient_id \n" +
+                    "WHERE  pp.dead =false  AND o.concept_id = 5096 AND  o.voided = FALSE GROUP BY o.person_id \n" +
+                    "HAVING MAX(o.value_datetime) <= DATE_SUB(CURRENT_DATE(), INTERVAL 90 DAY)\n" +
+                    "AND p.patient_id NOT IN (select o.person_id from obs o where concept_id=90306 and o.voided=false)";
         }
 
         @Override
@@ -323,15 +354,16 @@ public class Flags {
     public static FlagDescriptor DUE_FOR_FIRST_DNA_PCR = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT p.patient_id , DATE_FORMAT(DATE_ADD(pe.birthdate, INTERVAL 6 WEEK), '%d.%b.%Y') FROM patient p " +
-                    "  INNER JOIN obs o ON p.patient_id = o.person_id " +
-                    "  INNER JOIN person pe ON p.patient_id = pe.person_id " +
-                    "  INNER JOIN encounter e ON o.encounter_id = e.encounter_id " +
-                    "  INNER JOIN encounter_type et ON e.encounter_type = et.encounter_type_id " +
-                    "  WHERE (TIMESTAMPDIFF(WEEK, pe.birthdate, CURDATE()) BETWEEN 6 AND 9) AND et.uuid='9fcfcc91-ad60-4d84-9710-11cc25258719' " +
-                    "        AND p.patient_id NOT IN (SELECT ee.patient_id FROM encounter ee INNER JOIN encounter_type ete ON ee.encounter_type = ete.encounter_type_id WHERE ete.uuid = '8d5b27bc-c2cc-11de-8d13-0010c6dffd0f' AND ee.voided = FALSE) " +
-                    " GROUP BY p.patient_id " +
-                    " HAVING p.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 99606 AND oo.voided = FALSE) ";
+            return "SELECT p.patient_id , DATE_FORMAT(DATE_ADD(pe.birthdate, INTERVAL 6 WEEK), '%d.%b.%Y') FROM patient p  \n" +
+                    " INNER JOIN obs o ON p.patient_id = o.person_id   \n" +
+                    " INNER JOIN person pe ON p.patient_id = pe.person_id \n" +
+                    " INNER JOIN encounter e ON o.encounter_id = e.encounter_id \n" +
+                    " INNER JOIN encounter_type et ON e.encounter_type = et.encounter_type_id \n" +
+                    " WHERE pe.dead=FALSE \n" +
+                    " AND (TIMESTAMPDIFF(WEEK, pe.birthdate, CURDATE()) BETWEEN 6 AND 9) AND et.uuid='9fcfcc91-ad60-4d84-9710-11cc25258719'\n" +
+                    " AND p.patient_id NOT IN (SELECT ee.patient_id FROM encounter ee INNER JOIN encounter_type ete ON ee.encounter_type = ete.encounter_type_id WHERE ete.uuid = '8d5b27bc-c2cc-11de-8d13-0010c6dffd0f' AND ee.voided = FALSE)  GROUP BY p.patient_id \n" +
+                    " HAVING p.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 99606 AND oo.voided = FALSE)\n" +
+                    "AND p.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 90306 AND oo.voided = FALSE) ";
         }
 
         @Override
@@ -368,15 +400,15 @@ public class Flags {
     public static FlagDescriptor OVERDUE_FOR_FIRST_DNA_PCR = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT p.patient_id , DATE_FORMAT(DATE_ADD(pe.birthdate, INTERVAL 6 WEEK), '%d.%b.%Y') FROM patient p " +
-                    "  INNER JOIN obs o ON p.patient_id = o.person_id " +
-                    "  INNER JOIN person pe ON p.patient_id = pe.person_id " +
-                    "  INNER JOIN encounter e ON o.encounter_id = e.encounter_id " +
-                    "  INNER JOIN encounter_type et ON e.encounter_type = et.encounter_type_id " +
-                    "  WHERE (TIMESTAMPDIFF(WEEK, pe.birthdate, CURDATE()) BETWEEN 10 AND 24) AND et.uuid='9fcfcc91-ad60-4d84-9710-11cc25258719' " +
-                    "        AND p.patient_id NOT IN (SELECT ee.patient_id FROM encounter ee INNER JOIN encounter_type ete ON ee.encounter_type = ete.encounter_type_id WHERE ete.uuid = '8d5b27bc-c2cc-11de-8d13-0010c6dffd0f' AND ee.voided = FALSE) " +
-                    " GROUP BY p.patient_id " +
-                    " HAVING p.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 99606 AND oo.voided = FALSE) ";
+            return "SELECT p.patient_id , DATE_FORMAT(DATE_ADD(pe.birthdate, INTERVAL 6 WEEK), '%d.%b.%Y') FROM patient p \n" +
+                    "  INNER JOIN obs o ON p.patient_id = o.person_id   \n" +
+                    "  INNER JOIN person pe ON p.patient_id = pe.person_id \n" +
+                    "    INNER JOIN encounter e ON o.encounter_id = e.encounter_id  \n" +
+                    "     INNER JOIN encounter_type et ON e.encounter_type = et.encounter_type_id \n" +
+                    "WHERE pe.dead=FALSE \n" +
+                    "       AND (TIMESTAMPDIFF(WEEK, pe.birthdate, CURDATE()) BETWEEN 10 AND 24) AND et.uuid='9fcfcc91-ad60-4d84-9710-11cc25258719'   AND p.patient_id \n" +
+                    " NOT IN (SELECT ee.patient_id FROM encounter ee INNER JOIN encounter_type ete ON ee.encounter_type = ete.encounter_type_id WHERE ete.uuid = '8d5b27bc-c2cc-11de-8d13-0010c6dffd0f' AND ee.voided = FALSE)  GROUP BY p.patient_id  HAVING p.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 99606 AND oo.voided = FALSE)\n" +
+                    " AND p.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 90306 AND oo.voided = FALSE)";
         }
 
         @Override
@@ -413,15 +445,15 @@ public class Flags {
     public static FlagDescriptor DUE_FOR_SECOND_DNA_PCR = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT p.patient_id , DATE_FORMAT(DATE_ADD(pe.birthdate, INTERVAL 13 MONTH), '%d.%b.%Y') FROM patient p " +
-                    "  INNER JOIN obs o ON p.patient_id = o.person_id " +
-                    "  INNER JOIN person pe ON p.patient_id = pe.person_id " +
-                    "  INNER JOIN encounter e ON o.encounter_id = e.encounter_id " +
-                    "  INNER JOIN encounter_type et ON e.encounter_type = et.encounter_type_id " +
-                    "  WHERE (TIMESTAMPDIFF(MONTH, pe.birthdate, CURDATE()) BETWEEN 13 AND 14) AND et.uuid='9fcfcc91-ad60-4d84-9710-11cc25258719' " +
-                    "        AND p.patient_id NOT IN (SELECT ee.patient_id FROM encounter ee INNER JOIN encounter_type ete ON ee.encounter_type = ete.encounter_type_id WHERE ete.uuid = '8d5b27bc-c2cc-11de-8d13-0010c6dffd0f' AND ee.voided = FALSE) " +
-                    " GROUP BY p.patient_id " +
-                    " HAVING p.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 99436 AND oo.voided = FALSE)";
+            return "SELECT p.patient_id , DATE_FORMAT(DATE_ADD(pe.birthdate, INTERVAL 13 MONTH), '%d.%b.%Y') FROM patient p  \n" +
+                    " INNER JOIN obs o ON p.patient_id = o.person_id   INNER JOIN person pe ON p.patient_id = pe.person_id  \n" +
+                    "  INNER JOIN encounter e ON o.encounter_id = e.encounter_id   INNER JOIN encounter_type et ON e.encounter_type = et.encounter_type_id \n" +
+                    "  WHERE pe.dead=FALSE  \n" +
+                    "    AND (TIMESTAMPDIFF(MONTH, pe.birthdate, CURDATE()) BETWEEN 13 AND 14) AND et.uuid='9fcfcc91-ad60-4d84-9710-11cc25258719'        \n" +
+                    "     AND p.patient_id NOT IN (SELECT ee.patient_id FROM encounter ee INNER JOIN encounter_type ete ON ee.encounter_type = ete.encounter_type_id \n" +
+                    "     WHERE ete.uuid = '8d5b27bc-c2cc-11de-8d13-0010c6dffd0f' AND ee.voided = FALSE)  GROUP BY p.patient_id  \n" +
+                    "     HAVING p.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 99436 AND oo.voided = FALSE)\n" +
+                    "   AND p.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 90306 AND oo.voided = FALSE)";
         }
 
         @Override
@@ -458,15 +490,15 @@ public class Flags {
     public static FlagDescriptor OVERDUE_FOR_SECOND_DNA_PCR = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT p.patient_id , DATE_FORMAT(DATE_ADD(pe.birthdate, INTERVAL 13 MONTH), '%d.%b.%Y') FROM patient p " +
-                    "  INNER JOIN obs o ON p.patient_id = o.person_id " +
-                    "  INNER JOIN person pe ON p.patient_id = pe.person_id " +
-                    "  INNER JOIN encounter e ON o.encounter_id = e.encounter_id " +
-                    "  INNER JOIN encounter_type et ON e.encounter_type = et.encounter_type_id " +
-                    "  WHERE (TIMESTAMPDIFF(MONTH, pe.birthdate, CURDATE()) BETWEEN 15 AND 17) AND et.uuid='9fcfcc91-ad60-4d84-9710-11cc25258719' " +
-                    "        AND p.patient_id NOT IN (SELECT ee.patient_id FROM encounter ee INNER JOIN encounter_type ete ON ee.encounter_type = ete.encounter_type_id WHERE ete.uuid = '8d5b27bc-c2cc-11de-8d13-0010c6dffd0f' AND ee.voided = FALSE) " +
-                    " GROUP BY p.patient_id " +
-                    " HAVING p.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 99436 AND oo.voided = FALSE)";
+            return "SELECT p.patient_id , DATE_FORMAT(DATE_ADD(pe.birthdate, INTERVAL 13 MONTH), '%d.%b.%Y') FROM patient p  \n" +
+                    " INNER JOIN obs o ON p.patient_id = o.person_id   INNER JOIN person pe ON p.patient_id = pe.person_id  \n" +
+                    "  INNER JOIN encounter e ON o.encounter_id = e.encounter_id   INNER JOIN encounter_type et ON e.encounter_type = et.encounter_type_id \n" +
+                    "  WHERE pe.dead=FALSE   \n" +
+                    "   AND  (TIMESTAMPDIFF(MONTH, pe.birthdate, CURDATE()) BETWEEN 15 AND 17) AND et.uuid='9fcfcc91-ad60-4d84-9710-11cc25258719'     \n" +
+                    "       AND p.patient_id NOT IN (SELECT ee.patient_id FROM encounter ee INNER JOIN encounter_type ete ON ee.encounter_type = ete.encounter_type_id \n" +
+                    "       WHERE ete.uuid = '8d5b27bc-c2cc-11de-8d13-0010c6dffd0f' AND ee.voided = FALSE)  GROUP BY p.patient_id  \n" +
+                    "    HAVING p.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 99436 AND oo.voided = FALSE)\n" +
+                    "    AND p.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 90306 AND oo.voided = FALSE)";
         }
 
         @Override
@@ -503,15 +535,15 @@ public class Flags {
     public static FlagDescriptor DUE_FOR_RAPID_TEST = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT p.patient_id , DATE_FORMAT(DATE_ADD(pe.birthdate, INTERVAL 18 MONTH), '%d.%b.%Y') FROM patient p " +
-                    "  INNER JOIN obs o ON p.patient_id = o.person_id " +
-                    "  INNER JOIN person pe ON p.patient_id = pe.person_id " +
-                    "  INNER JOIN encounter e ON o.encounter_id = e.encounter_id " +
-                    "  INNER JOIN encounter_type et ON e.encounter_type = et.encounter_type_id " +
-                    "  WHERE TIMESTAMPDIFF(MONTH, pe.birthdate, CURDATE()) = 18 AND et.uuid='9fcfcc91-ad60-4d84-9710-11cc25258719' " +
-                    "        AND p.patient_id NOT IN (SELECT ee.patient_id FROM encounter ee INNER JOIN encounter_type ete ON ee.encounter_type = ete.encounter_type_id WHERE ete.uuid = '8d5b27bc-c2cc-11de-8d13-0010c6dffd0f' AND ee.voided = FALSE) " +
-                    " GROUP BY p.patient_id " +
-                    " HAVING p.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 162879 AND oo.voided = FALSE)";
+            return "SELECT p.patient_id , DATE_FORMAT(DATE_ADD(pe.birthdate, INTERVAL 18 MONTH), '%d.%b.%Y') FROM patient p \n" +
+                    "  INNER JOIN obs o ON p.patient_id = o.person_id   INNER JOIN person pe ON p.patient_id = pe.person_id   \n" +
+                    "  INNER JOIN encounter e ON o.encounter_id = e.encounter_id   INNER JOIN encounter_type et ON e.encounter_type = et.encounter_type_id \n" +
+                    "  WHERE pe.dead=FALSE    \n" +
+                    "  AND TIMESTAMPDIFF(MONTH, pe.birthdate, CURDATE()) = 18 AND et.uuid='9fcfcc91-ad60-4d84-9710-11cc25258719'         \n" +
+                    "  AND p.patient_id NOT IN (SELECT ee.patient_id FROM encounter ee INNER JOIN encounter_type ete ON ee.encounter_type = ete.encounter_type_id \n" +
+                    "  WHERE ete.uuid = '8d5b27bc-c2cc-11de-8d13-0010c6dffd0f' AND ee.voided = FALSE)  GROUP BY p.patient_id  \n" +
+                    "  HAVING p.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 162879 AND oo.voided = FALSE)\n" +
+                    "   AND p.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 90306 AND oo.voided = FALSE)";
         }
 
         @Override
@@ -548,15 +580,16 @@ public class Flags {
     public static FlagDescriptor OVERDUE_FOR_RAPID_TEST = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT p.patient_id , DATE_FORMAT(DATE_ADD(pe.birthdate, INTERVAL 18 MONTH), '%d.%b.%Y') FROM patient p " +
-                    "  INNER JOIN obs o ON p.patient_id = o.person_id " +
-                    "  INNER JOIN person pe ON p.patient_id = pe.person_id " +
-                    "  INNER JOIN encounter e ON o.encounter_id = e.encounter_id " +
-                    "  INNER JOIN encounter_type et ON e.encounter_type = et.encounter_type_id " +
-                    "  WHERE (TIMESTAMPDIFF(MONTH, pe.birthdate, CURDATE()) BETWEEN 19 AND 24) AND et.uuid='9fcfcc91-ad60-4d84-9710-11cc25258719' " +
-                    "        AND p.patient_id NOT IN (SELECT ee.patient_id FROM encounter ee INNER JOIN encounter_type ete ON ee.encounter_type = ete.encounter_type_id WHERE ete.uuid = '8d5b27bc-c2cc-11de-8d13-0010c6dffd0f' AND ee.voided = FALSE) " +
-                    " GROUP BY p.patient_id " +
-                    " HAVING p.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 162879 AND oo.voided = FALSE)";
+            return "SELECT p.patient_id , DATE_FORMAT(DATE_ADD(pe.birthdate, INTERVAL 18 MONTH), '%d.%b.%Y') FROM patient p \n" +
+            "  INNER JOIN obs o ON p.patient_id = o.person_id   INNER JOIN person pe ON p.patient_id = pe.person_id \n" +
+                    "    INNER JOIN encounter e ON o.encounter_id = e.encounter_id   INNER JOIN encounter_type et ON e.encounter_type = et.encounter_type_id \n" +
+                    "    WHERE pe.dead=FALSE   \n" +
+                    "      AND (TIMESTAMPDIFF(MONTH, pe.birthdate, CURDATE()) BETWEEN 19 AND 24) AND et.uuid='9fcfcc91-ad60-4d84-9710-11cc25258719'      \n" +
+                    "         AND p.patient_id NOT IN (SELECT ee.patient_id FROM encounter ee \n" +
+                    "         INNER JOIN encounter_type ete ON ee.encounter_type = ete.encounter_type_id \n" +
+                    "         WHERE ete.uuid = '8d5b27bc-c2cc-11de-8d13-0010c6dffd0f' AND ee.voided = FALSE)  GROUP BY p.patient_id \n" +
+                    "          HAVING p.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 162879 AND oo.voided = FALSE)\n" +
+                    "       AND p.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 90306 AND oo.voided = FALSE) ";
         }
 
         @Override
@@ -593,12 +626,14 @@ public class Flags {
     public static FlagDescriptor HAS_DETECTABLE_VIRAL_LOAD = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return " SELECT non_suppressed.patient_id, non_suppressed.value_numeric, DATE_FORMAT((non_suppressed.obs_datetime), '%d. %b. %Y')\n" +
+            return "SELECT non_suppressed.patient_id, non_suppressed.value_numeric, DATE_FORMAT((non_suppressed.obs_datetime), '%d. %b. %Y')\n" +
                     " FROM (SELECT person_id, MAX(obs_datetime) as dt FROM obs b\n" +
                     "        WHERE b.concept_id = 856 AND b.voided = 0 group by person_id) latest_vl\n" +
                     "      INNER JOIN (SELECT c.person_id as patient_id, obs_datetime, value_numeric\n" +
                     "                  FROM obs c WHERE c.concept_id = 856 AND c.voided = 0 AND c.value_numeric > 1) non_suppressed\n" +
-                    "      ON (latest_vl.person_id = non_suppressed.patient_id and latest_vl.dt = non_suppressed.obs_datetime) ";
+                    "      ON (latest_vl.person_id = non_suppressed.patient_id and latest_vl.dt = non_suppressed.obs_datetime)\n" +
+                    "      INNER JOIN person pe ON pe.person_id = non_suppressed.patient_id WHERE pe.dead=FALSE\n" +
+                    "      AND non_suppressed.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 90306 AND oo.voided = FALSE)";
         }
 
         @Override
