@@ -132,10 +132,7 @@ public class Locations {
 		@Override
 		public List<LocationTagDescriptor> tags() {
 
-			return Arrays.asList(
-					LocationTags.LOGIN_LOCATION,
-					LocationTags.VISIT_LOCATION
-			);
+			return null;
 
 		}
 
