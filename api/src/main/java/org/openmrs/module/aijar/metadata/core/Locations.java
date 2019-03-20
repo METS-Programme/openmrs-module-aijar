@@ -116,7 +116,7 @@ public class Locations {
 
 		@Override
 		public String description() {
-			return null;
+			return "Unknown location";
 		}
 
 		@Override
@@ -127,13 +127,6 @@ public class Locations {
 		@Override
 		public LocationDescriptor parent() {
 			return PARENT;
-		}
-
-		@Override
-		public List<LocationTagDescriptor> tags() {
-
-			return null;
-
 		}
 
 	};
