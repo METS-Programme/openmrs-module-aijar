@@ -230,13 +230,13 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         MetadataMappingService metadataMappingService = Context.getService(MetadataMappingService.class);
         MetadataTermMapping primaryIdentifierTypeMapping = metadataMappingService.getMetadataTermMapping(EmrApiConstants.EMR_METADATA_SOURCE_NAME, EmrApiConstants.PRIMARY_IDENTIFIER_TYPE);
         PatientIdentifierType openmrsIdType = Context.getPatientService().getPatientIdentifierTypeByUuid(PatientIdentifierTypes.NATIONAL_ID.uuid());
-    
+
         //overwrite if not set yet
         if(!openmrsIdType.getUuid().equals(primaryIdentifierTypeMapping.getMetadataUuid())){
             primaryIdentifierTypeMapping.setMappedObject(openmrsIdType);
             metadataMappingService.saveMetadataTermMapping(primaryIdentifierTypeMapping);
         }
-        
+
         String ART_Patient_Number_Identifier = "";
         // check if the ART patient number is to be displayed then add it here
         if (Context.getAdministrationService().getGlobalProperty("ugandaemr.showARTPatientNumberIdentifier").equals("true")) {
@@ -250,7 +250,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             log.info("Adding research patient number to extra identifier types property");
             Research_Patient_Identifier = "," + PatientIdentifierTypes.RESEARCH_PATIENT_ID.uuid();
         }
-    
+
         String Refugee_Identifier = "";
         // check if the ART patient number is to be displayed then add it here
         if (Context.getAdministrationService().getGlobalProperty("ugandaemr.showRefugeeIdentifier").equals("true")) {
@@ -310,13 +310,13 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 
         // Exclude temporary reporting tables by database backup module
         properties.add(new GlobalProperty("databasebackup.tablesExcluded", "aijar_105_eid,aijar_106a1a"));
-    
+
         // the name of the custom registration app
         properties.add(new GlobalProperty("registrationapp.customRegistrationAppId", "aijar.registrationapp.registerPatient"));
-    
+
         // enable the register patient button to appear on the search widget
         properties.add(new GlobalProperty("coreapps.showRegisterPatientOnSearchWidget", "true"));
-    
+
         // mapping for creating visits without encounters to the default facility visit type
         properties.add(new GlobalProperty("emrapi.EmrApiVisitAssignmentHandler.encounterTypeToNewVisitTypeMap", "default:7b0f5697-27e3-40c4-8bae-f4049abfb4ed"));
 
@@ -325,6 +325,10 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 
     private void installCommonMetadata(MetadataDeployService deployService) {
         try {
+            log.info("Installing standard metadata using the packages.xml file");
+            MetadataUtil.setupStandardMetadata(getClass().getClassLoader());
+            log.info("Standard metadata installed");
+
             log.info("Installing metadata");
             log.info("Installing commonly used metadata");
             deployService.installBundle(Context.getRegisteredComponents(CommonMetadataBundle.class).get(0));
@@ -334,10 +338,6 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             log.info("Finished installing addresshierarchy");
 
             // install concepts
-            log.info("Installing standard metadata using the packages.xml file");
-            MetadataUtil.setupStandardMetadata(getClass().getClassLoader());
-            log.info("Standard metadata installed");
-
             log.info("Installing patient flags");
             deployService.installBundle(Context.getRegisteredComponents(UgandaEMRPatientFlagMetadataBundle.class).get(0));
             log.info("Finished installing patient flags");
