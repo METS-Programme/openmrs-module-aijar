@@ -217,4 +217,11 @@
 			UPDATE global_property SET property_value = 'false' WHERE property IN ( 'ugandaemrfingerprint.started', 'fhir.started', 'dataentrystatistics.started');
 		</sql>
 	</changeSet>
+
+	<changeSet id="ugandaemr-01042019-1305" author="dbaluku">
+		<comment> UgandaEMR Fingerprint to be started automatically</comment>
+		<sql>
+			UPDATE global_property SET property_value = 'true' WHERE property = 'ugandaemrfingerprint.started';
+		</sql>
+	</changeSet>
 </databaseChangeLog>
