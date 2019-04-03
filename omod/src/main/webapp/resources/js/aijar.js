@@ -35,14 +35,14 @@ jq(document).ready(function () {
             phone_number.match(/^[0-9]{1,10}$/);
     }, "Please specify a valid mobile number without any spaces like 0712345678");
 
-    jq.validator.addMethod("nationalid", function(nationalid, element) {
+    jq.validator.addMethod("nationalid", function (nationalid, element) {
         nationalid = nationalid.replace(/\(|\)|\s+|-/g, "");
         return this.optional(element) || nationalid.match(/^$|^[A-Z][FM]\d{5}([A-Z0-9]){7}$/);
     }, "Enter a valid National ID example CF12345678ABCD");
 
 
     /* Validation of NIN on patient registration page */
-    jq( "#registration" ).validate({
+    jq("#registration").validate({
         rules: {
             confirm_nationalid: {
                 equalTo: "nationalid"
@@ -56,7 +56,7 @@ jq(document).ready(function () {
     });
 
     /* Reconfigure the toast message to stay for 15 seconds instead of the default 3 seconds */
-    jq().toastmessage({stayTime : 15000});
+    jq().toastmessage({stayTime: 15000});
 });
 
 
@@ -67,7 +67,7 @@ jq(document).ready(function () {
  * @returns {number}
  */
 function diff_months(dt2, dt1) {
-    var diff =(dt2.getTime() - dt1.getTime()) / 1000;
+    var diff = (dt2.getTime() - dt1.getTime()) / 1000;
     diff /= (60 * 60 * 24 * 7 * 4);
     return Math.abs(Math.round(diff));
 }
@@ -229,6 +229,7 @@ function hideContainer(container) {
     jq(container + ' :input').attr('disabled', true);
     jq(container + ' :input').prop('checked', false);
 }
+
 /*
  * Show the container, and enable all elements in it
  *
@@ -247,6 +248,7 @@ function enableContainer(container) {
     jq(container).find("input").fadeTo(250, 1);
     jq(container).find("select").fadeTo(250, 1);
 }
+
 /*
  * Show the container, and enable all elements in it
  *
@@ -266,9 +268,9 @@ function disableContainer(container) {
  *@param: selector string or JQuery object
  */
 var fieldHelper = {
-	$jqObj: function() {
-		return {};
-	},
+    $jqObj: function () {
+        return {};
+    },
     disable: function (args) {
         if (args instanceof jQuery) {
             this.$jqObj = args;
@@ -348,4 +350,57 @@ var fieldHelper = {
 	    $('.hfe-hours').before($timeLabel);
     }
 };
+
+function blockEncounterOnSameDateEncounter(encounterDate, instruction) {
+
+    if (!(instruction == 'block' || instruction == 'warn'))
+        return;
+
+    var date = jq(encounterDate).val();
+    var formId = jq('[name=htmlFormId]').val();
+    var patientId = jq('[name=personId]').val();
+
+    if (jq('[name=encounterId]').val() == null) {
+        jq.get(
+            getContextPath() + '/module/htmlformentry/lastEnteredForm.form',
+            {formId: formId, patientId: patientId, date: date, dateFormat: 'yyyy-MM-dd'},
+            function (responseText) {
+
+                if (responseText == "true") {
+                    if (instruction == "warn") {
+
+                        // get the localized warning message and display it
+                        jq.get(getContextPath() + "/module/htmlformentry/localizedMessage.form",
+                            {messageCode: "htmlformentry.error.warnMultipleEncounterOnDate"},
+                            function (responseText) {
+                                jq().toastmessage('showWarningToast', responseText);
+                            }
+                        );
+
+                    } else if (instruction == "block") {
+
+                        // get the localized blocking message and display it
+                        jq.get(getContextPath() + "/module/htmlformentry/localizedMessage.form",
+                            {messageCode: "htmlformentry.error.blockMultipleEncounterOnDate"},
+                            function (responseText) {
+                                jq().toastmessage('showWarningToast', responseText);
+                                var parameters = window.location.search.split("&", 2);
+                                var url = window.location.origin + "/" + OPENMRS_CONTEXT_PATH + "/" + "coreapps/patientdashboard/patientDashboard.page" + parameters[0] + "&" + parameters[1] + "&";
+                                setTimeout(function () {
+                                    window.location.href = url;
+                                }, 2000);
+
+                            }
+                        );
+
+                        //clear the date and continue entering the form
+                        jq(encounterDate).val('');
+                    }
+                } else {
+                    //make sure everything is enabled
+                }
+            }
+        );
+    }
+}
 

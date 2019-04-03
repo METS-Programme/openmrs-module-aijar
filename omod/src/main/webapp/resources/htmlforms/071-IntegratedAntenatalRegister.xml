@@ -31,6 +31,9 @@
 
         jQuery(document).ready(function(jq) {
 
+            //Block Multiple encounter entry on same date
+            blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"),"block");
+
         const OTHER_CONCEPT_ID = 5622;
         const VIRAL_LOAD_RESULTS_CONCEPT_ID = 1305;
         const VIRAL_LOAD_DETECTED_CONCEPT_ID = 1301;
