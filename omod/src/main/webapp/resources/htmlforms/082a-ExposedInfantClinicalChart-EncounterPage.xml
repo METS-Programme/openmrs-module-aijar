@@ -412,6 +412,9 @@
                             });
                         }
 
+                //Block Multiple encounter entry on same date
+                blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"),"block");
+
 
                         var gender = jq("span.gender").html();
                         var age = jq("span.age").html();

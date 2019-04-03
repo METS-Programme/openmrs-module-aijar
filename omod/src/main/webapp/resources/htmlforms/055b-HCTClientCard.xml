@@ -119,6 +119,9 @@
                     });
                 }
 
+                //Block Multiple encounter entry on same date
+                blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"),"block");
+
                 jq('[class^="PreTestCounselingEnableDisable"]').change(function () {
                     enable_disable(jq(this), "PreTestCounseling", 'selected_value == "yes"', "select");
                 });
