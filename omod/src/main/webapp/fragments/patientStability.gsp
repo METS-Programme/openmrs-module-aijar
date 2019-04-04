@@ -11,6 +11,8 @@ img {
 
         <div id="vlDate">${vlDateObs?.valueDatetime?:""}</div>
 
+        <div id="art_start_date">${artStartDate?:""}</div>
+
         <div id="regimen">${regimenObs?.valueCoded?.conceptId ?: ""}</div>
 
         <div id="regimen_started_date">${regimenObs?.encounter?.encounterDatetime ?: ""}</div>

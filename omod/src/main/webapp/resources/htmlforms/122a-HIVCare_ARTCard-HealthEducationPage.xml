@@ -52,6 +52,8 @@
                         jq(this).change();
                     });
                 }
+                //Block Multiple encounter entry on same date
+                blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"),"block");
 
                 jq(".enableDisable").each(function () {
                     var group = jq(this);
