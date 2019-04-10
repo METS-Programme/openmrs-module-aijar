@@ -211,10 +211,10 @@
 		</sql>
 	</changeSet>
 
-	<changeSet id="ugandaemr-14032019-0856" author="dbaluku">
-		<comment>Setting  modules to be UgandaEMR Fingerprint,FHIR,Data Entry Statistics to be started manually</comment>
+	<changeSet id="ugandaemr-01042019-2012" author="dbaluku">
+		<comment>Setting  modules to FHIR,Data Entry Statistics to be started manually</comment>
 		<sql>
-			UPDATE global_property SET property_value = 'false' WHERE property IN ( 'ugandaemrfingerprint.started', 'fhir.started', 'dataentrystatistics.started');
+			UPDATE global_property SET property_value = 'false' WHERE property IN ('fhir.started', 'dataentrystatistics.started');
 		</sql>
 	</changeSet>
 </databaseChangeLog>
