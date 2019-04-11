@@ -666,4 +666,45 @@ public class Flags {
             return "151801e2-0742-457f-8610-95530a4db232";
         }
     };
+
+    public static FlagDescriptor PATIENT_TRANSFERED_OUT = new FlagDescriptor() {
+        @Override
+        public String criteria() {
+            return "Select p.patient_id,ooo.value_text ,DATE_FORMAT(oo.value_datetime,'%d. %b. %Y')\n" +
+                    "from obs o   INNER JOIN obs oo ON o.person_id=oo.person_id\n" +
+                    "INNER JOIN patient p on p.patient_id =o.person_id\n" +
+                    " INNER JOIN obs ooo ON o.person_id = ooo.person_id  WHERE o.concept_id =90306  AND o.voided= FALSE \n" +
+                    " and oo.concept_id =99165  AND oo.voided = FALSE AND ooo.voided = FALSE  and ooo.concept_id = 90211";
+        }
+
+        @Override
+        public String message() {
+            return "Patient Transfered Out to ${1} on ${2}";
+        }
+
+        @Override
+        public String priority() {
+            return Priorites.RED.uuid();
+        }
+
+        @Override
+        public List<String> tags() {
+            return Arrays.asList(Tags.PATIENT_STATUS.uuid());
+        }
+
+        @Override
+        public String name() {
+            return "Transfered Out Patient";
+        }
+
+        @Override
+        public String description() {
+            return "Patients who are transfered Out to Another Facility";
+        }
+
+        @Override
+        public String uuid() {
+            return "c5cae7e7-d6e3-4d5f-b684-ea888b5a8a7c";
+        }
+    };
 }

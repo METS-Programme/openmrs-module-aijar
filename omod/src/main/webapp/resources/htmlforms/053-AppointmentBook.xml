@@ -30,6 +30,9 @@
                     disableContainer('#outcomeContainer');
                 </ifMode>
 
+            //Block Multiple encounter entry on same date
+            blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"),"block");
+
             <!--disable and enable other follow up type-->
             jq("#home-visit-date").find("input[type$='text']").attr("disabled",true);
             jq("#new-followup-date").find("input[type$='text']").attr("disabled",true);

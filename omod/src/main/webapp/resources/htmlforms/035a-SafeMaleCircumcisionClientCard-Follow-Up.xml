@@ -115,6 +115,9 @@
                     });
                 }
 
+                //Block Multiple encounter entry on same date
+                blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"),"block");
+
                 jq('#smc_presence_of_ae').click(function () {
                     if (getValue('smc_presence_of_ae.value') == 90002) {
                         showContainer('#smc_presence_of_ae_other');

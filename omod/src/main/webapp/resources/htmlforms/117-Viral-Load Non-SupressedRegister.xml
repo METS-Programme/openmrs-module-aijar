@@ -90,6 +90,11 @@
     <script type="text/javascript">
         if (jQuery) {
             jq(document).ready(function () {
+
+
+                //Block Multiple encounter entry on same date
+                blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"),"block");
+
                 // Enable disable other outcomes
                 jq('#163170').change(function () {
                     enable_disable('163170', '163171', '5622');
