@@ -7,16 +7,22 @@ img {
 
 <div>
     <div class="stability">
-        <div id="vl">${vlObs?.valueNumeric?: ""}</div>
+        <div id="vl">${vlObs?.valueNumeric ?: ""}</div>
 
-        <div id="vlDate">${vlDateObs?.valueDatetime?:""}</div>
+        <div id="vlDate">${vlDateObs?.valueDatetime ?: ""}</div>
 
-        <div id="art_start_date">${artStartDate?:""}</div>
+        <div id="art_start_date">${artStartDate ?: ""}</div>
 
         <div id="regimen">${regimenObs?.valueCoded?.conceptId ?: ""}</div>
 
         <div id="regimen_started_date">${regimenObs?.encounter?.encounterDatetime ?: ""}</div>
 
+
+        <% if (currentRegimenObs?.valueCoded?.conceptId != baselineRegimenConceptId) { %>
+        <div id="current_regimen_start_date">${artStartDate ?: ""}</div>
+        <% } else { %>
+        <div id="current_regimen_start_date">${currentRegimenObs?.encounter?.encounterDatetime ?: ""}</div>
+        <% } %>
         <% if (regimenBeforeDTGObs != "") { %>
         <div id="regimen_before_dtg">${regimenBeforeDTGObs?.valueCoded?.conceptId ?: ""}</div>
 

@@ -21,9 +21,12 @@ public class PatientStabilityFragmentController {
     private static final Log log = LogFactory.getLog(PatientStabilityFragmentController.class);
 
     public void controller(FragmentModel model, @RequestParam(value = "patientId", required = false) Patient patient, @RequestParam(value = "visitId", required = false) Visit visit, @RequestParam(value = "encounterId", required = false) Encounter encounter, UiUtils ui) throws ParseException {
+        Integer baselineRegimenConceptId = 99061;
+        Integer currentRegimenConceptId = 90315;
         ObsService obsService = Context.getObsService();
         ConceptService conceptService = Context.getConceptService();
         PatientService patientService = Context.getPatientService();
+
         Visit encounterVisit = new Visit();
         if (visit == null && encounter != null) {
             encounterVisit = encounter.getVisit();
@@ -67,18 +70,30 @@ public class PatientStabilityFragmentController {
         int monthOffSet = -12;
         Date date = null;
 
+
         Obs obs = patientSummaryFragmentController.getMostRecentObservation(obsService, personList, currentRegimentConcept);
 
         String query = "";
+        String queryCurrentRegimen = "";
+        List<Obs> regimenObsList = new ArrayList<>();
+        List<Obs> currentRegimenList = new ArrayList<>();
 
-        if ("164976,164977,164978,164979".contains(obs.getValueCoded().getConceptId().toString())) {
-            monthOffSet = 0;
-            query = "SELECT obs_id FROM obs where  obs.obs_datetime <= DATE('" + encounterVisit.getStartDatetime() + "') AND obs.person_id='" + patient.getPatientId() + "' AND concept_id= 90315 AND obs.voided = false ORDER BY  obs.encounter_id ASC";
-        } else {
-            query = "SELECT obs_id FROM obs where  obs.obs_datetime <= DATE('" + getDateBefore(encounterVisit.getStartDatetime(), monthOffSet, 0) + "') AND obs.person_id='" + patient.getPatientId() + "' AND obs.value_coded = " + patientSummaryFragmentController.getMostRecentObservation(obsService, personList, currentRegimentConcept).getValueCoded().getConceptId() + " AND obs.voided = false ORDER BY  obs.encounter_id ASC";
+        //Check if Obs of Regimen is on not Null
+        if (obs != null) {
+            //Check if Obs conceptId is the same as the art encounter regimen concept
+            // Check if regimen is a DTG regimen
+            if (checkIfDTG(obs)) {
+                query = "SELECT obs_id FROM obs where  obs.obs_datetime <= DATE('" + encounterVisit.getStartDatetime() + "') AND obs.person_id='" + patient.getPatientId() + "' AND concept_id= 90315 AND obs.voided = false ORDER BY  obs.encounter_id ASC";
+            } else {
+                query = "SELECT obs_id FROM obs where  obs.obs_datetime <= DATE('" + getDateBefore(encounterVisit.getStartDatetime(), monthOffSet, 0) + "') AND obs.person_id='" + patient.getPatientId() + "' AND obs.value_coded = " + obs.getValueCoded().getConceptId() + " AND obs.voided = false ORDER BY  obs.encounter_id ASC";
+            }
+            regimenObsList = getObsListFromIdList(query);
+
+            queryCurrentRegimen = "SELECT obs_id FROM obs where  obs.person_id='" + patient.getPatientId() + "' AND obs.value_coded = " + obs.getValueCoded().getConceptId() + " AND obs.voided = false ORDER BY  obs.encounter_id ASC";
+
+            currentRegimenList = getObsListFromIdList(queryCurrentRegimen);
         }
 
-        List<Obs> regimenObsList = getObsListFromIdList(query);
 
         if (regimenObsList.size() > 0) {
             if ("164976,164977,164978,164979".contains(regimenObsList.get(0).getValueCoded().getConceptId().toString()) && regimenObsList.size() > 1) {
@@ -97,6 +112,12 @@ public class PatientStabilityFragmentController {
             model.addAttribute("regimenBeforeDTGObs", "");
         }
 
+        if (currentRegimenList.size() > 0) {
+            model.addAttribute("currentRegimenObs", currentRegimenList.get(0));
+        } else {
+            model.addAttribute("currentRegimenObs", null);
+        }
+        model.addAttribute("baselineRegimenConceptId", baselineRegimenConceptId);
 
         /**
          * Adherence
@@ -167,6 +188,7 @@ public class PatientStabilityFragmentController {
 
     /**
      * This Subtracts a date provided by number of moths and years given and returns a new date
+     *
      * @param referenceDate
      * @param noOfMoths
      * @return
@@ -191,6 +213,7 @@ public class PatientStabilityFragmentController {
 
     /**
      * Gets List of Obs Basing on the query provided
+     *
      * @param query
      * @return
      */
@@ -204,6 +227,7 @@ public class PatientStabilityFragmentController {
 
     /**
      * Get ART START DATE From Summary Page of a Patient
+     *
      * @param patient
      * @return
      */
@@ -215,5 +239,15 @@ public class PatientStabilityFragmentController {
         }
         return artStartDate;
 
+    }
+
+    /**
+     * Check if DTG
+     *
+     * @param obs
+     * @return
+     */
+    private boolean checkIfDTG(Obs obs) {
+        return "164976,164977,164978,164979".contains(obs.getValueCoded().getConceptId().toString());
     }
 }
