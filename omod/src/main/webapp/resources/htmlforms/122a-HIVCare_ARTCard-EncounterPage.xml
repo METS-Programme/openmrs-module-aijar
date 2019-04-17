@@ -277,7 +277,7 @@
                 var artStartDate = jq("#art_start_date").text().trim();
                 var teatmentStartDate = jq("#teatment_start_date").text().trim();
                 var sputumValue = jq("#sputum_value").text().trim();
-                var currentRegimenStartDate = regimenStartedDate;
+                var currentRegimenStartDate = jq("#current_regimen_start_date").text().trim();
 
                 if (regimenBeforeDTG &amp;&amp; regimenBeforeDTG !== "") {
                     regimenStartedDate = regimenBeforeDTGStartedDate;
