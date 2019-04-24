@@ -18,11 +18,14 @@ img {
         <div id="regimen_started_date">${regimenObs?.encounter?.encounterDatetime ?: ""}</div>
 
 
-        <% if (currentRegimenObs?.valueCoded?.conceptId != baselineRegimenConceptId) { %>
-        <div id="current_regimen_start_date">${artStartDate ?: ""}</div>
-        <% } else { %>
-        <div id="current_regimen_start_date">${currentRegimenObs?.encounter?.encounterDatetime ?: ""}</div>
-        <% } %>
+        <div id="current_regimen_start_date">
+            <% if (currentRegimenObs?.valueCoded?.conceptId == baselineRegimenConceptId) { %>
+            ${artStartDate ?: ""}
+            <% } else { %>
+            ${currentRegimenObs?.encounter?.encounterDatetime ?: ""}
+            <% } %>
+        </div>
+
         <% if (regimenBeforeDTGObs != "") { %>
         <div id="regimen_before_dtg">${regimenBeforeDTGObs?.valueCoded?.conceptId ?: ""}</div>
 
