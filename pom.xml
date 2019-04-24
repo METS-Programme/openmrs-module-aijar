@@ -61,6 +61,7 @@
 		<appframeworkVersion>2.11.0</appframeworkVersion>
 		<appuiVersion>1.9.0</appuiVersion>
 		<appointmentschedulingVersion>1.7.0</appointmentschedulingVersion>
+		<atomfeedVersion>1.0.12</atomfeedVersion>
 		<calculationVersion>1.2</calculationVersion>
 		<coreappsVersion>1.21.0-SNAPSHOT</coreappsVersion>
 		<databaseBackupVersion>1.3.0</databaseBackupVersion>
@@ -79,8 +80,6 @@
 		<jacksonVersion>1.8.3</jacksonVersion>
 		<junitParamsVersion>1.0.4</junitParamsVersion>
 		<legacyuiVersion>1.4.0</legacyuiVersion>
-		<sync2Version>1.6.0</sync2Version>
-		<atomfeedVersion>1.6.0</atomfeedVersion>
 		<metadatadeployVersion>1.10.0</metadatadeployVersion>
 		<metadatamappingVersion>1.3.4</metadatamappingVersion>
 		<metadatasharingVersion>1.5.0</metadatasharingVersion>
@@ -97,6 +96,7 @@
 		<reportingCompatibilityVersion>2.0.6-SNAPSHOT</reportingCompatibilityVersion>
 		<reportingUIVersion>1.6.0</reportingUIVersion>
 		<serializationxstreamVersion>0.2.14</serializationxstreamVersion>
+		<sync2Version>1.6.0</sync2Version>
 		<uicommonsVersion>2.6.1</uicommonsVersion>
 		<uiframeworkVersion>3.15.0</uiframeworkVersion>
 		<uilibraryVersion>2.0.6</uilibraryVersion>
