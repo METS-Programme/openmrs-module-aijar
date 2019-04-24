@@ -35,19 +35,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>org.openmrs.module</groupId>
-			<artifactId>atomfeed-omod</artifactId>
-			<version>${atomfeedVersion}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.openmrs.module</groupId>
-			<artifactId>sync2-omod</artifactId>
-			<version>${sync2Version}</version>
-		</dependency>
-		
-		
 		<!-- End OpenMRS modules -->
 		
 
@@ -95,6 +82,12 @@
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>appui-omod</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>atomfeed-omod</artifactId>
+			<version>${atomfeedVersion}</version>
 		</dependency>
 
 		<dependency>
@@ -226,6 +219,12 @@
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>serialization.xstream-api-2.0</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>sync2-omod</artifactId>
+			<version>${sync2Version}</version>
 		</dependency>
 
 		<dependency>
