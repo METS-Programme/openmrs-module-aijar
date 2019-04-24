@@ -84,6 +84,9 @@
         <require_module>
             org.openmrs.module.uiframework
         </require_module>
+        <require_module version="${sync2Version}">
+            org.openmrs.module.sync2
+        </require_module>
 	</require_modules>
 	
 	<aware_of_modules>
