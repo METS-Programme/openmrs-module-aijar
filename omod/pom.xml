@@ -37,6 +37,12 @@
 
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
+			<artifactId>atomfeed-omod</artifactId>
+			<version>${atomfeedVersion}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
 			<artifactId>sync2-omod</artifactId>
 			<version>${sync2Version}</version>
 		</dependency>
