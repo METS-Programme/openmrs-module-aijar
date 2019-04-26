@@ -88,10 +88,6 @@
 	
 	<aware_of_modules>
 	    <aware_of_module>org.openmrs.module.legacyui</aware_of_module>
-
-        <aware_of_modules version="${sync2Version}">
-            org.openmrs.module.sync2
-        </aware_of_modules>
 	</aware_of_modules>
 
 	<!-- Global Properties -->
