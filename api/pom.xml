@@ -108,6 +108,13 @@
 
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
+			<artifactId>fhir-api</artifactId>
+			<scope>provided</scope>
+			<version>${fhirVersion}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
 			<artifactId>htmlformentry-api</artifactId>
 		</dependency>
 

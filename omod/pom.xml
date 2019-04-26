@@ -114,6 +114,13 @@
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>formentryapp-omod</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>fhir-api</artifactId>
+			<scope>provided</scope>
+			<version>${fhirVersion}</version>
+		</dependency>
 		
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
