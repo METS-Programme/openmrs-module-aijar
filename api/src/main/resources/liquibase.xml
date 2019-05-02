@@ -217,4 +217,11 @@
 			UPDATE global_property SET property_value = 'false' WHERE property IN ('fhir.started', 'dataentrystatistics.started');
 		</sql>
 	</changeSet>
+
+	<changeSet id="ugandaemr-30-04-2019-1524" author="echiteri">
+		<comment>Setting  modules to Atomfeed, sync 2.0 to be started manually</comment>
+		<sql>
+			UPDATE global_property SET property_value = 'false' WHERE property IN ('atomfeed.started', 'sync2.started');
+		</sql>
+	</changeSet>
 </databaseChangeLog>

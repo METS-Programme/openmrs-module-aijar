@@ -210,6 +210,12 @@
 			</dependency>
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
+				<artifactId>atomfeed-omod</artifactId>
+				<version>${atomfeedVersion}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
 				<artifactId>calculation-api</artifactId>
 				<version>${calculationVersion}</version>
 				<scope>provided</scope>
@@ -389,6 +395,13 @@
 				<artifactId>serialization.xstream-api-2.0</artifactId>
 				<version>${serializationxstreamVersion}</version>
 				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>sync2-omod</artifactId>
+				<version>${sync2Version}</version>
+				<scope>provided</scope>
 			</dependency>
 
 			<dependency>
