@@ -217,4 +217,20 @@
 			UPDATE global_property SET property_value = 'false' WHERE property IN ('fhir.started', 'dataentrystatistics.started');
 		</sql>
 	</changeSet>
+
+	<changeSet id="ugandaemr-030520191333" author="slubwama">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">
+				SELECT COUNT(*) FROM global_property
+				WHERE property = 'ugandaemr.patientflags.disabledFlags';
+			</sqlCheck>
+		</preConditions>
+		<comment>Inserting ugandaemr.patientflags.disabledFlags a comma delimited string of patient flags names </comment>
+		<insert tableName="global_property">
+			<column name="property" value="ugandaemr.patientflags.disabledFlags" />
+			<column name="property_value" value="" />
+			<column name="description" value="Separate Names of flags you want to disable with , example Transfered Out Patient,Un-supressed Viral Load" />
+			<column name="uuid" value="1c5e55f5-875e-4a96-b835-9c2615677107" />
+		</insert>
+	</changeSet>
 </databaseChangeLog>
