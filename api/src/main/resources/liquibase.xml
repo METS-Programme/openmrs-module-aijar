@@ -227,8 +227,7 @@
 	<changeSet id="ugandaemr-30-04-2019-1524" author="echiteri">
 		<comment>Persist global propertis for sync2 </comment>
 		<sql>
-			UPDATE global_property SET property_value = 'sync2.mandatory' WHERE property = 'false';
-			UPDATE global_property SET property_value = 'sync2.mergeBehavior' WHERE property = 'sync2.newIsTheBestMergeBehaviour';
+			UPDATE global_property SET property_value = 'sync2.newIsTheBestMergeBehaviour' WHERE property = 'sync2.mergeBehavior'
 		</sql>
 	</changeSet>
 </databaseChangeLog>
