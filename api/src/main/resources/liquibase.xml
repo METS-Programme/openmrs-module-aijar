@@ -224,10 +224,10 @@
 			UPDATE global_property SET property_value = 'false' WHERE property IN ('atomfeed.started', 'sync2.started');
 		</sql>
 	</changeSet>
-	<changeSet id="ugandaemr-30-04-2019-1524" author="echiteri">
-		<comment>Persist global propertis for sync2 </comment>
+	<changeSet id="ugandaemr-06-05-2019" author="echiteri">
+		<comment>Set "sync2.mergeBehavior" to "sync2.newIsTheBestMergeBehaviour" so newer changes are automatically integrated </comment>
 		<sql>
-			UPDATE global_property SET property_value = 'sync2.newIsTheBestMergeBehaviour' WHERE property = 'sync2.mergeBehavior'
+			UPDATE global_property SET property_value = 'sync2.newIsTheBestMergeBehaviour' WHERE property = 'sync2.mergeBehavior';
 		</sql>
 	</changeSet>
 </databaseChangeLog>
