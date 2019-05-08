@@ -189,9 +189,6 @@
 
                 $gestationAgeField.change();
                 $eddField.change();
-
-                fieldHelper.makeReadonly($gestationAgeField);
-                fieldHelper.makeReadonly($eddField);
             }
 
             var calculateLnmp = function (edd) {
