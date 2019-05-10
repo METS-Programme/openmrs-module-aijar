@@ -397,10 +397,15 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2"><label><span class="required">*</span>Counsellor</label>
-                        <encounterProvider required="true"/>
+                    <td colspan="2"><label>HIV Recency Test Result:</label>
+                        <obs conceptId="141520"/>
                     </td>
                 </tr>
+                    <tr>
+                        <td colspan="2"><label><span class="required narrow">*</span>Counsellor</label>
+                            <encounterProvider required="true"/>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </section>
