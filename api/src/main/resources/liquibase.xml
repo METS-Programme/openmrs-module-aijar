@@ -217,13 +217,4 @@
 			UPDATE global_property SET property_value = 'false' WHERE property IN ('fhir.started', 'dataentrystatistics.started');
 		</sql>
 	</changeSet>
-	<changeSet id="ugandaemr-10-05-2019" author="echiteri">
-		<comment>Create global variable for a feature flag to turn on the recency question - ugandaemr.hts.recency - default value is false,</comment>
-			<insert tableName="global_property">
-				<column name="property" value="ugandaemr.hts.recency" />
-				<column name="property_value" value="false" />
-				<column name="description" value="This feature flag turns on/off the recency question"/>
-				<column name="uuid" value="4f772b49-f241-4a0b-9142-91cfba01b015" />
-			</insert>
-	</changeSet>
 </databaseChangeLog>
