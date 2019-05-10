@@ -403,7 +403,7 @@
                 </tr>
                     <includeIf velocityTest="$fn.globalProperty('ugandaemr.hts.recency') == true">
                         <tr>
-                            <td colspan="2"><label><span class="required narrow">*</span>Counsellor</label>
+                            <td colspan="2"><label><span class="required">*</span>Counsellor</label>
                                 <encounterProvider required="true"/>
                             </td>
                         </tr>
