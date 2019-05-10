@@ -401,11 +401,13 @@
                         <obs conceptId="141520"/>
                     </td>
                 </tr>
-                    <tr>
-                        <td colspan="2"><label><span class="required narrow">*</span>Counsellor</label>
-                            <encounterProvider required="true"/>
-                        </td>
-                    </tr>
+                    <includeIf velocityTest="$fn.globalProperty('ugandaemr.hts.recency') == true">
+                        <tr>
+                            <td colspan="2"><label><span class="required narrow">*</span>Counsellor</label>
+                                <encounterProvider required="true"/>
+                            </td>
+                        </tr>
+                    </includeIf>
                 </tbody>
             </table>
         </section>
