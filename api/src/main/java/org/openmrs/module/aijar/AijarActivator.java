@@ -46,6 +46,7 @@ import org.openmrs.util.OpenmrsUtil;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -149,6 +150,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             String flagstatus = administrationService.getGlobalProperty("ugandaemr.patientflags.disabledFlags");
 
             if (flagstatus != null) {
+                flagstatus=("'"+flagstatus.trim().replace(",","','")+"'").replace(",''","");
                 administrationService.executeSQL("update patientflags_flag set enabled=0 where name in (" + flagstatus.trim() + ")", false);
             }
 
