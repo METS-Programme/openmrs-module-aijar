@@ -150,7 +150,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             String flagstatus = administrationService.getGlobalProperty("ugandaemr.patientflags.disabledFlags");
 
             if (flagstatus != null) {
-                flagstatus=("'"+flagstatus.trim().replace(",","','")+"'").replace(",''","");
+                flagstatus=("'"+flagstatus.trim().replace(",","','")+"'").replace(",''","").replace("' ","'");
                 administrationService.executeSQL("update patientflags_flag set enabled=0 where name in (" + flagstatus.trim() + ")", false);
             }
 
