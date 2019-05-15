@@ -399,7 +399,7 @@
                 <includeIf velocityTest="$fn.globalProperty('ugandaemr.hts.recency') == true">
                     <tr>
                         <td colspan="2"><label>HIV Recency Test Result:</label>
-                            <obs conceptId="141520" answerConceptIds="141518,141519,163611,165145,1118" answerLabels="Recent,Long-term,Invalid,Missing,Not done"/>
+                            <obs conceptId="141520" answerConceptIds="141518,141519,163611,165145,1118" answerLabels="Recent,Long Term,Invalid,Missing,Not Done"/>
                         </td>
                     </tr>
                 </includeIf>
