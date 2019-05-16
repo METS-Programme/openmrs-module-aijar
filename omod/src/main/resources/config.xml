@@ -153,6 +153,12 @@
     </globalProperty>
 
     <globalProperty>
+        <property>ugandaemr.dsdm.conceptId</property>
+        <description>A Coded concept with all DSDM Concept</description>
+        <defaultValue>165143</defaultValue>
+    </globalProperty>
+
+    <globalProperty>
         <property>ugandaemr.hts.recency</property>
         <description>This feature flag turns on/off the recency question</description>
         <defaultValue>false</defaultValue>
