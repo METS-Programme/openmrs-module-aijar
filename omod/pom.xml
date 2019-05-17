@@ -26,6 +26,12 @@
 			<artifactId>${project.parent.artifactId}-api</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>${project.parent.artifactId}-tools</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
 		
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
@@ -351,7 +357,7 @@
 						</configuration>
 					</execution>
 					<execution>
-						<id>Copy new install script</id>
+						<id>UgandaEMR SDK Setup Script</id>
 						<goals>
 							<goal>unpack-dependencies</goal>
 						</goals>
@@ -360,7 +366,7 @@
 							<includeGroupIds>${project.parent.groupId}</includeGroupIds>
 							<includeArtifactIds>${project.parent.artifactId}-tools</includeArtifactIds>
 							<excludeTransitive>true</excludeTransitive>
-							<includes>new-install.sql</includes>
+							<includes>ugandaemr-distro-install.sql</includes>
 							<outputDirectory>${project.build.directory}/classes</outputDirectory>
 						</configuration>
 					</execution>

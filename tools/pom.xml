@@ -35,7 +35,7 @@
 								</goals>
 								<configuration>
 									<executable>create-sql-scripts.bat</executable>
-									<workingDirectory>${pom.basedir}/src/main/resources</workingDirectory>
+									<workingDirectory>${pom.basedir}/target/classes</workingDirectory>
 								</configuration>
 							</execution>
 						</executions>
@@ -64,7 +64,7 @@
 								</goals>
 								<configuration>
 									<executable>/bin/bash</executable>
-									<workingDirectory>${pom.basedir}/src/main/resources</workingDirectory>
+									<workingDirectory>${pom.basedir}/target/classes</workingDirectory>
 									<arguments>
 										<argument>create-sql-scripts.sh</argument>
 									</arguments>

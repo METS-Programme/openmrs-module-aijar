@@ -20,6 +20,7 @@ cat database/mysql_script_footer.sql >> upgrade/new-install.sql
 
 #Copying new-install.sql to new_install directory
 cp upgrade/new-install.sql new_install/new-install.sql
+cp upgrade/new-install.sql ugandaemr-distro-install.sql
 
 # Create an SQL script for an upgrade
 
