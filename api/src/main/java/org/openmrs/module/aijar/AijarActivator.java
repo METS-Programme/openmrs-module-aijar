@@ -46,6 +46,7 @@ import org.openmrs.util.OpenmrsUtil;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -146,6 +147,13 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             healthCenter.setName(administrationService.getGlobalProperty(AijarConstants.GP_HEALTH_CENTER_NAME));
             locationService.saveLocation(healthCenter);
 
+            String flagstatus = administrationService.getGlobalProperty("ugandaemr.patientflags.disabledFlags");
+
+            if (flagstatus != null) {
+                flagstatus=("'"+flagstatus.trim().replace(",","','")+"'").replace(",''","").replace("' ","'");
+                administrationService.executeSQL("update patientflags_flag set enabled=0 where name in (" + flagstatus.trim() + ")", false);
+            }
+
             // cleanup liquibase change logs to enable installation of data integrity module
             removeOldChangeLocksForDataIntegrityModule();
 
@@ -232,7 +240,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         PatientIdentifierType openmrsIdType = Context.getPatientService().getPatientIdentifierTypeByUuid(PatientIdentifierTypes.NATIONAL_ID.uuid());
 
         //overwrite if not set yet
-        if(!openmrsIdType.getUuid().equals(primaryIdentifierTypeMapping.getMetadataUuid())){
+        if (!openmrsIdType.getUuid().equals(primaryIdentifierTypeMapping.getMetadataUuid())) {
             primaryIdentifierTypeMapping.setMappedObject(openmrsIdType);
             metadataMappingService.saveMetadataTermMapping(primaryIdentifierTypeMapping);
         }
@@ -259,10 +267,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         }
 
         // set the HIV care number and EID number as additional identifiers that can be searched for
-        properties.add(new GlobalProperty(EmrApiConstants.GP_EXTRA_PATIENT_IDENTIFIER_TYPES,
-                PatientIdentifierTypes.HIV_CARE_NUMBER.uuid() + "," + PatientIdentifierTypes.EXPOSED_INFANT_NUMBER.uuid()
-                        + "," + PatientIdentifierTypes.IPD_NUMBER.uuid() + "," + PatientIdentifierTypes.ANC_NUMBER.uuid()+ "," + PatientIdentifierTypes.PNC_NUMBER.uuid()
-                        + "," + ART_Patient_Number_Identifier + Research_Patient_Identifier + Refugee_Identifier));
+        properties.add(new GlobalProperty(EmrApiConstants.GP_EXTRA_PATIENT_IDENTIFIER_TYPES, PatientIdentifierTypes.HIV_CARE_NUMBER.uuid() + "," + PatientIdentifierTypes.EXPOSED_INFANT_NUMBER.uuid() + "," + PatientIdentifierTypes.IPD_NUMBER.uuid() + "," + PatientIdentifierTypes.ANC_NUMBER.uuid() + "," + PatientIdentifierTypes.PNC_NUMBER.uuid() + "," + ART_Patient_Number_Identifier + Research_Patient_Identifier + Refugee_Identifier));
 
         // set the name of the application
         properties.add(new GlobalProperty("application.name", "UgandaEMR - Uganda eHealth Solution"));
@@ -319,7 +324,6 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 
         // mapping for creating visits without encounters to the default facility visit type
         properties.add(new GlobalProperty("emrapi.EmrApiVisitAssignmentHandler.encounterTypeToNewVisitTypeMap", "default:7b0f5697-27e3-40c4-8bae-f4049abfb4ed"));
-
         return properties;
     }
 
@@ -353,7 +357,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         String gpVal = Context.getAdministrationService().getGlobalProperty("dataintegrity.database_version");
         // remove data integrity locks for an version below 4
         // some gymnastics to get the major version number from semver like 2.5.3
-        if ((gpVal == null) || new Integer(gpVal.substring(0, gpVal.indexOf("."))).intValue() < 4){
+        if ((gpVal == null) || new Integer(gpVal.substring(0, gpVal.indexOf("."))).intValue() < 4) {
             AdministrationService as = Context.getAdministrationService();
             log.warn("Removing liquibase change log locks for previously installed data integrity instance");
             as.executeSQL("delete from liquibasechangelog WHERE ID like 'dataintegrity%';", false);

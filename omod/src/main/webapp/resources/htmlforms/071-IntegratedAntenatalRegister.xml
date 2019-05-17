@@ -14,15 +14,15 @@
     <style type="text/css">
 
         form#htmlform div.ai-page-frame table>tbody tr:nth-child(odd) td {
-        background: #eeeeee;
+            background: #eeeeee;
         }
 
         form#htmlform div.ai-page-frame table>tbody tr:nth-child(even) td {
-        background: #f9f9f9;
+            background: #f9f9f9;
         }
 
         form#htmlform div.ai-page-frame fieldset#child-information table {
-        margin: 0 0 5px 0;
+            margin: 0 0 5px 0;
         }
 
     </style>
@@ -34,544 +34,544 @@
             //Block Multiple encounter entry on same date
             blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"),"block");
 
-        const OTHER_CONCEPT_ID = 5622;
-        const VIRAL_LOAD_RESULTS_CONCEPT_ID = 1305;
-        const VIRAL_LOAD_DETECTED_CONCEPT_ID = 1301;
-        const VIRAL_LOAD_NOT_DETECTED_CONCEPT_ID = 1306;
-        const VIRAL_LOAD_SAMPLE_REJECTED_CONCEPT_ID = 1304;
+            const OTHER_CONCEPT_ID = 5622;
+            const VIRAL_LOAD_RESULTS_CONCEPT_ID = 1305;
+            const VIRAL_LOAD_DETECTED_CONCEPT_ID = 1301;
+            const VIRAL_LOAD_NOT_DETECTED_CONCEPT_ID = 1306;
+            const VIRAL_LOAD_SAMPLE_REJECTED_CONCEPT_ID = 1304;
 
-        const RED_CONCEPT_ID = 99028;
-        const GREEN_CONCEPT_ID = 99027;
-        const YELLOW_CONCEPT_ID = 99029;
+            const RED_CONCEPT_ID = 99028;
+            const GREEN_CONCEPT_ID = 99027;
+            const YELLOW_CONCEPT_ID = 99029;
 
-        const HIV_STATUS_CONCEPT_ID = 90253;
-        const HIV_POSITIVE_CONCEPT_ID = 90166;
-        const HIV_NEGATIVE_CONCEPT_ID = 90167;
+            const HIV_STATUS_CONCEPT_ID = 90253;
+            const HIV_POSITIVE_CONCEPT_ID = 90166;
+            const HIV_NEGATIVE_CONCEPT_ID = 90167;
 
-        const 	YES_CONCEPT_ID = 1065,
-        NO_CONCEPT_ID = 1066,
-        NA_CONCEPT_ID = 1175;
+            const 	YES_CONCEPT_ID = 1065,
+                NO_CONCEPT_ID = 1066,
+                NA_CONCEPT_ID = 1175;
 
-        const 	TRRK_CONCEPT_ID = 99738,
-        TRR_TICK_CONCEPT_ID = 164963,
-        TRRP_CONCEPT_ID = 99736,
-        TRR_CONCEPT_ID = 99315;
+            const 	TRRK_CONCEPT_ID = 99738,
+                TRR_TICK_CONCEPT_ID = 164963,
+                TRRP_CONCEPT_ID = 99736,
+                TRR_CONCEPT_ID = 99315;
 
-        const HIV_INFORMATION_SECTION = '#hiv-information-section';
-        const ARVS_ADMINISTERED_TO_BABY_FIELD = '#arvs-administered-to-baby';
+            const HIV_INFORMATION_SECTION = '#hiv-information-section';
+            const ARVS_ADMINISTERED_TO_BABY_FIELD = '#arvs-administered-to-baby';
 
-        jq('#anc1-timing > select').attr('tabIndex', -1);
-        jq('#anc1-timing > select').on('mousedown', function(e) {
-        e.preventDefault();
-        this.blur();
-        window.focus();
-        });
+            jq('#anc1-timing > select').attr('tabIndex', -1);
+            jq('#anc1-timing > select').on('mousedown', function(e) {
+                e.preventDefault();
+                this.blur();
+                window.focus();
+            });
 
 
 
-        var $viralLoadResultsField = getField('viral-load-results.value');
-        var $lmpField = getField('lmp-date.value');
-        var $gestationAgeField = getField('gestational-age.value');
-        var $eddField = getField('edd.value');
-        var $anc1TimingField = getField('anc1-timing.value');
-        var $arvsGivenField = getField('arvs-given.value');
-        var $preArtNumberField = jq('span#pre-art-number').find('input[type="text"]');
-        var $encounterDateField = jq('#encounterDate').find('input[type="hidden"]');
-        var $encounterDate = jq('#encounterDate').find('input[type="hidden"]').val();
-        var $muacQuantitativeField = getField('muac-quantitative.value');
-        var $muacQualitativeField = getField('muac-qualitative.value');
-        var $emtctCodeWomanField = getField('emtct-code-woman.value');
-        var $viralLoadStatusField = getField('viral-load-status.value');
-        var $ancVisitField = getField('anc-visit.value');
-        var $ironTabletsGivenField = getField('ironTabletsGiven.value');
-        var $folicAcidTabletsGivenField = getField('folicTabletsGiven.value');
+            var $viralLoadResultsField = getField('viral-load-results.value');
+            var $lmpField = getField('lmp-date.value');
+            var $gestationAgeField = getField('gestational-age.value');
+            var $eddField = getField('edd.value');
+            var $anc1TimingField = getField('anc1-timing.value');
+            var $arvsGivenField = getField('arvs-given.value');
+            var $preArtNumberField = jq('span#pre-art-number').find('input[type="text"]');
+            var $encounterDateField = jq('#encounterDate').find('input[type="hidden"]');
+            var $encounterDate = jq('#encounterDate').find('input[type="hidden"]').val();
+            var $muacQuantitativeField = getField('muac-quantitative.value');
+            var $muacQualitativeField = getField('muac-qualitative.value');
+            var $emtctCodeWomanField = getField('emtct-code-woman.value');
+            var $viralLoadStatusField = getField('viral-load-status.value');
+            var $ancVisitField = getField('anc-visit.value');
+            var $ironTabletsGivenField = getField('ironTabletsGiven.value');
+            var $folicAcidTabletsGivenField = getField('folicTabletsGiven.value');
 
-        var viralLoadResultsChange = function() {
-        var $viralLoadResults = getValue('viral-load-results.value');
-        var $viralLoadField = getField('viral-load.value');
+            var viralLoadResultsChange = function() {
+                var $viralLoadResults = getValue('viral-load-results.value');
+                var $viralLoadField = getField('viral-load.value');
 
-        fieldHelper.disable($ironTabletsGivenField);
-        fieldHelper.disable($folicAcidTabletsGivenField);
-
-        jq('#iron').change(function(){
-           if (getValue('iron.value') == 1065) {
-               fieldHelper.enable($ironTabletsGivenField);
-           } else {
-               $ironTabletsGivenField.val('');
-               fieldHelper.disable($ironTabletsGivenField);
-           }
-        });
-        jq('#folic-acid').change(function(){
-            if (getValue('folic-acid.value') == 1065) {
-                fieldHelper.enable($folicAcidTabletsGivenField);
-            } else {
-                $folicAcidTabletsGivenField.val('');
+                fieldHelper.disable($ironTabletsGivenField);
                 fieldHelper.disable($folicAcidTabletsGivenField);
+
+                jq('#iron').change(function(){
+                    if (getValue('iron.value') == 1065) {
+                        fieldHelper.enable($ironTabletsGivenField);
+                    } else {
+                        $ironTabletsGivenField.val('');
+                        fieldHelper.disable($ironTabletsGivenField);
+                    }
+                });
+                jq('#folic-acid').change(function(){
+                    if (getValue('folic-acid.value') == 1065) {
+                        fieldHelper.enable($folicAcidTabletsGivenField);
+                    } else {
+                        $folicAcidTabletsGivenField.val('');
+                        fieldHelper.disable($folicAcidTabletsGivenField);
+                    }
+                });
+
+                fieldHelper.removeReadonly($viralLoadField);
+                fieldHelper.enable($viralLoadField);
+                fieldHelper.disable($viralLoadStatusField);
+                if ($viralLoadResults == VIRAL_LOAD_NOT_DETECTED_CONCEPT_ID) { //if viral load quantitive is 'not detected' set a viral load count of 1
+                    $viralLoadField.val(1);
+                    $viralLoadField.change();
+                    fieldHelper.makeReadonly($viralLoadField);
+                    setValue('viral-load-status.value', '');
+                } else if($viralLoadResults == VIRAL_LOAD_DETECTED_CONCEPT_ID) { //if viral load quantitive is 'detected' allow for entry of viral load count
+                    if ($viralLoadField.val() == 1) {
+                        $viralLoadField.val("");
+                        $viralLoadField.change();
+                    }
+                    fieldHelper.enable($viralLoadStatusField);
+                } else { //if viral load quantitive is 'rejected' clear viral load count field
+                    $viralLoadField.val("");
+                    $viralLoadField.change();
+                    fieldHelper.disable($viralLoadField);
+                    setValue('viral-load-status.value', '');
+                }
+            };
+
+            var hivStatusChange = function (hivStatus) {
+                var $hivStatus = getValue('hiv-status.value');
+                var $hivInformationSection = jq(HIV_INFORMATION_SECTION);
+                var $arvsAdministeredToBabyField = jq(ARVS_ADMINISTERED_TO_BABY_FIELD).find('input');
+                if (hivStatus == HIV_POSITIVE_CONCEPT_ID) {
+                    fieldHelper.enable($hivInformationSection.find('input'));
+                    fieldHelper.enable($arvsAdministeredToBabyField);
+                    fieldHelper.enable($hivInformationSection.find('input,select'));
+                    fieldHelper.enable($arvsGivenField);
+                    fieldHelper.enable($preArtNumberField);
+                } else {
+                    $hivInformationSection.find('input[type="text"],select').each(function() {
+                        var isEmtctCodeField = jq(this).parents('span:first').length &gt; 0 &amp;&amp; jq(this).parents('span:first').attr('class').indexOf('emtct-code') != -1; //Check if current control is an eMTCT Code field
+                        if ( isEmtctCodeField ) {
+                            fieldHelper.enable(jq(this));
+                        } else {
+                            fieldHelper.disable(jq(this));
+                        }
+                    });
+                    fieldHelper.disable($arvsAdministeredToBabyField);
+                    fieldHelper.disable($arvsGivenField);
+                    fieldHelper.disable($preArtNumberField);
+                }
+
+                viralLoadResultsChange();
+            };
+
+            var calculateGestationAndEdd = function(lmpDate, encounterDate) {
+                if (lmpDate == '' || encounterDate == '') {
+                    return;
+                }
+
+                var pregnancyDurationValue = ((40*7)-1)*60*60*24*1000;
+                var lmpDateValue,
+                    encounterDateValue,
+                    gestationInDays,
+                    gestationInWeeks,
+                    eddValue,
+                    edd,
+                    eddFormatted;
+
+                lmpDate = new Date(lmpDate);
+                lmpDateValue = lmpDate.getTime();
+                encounterDate = new Date(encounterDate);
+                encounterDateValue = encounterDate.getTime();
+                gestationInDays = (encounterDateValue - lmpDateValue)/(24*60*60*1000);
+                gestationInWeeks = parseInt(gestationInDays / 7);
+
+                eddValue = lmpDateValue + pregnancyDurationValue;
+                edd = new Date(eddValue);
+                eddFormatted = $.datepicker.formatDate("yy-mm-dd", edd);
+
+                setValue('gestational-age.value', gestationInWeeks);
+                setValue('edd.value', eddFormatted);
+
+                $gestationAgeField.change();
+                $eddField.change();
             }
-        });
-
-        fieldHelper.removeReadonly($viralLoadField);
-        fieldHelper.enable($viralLoadField);
-        fieldHelper.disable($viralLoadStatusField);
-        if ($viralLoadResults == VIRAL_LOAD_NOT_DETECTED_CONCEPT_ID) { //if viral load quantitive is 'not detected' set a viral load count of 1
-        $viralLoadField.val(1);
-        $viralLoadField.change();
-        fieldHelper.makeReadonly($viralLoadField);
-        setValue('viral-load-status.value', '');
-        } else if($viralLoadResults == VIRAL_LOAD_DETECTED_CONCEPT_ID) { //if viral load quantitive is 'detected' allow for entry of viral load count
-        if ($viralLoadField.val() == 1) {
-        $viralLoadField.val("");
-        $viralLoadField.change();
-        }
-        fieldHelper.enable($viralLoadStatusField);
-        } else { //if viral load quantitive is 'rejected' clear viral load count field
-        $viralLoadField.val("");
-        $viralLoadField.change();
-        fieldHelper.disable($viralLoadField);
-        setValue('viral-load-status.value', '');
-        }
-        };
-
-        var hivStatusChange = function (hivStatus) {
-        var $hivStatus = getValue('hiv-status.value');
-        var $hivInformationSection = jq(HIV_INFORMATION_SECTION);
-        var $arvsAdministeredToBabyField = jq(ARVS_ADMINISTERED_TO_BABY_FIELD).find('input');
-        if (hivStatus == HIV_POSITIVE_CONCEPT_ID) {
-        fieldHelper.enable($hivInformationSection.find('input'));
-        fieldHelper.enable($arvsAdministeredToBabyField);
-        fieldHelper.enable($hivInformationSection.find('input,select'));
-        fieldHelper.enable($arvsGivenField);
-        fieldHelper.enable($preArtNumberField);
-        } else {
-        $hivInformationSection.find('input[type="text"],select').each(function() {
-        var isEmtctCodeField = jq(this).parents('span:first').length &gt; 0 &amp;&amp; jq(this).parents('span:first').attr('class').indexOf('emtct-code') != -1; //Check if current control is an eMTCT Code field
-        if ( isEmtctCodeField ) {
-        fieldHelper.enable(jq(this));
-        } else {
-        fieldHelper.disable(jq(this));
-        }
-        });
-        fieldHelper.disable($arvsAdministeredToBabyField);
-        fieldHelper.disable($arvsGivenField);
-        fieldHelper.disable($preArtNumberField);
-        }
-
-        viralLoadResultsChange();
-        };
-
-        var calculateGestationAndEdd = function(lmpDate, encounterDate) {
-        if (lmpDate == '' || encounterDate == '') {
-        return;
-        }
-
-        var pregnancyDurationValue = ((40*7)-1)*60*60*24*1000;
-        var lmpDateValue,
-        encounterDateValue,
-        gestationInDays,
-        gestationInWeeks,
-        eddValue,
-        edd,
-        eddFormatted;
-
-        lmpDate = new Date(lmpDate);
-        lmpDateValue = lmpDate.getTime();
-        encounterDate = new Date(encounterDate);
-        encounterDateValue = encounterDate.getTime();
-        gestationInDays = (encounterDateValue - lmpDateValue)/(24*60*60*1000);
-        gestationInWeeks = parseInt(gestationInDays / 7);
-
-        eddValue = lmpDateValue + pregnancyDurationValue;
-        edd = new Date(eddValue);
-        eddFormatted = $.datepicker.formatDate("yy-mm-dd", edd);
-
-        setValue('gestational-age.value', gestationInWeeks);
-        setValue('edd.value', eddFormatted);
-
-        $gestationAgeField.change();
-        $eddField.change();
-
-        fieldHelper.makeReadonly($gestationAgeField);
-        fieldHelper.makeReadonly($eddField);
-        }
-
-        var calculateLnmp = function (edd) {
-        if (edd == '') {
-        return;
-        }
-
-        var pregnancyDurationValue = ((40*7)-1)*60*60*24*1000;
-        var lmpDateValue,
-        lmpDate,
-        eddValue,
-        edd,
-        lmpDateFormatted;
-
-        edd = new Date(edd);
-        eddValue = edd.getTime();
-        lmpDateValue = eddValue - pregnancyDurationValue;
-        lmpDate = new Date(lmpDateValue);
-        lmpDateFormatted = $.datepicker.formatDate("yy-mm-dd", lmpDate);
-        setValue('lmp-date.value', lmpDateFormatted);
-        $lmpField.change();
-        }
-
-        var lmpChange =  function() {
-        var $lmpDate = getValue('lmp-date.value');
-
-        calculateGestationAndEdd($lmpDate, $encounterDate);
-        };
-
-        var eddChange = function() {
-        var $eddDate = getValue('edd.value');
-
-        calculateLnmp($eddDate);
-        }
-
-        var muacChange = function() {
-        var muacQuantitative = getValue('muac-quantitative.value');
-        var muacQualitative = getValue('muac-qualitative.value');
-        var $muacQuantitativeErrorField = getField('muac-quantitative.error');
-        var $muacQualitativeErrorField = getField('muac-qualitative.error');
-
-
-        if (muacQuantitative == '' || muacQualitative =='') {
-        return;
-        }
-
-        var valid = false;
-
-        var validRange = {};
-
-        <includeIf velocityTest="$patient.age &lt; 5">
-            validRange = [
-            {color: RED_CONCEPT_ID, lower:0, upper:11.4},
-            {color: YELLOW_CONCEPT_ID, lower:11.5, upper:12.4},
-            {color: GREEN_CONCEPT_ID, lower:12.5, upper:50}
-            ];
-        </includeIf>
-        <includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
-            validRange = [
-            {color: RED_CONCEPT_ID, lower:0, upper:13.4},
-            {color: YELLOW_CONCEPT_ID, lower:13.5, upper:14.4},
-            {color: GREEN_CONCEPT_ID, lower:14.5, upper:50}
-            ];
-        </includeIf>
-        <includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
-            validRange = [
-            {color: RED_CONCEPT_ID, lower:0, upper:16.5},
-            {color: YES_CONCEPT_ID, lower:16.5, upper:18.9},
-            {color: GREEN_CONCEPT_ID, lower:19, upper:100}
-            ];
-        </includeIf>
-
-        <includeIf velocityTest="$patient.age &gt;=18">
-            validRange = [
-            {color: RED_CONCEPT_ID, lower:0, upper:18.9},
-            {color: YELLOW_CONCEPT_ID, lower:19, upper:21.9},
-            {color: GREEN_CONCEPT_ID, lower:22, upper:100}
-            ];
-        </includeIf>
-
-        var selectedValidRange =  validRange.find(function(o) {
-        return o.color == muacQualitative;
-        });
-
-        if (muacQuantitative &gt;= selectedValidRange.lower &amp;&amp; muacQuantitative &lt;= selectedValidRange.upper) {
-        valid = true;
-        }
-
-        if (!valid) {
-        $muacQuantitativeErrorField.html('The MUAC Qualitative and Quatitative values do not match, please check').show();
-        $muacQualitativeErrorField.html('The MUAC Qualitative and Quatitative values do not match, please check').show();
-        $muacQuantitativeField.addClass('error');
-        $muacQualitativeField.addClass('error');
-        } else {
-        $muacQuantitativeErrorField.html('').hide();
-        $muacQualitativeErrorField.html('').hide();
-        $muacQuantitativeField.removeClass('error');
-        $muacQualitativeField.removeClass('error');
-        }
-        };
-
-        /**
-        * ANC 1 timing should only be selected if this is the first ANC visit otherwise it should be disabled
-        */
-        var firstAncVisit = false;
-        var ancVisitChange = function() {
-        var ancVisit = getValue('anc-visit.value');
-        if (ancVisit == 1) {
-        fieldHelper.enable($anc1TimingField);
-        firstAncVisit = true;
-        } else {
-        firstAncVisit = false;
-        fieldHelper.disable($anc1TimingField);
-        setAnc1Timing();
-        }
-        };
-
-        var selectedAnc1TimingValue = '';
-        var setAnc1Timing = function() {
-        if (!firstAncVisit) {
-        selectedAnc1TimingValue = NA_CONCEPT_ID;
-        $anc1TimingField.addClass('locked');
-        $anc1TimingField.change();
-        return;
-        }
-
-        var $gestationAge = getValue('gestational-age.value');
-
-        if ($gestationAge &lt; 14) {
-        setValue('anc1-timing.value', YES_CONCEPT_ID);
-        } else if ($gestationAge &gt;= 14) {
-        setValue('anc1-timing.value', NO_CONCEPT_ID);
-        } else {
-        setValue('anc1-timing.value', '');
-        }
-        selectedAnc1TimingValue = getValue('anc1-timing.value');
-        $anc1TimingField.change();
-        $anc1TimingField.addClass('locked');
-        }
-
-        /**
-        * This function checks if the HIV status field has been locked(Contains the 'locked' class )
-        */
-        var isAnc1TimingFieldLocked = function () {
-        return $anc1TimingField.is('.locked');
-        }
-
-        var anc1TimingChange = function() {
-        if (isAnc1TimingFieldLocked) {
-        setValue('anc1-timing.value', selectedAnc1TimingValue);
-        }
-        };
-
-        var $othersField = jq('span.has-comment input[type="checkbox"], span.has-comment select');
-
-        var toggleOtherSpecify = function() {
-        $othersField.each(function(){
-        var $specifyField = jq(this).siblings('input[type="text"]');
-        if (jq(this).attr('checked') == 'checked' || (jq(this).is('select') &amp;&amp; jq(this).val() == OTHER_CONCEPT_ID)) {
-        fieldHelper.removeReadonly($specifyField);
-        } else {
-        $specifyField.val('');
-        $specifyField.change();
-        fieldHelper.makeReadonly($specifyField);
-        }
-        });
-        };
-
-        var gravidaValidate = function() {
-        var gravidaField = getField('gravida.value');
-        var gravida = getValue('gravida.value');
-        var gravidaErrorField = getField('gravida.error');
-
-        if (gravida &lt; 0) {
-        gravidaField.addClass('error');
-        gravidaErrorField.html('Parity cannot be less than 0').show();
-        return false;
-        } else {
-        gravidaField.removeClass('error');
-        gravidaErrorField.html('').hide();
-        }
-
-        return true;
-        };
-
-        var parityValidate = function() {
-        var parityField = getField('parity.value');
-        var parity = getValue('parity.value');
-        var parityErrorField = getField('parity.error');
-
-        if (parity &lt; 0) {
-        parityField.addClass('error');
-        parityErrorField.html('Gravida cannot be less than 0').show();
-        return false;
-        } else {
-        parityField.removeClass('error');
-        parityErrorField.html('').hide();
-        }
-
-        return true;
-        };
-
-        var gestationalAgeValidate = function() {
-        var gestationalAge = getValue('gestational-age.value');
-        var gestationalAgeErrorField = getField('gestational-age.error');
-
-        if (gestationalAge &gt; 45) {
-        gestationalAgeField.addClass('error');
-        gestationalAgeErrorField.html('Gestational Age cannot be greater than 45').show();
-        return false;
-        } else {
-        gestationalAgeField.removeClass('error');
-        gestationalAgeErrorField.html('').hide();
-        }
-
-        return true
-        }
-
-        var eddLmpValidate = function () {
-        /**
-        * Validate that the visit date falls between the LNMP and EDD+10weeks, a visit is possible beyond EDD for mothers with postdatism
-        */
-        var edd = getValue('edd.value');
-        var lmp = getValue('lmp-date.value');
-        var encounterDate = $encounterDate;
-
-        var lmpTimeValue,
-        eddTimeValue,
-        encounterTimeValue;
-
-        edd = new Date(edd);
-        eddTimeValue = edd.getTime();
-
-        lmp = new Date(lmp);
-        lmpTimeValue = lmp.getTime();
-
-        encounterDate = new Date(encounterDate);
-        encounterTimeValue = encounterDate.getTime();
-
-        var adjustedEDD = eddTimeValue + ((10*7)-1)*60*60*24*1000;
-
-        var $eddErrorField = getField('edd.error');
-
-        if (encounterTimeValue &gt;=lmpTimeValue &amp;&amp; encounterTimeValue&lt;=adjustedEDD) {
-        $eddErrorField.html('').hide();
-        $eddField.removeClass('error');
-        return true;
-        }  else {
-        $eddErrorField.html('The visit date must fall between the L.N.M.P and Expected Date of Delivery+10weeks').show();
-        $eddField.addClass('error');
-        return false;
-        }
-        };
-
-        var isOtherSelectedAndSpecified = function() {
-        var valid = true;
-        $othersField.each(function(){
-        var $specifyField = jq(this).siblings('input[type=text]');
-        var $errorField = jq(this).siblings('span.error');
-        if ((jq(this).attr('checked') == 'checked' || (jq(this).is('select') &amp;&amp; jq(this).val() == OTHER_CONCEPT_ID)) &amp;&amp;  $specifyField.val() == '') {
-        $errorField.html('Please specify').show();
-        $specifyField.addClass('error');
-        valid = false;
-        } else {
-        $errorField.html('').hide();
-        $specifyField.removeClass('error');
-        }
-
-        });
-
-        return valid;
-        };
-
-        var hideOtherEmtctCodesForKnownHivPositiveStatus = function() {
-        var emtctCodesToHide = [99313,99734,99314,99737,99739,164962];
-        var emtctControlsToHide =  $emtctCodeWomanField.children('option').filter(function() {
-        return emtctCodesToHide.indexOf(parseInt(this.value)) &gt; -1;
-        });
-        $emtctCodeWomanField.children('option').attr('disabled', false);
-        emtctControlsToHide.attr('disabled', true);
-        <ifMode mode="ENTER">
-            setValue('emtct-code-woman.value', 99738);
-        </ifMode>
-        };
-
-        var showOtherEmtctCodesForKnownHivNegativeStatus = function() {
-        var emtctCodesToHide = [];
-        var emtctControlsToHide =  $emtctCodeWomanField.children('option').filter(function() {
-        return emtctCodesToHide.indexOf(parseInt(this.value)) &gt; -1;
-        });
-        $emtctCodeWomanField.children('option').attr('disabled', false);
-        emtctControlsToHide.attr('disabled', true);
-        <ifMode mode="ENTER">
-            setValue('emtct-code-woman.value', '');
-        </ifMode>
-        };
-
-        var getHivStatus = function () {
-        /**
-        * Make HIV Status field not changeable only if the encounter date of the ART summary
-        * page encounter (as we shall be entering retrospective data) is before the date of
-        * the visit for which data is being entered
-        */
-        var visitDate = $encounterDateField.val();
-        var artSummaryEncounterDate = <lookup complexExpression="#set ($artSummaryEncounterDate = $fn.latestEncounter('8d5b27bc-c2cc-11de-8d13-0010c6dffd0f').encounterDatetime)
-																		#if ($artSummaryEncounterDate) '$artSummaryEncounterDate';
-																		#else '';
-																		#end"/>
-        if (artSummaryEncounterDate !='' &amp;&amp; artSummaryEncounterDate &lt; visitDate) {
-        hivStatusChange(HIV_POSITIVE_CONCEPT_ID);
-        hideOtherEmtctCodesForKnownHivPositiveStatus();
-        } else {
-        hivStatusChange(HIV_NEGATIVE_CONCEPT_ID);
-        showOtherEmtctCodesForKnownHivNegativeStatus();
-        }
-        };
-
-        $viralLoadResultsField.change(viralLoadResultsChange);
-        //$lmpField.change(lmpChange);
-        $eddField.change(eddChange);
-        $gestationAgeField.change(setAnc1Timing);
-        $othersField.change(toggleOtherSpecify);
-        $encounterDateField.change(getHivStatus);
-        $muacQuantitativeField.change(muacChange);
-        $muacQualitativeField.change(muacChange);
-        $ancVisitField.change(ancVisitChange);
-        $anc1TimingField.change(anc1TimingChange);
-        $emtctCodeWomanField.change(function() {
-        var emtctCode = getValue('emtct-code-woman.value');
-        if (emtctCode == TRR_CONCEPT_ID || emtctCode == TRRK_CONCEPT_ID || emtctCode == TRRP_CONCEPT_ID || emtctCode == TRR_TICK_CONCEPT_ID) {
-        hivStatusChange(HIV_POSITIVE_CONCEPT_ID);
-        } else {
-        hivStatusChange(HIV_NEGATIVE_CONCEPT_ID);
-        }
-        });
-
-        getHivStatus();
-        viralLoadResultsChange();
-        ancVisitChange();
-        toggleOtherSpecify();
-
-        beforeSubmit.push(function() {
-        var encounterDate = new Date(changeFieldDateToJavascriptDate(getValue('encounterDate.value')));
-        var returnDate = changeFieldDateToJavascriptDate(getValue('returndate.value'));
-        var valid = true;
-        var $errorMessageSpan = jq('span#error-message');
-
-        if (!gravidaValidate()) {
-        valid = false;
-        }
-
-        if (!parityValidate()) {
-        valid = false;
-        }
-
-        if (!eddLmpValidate()) {
-        valid = false;
-        }
-
-        if (!isOtherSelectedAndSpecified()) {
-        valid = false;
-        }
-
-        if (encounterDate &gt;= returnDate) {
-        getField('returndate.error').html('The next appointment date must be after the date of this visit ' +
-        encounterDate.toDateString()).show();
-        valid = false;
-        }
-
-        if (valid) {
-        $errorMessageSpan.hide();
-        } else {
-        $errorMessageSpan.show();
-        jq().toastmessage('showErrorToast', "Form Validation failed. Please check for errors");
-        }
-
-        return valid;
-
-        });
 
+            var calculateLnmp = function (edd) {
+                if (edd == '') {
+                    return;
+                }
+                var pregnancyDurationValue = ((40*7)-1)*60*60*24*1000;
+                var lmpDateValue,
+                    lmpDate,
+                    eddValue,
+                    edd,
+                    lmpDateFormatted;
+
+                edd = new Date(edd);
+                eddValue = edd.getTime();
+                lmpDateValue = eddValue - pregnancyDurationValue;
+                lmpDate = new Date(lmpDateValue);
+                lmpDateFormatted = $.datepicker.formatDate("yy-mm-dd",lmpDate);
+                setValue('lmp-date.value', lmpDateFormatted);
+            }
+
+            var lmpChange =  function() {
+                var $lmpDate = getValue('lmp-date.value');
+
+                calculateGestationAndEdd($lmpDate, $encounterDate);
+            };
+
+            var eddChange = function() {
+                var $eddDate = getValue('edd.value');
+
+                calculateLnmp($eddDate);
+            }
+
+            var muacChange = function() {
+                var muacQuantitative = getValue('muac-quantitative.value');
+                var muacQualitative = getValue('muac-qualitative.value');
+                var $muacQuantitativeErrorField = getField('muac-quantitative.error');
+                var $muacQualitativeErrorField = getField('muac-qualitative.error');
+
+
+                if (muacQuantitative == '' || muacQualitative =='') {
+                    return;
+                }
+
+                var valid = false;
+
+                var validRange = {};
+
+            <includeIf velocityTest="$patient.age &lt; 5">
+                validRange = [
+                    {color: RED_CONCEPT_ID, lower:0, upper:11.4},
+                    {color: YELLOW_CONCEPT_ID, lower:11.5, upper:12.4},
+                    {color: GREEN_CONCEPT_ID, lower:12.5, upper:50}
+                ];
+            </includeIf>
+                <includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
+                validRange = [
+                    {color: RED_CONCEPT_ID, lower:0, upper:13.4},
+                    {color: YELLOW_CONCEPT_ID, lower:13.5, upper:14.4},
+                    {color: GREEN_CONCEPT_ID, lower:14.5, upper:50}
+                ];
+            </includeIf>
+                <includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
+                validRange = [
+                    {color: RED_CONCEPT_ID, lower:0, upper:16.5},
+                    {color: YES_CONCEPT_ID, lower:16.5, upper:18.9},
+                    {color: GREEN_CONCEPT_ID, lower:19, upper:100}
+                ];
+            </includeIf>
+
+                <includeIf velocityTest="$patient.age &gt;=18">
+                validRange = [
+                    {color: RED_CONCEPT_ID, lower:0, upper:18.9},
+                    {color: YELLOW_CONCEPT_ID, lower:19, upper:21.9},
+                    {color: GREEN_CONCEPT_ID, lower:22, upper:100}
+                ];
+            </includeIf>
+
+                var selectedValidRange =  validRange.find(function(o) {
+                    return o.color == muacQualitative;
+                });
+
+                if (muacQuantitative &gt;= selectedValidRange.lower &amp;&amp; muacQuantitative &lt;= selectedValidRange.upper) {
+                    valid = true;
+                }
+
+                if (!valid) {
+                    $muacQuantitativeErrorField.html('The MUAC Qualitative and Quatitative values do not match, please check').show();
+                    $muacQualitativeErrorField.html('The MUAC Qualitative and Quatitative values do not match, please check').show();
+                    $muacQuantitativeField.addClass('error');
+                    $muacQualitativeField.addClass('error');
+                } else {
+                    $muacQuantitativeErrorField.html('').hide();
+                    $muacQualitativeErrorField.html('').hide();
+                    $muacQuantitativeField.removeClass('error');
+                    $muacQualitativeField.removeClass('error');
+                }
+            };
+
+            /**
+             * ANC 1 timing should only be selected if this is the first ANC visit otherwise it should be disabled
+             */
+            var firstAncVisit = false;
+            var ancVisitChange = function() {
+                var ancVisit = getValue('anc-visit.value');
+                if (ancVisit == 1) {
+                    fieldHelper.enable($anc1TimingField);
+                    firstAncVisit = true;
+                } else {
+                    firstAncVisit = false;
+                    fieldHelper.disable($anc1TimingField);
+                    setAnc1Timing();
+                }
+            };
+
+            var selectedAnc1TimingValue = '';
+            var setAnc1Timing = function() {
+                if (!firstAncVisit) {
+                    selectedAnc1TimingValue = NA_CONCEPT_ID;
+                    $anc1TimingField.addClass('locked');
+                    $anc1TimingField.change();
+                    return;
+                }
+
+                var $gestationAge = getValue('gestational-age.value');
+
+                if ($gestationAge &lt; 14) {
+                    setValue('anc1-timing.value', YES_CONCEPT_ID);
+                } else if ($gestationAge &gt;= 14) {
+                    setValue('anc1-timing.value', NO_CONCEPT_ID);
+                } else {
+                    setValue('anc1-timing.value', '');
+                }
+                selectedAnc1TimingValue = getValue('anc1-timing.value');
+                $anc1TimingField.change();
+                $anc1TimingField.addClass('locked');
+            }
+
+            /**
+             * This function checks if the HIV status field has been locked(Contains the 'locked' class )
+             */
+            var isAnc1TimingFieldLocked = function () {
+                return $anc1TimingField.is('.locked');
+            }
+
+            var anc1TimingChange = function() {
+                if (isAnc1TimingFieldLocked) {
+                    setValue('anc1-timing.value', selectedAnc1TimingValue);
+                }
+            };
+
+            var $othersField = jq('span.has-comment input[type="checkbox"], span.has-comment select');
+
+            var toggleOtherSpecify = function() {
+                $othersField.each(function(){
+                    var $specifyField = jq(this).siblings('input[type="text"]');
+                    if (jq(this).attr('checked') == 'checked' || (jq(this).is('select') &amp;&amp; jq(this).val() == OTHER_CONCEPT_ID)) {
+                        fieldHelper.removeReadonly($specifyField);
+                    } else {
+                        $specifyField.val('');
+                        $specifyField.change();
+                        fieldHelper.makeReadonly($specifyField);
+                    }
+                });
+            };
+
+            var gravidaValidate = function() {
+                var gravidaField = getField('gravida.value');
+                var gravida = getValue('gravida.value');
+                var gravidaErrorField = getField('gravida.error');
+
+                if (gravida &lt; 0) {
+                    gravidaField.addClass('error');
+                    gravidaErrorField.html('Parity cannot be less than 0').show();
+                    return false;
+                } else {
+                    gravidaField.removeClass('error');
+                    gravidaErrorField.html('').hide();
+                }
+
+                return true;
+            };
+
+            var parityValidate = function() {
+                var parityField = getField('parity.value');
+                var parity = getValue('parity.value');
+                var parityErrorField = getField('parity.error');
+
+                if (parity &lt; 0) {
+                    parityField.addClass('error');
+                    parityErrorField.html('Gravida cannot be less than 0').show();
+                    return false;
+                } else {
+                    parityField.removeClass('error');
+                    parityErrorField.html('').hide();
+                }
+
+                return true;
+            };
+
+            var gestationalAgeValidate = function() {
+                var gestationalAge = getValue('gestational-age.value');
+                var gestationalAgeErrorField = getField('gestational-age.error');
+
+                if (gestationalAge &gt; 45) {
+                    gestationalAgeField.addClass('error');
+                    gestationalAgeErrorField.html('Gestational Age cannot be greater than 45').show();
+                    return false;
+                } else {
+                    gestationalAgeField.removeClass('error');
+                    gestationalAgeErrorField.html('').hide();
+                }
+
+                return true
+            }
+
+            var eddLmpValidate = function () {
+                /**
+                 * Validate that the visit date falls between the LNMP and EDD+10weeks, a visit is possible beyond EDD for mothers with postdatism
+                 */
+                var edd = getValue('edd.value');
+                var lmp = getValue('lmp-date.value');
+                var encounterDate = $encounterDate;
+
+                var lmpTimeValue,
+                    eddTimeValue,
+                    encounterTimeValue;
+
+                edd = new Date(edd);
+                eddTimeValue = edd.getTime();
+
+                lmp = new Date(lmp);
+                lmpTimeValue = lmp.getTime();
+
+                encounterDate = new Date(encounterDate);
+                encounterTimeValue = encounterDate.getTime();
+
+                var adjustedEDD = eddTimeValue + ((10*7)-1)*60*60*24*1000;
+
+                var $eddErrorField = getField('edd.error');
+
+                if (encounterTimeValue &gt;=lmpTimeValue &amp;&amp; encounterTimeValue&lt;=adjustedEDD) {
+                    $eddErrorField.html('').hide();
+                    $eddField.removeClass('error');
+                    return true;
+                }  else {
+                    $eddErrorField.html('The visit date must fall between the L.N.M.P and Expected Date of Delivery+10weeks').show();
+                    $eddField.addClass('error');
+                    return false;
+                }
+            };
+
+            var isOtherSelectedAndSpecified = function() {
+                var valid = true;
+                $othersField.each(function(){
+                    var $specifyField = jq(this).siblings('input[type=text]');
+                    var $errorField = jq(this).siblings('span.error');
+                    if ((jq(this).attr('checked') == 'checked' || (jq(this).is('select') &amp;&amp; jq(this).val() == OTHER_CONCEPT_ID)) &amp;&amp;  $specifyField.val() == '') {
+                        $errorField.html('Please specify').show();
+                        $specifyField.addClass('error');
+                        valid = false;
+                    } else {
+                        $errorField.html('').hide();
+                        $specifyField.removeClass('error');
+                    }
+
+                });
+
+                return valid;
+            };
+
+            var hideOtherEmtctCodesForKnownHivPositiveStatus = function() {
+                var emtctCodesToHide = [99313,99734,99314,99737,99739,164962];
+                var emtctControlsToHide =  $emtctCodeWomanField.children('option').filter(function() {
+                    return emtctCodesToHide.indexOf(parseInt(this.value)) &gt; -1;
+                });
+                $emtctCodeWomanField.children('option').attr('disabled', false);
+                emtctControlsToHide.attr('disabled', true);
+            <ifMode mode="ENTER">
+                    setValue('emtct-code-woman.value', 99738);
+            </ifMode>
+            };
+
+            var showOtherEmtctCodesForKnownHivNegativeStatus = function() {
+                var emtctCodesToHide = [];
+                var emtctControlsToHide =  $emtctCodeWomanField.children('option').filter(function() {
+                    return emtctCodesToHide.indexOf(parseInt(this.value)) &gt; -1;
+                });
+                $emtctCodeWomanField.children('option').attr('disabled', false);
+                emtctControlsToHide.attr('disabled', true);
+            <ifMode mode="ENTER">
+                    setValue('emtct-code-woman.value', '');
+            </ifMode>
+            };
+
+            var getHivStatus = function () {
+                /**
+                 * Make HIV Status field not changeable only if the encounter date of the ART summary
+                 * page encounter (as we shall be entering retrospective data) is before the date of
+                 * the visit for which data is being entered
+                 */
+                var visitDate = $encounterDateField.val();
+                var artSummaryEncounterDate = <lookup complexExpression="#set ($artSummaryEncounterDate = $fn.latestEncounter('8d5b27bc-c2cc-11de-8d13-0010c6dffd0f').encounterDatetime)
+            #if ($artSummaryEncounterDate) '$artSummaryEncounterDate';
+            #else '';
+            #end"/>
+                if (artSummaryEncounterDate !='' &amp;&amp; artSummaryEncounterDate &lt; visitDate) {
+                    hivStatusChange(HIV_POSITIVE_CONCEPT_ID);
+                    hideOtherEmtctCodesForKnownHivPositiveStatus();
+                } else {
+                    hivStatusChange(HIV_NEGATIVE_CONCEPT_ID);
+                    showOtherEmtctCodesForKnownHivNegativeStatus();
+                }
+            };
+
+            $viralLoadResultsField.change(viralLoadResultsChange);
+            //$lmpField.change(lmpChange);
+            $eddField.change(eddChange);
+            $gestationAgeField.change(setAnc1Timing);
+            $othersField.change(toggleOtherSpecify);
+            $encounterDateField.change(getHivStatus);
+            $muacQuantitativeField.change(muacChange);
+            $muacQualitativeField.change(muacChange);
+            $ancVisitField.change(ancVisitChange);
+            $anc1TimingField.change(anc1TimingChange);
+            $emtctCodeWomanField.change(function() {
+                var emtctCode = getValue('emtct-code-woman.value');
+                if (emtctCode == TRR_CONCEPT_ID || emtctCode == TRRK_CONCEPT_ID || emtctCode == TRRP_CONCEPT_ID || emtctCode == TRR_TICK_CONCEPT_ID) {
+                    hivStatusChange(HIV_POSITIVE_CONCEPT_ID);
+                } else {
+                    hivStatusChange(HIV_NEGATIVE_CONCEPT_ID);
+                }
+            });
+
+            getHivStatus();
+            viralLoadResultsChange();
+            ancVisitChange();
+            toggleOtherSpecify();
+
+            beforeSubmit.push(function() {
+                var encounterDate = new Date(changeFieldDateToJavascriptDate(getValue('encounterDate.value')));
+                var returnDate = changeFieldDateToJavascriptDate(getValue('returndate.value'));
+                var valid = true;
+                var $errorMessageSpan = jq('span#error-message');
+
+                if (!gravidaValidate()) {
+                    valid = false;
+                }
+
+                if (!parityValidate()) {
+                    valid = false;
+                }
+
+                if (!eddLmpValidate()) {
+                    valid = false;
+                }
+
+                if (!isOtherSelectedAndSpecified()) {
+                    valid = false;
+                }
+
+                if (encounterDate &gt;= returnDate) {
+                    getField('returndate.error').html('The next appointment date must be after the date of this visit ' +
+                        encounterDate.toDateString()).show();
+                    valid = false;
+                }
+
+                if (valid) {
+                    $errorMessageSpan.hide();
+                } else {
+                    $errorMessageSpan.show();
+                    jq().toastmessage('showErrorToast', "Form Validation failed. Please check for errors");
+                }
+
+                return valid;
+
+            });
+
+            jq('#edd').change(function(){
+                eddChange();});
+
+            jq('#lmp-date').change(function(){
+                lmpChange();});
         });
 
     </script>
