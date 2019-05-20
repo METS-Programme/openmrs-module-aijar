@@ -157,5 +157,17 @@
         <description>A Coded concept with all DSDM Concept</description>
         <defaultValue>165143</defaultValue>
     </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.hts.recency</property>
+        <description>This feature flag turns on/off the recency question</description>
+        <defaultValue>false</defaultValue>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.patientflags.disabledFlags</property>
+        <description>Separate Names of flags you want to disable with , example Transfered Out Patient,Un-supressed Viral Load</description>
+        <defaultValue></defaultValue>
+    </globalProperty>
 </module>
 
