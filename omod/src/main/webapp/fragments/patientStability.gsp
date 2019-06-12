@@ -19,7 +19,7 @@ img {
 
 
         <div id="current_regimen_start_date">
-            <% if (currentRegimenObs?.valueCoded?.conceptId == baselineRegimenConceptId) { %>
+            <% if (currentRegimenObs?.concept?.conceptId == baselineRegimenConceptId) { %>
             ${artStartDate ?: ""}
             <% } else { %>
             ${currentRegimenObs?.encounter?.encounterDatetime ?: ""}

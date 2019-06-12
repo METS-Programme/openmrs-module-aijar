@@ -83,7 +83,7 @@ public class PatientStabilityFragmentController {
             //Check if Obs conceptId is the same as the art encounter regimen concept
             // Check if regimen is a DTG regimen
             if (checkIfDTG(obs)) {
-                query = "SELECT obs_id FROM obs where  obs.obs_datetime <= DATE('" + encounterVisit.getStartDatetime() + "') AND obs.person_id='" + patient.getPatientId() + "' AND concept_id= 90315 AND obs.voided = false ORDER BY  obs.encounter_id ASC";
+                query = "SELECT obs_id FROM obs where  obs.obs_datetime <= DATE('" + encounterVisit.getStartDatetime() + "') AND obs.person_id='" + patient.getPatientId() + "' AND concept_id= 90315 AND obs.voided = false ORDER BY  obs.obs_datetime DESC";
             } else {
                 query = "SELECT obs_id FROM obs where  obs.obs_datetime <= DATE('" + getDateBefore(encounterVisit.getStartDatetime(), monthOffSet, 0) + "') AND obs.person_id='" + patient.getPatientId() + "' AND obs.value_coded = " + obs.getValueCoded().getConceptId() + " AND obs.voided = false ORDER BY  obs.encounter_id ASC";
             }
