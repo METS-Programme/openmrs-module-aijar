@@ -102,4 +102,20 @@ public class EncounterTypes {
             return "dc551efc-024d-4c40-aeb8-2147c4033778";
         }
     };
+
+    public static EncounterTypeDescriptor VL_LAB_REQUEST = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Viral Load Lab Request";
+        }
+
+        @Override
+        public String description() {
+            return "Lab Request for Viral Load Analysis";
+        }
+
+        public String uuid() {
+            return "077c43ee-9745-11e9-bc42-526af7764f64";
+        }
+    };
 }

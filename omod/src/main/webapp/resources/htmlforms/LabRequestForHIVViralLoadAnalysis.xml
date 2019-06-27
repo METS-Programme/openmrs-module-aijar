@@ -1,0 +1,239 @@
+<htmlform formName="Lab-Request-For-HIV-ViralLoad-Analysis"
+          formDescription="The Form is used to request a lab request for viral load from reference labs"
+          formEncounterType="077c43ee-9745-11e9-bc42-526af7764f64"
+          formUuid="51f16fd0-9745-11e9-ba23-526af7764f64"
+          formVersion="1.0"
+          formAddMetadata="yes"
+          formUILocation="patientDashboard.visitActions"
+          formOrder="1"
+          formIcon="icon-medkit"
+          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='86863db4-6101-4ecf-9a86-5e716d6504e4'"
+          formDisplayStyle="Standard"
+          formLabel="Lab Request For HIV-ViralLoad Analysis">
+    <script type="text/javascript">
+
+    </script>
+
+    <style type="text/css">
+        .error {
+        color: red;
+        }
+
+        table td {
+        background: #fbfaee;
+        color: #404040;
+        }
+
+        form select, .form select {
+        min-width: 0px;
+        }
+
+        form input, form select, form textarea, form ul.select, .form input, .form select, .form textarea, .form
+        ul.select {
+        background-color: #FBFBFB;
+        border: 1px solid #404040;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        padding: 10px;
+        min-width: 50%;
+        }
+
+        .row {
+        width: 100%;
+        float: left;
+        display: inline-flex;
+        clear: both;
+        }
+
+        .row .row-col2 {
+        float: left;
+        width: 50%;
+        }
+
+        table th, table td {
+        border: 1px solid #BDBDBD;
+        text-align: left;
+        vertical-align: top;
+        }
+
+        .div-col3 {
+        display: table-cell;
+        margin-right: auto;
+        margin-left: auto;
+        width: 15%;
+        }
+        .div-col2 {
+        display: table-cell;
+        margin-right: auto;
+        margin-left: auto;
+        width: 10%;
+        }
+    </style>
+
+    <!-- Beging of HTML Form -->
+    <div class="ai-page-frame">
+        <!--End of Lookup section-->
+
+        <div class="headers" style="text-align: center;">
+            <h3>Lab Request For HIV ViralLoad Analysis</h3>
+        </div>
+        <span style="display: none;">
+            <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
+                               order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
+        </span>
+        <section sectionTag="section" headerTag="h1">
+            <fieldset>
+                <legend>Sample Details</legend>
+                <div class="div-table">
+                    <div class="div-row">
+                        <div class="div-col2">
+                            <label>Date of Sample Collection</label>
+                            <label>Last Viral Load Date?</label>
+                            <obs id="163023" conceptId="163023" allowFutureDates="false"/>
+                        </div>
+                        <div class="div-col2">
+                            <label>Sample Type</label>
+                            <obs id="165153" conceptId="165153" answerConceptIds="165146,1002,1000"
+                                 answerLabels="DBS,Plasma,Whole Blood"/>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+        </section>
+
+        <section sectionTag="section" headerTag="h1">
+            <fieldset>
+                <legend>Treatment Information</legend>
+                <div class="div-table">
+                    <div class="div-row">
+                        <div class="div-col3">
+                            <label>How Long Has the patient Been on Treatment</label>
+                            <obs id="99024" conceptId="99024"/>
+                        </div>
+                        <div class="div-col3">
+                            <label>Date of Treatment Initiation</label>
+                            <obs id="99161" conceptId="99161"/>
+                        </div>
+                        <div class="div-col3">
+                            <label>Current Regimen</label>
+                            <obs id="90315" conceptId="90315"
+                                 answerConceptIds="99015,99016,99005,99006,164979,99039,99040,164977,99041,99042,99007,99008,99044,99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99884,99885,164978,99888,163017,99887,90002"
+                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,AZT-3TC-DTG,TDF-3TC-NVP,TDF-3TC-EFV,TDF-3TC-DTG,TDF-FTC-NVP,TDF-FTC-EFV,ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,AZT-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,AZT-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-DTG,ABC-3TC-ATV/r,ABC-3TC-LPV/r,TDF-3TC-ATV/r,Other"/>
+                        </div>
+                    </div>
+                    <div class="div-row">
+                        <div class="div-col3">
+                            <label>Indication for treatment Initiation</label>
+                            <obs conceptId="90200" answerConceptIds="90012,90016,99593,90019,90013,90015,90018,90002"
+                                 answerLabels="eMTCT,TB,YCC,Outreach,Out Patient,STI,Inpatient,Other" required="true"/>
+                        </div>
+                        <div class="div-col3">
+                            <label>Which treatment line is patient on</label>
+                            <obs id="165147" conceptId="165147" answerConceptIds="90271,90305,162916"
+                                 answerLabels="First Line,Second Line, Third Line"/>
+                        </div>
+                        <div class="div-col3">
+                            <label>How was failure Assessed</label>
+                            <obs id="90246" conceptId="90246" answerConceptIds="90048,90047,90046"
+                                 answerLabels="Virological,Immunological,Clinical"/>
+                        </div>
+                    </div>
+
+                    <div class="div-row">
+                        <div class="div-col3">
+                            <label>Is Patient Pregnant?</label>
+                            <obs conceptId="90041" style="checkbox" answerConceptIds="1065,1066" answerLabels="Yes,No"/>
+                        </div>
+                        <div class="div-col3">
+                            <label>Is Patient Breast feeding?</label>
+                            <obs conceptId="99601" style="checkbox"/>
+                        </div>
+                        <div class="div-col3">
+                            <label>Patient has TB?</label>
+                            <obs conceptId="90216" labelText="Tb Status" answerConceptIds="90079,90073,90078,90071"
+                                 answerLabels="1. No signs,2. Suspect,3. Diagnosed with Tb,4. Tb Rx"/>
+                        </div>
+                    </div>
+                    <div class="div-row">
+                        <div class="div-col3">
+                            <label>ARV Adherence?</label>
+                            <obs conceptId="90220" answerConceptIds="90156,90157,90158"
+                                 answerLabels=" Good, Fair, Poor"/>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </section>
+
+        <section sectionTag="section" headerTag="h1">
+            <fieldset>
+                <legend>Indication for Viral Load Testing</legend>
+                <div class="div-table">
+                    <obsgroup groupingConceptId="165152">
+                        <div class="div-row">
+                            <div class="div-col3">
+                                <label>Request Type?</label>
+                                <obs conceptId="165148" style="checkbox"/>
+                            </div>
+                            <div class="div-col3">
+                                <label>Last Viral Load Date?</label>
+                                <obs id="163023" conceptId="163023" allowFutureDates="false"/>
+                            </div>
+                            <div class="div-col3">
+                                <label>Copies/ml</label>
+                                <obs id="856_2" conceptId="856"/>
+                            </div>
+                        </div>
+                        <div class="div-row">
+                            <div class="div-col4">
+                                <label>Sample Type?</label>
+                                <obs id="165153" conceptId="165153" answerConceptIds="165146,1002,1000"
+                                     answerLabels="DBS,Plasma,Whole Blood"/>
+                            </div>
+                        </div>
+                    </obsgroup>
+                </div>
+            </fieldset>
+        </section>
+
+        <section sectionTag="section" headerTag="h1">
+            <fieldset>
+                <legend>Author's Details</legend>
+                <div class="div-table">
+                    <obsgroup groupingConceptId="165152">
+                        <div class="div-row">
+                            <div class="div-col3">
+                                <label>Requesting Clinician</label>
+                                <encounterProviderAndRole encounterRole="240b26f9-dd88-4172-823d-4a8bfeb7841f"
+                                                          required="required"/>
+                            </div>
+                            <div class="div-col3">
+                                <label>Phone No.</label>
+                                <obs id="159635" conceptId="159635"/>
+                            </div>
+                            <div class="div-col3">
+                                <label>Request Date</label>
+                                <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
+                            </div>
+                        </div>
+                        <div class="div-row">
+                            <div class="div-col3">
+                                <label>Requesting Clinician</label>
+                                <encounterProviderAndRole encounterRole="9f379e86-9830-11e9-bc42-526af7764f64"
+                                                          required="required"/>
+                            </div>
+                            <div class="div-col3">
+                                <label>Phone No.</label>
+                                <obs id="159635" conceptId="159635"/>
+                            </div>
+                        </div>
+                    </obsgroup>
+                </div>
+            </fieldset>
+        </section>
+        <section>
+            <submit/>
+        </section>
+    </div>
+</htmlform>

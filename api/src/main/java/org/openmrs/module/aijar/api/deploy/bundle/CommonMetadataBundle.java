@@ -77,5 +77,6 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
 
         // Install Encounter Role
         install(encounterRole(EncounterRoles.ASSISTANT_CIRCUMCISER_NAME,EncounterRoles.ASSISTANT_CIRCUMCISER_DESCRIPTION,EncounterRoles.ASSISTANT_CIRCUMCISER_UUID));
+        install(encounterRole(EncounterRoles.LAB_TECHNICIAN_NAME,EncounterRoles.LAB_TECHNICIAN_DESCRIPTION,EncounterRoles.LAB_TECHNICIAN_UUID));
     }
 }
