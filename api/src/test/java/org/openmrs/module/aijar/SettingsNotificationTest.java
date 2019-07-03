@@ -9,6 +9,8 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.aijar.api.AijarService;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 
+import java.util.Properties;
+
 import static org.openmrs.module.aijar.AijarConstants.*;
 
 public class SettingsNotificationTest extends BaseModuleContextSensitiveTest {

@@ -103,7 +103,7 @@ public class EncounterTypes {
         }
     };
 
-    public static EncounterTypeDescriptor VL_LAB_REQUEST = new EncounterTypeDescriptor() {
+    public static EncounterTypeDescriptor VIRAL_LOAD_LAB_REQUEST = new EncounterTypeDescriptor() {
         @Override
         public String name() {
             return "Viral Load Lab Request";
