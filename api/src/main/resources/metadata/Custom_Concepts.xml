@@ -773,6 +773,28 @@
     <concept  concept_id="165116"  retired="false"  datatype_id="6"  class_id="11"  is_set="false"  creator="1"  date_created="2017-12-04 16:35:12"  version="NULL"   uuid="5d740896-2998-4f0a-8f37-4e10daeb859b"/>
     <concept  concept_id="165117"  retired="false"  datatype_id="6"  class_id="11"  is_set="false"  creator="1"  date_created="2017-12-04 16:36:07"  version="NULL"   uuid="97db7855-2727-413b-ab37-96b0bd71286e"/>
 
+
+    <!--HTS Concepts-->
+    <concept  concept_id="165170"  retired="0" datatype_id="8"  class_id="5"  is_set="0"  creator="1"  date_created="2019-07-03 16:37:10"  version="1.0"  changed_by="1"  date_changed="2019-07-03 16:58:48"  uuid="34c917f0-356b-40d0-b3d1-cf609517b5fc"/>
+    <concept  concept_id="165169"  retired="0" datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2019-07-03 16:31:42"  version="1.0"  changed_by="1"  date_changed="2019-07-03 16:31:42"  uuid="927563c5-cb91-4536-b23c-563a72d3f829"/>
+    <concept  concept_id="165168"  retired="0" datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2019-07-03 16:19:03"  version="1.0"  changed_by="1"  date_changed="2019-07-03 16:19:03"  uuid="2afe1128-c3f6-4b35-b119-d17b9b9958ed"/>
+    <concept  concept_id="165167"  retired="0" datatype_id="3"  class_id="5"  is_set="0"  creator="1"  date_created="2019-07-03 16:15:11"  version="1.0"  changed_by="1"  date_changed="2019-07-03 16:15:11"  uuid="8c628b5b-0045-40dc-a480-7e1518ffb256"/>
+    <concept  concept_id="165166"  retired="0" datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2019-07-03 16:11:59"  version="1.0"  changed_by="1"  date_changed="2019-07-03 16:11:59"  uuid="6e2317a8-4865-4049-99b7-2680048ea65b"/>
+    <concept  concept_id="165165"  retired="0" datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2019-07-03 16:11:14"  version="1.0"  changed_by="1"  date_changed="2019-07-03 16:11:14"  uuid="4d9159a2-37a6-4115-afe3-3f70050c4df3"/>
+    <concept  concept_id="165164"  retired="0" datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-07-03 16:05:42"  version="1.0"  changed_by="1"  date_changed="2019-07-03 16:05:42"  uuid="3805ab43-b47d-4f61-aab7-7d4807d49353"/>
+    <concept  concept_id="165163"  retired="0" datatype_id="2"  class_id="7"  is_set="0"  creator="1"  date_created="2019-07-03 16:01:29"  version="1.0"  changed_by="1"  date_changed="2019-07-03 16:03:59"  uuid="a75ab6b0-dbe7-4037-93aa-f1dfd3976f10"/>
+    <concept  concept_id="165162"  retired="0" datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-07-03 15:59:24"  version="1.0"  changed_by="1"  date_changed="2019-07-03 15:59:24"  uuid="0e19ee29-a7bf-4580-9313-7853cdc412c1"/>
+    <concept  concept_id="165161"  retired="0" datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-07-03 15:52:53"  version="1.0"  changed_by="1"  date_changed="2019-07-03 15:52:53"  uuid="f06ce85a-69a3-4415-8cc3-e2b51a4ae6a1"/>
+    <concept  concept_id="165160"  retired="0" datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2019-07-03 15:47:50"  version="1.0"  changed_by="1"  date_changed="2019-07-03 15:47:50"  uuid="4f4e6d1d-4343-42cc-ba47-2319b8a84369"/>
+    <concept  concept_id="165159"  retired="0" datatype_id="3"  class_id="5"  is_set="0"  creator="1"  date_created="2019-07-03 15:33:48"  version="1.0"  changed_by="1"  date_changed="2019-07-03 15:33:48"  uuid="16820069-b4bf-4c47-9efc-408746e1636b"/>
+    <concept  concept_id="165158"  retired="0" datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-07-03 13:01:05"  version="1.0"  changed_by="1"  date_changed="2019-07-03 13:01:05"  uuid="b928b2e7-3ab4-4924-b730-5a13d8305408"/>
+    <concept  concept_id="165157"  retired="0" datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-07-03 13:00:43"  version="1.0"  changed_by="1"  date_changed="2019-07-03 13:00:43"  uuid="29d1a223-4ce4-43df-96fc-6d53c0e022b1"/>
+    <concept  concept_id="165156"  retired="0" datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-07-03 12:51:42"  version="1.0"  changed_by="1"  date_changed="2019-07-03 12:51:42"  uuid="11c12455-2f54-4bb5-b051-0ecfd4a5fe96"/>
+    <concept  concept_id="165155"  retired="0" datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-07-03 12:47:49"  version="1.0"  changed_by="1"  date_changed="2019-07-03 12:47:49"  uuid="409eae6b-9457-4896-b5fa-2667ad5ceffc"/>
+    <concept  concept_id="165154"  retired="0" datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-07-03 12:27:12"  version="1.0"  changed_by="1"  date_changed="2019-07-03 12:27:12"  uuid="4804028c-7a61-4b3a-8cb6-f7e63afa62a2"/>
+
+
+
     <!--CONCEPT NUMERIC-->
     <!--MCH-->
     <concept_numeric  concept_id="160081"  precise="0" />
@@ -3325,6 +3347,30 @@
     <concept_name  concept_name_id="160143"  concept_id="165116"  name="Next Followup Date"  locale="en"  locale_preferred="1"  creator="1"  date_created="2017-12-04 16:35:12"  concept_name_type="FULLY_SPECIFIED"  voided="0"   uuid="fcbded09-b20c-4935-94c5-34d008bdf4f4"/>
     <concept_name  concept_name_id="160144"  concept_id="165117"  name="Home visit date"  locale="en"  locale_preferred="1"  creator="1"  date_created="2017-12-04 16:36:07"  concept_name_type="FULLY_SPECIFIED"  voided="0"   uuid="c30ec693-8f1c-493e-a9e4-e40fdc2131b1"/>
 
+    <!--HTS-->
+
+    <concept_name  concept_name_id="160216"  concept_id="165170"  name="Previous HIV Tests Date"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-07-03 16:58:48"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="c99ed496-c354-4e84-bdaa-5369dca5621e"/>
+    <concept_name  concept_name_id="160214"  concept_id="165169"  name="HTS Special Category"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-07-03 16:31:42"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="6cad91b0-d88d-4e02-b648-e59eb079d6a1"/>
+    <concept_name  concept_name_id="160213"  concept_id="165168"  name="Reason for Testing"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-07-03 16:19:03"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="2a0ebfe8-3c1f-4c4d-8ca2-b580c1026070"/>
+    <concept_name  concept_name_id="160212"  concept_id="165167"  name="Reason for testing Other Specify"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-07-03 16:15:11"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="86f34530-13ad-469d-9f4c-f19fbf4cedf8"/>
+    <concept_name  concept_name_id="160211"  concept_id="165166"  name="Self initiative"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-07-03 16:11:59"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="f8e41c90-4116-4bb6-82ea-4f1d51cd26fc"/>
+    <concept_name  concept_name_id="160210"  concept_id="165165"  name="Inconclusive HIV Results"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-07-03 16:11:14"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="72cc87d3-c3dd-4724-863b-1c0332a91c83"/>
+    <concept_name  concept_name_id="160209"  concept_id="165164"  name="HIV Self Testing Positive"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-07-03 16:05:42"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="4ce2e204-0e34-4a6c-bc03-ccb071bb5091"/>
+    <concept_name  concept_name_id="160207"  concept_id="165163"  name="Pre-exposure prophylaxis"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-07-03 16:01:29"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="0322f09a-9a4d-4c46-b07d-d8cf2898a223"/>
+    <concept_name  concept_name_id="160208"  concept_id="165163"  name="PreP"  locale="en"  locale_preferred="0"  creator="1"  date_created="2019-07-03 16:01:29"  concept_name_type="SHORT"  voided="0" uuid="a3253a5d-cbd9-43ad-b145-ce7aa7d36c87"/>
+    <concept_name  concept_name_id="160206"  concept_id="165162"  name="Index Client Testing"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-07-03 15:59:24"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="9d73ac83-4044-4efd-98a6-c416e5789cb8"/>
+    <concept_name  concept_name_id="160204"  concept_id="165161"  name="Assisted Partner Notification"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-07-03 15:52:53"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="26409b2b-44c4-4c0d-8478-9b7197b1b2be"/>
+    <concept_name  concept_name_id="160205"  concept_id="165161"  name="APN"  locale="en"  locale_preferred="0"  creator="1"  date_created="2019-07-03 15:52:53"  concept_name_type="SHORT"  voided="0" uuid="6318cc1a-6361-42a2-a9c3-d438be041bae"/>
+    <concept_name  concept_name_id="160203"  concept_id="165160"  name="Community Testing Point"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-07-03 15:47:50"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="2676f605-6df1-402a-af40-ee23aa2d7530"/>
+    <concept_name  concept_name_id="160202"  concept_id="165159"  name="Other Community testing"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-07-03 15:33:48"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="f8406a7a-0523-4ac2-a50b-98a81fa3e9d6"/>
+    <concept_name  concept_name_id="160201"  concept_id="165158"  name="Drop in Center"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-07-03 13:01:05"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="c907abb0-0cf4-4971-bab5-17f43878958b"/>
+    <concept_name  concept_name_id="160200"  concept_id="165157"  name="Hotspot"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-07-03 13:00:43"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="26c04962-d30c-46fa-a0a2-d059a8d9aad4"/>
+    <concept_name  concept_name_id="160199"  concept_id="165156"  name="Nutrition Unit"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-07-03 12:51:42"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="9441f6c9-3c72-46bb-a327-67f62d92a90c"/>
+    <concept_name  concept_name_id="160198"  concept_id="165155"  name="SMC Clinic"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-07-03 12:47:49"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="4384fc11-be8b-4922-bfb8-3ccb809c64a9"/>
+    <concept_name  concept_name_id="160197"  concept_id="165154"  name="Both Parents"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-07-03 12:27:12"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="9f9d702e-6233-4dab-b502-960cb322af5c"/>
+
+
+
     <!--CONCEPT ANSWERS-->
     <!--MCH-->
     <concept_answer  concept_answer_id="780"  concept_id="5282"  answer_concept="1143" creator="1" date_created="2006-04-15 09:35:11"  uuid="780CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"  sort_weight="780"/>
@@ -4033,6 +4079,45 @@
     <concept_answer  concept_answer_id="7087"  concept_id="165143"  answer_concept="165140" creator="1"  date_created="2018-10-15 13:02:40"  sort_weight="2"  uuid="7e9c8a31-3aee-4cd1-b3b8-32d18df2292a"/>
     <concept_answer  concept_answer_id="7090"  concept_id="165143"  answer_concept="165142" creator="1"  date_created="2018-10-15 13:02:40"  sort_weight="5"  uuid="cf6cea6f-c3e7-49f6-a447-15613f36504e"/>
     <concept_answer  concept_answer_id="7086"  concept_id="165143"  answer_concept="165138" creator="1"  date_created="2018-10-15 13:02:40"  sort_weight="1"  uuid="2faf6c05-3a99-41ef-be84-9fca5412b36c"/>
+
+
+    <!--HTS-->
+    <concept_answer  concept_answer_id="7135"  concept_id="165169"  answer_concept="162558"   creator="1"  date_created="2019-07-03 16:31:42"  sort_weight="11"  uuid="4bbf6750-6c86-4c6a-8633-fe5c696a8d86"/>
+    <concept_answer  concept_answer_id="7134"  concept_id="165169"  answer_concept="90041"   creator="1"  date_created="2019-07-03 16:31:42"  sort_weight="8"  uuid="d7504dbd-6e37-4b45-a367-89aea75993f3"/>
+    <concept_answer  concept_answer_id="7133"  concept_id="165169"  answer_concept="162198"   creator="1"  date_created="2019-07-03 16:31:42"  sort_weight="5"  uuid="949002a8-d71b-4cb1-a754-aafd46766e2d"/>
+    <concept_answer  concept_answer_id="7140"  concept_id="165169"  answer_concept="99601"   creator="1"  date_created="2019-07-03 16:31:42"  sort_weight="9"  uuid="32103f3e-ceb5-450d-9422-52cee831be65"/>
+    <concept_answer  concept_answer_id="7137"  concept_id="165169"  answer_concept="165127"   creator="1"  date_created="2019-07-03 16:31:42"  sort_weight="7"  uuid="dfe02dca-c586-4c6d-86b3-970838a60fe3"/>
+    <concept_answer  concept_answer_id="7136"  concept_id="165169"  answer_concept="162277"   creator="1"  date_created="2019-07-03 16:31:42"  sort_weight="1"  uuid="43c90932-cb6a-477a-bd59-bfdb8797ed8d"/>
+    <concept_answer  concept_answer_id="7143"  concept_id="165169"  answer_concept="159674"   creator="1"  date_created="2019-07-03 16:31:42"  sort_weight="6"  uuid="dbd10230-4dfa-426a-b6a1-d7e1592f2281"/>
+    <concept_answer  concept_answer_id="7138"  concept_id="165169"  answer_concept="165132"   creator="1"  date_created="2019-07-03 16:31:42"  sort_weight="10"  uuid="2575012d-cbe4-4756-a275-47611d850502"/>
+    <concept_answer  concept_answer_id="7139"  concept_id="165169"  answer_concept="165125"   creator="1"  date_created="2019-07-03 16:31:42"  sort_weight="3"  uuid="d8129f0a-cae5-432b-959c-16fe07c3b70a"/>
+    <concept_answer  concept_answer_id="7141"  concept_id="165169"  answer_concept="160666"   creator="1"  date_created="2019-07-03 16:31:42"  sort_weight="2"  uuid="dd7de02f-b494-48b6-b560-c398b37abbc9"/>
+    <concept_answer  concept_answer_id="7142"  concept_id="165169"  answer_concept="165126"   creator="1"  date_created="2019-07-03 16:31:42"  sort_weight="4"  uuid="e9226d65-0389-4931-921e-d91947782e91"/>
+    <concept_answer  concept_answer_id="7132"  concept_id="165168"  answer_concept="165165"   creator="1"  date_created="2019-07-03 16:19:03"  sort_weight="6"  uuid="3c562040-ffb0-450c-9261-7360d7debc44"/>
+    <concept_answer  concept_answer_id="7127"  concept_id="165168"  answer_concept="165163"   creator="1"  date_created="2019-07-03 16:19:03"  sort_weight="3"  uuid="21e48411-8232-4e8c-a033-ab66c4cbb77e"/>
+    <concept_answer  concept_answer_id="7131"  concept_id="165168"  answer_concept="90012"   creator="1"  date_created="2019-07-03 16:19:03"  sort_weight="8"  uuid="17c2cebb-6310-46b4-9083-226a1de8d84d"/>
+    <concept_answer  concept_answer_id="7129"  concept_id="165168"  answer_concept="165164"   creator="1"  date_created="2019-07-03 16:19:03"  sort_weight="5"  uuid="6825372d-f762-47ab-871a-b92998182479"/>
+    <concept_answer  concept_answer_id="7130"  concept_id="165168"  answer_concept="165161"   creator="1"  date_created="2019-07-03 16:19:03"  sort_weight="1"  uuid="7d398108-e1d2-403f-8b31-7313797e703b"/>
+    <concept_answer  concept_answer_id="7128"  concept_id="165168"  answer_concept="165166"   creator="1"  date_created="2019-07-03 16:19:03"  sort_weight="7"  uuid="34cc2d77-619a-44a1-b31b-a39f50624458"/>
+    <concept_answer  concept_answer_id="7124"  concept_id="165168"  answer_concept="165167"   creator="1"  date_created="2019-07-03 16:19:03"  sort_weight="9"  uuid="162f44d0-14cd-403f-80e0-3940a62a09e1"/>
+    <concept_answer  concept_answer_id="7126"  concept_id="165168"  answer_concept="165162"   creator="1"  date_created="2019-07-03 16:19:03"  sort_weight="2"  uuid="ce652c1c-6c1e-4726-b4df-fd569bc89948"/>
+    <concept_answer  concept_answer_id="7125"  concept_id="165168"  answer_concept="99056"   creator="1"  date_created="2019-07-03 16:19:03"  sort_weight="4"  uuid="16708c89-70be-4b52-bd50-e0bd067c530a"/>
+    <concept_answer  concept_answer_id="7122"  concept_id="165163"  answer_concept="90004"   creator="1"  date_created="2019-07-03 16:03:59"  sort_weight="1"  uuid="b70941f9-5ed4-4ab9-891d-18a405c3231f"/>
+    <concept_answer  concept_answer_id="7123"  concept_id="165163"  answer_concept="90003"   creator="1"  date_created="2019-07-03 16:03:59"  sort_weight="2"  uuid="ff4f9d50-aafc-472d-88da-655bfce699e8"/>
+    <concept_answer  concept_answer_id="7117"  concept_id="165160"  answer_concept="165159"   creator="1"  date_created="2019-07-03 15:47:50"  sort_weight="6"  uuid="a3fe6841-2660-4b93-8f8d-b3707effafb8"/>
+    <concept_answer  concept_answer_id="7116"  concept_id="165160"  answer_concept="165158"   creator="1"  date_created="2019-07-03 15:47:50"  sort_weight="5"  uuid="af0bc917-1eb6-44df-a629-b4298af47f70"/>
+    <concept_answer  concept_answer_id="7121"  concept_id="165160"  answer_concept="99460"   creator="1"  date_created="2019-07-03 15:47:50"  sort_weight="1"  uuid="93b9aabe-68d9-4d02-8cf3-fe7799da1641"/>
+    <concept_answer  concept_answer_id="7119"  concept_id="165160"  answer_concept="162920"   creator="1"  date_created="2019-07-03 15:47:50"  sort_weight="3"  uuid="6cc6c312-d87a-47b2-a3a9-1b4fa109df0a"/>
+    <concept_answer  concept_answer_id="7120"  concept_id="165160"  answer_concept="162895"   creator="1"  date_created="2019-07-03 15:47:50"  sort_weight="4"  uuid="25da29b2-b038-4bf4-a5ef-461ef85cf05c"/>
+    <concept_answer  concept_answer_id="7118"  concept_id="165160"  answer_concept="165157"   creator="1"  date_created="2019-07-03 15:47:50"  sort_weight="2"  uuid="27c88b94-1cf3-4176-92a4-a2d6b9c501d7"/>
+    <concept_answer  concept_answer_id="7112"  concept_id="162925"  answer_concept="165155"   creator="1"  date_created="2019-07-03 15:34:27"  sort_weight="20"  uuid="9b7a9df1-c08f-4ac3-9118-d097b086cdcf"/>
+    <concept_answer  concept_answer_id="7113"  concept_id="162925"  answer_concept="165156"   creator="1"  date_created="2019-07-03 15:34:27"  sort_weight="21"  uuid="bb295b05-1aaf-4a7a-b993-cd061a9fb04e"/>
+    <concept_answer  concept_answer_id="7114"  concept_id="162925"  answer_concept="90015"   creator="1"  date_created="2019-07-03 15:34:27"  sort_weight="22"  uuid="300b829b-91d9-4013-9a81-5b8be6d18ba8"/>
+    <concept_answer  concept_answer_id="7109"  concept_id="162925"  answer_concept="165048"   creator="1"  date_created="2019-07-03 12:39:54"  sort_weight="17"  uuid="d662e12b-c2c2-4cd5-bfd0-1582f174bc47"/>
+    <concept_answer  concept_answer_id="7110"  concept_id="162925"  answer_concept="99593"   creator="1"  date_created="2019-07-03 12:39:54"  sort_weight="18"  uuid="fa69b7a9-99fd-4352-82ed-673590732898"/>
+    <concept_answer  concept_answer_id="7111"  concept_id="162925"  answer_concept="165046"   creator="1"  date_created="2019-07-03 12:39:54"  sort_weight="19"  uuid="86c1129d-37dd-4ed0-94d8-4af00bc05dfc"/>
+    <concept_answer  concept_answer_id="7108"  concept_id="162925"  answer_concept="165047"   creator="1"  date_created="2019-07-03 12:35:20"  sort_weight="16"  uuid="af3f80d8-b22d-43cb-bc6d-0f2f7e47b02d"/>
+    <concept_answer  concept_answer_id="7107"  concept_id="969"  answer_concept="165154"   creator="1"  date_created="2019-07-03 12:27:56"  sort_weight="9"  uuid="51b9840f-7157-4e0e-b200-cb6762f54063"/>
 
 
 
