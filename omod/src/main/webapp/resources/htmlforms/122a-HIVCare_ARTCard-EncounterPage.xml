@@ -345,7 +345,14 @@
                     if (viral_load_status == 1301) {
                         /* Detected */
                         jq("#viral-load-results-copies").attr("disabled", false).attr("readonly", false).fadeTo(250, 1);
-                        setValue('viral-load-results-copies.value', '');
+                        <ifMode mode="ENTER">
+                                setValue('viral-load-results-copies.value', '');
+                        </ifMode>
+
+                        var viral_load_copies = getValue('viral-load-results-copies.value');
+                        if(viral_load_copies == 1){
+                            setValue('viral-load-results-copies.value', '');
+                        }
                     }
                     if (viral_load_status == 1306) {
                         /* Not Detected */
