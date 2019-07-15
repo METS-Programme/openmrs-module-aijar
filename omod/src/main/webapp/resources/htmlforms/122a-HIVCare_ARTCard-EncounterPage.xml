@@ -506,8 +506,10 @@
                     }
                     var pageCurrentRegimen = jq("#90315").find("select").find(":selected").val();
                     var pageEncounterDate = jq("#encounterDate").find("input[type=hidden]").val();
+                    var dsdmRegimenCoceptsIds="164976,164977,164978,164979";
 
-                    if (currentRegimen !== "" &amp;&amp; (currentRegimen === pageCurrentRegimen) &amp;&amp; diff_months(new Date(pageEncounterDate), new Date(regimenStartedDate)) &gt; 12) {
+                    if (currentRegimen !== "" &amp;&amp; (currentRegimen === pageCurrentRegimen || dsdmRegimenCoceptsIds.trim().includes(pageCurrentRegimen)) &amp;&amp; diff_months(new Date(pageEncounterDate), new Date(regimenStartedDate)) &gt; 12) {
+
                         stableArray.push(true);
                     } else {
                         stableArray.push(false);
