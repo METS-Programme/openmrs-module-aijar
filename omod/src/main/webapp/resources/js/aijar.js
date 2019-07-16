@@ -35,8 +35,14 @@ jq(document).ready(function () {
             phone_number.match(/^[0-9]{1,10}$/);
     }, "Please specify a valid mobile number without any spaces like 0712345678");
 
+    jq.validator.addMethod("nationalid", function (nationalid, element) {
+        nationalid = nationalid.replace(/\(|\)|\s+|-/g, "");
+        return this.optional(element) || nationalid.match(/^$|^[A-Z][FM]\d{5}([A-Z0-9]){7}$/);
+    }, "Enter a valid National ID example CF12345678ABCD");
+
+
     /* Validation of NIN on patient registration page */
-    $( "#registration" ).validate({
+    jq("#registration").validate({
         rules: {
             confirm_nationalid: {
                 equalTo: "nationalid"
@@ -48,7 +54,23 @@ jq(document).ready(function () {
             }
         }
     });
+
+    /* Reconfigure the toast message to stay for 15 seconds instead of the default 3 seconds */
+    jq().toastmessage({stayTime: 15000});
 });
+
+
+/**
+ * Difference in Dates in months
+ * @param dt2
+ * @param dt1
+ * @returns {number}
+ */
+function diff_months(dt2, dt1) {
+    var diff = (dt2.getTime() - dt1.getTime()) / 1000;
+    diff /= (60 * 60 * 24 * 7 * 4);
+    return Math.abs(Math.round(diff));
+}
 
 /**
  * Changes a field date in the format yy-mm-dd to dd/mm/yy which is easier to read
@@ -161,25 +183,33 @@ function validateRequiredField(prime, factor, message_to_throw, input_type,facto
     var selected_value = null;
     getField(prime + '.error').html("").hide;
 
-    if (input_type == "select") {
-        selected_value = jq(factor).find(":selected").text().trim().toLowerCase();
-        if (selected_value != '' && getValue(prime + '.value') == '') {
+    if (input_type === "select") {
+        selected_value = jq("#" + factor).find(":selected").text().trim().toLowerCase();
+        if (selected_value !== '' && getValue(prime + '.value') === '') {
             getField(prime + '.error').html(message_to_throw).show;
             jq('#' + prime).find("span").removeAttr("style");
             evaluationResult = false;
         }
     }
-    else if (input_type == "hidden") {
-        selected_value = jq(factor).find("input[type=hidden]").val().trim().toLowerCase();
-        if (selected_value != '' && getValue(prime + '.value') == '') {
+    else if (input_type === "hidden") {
+        selected_value = jq("#" + factor).find("input:hidden").val();
+        if (selected_value !== '' && getValue(prime + '.value') === '') {
             getField(prime + '.error').html(message_to_throw).show;
             jq('#' + prime).find("span").removeAttr("style");
             evaluationResult = false;
         }
     }
-    else if (input_type == "check_box") {
+    else if (input_type === "check_box") {
         selected_value = jq("#" + factor).find(":checkbox:first").attr("checked");
-        if (selected_value == "checked" && getValue(prime + '.value') == '') {
+        if (selected_value === "checked" && getValue(prime + '.value') === '') {
+            getField(prime + '.error').html(message_to_throw).show;
+            jq('#' + prime).find("span").removeAttr("style");
+            evaluationResult = false;
+        }
+    }
+    else if (input_type === "text") {
+        selected_value = selected_value = jq("#" + factor).find("input:text").val();
+        if (selected_value !== "" && getValue(prime + '.value') === '') {
             getField(prime + '.error').html(message_to_throw).show;
             jq('#' + prime).find("span").removeAttr("style");
             evaluationResult = false;
@@ -199,6 +229,7 @@ function hideContainer(container) {
     jq(container + ' :input').attr('disabled', true);
     jq(container + ' :input').prop('checked', false);
 }
+
 /*
  * Show the container, and enable all elements in it
  *
@@ -217,6 +248,7 @@ function enableContainer(container) {
     jq(container).find("input").fadeTo(250, 1);
     jq(container).find("select").fadeTo(250, 1);
 }
+
 /*
  * Show the container, and enable all elements in it
  *
@@ -236,9 +268,9 @@ function disableContainer(container) {
  *@param: selector string or JQuery object
  */
 var fieldHelper = {
-	$jqObj: function() {
-		return {};
-	},
+    $jqObj: function () {
+        return {};
+    },
     disable: function (args) {
         if (args instanceof jQuery) {
             this.$jqObj = args;
@@ -318,4 +350,57 @@ var fieldHelper = {
 	    $('.hfe-hours').before($timeLabel);
     }
 };
+
+function blockEncounterOnSameDateEncounter(encounterDate, instruction) {
+
+    if (!(instruction == 'block' || instruction == 'warn'))
+        return;
+
+    var date = jq(encounterDate).val();
+    var formId = jq('[name=htmlFormId]').val();
+    var patientId = jq('[name=personId]').val();
+
+    if (jq('[name=encounterId]').val() == null) {
+        jq.get(
+            getContextPath() + '/module/htmlformentry/lastEnteredForm.form',
+            {formId: formId, patientId: patientId, date: date, dateFormat: 'yyyy-MM-dd'},
+            function (responseText) {
+
+                if (responseText == "true") {
+                    if (instruction == "warn") {
+
+                        // get the localized warning message and display it
+                        jq.get(getContextPath() + "/module/htmlformentry/localizedMessage.form",
+                            {messageCode: "htmlformentry.error.warnMultipleEncounterOnDate"},
+                            function (responseText) {
+                                jq().toastmessage('showWarningToast', responseText);
+                            }
+                        );
+
+                    } else if (instruction == "block") {
+
+                        // get the localized blocking message and display it
+                        jq.get(getContextPath() + "/module/htmlformentry/localizedMessage.form",
+                            {messageCode: "htmlformentry.error.blockMultipleEncounterOnDate"},
+                            function (responseText) {
+                                jq().toastmessage('showWarningToast', responseText);
+                                var parameters = window.location.search.split("&", 2);
+                                var url = window.location.origin + "/" + OPENMRS_CONTEXT_PATH + "/" + "coreapps/patientdashboard/patientDashboard.page" + parameters[0] + "&" + parameters[1] + "&";
+                                setTimeout(function () {
+                                    window.location.href = url;
+                                }, 2000);
+
+                            }
+                        );
+
+                        //clear the date and continue entering the form
+                        jq(encounterDate).val('');
+                    }
+                } else {
+                    //make sure everything is enabled
+                }
+            }
+        );
+    }
+}
 

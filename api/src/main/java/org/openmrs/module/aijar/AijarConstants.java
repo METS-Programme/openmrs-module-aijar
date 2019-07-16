@@ -25,6 +25,10 @@ public class AijarConstants {
     public static final String GP_NHPI_DEFAULT_ALERT_MESSAGE="The National Health Provider Identifier is not set please go to admin then Settings then Aijar and set it";
     public static final String GP_DHIS2_DEFAULT_ALERT_MESSAGE="The organization code in DHIS2 is not set please go to admin then Settings then Ugandaemr and set it";
 
+    public static final String GP_DSDM_PROGRAM_UUID_NAME="ugandaemr.dsdm.programsuuid";
+
+    public static final String GP_DSDM_CONCEPT_ID="ugandaemr.dsdm.conceptId";
+
 
     /**x
      * Concepts

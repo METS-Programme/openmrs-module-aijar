@@ -46,6 +46,7 @@ import org.openmrs.util.OpenmrsUtil;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -146,6 +147,13 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             healthCenter.setName(administrationService.getGlobalProperty(AijarConstants.GP_HEALTH_CENTER_NAME));
             locationService.saveLocation(healthCenter);
 
+            String flagstatus = administrationService.getGlobalProperty("ugandaemr.patientflags.disabledFlags");
+
+            if (flagstatus != null) {
+                flagstatus=("'"+flagstatus.trim().replace(",","','")+"'").replace(",''","").replace("' ","'");
+                administrationService.executeSQL("update patientflags_flag set enabled=0 where name in (" + flagstatus.trim() + ")", false);
+            }
+
             // cleanup liquibase change logs to enable installation of data integrity module
             removeOldChangeLocksForDataIntegrityModule();
 
@@ -230,13 +238,13 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         MetadataMappingService metadataMappingService = Context.getService(MetadataMappingService.class);
         MetadataTermMapping primaryIdentifierTypeMapping = metadataMappingService.getMetadataTermMapping(EmrApiConstants.EMR_METADATA_SOURCE_NAME, EmrApiConstants.PRIMARY_IDENTIFIER_TYPE);
         PatientIdentifierType openmrsIdType = Context.getPatientService().getPatientIdentifierTypeByUuid(PatientIdentifierTypes.NATIONAL_ID.uuid());
-    
+
         //overwrite if not set yet
-        if(!openmrsIdType.getUuid().equals(primaryIdentifierTypeMapping.getMetadataUuid())){
+        if (!openmrsIdType.getUuid().equals(primaryIdentifierTypeMapping.getMetadataUuid())) {
             primaryIdentifierTypeMapping.setMappedObject(openmrsIdType);
             metadataMappingService.saveMetadataTermMapping(primaryIdentifierTypeMapping);
         }
-        
+
         String ART_Patient_Number_Identifier = "";
         // check if the ART patient number is to be displayed then add it here
         if (Context.getAdministrationService().getGlobalProperty("ugandaemr.showARTPatientNumberIdentifier").equals("true")) {
@@ -250,7 +258,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             log.info("Adding research patient number to extra identifier types property");
             Research_Patient_Identifier = "," + PatientIdentifierTypes.RESEARCH_PATIENT_ID.uuid();
         }
-    
+
         String Refugee_Identifier = "";
         // check if the ART patient number is to be displayed then add it here
         if (Context.getAdministrationService().getGlobalProperty("ugandaemr.showRefugeeIdentifier").equals("true")) {
@@ -259,10 +267,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         }
 
         // set the HIV care number and EID number as additional identifiers that can be searched for
-        properties.add(new GlobalProperty(EmrApiConstants.GP_EXTRA_PATIENT_IDENTIFIER_TYPES,
-                PatientIdentifierTypes.HIV_CARE_NUMBER.uuid() + "," + PatientIdentifierTypes.EXPOSED_INFANT_NUMBER.uuid()
-                        + "," + PatientIdentifierTypes.IPD_NUMBER.uuid() + "," + PatientIdentifierTypes.ANC_NUMBER.uuid()+ "," + PatientIdentifierTypes.PNC_NUMBER.uuid()
-                        + "," + ART_Patient_Number_Identifier + Research_Patient_Identifier + Refugee_Identifier));
+        properties.add(new GlobalProperty(EmrApiConstants.GP_EXTRA_PATIENT_IDENTIFIER_TYPES, PatientIdentifierTypes.HIV_CARE_NUMBER.uuid() + "," + PatientIdentifierTypes.EXPOSED_INFANT_NUMBER.uuid() + "," + PatientIdentifierTypes.IPD_NUMBER.uuid() + "," + PatientIdentifierTypes.ANC_NUMBER.uuid() + "," + PatientIdentifierTypes.PNC_NUMBER.uuid() + "," + ART_Patient_Number_Identifier + Research_Patient_Identifier + Refugee_Identifier));
 
         // set the name of the application
         properties.add(new GlobalProperty("application.name", "UgandaEMR - Uganda eHealth Solution"));
@@ -310,21 +315,24 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 
         // Exclude temporary reporting tables by database backup module
         properties.add(new GlobalProperty("databasebackup.tablesExcluded", "aijar_105_eid,aijar_106a1a"));
-    
+
         // the name of the custom registration app
         properties.add(new GlobalProperty("registrationapp.customRegistrationAppId", "aijar.registrationapp.registerPatient"));
-    
+
         // enable the register patient button to appear on the search widget
         properties.add(new GlobalProperty("coreapps.showRegisterPatientOnSearchWidget", "true"));
-    
+
         // mapping for creating visits without encounters to the default facility visit type
         properties.add(new GlobalProperty("emrapi.EmrApiVisitAssignmentHandler.encounterTypeToNewVisitTypeMap", "default:7b0f5697-27e3-40c4-8bae-f4049abfb4ed"));
-
         return properties;
     }
 
     private void installCommonMetadata(MetadataDeployService deployService) {
         try {
+            log.info("Installing standard metadata using the packages.xml file");
+            MetadataUtil.setupStandardMetadata(getClass().getClassLoader());
+            log.info("Standard metadata installed");
+
             log.info("Installing metadata");
             log.info("Installing commonly used metadata");
             deployService.installBundle(Context.getRegisteredComponents(CommonMetadataBundle.class).get(0));
@@ -334,10 +342,6 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             log.info("Finished installing addresshierarchy");
 
             // install concepts
-            log.info("Installing standard metadata using the packages.xml file");
-            MetadataUtil.setupStandardMetadata(getClass().getClassLoader());
-            log.info("Standard metadata installed");
-
             log.info("Installing patient flags");
             deployService.installBundle(Context.getRegisteredComponents(UgandaEMRPatientFlagMetadataBundle.class).get(0));
             log.info("Finished installing patient flags");
@@ -353,7 +357,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         String gpVal = Context.getAdministrationService().getGlobalProperty("dataintegrity.database_version");
         // remove data integrity locks for an version below 4
         // some gymnastics to get the major version number from semver like 2.5.3
-        if ((gpVal == null) || new Integer(gpVal.substring(0, gpVal.indexOf("."))).intValue() < 4){
+        if ((gpVal == null) || new Integer(gpVal.substring(0, gpVal.indexOf("."))).intValue() < 4) {
             AdministrationService as = Context.getAdministrationService();
             log.warn("Removing liquibase change log locks for previously installed data integrity instance");
             as.executeSQL("delete from liquibasechangelog WHERE ID like 'dataintegrity%';", false);

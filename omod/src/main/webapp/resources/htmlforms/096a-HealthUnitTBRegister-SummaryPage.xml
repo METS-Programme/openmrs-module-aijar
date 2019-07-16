@@ -72,7 +72,11 @@
 		}
 		
 		jQuery().ready(function(jq) {
-			const YES_CONCEPT_ID = 1065,
+
+            //Block Multiple encounter entry on same date
+            blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"),"block");
+
+		    const YES_CONCEPT_ID = 1065,
 				NO_CONCEPT_ID = 1066,
 				RED_CONCEPT_ID = 99028,
 				YELLOW_CONCEPT_ID = 99029,

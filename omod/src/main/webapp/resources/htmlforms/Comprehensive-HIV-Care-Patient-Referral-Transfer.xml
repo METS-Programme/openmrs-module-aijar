@@ -71,6 +71,9 @@
                     });
                 }
 
+                //Block Multiple encounter entry on same date
+                blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"),"block");
+
                 /* add JQuery validator classes and rules*/
                 jq("#90278 input").addClass("ugphone");
 

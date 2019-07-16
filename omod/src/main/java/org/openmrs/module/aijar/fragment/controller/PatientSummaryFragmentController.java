@@ -140,7 +140,7 @@ public class PatientSummaryFragmentController {
 	    }
     }
     
-    private Obs getMostRecentObservation(ObsService obsService, List<Person> who, List<Concept> concepts) {
+    public Obs getMostRecentObservation(ObsService obsService, List<Person> who, List<Concept> concepts) {
     	List<Obs> obs = obsService.getObservations(who, null, concepts, null, null, null, null, 1, null, null, null,
 			    false);
 	    if (obs.size() > 0) {

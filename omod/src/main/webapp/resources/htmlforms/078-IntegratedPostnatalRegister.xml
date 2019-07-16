@@ -31,7 +31,10 @@
 
 		jQuery(document).ready(function(jq) {
 
-			const OTHER_CONCEPT_ID = 5622;
+            //Block Multiple encounter entry on same date
+            blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"),"block");
+
+		    const OTHER_CONCEPT_ID = 5622;
 	        const 	VIRAL_LOAD_RESULTS_CONCEPT_ID = 1305,
 	        		VIRAL_LOAD_DETECTED_CONCEPT_ID = 1301,
 	        		VIRAL_LOAD_NOT_DETECTED_CONCEPT_ID = 1306,
@@ -802,7 +805,7 @@
                             <label>Infant Feeding Option</label>
                             <obs conceptId="dc9a00a2-30ab-102d-86b0-7a5022ba4115"
                                  answerConceptIds="dcbd637e-30ab-102d-86b0-7a5022ba4115,40fdb5b6-e8ac-424d-988c-f2f2937348db,dcd5487d-30ab-102d-86b0-7a5022ba4115" 
-                                 answerLabels="EBF-Exclusive Breast Feeding, RP-Replacement feeding,MF-Mixed feeding" 
+                                 answerLabels="EBF - Exclusive Breast Feeding,RF - Replacement Feeding,MF - Mixed Feeding"
                                  style="dropdown" />
                         </p>
                     </td>

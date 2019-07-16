@@ -53,6 +53,10 @@
 
   <script type="text/javascript">
 	    jQuery(document).ready(function(jq) {
+
+            //Block Multiple encounter entry on same date
+            blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"),"block");
+            
 	        const 	YES_CONCEPT_ID = 1065,
 	        		NO_CONCEPT_ID = 1066,
 	        		NOT_DONE_CONCEPT_ID = 1118,
