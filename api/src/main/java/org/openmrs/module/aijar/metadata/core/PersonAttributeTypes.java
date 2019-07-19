@@ -155,4 +155,34 @@ public class PersonAttributeTypes {
             return "b0868a16-4f8e-43da-abfc-6338c9d8f56a";
         }
     };
+
+    public static PersonAttributeTypeDescriptor NATIONALITY = new PersonAttributeTypeDescriptor() {
+        @Override
+        public double sortWeight() {
+            return 0;
+        }
+
+        @Override
+        public Class<?> format() {
+            return Concept.class;
+        }
+
+        @Override
+        public String name() {
+            return "NATIONALITY";
+        }
+
+        @Override
+        public String description() {
+            return "Nationality of this person";
+        }
+
+        public String uuid() {
+            return "477c17f7-5278-4b32-8f20-4dbd6dcd75ca";
+        }
+
+        @Override
+        public boolean searchable() {return true;}
+    };
+
 }
