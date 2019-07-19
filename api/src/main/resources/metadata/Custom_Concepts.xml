@@ -808,6 +808,12 @@
     <concept  concept_id="165180"  retired="0" datatype_id="2"  class_id="7"  is_set="0"  creator="1"  date_created="2019-07-10 15:49:47"  version="1.0"  changed_by="1"  date_changed="2019-07-10 15:49:47" uuid="2766c090-c057-44f2-98f0-691b6d0336dc"/>
     <concept  concept_id="165179"  retired="0" datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-07-10 15:45:02"  version="1.0"  changed_by="1"  date_changed="2019-07-10 15:45:02" uuid="c09c3d3d-d07d-4d34-84f0-89ea4fd5d6d5"/>
 
+    <!--PERSON ATTRIBUTE CONCEPTS-->
+
+    <concept  concept_id="165185"  retired="0" datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2019-07-19 09:11:49"  version="1.0"  changed_by="1"  date_changed="2019-07-19 09:11:49" uuid="39abf9d2-4d15-4d62-9b87-f8df85a9d6a7"/>
+    <concept  concept_id="165184"  retired="0" datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2019-07-19 09:10:47"  version="1.0"  changed_by="1"  date_changed="2019-07-19 09:10:47" uuid="09e4f567-a6d1-490c-956f-fa3bfbf5fbc3"/>
+    <concept  concept_id="165186"  retired="0" datatype_id="2"  class_id="7"  is_set="0"  creator="1"  date_created="2019-07-19 09:13:57"  version="1.0"  changed_by="1"  date_changed="2019-07-19 09:13:57" uuid="4ee09eef-1e8e-4812-b491-da887c967ed3"/>
+
     <!--CONCEPT NUMERIC-->
     <!--MCH-->
     <concept_numeric  concept_id="160081"  precise="0" />
@@ -3399,6 +3405,12 @@
     <concept_name  concept_name_id="160228"  concept_id="165180"  name="HIV First Time Tester"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-07-10 15:49:47"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="9bad469f-fecd-43cc-b84c-448e24695afc"/>
     <concept_name  concept_name_id="160227"  concept_id="165179"  name="Ward"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-07-10 15:45:02"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="362b39bf-55ff-4974-844d-97bc93dcfdca"/>
 
+    <!--PERSONAL ATTRIBUTE CONCEPTS NAMES-->
+    <concept_name  concept_name_id="160234"  concept_id="165185"  name="Foreigner"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-07-19 09:11:49"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="f01e3c72-7cdf-449e-9d59-ba5a408f163d"/>
+    <concept_name  concept_name_id="160233"  concept_id="165184"  name="National"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-07-19 09:10:47"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="6ade7b18-93ca-47a8-ba74-fdf497c93c96"/>
+    <concept_name  concept_name_id="160235"  concept_id="165186"  name="Nationality"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-07-19 09:13:57"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="95bfc486-e945-4fae-9cd7-fec9c0f44fd1"/>
+
+
     <!--CONCEPT ANSWERS-->
     <!--MCH-->
     <concept_answer  concept_answer_id="780"  concept_id="5282"  answer_concept="1143" creator="1" date_created="2006-04-15 09:35:11"  uuid="780CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"  sort_weight="780"/>
@@ -4179,6 +4191,12 @@
     <concept_answer  concept_answer_id="7163"  concept_id="165169"  answer_concept="90002"  creator="1"  date_created="2019-07-10 15:46:41"  sort_weight="12"  uuid="5bc519c7-8ad3-49a6-b5ea-a062007c05ed"/>
     <concept_answer  concept_answer_id="7161"  concept_id="162925"  answer_concept="165179"  creator="1"  date_created="2019-07-10 15:45:49"  sort_weight="23"  uuid="aacb66f9-28c0-47a5-84df-7a28dd651a6b"/>
     <concept_answer  concept_answer_id="7162"  concept_id="162925"  answer_concept="90002"  creator="1"  date_created="2019-07-10 15:45:49"  sort_weight="24"  uuid="ccfb7c0a-a3b6-497c-b91e-cede100d876c"/>
+
+
+    <!--PERSON ATTRIBUTE CONCEPT ANSWERS-->
+    <concept_answer  concept_answer_id="7175"  concept_id="165186"  answer_concept="165184"    creator="1"  date_created="2019-07-19 09:13:57"  sort_weight="1"  uuid="bd94bc00-f76b-46b3-ac4c-be2ddd8f06de"/>
+    <concept_answer  concept_answer_id="7176"  concept_id="165186"  answer_concept="165185"    creator="1"  date_created="2019-07-19 09:13:57"  sort_weight="2"  uuid="94d3079f-9ef2-403c-b40c-32007222620c"/>
+
 
     <!--CONCEPT SET-->
     <!--MCH-->
