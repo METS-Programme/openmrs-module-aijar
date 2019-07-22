@@ -169,12 +169,12 @@ public class PersonAttributeTypes {
 
         @Override
         public String name() {
-            return "NATIONALITY";
+            return "Nationality";
         }
 
         @Override
         public String description() {
-            return "Nationality of this person";
+            return "The Nationality of the patient";
         }
 
         public String uuid() {
