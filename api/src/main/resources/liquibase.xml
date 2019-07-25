@@ -224,4 +224,11 @@
             UPDATE global_property SET property_value = 'true' WHERE property ='dataentrystatistics.started';
         </sql>
     </changeSet>
+
+    <changeSet id="ugandaemr-25072019-1409" author="slubwama">
+        <comment>Changing Concept Name for concept 99610 from SMS care entry to SMC care entry</comment>
+        <sql>
+            UPDATE concept_name SET name = 'SMC care entry' WHERE concept_id =99610;
+        </sql>
+    </changeSet>
 </databaseChangeLog>
