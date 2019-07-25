@@ -217,4 +217,11 @@
 			UPDATE global_property SET property_value = 'false' WHERE property IN ('fhir.started', 'dataentrystatistics.started');
 		</sql>
 	</changeSet>
+
+    <changeSet id="ugandaemr-25072019-2019" author="slubwama">
+        <comment>Setting  modules for Data Entry Statistics to be started automatically</comment>
+        <sql>
+            UPDATE global_property SET property_value = 'true' WHERE property ='dataentrystatistics.started';
+        </sql>
+    </changeSet>
 </databaseChangeLog>
