@@ -226,9 +226,13 @@
     </changeSet>
 
     <changeSet id="ugandaemr-25072019-1409" author="slubwama">
-        <comment>Changing Concept Name for concept 99610 from SMS care entry to SMC care entry</comment>
+        <comment>
+			Changing Concept Name for concept 99610 from SMS care entry to SMC care entry
+			Changing Concept Description to change SMS word to SMC Word
+		</comment>
         <sql>
             UPDATE concept_name SET name = 'SMC care entry' WHERE concept_id =99610;
+            UPDATE concept_description SET description = 'SMS as HIV care entry point - This concept added to support MOH ART card functionality' WHERE concept_id =99610;
         </sql>
     </changeSet>
 </databaseChangeLog>
