@@ -1090,21 +1090,16 @@
 
                             <span class="ARTCareEntryPointEnableDisable1">
                                         <obs conceptId="90200"
-                                             answerConceptIds="90012,90016,99593,90019,90013,90015,90018,90002"
-                                             answerLabels="eMTCT,TB,YCC,Outreach,Out Patient,STI,Inpatient,Other"
+                                             answerConceptIds="90012,90016,99593,99610,90019,90013,90015,90018,90002"
+                                             answerLabels="eMTCT,TB,YCC,SMC,Outreach,Out Patient,STI,Inpatient,Other"
                                              required="true"/>
                                 </span>
                         </td>
-                        <td style="width: 33%;">
+                        <td style="width: 33%;" colspan="2">
                             <label>Other</label>
                             <span class="ARTCareEntryPointEnableDisableChild1">
                                 <obs conceptId="99115" labelText=""/>
                             </span>
-                        </td>
-                        <td>
-                            <label>National ID:</label>
-                            <patient field="identifier" identifierTypeId="f0c16a6d-dc5f-4118-a803-616d0075d282"
-                                     required="false"/>
                         </td>
                     </obsgroup>
                 </tr>
