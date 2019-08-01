@@ -233,7 +233,7 @@
         <sql>
 			UPDATE concept SET short_name = 'SMC' WHERE concept_id =99610;
             UPDATE concept_name SET name = 'SMC care entry' WHERE concept_id =99610;
-            UPDATE concept_description SET description = 'SMS as HIV care entry point - This concept added to support MOH ART card functionality' WHERE concept_id =99610;
+            UPDATE concept_description SET description = 'SMC as HIV care entry point - This concept added to support MOH ART card functionality' WHERE concept_id =99610;
         </sql>
     </changeSet>
 </databaseChangeLog>
