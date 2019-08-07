@@ -807,6 +807,7 @@
     <concept  concept_id="165181"  retired="0" datatype_id="2"  class_id="7"  is_set="0"  creator="1"  date_created="2019-07-10 15:55:10"  version="1.0"  changed_by="1"  date_changed="2019-07-10 15:55:10" uuid="49ba801d-b6ff-47cd-8d29-e0ac8649cb7d"/>
     <concept  concept_id="165180"  retired="0" datatype_id="2"  class_id="7"  is_set="0"  creator="1"  date_created="2019-07-10 15:49:47"  version="1.0"  changed_by="1"  date_changed="2019-07-10 15:49:47" uuid="2766c090-c057-44f2-98f0-691b6d0336dc"/>
     <concept  concept_id="165179"  retired="0" datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-07-10 15:45:02"  version="1.0"  changed_by="1"  date_changed="2019-07-10 15:45:02" uuid="c09c3d3d-d07d-4d34-84f0-89ea4fd5d6d5"/>
+    <concept  concept_id="165184"  retired="0" datatype_id="3"  class_id="5"  is_set="0"  creator="1"  date_created="2019-08-07 10:30:02"  version="1.0"  changed_by="1"  date_changed="2019-08-07 10:30:02"  uuid="eac4e9c2-a086-43fc-8d43-b5a4e02febb4"/>
 
     <!--CONCEPT NUMERIC-->
     <!--MCH-->
@@ -3398,6 +3399,8 @@
     <concept_name  concept_name_id="160229"  concept_id="165181"  name="Previous HIV test results"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-07-10 15:55:10"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="1a9231a9-8cc4-494c-a348-9586d90151b2"/>
     <concept_name  concept_name_id="160228"  concept_id="165180"  name="HIV First Time Tester"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-07-10 15:49:47"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="9bad469f-fecd-43cc-b84c-448e24695afc"/>
     <concept_name  concept_name_id="160227"  concept_id="165179"  name="Ward"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-07-10 15:45:02"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="362b39bf-55ff-4974-844d-97bc93dcfdca"/>
+    <concept_name  concept_name_id="160233"  concept_id="165184"  name="Other Special Category"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-08-07 10:30:02"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="81a56425-5240-4afd-8447-24ab99efa120"/>
+    <concept_name  concept_name_id="160234"  concept_id="165184"  name="Other Special Classification"  locale="en"  locale_preferred="0"  creator="1"  date_created="2019-08-07 10:30:03"  concept_name_type="SHORT"  voided="0" uuid="c4bd0105-700f-4253-8f1d-d15d2b3b1493"/>
 
     <!--CONCEPT ANSWERS-->
     <!--MCH-->
