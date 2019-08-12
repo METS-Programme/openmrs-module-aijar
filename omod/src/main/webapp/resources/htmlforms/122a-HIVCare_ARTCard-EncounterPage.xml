@@ -8,8 +8,7 @@
           formOrder="3"
           formIcon="icon-medkit"
           formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='86863db4-6101-4ecf-9a86-5e716d6504e4'"
-          formDisplayStyle="Standard"
-          formRequiredPrivilege="Task: HIV Clinic Access">
+          formDisplayStyle="Standard">
     <ifMode mode="ENTER,EDIT" include="false">
         <includeIf velocityTest="$fn.allEncounters('8d5b27bc-c2cc-11de-8d13-0010c6dffd0f').size() == 0">
             <script>
