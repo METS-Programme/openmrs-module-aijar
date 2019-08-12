@@ -372,19 +372,10 @@
                         <label>Date of Registration</label>
                         <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
                     </td>
-                    <td style="width: 15%;background: #F3F3F3;">
+                    <td style="width: 15%;background: #F3F3F3;" colspan="2">
                         <label>Pt Clinic ID:</label>
                         <patient field="identifier" identifierTypeId="e1731641-30ab-102d-86b0-7a5022ba4115"
                                  required="false"/>
-                    </td>
-
-                    <td style="width: 15%;background: #F3F3F3;">
-                        <label>National ID:</label>
-                        <span id="nationalid">
-                        <patient field="identifier"
-                                 identifierTypeId="f0c16a6d-dc5f-4118-a803-616d0075d282"
-                                 required="false"/>
-                             </span>
                     </td>
                     <td style="width: 15%;background: #F3F3F3;" rowspan="4">
                         <excludeIf velocityTest="$patient.gender =='M' ">
