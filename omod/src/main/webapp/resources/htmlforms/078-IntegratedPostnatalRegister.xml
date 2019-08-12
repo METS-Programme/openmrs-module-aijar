@@ -31,7 +31,10 @@
 
 		jQuery(document).ready(function(jq) {
 
-			const OTHER_CONCEPT_ID = 5622;
+            //Block Multiple encounter entry on same date
+            blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"),"block");
+
+		    const OTHER_CONCEPT_ID = 5622;
 	        const 	VIRAL_LOAD_RESULTS_CONCEPT_ID = 1305,
 	        		VIRAL_LOAD_DETECTED_CONCEPT_ID = 1301,
 	        		VIRAL_LOAD_NOT_DETECTED_CONCEPT_ID = 1306,
@@ -523,7 +526,7 @@
 	                    </td>
 	                    <td>
 	                        <p>
-	                            <label>I.N.R Number</label>
+	                            <label>Integrated Nutrition Register No.</label>
 	                            <obs conceptId="b644c29c-9bb0-447e-9f73-2ae89496a709" id="inrNumber" />
 	                        </p>
 	                    </td>
@@ -786,7 +789,7 @@
                 <tr>
                     <td>
                         <p>
-                            <label>I.N.R Number</label>
+                            <label>Integrated Nutrition Register No.</label>
                             <obs conceptId="40d04ad1-babf-426f-85d7-e6ba156919bd" />
                         </p>
                     </td>
@@ -802,7 +805,7 @@
                             <label>Infant Feeding Option</label>
                             <obs conceptId="dc9a00a2-30ab-102d-86b0-7a5022ba4115"
                                  answerConceptIds="dcbd637e-30ab-102d-86b0-7a5022ba4115,40fdb5b6-e8ac-424d-988c-f2f2937348db,dcd5487d-30ab-102d-86b0-7a5022ba4115" 
-                                 answerLabels="EBF-Exclusive Breast Feeding, RP-Replacement feeding,MF-Mixed feeding" 
+                                 answerLabels="EBF - Exclusive Breast Feeding,RF - Replacement Feeding,MF - Mixed Feeding"
                                  style="dropdown" />
                         </p>
                     </td>

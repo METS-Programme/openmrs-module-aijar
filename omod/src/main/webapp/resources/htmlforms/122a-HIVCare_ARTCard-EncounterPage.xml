@@ -24,7 +24,7 @@
                      * m -> holds the string matching the regular expression
                      */
                     var queryParameters = {}, queryString = location.search.substring(1),
-                            re = /([^&amp;=]+)=([^&amp;]*)/g, m;
+                        re = /([^&amp;=]+)=([^&amp;]*)/g, m;
 
                     // Creates a map with the query string parameters
                     while (m = re.exec(queryString)) {
@@ -37,8 +37,8 @@
                      *     object, suitable for use in a URL query string or Ajax request.
                      */
                     location.href = window.location.protocol + "//" + window.location.host +
-                            '/' + OPENMRS_CONTEXT_PATH + '/coreapps/clinicianfacing/patient.page?patientId='
-                            + queryParameters['patientId']; // Causes page to reload
+                        '/' + OPENMRS_CONTEXT_PATH + '/coreapps/clinicianfacing/patient.page?patientId='
+                        + queryParameters['patientId']; // Causes page to reload
                 });
             </script>
         </includeIf>
@@ -99,7 +99,6 @@
         }
 
         form .lablex span {
-            width: 26%;
             float: left;
             margin: 1px 0px;
         }
@@ -114,9 +113,17 @@
         }
 
         form .lablex3 span {
-            min-width: 50%;
+            min-width: 70%;
             float: left;
             margin: 1px 0px;
+        }
+
+        .stability {
+            display: none;
+        }
+
+        form#htmlform div.ai-page-frame input[disabled="disabled"], form#htmlform div.ai-page-frame input[readonly="readonly"], form#htmlform div.ai-page-frame select[disabled="disabled"], form#htmlform div.ai-page-frame input.locked, form#htmlform div.ai-page-frame select.locked {
+            background-color: #ffffff !important
         }
 
     </style>
@@ -238,66 +245,65 @@
 
         if (jQuery) {
 
-            <!-- Validation rules -->
-            beforeSubmit.push(function () {
-                <!-- clear the previous errors -->
-                setValue('returndate.error', '');
-                setValue('viral-load-results-copies.error', '');
-                setValue('date-viral-load-taken.error', '');
+            var instabilityCause = "";
 
-                var encounterDate = new Date((getValue('encounterDate.value')));
-                var returnDate = new Date((getValue('returndate.value')));
+            function diff_months(dt2, dt1) {
+                var diff = (dt2.getTime() - dt1.getTime()) / 1000;
+                diff /= (60 * 60 * 24 * 7 * 4);
+                return Math.abs(Math.round(diff));
+            }
 
-                if (encounterDate &gt;= returnDate) {
-                    getField('returndate.error').html('The return date must be after the date of this visit ' +
-        formatDateForDisplay(encounterDate)).show();
-                    return false;
-                }
 
-                <!-- Check that the return date is before the transfer out date only if there is a transfer out date -->
-                if (jq('#transfer_out_date_id').html().replace(/\s+/, "").length > 0) {
-                    var transfer_out_date_id = new Date(jq('#transfer_out_date_id').html());
-                    if (returnDate &gt;= transfer_out_date_id) {
-                        getField('returndate.error').html('The return date must be before the transfer out date of ' +
-        formatDateForDisplay(transfer_out_date_id)).show();
-                        return false;
-                    }
-                    return false;
-                }
-
-                var viral_load_qualitative = getValue('viral-load-results-qualitative.value');
-                var date_viral_load_taken = getValue('date-viral-load-taken.value');
-                /* The date that the viral load was taken is required if a qualitative result is selected */
-                if (viral_load_qualitative != "") {
-                    if (date_viral_load_taken == "") {
-                        getField('date-viral-load-taken.error').html('Please enter the date when the viral load sample was taken').show();
-                        return false;
-                    }
-                }
-
-                /** The date the viral load was taken cannot be after the encounter date */
-                if (date_viral_load_taken != "") {
-                    if (encounterDate &lt; date_viral_load_taken) {
-                        getField('date-viral-load-taken.error').html('The date the viral load sample was taken cannot be after the date of this visit ' + encounterDate).show();
-                        return false;
-                    }
-                }
-
-                /* If the viral load is detected, the number of copies must be greater than 20 which is the lowest detectable level for a machine */
-                if ((viral_load_qualitative == 1301) &amp;&amp; (getValue('viral-load-results-copies.value') &lt; 20)) {
-                    getField('viral-load-results-copies.error').html('Please enter the number of virus copies per ml. the minimum number of copies is 20').show();
-
-                    return false;
-                }
-
-                return true;
-            });
             jq(document).ready(function () {
                 if (jq.browser.msie) {
                     jq(":checkbox").click(function () {
                         jq(this).change();
                     });
                 }
+
+                //Block Multiple encounter entry on same date
+                blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"),"block");
+
+                var stableArray = [];
+
+                var previousVl = jq("#vl").text().trim();
+                var currentRegimen = jq("#regimen").text().trim();
+                var regimenBeforeDTG = jq("#regimen_before_dtg").text().trim();
+                var onThirdLine = jq("#on_third_line").text().trim();
+                var adherence = jq("#adherence").text().trim();
+                var clinicStaging = jq("#clinic_staging").text().trim();
+                var regimenStartedDate = jq("#regimen_started_date").text().trim();
+                var regimenBeforeDTGStartedDate = jq("#regimen_started_date_before_dtg").text().trim();
+                var sputumDate = jq("#sputum_date").text().trim();
+                var artStartDate = jq("#art_start_date").text().trim();
+                var teatmentStartDate = jq("#teatment_start_date").text().trim();
+                var sputumValue = jq("#sputum_value").text().trim();
+                var currentRegimenStartDate = jq("#current_regimen_start_date").text().trim();
+
+                if (regimenBeforeDTG &amp;&amp; regimenBeforeDTG !== "") {
+                    regimenStartedDate = regimenBeforeDTGStartedDate;
+                }
+
+                var durationOnART;
+                var durationOnCurrentRegimen;
+
+                if (artStartDate !== "") {
+                    durationOnART = diff_months(new Date(artStartDate), new Date(jq("#encounterDate").find("input[type=hidden]").val()));
+                    jq("#99024 input").val(durationOnART);
+                }
+
+                if (currentRegimenStartDate !== "") {
+                    durationOnCurrentRegimen = diff_months(new Date(currentRegimenStartDate), new Date(jq("#encounterDate").find("input[type=hidden]").val()));
+                    jq("#99025 input").val(durationOnCurrentRegimen);
+                }
+
+                fieldHelper.makeReadonly(jq("#99025 input"));
+                fieldHelper.makeReadonly(jq("#99024 input"));
+
+
+                disableContainer("#165144");
+
+                stabilityCheck();
 
 
                 /* Validation of the ART regimen Selected */
@@ -322,17 +328,32 @@
                     if (!patient_regimen.includes(regimen_encounter_page_value)) {
                         jq().toastmessage('showNoticeToast', "The regimen" + regimen_encounter_page_text + "you have selected is different from the current regimen in the Summary page. Please update the summary page with a switch/substitution to the selected regimen");
                     }
-                });
-                /* End of Validation /*
 
-                 /* Handle viral load results */
+                    if (currentRegimen !== jq("#90315").find("select").find(":selected").val()) {
+                        jq("#99025 input").val(0);
+                    }else {
+                        jq("#99025 input").val(durationOnCurrentRegimen);
+                    }
+                    stabilityCheck();
+                });
+                /* End of Validation */
+
+
+                /* Handle viral load results */
                 jq("#viral-load-results-copies").attr("disabled", true);
                 jq("#viral-load-results-qualitative").change(function () {
                     var viral_load_status = getValue('viral-load-results-qualitative.value');
                     if (viral_load_status == 1301) {
                         /* Detected */
                         jq("#viral-load-results-copies").attr("disabled", false).attr("readonly", false).fadeTo(250, 1);
-                        setValue('viral-load-results-copies.value', '');
+                        <ifMode mode="ENTER">
+                                setValue('viral-load-results-copies.value', '');
+                        </ifMode>
+
+                        var viral_load_copies = getValue('viral-load-results-copies.value');
+                        if(viral_load_copies == 1){
+                            setValue('viral-load-results-copies.value', '');
+                        }
                     }
                     if (viral_load_status == 1306) {
                         /* Not Detected */
@@ -345,6 +366,13 @@
                         setValue('viral-load-results-copies.value', '');
                     }
                 });
+
+                jq("#viral-load-results-copies").change(function () {
+                    previousVl = jq("#viral-load-results-copies").find("input").val();
+                    stabilityCheck();
+                });
+
+
                 // trigger a change when the form loads
                 jq("#viral-load-results-qualitative").change();
 
@@ -366,11 +394,11 @@
                 });
 
                 jq('[class^="OtherAppointmentReasonEnableDisable"]').change(function () {
-                    enable_disable(jq(this), "OtherAppointmentReason", 'selected_value == "other specify"', "select");
+                    enable_disable(jq(this), "OtherAppointmentReason", 'selected_value == "14. other specify"', "select");
                 });
 
                 jq('[class^="OtherAppointmentReasonEnableDisable"]').each(function () {
-                    enable_disable(jq(this), "OtherAppointmentReason", 'selected_value == "other specify"', "select");
+                    enable_disable(jq(this), "OtherAppointmentReason", 'selected_value == "14. other specify"', "select");
                 });
 
                 jq('[class^="DistrictTbRegEnableDisable"]').change(function () {
@@ -390,8 +418,14 @@
                     enable_disable(jq(this), "Adherence", 'selected_value == "poor" || selected_value=="fair"', "select");
                 });
 
+
+                jq("#90203").change(function () {
+                    clinicStaging = jq(this).find(":selected").val();
+                    stabilityCheck();
+                })
+
                 jq("#returndate").each(function () {
-                    if(jq("#returndate").find("input[type=hidden]").val()!=""){
+                    if (jq("#returndate").find("input[type=hidden]").val() != "") {
                         enableContainer("#reason_for_appointment");
                     } else {
                         disableContainer("#reason_for_appointment");
@@ -399,7 +433,7 @@
                 });
 
                 jq("#returndate").change(function () {
-                    if(jq("#returndate").find("input[type=hidden]").val()!=""){
+                    if (jq("#returndate").find("input[type=hidden]").val() != "") {
                         enableContainer("#reason_for_appointment");
                     } else {
                         disableContainer("#reason_for_appointment");
@@ -438,6 +472,136 @@
                         }
                     });
                 });
+
+
+                function stabilityCheck() {
+                    /*Viral Load Check*/
+
+                    stableArray = [];
+                    instabilityCause = "";
+
+                    if (previousVl !== "" &amp;&amp; previousVl &lt;= 1000) {
+                        stableArray.push(true);
+                    } else {
+                        stableArray.push(false);
+                        instabilityCause = instabilityCause + "Viral Load is Not Suppressed \n ";
+                    }
+
+                    /* Third Line*/
+
+                    if (onThirdLine !== "true") {
+                        stableArray.push(true);
+                    } else {
+                        stableArray.push(false);
+                        instabilityCause += "Current regimen is a third line regimen \n "
+                    }
+
+                    /* Adherence Check*/
+
+                    if (adherence.length &lt;= 0 || adherence.trim().includes("POOR")) {
+                        stableArray.push(false);
+                        instabilityCause += "Adherence is not Good \n "
+                    } else {
+                        stableArray.push(true);
+                    }
+
+                    /* Clinic staging */
+                    if (clinicStaging === "90033" || clinicStaging === "90034" || clinicStaging === "90293" || clinicStaging === "90294") {
+                        stableArray.push(true);
+                    } else {
+                        stableArray.push(false);
+                        instabilityCause += "Clinic stage is neither 1 or 2 \n";
+                    }
+                    var pageCurrentRegimen = jq("#90315").find("select").find(":selected").val();
+                    var pageEncounterDate = jq("#encounterDate").find("input[type=hidden]").val();
+                    var dsdmRegimenCoceptsIds="164976,164977,164978,164979";
+
+                    if (currentRegimen !== "" &amp;&amp; (currentRegimen === pageCurrentRegimen || dsdmRegimenCoceptsIds.trim().includes(pageCurrentRegimen)) &amp;&amp; diff_months(new Date(pageEncounterDate), new Date(regimenStartedDate)) &gt; 12) {
+
+                        stableArray.push(true);
+                    } else {
+                        stableArray.push(false);
+                        instabilityCause += "Patient has not spent more than 12 moths on current Regiment \n "
+                    }
+
+                    if (sputumValue !== "" &amp;&amp; sputumValue !== "664" &amp;&amp; diff_months(new Date(jq("#encounterDate").find("input[type=hidden]").val()), new Date(teatmentStartDate)) &lt; 2) {
+                        stableArray.push(false);
+                        instabilityCause += "Patient has not been on treatment for TB for at least 2 months"
+                    } else {
+                        stableArray.push(true);
+                    }
+                    instabilityCause.trim().replace()
+
+                    if (stableArray.indexOf(false) != -1) {
+                        jq("#165144 select").val("90004");
+                    } else {
+                        jq("#165144 select").val("90003");
+                    }
+
+                }
+            });
+
+
+            <!-- Validation rules -->
+            beforeSubmit.push(function () {
+                <!-- clear the previous errors -->
+                setValue('returndate.error', '');
+                setValue('viral-load-results-copies.error', '');
+                setValue('date-viral-load-taken.error', '');
+
+                var encounterDate = new Date((getValue('encounterDate.value')));
+                var returnDate = new Date((getValue('returndate.value')));
+
+                if (encounterDate &gt;= returnDate) {
+                    getField('returndate.error').html('The return date must be after the date of this visit ' +
+                        formatDateForDisplay(encounterDate)).show();
+                    return false;
+                }
+
+                <!-- Check that the return date is before the transfer out date only if there is a transfer out date -->
+                if (jq('#transfer_out_date_id').html().replace(/\s+/, "").length > 0) {
+                    var transfer_out_date_id = new Date(jq('#transfer_out_date_id').html());
+                    if (returnDate &gt;= transfer_out_date_id) {
+                        getField('returndate.error').html('The return date must be before the transfer out date of ' +
+                            formatDateForDisplay(transfer_out_date_id)).show();
+                        return false;
+                    }
+                    return false;
+                }
+
+                var viral_load_qualitative = getValue('viral-load-results-qualitative.value');
+                var date_viral_load_taken = getValue('date-viral-load-taken.value');
+                /* The date that the viral load was taken is required if a qualitative result is selected */
+                if (viral_load_qualitative != "") {
+                    if (date_viral_load_taken == "") {
+                        getField('date-viral-load-taken.error').html('Please enter the date when the viral load sample was taken').show();
+                        return false;
+                    }
+                }
+
+                /** The date the viral load was taken cannot be after the encounter date */
+                if (date_viral_load_taken != "") {
+                    if (encounterDate &lt; date_viral_load_taken) {
+                        getField('date-viral-load-taken.error').html('The date the viral load sample was taken cannot be after the date of this visit ' + encounterDate).show();
+                        return false;
+                    }
+                }
+
+                /* If the viral load is detected, the number of copies must be greater than 20 which is the lowest detectable level for a machine */
+                if ((viral_load_qualitative == 1301) &amp;&amp; (getValue('viral-load-results-copies.value') &lt; 20)) {
+                    getField('viral-load-results-copies.error').html('Please enter the number of virus copies per ml. the minimum number of copies is 20').show();
+                    return false;
+                }
+
+                /* if DSDM is not FBIM or FTR or Empty and patient is not stable should not save.*/
+                if (jq("#165144").find("select").find(":selected").val() !== "90003" &amp;&amp; (jq("#165143").find("select").find(":selected").val() !== "165138" &amp;&amp; jq("#165143").find("select").find(":selected").val() !== "165140" &amp;&amp; jq("#165143").find("select").find(":selected").val() !== "")) {
+                    getField('165143.error').html('Patient Not Stable due to ' + instabilityCause + '. \n Only Stable Patients can be enrolled in ' + jq("#165143").find("select").find(":selected").text()).show();
+
+                    jq().toastmessage('showErrorToast', " Patient Not Stable " + instabilityCause + ". \n Only Stable Patients can be enrolled in " + jq("#165143").find("select").find(":selected").text());
+                    return false;
+                }
+
+                return true;
             });
         }
     </script>
@@ -511,7 +675,7 @@
                     <td>
 
                         <excludeIf velocityTest="$patient.person.dead ==true">
-                            <lookup complexExpression="#set($transfer_out_date = '')" />
+                            <lookup complexExpression="#set($transfer_out_date = '')"/>
                             <ifMode mode="ENTER">
                                 <span id="transfer_out_date_id" style="display: none"><lookup
                                         complexExpression="#set($transfer_out_date=($fn.latestObs('99165').valueDatetime)) #set($lost_to_follow_date=$fn.latestObs('99165').valueDatetime) #set($transfer_out=$fn.latestObs('90306').valueCoded.name) $transfer_out_date"/></span>
@@ -545,9 +709,10 @@
                         </excludeIf>
 
                         <span class="OtherAppointmentReasonEnableDisable1">
-                                    <obs id="reason_for_appointment" conceptId="160288" labelText="Reasons for next appointment:"
+                                    <obs id="reason_for_appointment" conceptId="160288"
+                                         labelText="Reasons for next appointment:"
                                          answerConceptIds="164968,164972,164970,856,5497,163153,164971,164973,99324,164974,90012,903,5484,90002"
-                                         answerLabels="1. ART Initiation, 2. ART Refill, 3. ART Regimen Switch/ Substitution, 4. Viral Load, 5. CD4, 6. IAC, 7. T.B Drug Refill,8. T.B Follow up, 9. ANC,10. EID,11. PMTCT, 12. Hypertension/ Diabetics, 13. Nutrition,Other Specify"/>
+                                         answerLabels="1. ART Initiation, 2. ART Refill, 3. ART Regimen Switch/ Substitution, 4. Viral Load, 5. CD4, 6. IAC, 7. T.B Drug Refill,8. T.B Follow up, 9. ANC,10. EID,11. PMTCT, 12. Hypertension/ Diabetes, 13. Nutrition,14. Other Specify"/>
                         </span>
                         <span class="OtherAppointmentReasonEnableDisableChild1">
                                     <obs conceptId="164975" labelText="Other Reason for next appointment"/>
@@ -556,9 +721,9 @@
 
                     </td>
                     <td>
-                        <obs id="br" conceptId="99024" labelText="Duration(Months since baseline):"/>
+                        <obs id="99024" conceptId="99024" labelText="Duration(Months since baseline):"/>
                         <br/>
-                        <obs id="br" conceptId="99025" labelText="Duration:(Months on current regimen)"/>
+                        <obs id="99025" conceptId="99025" labelText="Duration:(Months on current regimen)"/>
                     </td>
                     <td>
                         <obs class="horizontal" conceptId="90236" labelText="Weight"
@@ -718,7 +883,7 @@
 
                         <br/>
                     </td>
-                    <td>
+                    <td class="lablex2">
                         <obs id="br" conceptId="90227" answerConceptId="90100" answerLabel="AB"/>
                         <obs id="br" conceptId="90227" answerConceptId="90099" answerLabel="Anaemia"/>
                         <obs id="br" conceptId="90227" answerConceptId="90095" answerLabel="BN"/>
@@ -740,7 +905,7 @@
                                 </span>
                             </span>
                     </td>
-                    <td class="lablex">
+                    <td class="lablex2">
                         <obs id="br" conceptId="90251" answerConceptId="90132" answerLabel="Cough"/>
                         <obs id="br" conceptId="90251" answerConceptId="90133"
                              answerLabel="DB"/>
@@ -798,7 +963,7 @@
                              answerLabels="Amb,Work, Bed" labelText=""/>
                     </td>
                     <td>
-                        <obs id="br" conceptId="90203"
+                        <obs id="90203" conceptId="90203"
                              answerConceptIds="90033,90034,90035,90036,90293,90294,90295,90296"
                              answerLabels="1,2,3,4,T1,T2,T3,T4" labelText=""/>
                     </td>
@@ -938,14 +1103,14 @@
                     <td class="RegimenEnableDisable1" style="width:3%;">
                         <span class="disableARTRegimen">
                             <obs id="90315" conceptId="90315" labelText="Regimen:"
-                                 answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99007,99008,99044,99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99884,99885,99888,163017,99887,90002"
-                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,AZT-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,AZT-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-ATV/r,ABC-3TC-LPV/r,TDF-3TC-ATV/r,Other"/>
+                                 answerConceptIds="99015,99016,99005,99006,164979,99039,99040,164977,99041,99042,99007,99008,99044,99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99884,99885,164978,99888,163017,99887,90002"
+                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,AZT-3TC-DTG,TDF-3TC-NVP,TDF-3TC-EFV,TDF-3TC-DTG,TDF-FTC-NVP,TDF-FTC-EFV,ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,AZT-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,AZT-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-DTG,ABC-3TC-ATV/r,ABC-3TC-LPV/r,TDF-3TC-ATV/r,Other"/>
 
                             <span class="RegimenEnableDisableChild1">
                                 <obs id="br" conceptId="99126" size="18" labelText="Specify"/>
                                 <br/>
                             </span>
-
+                            <obs id="br" conceptId="165118" labelText="Pill Balance:"/>
                             <obs id="br" conceptId="99038" labelText="# Pills:"/>
                             <obs id="br" conceptId="99036" size="5" labelText="Days:"/>
                                 </span>
@@ -961,12 +1126,12 @@
                     <td style="width: 5%;background: #F3F3F3;padding: 20px; text-align: center;" colspan="2">
                         Investigations
                     </td>
-                    <td style="width: 5%;background: #F3F3F3;padding: 20px;">Refer or consult or link / provide</td>
+                    <td style="width: 10%;background: #F3F3F3;padding: 20px;">DSMD Model</td>
+                    <td style="width: 10%;background: #F3F3F3;padding: 20px;">Refer or consult or link / provide</td>
                     <td style="width: 15%;background: #F3F3F3;padding: 20px;">Name of Attending Clinician</td>
                 </tr>
                 <tr>
                     <td>
-
                         <obs id="br" conceptId="5497" dateLabel="Date:" labelText="CD4:"/>
                         <br/>
                         <obs id="br" conceptId="730" dateLabel="Date:" labelText="CD4%:"/>
@@ -989,7 +1154,7 @@
 
                         <obs id="viral-load-results-copies" conceptId="856"/>
                     </td>
-                    <td class="lablex2" style="width: 40%;">
+                    <td class="lablex2">
                         <b>Tests ordered:</b>
                         <br/>
                         <obs id="br" conceptId="1271" answerConceptId="1019"
@@ -1017,14 +1182,10 @@
                                     <obs id="br" conceptId="99114" size="16" labelText=""/>
                                 </span>
                             </span>
-                        <hr style="width: 100%; border: 0.5px solid #BDBDBD;"/>
-                        <div style="width: 100%;">
+                        <hr style="width: 100%; border: 0.5px solid #BDBDBD; " class="clearfix"/>
+                        <div style="width: 100%;" class="lablex3">
                             <label>Test results:</label>
-                            <hr style="width: 100%; border: 0.5px solid #BDBDBD;"/>
-                            <p></p>
                             <obs id="br" conceptId="21" labelText="Hb:" dateLabel="HB Date:"/>
-                            <br/><br/>
-
                             <obsgroup groupingConceptId="99292">
                                 <obs conceptId="99290" answerConceptIds="1019,99152,12,307,99149"
                                      answerLabels="CBC,RPR,CXR,Sputums,PCR" labelText="Other Results:"
@@ -1033,23 +1194,34 @@
                             </obsgroup>
                         </div>
                     </td>
-                    <td class="lablex2">
+                    <td>
+                        <div>
+                            <uiInclude provider="aijar" fragment="patientStability"/>
+                        </div>
+
+                        <obs id="165144" conceptId="165144" answerConceptIds="90003,90004" answerLabels="Yes,No"
+                             defaultValue="90004" labelText="Stable"/>
+
+                        <obs id="165143" conceptId="165143" answerConceptIds="165138,165140,165139,165142,165141"
+                             answerLabels="FBIM,FBG,FTR,CDDP,CCLAD" required="required" labelText="DSDM Model"/>
+                    </td>
+                    <td class="lablex3">
                         <b>Referred for</b>
                         <br/>
                         <obs id="br" conceptId="99054" answerConceptId="99053"
-                             answerLabel="Theraputic Feeding"/>
+                             answerLabel="TF - Theraputic Feeding"/>
                         <obs id="br" conceptId="99054" answerConceptId="99051"
-                             answerLabel="Infant F C"/>
+                             answerLabel="IFC - Infant Feeding Counselling  &lt; 2 years"/>
                         <obs id="br" conceptId="99054" answerConceptId="99052"
-                             answerLabel="Nutrition C"/>
+                             answerLabel="NC - Nutrition Counselling if &gt; 2 years"/>
                         <obs id="br" conceptId="99054" answerConceptId="99050"
-                             answerLabel="Food Support"/>
-                        <br/>
-                        <obs id="br" size="15" conceptId="99267" labelText="Other referral:"/>
+                             answerLabel="FC - Food Support"/>
+                        <br/><br/>
+                        <obs id="br" size="15" conceptId="99267" labelText="Other referral:  "/>
                         <br/>
 
                         <obs id="br" conceptId="1151" answerConceptIds="5526,99089,6046"
-                             answerLabels="EBF,RF,MF" labelText="Infant feeding"/>
+                             answerLabels="EBF - Exclusive Breast Feeding,RF - Replacement Feeding,MF - Mixed Feeding" labelText="Infant feeding"/>
                         <br/>
 
                         <obs id="br" conceptId="90224" labelText="# Hospitalized days:">
@@ -1065,6 +1237,7 @@
             </table>
         </section>
     </div>
+    <postSubmissionAction class="org.openmrs.module.aijar.htmlformentry.DSDSProgramSubmissionAction"/>
     <section>
         <submit/>
     </section>

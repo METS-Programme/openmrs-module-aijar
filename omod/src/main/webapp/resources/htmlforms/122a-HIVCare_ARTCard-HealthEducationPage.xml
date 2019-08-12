@@ -53,6 +53,8 @@
                         jq(this).change();
                     });
                 }
+                //Block Multiple encounter entry on same date
+                blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"),"block");
 
                 jq(".enableDisable").each(function () {
                     var group = jq(this);
@@ -157,7 +159,7 @@
                         <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
                     </td>
                     <td colspan="2">
-                        <label><span class="required">*</span> Attending Clinician:</label>
+                        <label><span class="required">*</span> Counsellor:</label>
                         <encounterProvider role="Provider" style="autocomplete" required="required"/>
 
 							<span style="display: none;">

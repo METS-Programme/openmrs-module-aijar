@@ -412,6 +412,9 @@
                             });
                         }
 
+                //Block Multiple encounter entry on same date
+                blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"),"block");
+
 
                         var gender = jq("span.gender").html();
                         var age = jq("span.age").html();
@@ -565,6 +568,20 @@
                                 }
                             });
                         });
+                        /* enabling and disabling immunization code not done fields */
+                            jq("#imm-not-done").find("input[type$='text']").attr("disabled",true);
+                        jq("#imm-not-done").each(function () {
+
+                            jq("#imm-not-done").find("#trigger").find(":checkbox:first").change(function () {
+                                var checked = jq(this).attr("checked");
+                                if (checked == "checked") {
+                                        jq("#imm-not-done").find("#value").find("input[type$='text']").attr("disabled", false);
+                            } else {
+                                jq("#imm-not-done").find("input[type$='text']").attr("disabled",true);
+                                jq("#imm-not-done").find("input[type$='text']").val("");
+                            }
+                            });
+                        });
 
 
                         jq(".checkboxGroup").each(function () {
@@ -700,7 +717,7 @@
                         <td colspan="2">Infant feeding Code</td>
                         <td>
                             <obs conceptId="99451" answerConceptIds="5526,99089,6046,99791,99792,99793"
-                                 answerLabels="EBF: Exclusive Breastfeeding,RF: Replacement Feeding (never breastfed),MF: Mixed Feeding (below 6 months),CF: Complimentary Breast Feeding (above 6 months),W: Wean from breastfeeding,NLB: No Longer Breastfeeding"/>
+                                 answerLabels="EBF - Exclusive Breast Feeding,RF - Replacement Feeding (never breastfed),MF - Mixed Feeding (below 6 months) ,CF - Complimentary Breast Feeding (above 6 months),W - Wean from breastfeeding,NLB - No Longer Breastfeeding"/>
                         </td>
                     </tr>
                     <tr>
@@ -721,14 +738,14 @@
                             <obs conceptId="162839" answerConceptId="163014" answerLabel="PCV-1"/>
                             <obs conceptId="162839" answerConceptId="163015" answerLabel="PCV-2"/>
                             <obs conceptId="162839" answerConceptId="163016" answerLabel="PCV-3"/>
-                            <span class="enableDisable">
+                            <span id="imm-not-done">
                                         <span id="trigger">
                                             <obs conceptId="162839" answerConceptId="90002" answerLabel="Not Done"/>
                                         </span>
-                                        <span id="disabled">
+                                        <span id="value">
                                             <obs conceptId="162890"/>
                                         </span>
-                                </span>
+                            </span>
                         </td>
                     </tr>
                     <tr>

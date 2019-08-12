@@ -8,6 +8,19 @@
         See http://www.liquibase.org/manual/home#available_database_refactorings
         for a list of supported elements and attributes
     -->
+	<changeSet id="ugandaemr-05092018-1043" author="ssmusoke">
+		<comment>Fix bad data for the ART care section which is causing an error when saving the summary page</comment>
+		<sql>
+			UPDATE obs SET value_numeric = NULL WHERE concept_id = 99162 AND value_numeric IS NOT NULL;
+		</sql>
+	</changeSet>
+	<changeSet id="ugandaemr-19072018-1002" author="ssmusoke">
+		<comment>Correct the sticky note concept</comment>
+		<sql>
+			UPDATE global_property SET property_value = 'CIEL:162169' WHERE property = 'coreapps.conceptStickyNote';
+		</sql>
+	</changeSet>
+
 	<changeSet id="ugandaemr-07052017-1505" author="ssmusoke">
 		<comment>Move the death information from the obs table to the person table</comment>
 		<sql>
@@ -57,7 +70,7 @@
 			<column name="started" value="1"/>
 			<column name="uuid" value="29584cdf-37c0-46ec-b942-3b98274e30d8" />
 		</insert>
-	
+
 	</changeSet>
 	<changeSet id="ugandaemr-06232017-1638" author="ssmusoke">
 		<preConditions onFail="MARK_RAN">
@@ -80,7 +93,7 @@
 			<column name="started" value="1"/>
 			<column name="uuid" value="415b8d70-6b45-41d8-a0ba-41b1a6b8aa1f" />
 		</insert>
-	
+
 	</changeSet>
 	<changeSet id="ugandaemr-06232017-1637" author="ssmusoke">
 		<preConditions onFail="MARK_RAN">
@@ -103,7 +116,7 @@
 			<column name="started" value="1"/>
 			<column name="uuid" value="d1147982-1fd3-4d03-8b6c-6345a8187b28" />
 		</insert>
-		
+
 	</changeSet>
     <changeSet id="ugandaemr-12162016-1052" author="ssmusoke">
 		<comment>Stop scheduled tasks that are not used from starting up</comment>
@@ -167,22 +180,13 @@
 			ON (A.encounter_id = B.encounter_id));
 		</sql>
 	</changeSet>
-	<changeSet id="ugandaemr-17102017-0839" author="slubwama">
-		<preConditions onFail="CONTINUE">
-			<sqlCheck expectedResult="1">
-				SELECT COUNT(*) FROM concept WHERE concept_id = '164985'
-			</sqlCheck>
-		</preConditions>
-		<comment>Migrate HTC Identifier value to Concept</comment>
-		<sql>
-			INSERT INTO obs (person_id, concept_id, encounter_id, location_id,value_text,obs_datetime,date_created,creator,uuid)
-			select patient_identifier.patient_id, "164985",encounter.encounter_id,encounter.location_id,identifier,encounter.date_created,encounter.date_created,encounter.creator,UUID() from encounter inner JOIN patient_identifier on(encounter.patient_id=patient_identifier.patient_id) WHERE encounter_type=15 and patient_identifier.identifier_type=9
-		</sql>
-	</changeSet>
     <changeSet id="uganademr-10202017-2138" author="ssmusoke">
-        <preConditions>
-            <columnExists tableName="serialized_object" columnName="serialized_data" />
-        </preConditions>
+		<preConditions onFail="MARK_RAN">
+		<sqlCheck expectedResult="0">
+			SELECT COUNT(*) FROM scheduler_task_config
+			WHERE schedulable_class = 'org.openmrs.module.aijar.tasks.ExitMCHProgramASLostToFollowUpTask'
+		</sqlCheck>
+		</preConditions>
         <comment>Change column to utf8 to enable saving of multi-byte characters</comment>
         <sql>
             ALTER TABLE `serialized_object` MODIFY `serialized_data` MEDIUMTEXT CHARACTER SET utf8 NOT NULL;
@@ -194,4 +198,42 @@
 			DELETE FROM person_attribute WHERE value IS NULL OR value = '';
 		</sql>
 	</changeSet>
+	<changeSet id="ugandaemr-01-10-2018-1200" author="slubwama">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(program_id) FROM program  WHERE program.uuid = 'de5d54ae-c304-11e8-9ad0-529269fb1459';
+            </sqlCheck>
+        </preConditions>
+		<comment>Move all Patients Ever enrolled in Facility Based Individual Management DSDM </comment>
+		<sql>
+			INSERT INTO patient_program (patient_id, program_id, date_enrolled, location_id, creator, date_created, voided, uuid)
+			SELECT patient_id,(SELECT program.program_id FROM program WHERE program.uuid='de5d54ae-c304-11e8-9ad0-529269fb1459') AS program,encounter_datetime AS date_enrolled,location_id,encounter.creator,NOW(),0,UUID() AS uuid FROM encounter INNER JOIN encounter_type ON(encounter_type.encounter_type_id=encounter.encounter_type) WHERE  encounter_type.uuid='8d5b27bc-c2cc-11de-8d13-0010c6dffd0f' GROUP BY patient_id;
+		</sql>
+	</changeSet>
+
+	<changeSet id="ugandaemr-01042019-2012" author="dbaluku">
+		<comment>Setting  modules to FHIR,Data Entry Statistics to be started manually</comment>
+		<sql>
+			UPDATE global_property SET property_value = 'false' WHERE property IN ('fhir.started', 'dataentrystatistics.started');
+		</sql>
+	</changeSet>
+
+    <changeSet id="ugandaemr-25072019-2019" author="slubwama">
+        <comment>Setting  modules for Data Entry Statistics to be started automatically</comment>
+        <sql>
+            UPDATE global_property SET property_value = 'true' WHERE property ='dataentrystatistics.started';
+        </sql>
+    </changeSet>
+
+    <changeSet id="ugandaemr-25072019-1409" author="slubwama">
+        <comment>
+			Changing Concept Name for concept 99610 from SMS care entry to SMC care entry
+			Changing Concept Description to change SMS word to SMC Word
+		</comment>
+        <sql>
+			UPDATE concept SET short_name = 'SMC' WHERE concept_id =99610;
+            UPDATE concept_name SET name = 'SMC care entry' WHERE concept_id =99610;
+            UPDATE concept_description SET description = 'SMC as HIV care entry point - This concept added to support MOH ART card functionality' WHERE concept_id =99610;
+        </sql>
+    </changeSet>
 </databaseChangeLog>

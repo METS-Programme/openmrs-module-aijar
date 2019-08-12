@@ -114,4 +114,120 @@ public class Programs {
         }
     };
 
+
+    public static ProgramDescriptor FBIM_PROGRAM = new ProgramDescriptor() {
+
+        @Override
+        public String conceptUuid() {
+            return "733144c0-c321-11e8-a355-529269fb1459";
+        }
+
+        @Override
+        public String name() {
+            return "FBIM";
+        }
+
+        @Override
+        public String description() {
+            return "Facility Based Individual Management a DSDM model for patients that need extra management at the health centre";
+        }
+
+        @Override
+        public String uuid() {
+            return "de5d54ae-c304-11e8-9ad0-529269fb1459";
+        }
+    };
+
+    public static ProgramDescriptor FTR_PROGRAM = new ProgramDescriptor() {
+
+        @Override
+        public String conceptUuid() {
+            return "73313f20-c321-11e8-a355-529269fb1459";
+        }
+
+        @Override
+        public String name() {
+            return "FTR";
+        }
+
+        @Override
+        public String description() {
+            return "Fast Track Drug Refill is a DSDM Model for patients who only pick drugs at the health centre";
+        }
+
+        @Override
+        public String uuid() {
+            return "de5d5896-c304-11e8-9ad0-529269fb1459";
+        }
+    };
+
+    public static ProgramDescriptor FBG_PROGRAM = new ProgramDescriptor() {
+
+        @Override
+        public String conceptUuid() {
+            return "73313c96-c321-11e8-a355-529269fb1459";
+        }
+
+        @Override
+        public String name() {
+            return "FGB";
+        }
+
+        @Override
+        public String description() {
+            return "Facility Based Groups a DSDM for stable or unstable clients who need peer support";
+        }
+
+        @Override
+        public String uuid() {
+            return "de5d5b34-c304-11e8-9ad0-529269fb1459";
+        }
+    };
+
+    public static ProgramDescriptor CCLAD_PROGRAM = new ProgramDescriptor() {
+
+        @Override
+        public String conceptUuid() {
+            return "733139e4-c321-11e8-a355-529269fb1459";
+        }
+
+        @Override
+        public String name() {
+            return "CCLAD";
+        }
+
+        @Override
+        public String description() {
+            return "Community Client Led ART Delivery is a DSDM  Model with client lead groups with rotation drug pickup by client them selves and distribution";
+        }
+
+        @Override
+        public String uuid() {
+            return "de5d5da0-c304-11e8-9ad0-529269fb1459";
+        }
+    };
+
+    public static ProgramDescriptor CDDP_PROGRAM = new ProgramDescriptor() {
+
+        @Override
+        public String conceptUuid() {
+            return "73313728-c321-11e8-a355-529269fb1459";
+        }
+
+        @Override
+        public String name() {
+            return "CDDP";
+        }
+
+        @Override
+        public String description() {
+            return " Community Drug Distribution Point DSDM Model in community where patients pick drugs from a distribution point in community set by their health centre";
+        }
+
+        @Override
+        public String uuid() {
+            return "de5d6034-c304-11e8-9ad0-529269fb1459";
+        }
+    };
 }
+

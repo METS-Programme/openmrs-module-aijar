@@ -120,6 +120,9 @@
                     });
                 }
 
+                //Block Multiple encounter entry on same date
+                blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"),"block");
+
                 jq('[class^="PreTestCounselingEnableDisable"]').change(function () {
                     enable_disable(jq(this), "PreTestCounseling", 'selected_value == "yes"', "select");
                 });
@@ -193,14 +196,9 @@
                         <label>Is the Center static or an Outreach?:</label>
                         <obs conceptId="99457" answerConceptIds="99455,99456" answerLabels="1. Static,2. Outreach"/>
                     </td>
-                    <td>
+                    <td colspan="2">
                         <label>Reg Number:</label>
                         <obs conceptId="164985" required="required"/>
-                    </td>
-                    <td>
-                        <label>National ID:</label>
-                        <patient field="identifier" identifierTypeId="f0c16a6d-dc5f-4118-a803-616d0075d282"
-                                 required="false"/>
                     </td>
                 </tr>
 
@@ -394,6 +392,13 @@
                         <obs conceptId="5497"/>
                     </td>
                 </tr>
+                <includeIf velocityTest="$fn.globalProperty('ugandaemr.hts.recency') == true">
+                    <tr>
+                        <td colspan="2"><label>HIV Recency Test Result:</label>
+                            <obs conceptId="141520" answerConceptIds="141518,141519,163611,165145,1118" answerLabels="Recent,Long Term,Invalid,Missing,Not Done"/>
+                        </td>
+                    </tr>
+                </includeIf>
                 <tr>
                     <td colspan="2"><label><span class="required">*</span>Counsellor</label>
                         <encounterProvider required="true"/>

@@ -146,5 +146,28 @@
         <defaultValue></defaultValue>
     </globalProperty>
 
+    <globalProperty>
+        <property>ugandaemr.dsdm.programsuuid</property>
+        <description>A comma delimited list of Program UUIDS in DSDM</description>
+        <defaultValue>de5d54ae-c304-11e8-9ad0-529269fb1459,de5d5b34-c304-11e8-9ad0-529269fb1459,de5d5896-c304-11e8-9ad0-529269fb1459,de5d5da0-c304-11e8-9ad0-529269fb1459,de5d6034-c304-11e8-9ad0-529269fb1459</defaultValue>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.dsdm.conceptId</property>
+        <description>A Coded concept with all DSDM Concept</description>
+        <defaultValue>165143</defaultValue>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.hts.recency</property>
+        <description>This feature flag turns on/off the recency question</description>
+        <defaultValue>false</defaultValue>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.patientflags.disabledFlags</property>
+        <description>Separate Names of flags you want to disable with , example Transfered Out Patient,Un-supressed Viral Load</description>
+        <defaultValue></defaultValue>
+    </globalProperty>
 </module>
 

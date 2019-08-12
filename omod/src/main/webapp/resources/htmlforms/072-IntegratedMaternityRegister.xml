@@ -26,6 +26,10 @@
 
 	<script type="text/javascript">
 	    jQuery(document).ready(function(jq) {
+
+            //Block Multiple encounter entry on same date
+            blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"),"block");
+
 	        const VIRAL_LOAD_RESULTS_CONCEPT_ID = 1305;
 	        const VIRAL_LOAD_DETECTED_CONCEPT_ID = 1301;
 	        const VIRAL_LOAD_NOT_DETECTED_CONCEPT_ID = 1306;
@@ -772,15 +776,15 @@
           <td colspan="2">
             <p>
               <label>eMTCT Code: Woman</label>
-              <obs conceptId="d5b0394c-424f-41db-bc2f-37180dcdbe74" 
-              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,
-				              	05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7,
-				              	86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,
-				              	a08d9331-b437-485c-8eff-1923f3d43630,
-				              	25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465,
-				              	60155e4d-1d49-4e97-9689-758315967e0f,
-				              	48723c9c-c931-4fde-81cd-6178c9a9a70b,
-				              	4d301db0-c517-4556-9f7c-d837bac90144"
+              <obs conceptId="99317"
+              	answerConceptIds="99313,
+				              	99734,
+				              	99314,
+				              	99739,
+				              	99315,
+				              	99736,
+				              	164962,
+				              	164963"
               	answerLabels=	"C - Counselled but declined HIV testing,
               					T - Counselled and tested but didn't receive results,
               					TR - Counselled tested and results given - Client tested HIV - in maternity,
@@ -795,16 +799,16 @@
           <td colspan="2">
             <p>
               <label>eMTCT Code: Partner</label>
-              <obs conceptId="62a37075-fc2a-4729-8950-b9fae9b22cfb" 
-              	answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,
-				              	05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7,
-				              	86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,
-				              	a08d9331-b437-485c-8eff-1923f3d43630,
-				              	25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465,
-				              	60155e4d-1d49-4e97-9689-758315967e0f,
-				              	48723c9c-c931-4fde-81cd-6178c9a9a70b,
-				              	4d301db0-c517-4556-9f7c-d837bac90144,
-				              	8eab745c-24a5-4ba4-906c-b5087e920b66" 
+              <obs conceptId="99342"
+              	answerConceptIds="99313,
+				              	99734,
+				              	99314,
+				              	99739,
+				              	99315,
+				              	99736,
+				              	164962,
+				              	164963,
+				              	162927"
               	answerLabels="C - Counselled but declined HIV testing,
               					T - Counselled and tested but didn't receive results,
               					TR - Counselled tested and results given - Client tested HIV - in maternity,
@@ -977,7 +981,7 @@
 		  </td>
 		  <td>
 			<p>
-			  <label>I.N.R Number</label>
+			  <label>Integrated Nutrition Register No.</label>
 			  <obs conceptId="b644c29c-9bb0-447e-9f73-2ae89496a709" id="inrNumber" />
 			</p>
 		  </td>
@@ -1107,7 +1111,7 @@
 				              <label>
 				                Infant feeding option
 				              </label>
-				              <obs conceptId="dc9a00a2-30ab-102d-86b0-7a5022ba4115" answerConceptIds="dcbd637e-30ab-102d-86b0-7a5022ba4115,40fdb5b6-e8ac-424d-988c-f2f2937348db,dcd5487d-30ab-102d-86b0-7a5022ba4115" answerLabels="EBF-Exclusive Breast Feeding, RP-Replacement feeding,MF-Mixed feeding" id="infant-feeding-option" style="radio" class="vertical-layout-options" />
+				              <obs conceptId="dc9a00a2-30ab-102d-86b0-7a5022ba4115" answerConceptIds="dcbd637e-30ab-102d-86b0-7a5022ba4115,40fdb5b6-e8ac-424d-988c-f2f2937348db,dcd5487d-30ab-102d-86b0-7a5022ba4115" answerLabels="EBF - Exclusive Breast Feeding,RF - Replacement Feeding,MF - Mixed Feeding" id="infant-feeding-option" style="radio" class="vertical-layout-options" />
 				            </p>
 				          </td>
 				        </tr>

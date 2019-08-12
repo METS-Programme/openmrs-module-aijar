@@ -115,6 +115,9 @@
                     });
                 }
 
+                //Block Multiple encounter entry on same date
+                blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"),"block");
+
                 jq('#smc_presence_of_ae').click(function () {
                     if (getValue('smc_presence_of_ae.value') == 90002) {
                         showContainer('#smc_presence_of_ae_other');
@@ -147,15 +150,10 @@
                         <obs conceptId="162893" answerConceptIds="162894,162895,162896"
                              answerLabels="Static/Fixed,Outreach,Camp" required="true"/>
                     </td>
-                    <td>
+                    <td colspan="2">
                         <label><span class="required">*</span>Clinic Team Leader:
                         </label>
                         <encounterProvider role="Provider" style="autocomplete"/>
-                    </td>
-                    <td>
-                        <label>National ID:</label>
-                        <patient field="identifier" identifierTypeId="f0c16a6d-dc5f-4118-a803-616d0075d282"
-                                 required="false"/>
                     </td>
                     <td>
                         <label>Serial ID:</label>

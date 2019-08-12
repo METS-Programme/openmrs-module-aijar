@@ -28,17 +28,37 @@
             jq(document).ready(function() {
                 <ifMode mode="ENTER">
                     disableContainer('#outcomeContainer');
-                    <!-- disableContainer('#nextstepsContainer'); -->
                 </ifMode>
+
+            //Block Multiple encounter entry on same date
+            blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"),"block");
+
+            <!--disable and enable other follow up type-->
+            jq("#home-visit-date").find("input[type$='text']").attr("disabled",true);
+            jq("#new-followup-date").find("input[type$='text']").attr("disabled",true);
+
+
+
+            jq("#followup-type-other").find("input[type$='text']").attr("disabled",true);
+                jq('#followup-type-other').change(function(){
+                    if(!jq('#followup-type-other').find(':checkbox').prop('checked')){
+                    jq("#followup-type-other").find("input[type$='text']").attr("disabled",true);
+                    jq("#followup-type-other").find("input[type$='text']").val("");
+                    }else{
+                    jq("#followup-type-other").find("input[type$='text']").attr("disabled",false); }
+                });
+
+
+
                 <!-- enable SMS Message outcomes -->
                 jq('#sms-message').click(function(){
                     if (getValue('sms-message.value')) {
                         fieldHelper.enable(getField('sms-not-delivered.value'));
                         fieldHelper.enable(getField('sms-received.value'));
                         fieldHelper.enable(getField('client-visit-rescheduled.value'));
-                        fieldHelper.enable(getField('new-visit-date.value'));
+
                         fieldHelper.enable(getField('outcome-other.value'));
-                        enableContainer('#nextstepsContainer');
+
                     } else {
                         fieldHelper.disable(getField('sms-not-delivered.value'));
                         fieldHelper.disable(getField('sms-received.value'));
@@ -53,9 +73,9 @@
                         fieldHelper.enable(getField('spoke-with-patient.value'));
                         fieldHelper.enable(getField('spoke-with-someone-else.value'));
                         fieldHelper.enable(getField('client-visit-rescheduled.value'));
-                        fieldHelper.enable(getField('new-visit-date.value'));
+
                         fieldHelper.enable(getField('outcome-other.value'));
-                        enableContainer('#nextstepsContainer');
+
                     } else {
                         fieldHelper.disable(getField('phone-off.value'));
                         fieldHelper.disable(getField('phone-not-answered.value'));
@@ -70,9 +90,9 @@
                         fieldHelper.enable(getField('spoke-with-patient.value'));
                         fieldHelper.enable(getField('spoke-with-someone-else.value'));
                         fieldHelper.enable(getField('client-visit-rescheduled.value'));
-                        fieldHelper.enable(getField('new-visit-date.value'));
+
                         fieldHelper.enable(getField('outcome-other.value'));
-                        enableContainer('#nextstepsContainer');
+
                     } else {
                         fieldHelper.disable(getField('phone-off.value'));
                         fieldHelper.disable(getField('phone-not-answered.value'));
@@ -81,9 +101,27 @@
                     }
                 });
 
+                jq('#client-visit-rescheduled').click(function(){
+                    if (getValue('client-visit-rescheduled.value')) {
+                        fieldHelper.enable(getField('new-visit-date.value'));
+                    }else{
+                         fieldHelper.disable(getField('new-visit-date.value'));
+                         jq('#new-visit-date').find("input").val("");
+                    }
+                });
+
+                jq('#outcome-other').click(function(){
+                if (getValue('outcome-other.value')) {
+                     jq("#outcome-other").find("input[type$='text']").attr("disabled",false);
+                }else{
+                    jq("#outcome-other").find("input[type$='text']").attr("disabled",true);
+                    jq("#outcome-other").find("input[type$='text']").val("");
+                }
+                });
+
                 <!-- additional validations -->
                 beforeSubmit.push(function() {
-                    <!-- clear the error fields -->
+
                     setValue('new-visit-date.error', '');
                     setValue('new-followup-date.error', '');
                     setValue('home-visit-date.error', '');
@@ -129,7 +167,77 @@
                                 }
                             }
                         }
-                });
+                        if(!jq('#pre-art').find(':checkbox').prop('checked') &amp;&amp;
+                        !jq('#art').find(':checkbox').prop('checked') &amp;&amp;
+                        !jq('#exposed-infant').find(':checkbox').prop('checked') &amp;&amp;
+                         !jq('#anc').find(':checkbox').prop('checked') &amp;&amp;
+                            !jq('#tb').find(':checkbox').prop('checked')){
+                             getField('tb.error').html('Required Field').show();
+
+                        }
+
+                        if(!jq('#sms-message').find(':checkbox').prop('checked') &amp;&amp;
+                            !jq('#phone-call').find(':checkbox').prop('checked') &amp;&amp;
+                            !jq('#home-visit').find(':checkbox').prop('checked') &amp;&amp;
+                            !jq('#followup-type-other').find(':checkbox').prop('checked')){
+                            getField('followup-type-other.error').html('Required Field').show();
+
+                         }
+                        if(!jq('#call-treatmentsupporter').find(':checkbox').prop('checked') &amp;&amp;
+                            !jq('#try-followup-again').find(':checkbox').prop('checked') &amp;&amp;
+                            !jq('#home-visit-on').find(':checkbox').prop('checked')){
+                            getField('home-visit-on.error').html('Required Field').show();
+
+                        }
+
+                        if(!jq('#sms-not-delivered').find(':checkbox').prop('checked') &amp;&amp;
+                            !jq('#sms-received').find(':checkbox').prop('checked') &amp;&amp;
+                            !jq('#client-visit-rescheduled').find(':checkbox').prop('checked') &amp;&amp;
+                            !jq('#phone-off').find(':checkbox').prop('checked') &amp;&amp;
+                             !jq('#phone-not-answered').find(':checkbox').prop('checked') &amp;&amp;
+                             !jq('#spoke-with-patient').find(':checkbox').prop('checked') &amp;&amp;
+                            !jq('#spoke-with-someone-else').find(':checkbox').prop('checked') &amp;&amp;
+                            !jq('#outcome-other').find(':checkbox').prop('checked')){
+                            getField('outcome-other.error').html('Required Field').show();
+
+                        }
+
+                        if(getValue('outcome-other.value')){
+                            if(jq('#outcome-other').find("input[type$='text']").val()==""){
+                                    getField('outcome-other.error').html('Please specify the other outcome').show();
+                            }
+                        }
+                        if(getValue('followup-type-other.value')){
+                            if(jq('#followup-type-other').find("input[type$='text']").val()==""){
+                                 getField('followup-type-other.error').html('Please specify the other Followup type').show();
+                            }
+                        }
+                return jq("#htmlform").valid();
+
+            });
+
+            jq("#nextstepsContainer").change(function(){
+
+                var checked = jq("#try-followup-again").find(":checkbox").attr("checked");
+                   console.log(checked);
+                 if (checked == "checked") {
+                    jq("#new-followup-date").find("input[type$='text']").attr("disabled",false);
+                 } else {
+                    jq("#new-followup-date").find("input[type$='text']").attr("disabled",true);
+                    jq("#new-followup-date").find("input[type$='text']").val("");
+                 }
+
+                var checked1 = jq("#home-visit-on").find(":checkbox").attr("checked");
+                console.log(checked1);
+                if (checked1 == "checked") {
+                    jq("#home-visit-date").find("input[type$='text']").attr("disabled",false);
+                } else {
+                    jq("#home-visit-date").find("input[type$='text']").attr("disabled",true);
+                    jq("#home-visit-date").find("input[type$='text']").val("");
+                }
+
+
+            });
             });
         </script>
 
@@ -182,7 +290,7 @@
                 <p id="followupTypeContainer">
                     <obs id="sms-message" conceptId="165100" answerConceptId="165101" answerLabel="SMS Message" class="horizontal-layout-options"/><br/>
                     <obs id="phone-call" conceptId="165100" answerConceptId="165102" answerLabel="Phone Call" class="horizontal-layout-options"/><br/>
-                    <obs id="home-visit" conceptId="165100" answerConceptId="165103" answerLabel="Home Visit" class="horizontal-layout-options"/><br/><br/>
+                    <obs id="home-visit" conceptId="165100" answerConceptId="165103" answerLabel="Home Visit" class="horizontal-layout-options"/><br/><br/><br/>
                     <obs id="followup-type-other" conceptId="165100" answerConceptId="5622" answerLabel="Other Specify:" commentFieldLabel="" class="horizontal-layout-options"/>
                 </p>
             </td>
@@ -198,13 +306,13 @@
                 <td>
                     <p id="outcomeContainer">
                         <obs id="sms-not-delivered" conceptId="165104" answerConceptId="165105" answerLabel="SMS Message Not Delivered" class="horizontal-layout-options"/><br/>
-                        <obs id="sms-received" conceptId="165104" answerConceptId="165106" answerLabel="SMS Message Received" class="horizontal-layout-options"/><br/>
+                        <obs id="sms-received" conceptId="165104" answerConceptId="165106" answerLabel="SMS Message Received" class="horizontal-layout-options"/><br/><br/><br/>
                         <obs id="client-visit-rescheduled" conceptId="165104" answerConceptId="165107" answerLabel="Client Visit Rescheduled to " class="horizontal-layout-options"/><obs id="new-visit-date" conceptId="165108" allowFutureDates="true"/>
                         <obs id="phone-off" conceptId="165104" answerConceptId="165109" answerLabel="Telephone off" class="horizontal-layout-options"/><br/>
                         <obs id="phone-not-answered" conceptId="165104" answerConceptId="165110" answerLabel="Telephone not answered" class="horizontal-layout-options"/><br/>
-                        <obs id="spoke-with-patient" conceptId="165104" answerConceptId="165111" answerLabel="Spoke with patient" class="horizontal-layout-options"/><br/>
-                        <obs id="spoke-with-someone-else" conceptId="165104" answerConceptId="165112" answerLabel="Spoke with someone else" class="horizontal-layout-options"/><br/><br/>
-                        <obs id="outcome-other" conceptId="165100" answerConceptId="5622" answerLabel="Other Specify:" commentFieldLabel="" class="horizontal-layout-options"/>
+                        <obs id="spoke-with-patient" conceptId="165104" answerConceptId="165111" answerLabel="Spoke with patient" class="horizontal-layout-options"/><br/><br/>
+                        <obs id="spoke-with-someone-else" conceptId="165104" answerConceptId="165112" answerLabel="Spoke with someone else" class="horizontal-layout-options"/><br/><br/><br/>
+                        <obs id="outcome-other" conceptId="165100" answerConceptId="5622" answerLabel="Other Specify:" commentFieldLabel=""  class="horizontal-layout-options"/>
                     </p>
                 </td>
             </tr>
@@ -218,8 +326,10 @@
                 <td>
                     <p id="nextstepsContainer">
                         <obs id="call-treatmentsupporter" conceptId="165113" answerConceptId="165114" answerLabel="Call Treatment Supporter" class="horizontal-layout-options"/><br/>
-                        <obs id="try-followup-again" conceptId="165113" answerConceptId="165115" answerLabel="Try to followup patient again on " class="horizontal-layout-options"/><obs id="new-followup-date" conceptId="165116" allowFutureDates="true"/>
-                        <obs id="home-visit-on" conceptId="165113" answerConceptId="165103" answerLabel="Home visit on" class="horizontal-layout-options" toggle="{id: 'new-followup-date', style: 'dim'}"/><obs id="home-visit-date" conceptId="165117" allowFutureDates="true"/>
+                        <obs id="try-followup-again" conceptId="165113" answerConceptId="165115" answerLabel="Try to followup patient again on " class="horizontal-layout-options" />
+                        <obs id="new-followup-date" conceptId="165116" allowFutureDates="true"/>
+                        <obs id="home-visit-on" conceptId="165113" answerConceptId="165103" answerLabel="Home visit on" class="horizontal-layout-options" />
+                        <obs id="home-visit-date" conceptId="165117" allowFutureDates="true"/>
                     </p>
                 </td>
             </tr>

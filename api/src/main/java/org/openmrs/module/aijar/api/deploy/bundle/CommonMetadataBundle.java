@@ -41,7 +41,7 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(PersonAttributeTypes.TELEPHONE_NUMBER_3);
         install(PersonAttributeTypes.OCCUPATION);
         log.info("Person AttributeTypes installed");
-        
+
         // install roles
         log.info("Installing roles");
         install(Roles.MID_WIFE);
@@ -63,11 +63,17 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(Programs.TB_PROGRAM);
         install(Programs.MCH_PROGRAM);
         install(Programs.NUTRITION_PROGRAM);
+        install(Programs.FBIM_PROGRAM);
+        install(Programs.FBG_PROGRAM);
+        install(Programs.FTR_PROGRAM);
+        install(Programs.CCLAD_PROGRAM);
+        install(Programs.CDDP_PROGRAM);
 
         //install Locations
         log.info("Installing Locations");
         install(Locations.TB_CLINIC);
         install(Locations.OPD_CLINIC);
+        install(Locations.UNKNOWN);
 
         // Install Encounter Role
         install(encounterRole(EncounterRoles.ASSISTANT_CIRCUMCISER_NAME,EncounterRoles.ASSISTANT_CIRCUMCISER_DESCRIPTION,EncounterRoles.ASSISTANT_CIRCUMCISER_UUID));

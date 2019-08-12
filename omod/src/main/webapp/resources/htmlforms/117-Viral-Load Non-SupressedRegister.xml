@@ -24,7 +24,7 @@
                      * m -> holds the string matching the regular expression
                      */
                     var queryParameters = {}, queryString = location.search.substring(1),
-                            re = /([^&amp;=]+)=([^&amp;]*)/g, m;
+                        re = /([^&amp;=]+)=([^&amp;]*)/g, m;
 
                     // Creates a map with the query string parameters
                     while (m = re.exec(queryString)) {
@@ -37,8 +37,8 @@
                      *     object, suitable for use in a URL query string or Ajax request.
                      */
                     location.href = window.location.protocol + "//" + window.location.host +
-                            '/' + OPENMRS_CONTEXT_PATH + '/coreapps/clinicianfacing/patient.page?patientId='
-                            + queryParameters['patientId']; // Causes page to reload
+                        '/' + OPENMRS_CONTEXT_PATH + '/coreapps/clinicianfacing/patient.page?patientId='
+                        + queryParameters['patientId']; // Causes page to reload
                 });
             </script>
         </includeIf>
@@ -49,7 +49,6 @@
         }
 
         table td {
-            background: #B6D6E6;
             color: #404040;
         }
 
@@ -66,7 +65,7 @@
             min-width: 200px;
         }
 
-        fieldset{
+        fieldset {
             width: 98%;
         }
 
@@ -92,13 +91,10 @@
     <script type="text/javascript">
         if (jQuery) {
             jq(document).ready(function () {
-                jq('#1-removeEntry').remove();
-                jq('#10-addEntry').remove();
-                jq('#1-toggleContainer').show();
 
-                jq('#11-removeEntry').remove();
-                jq('#20-addEntry').remove();
-                jq('#11-toggleContainer').show();
+
+                //Block Multiple encounter entry on same date
+                blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"),"block");
 
                 // Enable disable other outcomes
                 jq('#163170').change(function () {
@@ -118,15 +114,78 @@
                     enable_disable('163166', '163168', '5622');
                 });
 
-                jq('#1305').change(function () {
-                    enable_disable('1305', '856', '1301');
+
+                jq('#1305_1').change(function () {
+                    enable_disable('1305_1', '856_1', '1301');
                 });
 
-                jq('#1305').each(function () {
-                    enable_disable('1305', '856', '1301');
+                jq('#1305_1').each(function () {
+                    enable_disable('1305_1', '856_1', '1301');
                 });
+
+                jq('#90012').change(function () {
+                    enable_disable('90012', '99601', '90003');
+                    enable_disable('90012', '99602', '90003');
+                });
+
+                jq('#90012').each(function () {
+                    enable_disable('90012', '99601', '90003');
+                    enable_disable('90012', '99602', '90003');
+                });
+
+                jq('#164987').change(function () {
+                    enable_disable('164987', '164986', '1065');
+                });
+
+                jq('#164987').each(function () {
+                    enable_disable('164987', '164986', '1065');
+                });
+
+
+                // trigger a change when the form loads
+                jq("#1305").change(function () {
+                    viral_load_widget('1305', '856_2');
+                });
+
+                jq("#1305").each(function () {
+                    viral_load_widget('1305', '856_2','1301');
+                });
+
+
+                /* add JQuery validator classes and rules*/
+                jq("#nationalid input:text").addClass("nationalid");
+
+                /* add the validator on the beforeSubmit*/
+                beforeSubmit.push(function () {
+                        jq("#htmlform").validate();
+                        return jq("#htmlform").valid();
+                    }
+                );
 
             });
+
+            function viral_load_widget(triger, enabledDisabledId) {
+                /* Handle viral load results */
+                disableContainer("#" + enabledDisabledId);
+                jq("#" + triger).change(function () {
+                    var viral_load_status = getValue(triger + ".value");
+                    if (viral_load_status == 1301) {
+                        /* Detected */
+                        enableContainer("#" + enabledDisabledId);
+                        setValue(enabledDisabledId + ".value", '');
+                    }
+                    if (viral_load_status == 1306) {
+                        /* Not Detected */
+                        disableContainer("#" + enabledDisabledId);
+                        setValue(enabledDisabledId + ".value", 1);
+                    }
+                    if (viral_load_status == "" || viral_load_status == 1304) {
+                        /* Sample Rejected and no data */
+                        disableContainer("#" + enabledDisabledId);
+                        setValue(enabledDisabledId + ".value", '');
+                    }
+                });
+            }
 
 
             function enable_disable(triggerId, enabledDisabledId, conditionValue) {
@@ -137,28 +196,6 @@
                 }
 
             }
-
-
-            jq(document).ready(function () {
-                jq('a.addEntry').live("click", function () {
-                    var correctedAddButtonId = parseFloat(this.id) + 1;
-                    var contentAddId = "#" + correctedAddButtonId + "-toggleContainer";
-                    jq(contentAddId).toggle(true);
-                    return false;
-                });
-            });
-
-            jq(document).ready(function () {
-                jq('a.removeEntry').live("click", function () {
-                    var correctedRemoveButtonId = parseFloat(this.id) - 1;
-                    var contentAddId = "#" + parseFloat(this.id) + "-toggleContainer";
-                    jq(contentAddId).toggle(false);
-                    jq('#' + correctedRemoveButtonId + '-addEntry').toggle(true);
-                    jq('#' + correctedRemoveButtonId + '-removeEntry').toggle(true);
-                    return false;
-                });
-
-            });
 
             beforeSubmit.push(function () {
                 var submitVal = true;
@@ -173,14 +210,146 @@
                 }
 
                 // Check if there are no errors on the form
+
+
+                submitValStage.push(dateValidator("163172", "encounterDate", "", "Must be on or before Registration Date", "", "greater_than", true));
+
+                submitValStage.push(dateValidator("163150_1", "encounterDate", "", "Must be less or equal to the Registration Date", "", "greater_than", true));
+
+                submitValStage.push(dateValidator("163156", "163150_1", "", "Must be greater than Date Results Received at Health Facility", "", "less_than", true));
+
+                var lastIAC = "";
+                var required_message = "Required";
+                for (var i = 1; i &lt; 10; i++) {
+                    var field = getField(("163154_" + i + ".error"));
+                    if (field !== null) {
+                        if (jq("#163154_" + i).find("input:hidden").val() !== "") {
+                            lastIAC = "163154_" + i;
+                            submitValStage.push(validateRequiredField("163155_" + i, "163154_" + i, required_message, "hidden"));
+                            submitValStage.push(validateRequiredField("90221_" + i, "163154_" + i, required_message, "hidden"));
+                        }
+                        if (jq("#163155_" + i).find("input:text").val() !== "") {
+                            submitValStage.push(validateRequiredField("163154_" + i, "163155_" + i, required_message, "text"));
+                            submitValStage.push(validateRequiredField("90221_" + i, "163155_" + i, required_message, "text"));
+                        }
+
+                        if (jq("#90221_" + i).find(":selected").text().trim() !== "") {
+                            submitValStage.push(validateRequiredField("163155_" + i, "90221_" + i, required_message, "select"));
+                            submitValStage.push(validateRequiredField("163154_" + i, "90221_" + i, required_message, "select"));
+                        }
+                        submitValStage.push(dateValidator("163154_" + i, "encounterDate", "", "Must be on or after date of Registration", "", "less_than", true));
+                    }
+                }
+
+                submitValStage.push(dateValidator("163023", lastIAC, "", "Must After Last IAC Session Date", "", "less_than", true));
+                submitValStage.push(dateValidator("163150_2", "163023", "", "Must be after Date of VL repeat", "", "less_than", true));
+                submitValStage.push(dateValidator("163167", "163150_2", "", "Must be after Date of VL repeat", "", "less_than", true));
+
                 if (submitValStage.indexOf(false) != -1) {
                     submitVal = false;
                     jq().toastmessage('showErrorToast', "There were errors during validation. Correct them and submit again");
                 }
 
+
                 return submitVal;
             });
         }
+
+        jQuery(document).ready(function(jq) {
+            //Adding new form
+            var $allTables,
+                $allRows,
+                $otherRows,
+                $firstRow,
+                $thisRow,
+                $nextRow,
+                $hiddenRows,
+                $lastVisibleRow,
+                $nonEmptyBoxes;
+
+
+            var showAddButtonForLastVisibleRow = function($container) {
+                $lastVisibleRow = $container.find('tr:visible:last');
+                $lastVisibleRow.find('.add').show();
+            };
+
+            $firstRow = jq('table.multi tbody tr:first-of-type');
+            $otherRows = jq('table.multi tbody tr:not(:first-of-type)');
+
+        <ifMode mode="ENTER">
+                $otherRows.hide(); //Hide all rows apart from first row if adding new form
+            $firstRow.find('.remove').hide(); //Hide the remove button from the first row
+        </ifMode>
+
+            <ifMode mode="EDIT">
+            //Handle loading of existing obs
+            $allTables = jq('table.multi');
+            $allTables.each(function() {
+                $allRows = jq(this).find('tbody &gt; tr');
+                $allRows.hide();
+                $nonEmptyBoxes = jq(this).find('input').filter(function() {
+                    return this.value.length &gt; 0;
+                });
+
+                if ($nonEmptyBoxes.length &gt; 0 ) {
+                    $nonEmptyBoxes.each(function() {
+                        $thisRow = jq(this).parents('tr:first');
+                        $thisRow.show();
+                        if ($thisRow.is($firstRow)) {
+                            $firstRow.find('.remove').hide();
+                        }
+                    });
+
+                    if ($nonEmptyBoxes.length == 1) {
+                        $nonEmptyBoxes.parents('tr:first').find('.remove').hide(); //Hide the remove button if there is only one visible row
+                    }
+                } else {
+                    $firstRow.show();
+                    $firstRow.find('.remove').hide();
+                }
+            });
+        </ifMode>
+
+            jq('.add').click(function(e) { //Handle add button event
+                e.preventDefault();
+                $thisRow = jq(this).parents('tr:first');
+                $nextRow = $thisRow.next();
+
+                if ($nextRow.length &gt; 0) {
+                    $nextRow.show('slow');
+                    $thisRow.find('.add').hide();
+                }
+                showAddButtonForLastVisibleRow($thisRow.parents('table:first'));
+            });
+
+            jq('.remove').click(function(e) { //Handle remove button event
+                e.preventDefault();
+                $thisRow = jq(this).parents('tr:first');
+                if (confirm('Are you sure you want to remove this record? All fields for this record will be cleared.') == 1) {
+                    $thisRow = jq(this).parents('tr:first');
+                    $thisRow.hide('slow', function() {
+                        showAddButtonForLastVisibleRow($thisRow.parents('table:first'));
+                        fieldHelper.clearAllFields($thisRow);
+                    });
+                }
+            });
+
+            // Disallow an entry from being selected twice in the autocomplete multiple entry sections
+            jq(".autoCompleteText").on( "autocompleteselect", function( event, ui ) {
+
+                var $similarSelections = jq(this).parents('table:first').find('input.autoCompleteText:visible[type=text]').filter(function() {
+                    return (jq(this).val() == ui.item.label);
+                });
+
+                if ($similarSelections.length &gt; 0 ) {
+                    alert('The entry \'' + ui.item.label + '\' has already been selected');
+                    return false;
+                } else {
+                    return true;
+                }
+            });
+            jq('#1-toggleContainer').show();
+        });
 
     </script>
     <div class="ai-page-frame">
@@ -190,7 +359,7 @@
                 Form</h3>
         </div>
         <span style="display: none;">
-            <encounterType types="38cb2232-30fc-4b1f-8df1-47c795771ee9" default="38cb2232-30fc-4b1f-8df1-47c795771ee9" />
+            <encounterType types="38cb2232-30fc-4b1f-8df1-47c795771ee9" default="38cb2232-30fc-4b1f-8df1-47c795771ee9"/>
             <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
                                order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
         </span>
@@ -201,77 +370,114 @@
                 <tbody>
                 <tr>
                     <td style="width: 15%;background: #F3F3F3;">
-                        <label>Date Results Recorded In Register</label>
+                        <label>Date of Registration</label>
                         <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
                     </td>
-                    <td style="width: 15%;background: #F3F3F3;">
-                        <label>Date Results Received at Health Facility</label>
-                        <obs conceptId="163150" allowFutureDates="false"/>
+                    <td style="width: 15%;background: #F3F3F3;" colspan="2">
+                        <label>Pt Clinic ID:</label>
+                        <patient field="identifier" identifierTypeId="e1731641-30ab-102d-86b0-7a5022ba4115"
+                                 required="false"/>
                     </td>
-                    <td style="width: 15%;background: #F3F3F3;">
-                        <encounterProvider role="Provider" style="autocomplete"/>
+                    <td style="width: 15%;background: #F3F3F3;" rowspan="4">
+                        <excludeIf velocityTest="$patient.gender =='M' ">
+                            <label>EMTCT</label>
+                            <obs id="90012" conceptId="90012" answerConceptIds="90003,90004" answerLabels="Yes,No" style="radio"/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <obs id="99601" conceptId="99601" style="checkbox" labelText="Breast feeding"/>
+                            <obs id="99602" conceptId="99602" style="checkbox" labelText="Pregnancy"/>
+                            <div>
+
+                            </div>
+                        </excludeIf>
                     </td>
                 </tr>
-                <obsgroup groupingConceptId="163151">
-                    <tr>
+                <tr>
+                    <td style="width: 15%;background: #F3F3F3;">
+                        <label>Date Results Received at Health Facility</label>
+                        <obs id="163150_1" conceptId="163150" allowFutureDates="false" required="true"/>
+                    </td>
+
+                    <obsgroup groupingConceptId="163151">
                         <td style="width: 15%;background: #F3F3F3;">
-                            <label>VL Results at Initiation of IAC</label>
-                            <obs required="true" id="856_1" conceptId="856"/>
+                            <label>VL Results at Initiation of IAC (copies/ml)</label>
+                            <div>
+                                <obs conceptId="1305" defaultValue="1301" class="hidden"/>
+                            </div>
+                            <div>
+                                <obs id="856_1" conceptId="856" required="true"/>
+                            </div>
                         </td>
-                        <td style="width: 15%;background: #F3F3F3;" colspan="2">
+
+                        <td style="width: 15%;background: #F3F3F3;">
                             <label>Date Results given to Client</label>
-                            <obs conceptId="163156" allowFutureDates="false"/>
+                            <obs id="163156" conceptId="163156" allowFutureDates="false" required="true"/>
                         </td>
-                    </tr>
-                </obsgroup>
+                    </obsgroup>
+                </tr>
 
-
-                <obsgroup groupingConceptId="163152">
-                    <tr>
+                <tr>
+                    <obsgroup groupingConceptId="163152">
                         <td style="width: 15%;background: #F3F3F3;">
                             <label>Regimen At VL test</label>
-                            <obs conceptId="90315"
-                                 answerConceptIds="99015,99016,99005,99006,99039,99040,99041,99042,99007,99008,99044,99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99884,99885,99888,163017,99887,90002"
-                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,AZT-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,AZT-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-ATV/r,ABC-3TC-LPV/r,TDF-3TC-ATV/r,Other"/>
+                            <obs conceptId="90315" required="true"
+                                 answerConceptIds="99015,99016,99005,99006,164979,99039,99040,164977,99041,99042,99007,99008,99044,99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99884,99885,164978,99888,163017,99887,90002"
+                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,AZT-3TC-DTG,TDF-3TC-NVP,TDF-3TC-EFV,TDF-3TC-DTG,TDF-FTC-NVP,TDF-FTC-EFV,ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,AZT-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,AZT-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-DTG,ABC-3TC-ATV/r,ABC-3TC-LPV/r,TDF-3TC-ATV/r,Other"/>
                         </td>
                         <td style="width: 15%;background: #F3F3F3;" colspan="2">
-                            <label>Start Date</label>
-                            <obs conceptId="163172" allowFutureDates="false"/>
+                            <label>Regimen Start Date</label>
+                            <obs id="163172" conceptId="163172" allowFutureDates="false" required="true"/>
                         </td>
-                    </tr>
-                </obsgroup>
+                    </obsgroup>
+                </tr>
+                <tr>
+                    <td style="width: 15%;background: #F3F3F3;">
+                        <label>Serum Crag Screening</label>
+                        <obs id="164987" conceptId="164987"
+                             answerConceptIds="1065,1066"
+                             answerLabels="Yes,No" style="radio"/>
+                    </td>
+                    <td style="width: 15%;background: #F3F3F3;">
+                        <label>Serum Crag Screening Result</label>
+                        <obs id="164986" conceptId="164986"/>
+                    </td>
+                    <td style="width: 15%;background: #F3F3F3;">
+                        <label>Restart IAC</label>
+                        <obs conceptId="164988" answerConceptIds="1065,1066"
+                             answerLabels="Yes,No" required="true" style="radio"/>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </fieldset>
 
         <fieldset>
             <legend>IAC Session</legend>
-            <table>
+            <table class="multi">
                 <tbody>
                 <tr>
-                    <td style="width: 15%;background: #F3F3F3;">Session Date</td>
-                    <td style="width: 15%;background: #F3F3F3;">Adherence assessment score</td>
-                    <td style="width: 15%;background: #F3F3F3;">Adherence Codes</td>
-                    <td style="width: 15%;background: #F3F3F3;"></td>
+                    <td style="background: #F3F3F3;">Session Date</td>
+                    <td style="background: #F3F3F3;">Adherence assessment score</td>
+                    <td style="background: #F3F3F3;">Adherence Codes</td>
+                    <td style="background: #F3F3F3;"></td>
                 </tr>
                 <repeat>
                     <template>
                         <obsgroup groupingConceptId="163153">
-                            <tr id="{n}-toggleContainer" style="display:none;">
+                            <tr id="{n}-toggleContainer">
                                 <td style="width: 15%;background: #F3F3F3;">
-                                    <obs conceptId="163154" allowFutureDates="false"/>
+                                    <obs id="163154_{n}" conceptId="163154" allowFutureDates="false"/>
                                 </td>
                                 <td style="width: 15%;background: #F3F3F3;">
-                                    <obs conceptId="163155"/>
+                                    <obs id="163155_{n}" conceptId="163155"/>
                                 </td>
                                 <td style="width: 15%;background: #F3F3F3;">
-                                    <obs conceptId="90221" answerConceptIds="90156,90157,90158"
+                                    <obs id="90221_{n}" conceptId="90221" answerConceptIds="90156,90157,90158"
                                          answerLabels=" Good, Fair, Poor"/>
                                 </td>
-                                <td style="width: 15%;background: #F3F3F3;">
-                                    <a href="#" id="{n}-addEntry" class="addEntry">Add</a>
-                                    <a href="#" id="{n}-removeEntry" class="removeEntry"> | Remove</a>
-                                </td>
+                                <td><a href="#" class="add">Add</a>| <a href="#" class="remove">Remove</a></td>
                             </tr>
                         </obsgroup>
                     </template>
@@ -281,6 +487,10 @@
                     <render n="4"/>
                     <render n="5"/>
                     <render n="6"/>
+                    <render n="7"/>
+                    <render n="8"/>
+                    <render n="9"/>
+                    <render n="10"/>
                 </repeat>
                 </tbody>
             </table>
@@ -290,41 +500,73 @@
             <legend>VL After IAC Session</legend>
             <table>
                 <tbody>
-                <obsgroup groupingConceptId="163157">
-                    <tr>
+
+                <tr>
+                    <obsgroup groupingConceptId="163157">
+                        <td style="width: 15%;background: #F3F3F3;">
+                            <label>Date of VL repeat</label>
+                            <obs id="163023" conceptId="163023" allowFutureDates="false"/>
+                        </td>
+                    </obsgroup>
+                    <td style="width: 15%;background: #F3F3F3;">
+                        <label>HIVDR Sample Collected</label>
+                        <obs conceptId="164989" answerConceptIds="1065,1066"
+                             answerLabels="Yes,No" style="radio"/>
+                    </td>
+
+                    <obsgroup groupingConceptId="163157">
                         <td style="width: 15%;background: #F3F3F3;">
                             <label>VL Results After IAC</label>
-                            <obs id="1305" conceptId="1305" answerConceptIds="1301,1306,1304"
-                                 answerLabels="Detected,Not Detected, Sample Rejected"/>
+                            <div>
+                                <obs id="1305" conceptId="1305" answerConceptIds="1301,1306,1304"
+                                     answerLabels="Detected,Not Detected, Sample Rejected"/>
+                            </div>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <div>
+                                <obs id="856_2" conceptId="856" showUnits="copies/ml"/>
+                            </div>
                         </td>
-                        <td style="width: 15%;background: #F3F3F3;">
-                            <obs id="856" conceptId="856" labelText="(copies/ml)"/>
-                        </td>
-                        <td style="width: 15%;background: #F3F3F3;">
+                        <td style="width: 15%;background: #F3F3F3;" colspan="2">
                             <label>Date Results Received</label>
-                            <obs conceptId="163150" allowFutureDates="false"/>
+                            <obs id="163150_2" conceptId="163150" allowFutureDates="false"/>
                         </td>
-                    </tr>
-                </obsgroup>
+                    </obsgroup>
+                </tr>
+
+                </tbody>
+            </table>
+        </fieldset>
+
+        <fieldset>
+            <legend>Decision And Outcomes</legend>
+            <table>
+                <tbody>
                 <tr>
                     <td style="width: 15%;background: #F3F3F3;">
                         <label>Clinic decision</label>
                         <obs id="163166" conceptId="163166"
-                             answerConceptIds="163160,163161,163162,163163,163164,163165,5622"/>
+                             answerConceptIds="163160,163161,163162,163163,163164,163165,5622"
+                             answerLabels="1. Suppressed and continues with 1st line regimen,2. Suppressed and Continue with 2nd line,3. Non-suppressed Switch to 2nd line,4. Non-suppressed Referred for HIV resistance testing,5. Non-suppressed Referred for 3rd line regimen,6. Treat as per resistance profile,7. Other"/>
+                        <br/>
                     </td>
-                    <td style="width: 15%;background: #F3F3F3;">
-                        <obs id="163168" conceptId="163168" labelText="Other Clinic Decision"/>
+                    <td>
+                        <label>Other Clinic Decision</label>
+                        <obs id="163168" conceptId="163168"/>
                     </td>
-                    <td style="width: 15%;background: #F3F3F3;">
+                    <td style="width: 15%;background: #F3F3F3;" colspan="2">
                         <label>Decision date</label>
-                        <obs conceptId="163167" allowFutureDates="false"/>
+                        <obs id="163167" conceptId="163167" allowFutureDates="false"/>
                     </td>
                 </tr>
                 <obsgroup groupingConceptId="163169">
                     <tr>
                         <td style="width: 15%;background: #F3F3F3;">
                             <label>Regimen After IAC Session</label>
-                            <obs conceptId="90315"/>
+                            <obs conceptId="90315"
+                                 answerConceptIds="99015,99016,99005,99006,164979,99039,99040,164977,99041,99042,99007,99008,99044,99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99884,99885,164978,99888,163017,99887,90002"
+                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,AZT-3TC-DTG,TDF-3TC-NVP,TDF-3TC-EFV,TDF-3TC-DTG,TDF-FTC-NVP,TDF-FTC-EFV,ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,AZT-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,AZT-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-DTG,ABC-3TC-ATV/r,ABC-3TC-LPV/r,TDF-3TC-ATV/r,Other"/>
                         </td>
                         <td style="width: 15%;background: #F3F3F3;" colspan="2">
                             <label>Date of Initiation</label>
@@ -337,14 +579,17 @@
                         <label>Outcome</label>
                         <obs id="163170" conceptId="163170" answerConceptIds="163158,163159,90306,1363,5240,99112,5622"
                              answerLabels="Suppressed,Non suppressed,Transfer out,Stopped treatment,Lost to follow up,Died,Other"/>
+                        <br/>
                     </td>
-                    <td style="width: 15%;background: #F3F3F3;">
+                    <td>
                         <label>Other Outome</label>
+                        <br/>
                         <obs id="163171" conceptId="163171"/>
                     </td>
-                    <td style="width: 15%;background: #F3F3F3;">
+                    <td style="width: 15%;background: #F3F3F3;" colspan="2">
                         <label>Comment</label>
-                        <obs style="textarea" conceptId="163173"/>
+                        <br/>
+                        <obs style="textarea" conceptId="163173" rows="8" cols="80"/>
                     </td>
                 </tr>
                 </tbody>
