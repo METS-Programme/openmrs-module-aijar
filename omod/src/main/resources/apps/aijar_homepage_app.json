@@ -24,7 +24,8 @@
         "label": "aijar.app.backupdatabase.list.label",
         "url": "module/databasebackup/backup.form",
         "icon": "icon-cloud-download",
-        "order": 115
+        "order": 115,
+        "requiredPrivilege": "App: ugandaemr.backup.backupDatabase"
       }
     ]
   },
@@ -53,7 +54,7 @@
         "url": "cohortBuilder.list",
         "icon": "icon-building",
         "order": 105,
-        "requiredPrivilege": "Manage Reports"
+        "requiredPrivilege": "App: ugandaemr.report.cohortBuilder"
       }
     ]
   },
