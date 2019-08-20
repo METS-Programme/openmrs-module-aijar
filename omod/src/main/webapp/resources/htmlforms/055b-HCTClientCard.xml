@@ -195,14 +195,9 @@
                         <label>Is the Center static or an Outreach?:</label>
                         <obs conceptId="99457" answerConceptIds="99455,99456" answerLabels="1. Static,2. Outreach"/>
                     </td>
-                    <td>
+                    <td colspan="2">
                         <label>Reg Number:</label>
                         <obs conceptId="164985" required="required"/>
-                    </td>
-                    <td>
-                        <label>National ID:</label>
-                        <patient field="identifier" identifierTypeId="f0c16a6d-dc5f-4118-a803-616d0075d282"
-                                 required="false"/>
                     </td>
                 </tr>
 

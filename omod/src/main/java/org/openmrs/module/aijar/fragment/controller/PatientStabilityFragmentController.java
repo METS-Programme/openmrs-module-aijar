@@ -55,23 +55,15 @@ public class PatientStabilityFragmentController {
             model.addAttribute("vlObs", null);
         }
 
-
-        List<Concept> currentRegimentConcept = new ArrayList<>();
-        currentRegimentConcept.add(Context.getConceptService().getConcept(90315));
         List<Person> personList = new ArrayList<>();
         personList.add(patient.getPerson());
-
-        PatientSummaryFragmentController patientSummaryFragmentController = new PatientSummaryFragmentController();
 
         /**
          * Current regimen
          */
-
         int monthOffSet = -12;
-        Date date = null;
 
-
-        Obs obs = patientSummaryFragmentController.getMostRecentObservation(obsService, personList, currentRegimentConcept);
+        Obs obs=getMostRecentObservation(encounterVisit,"90315");
 
         String query = "";
         String queryCurrentRegimen = "";
@@ -83,21 +75,21 @@ public class PatientStabilityFragmentController {
             //Check if Obs conceptId is the same as the art encounter regimen concept
             // Check if regimen is a DTG regimen
             if (checkIfDTG(obs)) {
-                query = "SELECT obs_id FROM obs where  obs.obs_datetime <= DATE('" + encounterVisit.getStartDatetime() + "') AND obs.person_id='" + patient.getPatientId() + "' AND concept_id= 90315 AND obs.voided = false ORDER BY  obs.obs_datetime DESC";
+                query = "SELECT obs_id FROM obs where  obs.obs_datetime <= DATE('" + encounterVisit.getStartDatetime() + "') AND obs.person_id='" + patient.getPatientId() + "' AND concept_id="+currentRegimenConceptId+" AND obs.voided = false ORDER BY  obs.obs_datetime DESC";
             } else {
-                query = "SELECT obs_id FROM obs where  obs.obs_datetime <= DATE('" + getDateBefore(encounterVisit.getStartDatetime(), monthOffSet, 0) + "') AND obs.person_id='" + patient.getPatientId() + "' AND obs.value_coded = " + obs.getValueCoded().getConceptId() + " AND obs.voided = false ORDER BY  obs.encounter_id ASC";
+                query = "SELECT obs_id FROM obs where  obs.obs_datetime <= DATE('" + getDateBefore(encounterVisit.getStartDatetime(), monthOffSet, 0) + "') AND obs.person_id='" + patient.getPatientId() + "' AND obs.value_coded = " + obs.getValueCoded().getConceptId() + " AND obs.voided = false ORDER BY  obs.encounter_id DESC";
             }
             regimenObsList = getObsListFromIdList(query);
 
-            queryCurrentRegimen = "SELECT obs_id FROM obs where  obs.person_id='" + patient.getPatientId() + "' AND obs.value_coded = " + obs.getValueCoded().getConceptId() + " AND obs.voided = false ORDER BY  obs.encounter_id ASC";
+            queryCurrentRegimen = "SELECT obs_id FROM obs where  obs.person_id='" + patient.getPatientId() + "' AND obs.obs_datetime <= DATE('"+encounterVisit.getStartDatetime()+"') AND obs.value_coded = " + obs.getValueCoded().getConceptId() + " AND obs.voided = false ORDER BY  obs.obs_datetime ASC LIMIT 0,1";
 
             currentRegimenList = getObsListFromIdList(queryCurrentRegimen);
         }
 
 
         if (regimenObsList.size() > 0) {
-            if ("164976,164977,164978,164979".contains(regimenObsList.get(0).getValueCoded().getConceptId().toString()) && regimenObsList.size() > 1) {
-                List<Obs> regimenBeforeDTGObs = getObsListFromIdList("SELECT obs_id FROM obs where  obs.obs_datetime <= DATE('" + getDateBefore(encounterVisit.getStartDatetime(), -12, 0) + "') AND obs.person_id='" + patient.getPatientId() + "' AND obs.value_coded = " + regimenObsList.get(1).getValueCoded().getConceptId() + " AND obs.voided = false ORDER BY  obs.encounter_id ASC");
+            if (checkIfDTG(regimenObsList.get(0)) && regimenObsList.size() > 1) {
+                List<Obs> regimenBeforeDTGObs = getObsListFromIdList("SELECT obs_id FROM obs where  obs.obs_datetime <= DATE('" + getDateBefore(encounterVisit.getStartDatetime(), -12, 0) + "') AND obs.person_id='" + patient.getPatientId() + "' AND obs.concept_id = " +currentRegimenConceptId+ " AND obs.voided = false ORDER BY  obs.encounter_id DESC");
                 if (regimenBeforeDTGObs.size() > 0) {
                     model.addAttribute("regimenBeforeDTGObs", regimenBeforeDTGObs.get(0));
                 } else {
@@ -163,19 +155,13 @@ public class PatientStabilityFragmentController {
         /**
          * Sputum Results
          */
-
-        List<Concept> sputumConcept = new ArrayList<>();
-        sputumConcept.add(Context.getConceptService().getConcept(307));
-        Obs spetumObs = patientSummaryFragmentController.getMostRecentObservation(obsService, personList, sputumConcept);
+        Obs spetumObs = getMostRecentObservation(encounterVisit,"307");
         model.addAttribute("sputumResultObs", spetumObs);
 
         /**
          * Sputum ResultDate
          */
-
-        List<Concept> sputumDateConcept = new ArrayList<>();
-        sputumDateConcept.add(Context.getConceptService().getConcept(99392));
-        Obs spetumDateObs = patientSummaryFragmentController.getMostRecentObservation(obsService, personList, sputumDateConcept);
+        Obs spetumDateObs = getMostRecentObservation(encounterVisit,"99392");
         model.addAttribute("sputumResultDateObs", spetumDateObs);
 
 
@@ -249,5 +235,21 @@ public class PatientStabilityFragmentController {
      */
     private boolean checkIfDTG(Obs obs) {
         return "164976,164977,164978,164979".contains(obs.getValueCoded().getConceptId().toString());
+    }
+
+
+    /**
+     * gets the latest Observation basing on the visit Date and the concepts
+     * @param encounterVisit
+     * @param concepts Separate with , if many
+     * @return
+     */
+    public Obs getMostRecentObservation(Visit encounterVisit, String concepts) {
+        String query = "SELECT obs_id FROM obs where  obs.obs_datetime <= DATE('" + encounterVisit.getStartDatetime() + "') AND obs.person_id='" + encounterVisit.getPatient().getPatientId() + "' AND concept_id in ("+concepts+") AND obs.voided = false ORDER BY  obs.obs_datetime DESC LIMIT 0,1";
+        List<Obs> obs = getObsListFromIdList(query);
+        if (obs.size() > 0) {
+            return obs.get(0);
+        }
+        return null;
     }
 }
