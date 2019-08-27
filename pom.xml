@@ -55,15 +55,15 @@
 		<!-- Modules Bundled for Uganda distribution  -->
 		<!-- TODO: Arrange the dependencies and variables in alphabetical order -->
 		<!-- TODO: Remove dependencies on API where omods are available -->
-		<adminuiVersion>1.2.3</adminuiVersion>
+		<adminuiVersion>1.2.5-SNAPSHOT</adminuiVersion>
 		<addresshierarchyVersion>2.11.0</addresshierarchyVersion>
 		<allergyuiVersion>1.6</allergyuiVersion>
 		<appframeworkVersion>2.11.0</appframeworkVersion>
-		<appuiVersion>1.9.0</appuiVersion>
+		<appuiVersion>1.10.0-SNAPSHOT</appuiVersion>
 		<appointmentschedulingVersion>1.7.0</appointmentschedulingVersion>
 		<appointmentschedulinguiVersion>1.5.0</appointmentschedulinguiVersion>
 		<calculationVersion>1.2</calculationVersion>
-		<coreappsVersion>1.22.0</coreappsVersion>
+		<coreappsVersion>1.23.0-SNAPSHOT</coreappsVersion>
 		<databaseBackupVersion>1.3.0</databaseBackupVersion>
 		<dataEntryStatisticsVersion>1.6.0</dataEntryStatisticsVersion>
 		<dataexchangeVersion>1.3.2</dataexchangeVersion>
@@ -87,7 +87,7 @@
 		<openwebappsVersion>1.9.0</openwebappsVersion>
 		<patientFlagsVersion>3.0.1</patientFlagsVersion>
 		<providermanagementVersion>2.10.0</providermanagementVersion>
-		<referenceapplicationVersion>2.6.0</referenceapplicationVersion>
+		<referenceapplicationVersion>2.10.0-SNAPSHOT</referenceapplicationVersion>
 		<referencemetadataVersion>2.6.0</referencemetadataVersion>
 		<registrationappVersion>1.12.0</registrationappVersion>
 		<registrationcoreVersion>1.8.0</registrationcoreVersion>
@@ -96,14 +96,14 @@
 		<reportingCompatibilityVersion>2.0.6</reportingCompatibilityVersion>
 		<reportingUIVersion>1.6.0</reportingUIVersion>
 		<serializationxstreamVersion>0.2.14</serializationxstreamVersion>
-		<uicommonsVersion>2.6.1</uicommonsVersion>
+		<uicommonsVersion>2.7.0-SNAPSHOT</uicommonsVersion>
 		<uiframeworkVersion>3.15.0</uiframeworkVersion>
 		<uilibraryVersion>2.0.6</uilibraryVersion>
-		<ugandaemrfingerprintVersion>1.0.8</ugandaemrfingerprintVersion>
+		<ugandaemrfingerprintVersion>1.0.9-SNAPSHOT</ugandaemrfingerprintVersion>
 		<xformsVersion>4.3.12</xformsVersion>
 
 		<!-- core configuration library -->
-		<ugandaemrReportsVersion>2.0.11</ugandaemrReportsVersion>
+		<ugandaemrReportsVersion>2.0.12-SNAPSHOT</ugandaemrReportsVersion>
 
 		<!-- Open Web Apps -->
 		<sysadminVersion>1.1</sysadminVersion>
