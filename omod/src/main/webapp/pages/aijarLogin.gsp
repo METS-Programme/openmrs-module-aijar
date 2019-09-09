@@ -225,62 +225,53 @@
 
     ${ui.includeFragment("referenceapplication", "infoAndErrorMessages")}
     <div id="content">
-        <div style="width: 100%; font-size: 1.6em; text-align: center; margin: 25px 0 10px 20px;">${healthCenter}</div>
+        <div style="width: 100%; font-size: 1.6em; text-align: center; margin: 25px 0 10px 20px;">ACCESS UgEMR</div>
         <form id="login-form" method="post" autocomplete="off">
-            <fieldset>
+            <div class="container">
+                <div class="card">
+                <div class="card-header">
+                </div>
+                    <div class="card-body">
+                        <form id="login" method="post" autocomplete="off">
+                           <div class="row">
+                               <div class="col-4">
+                               <label for="username">
+                                   ${ui.message("referenceapplication.login.username")}:
+                               </label>
+                               </div>
+                               <div class="col-4">
+                                   <div class="input-group form-group">
+                                       <div class="input-group-prepend">
+                                           <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                           <input type="text" class="form-control" placeholder="username">
+                                       </div>
 
-                <legend>
-                    <i class="icon-lock small"></i>
-                    ${ui.message("referenceapplication.login.loginHeading")}
-                </legend>
+                                   </div>
+                               </div>
 
-                <p class="left">
-                    <label for="username">
-                        ${ui.message("referenceapplication.login.username")}:
-                    </label>
-                    <input id="username" type="text" name="username"
-                           placeholder="${ui.message("referenceapplication.login.username.placeholder")}"/>
-                </p>
+                           </div>
+                            <div class="row">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label for="password">
+                                            ${ui.message("referenceapplication.login.password")}:
+                                        </label>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                        </div>
+                                        <input id="password" type="password" name="password"
+                                               placeholder="${ui.message("referenceapplication.login.password.placeholder")}"/>
+                                    </div>
+                                </div>
+                            </div>
 
-                <p class="left">
+                        </form>
 
-                    <label for="password">
-                        ${ui.message("referenceapplication.login.password")}:
-                    </label>
-                    <input id="password" type="password" name="password"
-                           placeholder="${ui.message("referenceapplication.login.password.placeholder")}"/>
-                </p>
-
-                <p class="clear">
-                    <label for="sessionLocation">
-                        Select appropriate area for your session:
-                        <!--${ui.message("referenceapplication.login.sessionLocation")}:-->
-                    </label>
-                <ul id="sessionLocation" class="select">
-                    <% locations.sort { ui.format(it) }.each { %>
-                    <li id="${it.name}" value="${it.id}">${ui.format(it)}</li>
-                    <% } %>
-                </ul>
-            </p>
-
-                <input type="hidden" id="sessionLocationInput" name="sessionLocation"
-                    <% if (lastSessionLocation != null) { %> value="${lastSessionLocation.id}" <% } %>/>
-
-                <p></p>
-
-                <p>
-                    <input id="loginButton" class="confirm" type="submit"
-                           value="${ui.message("referenceapplication.login.button")}"/>
-                </p>
-
-                <p>
-                    <a id="cantLogin" href="javascript:void(0)">
-                        <i class="icon-question-sign small"></i>
-                        ${ui.message("referenceapplication.login.cannotLogin")}
-                    </a>
-                </p>
-
-            </fieldset>
+                    </div>
+                </div>
+            </div>
 
             <input type="hidden" name="redirectUrl" value="${redirectUrl}"/>
 
