@@ -29,20 +29,20 @@ jq(document).ready(function () {
 
     /* Add validation rule for Uganda phone numbers, once applied to an element will validate the format and show a message
      */
-    jq.validator.addMethod("ugphone", function (phone_number, element) {
+    jQuery.validator.addMethod("ugphone", function (phone_number, element) {
         phone_number = phone_number.replace(/\(|\)|\s+|-/g, "");
         return this.optional(element) || phone_number.length == 10 &&
             phone_number.match(/^[0-9]{1,10}$/);
     }, "Please specify a valid mobile number without any spaces like 0712345678");
 
-    jq.validator.addMethod("nationalid", function (nationalid, element) {
+    jQuery.validator.addMethod("nationalid", function (nationalid, element) {
         nationalid = nationalid.replace(/\(|\)|\s+|-/g, "");
         return this.optional(element) || nationalid.match(/^$|^[A-Z][FM]\d{5}([A-Z0-9]){7}$/);
     }, "Enter a valid National ID example CF12345678ABCD");
 
 
     /* Validation of NIN on patient registration page */
-    jq("#registration").validate({
+    jQuery("#registration").validate({
         rules: {
             confirm_nationalid: {
                 equalTo: "nationalid"
