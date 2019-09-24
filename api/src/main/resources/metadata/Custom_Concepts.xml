@@ -4615,4 +4615,11 @@
     <concept_set concept_set_id="1016" concept_id="159648" concept_set="159645" sort_weight="6.0" creator="1" date_created="2012-12-28 17:25:40.0" uuid="1016AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>
     <concept_set concept_set_id="1017" concept_id="159649" concept_set="159645" sort_weight="7.0" creator="1" date_created="2012-12-28 17:25:40.0" uuid="1017AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>
     <concept_set concept_set_id="1018" concept_id="159652" concept_set="159645" sort_weight="8.0" creator="1" date_created="2012-12-28 17:25:40.0" uuid="1018AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>
+
+
+    <!--New Person Attribute types for the POCHALLA-->
+    <person_attribute_type  person_attribute_type_id="15"  name="Father's Name"  description="Person's Father's name"  format="java.lang.String"    searchable="0"  creator="1"  date_created="2019-09-18 09:55:05"   retired="0"     sort_weight="15"  uuid="63535ca9-bb53-4a46-a14b-831788c25c10"/>
+    <person_attribute_type  person_attribute_type_id="16"  name="Care giver's Name"  description="Care givers name to the patient"  format="java.lang.String"    searchable="0"  creator="1"  date_created="2019-09-18 09:56:50"    retired="0"     sort_weight="16"  uuid="e493f4ec-51f1-4a77-8d3c-5791f8cb02cd"/>
+    <person_attribute_type  person_attribute_type_id="17"  name="Care giver's Telephone Number"  description="The telephone number of the person giving care"  format="java.lang.String"    searchable="0"  creator="1"  date_created="2019-09-18 10:00:00"   retired="0"     sort_weight="17"  uuid="553834ef-b3fe-4c79-826a-6d4b6978bcff"/>
+
 </dataset>
