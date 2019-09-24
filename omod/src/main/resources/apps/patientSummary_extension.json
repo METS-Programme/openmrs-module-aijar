@@ -1,0 +1,11 @@
+[
+  {
+    "id": "${project.parent.groupId}.${project.parent.artifactId}.patientDashboard.firstColumnFragments.patientsummary",
+    "extensionPointId": "patientDashboard.firstColumnFragments",
+    "order": -10,
+    "extensionParams": {
+      "provider": "${project.parent.artifactId}",
+      "fragment": "patientSummary"
+    }
+  }
+]

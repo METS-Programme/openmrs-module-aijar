@@ -19,7 +19,7 @@
     "config": {
       "allowUnknownPatients": false,
       "allowRetrospectiveEntry": true,
-      "afterCreatedUrl": "/coreapps/clinicianfacing/patient.page?patientId={{patientId}}",
+      "afterCreatedUrl": "/registrationapp/registrationSummary.page?patientId={{patientId}}",
       "sections": [
         {
           "id": "demographics",
