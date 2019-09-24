@@ -330,10 +330,19 @@
     <concept  concept_id="164986"  retired="0"  datatype_id="3"  class_id="5"  is_set="0"  creator="1"  date_created="2017-11-23 12:42:49"  version="1.0"  changed_by="1"  date_changed="2017-11-23 12:44:05" uuid="164986AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
     <concept  concept_id="165144"  retired="0"  datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2018-11-23 17:46:41"  version="1.0"  changed_by="1"  date_changed="2018-11-23 17:46:41" uuid="cc183c11-0f94-4992-807c-84f33095ce37"/>
     <concept  concept_id="141520"  retired="0"  datatype_id="2"  class_id="1"  is_set="0"  creator="1"  date_created="2019-05-09 13:05:41"  version="1.0"  changed_by="1"  date_changed="2019-05-09 13:05:41" uuid="141520BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
-
     <concept  concept_id="141518"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-05-09 13:05:41"  version="1.0"  changed_by="1"  date_changed="2019-05-09 13:05:41" uuid="141518BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
     <concept  concept_id="141519"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-05-09 13:05:41"  version="1.0"  changed_by="1"  date_changed="2019-05-09 13:05:41" uuid="141519BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
     <concept  concept_id="165145"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-05-09 13:05:41"  version="1.0"  changed_by="1"  date_changed="2019-05-09 13:05:41" uuid="496317c8-7257-11e9-a923-1681be663d3e"/>
+
+    <concept  concept_id="165272"  retired="0" datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2019-09-19 20:47:15"  version="1.0"  changed_by="1"  date_changed="2019-09-19 20:47:15" uuid="17def5f6-d6b4-444b-99ed-40eb05d2c4f8"/>
+    <concept  concept_id="165271"  retired="0" datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2019-09-19 20:44:13"  version="1.0"  changed_by="1"  date_changed="2019-09-19 20:44:13" uuid="7cc40cbc-984f-40e0-aae3-50339dff8f4a"/>
+    <concept  concept_id="165270"  retired="0" datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2019-09-19 20:43:38"  version="1.0"  changed_by="1"  date_changed="2019-09-19 20:43:38" uuid="2050efe0-6a18-4028-a26e-16b90dfd853d"/>
+    <concept  concept_id="165269"  retired="0" datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2019-09-19 20:42:28"  version="1.0"  changed_by="1"  date_changed="2019-09-19 20:42:28" uuid="1f6fe5aa-29ba-4e84-8074-a7ea06eb8440"/>
+    <concept  concept_id="165268"  retired="0" datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2019-09-19 20:41:49"  version="1.0"  changed_by="1"  date_changed="2019-09-19 20:41:49" uuid="e48dcbe9-9c13-4526-95db-97223f3bf757"/>
+    <concept  concept_id="165267"  retired="0" datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2019-09-19 20:41:16"  version="1.0"  changed_by="1"  date_changed="2019-09-19 20:41:16" uuid="1615507f-54c6-4c18-b1ce-46a3d6d23154"/>
+    <concept  concept_id="165266"  retired="0" datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2019-09-19 20:40:31"  version="1.0"  changed_by="1"  date_changed="2019-09-19 20:40:31" uuid="bd552fe1-6701-4099-a032-bbb3fcb086dc"/>
+    <concept  concept_id="165265"  retired="0" datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2019-09-19 20:40:00"  version="1.0"  changed_by="1"  date_changed="2019-09-19 20:40:00" uuid="95181faa-50f4-4dde-be66-74a18947b053"/>
+
 
 
     <!--KP-->
@@ -580,6 +589,7 @@
     <concept concept_id="136973" retired="false" datatype_id="4" class_id="4" is_set="false" creator="1" date_created="2007-11-03 00:00:00.0" version="" uuid="136973AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
     <concept concept_id="138680" retired="false" datatype_id="4" class_id="4" is_set="false" creator="1" date_created="2007-11-03 00:00:00.0" version="" uuid="138680AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
     <concept concept_id="148531" retired="false" datatype_id="4" class_id="4" is_set="false" creator="1" date_created="2007-11-03 00:00:00.0" version="" date_changed="2015-07-17 21:16:34.0" uuid="148531AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+    <concept concept_id="139071" retired="false" datatype_id="2"  class_id="4"  is_set="0"  creator="1"  date_created="2007-11-03 00:00:00"  version=""  changed_by="1"  date_changed="2016-10-03 20:17:47"  retired_by="1" uuid="139071AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
 
     <!--Programs -->
     <concept concept_id="159937" retired="false" datatype_id="4" class_id="11" is_set="false" creator="1" date_created="2010-11-30 13:20:14.0" uuid="159937AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
@@ -902,6 +912,11 @@
     <concept  concept_id="165257"  retired="0"  datatype_id="4"  class_id="10"  is_set="1"  creator="1"  date_created="2019-09-10 09:25:37"  version="1.0"  changed_by="1"  date_changed="2019-09-10 09:25:37"  uuid="ce15b816-57ed-4a8a-871e-ae550db6b528"/>
     <concept  concept_id="165258"  retired="0"  datatype_id="1"  class_id="11"  is_set="0"  creator="1"  date_created="2019-09-10 09:39:30"  version="1.0"  changed_by="1"  date_changed="2019-09-10 09:39:30"  uuid="0f7e7d9d-d8d1-4ef8-9d61-ae5d17da4d1e"/>
     <concept  concept_id="165259"  retired="0"  datatype_id="1"  class_id="11"  is_set="0"  creator="1"  date_created="2019-09-10 09:45:13"  version="1.0"  changed_by="1"  date_changed="2019-09-10 09:45:13"  uuid="666afa00-2cbf-4ca0-9576-2c89a19fe466"/>
+
+
+    <!--CONCEPT LAB-->
+    <concept  concept_id="1429"  retired="0"  datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2006-12-17 11:49:51"  version="NULL"  changed_by="1"  date_changed="2010-12-08 22:19:39" uuid="1429AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+
 
     <!--CONCEPT NUMERIC-->
     <!--MCH-->
@@ -1329,6 +1344,9 @@
     <concept_description  concept_description_id="18357"  concept_id="165247"  description="Date when Hepatitis B test was done"  locale="en"  creator="1"  date_created="2019-09-09 17:47:22"   uuid="6b1f377a-ac4c-417b-b99d-fd13987e41e0"/>
     <concept_description  concept_description_id="18358"  concept_id="165248"  description="Date when hepatitis C test date was done"  locale="en"  creator="1"  date_created="2019-09-09 17:48:16"   uuid="1cb4af6e-2357-4d94-87c7-73937c0abbd2"/>
 
+    <!--LAB-->
+    <concept_description  concept_description_id="1390"  concept_id="1429"  description="Rhesus (Rh) type of blood for pregant woman screening"  locale="en"  creator="1"  date_created="2006-12-17 11:49:51"  changed_by="1" uuid="1390FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"/>
+
     <!--CONCEPT NAME-->
     <!--ART-->
     <concept_name concept_id="163150" name="Date viral load results received at health center" locale="en" creator="1" date_created="2016-10-17 19:36:28" concept_name_id="135969" voided="false"  uuid="1135969BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
@@ -1468,10 +1486,25 @@
     <concept_name  concept_name_id="159991"  concept_id="164986"  name="Serum Crag Screening Result"  locale="en"  locale_preferred="1"  creator="1"  date_created="2017-11-23 12:44:05"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="159991BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
     <concept_name  concept_name_id="160179"  concept_id="165144"  name="Stable In DSDM"  locale="en"  locale_preferred="1"  creator="1"  date_created="2018-11-23 17:46:41"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="6f6e2d05-abcb-4e5d-9e3c-172a64747e5d"/>
     <concept_name  concept_name_id="160180"  concept_id="141520"  name="HIV recency result"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-05-09 13:05:41"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="da181e4e-6d67-4af7-8675-c4151f6138aa"/>
-
     <concept_name  concept_name_id="160183"  concept_id="141518"  name="Recent"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-05-09 13:05:41"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="49631610-7257-11e9-a923-1681be663d3e"/>
     <concept_name  concept_name_id="160184"  concept_id="141519"  name="Long-Term"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-05-09 13:05:41"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="496314b2-7257-11e9-a923-1681be663d3e"/>
     <concept_name  concept_name_id="160185"  concept_id="165145"  name="Missing"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-05-09 13:05:41"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="496311e2-7257-11e9-a923-1681be663d3e"/>
+    <concept_name  concept_name_id="160336"  concept_id="165272"  name="Advanced Disease Status"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-09-19 20:47:15"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="2204f52e-293c-47f4-8158-2b6713d8d56a"/>
+    <concept_name  concept_name_id="160334"  concept_id="165271"  name="Confirmed Adv. Disease - Child &lt; 5 Yrs."  locale="en"  locale_preferred="0"  creator="1"  date_created="2019-09-19 20:44:13"  concept_name_type="SHORT"  voided="0" uuid="e8a4ab3c-121b-4e4c-9980-c799cbc329e6"/>
+    <concept_name  concept_name_id="160335"  concept_id="165271"  name="Confirmed Advanced Disease - Child &lt; 5 Yrs."  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-09-19 20:44:13"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="bc3204e8-7999-4168-8cbb-f3f680f20509"/>
+    <concept_name  concept_name_id="160332"  concept_id="165270"  name="Confirmed Advanced Disease - WHO Stage 3/4"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-09-19 20:43:38"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="96203a86-db85-4906-b09f-0e99e22b0877"/>
+    <concept_name  concept_name_id="160333"  concept_id="165270"  name="Confirmed Adv. Disease - WHO Stage 3/4"  locale="en"  locale_preferred="0"  creator="1"  date_created="2019-09-19 20:43:38"  concept_name_type="SHORT"  voided="0" uuid="8693809e-0713-45d9-93bb-f5367ef7258b"/>
+    <concept_name  concept_name_id="160330"  concept_id="165269"  name="Confirmed Advanced Disease-Pos TB"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-09-19 20:42:28"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="78bfa668-0001-4b4f-8413-d21edf5592d6"/>
+    <concept_name  concept_name_id="160331"  concept_id="165269"  name="Confirmed Adv. Disease-Pos TB"  locale="en"  locale_preferred="0"  creator="1"  date_created="2019-09-19 20:42:28"  concept_name_type="SHORT"  voided="0" uuid="1b27be41-1078-4937-87d8-b3b549c2c9d2"/>
+    <concept_name  concept_name_id="160328"  concept_id="165268"  name="Confirmed Advanced Disease-Pos CrAg"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-09-19 20:41:49"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="2a2137cb-1389-40d8-a9b6-93d0f8e62e91"/>
+    <concept_name  concept_name_id="160329"  concept_id="165268"  name="Confirmed Adv. Disease-Pos CrAg"  locale="en"  locale_preferred="0"  creator="1"  date_created="2019-09-19 20:41:49"  concept_name_type="SHORT"  voided="0" uuid="6a69457e-693c-47cf-82c3-4266a23c7bcc"/>
+    <concept_name  concept_name_id="160326"  concept_id="165267"  name="Confirmed Adv. Disease CD4 <200"  locale="en"  locale_preferred="0"  creator="1"  date_created="2019-09-19 20:41:16"  concept_name_type="SHORT"  voided="0" uuid="66a230c8-044b-42bf-96d1-2c7c3b19493c"/>
+    <concept_name  concept_name_id="160327"  concept_id="165267"  name="Confirmed Advanced Disease CD4 <200"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-09-19 20:41:16"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="825211f0-a771-47fb-a72a-26595b8175b0"/>
+    <concept_name  concept_name_id="160324"  concept_id="165266"  name="Suspected Advanced Disease"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-09-19 20:40:31"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="f35e725a-b509-4d98-9ad1-6bed03e4f1dd"/>
+    <concept_name  concept_name_id="160325"  concept_id="165266"  name="Suspected Adv. Disease"  locale="en"  locale_preferred="0"  creator="1"  date_created="2019-09-19 20:40:31"  concept_name_type="SHORT"  voided="0" uuid="b1b72bc9-f77c-412a-8842-d95c1ae24db6"/>
+    <concept_name  concept_name_id="160322"  concept_id="165265"  name="No Advanced Disease"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-09-19 20:40:00"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="f063b6b1-cedb-420f-887f-5b1573ced625"/>
+    <concept_name  concept_name_id="160323"  concept_id="165265"  name="No Adv. Disease"  locale="en"  locale_preferred="0"  creator="1"  date_created="2019-09-19 20:40:00"  concept_name_type="SHORT"  voided="0" uuid="9129a87e-ecb9-4992-868a-80cfae3354a0"/>
+
 
     <!--KP-->
     <concept_name  concept_id="1533"  name="RESPONDENT GENDER"  locale="en"  creator="1"  date_created="2008-02-16 13:53:50"  concept_name_id="1792"  voided="0"  voided_by="1" uuid="1792BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1"/>
@@ -2260,6 +2293,10 @@
     <concept_name concept_id="148531" name="ulceraci&#243;n aftosa en boca" locale="es" creator="1" date_created="2009-08-18 16:03:14.0" concept_name_id="57823" voided="false" voided_by="1" uuid="57823BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
     <concept_name concept_id="148531" name="Nhi&#7879;t mi&#7879;ng" locale="vi" creator="1" date_created="2015-07-17 20:07:20.0" concept_name_id="128065" voided="false" voided_by="1" uuid="128065BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
     <concept_name concept_id="148531" name="Lo&#233;t ap-t&#417;" locale="vi" creator="1" date_created="2015-07-17 21:16:34.0" concept_name_id="131370" voided="false" voided_by="1" uuid="131370BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
+    <concept_name  concept_id="139071"  name="Heart disease"  locale="en"  creator="1"  date_created="2007-10-18 04:28:24"  concept_name_id="38854"  voided="0"  voided_by="1" uuid="38854BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1"/>
+    <concept_name  concept_id="139071"  name="cardiopatía"  locale="es"  creator="1"  date_created="2009-08-18 16:03:14"  concept_name_id="66254"  voided="0"  voided_by="1" uuid="66254BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1"/>
+    <concept_name  concept_id="139071"  name="Maladie cardiaque"  locale="fr"  creator="1"  date_created="2010-02-21 20:27:38"  concept_name_id="100542"  voided="0"  voided_by="1" uuid="100542BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1"/>
+    <concept_name  concept_id="139071"  name="Maladi kè"  locale="ht"  creator="1"  date_created="2016-07-10 02:58:59"  concept_name_id="137489"  voided="0"  voided_by="1" uuid="137489BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1"/>
 
     <!--Programs-->
     <concept_name concept_id="159937" name="MCH program" locale="en" creator="1" date_created="2010-11-30 13:20:14.0" concept_name_id="107483" voided="false" uuid="107483BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="SHORT" locale_preferred="false"/>
@@ -3432,6 +3469,11 @@
     <concept_name concept_id="163147" name="Male Condoms" locale="en" creator="1" date_created="2016-10-21 10:02:56" concept_name_id="135935" voided="false"  uuid="4b32bb02-d11c-4e8b-a517-62d4a7374217" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
     <concept_name concept_id="163148" name="Ovrette" locale="en" creator="1" date_created="2016-10-21 10:02:56" concept_name_id="135935" voided="false"  uuid="b906f0cb-e65b-4fdf-a7e9-88e23ad2eb1b" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
 
+    <!--LAB-->
+    <concept_name  concept_id="1429"  name="RH TYPE"  locale="en"  creator="1"  date_created="2006-12-17 11:49:51"  concept_name_id="1600"  voided="0"  voided_by="1" uuid="1600BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1"/>
+    <concept_name  concept_id="1429"  name="Facteur Rhesus (Rh)"  locale="fr"  creator="1"  date_created="2007-09-06 09:02:05"  concept_name_id="1601"  voided="0"  voided_by="1" uuid="1601BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1"/>
+    <concept_name  concept_id="1429"  name="rh type"  locale="en"  creator="1"  date_created="2006-12-17 11:49:51"  concept_name_id="86884"  voided="0"  voided_by="1" uuid="86884BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="SHORT"  locale_preferred="0"/>
+    <concept_name  concept_id="1429"  name="RHESUS"  locale="en"  creator="1"  date_created="2006-12-17 11:49:51"  concept_name_id="97488"  voided="0"  voided_by="1" uuid="97488BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  locale_preferred="0"/>
 
     <!-- EMTCT module -->
     <concept_name  concept_id="160446"  name="Antenatal Visit"  locale="en"  creator="1"  date_created="2012-06-07 17:32:55"  concept_name_id="160103"  voided="false"  uuid="108692BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="true"/>
@@ -3851,7 +3893,6 @@
     <concept_answer  concept_answer_id="6856"  concept_id="164987"  answer_concept="1065" creator="1"  date_created="2017-11-23 12:44:15"  sort_weight="1"  uuid="6856CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"/>
     <concept_answer  concept_answer_id="7092"  concept_id="165144"  answer_concept="90003" creator="1"  date_created="2018-11-23 17:46:41" sort_weight="1"  uuid="1d72d660-7781-4b0e-81a7-09ad988a9840"/>
     <concept_answer  concept_answer_id="7091"  concept_id="165144"  answer_concept="90004" creator="1"  date_created="2018-11-23 17:46:41" sort_weight="2"  uuid="1cc402f9-e757-4892-81bb-e81537426023"/>
-
     <concept_answer  concept_answer_id="7093"  concept_id="141520"  answer_concept="141518" creator="1"  date_created="2019-05-09 13:05:41" sort_weight="1"  uuid="13f92c2e-7245-11e9-a923-1681be663d3e"/>
     <concept_answer  concept_answer_id="7094"  concept_id="141520"  answer_concept="141519" creator="1"  date_created="2019-05-09 13:05:41" sort_weight="2"  uuid="13f92ef4-7245-11e9-a923-1681be663d3e"/>
     <concept_answer  concept_answer_id="7095"  concept_id="141520"  answer_concept="1118" creator="1"  date_created="2019-05-09 13:05:41" sort_weight="3"  uuid="13f932dc-7245-11e9-a923-1681be663d3e"/>
@@ -4074,6 +4115,19 @@
     <concept_answer concept_answer_id="6613" concept_id="164435" answer_concept="1065" creator="1" date_created="2017-04-04 13:55:09.0" sort_weight="1.0" uuid="cc88b8e6-359a-4595-a336-f1f07adff0d9"/>
     <concept_answer concept_answer_id="6777" concept_id="164924" answer_concept="1065" creator="1" date_created="2017-05-15 09:22:40.0" sort_weight="1.0" uuid="b57c7aa5-1ede-417f-9330-097b8f0666f7"/>
     <concept_answer concept_answer_id="6778" concept_id="164924" answer_concept="1066" creator="1" date_created="2017-05-15 09:22:40.0" sort_weight="2.0" uuid="db413fd2-cde3-4a08-bc4f-90c556725d15"/>
+    <concept_answer  concept_answer_id="1498"  concept_id="139071"  answer_concept="1067" creator="1"  date_created="2009-06-23 21:48:05"  uuid="1498CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"  sort_weight="1498"/>
+    <concept_answer  concept_answer_id="1499"  concept_id="139071"  answer_concept="1065" creator="1"  date_created="2009-06-23 21:48:05"  uuid="1499CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"  sort_weight="1499"/>
+    <concept_answer  concept_answer_id="1500"  concept_id="139071"  answer_concept="1066" creator="1"  date_created="2009-06-23 21:48:05"  uuid="1500CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"  sort_weight="1500"/>
+    <concept_answer  concept_answer_id="7269"  concept_id="99752"  answer_concept="162848"   creator="1"  date_created="2019-09-19 20:56:30"  sort_weight="5"  uuid="14c3a5af-98b2-4d7d-8846-1c3d5e3c5577"/>
+    <concept_answer  concept_answer_id="7262"  concept_id="165272"  answer_concept="165269"  creator="1"  date_created="2019-09-19 20:47:15"  sort_weight="5"  uuid="98c318a3-0fda-4dd5-8f20-67e2a6411069"/>
+    <concept_answer  concept_answer_id="7266"  concept_id="165272"  answer_concept="165267"  creator="1"  date_created="2019-09-19 20:47:15"  sort_weight="3"  uuid="25ea40f8-0314-45a6-ad33-14eb1967ced0"/>
+    <concept_answer  concept_answer_id="7268"  concept_id="165272"  answer_concept="165268"  creator="1"  date_created="2019-09-19 20:47:15"  sort_weight="4"  uuid="54951791-0c81-4a5d-af9f-0ff9b89cccef"/>
+    <concept_answer  concept_answer_id="7263"  concept_id="165272"  answer_concept="165270"  creator="1"  date_created="2019-09-19 20:47:15"  sort_weight="6"  uuid="618e5f3a-e8e1-4bdb-8bfc-7e5068e98c08"/>
+    <concept_answer  concept_answer_id="7265"  concept_id="165272"  answer_concept="165266"  creator="1"  date_created="2019-09-19 20:47:15"  sort_weight="2"  uuid="644dbc66-30fe-4c99-bba1-5ae5b2b1ef44"/>
+    <concept_answer  concept_answer_id="7264"  concept_id="165272"  answer_concept="165265"  creator="1"  date_created="2019-09-19 20:47:15"  sort_weight="1"  uuid="44df8f6e-92af-4e9c-8239-7eef45b1d4b0"/>
+    <concept_answer  concept_answer_id="7267"  concept_id="165272"  answer_concept="165271"  creator="1"  date_created="2019-09-19 20:47:15"  sort_weight="7"  uuid="94b15394-09d7-4047-9582-e08d33e22dc2"/>
+
+
 
     <!--TB-->
     <concept_answer concept_answer_id="1908" concept_id="512" answer_concept="1066" creator="1" date_created="2009-07-14 11:31:52.0" uuid="1908CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" sort_weight="1908.0"/>
@@ -4482,6 +4536,12 @@
     <concept_answer concept_answer_id="6871" concept_id="5629" answer_concept="1066" creator="1" date_created="2019-08-22 21:00:05.0" uuid="687a7aa7-e7a4-4cdb-8f0d-115a4d525fd9" sort_weight="1882.0"/>
     <concept_answer concept_answer_id="6872" concept_id="5629" answer_concept="1065" creator="1" date_created="2019-08-22 21:00:05.0" uuid="5fd7c6d3-2cbf-4752-81e9-99f372678b4a" sort_weight="1891.0"/>
 
+
+    <!--LAB-->
+
+    <concept_answer  concept_answer_id="1096"  concept_id="1429"  answer_concept="1067"  creator="1"  date_created="2006-12-17 11:49:51"  uuid="1096CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"  sort_weight="1096"/>
+    <concept_answer  concept_answer_id="1097"  concept_id="1429"  answer_concept="664"  creator="1"  date_created="2006-12-17 11:49:51"  uuid="1097CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"  sort_weight="1097"/>
+    <concept_answer  concept_answer_id="1098"  concept_id="1429"  answer_concept="703"  creator="1"  date_created="2006-12-17 11:49:51"  uuid="1098CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"  sort_weight="1098"/>
 
     <!--CONCEPT SET-->
     <!--MCH-->
