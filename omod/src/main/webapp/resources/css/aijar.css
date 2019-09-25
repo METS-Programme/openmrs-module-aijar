@@ -312,3 +312,42 @@ table th, table td {
     margin-left: auto;
     width: 25%;
 }
+.logoimage{
+	height: 70px;
+	width: 70px;
+	background: whitesmoke;
+	padding: 5px;
+	border-radius: 50%;
+
+}
+.headerimage{
+	float: left;
+	margin: 4px;
+}
+.header{
+	background-color: black;
+}
+#headertittle
+{
+	font-size: 1.4em;
+	font-weight: bold;
+	font-family: "Trebuchet MS";
+}
+#headersubtittle
+{
+	color: #848484;
+	font-size: 0.9em;
+	text-align: center;
+}
+.healthcentrename{
+	font-size: 1.6em;
+	text-align: center;
+	margin: 25px 0 10px 20px;
+	font-family: "Trebuchet MS";
+}
+.headerelements{
+	float: left;
+	margin: 25px 0 10px 20px;
+	color: #EFEFEF;
+	width: 285px;"
+}

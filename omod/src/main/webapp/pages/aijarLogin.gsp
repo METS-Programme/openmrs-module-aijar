@@ -1,6 +1,8 @@
 <%
     ui.includeFragment("appui", "standardEmrIncludes")
     ui.includeCss("referenceapplication", "login.css")
+    ui.includeCss("appui","bootstrap.min.css")
+    ui.includeCss("appui","bootstrap.min.js")
 
     def now = new Date()
     def year = now.getAt(Calendar.YEAR);
@@ -20,7 +22,7 @@
         -webkit-font-smoothing: subpixel-antialiased;
         max-width: 1000px;
         margin: 10px auto;
-        background-color: white;
+        background-color: #FAFAFA;
     }
 
     #body-wrapper {
@@ -33,6 +35,7 @@
         -ms-border-radius: 5px;
         -khtml-border-radius: 5px;
         border-radius: 5px;
+        background: #FAFAFA;
     }
 
     #body-wrapper #content {
@@ -61,11 +64,18 @@
         margin: 0px 15px;
         width: 95%;
         display: inline-block;
+        margin-left: 150px;
         font-size: 0.7em;
         color: #808080;
     }
     .footer .left_al {
-        float: left;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .center {
+        margin: auto;
+        width: 60%;
+        padding: 10px;
     }
 
     .footer .right_al{
@@ -77,6 +87,11 @@
         padding: 5px;
         text-decoration: none;
     }
+    #footer
+    {
+        margin-right: 300px;
+    }
+
     .footer a:hover{
         color: #404040;
         font-size: 1em;
@@ -111,16 +126,43 @@
     header .logo img {
         width: 200px;
     }
+    #header-container
+    {
+     width: 400px;
+    }
 
     header .logo {
         float: none;
         margin: 4px;
     }
 
+
     #login-form ul.select {
         padding: 10px;
         background: beige;
     }
+    #fieldset{
+        margin-left: 200px;
+        margin-top: 100px;
+    }
+   #header{
+       background: #FAFAFA;
+   }
+   #header-image{
+       background: #FAFAFA;
+       margin-left: 200px;
+   }
+   #subtitle{
+       width: 100%;
+       font-size: 1.6em;
+       text-align: center;
+       font-weight: bold;
+       font-family:Arial-BoldMT
+   }
+   #credentials{
+       font-family:Arial-BoldMT
+
+   }
 
     ul.select li.selected {
         background-color: #94979A;
@@ -141,6 +183,22 @@
         color: white;
         cursor: pointer;
     }
+    h3
+    {
+        margin-left: 30px;
+        padding-top: 5px;
+        font-family: "Trebuchet MS";
+        color: black;
+    }
+    h3.dialog-header{
+        font-weight: bolder;
+    }
+    #uganda
+    {
+        font-weight: bolder;
+        font-size: 50px
+    }
+
 
     ul.select li {
         margin: 0 10px;
@@ -178,14 +236,6 @@
         updateSelectedOption = function () {
             jQuery('#sessionLocation li').removeClass('selected');
             var sessionLocationVal = jQuery('#sessionLocationInput').val();
-            if (sessionLocationVal != null && sessionLocationVal != "" && sessionLocationVal != 0) {
-                jQuery('#sessionLocation li[value|=' + sessionLocationVal + ']').addClass('selected');
-                jQuery('#loginButton').removeClass('disabled');
-                jQuery('#loginButton').removeAttr('disabled');
-            } else {
-                jQuery('#loginButton').addClass('disabled');
-                jQuery('#loginButton').attr('disabled', 'disabled');
-            }
         };
 
         updateSelectedOption();
@@ -215,70 +265,85 @@
 </script>
 
 <div id="body-wrapper">
-    <header>
-        <div class="logo">
-            <a href="${ui.pageLink("referenceapplication", "home")}">
-                <img src="${ui.resourceLink("aijar", "images/moh_logo_large.png")}"/>
-            </a>
-        </div>
+    <div class="container">
+    <header id="header">
+
+            <div class="row" id="header-image">
+                <img  src="${ui.resourceLink("aijar", "images/homepage.png")}"/>
+
+            </div>
     </header>
 
-    ${ui.includeFragment("referenceapplication", "infoAndErrorMessages")}
-    <div id="content">
-        <div style="width: 100%; font-size: 1.6em; text-align: center; margin: 25px 0 10px 20px;">${healthCenter}</div>
         <form id="login-form" method="post" autocomplete="off">
-            <fieldset>
+            <fieldset id="fieldset">
 
-                <legend>
-                    <i class="icon-lock small"></i>
-                    ${ui.message("referenceapplication.login.loginHeading")}
-                </legend>
-
-                <p class="left">
-                    <label for="username">
+                <div id="subtitle">ACCESS UgEMR</div>
+                ${ui.includeFragment("referenceapplication", "infoAndErrorMessages")}
+            <table class="table-table table-borderless table-condensed table-hover">
+                <tr>
+                    <td>
+                    <label for="username" id="credentials">
                         ${ui.message("referenceapplication.login.username")}:
                     </label>
-                    <input id="username" type="text" name="username"
+                    </td>
+                <td>
+                    <div class="input-group form-group" style="padding-top: 10px">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="icon-user"></i></span>
+                        </div>
+                    <input id="username" type="text" name="username"  class="form-control icon-user"
                            placeholder="${ui.message("referenceapplication.login.username.placeholder")}"/>
-                </p>
 
-                <p class="left">
+                    </div>
+                </td>
+                </tr>
+                <tr>
+                    <td>
 
-                    <label for="password">
-                        ${ui.message("referenceapplication.login.password")}:
-                    </label>
-                    <input id="password" type="password" name="password"
-                           placeholder="${ui.message("referenceapplication.login.password.placeholder")}"/>
-                </p>
+                        <label for="password" id="credentials">
+                            ${ui.message("referenceapplication.login.password")}:
+                        </label>
+                    </td>
+                    <td>
+                        <div class="input-group form-group" style="padding-top: 10px">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="icon-key"></i></span>
+                        </div>
+                        <input id="password" type="password" name="password" class="form-control icon-key"
+                               placeholder="${ui.message("referenceapplication.login.password.placeholder")}"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="credentials">
+                        Select Location:
+                    </td>
+                    <td>
+                        <select  class="custom-select" name="sessionLocation" id="sessionLocationInput">
+                            <option value="" >Select Location</option>
+                            <% locations.sort { ui.format(it) }.each { %>
+                            <option value="${it.id}">${it.name}</option>
+                            <% } %>
+                        </select>
 
-                <p class="clear">
-                    <label for="sessionLocation">
-                        Select appropriate area for your session:
-                        <!--${ui.message("referenceapplication.login.sessionLocation")}:-->
-                    </label>
-                <ul id="sessionLocation" class="select">
-                    <% locations.sort { ui.format(it) }.each { %>
-                    <li id="${it.name}" value="${it.id}">${ui.format(it)}</li>
-                    <% } %>
-                </ul>
-            </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input id="loginButton" class="confirm" type="submit"
+                               value="${ui.message("referenceapplication.login.button")}"/>
+                      <span style="padding-left: 150px;font-size: 12px">
+                          <a id="cantLogin" href="javascript:void(0)">
+                            <i class="icon-question-sign small"></i>
+                            ${ui.message("referenceapplication.login.cannotLogin")}
+                        </a>
+                      </span>
 
-                <input type="hidden" id="sessionLocationInput" name="sessionLocation"
-                    <% if (lastSessionLocation != null) { %> value="${lastSessionLocation.id}" <% } %>/>
+                    </td>
+                </tr>
 
-                <p></p>
-
-                <p>
-                    <input id="loginButton" class="confirm" type="submit"
-                           value="${ui.message("referenceapplication.login.button")}"/>
-                </p>
-
-                <p>
-                    <a id="cantLogin" href="javascript:void(0)">
-                        <i class="icon-question-sign small"></i>
-                        ${ui.message("referenceapplication.login.cannotLogin")}
-                    </a>
-                </p>
+</table>
 
             </fieldset>
 
@@ -288,14 +353,15 @@
 
     </div>
     <div class="footer">
-        <div class="left_al">
+        <div class="center">
+            Supported by <a href="http://www.mets.or.ug" target="_blank"
+                                                            title="Makerere University School of Public Health METS Programme">MakSPH METS Programme</a>|  ${ui.message("aijar.build.info")}
+        </div>
+        <div class="center">
             &#169; ${year} All Rights Reserved <a href="http://www.health.go.ug" target="_blank"
                                                   title="Ministry of Health Uganda">Ministry of Health - Republic of Uganda</a>
         </div>
-        <div class="right_al">
-${ui.message("aijar.build.info")} powered by <a href="http://www.mets.or.ug" target="_blank"
-                                                        title="Makerere University School of Public Health METS Programme">METS Programme</a>
-        </div>
+
     </div>
 </div>
 
@@ -312,6 +378,6 @@ ${ui.message("aijar.build.info")} powered by <a href="http://www.mets.or.ug" tar
         <button class="confirm">${ui.message("referenceapplication.okay")}</button>
     </div>
 </div>
-
+</div>
 </body>
 </html>
