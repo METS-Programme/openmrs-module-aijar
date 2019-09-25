@@ -87,71 +87,80 @@
     });
 
 </script>
-<header>
-    <div class="logo">
-        <a href="${logoLinkUrl}">
-            <img src="${logoIconUrl}" style="height: 70px; width: 70px; background: whitesmoke; padding: 5px;"/>
-        </a>
-    </div>
+<header class="header" >
 
-    <div style="float: left;margin: 25px 0 10px 20px; color: #EFEFEF;width: 285px;">
-        <div style="padding-bottom: 10px;">
-            <span style="font-size: 1.2em; text-align: left;color: #FFFFFF;">Ministry of Health </span>
-            <span style="color: #F1F1F1;font-size: 1.2em;">- Uganda</span><span style="color: #D2CB92;font-size: 1.2em;">EMR</span>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="headerimage">
+                <a href="${logoLinkUrl}">
+                    <img src="${logoIconUrl}"  class="logoimage"/>
+                </a>
+            </div>
+            <div  class="headerelements">
+                <div style="padding-bottom: 10px;font-weight: bold;font-family: Trebuchet MS;">
+                    <span id="headertittle">U</span>GANDA</span><span id="headertittle">EMR</span>
+                </div>
+                <span id="headersubtittle">Electronic Medical Records System</span>
+            </div>
+
         </div>
-        <span style="color: #848484;font-size: 0.9em;float: left; width: 100%; text-align: center;">Electronic Medical Records System</span>
-    </div>
-    <div style="float: left; font-size: 1.6em; text-align: center; margin: 25px 0 10px 20px; width: 22%;">
-        ${healthCenter}
-    </div>
+        <div class="col-sm-4">
+            <div class="healthcentrename">
+                ${healthCenter}
+            </div>
+        </div>
 
-    <% if (context.authenticated) { %>
-    <ul class="user-options" style="padding: 20px;">
-        <li class="identifier">
-            <i class="icon-user small"></i>
-            ${context.authenticatedUser.username ?: context.authenticatedUser.systemId}
-            <% if (enableUserAccountExt) { %>
-            <i class="icon-caret-down appui-icon-caret-down link"></i><i class="icon-caret-up link appui-toggle"
-                                                                         style="display: none;"></i>
-            <ul id="user-account-menu" class="appui-toggle">
-                <% userAccountMenuItems.each { menuItem -> %>
-                <li>
-                    <a id="" href="/${contextPath}/${menuItem.url}">
-                        ${ui.message(menuItem.label)}
+        <div class="col-sm-4">
+            <% if (context.authenticated) { %>
+            <ul class="user-options" style="padding: 20px;">
+                <li class="identifier">
+                    <i class="icon-user small"></i>
+                    ${context.authenticatedUser.username ?: context.authenticatedUser.systemId}
+                    <% if (enableUserAccountExt) { %>
+                    <i class="icon-caret-down appui-icon-caret-down link"></i><i class="icon-caret-up link appui-toggle"
+                                                                                 style="display: none;"></i>
+                    <ul id="user-account-menu" class="appui-toggle">
+                        <% userAccountMenuItems.each { menuItem -> %>
+                        <li>
+                            <a id="" href="/${contextPath}/${menuItem.url}">
+                                ${ui.message(menuItem.label)}
+                            </a>
+                        </li>
+                        <% } %>
+                    </ul>
+                    <% } %>
+                </li>
+                <li class="change-location">
+                    <a href="javascript:void(0);">
+                        <i class="icon-map-marker small"></i>
+                        <span data-bind="text: text"></span>
+                        <% if (multipleLoginLocations) { %>
+                        <i class="icon-caret-down link"></i>
+                        <% } %>
                     </a>
                 </li>
-                <% } %>
+                <li class="logout">
+                    <a href="/${contextPath}/logout">
+                        ${ui.message("emr.logout")}
+                        <i class="icon-signout small"></i>
+                    </a>
+                </li>
             </ul>
-            <% } %>
-        </li>
-        <li class="change-location">
-            <a href="javascript:void(0);">
-                <i class="icon-map-marker small"></i>
-                <span data-bind="text: text"></span>
-                <% if (multipleLoginLocations) { %>
-                <i class="icon-caret-down link"></i>
-                <% } %>
-            </a>
-        </li>
-        <li class="logout">
-            <a href="/${contextPath}/logout">
-                ${ui.message("emr.logout")}
-                <i class="icon-signout small"></i>
-            </a>
-        </li>
-    </ul>
 
-    <div id="session-location">
-        <div id="spinner" style="position:absolute; display:none">
-            <img src="${ui.resourceLink("uicommons", "images/spinner.gif")}">
-        </div>
-        <ul class="select">
-            <% loginLocations.sort { ui.format(it) }.each {
-                def selected = (it == sessionContext.sessionLocation) ? "selected" : ""
-            %>
-            <li class="${selected}" locationId="${it.id}" locationName="${ui.format(it)}">${ui.format(it)}</li>
+            <div id="session-location">
+                <div id="spinner" style="position:absolute; display:none">
+                    <img src="${ui.resourceLink("uicommons", "images/spinner.gif")}">
+                </div>
+                <ul class="select">
+                    <% loginLocations.sort { ui.format(it) }.each {
+                        def selected = (it == sessionContext.sessionLocation) ? "selected" : ""
+                    %>
+                    <li class="${selected}" locationId="${it.id}" locationName="${ui.format(it)}">${ui.format(it)}</li>
+                    <% } %>
+                </ul>
+            </div>
             <% } %>
-        </ul>
+        </div>
+
     </div>
-    <% } %>
 </header>
