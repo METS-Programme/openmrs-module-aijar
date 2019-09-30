@@ -1,0 +1,20 @@
+[
+  {
+    "id": "${project.parent.groupId}.${project.parent.artifactId}.registrationSummary.secondCol.registration",
+    "extensionPointId": "registrationSummary.secondColumnContentFragments",
+    "order": -10,
+    "extensionParams": {
+      "provider": "${project.parent.artifactId}",
+      "fragment": "patientSummary"
+    }
+  },
+  {
+    "id": "${project.parent.groupId}.${project.parent.artifactId}.registrationSummary.secondCol.contactinformation",
+    "extensionPointId": "registrationSummary.contentFragments",
+    "order": -10,
+    "extensionParams": {
+      "provider": "${project.parent.artifactId}",
+      "fragment": "patientRegistrationSummary"
+    }
+  }
+]
