@@ -9,6 +9,7 @@
     <div class="info-body">
         <div>
             <strong>${ui.message("aijar.patientsummarydashboard.patientregistrationsummary.telephone")}:</strong>
+            ${telephone}
         </div>
         <div>
             <strong>${ui.message("aijar.patientsummarydashboard.patientregistrationsummary.caregiver")}:</strong>
