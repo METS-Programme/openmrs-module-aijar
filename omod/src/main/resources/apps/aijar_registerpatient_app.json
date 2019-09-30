@@ -98,8 +98,22 @@
                   ]
                 }
               ]
+            },
+            {
+              "legend": "aijar.registrationapp.commonname",
+              "fields": [
+                {
+                  "type": "personAddress",
+                  "label": "Common name",
+                  "formFieldName": "commonname",
+                  "uuid": "3573b0c9-667a-48d6-862d-d5b8d84ac850",
+                  "widget": {
+                    "providerName": "uicommons",
+                    "fragmentId": "field/text"
+                  }
+                }
+              ]
             }
-
           ]
         },
         {
@@ -192,6 +206,16 @@
                   "cssClasses": [
                     "number", "regex"
                   ]
+                },
+                {
+                  "type": "personAttribute",
+                  "label": "Land Mark Feature ",
+                  "formFieldName": "landmark",
+                  "uuid": "56aef1a8-e4ef-476a-9998-9d2d67c3b01e",
+                  "widget": {
+                    "providerName": "uicommons",
+                    "fragmentId": "field/text"
+                  }
                 }
               ]
             },
