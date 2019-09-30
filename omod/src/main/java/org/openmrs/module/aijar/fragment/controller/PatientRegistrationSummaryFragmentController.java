@@ -31,7 +31,35 @@ public class PatientRegistrationSummaryFragmentController {
 
         Person person = personService.getPerson(patient.getPersonId());
        PersonAttribute telephone_number= person.getAttribute("Telephone Number");
-        model.addAttribute("telephone",telephone_number);
+        PersonAttribute caregivers_name= person.getAttribute("Care giver's Name");
+        PersonAttribute caregivers_contact= person.getAttribute("Care giver's Telephone Number");
+
+        if(telephone_number==null)
+        {
+            model.addAttribute("telephone","Not Captured");
+        }
+        else{
+            model.addAttribute("telephone",telephone_number);
+
+        }
+        if(caregivers_name==null)
+        {
+            model.addAttribute("caregivers_name","Not Captured");
+        }
+        else{
+            model.addAttribute("caregivers_name",caregivers_name);
+
+        }
+        if(caregivers_contact==null)
+        {
+            model.addAttribute("caregivers_contact","Not Captured");
+
+        }
+        else{
+            model.addAttribute("caregivers_contact",caregivers_contact);
+        }
+
+
 
     }
 }

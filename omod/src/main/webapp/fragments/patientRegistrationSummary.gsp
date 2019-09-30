@@ -13,9 +13,11 @@
         </div>
         <div>
             <strong>${ui.message("aijar.patientsummarydashboard.patientregistrationsummary.caregiver")}:</strong>
+            ${caregivers_name}
         </div>
         <div>
             <strong>${ui.message("aijar.patientsummarydashboard.patientregistrationsummary.caregiverphone")}:</strong>
+            ${caregivers_contact}
         </div>
     </div>
 </div>
