@@ -193,16 +193,6 @@
                     "number", "regex"
                   ]
 
-                },
-                {
-                  "type": "personAttribute",
-                  "label": "Directions to Home ",
-                  "formFieldName": "commonname",
-                  "uuid": "dce122f3-30ab-102d-86b0-7a5022ba4115",
-                  "widget": {
-                    "providerName": "uicommons",
-                    "fragmentId": "field/text"
-                  }
                 }
               ]
             },
