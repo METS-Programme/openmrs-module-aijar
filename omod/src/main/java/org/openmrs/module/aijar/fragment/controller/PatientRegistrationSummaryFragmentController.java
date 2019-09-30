@@ -33,6 +33,9 @@ public class PatientRegistrationSummaryFragmentController {
        PersonAttribute telephone_number= person.getAttribute("Telephone Number");
         PersonAttribute caregivers_name= person.getAttribute("Care giver's Name");
         PersonAttribute caregivers_contact= person.getAttribute("Care giver's Telephone Number");
+        PersonAttribute common_name= person.getAttribute("Common Name");
+        PersonAttribute landmark= person.getAttribute("Land Mark Feature");
+
 
         if(telephone_number==null)
         {
@@ -57,6 +60,24 @@ public class PatientRegistrationSummaryFragmentController {
         }
         else{
             model.addAttribute("caregivers_contact",caregivers_contact);
+        }
+        if(common_name==null)
+        {
+            model.addAttribute("commonname","Not Captured");
+
+        }
+        else{
+            model.addAttribute("commonname",common_name);
+
+        }
+        if(landmark==null)
+        {
+            model.addAttribute("landmark","Not Captured");
+
+        }
+        else{
+            model.addAttribute("landmark",landmark);
+
         }
 
 
