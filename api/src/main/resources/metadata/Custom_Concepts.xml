@@ -909,7 +909,7 @@
     <concept  concept_id="165263"  retired="0"    datatype_id="3"  class_id="5"  is_set="0"  creator="1"  date_created="2019-09-17 08:34:15"  version="1.0"  changed_by="1"  date_changed="2019-09-17 08:44:46"   uuid="609193dc-ea2a-4746-9074-675661c025d0"/>
     <concept  concept_id="165262"  retired="0"    datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2019-09-16 17:08:42"  version="1.0"  changed_by="1"  date_changed="2019-09-16 17:08:42"   uuid="6686c0f0-cf27-4b9b-8495-8cf80a7357ae"/>
     <concept  concept_id="165260"  retired="0"    datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-09-16 17:01:22"  version="1.0"  changed_by="1"  date_changed="2019-09-16 17:01:22"   uuid="6cec43a1-1f3c-42ab-844a-c3f786ec06f2"/>
-    <concept  concept_id="165266"  retired="0"    datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2019-09-23 09:13:26"  version="1.0"  changed_by="1"  date_changed="2019-09-23 09:14:28"    uuid="23a37400-f855-405b-9268-cb2d25b97f54"/>
+    <concept  concept_id="165302"  retired="0"    datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2019-09-23 09:13:26"  version="1.0"  changed_by="1"  date_changed="2019-09-23 09:14:28"    uuid="23a37400-f855-405b-9268-cb2d25b97f54"/>
     <concept  concept_id="165273"  retired="0"    datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-09-24 08:34:16"  version="1.0"  changed_by="1"  date_changed="2019-09-24 08:34:16"    uuid="0251af24-dc19-4d68-a2bb-4b3f3867b949"/>
 
     <!-- ART SUMMARY PAGE CONCEPTS 2019-->
@@ -1545,8 +1545,7 @@
     <concept_name  concept_name_id="160327"  concept_id="165267"  name="Confirmed Advanced Disease CD4  &lt;200"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-09-19 20:41:16"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="825211f0-a771-47fb-a72a-26595b8175b0"/>
     <concept_name  concept_name_id="160324"  concept_id="165266"  name="Suspected Advanced Disease"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-09-19 20:40:31"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="f35e725a-b509-4d98-9ad1-6bed03e4f1dd"/>
     <concept_name  concept_name_id="160325"  concept_id="165266"  name="Suspected Adv. Disease"  locale="en"  locale_preferred="0"  creator="1"  date_created="2019-09-19 20:40:31"  concept_name_type="SHORT"  voided="0" uuid="b1b72bc9-f77c-412a-8842-d95c1ae24db6"/>
-    <concept_name  concept_name_id="160322"  concept_id="165265"  name="No Advanced Disease"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-09-19 20:40:00"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="f063b6b1-cedb-420f-887f-5b1573ced625"/>
-    <concept_name  concept_name_id="160323"  concept_id="165265"  name="No Adv. Disease"  locale="en"  locale_preferred="0"  creator="1"  date_created="2019-09-19 20:40:00"  concept_name_type="SHORT"  voided="0" uuid="9129a87e-ecb9-4992-868a-80cfae3354a0"/>
+    <concept_name  concept_name_id="160322"  concept_id="165303"  name="No Advanced Disease"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-09-19 20:40:00"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="f063b6b1-cedb-420f-887f-5b1573ced625"/>
 
 
     <!--KP-->
@@ -3661,7 +3660,7 @@
     <concept_name  concept_name_id="160319"  concept_id="165263"  name="Other Linkages And Rifferals"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-09-17 08:34:15"  concept_name_type="FULLY_SPECIFIED"  voided="0"    uuid="29f05938-6f4d-4f85-9da5-f8376710b665"/>
     <concept_name  concept_name_id="160318"  concept_id="165262"  name="Forced sexual intercourse"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-09-16 17:08:42"  concept_name_type="FULLY_SPECIFIED"  voided="0"    uuid="0157ea5e-f6cc-4564-8019-d397461f659f"/>
     <concept_name  concept_name_id="160316"  concept_id="165260"  name="Denial"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-09-16 17:01:22"  concept_name_type="FULLY_SPECIFIED"  voided="0"    uuid="e4349f5a-4642-44dc-9674-d8e01fb8d9c5"/>
-    <concept_name  concept_name_id="160322"  concept_id="165266"  name="Gender Based Violance"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-09-23 09:13:26"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="ebc6ebb4-6478-4c6b-8fb0-9c433ca1f27b"/>
+    <concept_name  concept_name_id="160322"  concept_id="165302"  name="Gender Based Violance"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-09-23 09:13:26"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="ebc6ebb4-6478-4c6b-8fb0-9c433ca1f27b"/>
     <concept_name  concept_name_id="160337"  concept_id="165273"  name="Not In School"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-09-24 08:34:16"  concept_name_type="FULLY_SPECIFIED"  voided="0"    uuid="1cb9f108-1352-46aa-939d-6aa91ba0901b"/>
 
     <!--    CONCEPT NAMES FOR ART SUMMARY PAGE 2019-->
@@ -4203,10 +4202,8 @@
     <concept_answer  concept_answer_id="7268"  concept_id="165272"  answer_concept="165268"  creator="1"  date_created="2019-09-19 20:47:15"  sort_weight="4"  uuid="54951791-0c81-4a5d-af9f-0ff9b89cccef"/>
     <concept_answer  concept_answer_id="7263"  concept_id="165272"  answer_concept="165270"  creator="1"  date_created="2019-09-19 20:47:15"  sort_weight="6"  uuid="618e5f3a-e8e1-4bdb-8bfc-7e5068e98c08"/>
     <concept_answer  concept_answer_id="7265"  concept_id="165272"  answer_concept="165266"  creator="1"  date_created="2019-09-19 20:47:15"  sort_weight="2"  uuid="644dbc66-30fe-4c99-bba1-5ae5b2b1ef44"/>
-    <concept_answer  concept_answer_id="7264"  concept_id="165272"  answer_concept="165265"  creator="1"  date_created="2019-09-19 20:47:15"  sort_weight="1"  uuid="44df8f6e-92af-4e9c-8239-7eef45b1d4b0"/>
     <concept_answer  concept_answer_id="7267"  concept_id="165272"  answer_concept="165271"  creator="1"  date_created="2019-09-19 20:47:15"  sort_weight="7"  uuid="94b15394-09d7-4047-9582-e08d33e22dc2"/>
-
-
+    <concept_answer  concept_answer_id="7267"  concept_id="165272"  answer_concept="165303"  creator="1"  date_created="2019-09-19 20:47:15"  sort_weight="7"  uuid="ae6b60b2-6b9e-4163-a154-0c5aa72e2330"/>
 
     <!--TB-->
     <concept_answer concept_answer_id="1908" concept_id="512" answer_concept="1066" creator="1" date_created="2009-07-14 11:31:52.0" uuid="1908CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" sort_weight="1908.0"/>
@@ -4595,12 +4592,12 @@
     <concept_answer  concept_answer_id="7255"  concept_id="165193"  answer_concept="99199"    creator="1"  date_created="2019-09-17 08:52:45"  sort_weight="13"  uuid="1f2892a8-6d08-4d4a-aba7-b573217a17ef"/>
     <concept_answer  concept_answer_id="7254"  concept_id="165193"  answer_concept="165264"    creator="1"  date_created="2019-09-17 08:40:26"  sort_weight="12"  uuid="4bc37948-bb15-404a-a340-55e15b92ec21"/>
     <concept_answer  concept_answer_id="7253"  concept_id="165193"  answer_concept="165263"    creator="1"  date_created="2019-09-17 08:34:53"  sort_weight="11"  uuid="9250fd24-7f35-467a-b1b5-80bece348649"/>
-    <concept_answer  concept_answer_id="7262"  concept_id="165193"  answer_concept="165266"  creator="1"  date_created="2019-09-23 09:15:03"  sort_weight="14"  uuid="031f9066-ef40-4146-aa7b-85dea6a340b9"/>
-    <concept_answer  concept_answer_id="7257"  concept_id="165266"  answer_concept="165186"    creator="1"  date_created="2019-09-23 09:13:26"  sort_weight="1"  uuid="c9c71203-d2e2-470d-a602-561d985bfc67"/>
-    <concept_answer  concept_answer_id="7258"  concept_id="165266"  answer_concept="165187"    creator="1"  date_created="2019-09-23 09:14:28"  sort_weight="2"  uuid="cb721a3b-232f-43ee-807c-b9c46a441e05"/>
-    <concept_answer  concept_answer_id="7259"  concept_id="165266"  answer_concept="165189"    creator="1"  date_created="2019-09-23 09:14:28"  sort_weight="3"  uuid="b3bbe231-1bfc-4bd2-9c7e-258e52643304"/>
-    <concept_answer  concept_answer_id="7260"  concept_id="165266"  answer_concept="1490"    creator="1"  date_created="2019-09-23 09:14:28"  sort_weight="4"  uuid="762af5aa-4a11-424f-ae7c-377b0947fd3c"/>
-    <concept_answer  concept_answer_id="7261"  concept_id="165266"  answer_concept="165262"    creator="1"  date_created="2019-09-23 09:14:28"  sort_weight="5"  uuid="49e7c2a8-26d7-44a6-a7a1-c2e58652c3a4"/>
+    <concept_answer  concept_answer_id="7262"  concept_id="165193"  answer_concept="165302"  creator="1"  date_created="2019-09-23 09:15:03"  sort_weight="14"  uuid="031f9066-ef40-4146-aa7b-85dea6a340b9"/>
+    <concept_answer  concept_answer_id="7257"  concept_id="165302"  answer_concept="165186"    creator="1"  date_created="2019-09-23 09:13:26"  sort_weight="1"  uuid="c9c71203-d2e2-470d-a602-561d985bfc67"/>
+    <concept_answer  concept_answer_id="7258"  concept_id="165302"  answer_concept="165187"    creator="1"  date_created="2019-09-23 09:14:28"  sort_weight="2"  uuid="cb721a3b-232f-43ee-807c-b9c46a441e05"/>
+    <concept_answer  concept_answer_id="7259"  concept_id="165302"  answer_concept="165189"    creator="1"  date_created="2019-09-23 09:14:28"  sort_weight="3"  uuid="b3bbe231-1bfc-4bd2-9c7e-258e52643304"/>
+    <concept_answer  concept_answer_id="7260"  concept_id="165302"  answer_concept="1490"    creator="1"  date_created="2019-09-23 09:14:28"  sort_weight="4"  uuid="762af5aa-4a11-424f-ae7c-377b0947fd3c"/>
+    <concept_answer  concept_answer_id="7261"  concept_id="165302"  answer_concept="165262"    creator="1"  date_created="2019-09-23 09:14:28"  sort_weight="5"  uuid="49e7c2a8-26d7-44a6-a7a1-c2e58652c3a4"/>
     <concept_answer  concept_answer_id="7251"  concept_id="165244 "  answer_concept="165260"    creator="1"  date_created="2019-09-16 17:02:01"  sort_weight="15"  uuid="5018fda8-4025-4e43-b06a-717dea7d425a"/>
     <concept_answer  concept_answer_id="7270"  concept_id="165200"  answer_concept="165273"    creator="1"  date_created="2019-09-24 08:35:33"  sort_weight="8"  uuid="431218b2-7d52-4899-82b2-cd98e43441e1"/>
 
