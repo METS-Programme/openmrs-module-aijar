@@ -356,7 +356,6 @@ table th, table td {
 	display:block;
 	height:20px;
 	color:white;
-	background:url('../images/icons/microscope.png');
 	text-decoration:none;
 	padding-left:20px;
 }
@@ -365,7 +364,7 @@ table th, table td {
 	background:url('../images/icons/microscope.png');
 	background-size:cover;
 	position:absolute;
-	width:20px;
-	height:20px;
+	width:100px;
+	height:80px;
 	margin-left:-20px;
 }
