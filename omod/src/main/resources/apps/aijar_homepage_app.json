@@ -30,7 +30,7 @@
         "type": "link",
         "label": "coreapps.triage.label",
         "url": "#",
-        "icon": "icon-medkit",
+        "icon": "icon-user-md",
         "requiredPrivilege": "App: coreapps.triage"
       }
     ]
@@ -62,7 +62,7 @@
         "type": "link",
         "label": "coreapps.ipd.app.label",
         "url": "#",
-        "icon": " icon-stethoscope",
+        "icon": "inptient",
         "requiredPrivilege": "App: coreapps.inpatient"
       }
     ]
@@ -78,7 +78,7 @@
         "type": "link",
         "label": "coreapps.dispensary.app.label",
         "url": "#",
-        "icon": " icon-stethoscope",
+        "icon": "dispensingicon",
         "requiredPrivilege": "App: coreapps.inpatient"
       }
     ]
@@ -109,9 +109,9 @@
         "id": "ugandaemr.laboratory",
         "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
         "type": "link",
+        "icon": "icon",
         "label": "coreapps.laboratory.label",
         "url": "#",
-        "icon": "icon",
         "requiredPrivilege": "App: coreapps.laboratory"
       }
     ]
