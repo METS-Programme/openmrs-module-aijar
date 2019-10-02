@@ -1,63 +1,5 @@
 [
   {
-    "id": "aijar.referenceapplication.legacyAdmin",
-    "extensions": [
-      {
-        "id": "aijar.referenceapplication.legacyAdmin.homepageLink",
-        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
-        "type": "link",
-        "label": "aijar.app.legacy.admin.label",
-        "url": "admin/index.htm",
-        "icon": "icon-cogs",
-        "order": 99,
-        "requiredPrivilege": "App: referenceapplication.legacyAdmin"
-      }
-    ]
-  },
-  {
-    "id": "aijar.referenceapplication.backupDatabase",
-    "extensions": [
-      {
-        "id": "aijar.referenceapplication.backupDatabase.homepageLink",
-        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
-        "type": "link",
-        "label": "aijar.app.backupdatabase.list.label",
-        "url": "module/databasebackup/backup.form",
-        "icon": "icon-cloud-download",
-        "order": 115
-      }
-    ]
-  },
-  {
-    "id": "aijar.referenceapplication.support",
-    "extensions": [
-      {
-        "id": "aijar.referenceapplication.support.homepageLink",
-        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
-        "type": "link",
-        "label": "aijar.app.support.list.label",
-        "url": "aijar/support.page",
-        "icon": "icon-question-sign",
-        "order": 120
-      }
-    ]
-  },
-  {
-    "id": "aijar.cohortbuilder.link",
-    "extensions": [
-      {
-        "id": "aijar.cohortbuilder.homepageLink",
-        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
-        "type": "link",
-        "label": "aijar.app.cohortbuilder.label",
-        "url": "cohortBuilder.list",
-        "icon": "icon-building",
-        "order": 105,
-        "requiredPrivilege": "Manage Reports"
-      }
-    ]
-  },
-  {
     "id": "ugandaemr.findPatient",
     "instanceOf": "coreapps.template.findPatient",
     "description": "Basic patient search that goes to the patient dashboard",
@@ -76,20 +18,103 @@
     "config": {
       "registrationAppLink": "registrationapp/registerPatient.page?appId=aijar.registrationapp.registerPatient"
     }
-  },{
-  "id": "aijar.configs",
-  "description": "Configurations for Health Center",
-  "order": 5,
-  "extensions": [
-    {
-      "id": "coreapps.activeVisitsHomepageLink",
-      "extensionPointId": "systemAdministration.apps",
-      "type": "link",
-      "label": "Health Center Configurations",
-      "url": "admin/maintenance/settings.list?show=Aijar",
-      "icon": " icon-cog",
-      "requiredPrivilege": "App: coreapps.systemAdministration"
-    }
-  ]
-}
+  },
+  {
+    "id": "ugandaemr.triage",
+    "description": "Linkages to the Traige section section",
+    "order": 2,
+    "extensions": [
+      {
+        "id": "ugandaemr.traige",
+        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+        "type": "link",
+        "label": "coreapps.triage.label",
+        "url": "#",
+        "icon": "icon-medkit",
+        "requiredPrivilege": "App: coreapps.triage"
+      }
+    ]
+  },
+  {
+    "id": "ugandaemr.outpatient",
+    "description": "Linkages to the OPD section section",
+    "order": 2,
+    "extensions": [
+      {
+        "id": "ugandaemr.opd",
+        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+        "type": "link",
+        "label": "coreapps.outpatient.label",
+        "url": "#",
+        "icon": "icon-medkit",
+        "requiredPrivilege": "App: coreapps.outpatient"
+      }
+    ]
+  },
+  {
+    "id": "ugandaemr.inpatientdepartment",
+    "description": "Linkages to the inpatient department section",
+    "order": 2,
+    "extensions": [
+      {
+        "id": "ugandaemr.inpatientdepartment ",
+        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+        "type": "link",
+        "label": "coreapps.ipd.app.label",
+        "url": "#",
+        "icon": " icon-stethoscope",
+        "requiredPrivilege": "App: coreapps.inpatient"
+      }
+    ]
+  },
+  {
+    "id": "ugandaemr.dispensing",
+    "description": "Linkages to the Dispensary",
+    "order": 2,
+    "extensions": [
+      {
+        "id": "ugandaemr.dispensary ",
+        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+        "type": "link",
+        "label": "coreapps.dispensary.app.label",
+        "url": "#",
+        "icon": " icon-stethoscope",
+        "requiredPrivilege": "App: coreapps.inpatient"
+      }
+    ]
+  },
+  {
+    "id": "ugandaemr.radiology",
+    "description": "Linkages to the radiology",
+    "order": 2,
+    "extensions": [
+      {
+        "id": "ugandaemr.dispensary ",
+        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+        "type": "link",
+        "label": "coreapps.radiology.app.label",
+        "url": "#",
+        "icon": "icon-hospital",
+        "requiredPrivilege": "App: coreapps.inpatient"
+      }
+    ]
+  },
+
+  {
+    "id": "ugandaemr.Laboratory",
+    "description": "Linkages to the Laboratory section",
+    "order": 2,
+    "extensions": [
+      {
+        "id": "ugandaemr.laboratory",
+        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+        "type": "link",
+        "label": "coreapps.laboratory.label",
+        "url": "#",
+        "icon": "icon",
+        "requiredPrivilege": "App: coreapps.laboratory"
+      }
+    ]
+  }
+
 ]

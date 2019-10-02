@@ -351,3 +351,21 @@ table th, table td {
 	color: #EFEFEF;
 	width: 285px;"
 }
+.icon{
+	width:100px;
+	display:block;
+	height:20px;
+	color:white;
+	background:url('../images/icons/microscope.png');
+	text-decoration:none;
+	padding-left:20px;
+}
+.icon:before{
+	content: '';
+	background:url('../images/icons/microscope.png');
+	background-size:cover;
+	position:absolute;
+	width:20px;
+	height:20px;
+	margin-left:-20px;
+}
