@@ -1,0 +1,10 @@
+[
+    {
+        "id": "${project.parent.groupId}.${project.parent.artifactId}.editPatientAddress",
+        "extensionPointId": "patientHeader.editPatientAddress",
+        "type": "link",
+        "label": "general.edit",
+        "url": "registrationapp/editSection.page?patientId={{patient.patientId}}&sectionId=address&appId=aijar.registrationapp.registerPatient"
+
+    }
+]
