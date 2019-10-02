@@ -27,7 +27,7 @@
 
     <!-- ROLES -->
     <role  role="Base Role"  description="This Role is the default Role for basic functionality with less privileges"  uuid="6ec3134b-3e0d-430b-890b-3a7ac8f31e86"/>
-    <role  role="HIV Provider"  description="This Role enables access to HIV clinic data for patient"  uuid="24d86b99-204e-44a7-a3a2-169f2c83319f"/>
+    <role  role="HIV Clinic"  description="This Role enables access to HIV clinic data for patient"  uuid="24d86b99-204e-44a7-a3a2-169f2c83319f"/>
 
     <!-- ROLE PRIVILEGES -->
     <!--* BASE ROLE *-->
