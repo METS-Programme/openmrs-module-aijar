@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <!-- PRIVILEGES-->
+    <!--* TASKS *-->
+    <privilege  privilege="Task: HIV Clinic Access"  description="Able to access HIV patient clinic information"  uuid="7e0465e4-2119-11e8-b467-0ed5f89f718b"/>
+
+    <!--* DASHBOARD WIDGET *-->
+    <!--General Clinic-->
+    <privilege  privilege="App: ugandaemr.widget.dataIntegrityViolation"  description="Access data integrity Violations on patient dashboard"  uuid="e6280dd4-52b0-47f9-81f1-670774b5af8e"/>
+
+    <!--ART Clinic-->
+    <privilege  privilege="App: ugandaemr.widget.lastARTVisitSummary"  description="Access Last ART Visit Summary on patient dashborad"  uuid="b1147517-c28d-4ad0-9f21-ef84e2e50414"/>
+    <privilege  privilege="App: ugandaemr.widget.artStatus"  description="Access ART Status on patient dashboard"  uuid="76faf32f-8e77-493e-b290-7697b165bffb"/>
+    <privilege  privilege="App: ugandaemr.widget.patientSummary"  description="Access Patient Summary on patient dashboard"  uuid="cffc1f04-5b67-4e16-9844-18d331a79809"/>
+    <privilege  privilege="App: ugandaemr.widget.viralLoadHistory"  description="Access Viral load History on patient dashboard"  uuid="4f8329f8-77ff-4a6f-a1a2-309c99f2224a"/>
+    <privilege  privilege="App: ugandaemr.widget.dsdmPatientHistory"  description="For Widget that shows the patient history in DSDM Models"  uuid="332fd951-ca78-4c85-97cb-f4146c69f823"/>
+    <privilege  privilege="App: ugandaemr.widget.directionsToResidence"  description="Access Directions to Residence on patient dashboard"  uuid="56edc97f-5acd-4334-bfef-8883a6e8a04c"/>
+
+    <!--MCH Clinic-->
+    <privilege  privilege="App: ugandaemr.widget.eidSummary"  description="Access eidSummary On Patient Dashboard"  uuid="2dc27a93-a7d3-496e-b5ba-f8449ec90c12"/>
+    <privilege  privilege="App: ugandaemr.widget.mchSummary"  description="Access MCH Summary on patient Dashboard"  uuid="014fa1f5-7862-47d9-a977-a0b75bc33af9"/>
+
+    <!--* HOME PAGE *-->
+    <privilege  privilege="App: ugandaemr.report.cohortBuilder"  description="Access Link to Manage cohort builder reports"  uuid="515a0ce8-a4e5-4b7e-b210-3f64ad96302e"/>
+    <privilege  privilege="App: ugandaemr.backup.backupDatabase"  description="Access App to the Backup"  uuid="96c5dbe1-2c73-4f95-9b37-b24277617f6d"/>
+
+
+    <!-- ROLES -->
+    <role  role="Base Role"  description="This Role is the default Role for basic functionality with less privileges"  uuid="6ec3134b-3e0d-430b-890b-3a7ac8f31e86"/>
+    <role  role="HIV Clinic"  description="This Role enables access to HIV clinic data for patient"  uuid="24d86b99-204e-44a7-a3a2-169f2c83319f"/>
+
+    <!-- ROLE PRIVILEGES -->
+    <!--* BASE ROLE *-->
+    <role_privilege  role="Base Role"  privilege="Add Observations"/>
+    <role_privilege  role="Base Role"  privilege="Add Patient Identifiers"/>
+    <role_privilege  role="Base Role"  privilege="Add Patients"/>
+    <role_privilege  role="Base Role"  privilege="Add People"/>
+    <role_privilege  role="Base Role"  privilege="App: coreapps.findPatient"/>
+    <role_privilege  role="Base Role"  privilege="App: coreapps.mergePatient"/>
+    <role_privilege  role="Base Role"  privilege="App: coreapps.patientDashboard"/>
+    <role_privilege  role="Base Role"  privilege="App: coreapps.patientVisits"/>
+    <role_privilege  role="Base Role"  privilege="App: referenceapplication.vitals"/>
+    <role_privilege  role="Base Role"  privilege="App: registrationapp.registerPatient"/>
+    <role_privilege  role="Base Role"  privilege="Delete Patient Identifiers"/>
+    <role_privilege  role="Base Role"  privilege="Delete Patients"/>
+    <role_privilege  role="Base Role"  privilege="Delete People"/>
+    <role_privilege  role="Base Role"  privilege="Edit Observations"/>
+    <role_privilege  role="Base Role"  privilege="Edit Patient Identifiers"/>
+    <role_privilege  role="Base Role"  privilege="Edit Patients"/>
+    <role_privilege  role="Base Role"  privilege="Edit People"/>
+    <role_privilege  role="Base Role"  privilege="Get Concept Classes"/>
+    <role_privilege  role="Base Role"  privilege="Get Concept Datatypes"/>
+    <role_privilege  role="Base Role"  privilege="Get Concept Proposals"/>
+    <role_privilege  role="Base Role"  privilege="Get Concept Sources"/>
+    <role_privilege  role="Base Role"  privilege="Get Concepts"/>
+    <role_privilege  role="Base Role"  privilege="Get Encounter Roles"/>
+    <role_privilege  role="Base Role"  privilege="Get Encounter Types"/>
+    <role_privilege  role="Base Role"  privilege="Get Encounters"/>
+    <role_privilege  role="Base Role"  privilege="Get Observations"/>
+    <role_privilege  role="Base Role"  privilege="Get Patient Identifiers"/>
+    <role_privilege  role="Base Role"  privilege="Get Patients"/>
+    <role_privilege  role="Base Role"  privilege="Get People"/>
+    <role_privilege  role="Base Role"  privilege="Get Users"/>
+    <role_privilege  role="Base Role"  privilege="Get Visit Attribute Types"/>
+    <role_privilege  role="Base Role"  privilege="Get Visit Types"/>
+    <role_privilege  role="Base Role"  privilege="Get Visits"/>
+    <role_privilege  role="Base Role"  privilege="Patient Dashboard - View Demographics Section"/>
+    <role_privilege  role="Base Role"  privilege="Patient Dashboard - View Overview Section"/>
+    <role_privilege  role="Base Role"  privilege="Patient Dashboard - View Patient Summary"/>
+    <role_privilege  role="Base Role"  privilege="Task: coreapps.deletePatient"/>
+    <role_privilege  role="Base Role"  privilege="Task: emr.patient.encounter.delete"/>
+    <role_privilege  role="Base Role"  privilege="Task: emr.patient.encounter.edit"/>
+    <role_privilege  role="Base Role"  privilege="View Appointment Types"/>
+    <role_privilege  role="Base Role"  privilege="View Appointments"/>
+    <role_privilege  role="Base Role"  privilege="View Appointments Blocks"/>
+    <role_privilege  role="Base Role"  privilege="View Appointments Statistics"/>
+    <role_privilege  role="Base Role"  privilege="View Metadata Via Mapping"/>
+    <role_privilege  role="Base Role"  privilege="View Observations"/>
+    <role_privilege  role="Base Role"  privilege="View Patient Appointment History"/>
+    <role_privilege  role="Base Role"  privilege="View Patient Cohorts"/>
+    <role_privilege  role="Base Role"  privilege="View Patient Identifiers"/>
+    <role_privilege  role="Base Role"  privilege="View Patients"/>
+    <role_privilege  role="Base Role"  privilege="View People"/>
+    <role_privilege  role="Base Role"  privilege="App: ugandaemr.widget.dataIntegrityViolation"/>
+
+    <!--* HIV Clinic *-->
+    <role_privilege  role="HIV Clinic"  privilege="Task: HIV Clinic Access"/>
+    <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.lastARTVisitSummary"/>
+    <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.artStatus"/>
+    <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.lastARTVisitSummary"/>
+    <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.artStatus"/>
+    <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.patientSummary"/>
+    <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.viralLoadHistory"/>
+    <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.dsdmPatientHistory"/>
+    <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.directionsToResidence"/>
+</dataset>
