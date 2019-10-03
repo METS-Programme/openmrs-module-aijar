@@ -6,6 +6,7 @@
     "extensionParams": {
       "provider": "${project.parent.artifactId}",
       "fragment": "patientSummary"
-    }
+    },
+    "requiredPrivilege": "App: ugandaemr.widget.patientSummary"
   }
 ]
