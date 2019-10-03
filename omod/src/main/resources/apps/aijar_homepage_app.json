@@ -21,7 +21,7 @@
   },
   {
     "id": "ugandaemr.triage",
-    "description": "Linkages to the Traige section section",
+    "description": "Linkages to the Traige  section",
     "order": 2,
     "extensions": [
       {
@@ -31,6 +31,38 @@
         "label": "coreapps.triage.label",
         "url": "#",
         "icon": "icon-user-md",
+        "requiredPrivilege": "App: coreapps.triage"
+      }
+    ]
+  },
+  {
+    "id": "ugandaemr.artclinic",
+    "description": "Linkages to the ART Clinic  section",
+    "order": 2,
+    "extensions": [
+      {
+        "id": "ugandaemr.artclinic",
+        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+        "type": "link",
+        "label": "coreapps.artclinic.label",
+        "url": "#",
+        "icon": "customicon-clinic",
+        "requiredPrivilege": "App: coreapps.triage"
+      }
+    ]
+  },
+  {
+    "id": "ugandaemr.mchclinic",
+    "description": "Linkages to the ART Clinic  section",
+    "order": 2,
+    "extensions": [
+      {
+        "id": "ugandaemr.mchclinic",
+        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+        "type": "link",
+        "label": "coreapps.mchclinic.label",
+        "url": "#",
+        "icon": "customicon-parenting",
         "requiredPrivilege": "App: coreapps.triage"
       }
     ]
@@ -46,7 +78,7 @@
         "type": "link",
         "label": "coreapps.outpatient.label",
         "url": "#",
-        "icon": "icon-medkit",
+        "icon": "customicon-outpatient",
         "requiredPrivilege": "App: coreapps.outpatient"
       }
     ]
@@ -62,7 +94,7 @@
         "type": "link",
         "label": "coreapps.ipd.app.label",
         "url": "#",
-        "icon": "inptient",
+        "icon": "customicon-bedicon",
         "requiredPrivilege": "App: coreapps.inpatient"
       }
     ]
@@ -78,7 +110,7 @@
         "type": "link",
         "label": "coreapps.dispensary.app.label",
         "url": "#",
-        "icon": "dispensingicon",
+        "icon": "customicon-drugs",
         "requiredPrivilege": "App: coreapps.inpatient"
       }
     ]
@@ -94,7 +126,7 @@
         "type": "link",
         "label": "coreapps.radiology.app.label",
         "url": "#",
-        "icon": "icon-hospital",
+        "icon": "customicon-xray",
         "requiredPrivilege": "App: coreapps.inpatient"
       }
     ]
@@ -109,7 +141,7 @@
         "id": "ugandaemr.laboratory",
         "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
         "type": "link",
-        "icon": "icon",
+        "icon": "customicon-microscopesvg",
         "label": "coreapps.laboratory.label",
         "url": "#",
         "requiredPrivilege": "App: coreapps.laboratory"
