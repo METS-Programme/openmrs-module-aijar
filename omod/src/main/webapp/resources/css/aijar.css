@@ -359,7 +359,7 @@ table th, table td {
 }
 .icon:before{
 	content: '';
-	background:url('../images/icons/microscopicon.png');
+	background:url('../images/icons/microscopesvg.svg');
 	background-size:cover;
 	position:absolute;
 	width:100px;
