@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+<person_attribute_type  person_attribute_type_id="15"  name="Father's Name"  description="Person's Father's name"  format="java.lang.String"    searchable="0"  creator="1"  date_created="2019-09-18 09:55:05"   retired="0"     sort_weight="15"  uuid="63535ca9-bb53-4a46-a14b-831788c25c10"/>
+<person_attribute_type  person_attribute_type_id="16"  name="Care giver's Name"  description="Care givers name to the patient"  format="java.lang.String"    searchable="0"  creator="1"  date_created="2019-09-18 09:56:50"    retired="0"     sort_weight="16"  uuid="e493f4ec-51f1-4a77-8d3c-5791f8cb02cd"/>
+<person_attribute_type  person_attribute_type_id="17"  name="Care giver's Telephone Number"  description="The telephone number of the person giving care"  format="java.lang.String"    searchable="0"  creator="1"  date_created="2019-09-18 10:00:00"   retired="0"     sort_weight="17"  uuid="553834ef-b3fe-4c79-826a-6d4b6978bcff"/>
+<person_attribute_type  person_attribute_type_id="18"  name="Common Name"  description="This is the widely used name when referring to the patient"  format="java.lang.String"   searchable="0"  creator="1"  date_created="2019-09-30 14:40:48"   retired="0"  sort_weight="18"  uuid="3573b0c9-667a-48d6-862d-d5b8d84ac850"/>
+<person_attribute_type  person_attribute_type_id="19"  name="Land Mark Feature"  description="This is an easily visible feature when looking for the location of the patient"  format="java.lang.String"   searchable="0"  creator="1"  date_created="2019-09-30 14:41:44"   retired="0"  sort_weight="19"  uuid="56aef1a8-e4ef-476a-9998-9d2d67c3b01e"/>
+<person_attribute_type  person_attribute_type_id="20"  name="Directions to Patient's Home"  description="Detailed description of how one can get to the location of the patient"  format="java.lang.String"   searchable="0"  creator="1"  date_created="2019-09-30 14:42:34"   retired="0"  sort_weight="20"  uuid="01c0111d-3bbc-4de6-8c5a-1cc91e86cc38"/>
+
+
+</dataset>
