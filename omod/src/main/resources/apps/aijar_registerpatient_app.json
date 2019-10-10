@@ -19,7 +19,7 @@
     "config": {
       "allowUnknownPatients": false,
       "allowRetrospectiveEntry": true,
-      "afterCreatedUrl": "/registrationapp/registrationSummary.page?patientId={{patientId}}",
+      "afterCreatedUrl": "/registrationapp/registrationSummary.page?patientId={{patientId}}&appId=aijar.registrationapp.registerPatient",
       "sections": [
         {
           "id": "demographics",
@@ -223,7 +223,7 @@
               "legend": "aijar.registrationapp.relationship",
               "fields": [
                 {
-                  "type": "obs",
+                  "type": "Relationship",
                   "label": "RelationShips",
                   "formFieldName": "Relationship",
                   "widget": {
