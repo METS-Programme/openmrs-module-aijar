@@ -22,7 +22,7 @@
       "afterCreatedUrl": "/registrationapp/registrationSummary.page?patientId={{patientId}}&appId=aijar.registrationapp.registerPatient",
       "sections": [
         {
-          "id": "demographics",
+          "id": "patientinformation",
           "label": "aijar.registrationapp.otherdetails",
           "questions": [
             {
