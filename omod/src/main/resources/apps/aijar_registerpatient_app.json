@@ -19,22 +19,38 @@
     "config": {
       "allowUnknownPatients": false,
       "allowRetrospectiveEntry": true,
-      "afterCreatedUrl": "/registrationapp/registrationSummary.page?patientId={{patientId}}",
+      "afterCreatedUrl": "/registrationapp/registrationSummary.page?patientId={{patientId}}&appId=aijar.registrationapp.registerPatient",
       "sections": [
         {
-          "id": "demographics",
+          "id": "patientinformation",
           "label": "aijar.registrationapp.otherdetails",
           "questions": [
             {
               "legend": "aijar.registrationapp.maritalstatus",
               "fields": [
                 {
-                  "type": "obs",
+                  "type": "personAttribute",
                   "label": "aijar.registrationapp.maritalstatus.question",
-                  "formFieldName": "obs.dce0c134-30ab-102d-86b0-7a5022ba4115",
+                  "formFieldName": "marital-status",
+                  "uuid": "8d871f2a-c2cc-11de-8d13-0010c6dffd0f",
                   "widget": {
                     "providerName": "aijar",
                     "fragmentId": "field/maritalStatus"
+                  }
+                }
+              ]
+            },
+            {
+              "legend": "aijar.registrationapp.nationality",
+              "fields": [
+                {
+                  "type": "personAttribute",
+                  "label": "aijar.registrationapp.nationality.question",
+                  "formFieldName": "nationality",
+                  "uuid": "dec484be-1c43-416a-9ad0-18bd9ef28929",
+                  "widget": {
+                    "providerName": "aijar",
+                    "fragmentId": "field/nationality"
                   }
                 }
               ]
@@ -103,7 +119,7 @@
               "legend": "aijar.registrationapp.commonname",
               "fields": [
                 {
-                  "type": "personAddress",
+                  "type": "personAttribute",
                   "label": "Common name",
                   "formFieldName": "commonname",
                   "uuid": "3573b0c9-667a-48d6-862d-d5b8d84ac850",
@@ -223,7 +239,7 @@
               "legend": "aijar.registrationapp.relationship",
               "fields": [
                 {
-                  "type": "obs",
+                  "type": "Relationship",
                   "label": "RelationShips",
                   "formFieldName": "Relationship",
                   "widget": {

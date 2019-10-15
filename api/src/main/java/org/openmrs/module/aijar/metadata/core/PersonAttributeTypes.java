@@ -40,6 +40,35 @@ public class PersonAttributeTypes {
         public boolean searchable() {return true;}
     };
 
+    public static PersonAttributeTypeDescriptor NATIONALITY = new PersonAttributeTypeDescriptor() {
+        @Override
+        public double sortWeight() {
+            return 0;
+        }
+
+        @Override
+        public Class<?> format() {
+            return Concept.class;
+        }
+
+        @Override
+        public String name() {
+            return "Natioinality";
+        }
+
+        @Override
+        public String description() {
+            return "The Nationality of the patient";
+        }
+
+        public String uuid() {
+            return "dec484be-1c43-416a-9ad0-18bd9ef28929";
+        }
+
+        @Override
+        public boolean searchable() {return true;}
+    };
+
     public static PersonAttributeTypeDescriptor HEALTH_CENTER = new PersonAttributeTypeDescriptor() {
         @Override
         public double sortWeight() {
