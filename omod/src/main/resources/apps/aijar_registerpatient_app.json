@@ -19,22 +19,38 @@
     "config": {
       "allowUnknownPatients": false,
       "allowRetrospectiveEntry": true,
-      "afterCreatedUrl": "/coreapps/clinicianfacing/patient.page?patientId={{patientId}}",
+      "afterCreatedUrl": "/registrationapp/registrationSummary.page?patientId={{patientId}}&appId=aijar.registrationapp.registerPatient",
       "sections": [
         {
-          "id": "demographics",
+          "id": "patientinformation",
           "label": "aijar.registrationapp.otherdetails",
           "questions": [
             {
               "legend": "aijar.registrationapp.maritalstatus",
               "fields": [
                 {
-                  "type": "obs",
+                  "type": "personAttribute",
                   "label": "aijar.registrationapp.maritalstatus.question",
-                  "formFieldName": "obs.dce0c134-30ab-102d-86b0-7a5022ba4115",
+                  "formFieldName": "marital-status",
+                  "uuid": "8d871f2a-c2cc-11de-8d13-0010c6dffd0f",
                   "widget": {
                     "providerName": "aijar",
                     "fragmentId": "field/maritalStatus"
+                  }
+                }
+              ]
+            },
+            {
+              "legend": "aijar.registrationapp.nationality",
+              "fields": [
+                {
+                  "type": "personAttribute",
+                  "label": "aijar.registrationapp.nationality.question",
+                  "formFieldName": "nationality",
+                  "uuid": "dec484be-1c43-416a-9ad0-18bd9ef28929",
+                  "widget": {
+                    "providerName": "aijar",
+                    "fragmentId": "field/nationality"
                   }
                 }
               ]
@@ -53,79 +69,14 @@
                   }
                 }
               ]
-            },
-            {
-              "legend": "aijar.registrationapp.currentaddress",
-              "fields": [
-                {
-                  "type": "personAddress",
-                  "label": "aijar.registrationapp.currentaddress.question",
-                  "formFieldName": "patientAddress",
-                  "widget": {
-                    "providerName": "registrationapp",
-                    "fragmentId": "field/personAddressWithHierarchy",
-                    "config": {
-                      "manualFields": [
-                        "address4","address5"
-                      ]
-                    }
-                  }
-                }
-              ]
-            },
-            {
-              "legend": "aijar.registrationapp.phonenumber",
-              "fields": [
-                {
-                  "type": "personAttribute",
-                  "label": "aijar.registrationapp.phonenumber.question",
-                  "formFieldName": "phoneNumber",
-                  "uuid": "14d4f066-15f5-102d-96e4-000c29c2a5d7",
-                  "widget": {
-                    "providerName": "uicommons",
-                    "fragmentId": "field/text",
-                    "config": {
-                      "regex": "^[0-9]{10}$|^$"
-                    }
-                  },
-                  "cssClasses": [
-                    "number", "regex"
-                  ]
-                },
-                {
-                  "type": "personAttribute",
-                  "label": "aijar.registrationapp.phonenumber2.question",
-                  "formFieldName": "phoneNumber2",
-                  "uuid": "8c44d411-285f-46c6-9f17-c2f919823b34",
-                  "widget": {
-                    "providerName": "uicommons",
-                    "fragmentId": "field/text",
-                    "config": {
-                      "regex": "^[0-9]{10}$|^$"
-                    }
-                  },
-                  "cssClasses": [
-                    "number", "regex"
-                  ]
-                },
-                {
-                  "type": "personAttribute",
-                  "label": "aijar.registrationapp.phonenumber3.question",
-                  "formFieldName": "phoneNumber3",
-                  "uuid": "a00eda65-2f66-4fda-a683-c1787eb626a9",
-                  "widget": {
-                    "providerName": "uicommons",
-                    "fragmentId": "field/text",
-                    "config": {
-                      "regex": "^[0-9]{10}$|^$"
-                    }
-                  },
-                  "cssClasses": [
-                    "number", "regex"
-                  ]
-                }
-              ]
-            },
+            }
+
+          ]
+        },
+        {
+          "id": "identifiers",
+          "label": "aijar.registrationapp.identifier",
+          "questions": [
             {
               "legend": "aijar.registrationapp.nationalid",
               "fields": [
@@ -161,6 +112,140 @@
                   "cssClasses": [
                     "regex"
                   ]
+                }
+              ]
+            },
+            {
+              "legend": "aijar.registrationapp.commonname",
+              "fields": [
+                {
+                  "type": "personAttribute",
+                  "label": "Common name",
+                  "formFieldName": "commonname",
+                  "uuid": "3573b0c9-667a-48d6-862d-d5b8d84ac850",
+                  "widget": {
+                    "providerName": "uicommons",
+                    "fragmentId": "field/text"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "address",
+          "label": "aijar.registrationapp.currentaddress",
+          "questions":
+          [
+            {
+              "legend": "aijar.registrationapp.currentaddress.question",
+              "fields": [
+                {
+                  "type": "personAddress",
+                  "label": "aijar.registrationapp.currentaddress.question",
+                  "formFieldName": "patientAddress",
+                  "widget": {
+                    "providerName": "registrationapp",
+                    "fragmentId": "field/personAddressWithHierarchy",
+                    "config": {
+                      "manualFields": [
+                        "address4","address5"
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "legend": "aijar.registrationapp.contactinformation",
+              "fields": [
+                {
+                  "type": "personAttribute",
+                  "label": "aijar.registrationapp.phonenumber.question",
+                  "formFieldName": "phoneNumber",
+                  "uuid": "14d4f066-15f5-102d-96e4-000c29c2a5d7",
+                  "widget": {
+                    "providerName": "uicommons",
+                    "fragmentId": "field/text",
+                    "config": {
+                      "regex": "^[0-9]{10}$|^$"
+                    }
+                  },
+                  "cssClasses": [
+                    "number", "regex"
+                  ]
+                },
+                {
+                  "type": "personAttribute",
+                  "label": "aijar.registrationapp.father.question",
+                  "formFieldName": "father",
+                  "uuid": "63535ca9-bb53-4a46-a14b-831788c25c10",
+                  "widget": {
+                    "providerName": "uicommons",
+                    "fragmentId": "field/text"
+                  }
+
+                },
+                {
+                  "type": "personAttribute",
+                  "label": "aijar.registrationapp.mother.question",
+                  "formFieldName": "mother",
+                  "uuid": "8d871d18-c2cc-11de-8d13-0010c6dffd0f",
+                  "widget": {
+                    "providerName": "uicommons",
+                    "fragmentId": "field/text"
+                  }
+
+                },
+                {
+                  "type": "personAttribute",
+                  "label": "aijar.registrationapp.caregiver.question",
+                  "formFieldName": "caregiver",
+                  "uuid": "e493f4ec-51f1-4a77-8d3c-5791f8cb02cd",
+                  "widget": {
+                    "providerName": "uicommons",
+                    "fragmentId": "field/text"
+                  }
+                },
+                {
+                  "type": "personAttribute",
+                  "label": "aijar.registrationapp.caregivernumber.question",
+                  "formFieldName": "phoneNumber3",
+                  "uuid": "553834ef-b3fe-4c79-826a-6d4b6978bcff",
+                  "widget": {
+                    "providerName": "uicommons",
+                    "fragmentId": "field/text",
+                    "config": {
+                      "regex": "^[0-9]{10}$|^$"
+                    }
+                  },
+                  "cssClasses": [
+                    "number", "regex"
+                  ]
+                },
+                {
+                  "type": "personAttribute",
+                  "label": "Land Mark Feature ",
+                  "formFieldName": "landmark",
+                  "uuid": "56aef1a8-e4ef-476a-9998-9d2d67c3b01e",
+                  "widget": {
+                    "providerName": "uicommons",
+                    "fragmentId": "field/text"
+                  }
+                }
+              ]
+            },
+            {
+              "legend": "aijar.registrationapp.relationship",
+              "fields": [
+                {
+                  "type": "Relationship",
+                  "label": "RelationShips",
+                  "formFieldName": "Relationship",
+                  "widget": {
+                    "providerName": "registrationapp",
+                    "fragmentId": "field/personRelationship"
+                  }
                 }
               ]
             }
