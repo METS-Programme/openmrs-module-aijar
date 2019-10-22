@@ -995,6 +995,9 @@
     <concept  concept_id="165336"  retired="0"    datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-10-22 12:10:26"  version="1.0"  changed_by="1"  date_changed="2019-10-22 12:10:26"   uuid="cdfca3e8-4502-4cd9-b289-3171e5401c9b"/>
     <concept  concept_id="165335"  retired="0"    datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-10-22 12:08:42"  version="1.0"  changed_by="1"  date_changed="2019-10-22 12:08:42"   uuid="f57b1500-7ff2-46b4-b183-fed5bce479a9"/>
     <concept  concept_id="165334"  retired="0"    datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-10-22 12:08:22"  version="1.0"  changed_by="1"  date_changed="2019-10-22 12:08:22"   uuid="4f91e869-d4db-4849-a865-821f1fe02fc1"/>
+    <concept  concept_id="165351"  retired="0"    datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-10-22 15:06:58"  version="1.0"  changed_by="1"  date_changed="2019-10-22 15:06:58"   uuid="067c24d6-69fd-4dd6-9a2a-1ccc98da70b9"/>
+    <concept  concept_id="165350"  retired="0"    datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-10-22 14:48:21"  version="1.0"  changed_by="1"  date_changed="2019-10-22 14:48:21"   uuid="6e46ac6b-944d-4a66-a994-b99ae90d4fed"/>
+    <concept  concept_id="165349"  retired="0"    datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-10-22 14:29:29"  version="1.0"  changed_by="1"  date_changed="2019-10-22 14:29:29"   uuid="08a5cf93-a866-49f3-b5a6-f63c5e904757"/>
 
 
         <!--CONCEPT NUMERIC-->
@@ -3830,7 +3833,10 @@
     <concept_name  concept_name_id="160406"  concept_id="165336"  name="Facility to Facility Phone Call"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-10-22 12:10:26"  concept_name_type="FULLY_SPECIFIED"  voided="0"    uuid="8d0d1a6c-7f35-494c-88a1-1e1ade2649b5"/>
     <concept_name  concept_name_id="160405"  concept_id="165335"  name="Self Transfered"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-10-22 12:08:42"  concept_name_type="FULLY_SPECIFIED"  voided="0"    uuid="a1571290-0ad8-49ce-8275-9335f2fbce62"/>
     <concept_name  concept_name_id="160404"  concept_id="165334"  name="Returned to Care"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-10-22 12:08:22"  concept_name_type="FULLY_SPECIFIED"  voided="0"    uuid="d6b50c13-a7be-4af0-b395-1d7e4fde8269"/>
-
+    <concept_name  concept_name_id="160425"  concept_id="165351"  name="Early Ring Removal"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-10-22 15:06:58"  concept_name_type="FULLY_SPECIFIED"  voided="0"   uuid="a263f0b2-7aa5-4c59-b1f8-1d80160b4f60"/>
+    <concept_name  concept_name_id="160424"  concept_id="165350"  name="Known Positive"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-10-22 14:48:21"  concept_name_type="FULLY_SPECIFIED"  voided="0"   uuid="b4ff40f2-56cf-45ed-a20e-db342d0be1ae"/>
+    <concept_name  concept_name_id="160423"  concept_id="165349"  name="Print Media"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-10-22 14:29:29"  concept_name_type="FULLY_SPECIFIED"  voided="0"   uuid="a4a9056d-006f-4ddb-a0f7-849e78fc0353"/>
+]
 
     <!--CONCEPT ANSWERS-->
     <!--MCH-->
@@ -4815,6 +4821,13 @@
     <concept_answer  concept_answer_id="7353"  concept_id="165104"  answer_concept="165334"   creator="1"  date_created="2019-10-22 12:10:02"  sort_weight="9"  uuid="f6a89702-9fef-435c-b36d-17e31a90c8d6"/>
     <concept_answer  concept_answer_id="7354"  concept_id="165104"  answer_concept="165335"   creator="1"  date_created="2019-10-22 12:10:02"  sort_weight="10"  uuid="9bae30bf-ec9b-4f76-b843-6956901a5040"/>
     <concept_answer  concept_answer_id="7355"  concept_id="165104"  answer_concept="1363"   creator="1"  date_created="2019-10-22 12:10:02"  sort_weight="11"  uuid="41d761de-737f-4648-a1e1-09e9514f1233"/>
+    <concept_answer  concept_answer_id="7364"  concept_id="99706"  answer_concept="165351"    creator="1"  date_created="2019-10-22 15:08:44"  sort_weight="6"  uuid="367c9c4d-4c54-499e-84f6-5f9c90cbb01a"/>
+    <concept_answer  concept_answer_id="7363"  concept_id="99691"  answer_concept="1498"    creator="1"  date_created="2019-10-22 14:57:39"  sort_weight="3"  uuid="008b1012-0391-4e99-b415-21aaac1addfa"/>
+    <concept_answer  concept_answer_id="7362"  concept_id="99630"  answer_concept="165350"    creator="1"  date_created="2019-10-22 14:50:13"  sort_weight="4"  uuid="1253cf63-92a5-4d85-adf3-5dc91e9ad7d4"/>
+    <concept_answer  concept_answer_id="7361"  concept_id="99628"  answer_concept="165350"    creator="1"  date_created="2019-10-22 14:49:25"  sort_weight="4"  uuid="e3905f53-4492-4648-a43f-d7db680430cf"/>
+    <concept_answer  concept_answer_id="7360"  concept_id="99630"  answer_concept="165165"    creator="1"  date_created="2019-10-22 14:43:18"  sort_weight="3"  uuid="d31b6574-6643-4e61-ac95-9189d98cd45b"/>
+    <concept_answer  concept_answer_id="7359"  concept_id="99628"  answer_concept="165165"    creator="1"  date_created="2019-10-22 14:38:23"  sort_weight="3"  uuid="37f368af-15fb-41a0-a24f-ae3278631163"/>
+    <concept_answer  concept_answer_id="7358"  concept_id="99612"  answer_concept="165349"    creator="1"  date_created="2019-10-22 14:32:48"  sort_weight="8"  uuid="2b5bbf6b-b118-43cc-bd75-404065c873f9"/>
 
 
 
