@@ -113,12 +113,6 @@
 
         if (jQuery) {
             $(document).ready(function () {
-                if ($.browser.msie) {
-                    $(":checkbox").click(function () {
-                        $(this).change();
-                    });
-                }
-
                 //Block Multiple encounter entry on same date
                 blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"),"block");
 

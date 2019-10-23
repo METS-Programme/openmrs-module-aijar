@@ -1,0 +1,58 @@
+[{
+  "id": "ugandaemr.registrationSummary.patientinformation",
+  "label": "Demographics",
+  "icon": "icon-user",
+  "extensions": [
+    {
+      "id": "org.openmrs.module.ugandaemr.registrationSummary.patientinformation",
+      "extensionPointId": "registrationSummary.contentFragments",
+      "extensionParams": {
+        "provider": "registrationapp",
+        "fragment": "summary/section",
+        "fragmentConfig": {
+          "sectionId": "patientinformation",
+          "appId": "aijar.registrationapp.registerPatient"
+        }
+      }
+    }
+  ]
+},
+  {
+    "id": "ugandaemr.registrationSummary.personaddress",
+    "label": "Address",
+    "icon": "icon-user",
+    "extensions": [
+      {
+        "id": "org.openmrs.module.ugandaemr.registrationSummary.personaddress",
+        "extensionPointId": "registrationSummary.secondColumnContentFragments",
+        "extensionParams": {
+          "provider": "registrationapp",
+          "fragment": "summary/section",
+          "fragmentConfig": {
+            "sectionId": "address",
+            "appId": "aijar.registrationapp.registerPatient"
+          }
+        }
+      }
+    ]
+  },
+  {
+  "id": "ugandaemr.registrationSummary.identifiers",
+  "label": "Identifiers",
+  "icon": "icon-user",
+  "extensions": [
+    {
+      "id": "org.openmrs.module.ugandaemr.registrationSummary.identifiers",
+      "extensionPointId": "registrationSummary.secondColumnContentFragments",
+      "extensionParams": {
+        "provider": "registrationapp",
+        "fragment": "summary/section",
+        "fragmentConfig": {
+          "sectionId": "identifiers",
+          "appId": "aijar.registrationapp.registerPatient"
+        }
+      }
+    }
+  ]
+}
+]

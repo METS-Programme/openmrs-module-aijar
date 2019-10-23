@@ -125,13 +125,6 @@
         }
         if (jQuery) {
             jq(document).ready(function () {
-                if (jq.browser.msie) {
-                    jq(":checkbox").click(function () {
-                        jq(this).change();
-                    });
-                }
-
-
                 jq('#99674').click(function () {
                     if (getValue('99674.value') == 90002) {
                         enableContainer('#99678');
