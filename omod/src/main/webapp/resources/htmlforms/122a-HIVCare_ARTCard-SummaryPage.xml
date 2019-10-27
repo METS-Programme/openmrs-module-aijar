@@ -772,6 +772,8 @@
 
         function showHideFields(trigger, affectedObs) {
             jq('#' + trigger).find("input[type=checkbox]").each(function () {
+                alert(this.checked);
+                alert(affectedObs);
                 if (this.checked) {
                     showContainer('#' + affectedObs);
                 } else {
@@ -911,13 +913,12 @@
 
                     }
 
-                    if (jq(this).children("#trigger").find(":checkbox:first").attr("checked") != "checked") {
+                    if (jq(this).children("#trigger").find(":checkbox:first").attr("checked") !== "checked") {
                         disableFn();
                     }
 
                     jq(this).children("#trigger").find(":checkbox:first").change(function () {
-                        var checked = jq(this).attr("checked");
-                        if (checked == "checked") {
+                        if (jq(this).is(":checked")) {
                             enableFn();
                         } else {
                             disableFn();
@@ -925,18 +926,17 @@
                     });
                 });
 
-
                 jq(".checkboxGroup").each(function () {
                     var group = jq(this);
                     var uncheckAll = function () {
                         group.find("input[type$='checkbox']").attr("checked", false);
                         group.find("input[type$='checkbox']").change();
-                    }
+                    };
 
                     var uncheckRadioAndAll = function () {
                         group.find("#checkboxAll,#checkboxRadio").find("input[type$='checkbox']").attr("checked", false);
                         group.find("#checkboxAll,#checkboxRadio").find("input[type$='checkbox']").change();
-                    }
+                    };
 
 
                     group.find("#checkboxAll").find("input").click(
