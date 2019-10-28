@@ -772,8 +772,6 @@
 
         function showHideFields(trigger, affectedObs) {
             jq('#' + trigger).find("input[type=checkbox]").each(function () {
-                alert(this.checked);
-                alert(affectedObs);
                 if (this.checked) {
                     showContainer('#' + affectedObs);
                 } else {
