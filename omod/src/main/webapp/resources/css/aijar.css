@@ -5,21 +5,21 @@ body {
 }
 
 header #session-location {
-    position: absolute;
-    display: none;
-    top: 60px;
-    left: 35%;
-    background: white;
-    border: 2px solid #006056;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -o-border-radius: 3px;
-    -ms-border-radius: 3px;
-    -khtml-border-radius: 3px;
-    border-radius: 3px;
-    width: 853px;
-    font-size: 0.8em;
-    z-index: 1;
+	position: absolute;
+	display: none;
+	top: 60px;
+	left: 5%;
+	background: white;
+	border: 2px solid #006056;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-o-border-radius: 3px;
+	-ms-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	width: 600px;
+	font-size: 0.8em;
+	z-index: 1;
 }
 
 /* Increase spacing between login location buttons on the login page */
