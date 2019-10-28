@@ -549,13 +549,12 @@
 
                             }
 
-                            if (jq(this).children("#trigger").find(":checkbox:first").attr("checked") != "checked") {
+                            if (jq(this).children("#trigger").find(":checkbox:first").is(":checked")) {
                                 disableFn();
                             }
 
                             jq(this).children("#trigger").find(":checkbox:first").change(function () {
-                                var checked = jq(this).attr("checked");
-                                if (checked == "checked") {
+                                if (jq(this).is(":checked")) {
                                     enableFn();
                                 } else {
                                     disableFn();
@@ -567,8 +566,7 @@
                         jq("#imm-not-done").each(function () {
 
                             jq("#imm-not-done").find("#trigger").find(":checkbox:first").change(function () {
-                                var checked = jq(this).attr("checked");
-                                if (checked == "checked") {
+                                if (jq(this).is(":checked")) {
                                         jq("#imm-not-done").find("#value").find("input[type$='text']").attr("disabled", false);
                             } else {
                                 jq("#imm-not-done").find("input[type$='text']").attr("disabled",true);
