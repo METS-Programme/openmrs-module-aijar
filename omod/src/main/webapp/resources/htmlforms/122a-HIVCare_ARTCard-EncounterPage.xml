@@ -452,13 +452,12 @@
 
                     }
 
-                    if (jq(this).children("#trigger").find(":checkbox:first").attr("checked") != "checked") {
+                    if (jq(this).children("#trigger").find(":checkbox:first").is(":checked")) {
                         disableFn();
                     }
 
                     jq(this).children("#trigger").find(":checkbox:first").change(function () {
-                        var checked = jq(this).attr("checked");
-                        if (checked == "checked") {
+                        if (jq(this).is(":checked")) {
                             enableFn();
                         } else {
                             disableFn();
