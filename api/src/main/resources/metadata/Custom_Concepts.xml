@@ -1045,6 +1045,9 @@
     <concept  concept_id="165390"  retired="0"   datatype_id="6"  class_id="11"  is_set="0"  creator="1"  date_created="2019-10-24 16:13:16"  version="1.0"  changed_by="1"  date_changed="2019-10-24 16:13:16" uuid="46bfb245-35ac-496d-8977-e01bbd165039"/>
     <concept  concept_id="165391"  retired="0"  datatype_id="4"  class_id="1"  is_set="0"  creator="1"  date_created="2019-10-25 11:26:55"  version="1.0"  changed_by="1"  date_changed="2019-10-25 11:30:41"  uuid="0c0edbd7-ce81-48fd-8f56-ab3aa4406f8d"/>
     <concept  concept_id="165392"  retired="0"  datatype_id="4"  class_id="1"  is_set="0"  creator="1"  date_created="2019-10-25 11:29:43"  version="1.0"  changed_by="1"  date_changed="2019-10-25 11:29:43"  uuid="a02f9bdc-1ae2-4cfa-8023-1f534a9e906d"/>
+    <concept  concept_id="165393"  retired="0"  datatype_id="4"  class_id="1"  is_set="0"  creator="1"  date_created="2019-10-29 09:58:16"  version="1.0"  changed_by="1"  date_changed="2019-10-29 09:58:16"  uuid="87f8b719-d6e4-447e-a506-31d5d3125931"/>
+    <concept  concept_id="165394"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-10-29 10:00:19"  version="1.0"  changed_by="1"  date_changed="2019-10-29 10:00:19"  uuid="fc473059-b200-4966-8200-1aeb73c70778"/>
+    <concept  concept_id="165395"  retired="0"  datatype_id="2"  class_id="11"  is_set="0"  creator="1"  date_created="2019-10-29 10:00:35"  version="1.0"  changed_by="1"  date_changed="2019-10-29 10:00:35"  uuid="a884b887-72c5-4bb5-a7eb-9f05872544e0"/>
 
 
         <!--CONCEPT NUMERIC-->
@@ -1488,6 +1491,8 @@
     <concept_description  concept_description_id="18374"  concept_id="165298"  description="TB Diagnosed by TB Microscopy"  locale="en"  creator="1"  date_created="2019-09-26 02:20:33" uuid="a38375bd-9122-4eb6-8800-9f283f740d44"/>
     <concept_description  concept_description_id="18375"  concept_id="165299"  description="TB Diagnosed  byChest Xray"  locale="en"  creator="1"  date_created="2019-09-26 02:21:20" uuid="3b04a6b7-f08b-476c-8bd1-ffce51dd6e63"/>
     <concept_description  concept_description_id="18376"  concept_id="165300"  description="TB Diagnosed by Others Method"  locale="en"  creator="1"  date_created="2019-09-26 02:22:14" uuid="27be3149-3c9a-47a5-8068-82cb6be99603"/>
+    <concept_description  concept_description_id="18380"  concept_id="165393"  description="Prisoners whose term of service in prison is not yet defined"  locale="en"  creator="1"  date_created="2019-10-29 09:58:16"  uuid="fe0aeaf5-4280-4118-923d-e5e28135ca6b"/>
+    <concept_description  concept_description_id="18381"  concept_id="165394"  description="Prisoner whose term of service is already defined"  locale="en"  creator="1"  date_created="2019-10-29 10:00:19"  uuid="e29921f8-b9b7-41d1-8f47-40ad048e5e53"/>
 
     <!--LAB-->
     <concept_description  concept_description_id="1390"  concept_id="1429"  description="Rhesus (Rh) type of blood for pregant woman screening"  locale="en"  creator="1"  date_created="2006-12-17 11:49:51"  changed_by="1" uuid="1390FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"/>
@@ -3935,6 +3940,9 @@
     <concept_name  concept_name_id="160468"  concept_id="165390"  name="CIRCUMSION DATE"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-10-24 16:13:16"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="dd178b0a-3194-4af2-b541-295c0f4d641d"/>
     <concept_name  concept_name_id="160469"  concept_id="165391"  name="FSGK"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-10-25 11:26:56"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="7ad4507e-4f4b-4954-93c3-87b8477c12b4"/>
     <concept_name  concept_name_id="160470"  concept_id="165392"  name="FSG &#8730;"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-10-25 11:29:43"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="d0740f43-9a39-4cc1-89c9-91dfb5033b90"/>
+    <concept_name  concept_name_id="160471"  concept_id="165393"  name="On Remand"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-10-29 09:58:16"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="359f4b6d-7b7e-4d6d-ba14-375114d028e8"/>
+    <concept_name  concept_name_id="160472"  concept_id="165394"  name="Convict"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-10-29 10:00:19"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="688bf687-89d5-4881-8641-428c3c89a990"/>
+    <concept_name  concept_name_id="160473"  concept_id="165395"  name="Prisoner Category"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-10-29 10:00:35"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="d74a03ad-8afe-4c91-b94f-6cd04d9b93a1"/>
 
     <!--CONCEPT ANSWERS-->
     <!--MCH-->
@@ -4981,6 +4989,8 @@
     <concept_answer  concept_answer_id="7366006"  concept_id="1193"  answer_concept="99318"  creator="1"  date_created="2019-10-25 15:16:37"  sort_weight="32"  uuid="d157ab8f-16f4-4c5f-bc58-67d50300ba6c"/>
     <concept_answer  concept_answer_id="7366007"  concept_id="1193"  answer_concept="99319"  creator="1"  date_created="2019-10-25 15:16:37"  sort_weight="33"  uuid="56e6442c-22e9-44cc-91c8-f826e404bdbd"/>
     <concept_answer  concept_answer_id="7366008"  concept_id="1193"  answer_concept="99351"  creator="1"  date_created="2019-10-25 15:16:37"  sort_weight="34"  uuid="42477685-db17-491b-bd49-ec91495b0532"/>
+    <concept_answer  concept_answer_id="7366009"  concept_id="165395"  answer_concept="165394" creator="1"  date_created="2019-10-29 10:00:35"  sort_weight="2"  uuid="c886c7f3-ec6d-4611-a54e-b2f4d68f32fe"/>
+    <concept_answer  concept_answer_id="7366010"  concept_id="165395"  answer_concept="165393" creator="1"  date_created="2019-10-29 10:00:35"  sort_weight="1"  uuid="954d31d1-8b8d-41a6-a3bc-4f3615594948"/>
 
 
 
