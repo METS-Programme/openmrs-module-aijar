@@ -1048,6 +1048,8 @@
     <concept  concept_id="165393"  retired="0"  datatype_id="4"  class_id="1"  is_set="0"  creator="1"  date_created="2019-10-29 09:58:16"  version="1.0"  changed_by="1"  date_changed="2019-10-29 09:58:16"  uuid="87f8b719-d6e4-447e-a506-31d5d3125931"/>
     <concept  concept_id="165394"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-10-29 10:00:19"  version="1.0"  changed_by="1"  date_changed="2019-10-29 10:00:19"  uuid="fc473059-b200-4966-8200-1aeb73c70778"/>
     <concept  concept_id="165395"  retired="0"  datatype_id="2"  class_id="11"  is_set="0"  creator="1"  date_created="2019-10-29 10:00:35"  version="1.0"  changed_by="1"  date_changed="2019-10-29 10:00:35"  uuid="a884b887-72c5-4bb5-a7eb-9f05872544e0"/>
+    <concept  concept_id="165396"  retired="0"  datatype_id="2"  class_id="11"  is_set="0"  creator="1"  date_created="2019-10-29 14:53:06"  version="1.0"  changed_by="1"  date_changed="2019-10-29 14:55:45"  uuid="5737ab4e-53f9-418e-94f4-35da78ab884f"/>
+    <concept  concept_id="165397"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-10-29 14:54:52"  version="1.0"  changed_by="1"  date_changed="2019-10-29 14:54:52"  uuid="f72917e2-0bfb-4d73-b87b-643d7180f338"/>
 
 
         <!--CONCEPT NUMERIC-->
@@ -3943,6 +3945,8 @@
     <concept_name  concept_name_id="160471"  concept_id="165393"  name="On Remand"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-10-29 09:58:16"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="359f4b6d-7b7e-4d6d-ba14-375114d028e8"/>
     <concept_name  concept_name_id="160472"  concept_id="165394"  name="Convict"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-10-29 10:00:19"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="688bf687-89d5-4881-8641-428c3c89a990"/>
     <concept_name  concept_name_id="160473"  concept_id="165395"  name="Prisoner Category"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-10-29 10:00:35"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="d74a03ad-8afe-4c91-b94f-6cd04d9b93a1"/>
+    <concept_name  concept_name_id="160475"  concept_id="165397"  name="Newly HIV Positive"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-10-29 14:54:52"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="19a8d09f-5e9e-4850-bbe7-d4546f1e31a1"/>
+    <concept_name  concept_name_id="160476"  concept_id="165396"  name="HIV Positive Category"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-10-29 14:55:45"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="4531c13d-3f3b-4573-9e49-d25ba0915dc1"/>
 
     <!--CONCEPT ANSWERS-->
     <!--MCH-->
@@ -4991,6 +4995,8 @@
     <concept_answer  concept_answer_id="7366008"  concept_id="1193"  answer_concept="99351"  creator="1"  date_created="2019-10-25 15:16:37"  sort_weight="34"  uuid="42477685-db17-491b-bd49-ec91495b0532"/>
     <concept_answer  concept_answer_id="7366009"  concept_id="165395"  answer_concept="165394" creator="1"  date_created="2019-10-29 10:00:35"  sort_weight="2"  uuid="c886c7f3-ec6d-4611-a54e-b2f4d68f32fe"/>
     <concept_answer  concept_answer_id="7366010"  concept_id="165395"  answer_concept="165393" creator="1"  date_created="2019-10-29 10:00:35"  sort_weight="1"  uuid="954d31d1-8b8d-41a6-a3bc-4f3615594948"/>
+    <concept_answer  concept_answer_id="7366011"  concept_id="165396"  answer_concept="165350"  creator="1"  date_created="2019-10-29 14:55:45"  sort_weight="1"  uuid="5916877d-8825-4660-a835-61a19fb66183"/>
+    <concept_answer  concept_answer_id="7366012"  concept_id="165396"  answer_concept="165397"  creator="1"  date_created="2019-10-29 14:55:45"  sort_weight="2"  uuid="d581e072-1c05-4d3b-9257-5a83fcc07a42"/>
 
 
 
