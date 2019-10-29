@@ -8,7 +8,7 @@ header #session-location {
 	position: absolute;
 	display: none;
 	top: 60px;
-	left: 5%;
+	left: 1%;
 	background: white;
 	border: 2px solid #006056;
 	-moz-border-radius: 3px;
@@ -17,7 +17,7 @@ header #session-location {
 	-ms-border-radius: 3px;
 	-khtml-border-radius: 3px;
 	border-radius: 3px;
-	width: 600px;
+	width: 500px;
 	font-size: 0.8em;
 	z-index: 1;
 }
@@ -411,6 +411,6 @@ table th, table td {
 }
 
 header #session-location li {
-	width: 250px;
+	width: 200px;
 }
 
