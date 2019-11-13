@@ -254,14 +254,23 @@
 
 
     <!--* OPD Clinic *-->
+    <!--role-role-->
+    <role_role  parent_role="Base Role"  child_role="OPD Clinic"/>
+
     <!-- role privilege -->
     <role_privilege  role="OPD Clinic"  privilege="App: ugandaemrpoc.outpatient"/>
 
     <!--* MCH Clinic *-->
+    <!--role-role-->
+    <role_role  parent_role="Base Role"  child_role="MCH Clinic"/>
+
     <!-- role privilege -->
     <role_privilege  role="MCH Clinic"  privilege="App: ugandaemrpoc.mchclinic"/>
 
     <!--* TB Clinic *-->
+    <!--role-role-->
+    <role_role  parent_role="Base Role"  child_role="TB Clinic"/>
+
     <!-- role privilege -->
     <role_privilege  role="TB Clinic"  privilege="App: ugandaemrpoc.tbclinic"/>
 
