@@ -32,6 +32,8 @@ import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
 import org.openmrs.notification.Alert;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import static org.openmrs.module.aijar.AijarConstants.UIC_GENERATOR_QUERY;
+
 /**
  * It is a default implementation of {@link AijarService}.
  */
@@ -98,4 +100,23 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 		alert.setText(alertMessage);
 		Context.getAlertService().saveAlert(alert);
 	}
+
+	@Override
+	/*
+	 * This method generates Unique identification Code
+	 * for all patients that do not have that id
+	 * It is generated based on the person demographics
+	 * submitted during patient registration
+	 * This has been designed to run as an automatic task
+	 * that run once a day for any patient that may not have the UIC already existing */
+	public void generateUICForPatientsWithout() {
+		try {
+			Context.getAdministrationService().executeSQL(UIC_GENERATOR_QUERY, false);
+			log.info("UIC task executed successfully");
+		}
+		catch (Exception e) {
+			log.error("Error updating UIC identifier for patients # " + e.getMessage(), e);
+		}
+	}
+
 }

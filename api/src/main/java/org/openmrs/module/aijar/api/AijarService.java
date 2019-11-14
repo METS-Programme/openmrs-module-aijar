@@ -16,7 +16,10 @@ package org.openmrs.module.aijar.api;
 import org.openmrs.Patient;
 import org.openmrs.Person;
 import org.openmrs.api.OpenmrsService;
+import org.openmrs.api.context.Context;
 import org.springframework.transaction.annotation.Transactional;
+
+import static org.openmrs.module.aijar.AijarConstants.UIC_GENERATOR_QUERY;
 
 /**
  * This service exposes module's core functionality. It is a Spring managed bean which is configured in moduleApplicationContext.xml.
@@ -38,4 +41,13 @@ public interface AijarService extends OpenmrsService {
 	public void linkExposedInfantToMotherViaARTNumber(Patient infant, String motherARTNumber);
 	public void linkExposedInfantToMotherViaARTNumber(Person infant, String motherARTNumber);
 	public void setAlertForAllUsers(String alertMessage);
+
+	/*
+	 * This method generates Unique identification Code
+	 * for all patients that do not have that id
+	 * It is generated based on the person demographics
+	 * submitted during patient registration
+	 * This has been designed to run as an automatic task
+	 * that run once a day for any patient that may not have the UIC already existing */
+	public void generateUICForPatientsWithout();
 }

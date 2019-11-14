@@ -31,14 +31,16 @@
 	<patient_identifier_type patient_identifier_type_id="16" name="Postnatal Care No." description="This is the unique serial number given to the child during postnatal visits" creator="1" date_created="2017-01-31 10:59:35.0" required="false" format_description="Begins with 1 at the beginning of the financial year (July)" retired="false" uuid="758ef6e4-9ceb-4137-bc8d-9246dc7b41fe" location_behavior="NOT_USED"/>
 	<patient_identifier_type patient_identifier_type_id="17" name="Safe Male Circumcision Client Number" description="An identifier used for patients who undergo safe male circumcision" creator="1" date_created="2017-01-31 10:59:36.0" required="false" retired="false" uuid="37601abe-2ee0-4493-8ac7-22b4972190cf" location_behavior="NOT_USED"/>
 	<patient_identifier_type patient_identifier_type_id="19" name="OpenMRS Id" description="OpenMRS Id" creator="1" date_created="2017-03-08 09:21:00.0" required="false" retired="false" uuid="05a29f94-c0ed-11e2-94be-8c13b969e334" location_behavior="NOT_USED"/>
-	
+	<patient_identifier_type patient_identifier_type_id="20" name="UIC" description="UIC" creator="1" date_created="2019-03-08 09:21:00.0" required="false" retired="false" uuid="877169c4-92c6-4cc9-bf45-1ab95faea242" location_behavior="NOT_USED"/>
+
 	
 	<!-- Exposed infants -->
 	<person person_id="10000" gender="F" birthdate="2014-01-01 00:00:00.0" birthdate_estimated="0" dead="false" creator="1" date_created="2014-01-01 00:00:00.0" voided="false" uuid="0d9cf3c4-ec6c-4752-bd25-b2d14d596e39"/>
 	<person_name person_name_id="100010" preferred="true" person_id="10000" prefix="" given_name="Sara" middle_name="Nakamya" family_name="Mukasa" family_name_suffix="" creator="1" date_created="2014-01-01 00:00:00.0" voided="false" void_reason="" uuid="77d20a6f-cb1e-4110-a714-d0311227bdf0"/>
 	<patient patient_id="10000" creator="1" date_created="2014-01-01 00:00:00.0" voided="false"/>
 	<patient_identifier patient_identifier_id="10000" patient_id="10000" identifier="EXP-10000" identifier_type="8" preferred="0" location_id="1" creator="1" date_created="2014-01-01 00:00:00.0" voided="false" void_reason="" uuid="5ed3149d-e138-4966-af76-09263b034381"/>
-	
+	<patient_identifier patient_identifier_id="10001" patient_id="10000" identifier="EXP-UIC-2019-X" identifier_type="20" preferred="0" location_id="1" creator="1" date_created="2019-01-01 00:00:00.0" voided="false" void_reason="" uuid="671cc33d-0c9d-4d94-93eb-d68ba33ab613"/>
+
 	<person person_id="10001" gender="M" birthdate="2017-01-01 00:00:00.0" birthdate_estimated="0" dead="false" creator="1" date_created="2017-01-01 00:00:00.0" voided="false" uuid="0182cad7-cd18-49ce-8d4a-568205ee07fd"/>
 	<person_name person_name_id="100011" preferred="true" person_id="10001" prefix="" given_name="James" middle_name="Senkubuge" family_name="Kiwanuuka" family_name_suffix="" creator="1" date_created="2017-01-01 00:00:00.0" voided="false" void_reason="" uuid="b8cf72b4-f356-4731-9ee5-35713f6db57a"/>
 	<patient patient_id="10001" creator="1" date_created="2017-01-01 00:00:00.0" voided="false"/>
