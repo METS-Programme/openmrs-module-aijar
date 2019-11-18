@@ -3,6 +3,8 @@
     <!-- PRIVILEGES-->
     <!--* TASKS *-->
     <privilege  privilege="Task: HIV Clinic Access"  description="Able to access HIV patient clinic information"  uuid="7e0465e4-2119-11e8-b467-0ed5f89f718b"/>
+    <privilege  privilege="SQL Level Access"  description="Access to SQL Querying"  uuid="56439786-4d5e-494e-b507-e9d802a6b5a0"/>
+
 
     <!--* DASHBOARD WIDGET *-->
     <!--General Clinic-->
@@ -24,10 +26,101 @@
     <privilege  privilege="App: ugandaemr.report.cohortBuilder"  description="Access Link to Manage cohort builder reports"  uuid="515a0ce8-a4e5-4b7e-b210-3f64ad96302e"/>
     <privilege  privilege="App: ugandaemr.backup.backupDatabase"  description="Access App to the Backup"  uuid="96c5dbe1-2c73-4f95-9b37-b24277617f6d"/>
 
+    <!--* UgandaEMR Reporting *-->
+
+    <privilege  privilege="App: ugandaemr.reports"  description="ugandaemr report access privillege"  uuid="a803f29c-7d46-4dcc-9875-13309e4a4691"/>
+    <privilege  privilege="App: ugandaemrreports.activePatientsInCare"  description="lostToFollowUp report access privillege"  uuid="253b62ec-9e84-4c57-8c20-4e59eecdf21a"/>
+    <privilege  privilege="App: ugandaemrreports.adherenceReport"  description="Adherence Report access privillege"  uuid="08786184-99db-404b-81c7-672efb65ca61"/>
+    <privilege  privilege="App: ugandaemrreports.ANCRegister"  description="ANC Register access privillege"  uuid="d038b5bc-4e37-49a9-8740-046f86ebaf23"/>
+    <privilege  privilege="App: ugandaemrreports.appointmentList"  description="Appointment List report access privillege"  uuid="c01a7898-90e3-422a-b5b3-6289fe86f002"/>
+    <privilege  privilege="App: ugandaemrreports.appointmentsList"  description="Appointments List report access privillege"  uuid="bda29fe7-36cd-49fa-b7d9-91ba416c7696"/>
+    <privilege  privilege="App: ugandaemrreports.ARTPatientExport"  description="ART Patient Export report access privillege"  uuid="8008e915-55d6-45a1-b30a-cfe3b01d6868"/>
+    <privilege  privilege="App: ugandaemrreports.ARTRegister"  description="ART Register access privillege"  uuid="f3685304-4687-4b4e-b62d-deae5b281516"/>
+    <privilege  privilege="App: ugandaemrreports.caseBasedSurveillanceEIDReport"  description="CaseBased Surveillance EID report access privillege"  uuid="775a2301-d471-4f7e-abf3-6e6a549d1f7a"/>
+    <privilege  privilege="App: ugandaemrreports.CBSAdultQuarterlyReport"  description="CBS Adult Quarterly Report report access privillege"  uuid="591a016e-1ab3-4d08-a751-7b03deb3be22"/>
+    <privilege  privilege="App: ugandaemrreports.DSDMStablityAssessmentReport"  description="DSDM Stablity Assessment report access privillege"  uuid="9b74978f-df4b-4103-8340-bc68c18d2327"/>
+    <privilege  privilege="App: ugandaemrreports.dueForViralLoad"  description="dueForViralLoad report access privillege"  uuid="be44831e-da7c-45ec-9833-5389fbcde48d"/>
+    <privilege  privilege="App: ugandaemrreports.EIDRegister"  description="EID Register access privillege"  uuid="00738276-8cdc-4414-bf72-3a4703bc03a9"/>
+    <privilege  privilege="App: ugandaemrreports.EWILostToFollowUp"  description="EWI Lost ToFollow Up report access privillege"  uuid="0f0d57bb-cc5b-408c-bb11-f8842be4c523"/>
+    <privilege  privilege="App: ugandaemrreports.exposedInfantDuefor1stPCR"  description="Exposed Infant Due for 1st PCR report access privillege"  uuid="470bdd27-19ab-4d34-b722-254125542832"/>
+    <privilege  privilege="App: ugandaemrreports.exposedInfantsDuefor1stPCR"  description="Exposed Infants Due for 1st PCR report access privillege"  uuid="4e5de915-e17f-46c1-bc21-9919f77a71ee"/>
+    <privilege  privilege="App: ugandaemrreports.exposedInfantsDuefor2ndPCR"  description="Exposed Infants Due for 2nd PCR report access privillege"  uuid="b3dda88c-ca2b-4a0d-a655-09370354f176"/>
+    <privilege  privilege="App: ugandaemrreports.exposedInfantsDueforAppointment"  description="Exposed Infants Due for Appointment report access privillege"  uuid="941e27ce-c229-4b54-8e21-e8f77fe8045e"/>
+    <privilege  privilege="App: ugandaemrreports.exposedInfantsDueforRapidTest"  description="Exposed Infants Due for Rapid Test report access privillege"  uuid="109771b1-421b-43e1-8b65-8813ea043437"/>
+    <privilege  privilege="App: ugandaemrreports.facilityDeathList"  description="Facility Death List report access privillege"  uuid="733096dd-4700-47b1-94b1-a6d33c7d82cc"/>
+    <privilege  privilege="App: ugandaemrreports.familyConnectEMTCTModuleDataExport"  description="Family Connect EMTCT Module Data Export report access privillege"  uuid="a343762c-6f54-47ec-b634-fc339d10a2ca"/>
+    <privilege  privilege="App: ugandaemrreports.HCAReport"  description="HCA  report access privillege"  uuid="5eda465a-eeba-4f77-b1a9-2c136043b19f"/>
+    <privilege  privilege="App: ugandaemrreports.hCTCardDataExport"  description="hCT Card Data Export report access privillege"  uuid="14a09ff4-cf4a-462c-a3b7-b2520a21f041"/>
+    <privilege  privilege="App: ugandaemrreports.HMIS055-HCTRegister"  description="HMIS 055-HCT Register access privillege"  uuid="318eaf69-5446-4d9a-9985-5df24470c7bf"/>
+    <privilege  privilege="App: ugandaemrreports.HMIS105"  description="HMIS105 report access privillege"  uuid="81700cbf-bbeb-47c3-9187-21f1b4b34039"/>
+    <privilege  privilege="App: ugandaemrreports.HMIS106aSection1A"  description="HMIS106a Section 1A report access privillege"  uuid="1e30de94-2139-4fe5-857f-36a5dd25db81"/>
+    <privilege  privilege="App: ugandaemrreports.HMIS106aSection1B"  description="HMIS106a Section 1B report access privillege"  uuid="3c1c360d-d9e8-412a-8ea8-ba6540423710"/>
+    <privilege  privilege="App: ugandaemrreports.HMIS106aWithDSDMAggregations"  description="HMIS 106a With DSDM Aggregations report access privillege"  uuid="f0175a69-fcb0-483e-ba3e-ba590de14928"/>
+    <privilege  privilege="App: ugandaemrreports.HMIS177ViralLoadAddendumQuarterlyReport"  description="HMIS177 Viral Load Addendum Quarterly Report report access privillege"  uuid="98a55ed4-f13b-4b75-849f-c96148343a3f"/>
+    <privilege  privilege="App: ugandaemrreports.HTSClientCardDataExport"  description="HTS Client Card Data Export report access privillege"  uuid="b1ad6fea-7f4d-4a0d-946a-af991ab589f6"/>
+    <privilege  privilege="App: ugandaemrreports.lostClients"  description="transferInList report access privillege"  uuid="259264bc-8c7a-4069-b2f9-acb60c895af8"/>
+    <privilege  privilege="App: ugandaemrreports.lostToFollowUp"  description="report access privillege"  uuid="d4fb84a0-1e46-4081-b749-82cc939ae911"/>
+    <privilege  privilege="App: ugandaemrreports.maternityRegister"  description="Maternity Register  access privillege"  uuid="a71adf66-fce8-406e-b81c-e66e66d527f8"/>
+    <privilege  privilege="App: ugandaemrreports.MERHCTTSTFacilityReport"  description="MER HCT TST Facility Report access privillege"  uuid="664833af-60bd-4bf2-a64e-787ebdb54662"/>
+    <privilege  privilege="App: ugandaemrreports.MERHTSRECENTReport"  description="MER HTS RECENT report access privillege"  uuid="ffd54af4-ad53-4672-a2f2-887b9770e0e0"/>
+    <privilege  privilege="App: ugandaemrreports.MERPMTCTSTATReport"  description="MER PMTCT STAT Report access privillege"  uuid="57723a66-4496-4145-bad6-2e0fae7b732c"/>
+    <privilege  privilege="App: ugandaemrreports.MERTBARTReport"  description="MER TB ART Report access privillege"  uuid="3deda687-c028-4136-93eb-e0fdc442d7b4"/>
+    <privilege  privilege="App: ugandaemrreports.MERTBSTATReport"  description="MER TB STAT Report access privillege"  uuid="44bc7b72-3db5-4909-a29e-8537574abcc8"/>
+    <privilege  privilege="App: ugandaemrreports.MERTxCurrent_30DaysReport"  description="MER Tx Current_30 Days report access privillege"  uuid="d6f46ad5-6239-47ad-b160-fa5bb884df6a"/>
+    <privilege  privilege="App: ugandaemrreports.MERTxCurrent_90DaysReport"  description="MER Tx Current_90 Days Report access privillege"  uuid="d10832c1-1770-4464-b22e-c0c8e0a94892"/>
+    <privilege  privilege="App: ugandaemrreports.MERTxNewReport"  description="MER Tx New Report access privillege"  uuid="d158bf36-9568-492e-9d3a-dde674c44140"/>
+    <privilege  privilege="App: ugandaemrreports.MERTX_TB"  description="MER TX_TB report access privillege"  uuid="bdb6a64c-6244-41be-a981-f8024bd26584"/>
+    <privilege  privilege="App: ugandaemrreports.missedAppointmentList"  description="Missed Appointment List report access privillege"  uuid="e50ab067-358a-4daf-9b5e-1e01bdbaaccb"/>
+    <privilege  privilege="App: ugandaemrreports.missedAppointmentsList"  description="Missed Appointments List report access privillege"  uuid="bcb09563-5733-4833-b389-586522e9e909"/>
+    <privilege  privilege="App: ugandaemrreports.nonSuppressedViralLoad"  description="nonSuppressedViralLoad report access privillege"  uuid="003cff8a-8d6d-4861-9233-2c3705db52a8"/>
+    <privilege  privilege="App: ugandaemrreports.OPDRegister"  description="OPDRegister report access privillege"  uuid="f8c1b28b-9c1b-43b6-9958-9799bdc740a0"/>
+    <privilege  privilege="App: ugandaemrreports.optionBWeeklySMSReport"  description="OptionB+ Weekly SMS  report access privillege"  uuid="a7193e54-47d1-472a-8a81-81f111ae0c3f"/>
+    <privilege  privilege="App: ugandaemrreports.overdueforViralLoad"  description="overdueforViralLoad report access privillege"  uuid="252c48f8-0fe4-4aa7-8e44-275d71b01e79"/>
+    <privilege  privilege="App: ugandaemrreports.patientAppointmentBook"  description="patientAppointmentBook report access privillege"  uuid="0807e36c-63e3-409a-bc19-bcaf69e7c50b"/>
+    <privilege  privilege="App: ugandaemrreports.patientDSDMModelReport"  description="patientDSDMModelReport report access privillege"  uuid="bd61c706-1719-4def-aff0-51b179984d1e"/>
+    <privilege  privilege="App: ugandaemrreports.pillPickup"  description="Pill Pickup report access privillege"  uuid="d3a373e2-4440-4439-9e81-425689550ab6"/>
+    <privilege  privilege="App: ugandaemrreports.PNCRegister"  description="PNC Register  access privillege"  uuid="57618970-ce4f-416e-b849-b3a6636f9ab2"/>
+    <privilege  privilege="App: ugandaemrreports.pre-ARTRegister"  description="Pre-ART Register  access privillege"  uuid="a5cf8487-e0f3-4bdf-81c8-43f2ef630565"/>
+    <privilege  privilege="App: ugandaemrreports.recencyHTSClientCardDataExport"  description="Recency HTS Client Card Data Export report access privillege"  uuid="d50b696a-5cdf-40f7-9021-33380e63dc4f"/>
+    <privilege  privilege="App: ugandaemrreports.SMCRegister"  description="SMCRegister report access privillege"  uuid="a307f5b8-d171-4475-b171-820305e28b51"/>
+    <privilege  privilege="App: ugandaemrreports.TBRegister"  description="TB Register access privillege"  uuid="b2669bbf-9373-480d-b498-b678fb4a7a8b"/>
+    <privilege  privilege="App: ugandaemrreports.transferInList"  description="report access privillege"  uuid="d59e2a96-af6c-4bf8-9b88-68c00c2e48e9"/>
+    <privilege  privilege="App: ugandaemrreports.transferOutList"  description="transferOutListreport access privillege"  uuid="3a9d4ba5-4bc1-48e7-99c4-04369dc13da2"/>
+    <privilege  privilege="App: ugandaemrreports.UgandaEMRReports2014HMISTools"  description="UgandaEMR Reports 2014 HMIS Tools report access privillege"  uuid="ef0e24a2-b40b-425f-b514-4c929ebd7e9c"/>
+    <privilege  privilege="App: ugandaemrreports.UgandaEMRReports2019HMISTools"  description="UgandaEMR Reports 2019 HMIS Tools report access privillege"  uuid="b5e71c75-d0fa-4f42-9f37-1bdf9285d72e"/>
+    <privilege  privilege="App: ugandaemrreports.viralLoadSupression"  description="Viral Load Supression report access privillege"  uuid="9fb9c77a-e7c4-477a-9439-90556218c1d5"/>
+    <privilege  privilege="App: ugandaemrpoc.artclinic"  description="Access to the HIV clinic provider dashboard"  uuid="93e8e3ba-775d-4a05-b547-bf67ab0f42e8"/>
+    <privilege  privilege="App: ugandaemrpoc.laboratory"  description="Access to the laboratory dashboard"  uuid="0adadcd3-43b3-4cb6-9a81-39f7e6240846"/>
+    <privilege  privilege="App: ugandaemrpoc.outpatient"  description="Access to the OPD clinic provider dashboard"  uuid="27c729b9-1426-436b-8c37-976a29c6f28d"/>
+    <privilege  privilege="App: ugandaemrpoc.pharmacy"  description="Access to the Pharmacy dashboard"  uuid="ad63a284-795d-4523-a55c-019aa189b09f"/>
+    <privilege  privilege="App: ugandaemrpoc.tbclinic"  description="Access to the TB Clinic provider dashboard"  uuid="6a33b789-e78d-4cf1-881b-b00e8fe1af84"/>
+    <privilege  privilege="App: ugandaemrpoc.triage"  description="Access to the triage provider dashboard"  uuid="52b04846-410d-4b35-9d7f-8b3847b64681"/>
+    <privilege  privilege="App: ugandaemrpoc.mchclinic"  description="Access to the mch provider dashboard"  uuid="7949e7fa-0564-11ea-a69e-362b9e155667"/>
+
+
 
     <!-- ROLES -->
     <role  role="Base Role"  description="This Role is the default Role for basic functionality with less privileges"  uuid="6ec3134b-3e0d-430b-890b-3a7ac8f31e86"/>
-    <role  role="HIV Clinic"  description="This Role enables access to HIV clinic data for patient"  uuid="24d86b99-204e-44a7-a3a2-169f2c83319f"/>
+    <role  role="HIV Clinic" description="This Role enables access to HIV clinic data for patient"  uuid="24d86b99-204e-44a7-a3a2-169f2c83319f"/>
+    <role  role="OPD Clinic" description="This Role enables access to OPD clinic data for patient"  uuid="1300fe76-04b4-11ea-8d71-362b9e155667"/>
+    <role  role="MCH Clinic" description="This Role enables access to MCH clinic data for patient"  uuid="13010236-04b4-11ea-8d71-362b9e155667"/>
+    <role  role="TB Clinic"  description="This Role enables access to TB clinic data for patient"  uuid="13010588-04b4-11ea-8d71-362b9e155667"/>
+    <role  role="Reception"  description="This Role is for reception. Registration of patient and checking of patient is assigned to this role"  uuid="3f3c477f-e37d-43a4-b8f4-5b725f6340f5"/>
+    <role  role="Triage"     description="This Role is for reception. Registration of patient and checking of patient is assigned to this role"  uuid="13010876-04b4-11ea-8d71-362b9e155667"/>
+    <role  role="Organizational: Clinician"  description="This is a person role which allows access to clinical function"  uuid="b136af7b-e96d-47c3-aa6c-d8687f940a39"/>
+    <role  role="Organizational: Laboratory"  description="This role allows access to Laboratory function"  uuid="d08358e9-b292-4f51-8c6b-843fa3660fe0"/>
+    <role  role="Organizational: Pharmacy"  description="This role allows access to Pharmacy function"  uuid="130106e6-04b4-11ea-8d71-362b9e155667"/>
+    <role  role="Base Reporting Data Manager"  description="This is the Base reporting role. It offers only aggregate reports to a user with this role"  uuid="cd8e60da-8f74-4791-8411-b1a41237171a"/>
+    <role  role="HIV Data Management"  description="This role enables a user to access general reports and HIV specific reports."  uuid="16886017-0630-49e5-b928-50251b584ad0"/>
+    <role  role="OPD Data Manager"  description="This role enables a user to access general reporting and OPD specific reports"  uuid="725af8e9-35c8-47ff-8d93-86e63899e1f5"/>
+    <role  role="EID Data Manager"  description="This role enables a user access general reporting and EID Specific reports"  uuid="8efe26a0-89fb-4890-a589-70853014e322"/>
+    <role  role="MCH Data Manager"  description="This role enables a user access general reports and MCH Specific reports"  uuid="df90653d-871a-449b-a2f1-84d322c717b3"/>
+    <role  role="SMC Data Manager"  description="This role enables a user access general reports and SMC Specific reports"  uuid="83fab0c7-2cc1-4ef4-874c-68e3aa4a7d28"/>
+    <role  role="TB Data Manager"  description="This role enables a user access general reports and TB Specific reports"  uuid="52f3a775-07a4-4ef8-af40-620838181dc3"/>
+    <role  role="HTS Data Manager"  description="This role enables a user access general reports and HTS Specific reports"  uuid="1255d77e-6037-4774-a3df-6998b4fd9d11"/>
+    <role  role="General Data Manager"  description="This is the over all data manager role. It enables one to access all reports in the system"  uuid="c951823d-4798-4fc2-bf9d-91c311c50631"/>
+    <role  role="Organizational:Pharmacy"  description="This is the over all data manager role. It enables one to access all reports in the system"  uuid="cf349e5e-e59a-4019-a218-dd57935488da"/>
+
 
     <!-- ROLE PRIVILEGES -->
     <!--* BASE ROLE *-->
@@ -56,6 +149,9 @@
     <role_privilege  role="Base Role"  privilege="Get Encounter Roles"/>
     <role_privilege  role="Base Role"  privilege="Get Encounter Types"/>
     <role_privilege  role="Base Role"  privilege="Get Encounters"/>
+    <role_privilege  role="Base Role"  privilege="Add Encounters"/>
+    <role_privilege  role="Base Role"  privilege="Edit Encounters"/>
+    <role_privilege  role="Base Role"  privilege="Task: emr.patient.encounter.edit"/>
     <role_privilege  role="Base Role"  privilege="Get Observations"/>
     <role_privilege  role="Base Role"  privilege="Get Patient Identifiers"/>
     <role_privilege  role="Base Role"  privilege="Get Patients"/>
@@ -82,8 +178,69 @@
     <role_privilege  role="Base Role"  privilege="View Patients"/>
     <role_privilege  role="Base Role"  privilege="View People"/>
     <role_privilege  role="Base Role"  privilege="App: ugandaemr.widget.dataIntegrityViolation"/>
+    <role_privilege  role="Base Role"  privilege="Get Providers"/>
+    <role_privilege  role="Base Role"  privilege="Manage Provider Schedules"/>
+    <role_privilege  role="Base Role"  privilege="Manage Providers"/>
+    <role_privilege  role="Base Role"  privilege="View Providers"/>
+    <role_privilege  role="Base Role"  privilege="Add Relationships"/>
+    <role_privilege  role="Base Role"  privilege="Edit Relationships"/>
+    <role_privilege  role="Base Role"  privilege="View Relationships"/>
+    <role_privilege  role="Base Role"  privilege="Get Relationships"/>
+    <role_privilege  role="Base Role"  privilege="Patient Overview - View Relationships"/>
+    <role_privilege  role="Base Role"  privilege="SQL Level Access"/>
+
+    <!--***** PERSON/LOCATION CENTERED ROLES *****-->
+
+    <!--* RECEPTION ROLE *-->
+    <!--role-role-->
+    <role_role  parent_role="Base Role"  child_role="Reception"/>
+
+    <!-- role privilege -->
+    <role_privilege  role="Reception"  privilege="App: fingerprint.findPatient"/>
+
+
+    <!--* TRIAGE ROLE *-->
+    <!--role-role-->
+    <role_role  parent_role="Base Role"  child_role="Triage"/>
+
+    <!-- role privilege -->
+    <role_privilege  role="Triage"  privilege="App: ugandaemrpoc.triage"/>
+
+
+    <!--* CLINICIAN ROLE *-->
+    <!--role-role-->
+    <role_role  parent_role="Base Role"  child_role="Organizational: Clinician"/>
+
+    <!-- role privilege -->
+    <role_privilege  role="Organizational: Clinician"  privilege="App: patientqueueing.providerDashboard"/>
+
+
+    <!--* COUNSELOR ROLE *-->
+
+
+    <!--* LABORATORY ROLE *-->
+    <!--role-role-->
+    <role_role  parent_role="Base Role"  child_role="Organizational: Laboratory"/>
+
+    <!-- role privilege -->
+    <role_privilege  role="Organizational: Laboratory"  privilege="App: ugandaemrpoc.laboratory"/>
+
+
+    <!--* PHARMACY ROLE *-->
+    <!--role-role-->
+    <role_role  parent_role="Base Role"  child_role="Organizational:Pharmacy"/>
+
+    <!-- role privilege -->
+    <role_privilege  role="Organizational:Pharmacy"  privilege="App: ugandaemrpoc.pharmacy"/>
+
+
+    <!--* DATA MANAGER ROLE *-->
+
+
+    <!--*  OTHER ROLES *-->
 
     <!--* HIV Clinic *-->
+    <!-- role privilege -->
     <role_privilege  role="HIV Clinic"  privilege="Task: HIV Clinic Access"/>
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.lastARTVisitSummary"/>
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.artStatus"/>
@@ -93,4 +250,158 @@
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.viralLoadHistory"/>
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.dsdmPatientHistory"/>
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.directionsToResidence"/>
+    <role_privilege  role="HIV Clinic"  privilege="App: ugandaemrpoc.artclinic"/>
+
+
+    <!--* OPD Clinic *-->
+    <!--role-role-->
+    <role_role  parent_role="Base Role"  child_role="OPD Clinic"/>
+
+    <!-- role privilege -->
+    <role_privilege  role="OPD Clinic"  privilege="App: ugandaemrpoc.outpatient"/>
+
+    <!--* MCH Clinic *-->
+    <!--role-role-->
+    <role_role  parent_role="Base Role"  child_role="MCH Clinic"/>
+
+    <!-- role privilege -->
+    <role_privilege  role="MCH Clinic"  privilege="App: ugandaemrpoc.mchclinic"/>
+
+    <!--* TB Clinic *-->
+    <!--role-role-->
+    <role_role  parent_role="Base Role"  child_role="TB Clinic"/>
+
+    <!-- role privilege -->
+    <role_privilege  role="TB Clinic"  privilege="App: ugandaemrpoc.tbclinic"/>
+
+
+    <!--***** REPORTING ROLES *****-->
+    <!--* Base reporting *-->
+    <!--role-role-->
+    <role_role  parent_role="Base Role"  child_role="Base Reporting Data Manager"/>
+
+    <!-- role privilege -->
+    <role_privilege  role="Base Reporting Data Manager"  privilege="App: ugandaemr.reports"/>
+    <role_privilege  role="Base Reporting Data Manager"  privilege="App: ugandaemrreports.caseBasedSurveillanceEIDReport"/>
+    <role_privilege  role="Base Reporting Data Manager"  privilege="App: ugandaemrreports.CBSAdultQuarterlyReport"/>
+    <role_privilege  role="Base Reporting Data Manager"  privilege="App: ugandaemrreports.HCAReport"/>
+    <role_privilege  role="Base Reporting Data Manager"  privilege="App: ugandaemrreports.HMIS105"/>
+    <role_privilege  role="Base Reporting Data Manager"  privilege="App: ugandaemrreports.HMIS106aSection1A"/>
+    <role_privilege  role="Base Reporting Data Manager"  privilege="App: ugandaemrreports.HMIS106aSection1B"/>
+    <role_privilege  role="Base Reporting Data Manager"  privilege="App: ugandaemrreports.HMIS106aWithDSDMAggregations"/>
+    <role_privilege  role="Base Reporting Data Manager"  privilege="App: ugandaemrreports.HMIS177ViralLoadAddendumQuarterlyReport"/>
+    <role_privilege  role="Base Reporting Data Manager"  privilege="App: ugandaemrreports.MERHCTTSTFacilityReport"/>
+    <role_privilege  role="Base Reporting Data Manager"  privilege="App: ugandaemrreports.MERHTSRECENTReport"/>
+    <role_privilege  role="Base Reporting Data Manager"  privilege="App: ugandaemrreports.MERPMTCTSTATReport"/>
+    <role_privilege  role="Base Reporting Data Manager"  privilege="App: ugandaemrreports.MERTBARTReport"/>
+    <role_privilege  role="Base Reporting Data Manager"  privilege="App: ugandaemrreports.MERTBSTATReport"/>
+    <role_privilege  role="Base Reporting Data Manager"  privilege="App: ugandaemrreports.MERTxCurrent_30DaysReport"/>
+    <role_privilege  role="Base Reporting Data Manager"  privilege="App: ugandaemrreports.MERTxCurrent_90DaysReport"/>
+    <role_privilege  role="Base Reporting Data Manager"  privilege="App: ugandaemrreports.MERTxNewReport"/>
+    <role_privilege  role="Base Reporting Data Manager"  privilege="App: ugandaemrreports.MERTX_TB"/>
+    <role_privilege  role="Base Reporting Data Manager"  privilege="App: ugandaemrreports.UgandaEMRReports2014HMISTools"/>
+    <role_privilege  role="Base Reporting Data Manager"  privilege="App: ugandaemrreports.UgandaEMRReports2019HMISTools"/>
+    <role_privilege  role="Base Reporting Data Manager"  privilege="App: ugandaemrreports.facilityDeathList"/>
+    <role_privilege  role="Base Reporting Data Manager"  privilege="App: ugandaemrreports.optionBWeeklySMSReport"/>
+
+    <!--* HIV Data Management *-->
+    <!--role-role-->
+    <role_role  parent_role="Base Reporting Data Manager"  child_role="HIV Data Management"/>
+
+    <!-- role privilege -->
+    <role_privilege  role="HIV Data Management"  privilege="App: ugandaemrreports.activePatientsInCare"/>
+    <role_privilege  role="HIV Data Management"  privilege="App: ugandaemrreports.adherenceReport"/>
+    <role_privilege  role="HIV Data Management"  privilege="App: ugandaemrreports.appointmentList"/>
+    <role_privilege  role="HIV Data Management"  privilege="App: ugandaemrreports.appointmentsList"/>
+    <role_privilege  role="HIV Data Management"  privilege="App: ugandaemrreports.ARTPatientExport"/>
+    <role_privilege  role="HIV Data Management"  privilege="App: ugandaemrreports.ARTRegister"/>
+    <role_privilege  role="HIV Data Management"  privilege="App: ugandaemrreports.DSDMStablityAssessmentReport"/>
+    <role_privilege  role="HIV Data Management"  privilege="App: ugandaemrreports.dueForViralLoad"/>
+    <role_privilege  role="HIV Data Management"  privilege="App: ugandaemrreports.EIDRegister"/>
+    <role_privilege  role="HIV Data Management"  privilege="App: ugandaemrreports.EWILostToFollowUp"/>
+    <role_privilege  role="HIV Data Management"  privilege="App: ugandaemrreports.exposedInfantDuefor1stPCR"/>
+    <role_privilege  role="HIV Data Management"  privilege="App: ugandaemrreports.exposedInfantsDuefor1stPCR"/>
+    <role_privilege  role="HIV Data Management"  privilege="App: ugandaemrreports.exposedInfantsDuefor2ndPCR"/>
+    <role_privilege  role="HIV Data Management"  privilege="App: ugandaemrreports.exposedInfantsDueforAppointment"/>
+    <role_privilege  role="HIV Data Management"  privilege="App: ugandaemrreports.exposedInfantsDueforRapidTest"/>
+    <role_privilege  role="HIV Data Management"  privilege="App: ugandaemrreports.lostClients"/>
+    <role_privilege  role="HIV Data Management"  privilege="App: ugandaemrreports.lostToFollowUp"/>
+    <role_privilege  role="HIV Data Management"  privilege="App: ugandaemrreports.missedAppointmentList"/>
+    <role_privilege  role="HIV Data Management"  privilege="App: ugandaemrreports.missedAppointmentsList"/>
+    <role_privilege  role="HIV Data Management"  privilege="App: ugandaemrreports.nonSuppressedViralLoad"/>
+    <role_privilege  role="HIV Data Management"  privilege="App: ugandaemrreports.overdueforViralLoad"/>
+    <role_privilege  role="HIV Data Management"  privilege="App: ugandaemrreports.patientAppointmentBook"/>
+    <role_privilege  role="HIV Data Management"  privilege="App: ugandaemrreports.patientDSDMModelReport"/>
+    <role_privilege  role="HIV Data Management"  privilege="App: ugandaemrreports.pre-ARTRegister"/>
+    <role_privilege  role="HIV Data Management"  privilege="App: ugandaemrreports.transferInList"/>
+    <role_privilege  role="HIV Data Management"  privilege="App: ugandaemrreports.transferOutList"/>
+    <role_privilege  role="HIV Data Management"  privilege="App: ugandaemrreports.viralLoadSupression"/>
+    <role_privilege  role="HIV Data Management"  privilege="App: ugandaemrreports.familyConnectEMTCTModuleDataExport"/>
+    <role_privilege  role="HIV Data Management"  privilege="App: ugandaemrreports.pillPickup"/>
+
+    <!--* OPD Data Manager *-->
+    <!--role-role-->
+    <role_role  parent_role="Base Reporting Data Manager"  child_role="OPD Data Manager"/>
+
+    <!-- role privilege -->
+    <role_privilege  role="OPD Data Manager"  privilege="App: ugandaemrreports.OPDRegister"/>
+
+    <!--* MCH Data Manager *-->
+    <!--role-role-->
+    <role_role  parent_role="Base Reporting Data Manager"  child_role="MCH Data Manager"/>
+
+    <!-- role privilege -->
+    <role_privilege  role="MCH Data Manager"  privilege="App: ugandaemrreports.ANCRegister"/>
+    <role_privilege  role="MCH Data Manager"  privilege="App: ugandaemrreports.maternityRegister"/>
+    <role_privilege  role="MCH Data Manager"  privilege="App: ugandaemrreports.PNCRegister"/>
+    <role_privilege  role="MCH Data Manager"  privilege="App: ugandaemrreports.familyConnectEMTCTModuleDataExport"/>
+
+    <!--* EID Data Manager *-->
+    <!--role-role-->
+    <role_role  parent_role="Base Reporting Data Manager"  child_role="EID Data Manager"/>
+
+    <!-- role privilege -->
+    <role_privilege  role="EID Data Manager"  privilege="App: ugandaemrreports.EIDRegister"/>
+    <role_privilege  role="EID Data Manager"  privilege="App: ugandaemrreports.exposedInfantDuefor1stPCR"/>
+    <role_privilege  role="EID Data Manager"  privilege="App: ugandaemrreports.exposedInfantsDuefor1stPCR"/>
+    <role_privilege  role="EID Data Manager"  privilege="App: ugandaemrreports.exposedInfantsDuefor2ndPCR"/>
+    <role_privilege  role="EID Data Manager"  privilege="App: ugandaemrreports.exposedInfantsDueforAppointment"/>
+    <role_privilege  role="EID Data Manager"  privilege="App: ugandaemrreports.exposedInfantsDueforRapidTest"/>
+    <role_privilege  role="EID Data Manager"  privilege="App: ugandaemrreports.familyConnectEMTCTModuleDataExport"/>
+
+    <!--* SMC Data Manager *-->
+    <!--role-role-->
+    <role_role  parent_role="Base Reporting Data Manager"  child_role="SMC Data Manager"/>
+
+    <!-- role privilege -->
+    <role_privilege  role="SMC Data Manager"  privilege="App: ugandaemrreports.SMCRegister"/>
+
+    <!--* TB Data Manager *-->
+    <!--role-role-->
+    <role_role  parent_role="Base Reporting Data Manager"  child_role="TB Data Manager"/>
+
+    <!-- role privilege -->
+    <role_privilege  role="TB Data Manager"  privilege="App: ugandaemrreports.TBRegister"/>
+
+    <!--* HTS Data Manager *-->
+    <!--role-role-->
+    <role_role  parent_role="Base Reporting Data Manager"  child_role="HTS Data Manager"/>
+
+    <!-- role privilege -->
+    <role_privilege  role="HTS Data Manager"  privilege="App: ugandaemrreports.hCTCardDataExport"/>
+    <role_privilege  role="HTS Data Manager"  privilege="App: ugandaemrreports.HMIS055-HCTRegister"/>
+    <role_privilege  role="HTS Data Manager"  privilege="App: ugandaemrreports.HTSClientCardDataExport"/>
+    <role_privilege  role="HTS Data Manager"  privilege="App: ugandaemrreports.recencyHTSClientCardDataExport"/>
+
+
+    <!--* General Data Manager *-->
+    <!--role-role-->
+    <role_role  parent_role="EID Data Manager"  child_role="General Data Manager"/>
+    <role_role  parent_role="HIV Data Management"  child_role="General Data Manager"/>
+    <role_role  parent_role="HTS Data Manager"  child_role="General Data Manager"/>
+    <role_role  parent_role="MCH Data Manager"  child_role="General Data Manager"/>
+    <role_role  parent_role="OPD Data Manager"  child_role="General Data Manager"/>
+    <role_role  parent_role="Base Reporting Data Manager"  child_role="General Data Manager"/>
+    <role_role  parent_role="SMC Data Manager"  child_role="General Data Manager"/>
+    <role_role  parent_role="TB Data Manager"  child_role="General Data Manager"/>
 </dataset>
