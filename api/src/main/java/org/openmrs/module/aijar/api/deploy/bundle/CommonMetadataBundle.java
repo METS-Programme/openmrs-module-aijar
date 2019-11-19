@@ -57,6 +57,8 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(EncounterTypes.TB_SUMMARY_ENCOUNTER);
         install(EncounterTypes.VIRAL_LOAD_NON_SUPPRESSED);
         install(EncounterTypes.APPOINTMENT_FOLLOW_UP);
+        install(EncounterTypes.TRIAGE);
+        install(EncounterTypes.MEDICATION_DISPENSE);
 
         //installing programs metadata
         log.info("Installing Programs");
@@ -75,8 +77,12 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(Locations.TB_CLINIC);
         install(Locations.OPD_CLINIC);
         install(Locations.UNKNOWN);
+        install(Locations.PHARMACY);
+        install(Locations.RECEPTION);
+        install(Locations.TRIAGE);
 
         // Install Encounter Role
         install(encounterRole(EncounterRoles.ASSISTANT_CIRCUMCISER_NAME,EncounterRoles.ASSISTANT_CIRCUMCISER_DESCRIPTION,EncounterRoles.ASSISTANT_CIRCUMCISER_UUID));
+        install(encounterRole(EncounterRoles.PHARMACIST_NAME,EncounterRoles.PHARMACIST_DESCRIPTION,EncounterRoles.PHARMACIST_UUID));
     }
 }
