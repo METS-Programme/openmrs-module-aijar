@@ -217,26 +217,46 @@
 			UPDATE global_property SET property_value = 'false' WHERE property IN ('fhir.started', 'dataentrystatistics.started');
 		</sql>
 	</changeSet>
-    <changeSet id="ugandaemr-20032018-1531" author="slubwama">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                SELECT COUNT(*) FROM scheduler_task_config
-                WHERE schedulable_class = 'org.openmrs.module.aijar.tasks.MigrateARTPatientTransfersTask'
-            </sqlCheck>
-        </preConditions>
-        <comment>Inserting ART Summary Patient Transfer Migration into 'schedule_task_config' table</comment>
-        <insert tableName="scheduler_task_config">
-            <column name="name" value="ART Summary Patient Transfer Migration" />
-            <column name="description" value="Migrates Patients Transfer Data and Created a new Transfer out encounter" />
-            <column name="schedulable_class" value="org.openmrs.module.aijar.tasks.MigrateARTPatientTransfersTask" />
-            <column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss" />
-            <column name="start_time" valueDate="2018-03-20T12:59:59" />
-            <column name="repeat_interval" value="86400" />
-            <column name="date_created" valueDate="CURRENT_TIMESTAMP" />
-            <column name="created_by" value="1" />
-            <column name="start_on_startup" value="0"/>
-            <column name="started" value="1"/>
-            <column name="uuid" value="8b5caeea-2c3b-11e8-b467-0ed5f89f718b" />
-        </insert>
+
+    <changeSet id="ugandaemr-25072019-2019" author="slubwama">
+        <comment>Setting  modules for Data Entry Statistics to be started automatically</comment>
+        <sql>
+            UPDATE global_property SET property_value = 'true' WHERE property ='dataentrystatistics.started';
+        </sql>
     </changeSet>
+
+    <changeSet id="ugandaemr-25072019-1409" author="slubwama">
+        <comment>
+			Changing Concept Name for concept 99610 from SMS care entry to SMC care entry
+			Changing Concept Description to change SMS word to SMC Word
+		</comment>
+        <sql>
+			UPDATE concept SET short_name = 'SMC' WHERE concept_id =99610;
+            UPDATE concept_name SET name = 'SMC care entry' WHERE concept_id =99610;
+            UPDATE concept_description SET description = 'SMC as HIV care entry point - This concept added to support MOH ART card functionality' WHERE concept_id =99610;
+        </sql>
+    </changeSet>
+
+	<changeSet id="ugandaemr-20032018-1531" author="slubwama">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">
+				SELECT COUNT(*) FROM scheduler_task_config
+				WHERE schedulable_class = 'org.openmrs.module.aijar.tasks.MigrateARTPatientTransfersTask'
+			</sqlCheck>
+		</preConditions>
+		<comment>Inserting ART Summary Patient Transfer Migration into 'schedule_task_config' table</comment>
+		<insert tableName="scheduler_task_config">
+			<column name="name" value="ART Summary Patient Transfer Migration" />
+			<column name="description" value="Migrates Patients Transfer Data and Created a new Transfer out encounter" />
+			<column name="schedulable_class" value="org.openmrs.module.aijar.tasks.MigrateARTPatientTransfersTask" />
+			<column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss" />
+			<column name="start_time" valueDate="2018-03-20T12:59:59" />
+			<column name="repeat_interval" value="86400" />
+			<column name="date_created" valueDate="CURRENT_TIMESTAMP" />
+			<column name="created_by" value="1" />
+			<column name="start_on_startup" value="0"/>
+			<column name="started" value="1"/>
+			<column name="uuid" value="8b5caeea-2c3b-11e8-b467-0ed5f89f718b" />
+		</insert>
+	</changeSet>
 </databaseChangeLog>
