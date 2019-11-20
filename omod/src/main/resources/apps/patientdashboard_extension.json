@@ -8,5 +8,14 @@
       "fragment": "patientSummary"
     },
     "requiredPrivilege": "App: ugandaemr.widget.patientSummary"
+  },{
+    "id": "${project.parent.groupId}.${project.parent.artifactId}.patientDashboard.secondColumnFragments.patientTransfer",
+    "extensionPointId": "patientDashboard.secondColumnFragments",
+    "order": -11,
+    "extensionParams": {
+      "icon": "icon-exchange",
+      "provider": "${project.parent.artifactId}",
+      "fragment": "patientTransferInfo"
+    }
   }
 ]
