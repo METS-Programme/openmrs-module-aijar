@@ -11,6 +11,7 @@ import org.openmrs.module.aijar.metadata.core.EncounterTypes;
 import org.openmrs.scheduler.SchedulerException;
 import org.openmrs.scheduler.TaskDefinition;
 import org.openmrs.scheduler.tasks.AbstractTask;
+import org.openmrs.util.OpenmrsUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -88,7 +89,7 @@ public class MigrateARTPatientTransfersTask extends AbstractTask {
         Collection<Patient> patients = new ArrayList<>();
         patients.add(obs.getEncounter().getPatient());
 
-        List<Visit> visits = Context.getVisitService().getVisits(null, patients, null, null, getTransformDate(visitEncounterDate, 000000), getTransformDate(visitEncounterDate, 235959), getTransformDate(visitEncounterDate, 000000), getTransformDate(visitEncounterDate, 235959), null, true, false);
+        List<Visit> visits = Context.getVisitService().getVisits(null, patients, null, null, OpenmrsUtil.firstSecondOfDay(visitEncounterDate), OpenmrsUtil.getLastMomentOfDay(visitEncounterDate), OpenmrsUtil.firstSecondOfDay(visitEncounterDate), OpenmrsUtil.getLastMomentOfDay(visitEncounterDate), null, true, false);
 
         if (visits.size() <= 0) {
             visit.setLocation(Context.getLocationService().getLocation("ART Clinic"));
