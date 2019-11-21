@@ -125,13 +125,13 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(dob);
 		String monthCode = "";
-		String year = (cal.get(Calendar.YEAR) + "").substring(1, 3);
+		String year = (cal.get(Calendar.YEAR) + "").substring(2, 4);
 
 
-		if (cal.get(Calendar.MONTH) <= 9) {
-			monthCode = "0" + cal.get(Calendar.MONTH);
+		if (cal.get(Calendar.MONTH) <= 8) {
+			monthCode = "0" + (cal.get(Calendar.MONTH)+1);
 		} else {
-			monthCode = "" + cal.get(Calendar.MONTH);
+			monthCode = "" + (cal.get(Calendar.MONTH)+1);
 		}
 
 		if (patient.getGender().equals("F")) {

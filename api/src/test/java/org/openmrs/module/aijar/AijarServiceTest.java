@@ -19,6 +19,7 @@ import org.openmrs.module.aijar.metadata.core.Programs;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class AijarServiceTest extends BaseModuleContextSensitiveTest {
@@ -55,7 +56,8 @@ public class AijarServiceTest extends BaseModuleContextSensitiveTest {
         String uniqueIdentifierCode= null;
         uniqueIdentifierCode = aijarService.generatePatientUIC(patient);
 
-        assertNotNull(uniqueIdentifierCode);
+        assertEquals("X-0117-1-01140411011213",uniqueIdentifierCode);
+//        assertEquals("X-1017-1-10011311092319",uniqueIdentifierCode); for patient 10001
 
     }
 

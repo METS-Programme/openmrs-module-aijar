@@ -41,7 +41,7 @@
 	<patient_identifier patient_identifier_id="10000" patient_id="10000" identifier="EXP-10000" identifier_type="8" preferred="0" location_id="1" creator="1" date_created="2014-01-01 00:00:00.0" voided="false" void_reason="" uuid="5ed3149d-e138-4966-af76-09263b034381"/>
 	<patient_identifier patient_identifier_id="10001" patient_id="10000" identifier="EXP-UIC-2019-X" identifier_type="20" preferred="0" location_id="1" creator="1" date_created="2019-01-01 00:00:00.0" voided="false" void_reason="" uuid="671cc33d-0c9d-4d94-93eb-d68ba33ab613"/>
 
-	<person person_id="10001" gender="M" birthdate="2017-01-01 00:00:00.0" birthdate_estimated="0" dead="false" creator="1" date_created="2017-01-01 00:00:00.0" voided="false" uuid="0182cad7-cd18-49ce-8d4a-568205ee07fd"/>
+	<person person_id="10001" gender="M" birthdate="2017-10-01 00:00:00.0" birthdate_estimated="0" dead="false" creator="1" date_created="2017-01-01 00:00:00.0" voided="false" uuid="0182cad7-cd18-49ce-8d4a-568205ee07fd"/>
 	<person_name person_name_id="100011" preferred="true" person_id="10001" prefix="" given_name="James" middle_name="Senkubuge" family_name="Kiwanuuka" family_name_suffix="" creator="1" date_created="2017-01-01 00:00:00.0" voided="false" void_reason="" uuid="b8cf72b4-f356-4731-9ee5-35713f6db57a"/>
 	<patient patient_id="10001" creator="1" date_created="2017-01-01 00:00:00.0" voided="false"/>
 	<patient_identifier patient_identifier_id="10001" patient_id="10001" identifier="EXP-10001" identifier_type="8" preferred="0" location_id="1" creator="1" date_created="2017-01-01 00:00:00.0" voided="false" void_reason="" uuid="525b65f6-9f5b-45ef-9303-f57a9194e6ea"/>
