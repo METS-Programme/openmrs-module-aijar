@@ -23,8 +23,8 @@ public class PatientTransferInfoFragmentController {
 
     public void controller(FragmentConfiguration config, FragmentModel model, @FragmentParam("patientId") Patient patient) throws ParseException {
         AijarService aijarService = Context.getService(AijarService.class);
-        Map map = aijarService.transferredOut(patient);
-        Map transferInMap = aijarService.transferredIn(patient);
+        Map map = aijarService.transferredOut(patient,null);
+        Map transferInMap = aijarService.transferredIn(patient,null);
 
         if ((boolean) map.get(PATIENT_TRANSERRED_OUT)) {
             model.addAttribute(PATIENT_TRANSERRED_OUT, map.get(PATIENT_TRANSERRED_OUT));

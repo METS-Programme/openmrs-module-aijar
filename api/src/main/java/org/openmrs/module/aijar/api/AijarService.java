@@ -19,6 +19,7 @@ import org.openmrs.Person;
 import org.openmrs.api.OpenmrsService;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -43,27 +44,29 @@ public interface AijarService extends OpenmrsService {
 	public void linkExposedInfantToMotherViaARTNumber(Person infant, String motherARTNumber);
 	public void setAlertForAllUsers(String alertMessage);
 
-	/**
-	 * Transfer out Information for patient
-	 * @param patient
-	 * @return Map
-	 */
-	public Map transferredOut(Patient patient);
-
 
 	/**
-	 * Transfer In Information for patient
-	 * @param patient
-	 * @return Map
+	 * Gets transfer out encounters map.
+	 * @param patient the patient whose transfer out encounters are being queried
+	 * @param date the date of the transfer out it can be null
+	 * @return map of transfer out encounters for a patient.
 	 */
-	public Map transferredIn(Patient patient);
+	public Map transferredOut(Patient patient, Date date);
+
+	/**
+	 * Gets transfer in encounters.
+	 * @param patient the patient whose transfer in encounters are being queried
+	 * @param date the date of the transfer in it can be null
+	 * @return map of transfer in encounters for a patient.
+	 */
+	public Map transferredIn(Patient patient,Date date);
 
 	/**
 	 * Check if Patient is transferred out. This method depends on transferredOut(Patient patient) method
 	 * @param patient
 	 * @return boolean
 	 */
-	public boolean isTransferredOut(Patient patient);
+	public boolean isTransferredOut(Patient patient, Date date);
 
 
 	/**
@@ -71,7 +74,7 @@ public interface AijarService extends OpenmrsService {
 	 * @param patient
 	 * @return boolean
 	 */
-	public boolean isTransferredIn(Patient patient);
+	public boolean isTransferredIn(Patient patient,Date date);
 
 	/**
 	 * Transfer Information for patient
