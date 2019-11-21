@@ -69,7 +69,7 @@ public class MigrateARTPatientTransfersTask extends AbstractTask {
             try {
                 Context.getSchedulerService().shutdownTask(task);
             } catch (SchedulerException e) {
-                e.printStackTrace();
+                log.error("Faied to shutdown task",e);
             }
         }
     }
