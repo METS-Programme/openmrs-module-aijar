@@ -6,17 +6,15 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.aijar.api.AijarService;
 import org.openmrs.scheduler.tasks.AbstractTask;
 
-import static org.openmrs.module.aijar.AijarConstants.UIC_GENERATOR_QUERY;
 
 public class GenerateUniqueIdentifierCodeTask extends AbstractTask {
     private Log log = LogFactory.getLog(this.getClass());
-    private AijarService aijarService  = Context.getService(AijarService.class);;
+    private AijarService aijarService = Context.getService(AijarService.class);
 
     @Override
     public void execute() {
         log.info("method executing started");
-     aijarService.generateUICForPatientsWithout();
+        aijarService.generateAndSaveUICForPatientsWithOut();
     }
-
 }
 

@@ -16,10 +16,8 @@ package org.openmrs.module.aijar.api;
 import org.openmrs.Patient;
 import org.openmrs.Person;
 import org.openmrs.api.OpenmrsService;
-import org.openmrs.api.context.Context;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.openmrs.module.aijar.AijarConstants.UIC_GENERATOR_QUERY;
 
 /**
  * This service exposes module's core functionality. It is a Spring managed bean which is configured in moduleApplicationContext.xml.
@@ -28,15 +26,15 @@ import static org.openmrs.module.aijar.AijarConstants.UIC_GENERATOR_QUERY;
  * <code>
  * Context.getService(aijarService.class).someMethod();
  * </code>
- * 
+ *
  * @see org.openmrs.api.context.Context
  */
 @Transactional
 public interface AijarService extends OpenmrsService {
-     
+
 	/*
 	 * Link the infant with the A
-	 * 
+	 *
 	 */
 	public void linkExposedInfantToMotherViaARTNumber(Patient infant, String motherARTNumber);
 	public void linkExposedInfantToMotherViaARTNumber(Person infant, String motherARTNumber);
@@ -49,5 +47,16 @@ public interface AijarService extends OpenmrsService {
 	 * submitted during patient registration
 	 * This has been designed to run as an automatic task
 	 * that run once a day for any patient that may not have the UIC already existing */
-	public void generateUICForPatientsWithout();
+
+	/**
+	 * Generates a patients UIC (Unique Identifier Code) out of patient demographics
+	 * @param patient the patient to be generated a UIC for
+	 * @return String the UIC that has been generated
+	 */
+	public String generatePatientUIC(Patient patient);
+
+	/**
+	 * This method when called generates and saves UIC (Unique Identifier Code) for all patients who dont have the UIC
+	 */
+	public void generateAndSaveUICForPatientsWithOut();
 }
