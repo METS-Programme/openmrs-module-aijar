@@ -146,7 +146,7 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 			countryCode = "X";
 		}
 
-		if (!patient.getFamilyName().isEmpty()) {
+		if (patient.getFamilyName()!=null&&!patient.getFamilyName().isEmpty()) {
 			String firstLetter = replaceLettersWithNumber(patient.getFamilyName().substring(0, 1));
 			String secondLetter = replaceLettersWithNumber(patient.getFamilyName().substring(1, 2));
 			String thirdLetter = replaceLettersWithNumber(patient.getFamilyName().substring(2, 3));
@@ -155,7 +155,7 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 			familyNameCode = "X";
 		}
 
-		if (!patient.getGivenName().isEmpty()) {
+		if (patient.getGivenName()!=null&& !patient.getGivenName().isEmpty()) {
 			String firstLetter = replaceLettersWithNumber(patient.getGivenName().substring(0, 1));
 			String secondLetter = replaceLettersWithNumber(patient.getGivenName().substring(1, 2));
 			String thirdLetter = replaceLettersWithNumber(patient.getGivenName().substring(2, 3));
@@ -164,7 +164,7 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 			givenNameCode = "X";
 		}
 
-		if (!patient.getMiddleName().isEmpty()) {
+		if (patient.getMiddleName()!=null&&!patient.getMiddleName().isEmpty()) {
 			middleNameCode = replaceLettersWithNumber(patient.getMiddleName().substring(0, 1));
 		} else {
 			middleNameCode = "X";
