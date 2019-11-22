@@ -236,4 +236,28 @@
             UPDATE concept_description SET description = 'SMC as HIV care entry point - This concept added to support MOH ART card functionality' WHERE concept_id =99610;
         </sql>
     </changeSet>
+
+	<changeSet id="551c4d8d-8d33-4bcf-bee7-5aeeadc47775" author="dbaluku">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">
+				SELECT COUNT(*) FROM scheduler_task_config
+				WHERE schedulable_class = 'org.openmrs.module.aijar.tasks.GenerateUniqueIdentifierCodeTask'
+			</sqlCheck>
+		</preConditions>
+		<comment>Inserting Unique identifier code in patient identifier table</comment>
+		<insert tableName="scheduler_task_config">
+			<column name="name" value="UIC_generator_task" />
+			<column name="description" value="generates_uics into patient identifier table" />
+			<column name="schedulable_class" value="org.openmrs.module.aijar.tasks.GenerateUniqueIdentifierCodeTask" />
+			<column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss" />
+			<column name="start_time" valueDate="2019-11-08T11:59:59" />
+			<column name="repeat_interval" value="86400" />
+			<column name="date_created" valueDate="CURRENT_TIMESTAMP" />
+			<column name="created_by" value="1" />
+			<column name="start_on_startup" value="1"/>
+			<column name="started" value="1"/>
+			<column name="uuid" value="d356a6fd-8426-40d4-9cf2-13d699c6cbc3" />
+		</insert>
+
+	</changeSet>
 </databaseChangeLog>
