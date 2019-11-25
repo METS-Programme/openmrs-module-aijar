@@ -195,9 +195,14 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 				patientIdentifier.setLocation(Context.getLocationService().getLocationByUuid(Locations.PARENT.uuid()));
 				patientIdentifier.setCreator(Context.getUserService().getUser(1));
 				patientIdentifier.setPreferred(false);
-				patientIdentifier.setDateChanged(new Date());
+				patientIdentifier.setDateCreated(new Date());
 				patientIdentifier.setPatient(patient);
-				patientService.savePatientIdentifier(patientIdentifier);
+				try {
+					patientService.savePatientIdentifier(patientIdentifier);
+				}catch (Exception e){
+					log.error("Failed to Save UIC for patient #"+patient.getPatientId(),e);
+				}
+
 			}
 		}
 	}
