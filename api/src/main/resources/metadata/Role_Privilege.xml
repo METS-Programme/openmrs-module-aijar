@@ -160,6 +160,8 @@
     <role_privilege  role="Base Role"  privilege="Get Visit Attribute Types"/>
     <role_privilege  role="Base Role"  privilege="Get Visit Types"/>
     <role_privilege  role="Base Role"  privilege="Get Visits"/>
+    <role_privilege  role="Base Role"  privilege="Edit Visits"/>
+    <role_privilege  role="Base Role"  privilege="View Visits"/>
     <role_privilege  role="Base Role"  privilege="Patient Dashboard - View Demographics Section"/>
     <role_privilege  role="Base Role"  privilege="Patient Dashboard - View Overview Section"/>
     <role_privilege  role="Base Role"  privilege="Patient Dashboard - View Patient Summary"/>
@@ -196,6 +198,11 @@
     <role_privilege  role="Base Role" privilege="Get Orders"/>
     <role_privilege  role="Base Role" privilege="View Order Types"/>
     <role_privilege  role="Base Role" privilege="View Orders"/>
+    <role_privilege  role="Base Role" privilege="Get Care Settings"/>
+    <role_privilege  role="Base Role" privilege="Get Patient Programs"/>
+    <role_privilege  role="Base Role" privilege="View Patient Programs"/>
+    <role_privilege  role="Base Role" privilege="Add Patient Programs"/>
+    <role_privilege  role="Base Role" privilege="Edit Patient Programs"/>
 
     <!--***** PERSON/LOCATION CENTERED ROLES *****-->
 
