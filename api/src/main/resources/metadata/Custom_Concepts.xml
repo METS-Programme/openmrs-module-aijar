@@ -1031,7 +1031,7 @@
     <concept  concept_id="165357"  retired="0"   datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-10-23 12:21:50"  version="1.0"  changed_by="1"  date_changed="2019-10-23 12:21:50"  uuid="3357e620-8f8f-4ad9-8cf4-92201d47d015"/>
     <concept  concept_id="165358"  retired="0"   datatype_id="4"  class_id="1"  is_set="0"  creator="1"  date_created="2019-10-23 12:22:52"  version="1.0"  changed_by="1"  date_changed="2019-10-23 12:22:52"  uuid="16b272bb-9718-4ea5-8728-c043bd5575bd"/>
     <concept  concept_id="165359"  retired="0"   datatype_id="2"  class_id="11"  is_set="0"  creator="1"  date_created="2019-10-23 12:25:05"  version="1.0"  changed_by="1"  date_changed="2019-10-23 12:25:05"  uuid="34335b91-89d2-4fec-a928-579eb7795567"/>
-    <concept  concept_id="165360"  retired="0"   datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-10-23 12:26:45"  version="1.0"  changed_by="1"  date_changed="2019-10-23 12:26:45"  uuid="f1468c2d-34f3-4224-9eb5-8fa50294fda5"/>
+    <concept  concept_id="165360"  retired="0"   datatype_id="1"  class_id="1"  is_set="0"  creator="1"  date_created="2019-10-23 12:26:45"  version="1.0"  changed_by="1"  date_changed="2019-10-23 12:26:45"  uuid="f1468c2d-34f3-4224-9eb5-8fa50294fda5"/>
     <concept  concept_id="165361"  retired="0"   datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-10-23 12:28:10"  version="1.0"  changed_by="1"  date_changed="2019-10-23 12:28:10"  uuid="7981b0af-0697-4a46-9fa1-43c683418545"/>
     <concept  concept_id="165362"  retired="0"   datatype_id="2"  class_id="11"  is_set="0"  creator="1"  date_created="2019-10-23 12:28:29"  version="1.0"  changed_by="1"  date_changed="2019-10-23 12:28:29"  uuid="51ad6e56-cdea-4065-866e-96fbf1db16d6"/>
     <concept  concept_id="165363"  retired="0"   datatype_id="3"  class_id="11"  is_set="0"  creator="1"  date_created="2019-10-23 12:29:01"  version="1.0"  changed_by="1"  date_changed="2019-10-23 12:29:01"  uuid="86f85a98-d5ef-468b-bbf2-57a7e4565f3c"/>
@@ -1084,6 +1084,8 @@
     <concept  concept_id="165408"  retired="0"  datatype_id="6"  class_id="5"  is_set="0"  creator="1"  date_created="2019-11-05 08:30:53"  version="1.0"  changed_by="1"  date_changed="2019-11-05 08:30:53"  uuid="26f6e338-4ba3-4d53-9a5d-cbdf59148a30"/>
     <concept  concept_id="165409"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-11-05 08:57:30"  version="1.0"  changed_by="1"  date_changed="2019-11-05 08:57:30"  uuid="b29973ee-7949-4355-92c0-3e9780a72caf"/>
     <concept  concept_id="165410"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-11-05 08:58:26"  version="1.0"  changed_by="1"  date_changed="2019-11-05 08:58:26"  uuid="9d90d594-1999-41b7-b111-ec7c5c56f48c"/>
+    <concept  concept_id="165419"  retired="0"    datatype_id="4"  class_id="8"  is_set="1"  creator="1"  date_created="2019-11-12 10:40:00"  version="1.0"  changed_by="1"  date_changed="2019-11-12 10:40:00"   uuid="a9a5af0f-cb4e-4657-8ec0-a21772a02345"/>
+
 
 
 
@@ -4014,7 +4016,9 @@
     <concept_name  concept_name_id="160489"  concept_id="165409"  name="MEASLES ONE"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-11-05 08:57:30"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="3f16efc7-f8b4-4dc4-ad97-d1627903aec6"/>
     <concept_name  concept_name_id="160490"  concept_id="165410"  name="MEASLES TWO"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-11-05 08:58:26"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="f96ceefe-69c4-447f-9094-1c03f9384993"/>
     <concept_name  concept_name_id="160491"  concept_id="165410"  name="MR2"  locale="en"  locale_preferred="0"  creator="1"  date_created="2019-11-05 08:58:26"  concept_name_type="SHORT"  voided="0"  uuid="3dd11273-e2f4-4e9c-8b29-1c45c78c90f2"/>
-    <!--CONCEPT ANSWERS-->
+    <concept_name  concept_name_id="160501"  concept_id="165419"  name="Malaria Test"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-11-12 10:40:00"  concept_name_type="FULLY_SPECIFIED"  voided="0"   uuid="91fc9430-d52f-49d8-a1d8-eb1af9b3a1b2"/>
+
+        <!--CONCEPT ANSWERS-->
     <!--MCH-->
     <concept_answer  concept_answer_id="780"  concept_id="5282"  answer_concept="1143" creator="1" date_created="2006-04-15 09:35:11"  uuid="780CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"  sort_weight="780"/>
     <concept_answer  concept_answer_id="781"  concept_id="5282"  answer_concept="977" creator="1" date_created="2006-04-15 09:35:11"  uuid="781CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"  sort_weight="781"/>
@@ -5106,6 +5110,7 @@
     <concept_answer  concept_answer_id="7366033"  concept_id="165407"  answer_concept="6046"  creator="1"  date_created="2019-11-05 08:26:17"  sort_weight="2"  uuid="c1537711-5969-4944-ad6d-b183194a86ee"/>
     <concept_answer  concept_answer_id="7366034"  concept_id="162839"  answer_concept="165409"  creator="1"  date_created="2019-11-05 08:58:50"  sort_weight="16"  uuid="9b32819e-bcf9-4bd1-a7cd-b1efdd8c58c5"/>
     <concept_answer  concept_answer_id="7366035"  concept_id="162839"  answer_concept="165410"  creator="1"  date_created="2019-11-05 08:58:50"  sort_weight="17"  uuid="9ce5d7ab-880c-4d07-9367-37a5815e2c09"/>
+    <concept_answer  concept_answer_id="7366038"  concept_id="1271"  answer_concept="165416"  creator="1"  date_created="2019-11-12 12:25:35"  sort_weight="21"  uuid="56a4f6ee-c0ea-49d3-983d-8adc7b953323"/>
 
     <!--CONCEPT SET-->
     <!--MCH-->
@@ -5632,6 +5637,9 @@
     <concept_set  concept_set_id="2640"  concept_id="165411"  concept_set="162476"  sort_weight="8"  creator="1"  date_created="2019-11-05 14:07:56"  uuid="875607eb-6c9a-4882-8f61-be9c658cceaf"/>
     <concept_set  concept_set_id="2649"  concept_id="730"  concept_set="657"  sort_weight="1"  creator="1"  date_created="2019-11-05 15:38:11"  uuid="5f7e0fb8-a4c1-40ce-81d5-9e35a00531bf"/>
     <concept_set  concept_set_id="2648"  concept_id="5497"  concept_set="657"  sort_weight="0"  creator="1"  date_created="2019-11-05 15:38:11"  uuid="5bc049a0-d8f5-4e50-b404-3c9b73acc027"/>
+    <concept_set  concept_set_id="2650"  concept_id="165360"  concept_set="165419"  sort_weight="0"  creator="1"  date_created="2019-11-12 10:40:00"  uuid="cca90e40-13ab-431f-b531-9ea0ffbec9db"/>
+    <concept_set  concept_set_id="2651"  concept_id="32"  concept_set="165419"  sort_weight="1"  creator="1"  date_created="2019-11-12 10:40:00"  uuid="bd7191ea-19fe-42a8-a629-2189b7ce1772"/>
+    <concept_set  concept_set_id="2652"  concept_id="1643"  concept_set="165419"  sort_weight="2"  creator="1"  date_created="2019-11-12 10:40:00"  uuid="643f67af-52c4-412e-ba17-40251697b000"/>
 
     <!--LAB REFERENCE MAPPING-->
     <concept_reference_term  concept_reference_term_id="279332"  concept_source_id="1"  name="Dried blood spot specimen"  code="440500007" creator="1"  date_created="2019-11-05 14:04:30"  retired="0" uuid="6955c1ad-6cab-4c78-826e-bdbdbd677afb"/>
