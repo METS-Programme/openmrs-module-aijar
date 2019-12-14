@@ -81,6 +81,7 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(Locations.PHARMACY);
         install(Locations.RECEPTION);
         install(Locations.TRIAGE);
+        install(Locations.COUNSELING_CENTER);
 
         // Install Encounter Role
         install(encounterRole(EncounterRoles.ASSISTANT_CIRCUMCISER_NAME,EncounterRoles.ASSISTANT_CIRCUMCISER_DESCRIPTION,EncounterRoles.ASSISTANT_CIRCUMCISER_UUID));
