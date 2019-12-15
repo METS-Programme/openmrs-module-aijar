@@ -102,4 +102,36 @@ public class EncounterTypes {
             return "dc551efc-024d-4c40-aeb8-2147c4033778";
         }
     };
+
+    public static EncounterTypeDescriptor TRIAGE = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Triage";
+        }
+
+        @Override
+        public String description() {
+            return "This is a form to capture information on triage. It include Vitals, global security indicators etc....";
+        }
+
+        public String uuid() {
+            return "0f1ec66d-61db-4575-8248-94e10a88178f";
+        }
+    };
+
+    public static EncounterTypeDescriptor MEDICATION_DISPENSE = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Medication Dispense";
+        }
+
+        @Override
+        public String description() {
+            return "This encounter type is for dispensing of medication at facility";
+        }
+
+        public String uuid() {
+            return "22902411-19c1-4a02-b19a-bf1a9c24fd51";
+        }
+    };
 }

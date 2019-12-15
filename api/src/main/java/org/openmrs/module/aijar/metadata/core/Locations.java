@@ -131,4 +131,106 @@ public class Locations {
 
 	};
 
+	public static LocationDescriptor TRIAGE = new LocationDescriptor(){
+
+		@Override
+		public String uuid() {
+			return "ff01eaab-561e-40c6-bf24-539206b521ce";
+		}
+
+		@Override
+		public String description() {
+			return "A location for categorization of patients";
+		}
+
+		@Override
+		public String name() {
+			return "Triage";
+		}
+
+		@Override
+		public LocationDescriptor parent() {
+			return PARENT;
+		}
+
+		@Override
+		public List<LocationTagDescriptor> tags() {
+
+			return Arrays.asList(
+					LocationTags.LOGIN_LOCATION,
+					LocationTags.VISIT_LOCATION
+			);
+
+		}
+
+	};
+
+	public static LocationDescriptor RECEPTION = new LocationDescriptor(){
+
+		@Override
+		public String uuid() {
+			return "4501e132-07a2-4201-9dc8-2f6769b6d412";
+		}
+
+		@Override
+		public String description() {
+			return "A Location for registering patients";
+		}
+
+		@Override
+		public String name() {
+			return "Reception";
+		}
+
+		@Override
+		public LocationDescriptor parent() {
+			return PARENT;
+		}
+
+		@Override
+		public List<LocationTagDescriptor> tags() {
+
+			return Arrays.asList(
+					LocationTags.LOGIN_LOCATION,
+					LocationTags.VISIT_LOCATION
+			);
+
+		}
+
+	};
+
+	public static LocationDescriptor PHARMACY = new LocationDescriptor(){
+
+		@Override
+		public String uuid() {
+			return "3ec8ff90-3ec1-408e-bf8c-22e4553d6e17";
+		}
+
+		@Override
+		public String description() {
+			return "A place for preparing, dispensing, and reviewing drugs and providing additional clinical services";
+		}
+
+		@Override
+		public String name() {
+			return "Pharmacy";
+		}
+
+		@Override
+		public LocationDescriptor parent() {
+			return PARENT;
+		}
+
+		@Override
+		public List<LocationTagDescriptor> tags() {
+
+			return Arrays.asList(
+					LocationTags.LOGIN_LOCATION,
+					LocationTags.VISIT_LOCATION
+			);
+
+		}
+
+	};
+
 }
