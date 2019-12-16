@@ -159,10 +159,6 @@
        font-weight: bold;
        font-family:Arial-BoldMT
    }
-   #credentials{
-       font-family:Arial-BoldMT
-
-   }
 
     ul.select li.selected {
         background-color: #94979A;
@@ -282,7 +278,7 @@
             <table class="table-table table-borderless table-condensed table-hover">
                 <tr>
                     <td>
-                    <label for="username" id="credentials">
+                    <label for="username">
                         ${ui.message("referenceapplication.login.username")}:
                     </label>
                     </td>
@@ -300,7 +296,7 @@
                 <tr>
                     <td>
 
-                        <label for="password" id="credentials">
+                        <label for="password">
                             ${ui.message("referenceapplication.login.password")}:
                         </label>
                     </td>
@@ -315,7 +311,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td id="credentials">
+                    <td>
                         Select Location:
                     </td>
                     <td>
