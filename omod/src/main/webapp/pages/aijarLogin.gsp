@@ -273,7 +273,7 @@
         <form id="login-form" method="post" autocomplete="off">
             <fieldset id="fieldset">
 
-                <div id="subtitle">ACCESS UgEMR</div>
+                <div id="subtitle"> ${healthCenter} </div>
                 ${ui.includeFragment("referenceapplication", "infoAndErrorMessages")}
             <table class="table-table table-borderless table-condensed table-hover">
                 <tr>
