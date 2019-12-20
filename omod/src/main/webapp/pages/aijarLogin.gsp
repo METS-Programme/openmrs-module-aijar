@@ -141,6 +141,9 @@
         padding: 10px;
         background: beige;
     }
+    .login{
+        font-family: "OpenSans", Arial, sans-serif;
+    }
     #fieldset{
         margin-left: 200px;
         margin-top: 100px;
@@ -287,7 +290,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="icon-user"></i></span>
                         </div>
-                    <input id="username" type="text" name="username"  class="form-control icon-user"
+                    <input id="username" type="text" name="username"  class="form-control icon-user login"
                            placeholder="${ui.message("referenceapplication.login.username.placeholder")}"/>
 
                     </div>
@@ -305,7 +308,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="icon-key"></i></span>
                         </div>
-                        <input id="password" type="password" name="password" class="form-control icon-key"
+                        <input id="password" type="password" name="password" class="form-control icon-key login"
                                placeholder="${ui.message("referenceapplication.login.password.placeholder")}"/>
                         </div>
                     </td>
