@@ -141,7 +141,7 @@
         padding: 10px;
         background: beige;
     }
-    .login{
+    #login-form input{
         font-family: "OpenSans", Arial, sans-serif;
     }
     #fieldset{
@@ -286,11 +286,11 @@
                     </label>
                     </td>
                 <td>
-                    <div class="input-group form-group" style="padding-top: 10px">
+                    <div class="input-group form-group"  style="padding-top: 10px">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="icon-user"></i></span>
                         </div>
-                    <input id="username" type="text" name="username"  class="form-control icon-user login"
+                    <input id="username" type="text" name="username"  class="form-control icon-user"
                            placeholder="${ui.message("referenceapplication.login.username.placeholder")}"/>
 
                     </div>
@@ -304,11 +304,11 @@
                         </label>
                     </td>
                     <td>
-                        <div class="input-group form-group" style="padding-top: 10px">
+                        <div class="input-group form-group"  style="padding-top: 10px">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="icon-key"></i></span>
                         </div>
-                        <input id="password" type="password" name="password" class="form-control icon-key login"
+                        <input id="password" type="password" name="password" class="form-control icon-key"
                                placeholder="${ui.message("referenceapplication.login.password.placeholder")}"/>
                         </div>
                     </td>
