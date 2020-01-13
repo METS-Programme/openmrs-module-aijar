@@ -10,8 +10,8 @@
 	
 	<!-- Exposed infant with no final outcome after 18 months and mother ART number that does not exist  -->
 	<encounter encounter_id="10003" visit_id="10000"  encounter_type="19" patient_id="10000" location_id="1" form_id="1" encounter_datetime="2014-01-08 00:00:00.0" creator="1" date_created="2014-01-08 14:09:05.0" voided="false" uuid="456ebc12-18b0-4774-bc6a-c4a42528105b"/>
-	<obs obs_id="10003" person_id="10000" concept_id="90200" encounter_id="10003" obs_datetime="2014-01-08 00:00:00.0" location_id="1" value_coded="90012" comments="" creator="1" date_created="2014-01-08 14:11:13.0" voided="false" uuid="f9aec34c-c7a8-4cad-9420-bd6ba34ad1ad"/>
-	<obs obs_id="10005" person_id="10000" concept_id="162874" encounter_id="10003" obs_datetime="2014-01-08 00:00:00.0" location_id="1" value_text="ARTNUMBER123" comments="" creator="1" date_created="2014-01-08 14:11:13.0" voided="false" uuid="f9aec34c-c7a8-4cad-9420-bd6ba34ad1ae"/>
+	<obs obs_id="10003" status="FINAL" person_id="10000" concept_id="90200" encounter_id="10003" obs_datetime="2014-01-08 00:00:00.0" location_id="1" value_coded="90012" comments="" creator="1" date_created="2014-01-08 14:11:13.0" voided="false" uuid="f9aec34c-c7a8-4cad-9420-bd6ba34ad1ad"/>
+	<obs obs_id="10005" status="FINAL" person_id="10000" concept_id="162874" encounter_id="10003" obs_datetime="2014-01-08 00:00:00.0" location_id="1" value_text="ARTNUMBER123" comments="" creator="1" date_created="2014-01-08 14:11:13.0" voided="false" uuid="f9aec34c-c7a8-4cad-9420-bd6ba34ad1ae"/>
 	
 	<encounter encounter_id="10004" encounter_type="20" patient_id="10000" location_id="1" form_id="1" encounter_datetime="2014-01-08 00:00:00.0" creator="1" date_created="2014-01-08 14:09:05.0" voided="false" uuid="074b46a9-b136-4114-b766-883a84af2587"/>
 	
