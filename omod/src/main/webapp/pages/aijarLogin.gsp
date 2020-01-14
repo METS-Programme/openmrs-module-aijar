@@ -141,6 +141,9 @@
         padding: 10px;
         background: beige;
     }
+    #login-form input{
+        font-family: "OpenSans", Arial, sans-serif;
+    }
     #fieldset{
         margin-left: 200px;
         margin-top: 100px;
@@ -158,10 +161,6 @@
        text-align: center;
        font-weight: bold;
        font-family:Arial-BoldMT
-   }
-   #credentials{
-       font-family:Arial-BoldMT
-
    }
 
     ul.select li.selected {
@@ -277,17 +276,17 @@
         <form id="login-form" method="post" autocomplete="off">
             <fieldset id="fieldset">
 
-                <div id="subtitle">ACCESS UgEMR</div>
+                <div id="subtitle"> ${healthCenter} </div>
                 ${ui.includeFragment("referenceapplication", "infoAndErrorMessages")}
             <table class="table-table table-borderless table-condensed table-hover">
                 <tr>
                     <td>
-                    <label for="username" id="credentials">
+                    <label for="username">
                         ${ui.message("referenceapplication.login.username")}:
                     </label>
                     </td>
                 <td>
-                    <div class="input-group form-group" style="padding-top: 10px">
+                    <div class="input-group form-group"  style="padding-top: 10px">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="icon-user"></i></span>
                         </div>
@@ -300,12 +299,12 @@
                 <tr>
                     <td>
 
-                        <label for="password" id="credentials">
+                        <label for="password">
                             ${ui.message("referenceapplication.login.password")}:
                         </label>
                     </td>
                     <td>
-                        <div class="input-group form-group" style="padding-top: 10px">
+                        <div class="input-group form-group"  style="padding-top: 10px">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="icon-key"></i></span>
                         </div>
@@ -315,7 +314,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td id="credentials">
+                    <td>
                         Select Location:
                     </td>
                     <td>
