@@ -260,4 +260,27 @@
 		</insert>
 
 	</changeSet>
+
+	<changeSet id="ugandaemr-2019-16-16-1425" author="slubwama">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">
+				SELECT COUNT(*) FROM scheduler_task_config
+				WHERE schedulable_class = 'org.openmrs.module.aijar.tasks.StopActiveFacilityVisitTask'
+			</sqlCheck>
+		</preConditions>
+		<comment>Close all active facility visits</comment>
+		<insert tableName="scheduler_task_config">
+			<column name="name" value="Close Active Facility Visits" />
+			<column name="description" value="generates_uics into patient identifier table" />
+			<column name="schedulable_class" value="org.openmrs.module.aijar.tasks.StopActiveFacilityVisitTask" />
+			<column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss" />
+			<column name="start_time" valueDate="2019-11-08T16:59:59" />
+			<column name="repeat_interval" value="86400" />
+			<column name="date_created" valueDate="CURRENT_TIMESTAMP" />
+			<column name="created_by" value="1" />
+			<column name="start_on_startup" value="1"/>
+			<column name="started" value="1"/>
+			<column name="uuid" value="1434dd72-1ff7-11ea-978f-2e728ce88125" />
+		</insert>
+	</changeSet>
 </databaseChangeLog>
