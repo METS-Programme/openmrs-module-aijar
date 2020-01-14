@@ -44,7 +44,7 @@ public class ExitTBProgramASLostToFollowUpTaskTest extends BaseModuleWebContextS
 	}
 	
 	@Test
-	public void shoudNotExitPatientsWhoAreNotLostToFollowUp() {
+	public void shoudNotExitPatientsWhoAreNotLostToFollowUp2() {
 		
 		Patient patient = new Patient(7);
 		ProgramWorkflowService service = Context.getService(ProgramWorkflowService.class);
