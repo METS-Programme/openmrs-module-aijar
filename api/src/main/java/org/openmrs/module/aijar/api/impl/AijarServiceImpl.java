@@ -19,15 +19,15 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Calendar;
 
-
 import org.openmrs.Patient;
-import org.openmrs.PatientIdentifierType;
-import org.openmrs.PatientIdentifier;
 import org.openmrs.Person;
 import org.openmrs.Relationship;
 import org.openmrs.User;
 import org.openmrs.api.PatientService;
 import org.openmrs.api.PersonService;
+import org.openmrs.PatientIdentifierType;
+import org.openmrs.PatientIdentifier;
+import org.openmrs.api.VisitService;
 import org.openmrs.api.context.Context;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.apache.commons.logging.Log;
@@ -37,6 +37,8 @@ import org.openmrs.module.aijar.api.db.AijarDAO;
 import org.openmrs.module.aijar.metadata.core.Locations;
 import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
 import org.openmrs.notification.Alert;
+import org.openmrs.util.OpenmrsConstants;
+import org.openmrs.util.OpenmrsUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -300,5 +302,4 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 		}
 		return numberToReturn;
 	}
-
 }
