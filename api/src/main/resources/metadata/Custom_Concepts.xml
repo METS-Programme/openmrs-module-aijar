@@ -1110,85 +1110,85 @@
 
         <!--CONCEPT NUMERIC-->
     <!--MCH-->
-    <concept_numeric  concept_id="160081" />
-    <concept_numeric  concept_id="159616"  />
-    <concept_numeric  concept_id="161928"  hi_absolute="3000"  low_absolute="0" units="mL"/>
-    <concept_numeric  concept_id="164967" />
-    <concept_numeric concept_id="1053" units="# children"/>
-    <concept_numeric concept_id="159603" hi_absolute="10.0" low_absolute="0.0" units=""/>
-    <concept_numeric concept_id="159604" hi_absolute="10.0" low_absolute="0.0" units=""/>
-    <concept_numeric concept_id="163460" hi_absolute="88.0" low_absolute="1.0" units=""/>
-    <concept_numeric concept_id="163554" units=""/>
-    <concept_numeric concept_id="163555" units=""/>
-    <concept_numeric concept_id="1418" hi_normal="5.0" low_normal="1.0" units=""/>
-    <concept_numeric concept_id="164941"/>
-    <concept_numeric concept_id="164942"/>
-    <concept_numeric concept_id="164943"/>
-    <concept_numeric concept_id="164948" units="Weeks"/>
+    <concept_numeric  concept_id="160081"  precise="0" />
+    <concept_numeric  concept_id="159616"  precise="0" />
+    <concept_numeric  concept_id="161928"  hi_absolute="3000"  low_absolute="0" units="mL" precise="0"/>
+    <concept_numeric  concept_id="164967" precise="1"/>
+    <concept_numeric concept_id="1053" units="# children" precise="false"/>
+    <concept_numeric concept_id="159603" hi_absolute="10.0" low_absolute="0.0" units="" precise="false"/>
+    <concept_numeric concept_id="159604" hi_absolute="10.0" low_absolute="0.0" units="" precise="false"/>
+    <concept_numeric concept_id="163460" hi_absolute="88.0" low_absolute="1.0" units="" precise="false"/>
+    <concept_numeric concept_id="163554" units="" precise="false"/>
+    <concept_numeric concept_id="163555" units="" precise="false"/>
+    <concept_numeric concept_id="1418" hi_normal="5.0" low_normal="1.0" units="" precise="false"/>
+    <concept_numeric concept_id="164941" precise="false"/>
+    <concept_numeric concept_id="164942" precise="false"/>
+    <concept_numeric concept_id="164943" precise="false"/>
+    <concept_numeric concept_id="164948" units="Weeks" precise="false"/>
 
     <!--ART-->
-    <concept_numeric  concept_id="90214"/>
-    <concept_numeric  concept_id="90222" />
-    <concept_numeric  concept_id="99324"/>
-    <concept_numeric  concept_id="99326"/>
-    <concept_numeric  concept_id="99343"/>
-    <concept_numeric  concept_id="99433"/>
-    <concept_numeric  concept_id="99439"/>
-    <concept_numeric  concept_id="99449"/>
-    <concept_numeric  concept_id="99450"/>
-    <concept_numeric  concept_id="99452"/>
-    <concept_numeric  concept_id="99463"/>
-    <concept_numeric  concept_id="99572"/>
-    <concept_numeric  concept_id="99574"/>
-    <concept_numeric  concept_id="99576"/>
-    <concept_numeric  concept_id="99578"/>
-    <concept_numeric  concept_id="99580"/>
-    <concept_numeric  concept_id="99582"/>
-    <concept_numeric  concept_id="99584"/>
-    <concept_numeric  concept_id="99586"/>
-    <concept_numeric  concept_id="99588"/>
-    <concept_numeric  concept_id="99590"/>
-    <concept_numeric  concept_id="99592"/>
-    <concept_numeric  concept_id="99604"/>
-    <concept_numeric  concept_id="99605"/>
-    <concept_numeric  concept_id="99671" />
-    <concept_numeric  concept_id="99672" />
-    <concept_numeric  concept_id="99695" />
-    <concept_numeric  concept_id="99696" />
-    <concept_numeric  concept_id="99727"/>
-    <concept_numeric  concept_id="99729"/>
-    <concept_numeric  concept_id="99733"/>
-    <concept_numeric  concept_id="99761"/>
-    <concept_numeric  concept_id="99762"/>
-    <concept_numeric  concept_id="99772"/>
-    <concept_numeric  concept_id="99774"/>
-    <concept_numeric  concept_id="99778"/>
-    <concept_numeric  concept_id="99796"/>
-    <concept_numeric  concept_id="99820"/>
-    <concept_numeric  concept_id="99829"/>
-    <concept_numeric  concept_id="99838"/>
-    <concept_numeric  concept_id="99847"/>
-    <concept_numeric  concept_id="99856"/>
-    <concept_numeric  concept_id="99865"/>
-    <concept_numeric  concept_id="99874"/>
-    <concept_numeric concept_id="163155" hi_absolute="100.0" low_absolute="0.0" units="%"/>
-    <concept_numeric concept_id="159368" units=""/>
-    <concept_numeric concept_id="160856" units=""/>
-    <concept_numeric concept_id="165118" units="Pills" />
+    <concept_numeric  concept_id="90214" precise="0"/>
+    <concept_numeric  concept_id="90222" precise="1"/>
+    <concept_numeric  concept_id="99324" precise="0"/>
+    <concept_numeric  concept_id="99326" precise="0"/>
+    <concept_numeric  concept_id="99343" precise="0"/>
+    <concept_numeric  concept_id="99433" precise="0"/>
+    <concept_numeric  concept_id="99439" precise="0"/>
+    <concept_numeric  concept_id="99449" precise="0"/>
+    <concept_numeric  concept_id="99450" precise="0"/>
+    <concept_numeric  concept_id="99452" precise="0"/>
+    <concept_numeric  concept_id="99463" precise="0"/>
+    <concept_numeric  concept_id="99572" precise="0"/>
+    <concept_numeric  concept_id="99574" precise="0"/>
+    <concept_numeric  concept_id="99576" precise="0"/>
+    <concept_numeric  concept_id="99578" precise="0"/>
+    <concept_numeric  concept_id="99580" precise="0"/>
+    <concept_numeric  concept_id="99582" precise="0"/>
+    <concept_numeric  concept_id="99584" precise="0"/>
+    <concept_numeric  concept_id="99586" precise="0"/>
+    <concept_numeric  concept_id="99588" precise="0"/>
+    <concept_numeric  concept_id="99590" precise="0"/>
+    <concept_numeric  concept_id="99592" precise="0"/>
+    <concept_numeric  concept_id="99604" precise="0"/>
+    <concept_numeric  concept_id="99605" precise="0"/>
+    <concept_numeric  concept_id="99671" precise="1"/>
+    <concept_numeric  concept_id="99672" precise="1"/>
+    <concept_numeric  concept_id="99695" precise="1"/>
+    <concept_numeric  concept_id="99696" precise="1"/>
+    <concept_numeric  concept_id="99727" precise="0"/>
+    <concept_numeric  concept_id="99729" precise="0"/>
+    <concept_numeric  concept_id="99733" precise="0"/>
+    <concept_numeric  concept_id="99761" precise="0"/>
+    <concept_numeric  concept_id="99762" precise="0"/>
+    <concept_numeric  concept_id="99772" precise="0"/>
+    <concept_numeric  concept_id="99774" precise="0"/>
+    <concept_numeric  concept_id="99778" precise="0"/>
+    <concept_numeric  concept_id="99796" precise="0"/>
+    <concept_numeric  concept_id="99820" precise="0"/>
+    <concept_numeric  concept_id="99829" precise="0"/>
+    <concept_numeric  concept_id="99838" precise="0"/>
+    <concept_numeric  concept_id="99847" precise="0"/>
+    <concept_numeric  concept_id="99856" precise="0"/>
+    <concept_numeric  concept_id="99865" precise="0"/>
+    <concept_numeric  concept_id="99874" precise="0"/>
+    <concept_numeric concept_id="163155" hi_absolute="100.0" low_absolute="0.0" units="%" precise="true"/>
+    <concept_numeric concept_id="159368" units="" precise="false"/>
+    <concept_numeric concept_id="160856" units="" precise="false"/>
+    <concept_numeric concept_id="165118" units="Pills" precise="1"/>
 
     <!--TB-->
-    <concept_numeric concept_id="162584" units=""/>
-    <concept_numeric concept_id="164419" units=""/>
-    <concept_numeric concept_id="164421" units=""/>
-    <concept_numeric concept_id="159952" low_absolute="0.0" units=""/>
-    <concept_numeric concept_id="160047" units=""/>
-    <concept_numeric concept_id="1443" units=""/>
-    <concept_numeric concept_id="159368" units=""/>
-    <concept_numeric concept_id="140144"/>
-    <concept_numeric concept_id="140144"/>
-    <concept_numeric concept_id="159646" units="mg/dL"/>
-    <concept_numeric concept_id="159647" units="mg/dL"/>
-    <concept_numeric concept_id="159652" units="mmHg"/>
+    <concept_numeric concept_id="162584" units="" precise="false"/>
+    <concept_numeric concept_id="164419" units="" precise="false"/>
+    <concept_numeric concept_id="164421" units="" precise="false"/>
+    <concept_numeric concept_id="159952" low_absolute="0.0" units="" precise="false"/>
+    <concept_numeric concept_id="160047" units="" precise="false"/>
+    <concept_numeric concept_id="1443" units="" precise="false"/>
+    <concept_numeric concept_id="159368" units="" precise="false"/>
+    <concept_numeric concept_id="140144" precise="false"/>
+    <concept_numeric concept_id="140144" precise="false"/>
+    <concept_numeric concept_id="159646" units="mg/dL" precise="true"/>
+    <concept_numeric concept_id="159647" units="mg/dL" precise="true"/>
+    <concept_numeric concept_id="159652" units="mmHg" precise="true"/>
 
     <!--CONCEPT DESCRIPTION-->
     <!--ART-->
