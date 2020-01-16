@@ -20,8 +20,6 @@ public class LinkExposedInfantToMotherTaskTest extends BaseModuleWebContextSensi
 	public void setup() throws Exception {
 		executeDataSet("org/openmrs/module/aijar/include/standardTestDataset.xml");
 		executeDataSet("org/openmrs/module/aijar/include/exposedInfantData.xml");
-		
-		updateSearchIndex();
 	}
 	
 	@Test

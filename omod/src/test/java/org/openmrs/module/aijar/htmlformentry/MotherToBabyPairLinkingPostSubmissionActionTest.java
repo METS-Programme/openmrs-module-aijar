@@ -35,9 +35,6 @@ public class MotherToBabyPairLinkingPostSubmissionActionTest extends BaseModuleW
 	public void setup() throws Exception {
 		executeDataSet("org/openmrs/module/aijar/include/standardTestDataset.xml");
 		executeDataSet("org/openmrs/module/aijar/include/exposedInfantData.xml");
-		
-		updateSearchIndex();
-		
 		mockFormEntrySession = mock(FormEntrySession.class);
 		mockFormEntryContext = mock(FormEntryContext.class);
 		mockFormSubmissionActions = mock(FormSubmissionActions.class);
