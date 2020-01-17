@@ -77,12 +77,12 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 		// find the mother by identifier
 		List<Patient> mothers = patientService.getPatients(null, // name of the person
 				motherARTNumber, //mother ART number
-				Arrays.asList(Context.getPatientService().getPatientIdentifierTypeByUuid(PatientIdentifierTypes.ART_PATIENT_NUMBER.uuid())), // ART Number Identifier type
+				Arrays.asList(Context.getPatientService().getPatientIdentifierTypeByUuid(PatientIdentifierTypes.HIV_CARE_NUMBER.uuid())), // ART Number Identifier type
 				true); // match Identifier exactly
 		if (mothers.size() != 0) {
 			Person potentialMother = mothers.get(0).getPerson();
 			// mothers have to be female and above 12 years of age
-			if (potentialMother.getAge() != null && potentialMother.getAge() > 12 & potentialMother.getGender().equals("F")) {
+			if (potentialMother.getAge() > 12 & potentialMother.getGender().equals("F")) {
 				Relationship relationship = new Relationship();
 				relationship.setRelationshipType(personService.getRelationshipTypeByUuid("8d91a210-c2cc-11de-8d13-0010c6dffd0f"));
 				relationship.setPersonA(potentialMother);

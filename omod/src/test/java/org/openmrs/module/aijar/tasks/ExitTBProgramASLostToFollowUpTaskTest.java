@@ -14,7 +14,6 @@ import org.openmrs.api.ProgramWorkflowService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.aijar.metadata.core.Programs;
 import org.openmrs.module.aijar.tasks.ExitTBProgramASLostToFollowUpTask;
-import org.openmrs.util.LocaleUtility;
 import org.openmrs.web.test.BaseModuleWebContextSensitiveTest;
 
 public class ExitTBProgramASLostToFollowUpTaskTest extends BaseModuleWebContextSensitiveTest {
@@ -59,17 +58,6 @@ public class ExitTBProgramASLostToFollowUpTaskTest extends BaseModuleWebContextS
 		List<Encounter> encounters = Context.getEncounterService().getEncountersByPatient(patient);
 		Encounter latestEncounter = encounters.get(encounters.size() - 1);
 		latestEncounter.setEncounterDatetime(new Date());
-		
-		//Fixes StackOverflowError caused by hibernate flush that originates 
-		//from https://github.com/openmrs/openmrs-core/blob/2.2.0/api/src/main/java/org/openmrs/api/impl/EncounterServiceImpl.java#L179
-		//and https://github.com/openmrs/openmrs-core/blob/2.2.0/api/src/main/java/org/openmrs/util/LocaleUtility.java#L59
-		//because of observations that are not yet saved but dirtied by the EncounterService to match the encounterDatetime
-		//NOTE: I have been able to reproduce the exact same error in the core platform when i run this test without others
-		//https://github.com/openmrs/openmrs-core/blob/2.2.0/api/src/test/java/org/openmrs/api/EncounterServiceTest.java#L603
-		//This core test passes if you run it with others simply because they set defaultLocaleCache to a non null value
-		//such that by the time this test runs, the problematic code block in LocaleUtility.java#L59 is not run.
-		LocaleUtility.getDefaultLocale();
-				
 		Context.getEncounterService().saveEncounter(latestEncounter);
 		
 		new ExitTBProgramASLostToFollowUpTask().execute();
