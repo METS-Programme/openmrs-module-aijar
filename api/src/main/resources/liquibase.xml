@@ -131,10 +131,10 @@
 			UPDATE concept SET datatype_id = 2 WHERE concept_id = 162394
 		</sql>
 	</changeSet>
-	<changeSet id="ugandaemr-08012017-1056" author="paleu256">
+	<changeSet id="ugandaemr-1712020-1056" author="slubwama">
 		<comment>Change birth weight concept 5916 attribute allow decimals to yes</comment>
 		<sql>
-			UPDATE concept_numeric SET precise = 1 WHERE concept_id = 5916
+			UPDATE concept_numeric SET allow_decimal = 1 WHERE concept_id = 5916
 		</sql>
 	</changeSet>
 	<changeSet id="ugandaemr-190920178-0923" author="carapai">

@@ -128,17 +128,18 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             // install concepts
             DataImporter dataImporter = Context.getRegisteredComponent("dataImporter", DataImporter.class);
 
+            log.info("Start import of Custom Concepts");
             dataImporter.importData("metadata/Custom_Concepts.xml");
-            dataImporter.importData("metadata/Person_Attribute_Types.xml");
-
-            log.info("Order Metadata flags");
-            dataImporter.importData("metadata/OrderMetaData.xml");
-            log.info("Order Metadata imported");
-
             log.info("Custom Concepts imported");
 
+            log.info("Start import of person attributes");
+            // TODO: Replace this with metadata deploy to be consistent with other person attribute types
+            dataImporter.importData("metadata/Person_Attribute_Types.xml");
+            log.info("Person Attributes imported");
+
+            log.info("Start import of UgandaEMR Privileges");
             dataImporter.importData("metadata/Role_Privilege.xml");
-            log.info("Aijar Privileges Imported");
+            log.info("UgandaEMR Privileges Imported");
 
             // install commonly used metadata
             installCommonMetadata(deployService);
