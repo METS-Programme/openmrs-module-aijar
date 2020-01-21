@@ -124,6 +124,7 @@
     <role  role="General Data Manager"  description="This is the over all data manager role. It enables one to access all reports in the system"  uuid="c951823d-4798-4fc2-bf9d-91c311c50631"/>
     <role  role="Organizational:Pharmacy"  description="This is the over all data manager role. It enables one to access all reports in the system"  uuid="cf349e5e-e59a-4019-a218-dd57935488da"/>
     <role  role="Counselor"  description="This role allows access to the counseling center"  uuid="cab08bba-e2d9-4b32-83ec-ced29d69e283"/>
+    <role  role="Data Clerk"  description="This role allows access to the counseling center"  uuid="cda707f2-3c09-11ea-b77f-2e728ce88125"/>
 
 
     <!-- ROLE PRIVILEGES -->
@@ -270,8 +271,6 @@
 
     <!-- role privilege -->
     <role_privilege  role="HIV Clinic"  privilege="Task: HIV Clinic Access"/>
-    <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.lastARTVisitSummary"/>
-    <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.artStatus"/>
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.lastARTVisitSummary"/>
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.artStatus"/>
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.patientSummary"/>
@@ -431,4 +430,19 @@
     <role_role  parent_role="Base Reporting Data Manager"  child_role="General Data Manager"/>
     <role_role  parent_role="SMC Data Manager"  child_role="General Data Manager"/>
     <role_role  parent_role="TB Data Manager"  child_role="General Data Manager"/>
+
+    <!--* Role Data Clerk-->
+    <!--role-role-->
+    <role_role  parent_role="Base Role"  child_role="Data Clerk"/>
+
+    <!-- role privilege -->
+    <role_privilege  role="Data Clerk"  privilege="App: fingerprint.findPatient"/>
+    <role_privilege  role="Data Clerk"  privilege="App: patientqueueing.providerDashboard"/>
+    <role_privilege  role="Data Clerk"  privilege="Task: HIV Clinic Access"/>
+    <role_privilege  role="Data Clerk"  privilege="App: ugandaemr.widget.lastARTVisitSummary"/>
+    <role_privilege  role="Data Clerk"  privilege="App: ugandaemr.widget.artStatus"/>
+    <role_privilege  role="Data Clerk"  privilege="App: ugandaemr.widget.patientSummary"/>
+    <role_privilege  role="Data Clerk"  privilege="App: ugandaemr.widget.viralLoadHistory"/>
+    <role_privilege  role="Data Clerk"  privilege="App: ugandaemr.widget.dsdmPatientHistory"/>
+    <role_privilege  role="Data Clerk"  privilege="App: ugandaemr.widget.directionsToResidence"/>
 </dataset>
