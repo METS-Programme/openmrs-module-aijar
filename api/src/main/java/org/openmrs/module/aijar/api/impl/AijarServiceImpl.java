@@ -72,8 +72,8 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 	public void linkExposedInfantToMotherViaARTNumber(Person infant, String motherARTNumber) {
 		log.debug("Linking infant with ID " + infant.getPersonId() + " to mother with ART Number " + motherARTNumber);
 		List<PatientIdentifierType> artNumberPatientidentifierTypes = new ArrayList<>();
-		artNumberPatientidentifierTypes.add(Context.getPatientService().getPatientIdentifierTypeByUuid(PatientIdentifierTypes.HIV_CARE_NUMBER.uuid()));
 		artNumberPatientidentifierTypes.add(Context.getPatientService().getPatientIdentifierTypeByUuid(PatientIdentifierTypes.ART_PATIENT_NUMBER.uuid()));
+		artNumberPatientidentifierTypes.add(Context.getPatientService().getPatientIdentifierTypeByUuid(PatientIdentifierTypes.HIV_CARE_NUMBER.uuid()));
 		// find the mother by identifier
 		List<Patient> mothers = patientService.getPatients(null, // name of the person
 				motherARTNumber, //mother ART number
