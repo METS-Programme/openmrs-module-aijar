@@ -15,8 +15,13 @@ package org.openmrs.module.aijar.api;
 
 import org.openmrs.Patient;
 import org.openmrs.Person;
+import org.openmrs.annotation.Authorized;
 import org.openmrs.api.OpenmrsService;
+import org.openmrs.util.OpenmrsConstants;
+import org.openmrs.util.PrivilegeConstants;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
 
 
 /**
@@ -59,4 +64,5 @@ public interface AijarService extends OpenmrsService {
 	 * This method when called generates and saves UIC (Unique Identifier Code) for all patients who dont have the UIC
 	 */
 	public void generateAndSaveUICForPatientsWithOut();
+
 }
