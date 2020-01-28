@@ -58,19 +58,19 @@
 		<adminuiVersion>1.3.0</adminuiVersion>
 		<addresshierarchyVersion>2.11.0</addresshierarchyVersion>
 		<allergyuiVersion>1.8.2-SNAPSHOT</allergyuiVersion>
-		<appframeworkVersion>2.13.0</appframeworkVersion>
-		<appuiVersion>1.11.0-SNAPSHOT</appuiVersion>
-		<appointmentschedulingVersion>1.7.0</appointmentschedulingVersion>
+		<appframeworkVersion>2.14.0</appframeworkVersion>
+		<appuiVersion>1.11.0</appuiVersion>
+		<appointmentschedulingVersion>1.12.0</appointmentschedulingVersion>
 		<appointmentschedulinguiVersion>1.9.0-SNAPSHOT</appointmentschedulinguiVersion>
 		<calculationVersion>1.2</calculationVersion>
-		<coreappsVersion>1.24.0</coreappsVersion>
+		<coreappsVersion>1.26.0-SNAPSHOT</coreappsVersion>
 		<databaseBackupVersion>1.3.0</databaseBackupVersion>
 		<dataEntryStatisticsVersion>1.6.0</dataEntryStatisticsVersion>
 		<dataexchangeVersion>1.3.3</dataexchangeVersion>
 		<dataintegrityVersion>4.4.1</dataintegrityVersion>
 		<emrapiVersion>1.28.0-SNAPSHOT</emrapiVersion>
 		<eventVersion>2.7.0</eventVersion>
-		<fhirVersion>1.13.0</fhirVersion>
+		<fhirVersion>1.19.0</fhirVersion>
 		<formentryappVersion>1.4.2</formentryappVersion>
 		<formfilterVersion>1.0.0</formfilterVersion>
 		<htmlformentryuiVersion>1.10.0-SNAPSHOT</htmlformentryuiVersion>
@@ -88,16 +88,16 @@
 		<patientFlagsVersion>3.0.2</patientFlagsVersion>
 		<providermanagementVersion>2.10.0</providermanagementVersion>
 		<referenceapplicationVersion>2.10.0-SNAPSHOT</referenceapplicationVersion>
-		<referencemetadataVersion>2.10.0</referencemetadataVersion>
+		<referencemetadataVersion>2.10.1</referencemetadataVersion>
 		<registrationappVersion>1.15.0-SNAPSHOT</registrationappVersion>
-		<registrationcoreVersion>1.8.0</registrationcoreVersion>
+		<registrationcoreVersion>1.9.0</registrationcoreVersion>
 		<reportingRestVersion>1.11.0</reportingRestVersion>
 		<reportingVersion>1.20.0-SNAPSHOT</reportingVersion>
 		<reportingCompatibilityVersion>2.0.6</reportingCompatibilityVersion>
 		<reportingUIVersion>1.6.0</reportingUIVersion>
 		<serializationxstreamVersion>0.2.14</serializationxstreamVersion>
-		<uicommonsVersion>2.9.0</uicommonsVersion>
-		<uiframeworkVersion>3.15.0</uiframeworkVersion>
+		<uicommonsVersion>2.11.0-SNAPSHOT</uicommonsVersion>
+		<uiframeworkVersion>3.16.0</uiframeworkVersion>
 		<uilibraryVersion>2.0.6</uilibraryVersion>
 		<ugandaemrfingerprintVersion>1.0.10</ugandaemrfingerprintVersion>
 		<xformsVersion>4.3.12</xformsVersion>
