@@ -65,4 +65,9 @@ public interface AijarService extends OpenmrsService {
 	 */
 	public void generateAndSaveUICForPatientsWithOut();
 
+	/**
+	 * This Method stops all active out patient visits
+	 */
+	public void stopActiveOutPatientVisits();
+
 }

@@ -13,20 +13,19 @@
  */
 package org.openmrs.module.aijar.api.impl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Calendar;
 
-import org.openmrs.Patient;
-import org.openmrs.Person;
-import org.openmrs.Relationship;
-import org.openmrs.User;
+import org.openmrs.*;
+import org.openmrs.api.AdministrationService;
 import org.openmrs.api.PatientService;
 import org.openmrs.api.PersonService;
-import org.openmrs.PatientIdentifierType;
-import org.openmrs.PatientIdentifier;
+import org.openmrs.api.VisitService;
 import org.openmrs.api.context.Context;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.apache.commons.logging.Log;
@@ -36,6 +35,7 @@ import org.openmrs.module.aijar.api.db.AijarDAO;
 import org.openmrs.module.aijar.metadata.core.Locations;
 import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
 import org.openmrs.notification.Alert;
+import org.openmrs.util.OpenmrsUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -301,5 +301,31 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 				numberToReturn = "X";
 		}
 		return numberToReturn;
+	}
+	/**
+	 * @see org.openmrs.module.aijar.api.AijarService#stopActiveOutPatientVisits()
+	 */
+	public void stopActiveOutPatientVisits() {
+
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+
+		SimpleDateFormat formatterExt = new SimpleDateFormat("yyyy-MM-dd");
+
+		String formattedDate = formatterExt.format(new Date()) + " " + "00:00:00";
+
+		AdministrationService administrationService = Context.getAdministrationService();
+
+		String visitTypeUUID =administrationService.getGlobalProperty("ugandaemr.autoCloseVisit.visitTypeUUID");
+
+		VisitService visitService = Context.getVisitService();
+
+		List activeVisitList = null;
+		activeVisitList = administrationService.executeSQL("select visit.visit_id from visit inner join visit_type on (visit.visit_type_id = visit_type.visit_type_id)  where visit_type.uuid='"+visitTypeUUID+"' AND visit.date_stopped IS NULL AND  visit.date_started < '" + formattedDate + "'", true);
+
+		for (Object object : activeVisitList) {
+			ArrayList<Integer> integers = (ArrayList) object;
+			Visit visit = visitService.getVisit(integers.get(0));
+			visitService.endVisit(visit, OpenmrsUtil.getLastMomentOfDay(visit.getStartDatetime()));
+		}
 	}
 }
