@@ -19,15 +19,14 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Calendar;
 
-
 import org.openmrs.Patient;
-import org.openmrs.PatientIdentifierType;
-import org.openmrs.PatientIdentifier;
 import org.openmrs.Person;
 import org.openmrs.Relationship;
 import org.openmrs.User;
 import org.openmrs.api.PatientService;
 import org.openmrs.api.PersonService;
+import org.openmrs.PatientIdentifierType;
+import org.openmrs.PatientIdentifier;
 import org.openmrs.api.context.Context;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.apache.commons.logging.Log;
@@ -72,15 +71,18 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 	@Override
 	public void linkExposedInfantToMotherViaARTNumber(Person infant, String motherARTNumber) {
 		log.debug("Linking infant with ID " + infant.getPersonId() + " to mother with ART Number " + motherARTNumber);
+		List<PatientIdentifierType> artNumberPatientidentifierTypes = new ArrayList<>();
+		artNumberPatientidentifierTypes.add(Context.getPatientService().getPatientIdentifierTypeByUuid(PatientIdentifierTypes.ART_PATIENT_NUMBER.uuid()));
+		artNumberPatientidentifierTypes.add(Context.getPatientService().getPatientIdentifierTypeByUuid(PatientIdentifierTypes.HIV_CARE_NUMBER.uuid()));
 		// find the mother by identifier
 		List<Patient> mothers = patientService.getPatients(null, // name of the person
 				motherARTNumber, //mother ART number
-				Arrays.asList(Context.getPatientService().getPatientIdentifierTypeByUuid(PatientIdentifierTypes.HIV_CARE_NUMBER.uuid())), // ART Number Identifier type
+				artNumberPatientidentifierTypes, // ART Number and HIV Clinic number
 				true); // match Identifier exactly
 		if (mothers.size() != 0) {
 			Person potentialMother = mothers.get(0).getPerson();
 			// mothers have to be female and above 12 years of age
-			if (potentialMother.getAge() > 12 & potentialMother.getGender().equals("F")) {
+			if (potentialMother.getAge() != null && potentialMother.getAge() > 12 & potentialMother.getGender().equals("F")) {
 				Relationship relationship = new Relationship();
 				relationship.setRelationshipType(personService.getRelationshipTypeByUuid("8d91a210-c2cc-11de-8d13-0010c6dffd0f"));
 				relationship.setPersonA(potentialMother);
@@ -300,5 +302,4 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 		}
 		return numberToReturn;
 	}
-
 }
