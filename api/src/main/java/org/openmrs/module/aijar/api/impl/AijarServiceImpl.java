@@ -325,7 +325,12 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 		for (Object object : activeVisitList) {
 			ArrayList<Integer> integers = (ArrayList) object;
 			Visit visit = visitService.getVisit(integers.get(0));
-			visitService.endVisit(visit, OpenmrsUtil.getLastMomentOfDay(visit.getStartDatetime()));
+			try{
+				visitService.endVisit(visit, OpenmrsUtil.getLastMomentOfDay(visit.getStartDatetime()));
+			}catch (Exception e){
+				log.error("Failed to auto close visit",e);
+			}
+
 		}
 	}
 }
