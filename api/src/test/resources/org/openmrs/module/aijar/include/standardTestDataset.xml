@@ -86,7 +86,6 @@
 	<patient patient_id="10009" creator="1" date_created="2017-01-03 00:00:00.0" voided="false"/>
 	<patient_identifier patient_identifier_id="10008" patient_id="10009" identifier="EXP-10009" identifier_type="8" preferred="0" location_id="1" creator="1" date_created="2017-01-03 00:00:00.0" voided="false" void_reason="" uuid="d3ca1de0-7144-4a5d-8c42-3f69afc028fh"/>
 	<relationship relationship_id="1000" person_a="8" relationship="1000" person_b="10009" creator="1" date_created="2008-08-18 11:50:15.0" voided="false" uuid="c18717dd-5d78-4a0e-84fc-ee62c5f0676b"/>
-	
 	<!-- Mothers ART numbers -->
 	<patient_identifier patient_identifier_id="10100" patient_id="7" identifier="ART-FEMALE-1" identifier_type="14" preferred="0" location_id="1" creator="1" date_created="2014-01-01 00:00:00.0" voided="false" void_reason="" uuid="5ed3149d-e138-4966-af76-09263b034389"/>
 	<patient_identifier patient_identifier_id="10101" patient_id="10007" identifier="ART-FEMALE-UNDERAGE-1" identifier_type="14" preferred="0" location_id="1" creator="1" date_created="2014-01-01 00:00:00.0" voided="false" void_reason="" uuid="5ed3149d-e138-4966-af76-09263b034387"/>
@@ -113,9 +112,9 @@
 	<concept concept_id="99370" retired="false" datatype_id="3" class_id="11" is_set="false" creator="1" date_created="2012-08-03 23:35:37.0" changed_by="1" retired_by="1" uuid="d1cda288-4853-4450-afbc-76bd4e65ea70"/>	
 	<concept_name concept_name_id="4614" concept_id="99370" name="HSD TB No" locale="en" locale_preferred="true" creator="1" date_created="2012-08-03 23:35:37.0" concept_name_type="FULLY_SPECIFIED" voided="false" uuid="142c6e5a-246b-464e-a5e1-a854adc84eee"/>	
 	<concept_name concept_name_id="141251" concept_id="164955" name="Unit TB Number" locale="en" locale_preferred="true" creator="1" date_created="2017-05-31 12:56:29.0" concept_name_type="FULLY_SPECIFIED" voided="false" uuid="17a9b546-0f67-4e9c-a320-c32ad0daaea9"/>	
-	<concept_name concept_name_id="4167" concept_id="99031" name="DISTRICT TB NUMBER" locale="en" locale_preferred="false" creator="1" date_created="2010-08-07 14:01:14.0" concept_name_type="FULLY_SPECIFIED" voided="true" uuid="c7c308dc-41a4-41b0-889d-e145e655b1b6"/>	
-	
-	
+	<concept_name concept_name_id="4167" concept_id="99031" name="DISTRICT TB NUMBER" locale="en" locale_preferred="false" creator="1" date_created="2010-08-07 14:01:14.0" concept_name_type="FULLY_SPECIFIED" voided="true" uuid="c7c308dc-41a4-41b0-889d-e145e655b1b6"/>
+
+
 	<!-- visits -->
 	<visit visit_id="10000" patient_id="10000" visit_type_id="1" date_started="2014-01-08 00:00:00.0" location_id="1" creator="1" date_created="2014-01-08 00:00:00.0" voided="false" uuid="d1e83a75-2841-43bc-8684-d2a1f9fb28d9" />
 	<visit visit_id="10001" patient_id="10001" visit_type_id="1" date_started="2017-01-01 00:00:00.0" location_id="1" creator="1" date_created="2017-01-01 00:00:00.0" voided="false" uuid="d8508593-fc33-45e3-89b2-4a0528a99b64" />
@@ -124,7 +123,7 @@
 	<visit visit_id="10004" patient_id="10004" visit_type_id="1" date_started="2017-01-02 00:00:00.0" location_id="1" creator="1" date_created="2017-01-02 00:00:00.0" voided="false" uuid="c4fa7456-7458-44e3-bde9-d5d6d5466121" />
 	<visit visit_id="10005" patient_id="10005" visit_type_id="1" date_started="2017-01-02 00:00:00.0" location_id="1" creator="1" date_created="2017-01-02 00:00:00.0" voided="false" uuid="c4fa7456-7458-44e3-bde9-d5d6d5466125" />
 	<visit visit_id="10006" patient_id="10006" visit_type_id="1" date_started="2017-01-02 00:00:00.0" location_id="1" creator="1" date_created="2017-01-02 00:00:00.0" voided="false" uuid="c4fa7456-7458-44e3-bde9-d5d6d5466126" />
-	
+
 	<program program_id="11" concept_id="9" creator="1" date_created="2008-08-15 16:07:11.0" changed_by="1" date_changed="2008-08-15 17:04:50.0" retired="false" name="TB PROGRAM" description="tb program" uuid="9dc21a72-0971-11e7-8037-507b9dc4c741"/>
 	<program program_id="12" concept_id="9" creator="1" date_created="2008-08-15 16:07:11.0" changed_by="1" date_changed="2008-08-15 17:04:50.0" retired="false" name="MCH PROGRAM" description="mch program" uuid="5e8c094c-0a36-11e7-b779-507b9dc4c741"/>
 	
