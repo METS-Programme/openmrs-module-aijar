@@ -233,4 +233,38 @@ public class Locations {
 
 	};
 
+	public static LocationDescriptor COUNSELING_CENTER = new LocationDescriptor(){
+
+		@Override
+		public String uuid() {
+			return "7c231e1a-1db5-11ea-978f-2e728ce88125";
+		}
+
+		@Override
+		public String description() {
+			return "A location where counseling and screening is done for a patient";
+		}
+
+		@Override
+		public String name() {
+			return "Counseling Center";
+		}
+
+		@Override
+		public LocationDescriptor parent() {
+			return PARENT;
+		}
+
+		@Override
+		public List<LocationTagDescriptor> tags() {
+
+			return Arrays.asList(
+					LocationTags.LOGIN_LOCATION,
+					LocationTags.VISIT_LOCATION
+			);
+
+		}
+
+	};
+
 }

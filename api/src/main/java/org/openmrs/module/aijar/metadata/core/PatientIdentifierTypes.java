@@ -296,5 +296,22 @@ public class PatientIdentifierTypes {
 			return "cedbf89d-f0ef-453a-9a69-f45dc197fd3d";
 		}
 	};
+
+    public static PatientIdentifierTypeDescriptor PATIENT_IUC_HEALTH_ID = new PatientIdentifierTypeDescriptor() {
+
+        @Override
+        public String name() {
+            return "Patient Unique  ID Code (UIC)";
+        }
+
+        @Override
+        public String description() {
+            return "Unique Number that is auto generated on registration of a patient";
+        }
+
+        public String uuid() {
+            return "877169c4-92c6-4cc9-bf45-1ab95faea242";
+        }
+    };
 	
 }

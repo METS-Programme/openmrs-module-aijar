@@ -342,8 +342,8 @@
     <concept  concept_id="165267"  retired="0" datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2019-09-19 20:41:16"  version="1.0"  changed_by="1"  date_changed="2019-09-19 20:41:16" uuid="1615507f-54c6-4c18-b1ce-46a3d6d23154"/>
     <concept  concept_id="165266"  retired="0" datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2019-09-19 20:40:31"  version="1.0"  changed_by="1"  date_changed="2019-09-19 20:40:31" uuid="bd552fe1-6701-4099-a032-bbb3fcb086dc"/>
     <concept  concept_id="165265"  retired="0" datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2019-09-19 20:40:00"  version="1.0"  changed_by="1"  date_changed="2019-09-19 20:40:00" uuid="95181faa-50f4-4dde-be66-74a18947b053"/>
-    <concept  concept_id="165278"  retired="0" datatype_id="1"  class_id="1"  is_set="0"  creator="1"  date_created="2019-09-25 21:05:07"  version="1.0"  changed_by="1"  date_changed="2019-09-25 21:05:07" uuid="f595abcb-8bf8-40ec-add4-b060fa209ccb"/>
-    <concept  concept_id="165279"  retired="0" datatype_id="1"  class_id="1"  is_set="0"  creator="1"  date_created="2019-09-25 21:08:38"  version="1.0"  changed_by="1"  date_changed="2019-09-25 21:08:38" uuid="8a4b770d-57f7-45b0-ad3d-e5165841fda7"/>
+    <concept  concept_id="165278"  retired="0" datatype_id="1"  class_id="5"  is_set="0"  creator="1"  date_created="2019-09-25 21:05:07"  version="1.0"  changed_by="1"  date_changed="2019-09-25 21:05:07" uuid="f595abcb-8bf8-40ec-add4-b060fa209ccb"/>
+    <concept  concept_id="165279"  retired="0" datatype_id="1"  class_id="5"  is_set="0"  creator="1"  date_created="2019-09-25 21:08:38"  version="1.0"  changed_by="1"  date_changed="2019-09-25 21:08:38" uuid="8a4b770d-57f7-45b0-ad3d-e5165841fda7"/>
     <concept  concept_id="165280"  retired="0" datatype_id="6"  class_id="1"  is_set="0"  creator="1"  date_created="2019-09-25 21:13:38"  version="1.0"  changed_by="1"  date_changed="2019-09-25 21:13:38" uuid="539a716b-4e1b-4a99-ad1d-f4e3a09a75ae"/>
     <concept  concept_id="165281"  retired="0" datatype_id="6"  class_id="1"  is_set="0"  creator="1"  date_created="2019-09-25 21:15:11"  version="1.0"  changed_by="1"  date_changed="2019-09-25 21:15:11" uuid="5d60cbd9-2d60-45dd-9de7-56466dd0c04e"/>
     <concept  concept_id="165282"  retired="0" datatype_id="1"  class_id="1"  is_set="0"  creator="1"  date_created="2019-09-25 21:21:14"  version="1.0"  changed_by="1"  date_changed="2019-09-25 21:21:14" uuid="7dea17d4-17eb-43b6-8029-785aeb6aa453"/>
@@ -468,21 +468,6 @@
     <concept concept_id="160034" retired="false" datatype_id="4" class_id="17" is_set="false" creator="1" date_created="2011-01-17 20:51:42.0" version="" uuid="160034AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
     <concept concept_id="160035" retired="false" datatype_id="4" class_id="17" is_set="false" creator="1" date_created="2011-01-17 20:52:18.0" version="" uuid="160035AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
     <concept concept_id="160036" retired="false" datatype_id="4" class_id="17" is_set="false" creator="1" date_created="2011-01-17 20:55:51.0" version="" uuid="160036AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-    <concept concept_id="160858" retired="false" datatype_id="4" class_id="23" is_set="false" creator="1" date_created="2012-07-16 01:24:20.0" version="" uuid="160858AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-    <concept concept_id="160859" retired="false" datatype_id="4" class_id="23" is_set="false" creator="1" date_created="2012-07-16 01:25:05.0" version="" uuid="160859AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-    <concept concept_id="160860" retired="false" datatype_id="4" class_id="23" is_set="false" creator="1" date_created="2012-07-16 01:25:52.0" version="" uuid="160860AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-    <concept concept_id="160861" retired="false" datatype_id="4" class_id="23" is_set="false" creator="1" date_created="2012-07-16 01:26:48.0" version="" uuid="160861AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-    <concept concept_id="160862" retired="false" datatype_id="4" class_id="23" is_set="false" creator="1" date_created="2012-07-16 01:31:27.0" version="" uuid="160862AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-    <concept concept_id="160863" retired="false" datatype_id="4" class_id="23" is_set="false" creator="1" date_created="2012-07-16 01:32:24.0" version="" uuid="160863AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-    <concept concept_id="160864" retired="false" datatype_id="4" class_id="23" is_set="false" creator="1" date_created="2012-07-16 01:33:25.0" version="" uuid="160864AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-    <concept concept_id="160865" retired="false" datatype_id="4" class_id="23" is_set="false" creator="1" date_created="2012-07-16 01:34:18.0" version="" uuid="160865AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-    <concept concept_id="160866" retired="false" datatype_id="4" class_id="23" is_set="false" creator="1" date_created="2012-07-16 01:35:23.0" version="" uuid="160866AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-    <concept concept_id="160867" retired="false" datatype_id="4" class_id="23" is_set="false" creator="1" date_created="2012-07-16 01:36:21.0" version="" uuid="160867AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-    <concept concept_id="160868" retired="false" datatype_id="4" class_id="23" is_set="false" creator="1" date_created="2012-07-16 01:37:10.0" version="" uuid="160868AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-    <concept concept_id="160869" retired="false" datatype_id="4" class_id="23" is_set="false" creator="1" date_created="2012-07-16 01:38:07.0" version="" uuid="160869AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-    <concept concept_id="160870" retired="false" datatype_id="4" class_id="23" is_set="false" creator="1" date_created="2012-07-16 01:40:55.0" version="" uuid="160870AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-    <concept concept_id="160871" retired="false" datatype_id="4" class_id="23" is_set="false" creator="1" date_created="2012-07-16 01:42:13.0" version="" uuid="160871AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-    <concept concept_id="160872" retired="false" datatype_id="4" class_id="23" is_set="false" creator="1" date_created="2012-07-16 01:43:28.0" version="" uuid="160872AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
     <concept concept_id="162135" retired="false" datatype_id="4" class_id="23" is_set="false" creator="1" date_created="2013-09-10 13:33:37.0" version="" uuid="162135AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
     <concept concept_id="162136" retired="true" datatype_id="4" class_id="23" is_set="false" creator="1" date_created="2013-09-10 13:35:02.0" version="" uuid="162136AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
     <concept concept_id="162243" retired="false" datatype_id="4" class_id="23" is_set="false" creator="1" date_created="2013-12-08 23:54:52.0" version="" uuid="162243AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
@@ -976,6 +961,7 @@
     <concept  concept_id="165305"  retired="0"   datatype_id="2"  class_id="9"  is_set="1"  creator="1"  date_created="2019-10-02 20:23:06"  version="1.0"  changed_by="1"  date_changed="2019-10-02 20:27:19"  uuid="a202ecd2-3ae8-4b67-8c4f-779a6ce9d7ff"/>
     <concept  concept_id="165304"  retired="0"   datatype_id="2"  class_id="9"  is_set="1"  creator="1"  date_created="2019-10-02 20:23:06"  version="1.0"  changed_by="1"  date_changed="2019-10-02 20:27:19"  uuid="93b2347e-e590-11e9-81b4-2a2ae2dbcce4"/>
     <concept  concept_id="165308"  retired="0"   datatype_id="2"  class_id="9"  is_set="1"  creator="1"  date_created="2019-10-03 10:05:25"  version="1.0"  changed_by="1"  date_changed="2019-10-03 10:05:25"  uuid="13efe894-dbde-4b55-a95c-89751a3b6404"/>
+    <concept  concept_id="165430"  retired="0"   datatype_id="2"  class_id="9"  is_set="1"  creator="1"  date_created="2019-11-25 12:06:58"  version="1.0"  changed_by="1"  date_changed="2019-11-25 12:06:58"  uuid="ffe9b82c-d341-47a9-a7ef-89c0f5abba97"/>
    <!--NATIONALITY CONCEPTS    -->
     <concept  concept_id="165319"  retired="0"   datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2019-10-07 16:12:31"  version="1.0"  changed_by="1"  date_changed="2019-10-07 16:12:31"    uuid="8143023b-e9d9-4c9f-91b8-7c82b5524412"/>
     <concept  concept_id="165318"  retired="0"   datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-10-07 16:11:20"  version="1.0"  changed_by="1"  date_changed="2019-10-07 16:11:20"    uuid="d7193894-2922-432a-9175-dde877090594"/>
@@ -1083,90 +1069,111 @@
     <concept  concept_id="165408"  retired="0"  datatype_id="6"  class_id="5"  is_set="0"  creator="1"  date_created="2019-11-05 08:30:53"  version="1.0"  changed_by="1"  date_changed="2019-11-05 08:30:53"  uuid="26f6e338-4ba3-4d53-9a5d-cbdf59148a30"/>
     <concept  concept_id="165409"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-11-05 08:57:30"  version="1.0"  changed_by="1"  date_changed="2019-11-05 08:57:30"  uuid="b29973ee-7949-4355-92c0-3e9780a72caf"/>
     <concept  concept_id="165410"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-11-05 08:58:26"  version="1.0"  changed_by="1"  date_changed="2019-11-05 08:58:26"  uuid="9d90d594-1999-41b7-b111-ec7c5c56f48c"/>
+    <concept  concept_id="165419"  retired="0"    datatype_id="4"  class_id="8"  is_set="1"  creator="1"  date_created="2019-11-12 10:40:00"  version="1.0"  changed_by="1"  date_changed="2019-11-12 10:40:00"   uuid="a9a5af0f-cb4e-4657-8ec0-a21772a02345"/>
+    <concept  concept_id="165420"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-11-27 09:59:16"  version="1.0"  changed_by="1"  date_changed="2019-11-27 09:59:16"  uuid="77bd00ea-5a0b-411d-893e-c39806f0bc6c"/>
+    <concept  concept_id="165421"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-11-27 09:59:50"  version="1.0"  changed_by="1"  date_changed="2019-11-27 09:59:50"  uuid="ce3beade-f1b7-48d4-9f00-5a75a55fadbc"/>
+    <concept  concept_id="165422"  retired="0"  datatype_id="2"  class_id="11"  is_set="0"  creator="1"  date_created="2019-11-27 10:15:44"  version="1.0"  changed_by="1"  date_changed="2019-11-27 10:15:44"  uuid="03aad24f-b80f-4f17-af88-90b83592d044"/>
+    <concept  concept_id="165423"  retired="0"  datatype_id="2"  class_id="11"  is_set="0"  creator="1"  date_created="2019-11-27 10:17:54"  version="1.0"  changed_by="1"  date_changed="2019-11-27 10:17:54"  uuid="27ed8c9d-3101-4d07-9cfe-01ea082af0f5"/>
+    <concept  concept_id="165424"  retired="0"  datatype_id="3"  class_id="5"  is_set="0"  creator="1"  date_created="2019-11-27 10:23:27"  version="1.0"  changed_by="1"  date_changed="2019-11-27 10:24:39"  uuid="723c45bf-57eb-4865-b5c9-4a0ad6a36522"/>
+    <concept  concept_id="165425"  retired="0"  datatype_id="2"  class_id="11"  is_set="0"  creator="1"  date_created="2019-11-27 10:26:28"  version="1.0"  changed_by="1"  date_changed="2019-11-27 10:26:28"  uuid="11dafd93-23c1-4b89-86e0-593e5f7ca386"/>
+    <concept  concept_id="165426"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-11-29 12:44:17"  version="1.0"  changed_by="1"  date_changed="2019-11-29 12:44:17"  uuid="5c298370-0520-43f4-a7b8-d9749a26d15c"/>
+    <concept  concept_id="165427"  retired="0"  datatype_id="3"  class_id="5"  is_set="0"  creator="1"  date_created="2019-11-29 12:52:01"  version="1.0"  changed_by="1"  date_changed="2019-11-29 12:52:01"  uuid="13dc84c4-4fc2-44ef-a811-27a4c764bca8"/>
+    <concept  concept_id="165428"  retired="0"  datatype_id="3"  class_id="5"  is_set="0"  creator="1"  date_created="2019-11-29 12:52:53"  version="1.0"  changed_by="1"  date_changed="2019-11-29 12:52:53"  uuid="f48dc58e-3755-4a5c-9525-9a649fd2a148"/>
+    <concept  concept_id="165429"  retired="0"  datatype_id="2"  class_id="11"  is_set="0"  creator="1"  date_created="2019-11-29 14:30:12"  version="1.0"  changed_by="1"  date_changed="2019-11-29 14:34:20"  uuid="5d26ffa1-8b58-45af-a534-bc3b469850cb"/>
+    <concept  concept_id="165438"  retired="0"  datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2019-11-29 14:32:47"  version="1.0"  changed_by="1"  date_changed="2019-11-29 14:32:47"  uuid="eae2bbc8-8f82-4241-9b26-0579bf57b833"/>
+    <concept  concept_id="165431"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-11-29 14:33:25"  version="1.0"  changed_by="1"  date_changed="2019-11-29 14:33:25"  uuid="fd77a408-514b-4325-8777-77dcc9b4d4e8"/>
+    <concept  concept_id="165432"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-11-29 14:55:25"  version="1.0"  changed_by="1"  date_changed="2019-11-29 14:55:25"  uuid="97ad10e2-04de-47da-9fd8-59a1d0b7022d"/>
+    <concept  concept_id="165433"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-11-29 14:56:17"  version="1.0"  changed_by="1"  date_changed="2019-11-29 14:56:17"  uuid="17a8f443-31dd-4d40-b344-3584d5611c3c"/>
+    <concept  concept_id="165434"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-11-29 14:56:42"  version="1.0"  changed_by="1"  date_changed="2019-11-29 14:56:42"  uuid="111aa2a7-5604-4071-8446-c92972c93e51"/>
+    <concept  concept_id="165435"  retired="0"  datatype_id="2"  class_id="11"  is_set="0"  creator="1"  date_created="2019-11-29 14:57:30"  version="1.0"  changed_by="1"  date_changed="2019-11-29 14:57:30"  uuid="4d7477c5-647b-43a5-8316-709539966c1c"/>
+    <concept  concept_id="165436"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-11-29 15:11:51"  version="1.0"  changed_by="1"  date_changed="2019-11-29 15:11:51"  uuid="aa2320ea-deec-4e0f-9324-6e5d721a2563"/>
+    <concept  concept_id="165437"  retired="0"  datatype_id="2"  class_id="11"  is_set="0"  creator="1"  date_created="2019-12-03 12:09:12"  version="1.0"  changed_by="1"  date_changed="2019-12-03 12:09:12"  uuid="3afba6c2-84b9-45ad-accd-1f699622fc77"/>
+    <concept  concept_id="165439"  retired="0"  datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2019-12-03 12:42:39"  version="1.0"  changed_by="1"  date_changed="2019-12-03 12:42:39"  uuid="2c8ddc0b-d92d-45fa-9c6f-23e640fb4d24"/>
+
 
 
 
         <!--CONCEPT NUMERIC-->
     <!--MCH-->
-    <concept_numeric  concept_id="160081"  precise="0" />
-    <concept_numeric  concept_id="159616"  precise="0" />
-    <concept_numeric  concept_id="161928"  hi_absolute="3000"  low_absolute="0" units="mL" precise="0"/>
-    <concept_numeric  concept_id="164967" precise="1"/>
-    <concept_numeric concept_id="1053" units="# children" precise="false"/>
-    <concept_numeric concept_id="159603" hi_absolute="10.0" low_absolute="0.0" units="" precise="false"/>
-    <concept_numeric concept_id="159604" hi_absolute="10.0" low_absolute="0.0" units="" precise="false"/>
-    <concept_numeric concept_id="163460" hi_absolute="88.0" low_absolute="1.0" units="" precise="false"/>
-    <concept_numeric concept_id="163554" units="" precise="false"/>
-    <concept_numeric concept_id="163555" units="" precise="false"/>
-    <concept_numeric concept_id="1418" hi_normal="5.0" low_normal="1.0" units="" precise="false"/>
-    <concept_numeric concept_id="164941" precise="false"/>
-    <concept_numeric concept_id="164942" precise="false"/>
-    <concept_numeric concept_id="164943" precise="false"/>
-    <concept_numeric concept_id="164948" units="Weeks" precise="false"/>
+    <concept_numeric  concept_id="160081"  allow_decimal="0" />
+    <concept_numeric  concept_id="159616"  allow_decimal="0" />
+    <concept_numeric  concept_id="161928"  hi_absolute="3000"  low_absolute="0" units="mL" allow_decimal="0"/>
+    <concept_numeric  concept_id="164967" allow_decimal="1"/>
+    <concept_numeric concept_id="1053" units="# children" allow_decimal="false"/>
+    <concept_numeric concept_id="159603" hi_absolute="10.0" low_absolute="0.0" units="" allow_decimal="false"/>
+    <concept_numeric concept_id="159604" hi_absolute="10.0" low_absolute="0.0" units="" allow_decimal="false"/>
+    <concept_numeric concept_id="163460" hi_absolute="88.0" low_absolute="1.0" units="" allow_decimal="false"/>
+    <concept_numeric concept_id="163554" units="" allow_decimal="false"/>
+    <concept_numeric concept_id="163555" units="" allow_decimal="false"/>
+    <concept_numeric concept_id="1418" hi_normal="5.0" low_normal="1.0" units="" allow_decimal="false"/>
+    <concept_numeric concept_id="164941" allow_decimal="false"/>
+    <concept_numeric concept_id="164942" allow_decimal="false"/>
+    <concept_numeric concept_id="164943" allow_decimal="false"/>
+    <concept_numeric concept_id="164948" units="Weeks" allow_decimal="false"/>
 
     <!--ART-->
-    <concept_numeric  concept_id="90214" precise="0"/>
-    <concept_numeric  concept_id="90222" precise="1"/>
-    <concept_numeric  concept_id="99324" precise="0"/>
-    <concept_numeric  concept_id="99326" precise="0"/>
-    <concept_numeric  concept_id="99343" precise="0"/>
-    <concept_numeric  concept_id="99433" precise="0"/>
-    <concept_numeric  concept_id="99439" precise="0"/>
-    <concept_numeric  concept_id="99449" precise="0"/>
-    <concept_numeric  concept_id="99450" precise="0"/>
-    <concept_numeric  concept_id="99452" precise="0"/>
-    <concept_numeric  concept_id="99463" precise="0"/>
-    <concept_numeric  concept_id="99572" precise="0"/>
-    <concept_numeric  concept_id="99574" precise="0"/>
-    <concept_numeric  concept_id="99576" precise="0"/>
-    <concept_numeric  concept_id="99578" precise="0"/>
-    <concept_numeric  concept_id="99580" precise="0"/>
-    <concept_numeric  concept_id="99582" precise="0"/>
-    <concept_numeric  concept_id="99584" precise="0"/>
-    <concept_numeric  concept_id="99586" precise="0"/>
-    <concept_numeric  concept_id="99588" precise="0"/>
-    <concept_numeric  concept_id="99590" precise="0"/>
-    <concept_numeric  concept_id="99592" precise="0"/>
-    <concept_numeric  concept_id="99604" precise="0"/>
-    <concept_numeric  concept_id="99605" precise="0"/>
-    <concept_numeric  concept_id="99671" precise="1"/>
-    <concept_numeric  concept_id="99672" precise="1"/>
-    <concept_numeric  concept_id="99695" precise="1"/>
-    <concept_numeric  concept_id="99696" precise="1"/>
-    <concept_numeric  concept_id="99727" precise="0"/>
-    <concept_numeric  concept_id="99729" precise="0"/>
-    <concept_numeric  concept_id="99733" precise="0"/>
-    <concept_numeric  concept_id="99761" precise="0"/>
-    <concept_numeric  concept_id="99762" precise="0"/>
-    <concept_numeric  concept_id="99772" precise="0"/>
-    <concept_numeric  concept_id="99774" precise="0"/>
-    <concept_numeric  concept_id="99778" precise="0"/>
-    <concept_numeric  concept_id="99796" precise="0"/>
-    <concept_numeric  concept_id="99820" precise="0"/>
-    <concept_numeric  concept_id="99829" precise="0"/>
-    <concept_numeric  concept_id="99838" precise="0"/>
-    <concept_numeric  concept_id="99847" precise="0"/>
-    <concept_numeric  concept_id="99856" precise="0"/>
-    <concept_numeric  concept_id="99865" precise="0"/>
-    <concept_numeric  concept_id="99874" precise="0"/>
-    <concept_numeric concept_id="163155" hi_absolute="100.0" low_absolute="0.0" units="%" precise="true"/>
-    <concept_numeric concept_id="159368" units="" precise="false"/>
-    <concept_numeric concept_id="160856" units="" precise="false"/>
-    <concept_numeric concept_id="165118" units="Pills" precise="1"/>
+    <concept_numeric  concept_id="90214" allow_decimal="0"/>
+    <concept_numeric  concept_id="90222" allow_decimal="1"/>
+    <concept_numeric  concept_id="99324" allow_decimal="0"/>
+    <concept_numeric  concept_id="99326" allow_decimal="0"/>
+    <concept_numeric  concept_id="99343" allow_decimal="0"/>
+    <concept_numeric  concept_id="99433" allow_decimal="0"/>
+    <concept_numeric  concept_id="99439" allow_decimal="0"/>
+    <concept_numeric  concept_id="99449" allow_decimal="0"/>
+    <concept_numeric  concept_id="99450" allow_decimal="0"/>
+    <concept_numeric  concept_id="99452" allow_decimal="0"/>
+    <concept_numeric  concept_id="99463" allow_decimal="0"/>
+    <concept_numeric  concept_id="99572" allow_decimal="0"/>
+    <concept_numeric  concept_id="99574" allow_decimal="0"/>
+    <concept_numeric  concept_id="99576" allow_decimal="0"/>
+    <concept_numeric  concept_id="99578" allow_decimal="0"/>
+    <concept_numeric  concept_id="99580" allow_decimal="0"/>
+    <concept_numeric  concept_id="99582" allow_decimal="0"/>
+    <concept_numeric  concept_id="99584" allow_decimal="0"/>
+    <concept_numeric  concept_id="99586" allow_decimal="0"/>
+    <concept_numeric  concept_id="99588" allow_decimal="0"/>
+    <concept_numeric  concept_id="99590" allow_decimal="0"/>
+    <concept_numeric  concept_id="99592" allow_decimal="0"/>
+    <concept_numeric  concept_id="99604" allow_decimal="0"/>
+    <concept_numeric  concept_id="99605" allow_decimal="0"/>
+    <concept_numeric  concept_id="99671" allow_decimal="1"/>
+    <concept_numeric  concept_id="99672" allow_decimal="1"/>
+    <concept_numeric  concept_id="99695" allow_decimal="1"/>
+    <concept_numeric  concept_id="99696" allow_decimal="1"/>
+    <concept_numeric  concept_id="99727" allow_decimal="0"/>
+    <concept_numeric  concept_id="99729" allow_decimal="0"/>
+    <concept_numeric  concept_id="99733" allow_decimal="0"/>
+    <concept_numeric  concept_id="99761" allow_decimal="0"/>
+    <concept_numeric  concept_id="99762" allow_decimal="0"/>
+    <concept_numeric  concept_id="99772" allow_decimal="0"/>
+    <concept_numeric  concept_id="99774" allow_decimal="0"/>
+    <concept_numeric  concept_id="99778" allow_decimal="0"/>
+    <concept_numeric  concept_id="99796" allow_decimal="0"/>
+    <concept_numeric  concept_id="99820" allow_decimal="0"/>
+    <concept_numeric  concept_id="99829" allow_decimal="0"/>
+    <concept_numeric  concept_id="99838" allow_decimal="0"/>
+    <concept_numeric  concept_id="99847" allow_decimal="0"/>
+    <concept_numeric  concept_id="99856" allow_decimal="0"/>
+    <concept_numeric  concept_id="99865" allow_decimal="0"/>
+    <concept_numeric  concept_id="99874" allow_decimal="0"/>
+    <concept_numeric concept_id="163155" hi_absolute="100.0" low_absolute="0.0" units="%" allow_decimal="true"/>
+    <concept_numeric concept_id="159368" units="" allow_decimal="false"/>
+    <concept_numeric concept_id="160856" units="" allow_decimal="false"/>
+    <concept_numeric concept_id="165118" units="Pills" allow_decimal="1"/>
 
     <!--TB-->
-    <concept_numeric concept_id="162584" units="" precise="false"/>
-    <concept_numeric concept_id="164419" units="" precise="false"/>
-    <concept_numeric concept_id="164421" units="" precise="false"/>
-    <concept_numeric concept_id="159952" low_absolute="0.0" units="" precise="false"/>
-    <concept_numeric concept_id="160047" units="" precise="false"/>
-    <concept_numeric concept_id="1443" units="" precise="false"/>
-    <concept_numeric concept_id="159368" units="" precise="false"/>
-    <concept_numeric concept_id="140144" precise="false"/>
-    <concept_numeric concept_id="140144" precise="false"/>
-    <concept_numeric concept_id="159646" units="mg/dL" precise="true"/>
-    <concept_numeric concept_id="159647" units="mg/dL" precise="true"/>
-    <concept_numeric concept_id="159652" units="mmHg" precise="true"/>
+    <concept_numeric concept_id="162584" units="" allow_decimal="false"/>
+    <concept_numeric concept_id="164419" units="" allow_decimal="false"/>
+    <concept_numeric concept_id="164421" units="" allow_decimal="false"/>
+    <concept_numeric concept_id="159952" low_absolute="0.0" units="" allow_decimal="false"/>
+    <concept_numeric concept_id="160047" units="" allow_decimal="false"/>
+    <concept_numeric concept_id="1443" units="" allow_decimal="false"/>
+    <concept_numeric concept_id="159368" units="" allow_decimal="false"/>
+    <concept_numeric concept_id="140144" allow_decimal="false"/>
+    <concept_numeric concept_id="140144" allow_decimal="false"/>
+    <concept_numeric concept_id="159646" units="mg/dL" allow_decimal="true"/>
+    <concept_numeric concept_id="159647" units="mg/dL" allow_decimal="true"/>
+    <concept_numeric concept_id="159652" units="mmHg" allow_decimal="true"/>
 
     <!--CONCEPT DESCRIPTION-->
     <!--ART-->
@@ -1699,6 +1706,28 @@
     <concept_name  concept_name_id="160384"  concept_id="165314"  name="Suspicious of Malignancy"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-10-03 22:03:31"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="9b790cb8-0367-4530-93fd-fdf9ee3e99c7"/>
     <concept_name  concept_name_id="160385"  concept_id="165315"  name="CERVICAL CANCER SCREENING"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-10-03 22:05:31"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="158dceac-7f18-4255-b119-0c0acd7f08c9"/>
     <concept_name  concept_name_id="160386"  concept_id="165316"  name="Intention to conceive in the next 3 months"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-10-07 17:46:34"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="251f29ab-e851-49d0-ba0a-04be236ba65b"/>
+    <concept_name  concept_name_id="160503"  concept_id="165420"  name="Died (Negative)"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-11-27 09:59:16"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="e8fdbb15-3dc6-4898-9efc-c04fbdb11db3"/>
+    <concept_name  concept_name_id="160504"  concept_id="165421"  name="Died (Positive)"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-11-27 09:59:50"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="202948ee-4bc1-4677-9352-aceac4481900"/>
+    <concept_name  concept_name_id="160505"  concept_id="165422"  name="Partner TFV"  locale="en"  locale_preferred="0"  creator="1"  date_created="2019-11-27 10:15:44"  concept_name_type="SHORT"  voided="0" uuid="ebfd61b7-287c-495c-8de6-1836c7140740"/>
+    <concept_name  concept_name_id="160506"  concept_id="165422"  name="Partner Tested For Verification"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-11-27 10:15:44"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="f11f3efd-cdef-4cd6-b3dd-22bb37e614a1"/>
+    <concept_name  concept_name_id="160507"  concept_id="165423"  name="Woman TFV"  locale="en"  locale_preferred="0"  creator="1"  date_created="2019-11-27 10:17:54"  concept_name_type="SHORT"  voided="0" uuid="63285b8d-abac-488e-86a0-7c42bd1d78d3"/>
+    <concept_name  concept_name_id="160508"  concept_id="165423"  name="Woman Tested For Verification"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-11-27 10:17:54"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="2e585a61-f245-445e-b594-930ee019ca57"/>
+    <concept_name  concept_name_id="160509"  concept_id="165424"  name="Partner Pre-ART No."  locale="en"  locale_preferred="0"  creator="1"  date_created="2019-11-27 10:23:27"  concept_name_type="SHORT"  voided="0" uuid="78442caf-bac1-4445-b9c1-75fc3fd6fc93"/>
+    <concept_name  concept_name_id="160510"  concept_id="165424"  name="Partner Pre-ART Number"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-11-27 10:23:27"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="5b84a70d-01c8-4a87-a65b-2bc91fdbd772"/>
+    <concept_name  concept_name_id="160511"  concept_id="165425"  name="Partner Started on ARV Drugs this ANC"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-11-27 10:26:28"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="3a9823b8-84f5-45e7-b8ad-e9446e5f2c54"/>
+    <concept_name  concept_name_id="160512"  concept_id="165426"  name="Daily NVP from birth to 12weeks"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-11-29 12:44:17"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="54965de3-b245-47d3-be15-64ab3058a754"/>
+    <concept_name  concept_name_id="160513"  concept_id="165427"  name="Other Facility Reffered from"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-11-29 12:52:01"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="0a02c2b1-0b3e-4b4e-adc0-f61396fb570a"/>
+    <concept_name  concept_name_id="160514"  concept_id="165428"  name="Other Facility Reffered To"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-11-29 12:52:53"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="cc38b550-ae5e-45e4-8a9f-01f4488dd40c"/>
+    <concept_name  concept_name_id="160515"  concept_id="165429"  name="GBV Screening"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-11-29 14:30:12"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="7e577774-8121-4b42-a1f8-85f4e9dadc51"/>
+    <concept_name  concept_name_id="160516"  concept_id="165438"  name="Victim"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-11-29 14:32:47"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="9c6da122-57e5-4c4e-ac00-4dd5adeaee8c"/>
+    <concept_name  concept_name_id="160517"  concept_id="165431"  name="Perpetrator"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-11-29 14:33:25"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="f6f3e444-419a-4a56-8c8b-dd5731af6a0d"/>
+    <concept_name  concept_name_id="160518"  concept_id="165432"  name="Sexual"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-11-29 14:55:25"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="064454a2-7c35-4b1d-a261-0c190033c5e3"/>
+    <concept_name  concept_name_id="160519"  concept_id="165433"  name="Psychosocial"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-11-29 14:56:17"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="a8a1fc21-dd59-42ce-8715-069ac892f97d"/>
+    <concept_name  concept_name_id="160520"  concept_id="165434"  name="Physical"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-11-29 14:56:42"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="549c39a4-90c4-4596-b1a9-b695f50c03ad"/>
+    <concept_name  concept_name_id="160521"  concept_id="165435"  name="Violence Type"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-11-29 14:57:30"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="50944b30-0bf0-4a62-a248-7e71db8f8084"/>
+    <concept_name  concept_name_id="160522"  concept_id="165436"  name="AUD"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-11-29 15:11:51"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="4e6fbc93-4864-4037-a1f0-4763e59a7054"/>
+    <concept_name  concept_name_id="160523"  concept_id="165437"  name="STI SCREENING"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-12-03 12:09:12"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="1c50ffca-f253-4d12-8418-a26704388331"/>
+    <concept_name  concept_name_id="160524"  concept_id="165439"  name="Confirmed TB not on Treatment"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-12-03 12:42:39"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="e0e21537-dd5c-4f71-99ee-9d7e90d50844"/>
 
     <concept_name  concept_name_id="160166"  concept_id="165137"  name="BASELINE HIV VIRAL LOAD SET"  locale="en"  locale_preferred="1"  creator="1"  voided="0" date_created="2018-09-11 15:45:11"  concept_name_type="FULLY_SPECIFIED" uuid="d0fb2e3e-0b9d-11ea-8d71-362b9e155667"/>
 
@@ -1943,81 +1972,6 @@
     <concept_name concept_id="160036" name="&#1055;&#1072;&#1094;&#1080;&#1077;&#1085;&#1090; &#1087;&#1077;&#1088;&#1077;&#1074;&#1077;&#1076;&#1077;&#1085;" locale="ru" creator="1" date_created="2014-12-26 21:48:26.0" concept_name_id="126861" voided="false" uuid="126861BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
     <concept_name concept_id="160036" name="Patient transferre" locale="fr" creator="1" date_created="2016-07-10 03:45:22.0" concept_name_id="137614" voided="false" uuid="137614BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
     <concept_name concept_id="160036" name="Malad transfere" locale="ht" creator="1" date_created="2016-07-10 03:45:22.0" concept_name_id="137615" voided="false" uuid="137615BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
-    <concept_name concept_id="160858" name="BD" locale="en" creator="1" date_created="2012-07-16 01:24:20.0" concept_name_id="109541" voided="false" uuid="109541BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="SHORT" locale_preferred="false"/>
-    <concept_name concept_id="160858" name="Twice a day" locale="en" creator="1" date_created="2012-07-16 01:24:20.0" concept_name_id="109542" voided="false" void_reason="" uuid="109542BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160858" name="Twice daily" locale="en" creator="1" date_created="2012-07-16 01:24:20.0" concept_name_id="109543" voided="false" uuid="109543BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
-    <concept_name concept_id="160858" name="BID" locale="en" creator="1" date_created="2013-12-08 23:46:13.0" concept_name_id="125228" voided="false" void_reason="" uuid="125228BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160858" name="Twice per day" locale="en" creator="1" date_created="2013-12-27 20:49:04.0" concept_name_id="125282" voided="false" void_reason="" uuid="125282BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160858" name="2 times per day" locale="en" creator="1" date_created="2014-10-28 14:42:02.0" concept_name_id="126443" voided="false" uuid="126443BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160859" name="BIDAC" locale="en" creator="1" date_created="2012-07-16 01:25:05.0" concept_name_id="109544" voided="false" uuid="109544BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="SHORT" locale_preferred="false"/>
-    <concept_name concept_id="160859" name="Twice a day before meals" locale="en" creator="1" date_created="2012-07-16 01:25:05.0" concept_name_id="109545" voided="false" void_reason="" uuid="109545BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160859" name="Twice daily before meals" locale="en" creator="1" date_created="2012-07-16 01:25:05.0" concept_name_id="109546" voided="false" uuid="109546BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
-    <concept_name concept_id="160859" name="Twice per day before meals" locale="en" creator="1" date_created="2013-12-27 20:49:29.0" concept_name_id="125283" voided="false" uuid="125283BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160860" name="Twice a day after meals" locale="en" creator="1" date_created="2012-07-16 01:25:52.0" concept_name_id="109547" voided="false" void_reason="" uuid="109547BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160860" name="Twice daily after meals" locale="en" creator="1" date_created="2012-07-16 01:25:52.0" concept_name_id="109548" voided="false" uuid="109548BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
-    <concept_name concept_id="160860" name="BIDPC" locale="en" creator="1" date_created="2012-07-16 01:25:52.0" concept_name_id="109549" voided="false" uuid="109549BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="SHORT" locale_preferred="false"/>
-    <concept_name concept_id="160860" name="Twice per day after meals" locale="en" creator="1" date_created="2013-12-27 20:50:21.0" concept_name_id="125284" voided="false" uuid="125284BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160861" name="Twice a day with meals" locale="en" creator="1" date_created="2012-07-16 01:26:48.0" concept_name_id="109550" voided="false" void_reason="" uuid="109550BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160861" name="BIDWM" locale="en" creator="1" date_created="2012-07-16 01:26:48.0" concept_name_id="109551" voided="false" uuid="109551BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="SHORT" locale_preferred="false"/>
-    <concept_name concept_id="160861" name="Twice daily with meals" locale="en" creator="1" date_created="2012-07-16 01:26:48.0" concept_name_id="109552" voided="false" uuid="109552BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
-    <concept_name concept_id="160861" name="Twice per day with meals" locale="en" creator="1" date_created="2013-12-27 20:50:43.0" concept_name_id="125285" voided="false" uuid="125285BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160862" name="OD (once daily)" locale="en" creator="1" date_created="2012-07-16 01:31:27.0" concept_name_id="109553" voided="false" uuid="109553BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="SHORT" locale_preferred="false"/>
-    <concept_name concept_id="160862" name="Once a day" locale="en" creator="1" date_created="2012-07-16 01:31:27.0" concept_name_id="109554" voided="false" void_reason="" uuid="109554BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160862" name="Once daily" locale="en" creator="1" date_created="2012-07-16 01:31:27.0" concept_name_id="109555" voided="false" uuid="109555BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
-    <concept_name concept_id="160862" name="QD (once daily)" locale="en" creator="1" date_created="2012-07-16 01:31:27.0" concept_name_id="109556" voided="false" void_reason="" uuid="109556BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160862" name="Once per day" locale="en" creator="1" date_created="2013-12-27 20:51:12.0" concept_name_id="125286" voided="false" void_reason="" uuid="125286BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160862" name="Daily" locale="en" creator="1" date_created="2014-10-28 14:41:30.0" concept_name_id="126442" voided="false" void_reason="" uuid="126442BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160862" name="1 time per day" locale="en" creator="1" date_created="2014-10-28 14:58:21.0" concept_name_id="126444" voided="false" uuid="126444BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160863" name="Once a day, at bedtime" locale="en" creator="1" date_created="2012-07-16 01:32:24.0" concept_name_id="109557" voided="false" void_reason="" uuid="109557BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160863" name="Once daily, at bedtime" locale="en" creator="1" date_created="2012-07-16 01:32:24.0" concept_name_id="109558" voided="false" uuid="109558BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
-    <concept_name concept_id="160863" name="qHS" locale="en" creator="1" date_created="2012-07-16 01:32:24.0" concept_name_id="109559" voided="false" uuid="109559BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="SHORT" locale_preferred="false"/>
-    <concept_name concept_id="160863" name="Once per day, at bedtime" locale="en" creator="1" date_created="2013-12-27 20:51:52.0" concept_name_id="125287" voided="false" uuid="125287BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160864" name="Once daily, in the evening" locale="en" creator="1" date_created="2012-07-16 01:33:25.0" concept_name_id="109560" voided="false" uuid="109560BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
-    <concept_name concept_id="160864" name="Once a day, in the evening" locale="en" creator="1" date_created="2012-07-16 01:33:25.0" concept_name_id="109561" voided="false" void_reason="" uuid="109561BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160864" name="qPM" locale="en" creator="1" date_created="2012-07-16 01:33:25.0" concept_name_id="109562" voided="false" uuid="109562BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="SHORT" locale_preferred="false"/>
-    <concept_name concept_id="160864" name="Once per day, in the evening" locale="en" creator="1" date_created="2013-12-27 20:52:20.0" concept_name_id="125288" voided="false" uuid="125288BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160865" name="Once daily, in the morning" locale="en" creator="1" date_created="2012-07-16 01:34:18.0" concept_name_id="109563" voided="false" uuid="109563BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
-    <concept_name concept_id="160865" name="qAM" locale="en" creator="1" date_created="2012-07-16 01:34:18.0" concept_name_id="109564" voided="false" uuid="109564BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="SHORT" locale_preferred="false"/>
-    <concept_name concept_id="160865" name="Once a day, in the morning" locale="en" creator="1" date_created="2012-07-16 01:34:18.0" concept_name_id="109565" voided="false" void_reason="" uuid="109565BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160865" name="Once per day, in the morning" locale="en" creator="1" date_created="2013-12-27 20:52:32.0" concept_name_id="125289" voided="false" uuid="125289BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160866" name="TD" locale="en" creator="1" date_created="2012-07-16 01:35:23.0" concept_name_id="109566" voided="false" uuid="109566BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="SHORT" locale_preferred="false"/>
-    <concept_name concept_id="160866" name="Three times a day" locale="en" creator="1" date_created="2012-07-16 01:35:23.0" concept_name_id="109567" voided="false" void_reason="" uuid="109567BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160866" name="Thrice daily" locale="en" creator="1" date_created="2012-07-16 01:35:23.0" concept_name_id="109568" voided="false" uuid="109568BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
-    <concept_name concept_id="160866" name="TID" locale="en" creator="1" date_created="2013-12-08 23:49:41.0" concept_name_id="125229" voided="false" void_reason="" uuid="125229BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160866" name="Three times per day" locale="en" creator="1" date_created="2013-12-27 20:52:57.0" concept_name_id="125290" voided="false" void_reason="" uuid="125290BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160866" name="3 times per day" locale="en" creator="1" date_created="2014-10-28 15:16:27.0" concept_name_id="126445" voided="false" uuid="126445BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160867" name="Three times a day, after meals" locale="en" creator="1" date_created="2012-07-16 01:36:21.0" concept_name_id="109569" voided="false" void_reason="" uuid="109569BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160867" name="TIDPC" locale="en" creator="1" date_created="2012-07-16 01:36:21.0" concept_name_id="109570" voided="false" uuid="109570BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="SHORT" locale_preferred="false"/>
-    <concept_name concept_id="160867" name="Thrice daily, after meals" locale="en" creator="1" date_created="2012-07-16 01:36:21.0" concept_name_id="109571" voided="false" uuid="109571BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
-    <concept_name concept_id="160867" name="Three times per day, after meals" locale="en" creator="1" date_created="2013-12-27 20:53:10.0" concept_name_id="125291" voided="false" void_reason="" uuid="125291BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160867" name="3 times per day, after meals" locale="en" creator="1" date_created="2014-10-28 15:45:35.0" concept_name_id="126447" voided="false" uuid="126447BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160868" name="Thrice daily, before meals" locale="en" creator="1" date_created="2012-07-16 01:37:10.0" concept_name_id="109572" voided="false" uuid="109572BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
-    <concept_name concept_id="160868" name="Three times a day, before meals" locale="en" creator="1" date_created="2012-07-16 01:37:10.0" concept_name_id="109573" voided="false" void_reason="" uuid="109573BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160868" name="TIDAC" locale="en" creator="1" date_created="2012-07-16 01:37:10.0" concept_name_id="109574" voided="false" uuid="109574BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="SHORT" locale_preferred="false"/>
-    <concept_name concept_id="160868" name="Three times per day, before meals" locale="en" creator="1" date_created="2013-12-27 20:53:23.0" concept_name_id="125292" voided="false" void_reason="" uuid="125292BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160868" name="3 times per day, before meals" locale="en" creator="1" date_created="2014-10-28 15:46:43.0" concept_name_id="126449" voided="false" uuid="126449BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160869" name="Three times a day, with meals" locale="en" creator="1" date_created="2012-07-16 01:38:07.0" concept_name_id="109575" voided="false" void_reason="" uuid="109575BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160869" name="Thrice daily, with meals" locale="en" creator="1" date_created="2012-07-16 01:38:07.0" concept_name_id="109576" voided="false" uuid="109576BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
-    <concept_name concept_id="160869" name="TIDWM" locale="en" creator="1" date_created="2012-07-16 01:38:07.0" concept_name_id="109577" voided="false" uuid="109577BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="SHORT" locale_preferred="false"/>
-    <concept_name concept_id="160869" name="Three times per day, with meals" locale="en" creator="1" date_created="2013-12-27 20:53:43.0" concept_name_id="125293" voided="false" void_reason="" uuid="125293BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160869" name="3 times per day, with meals" locale="en" creator="1" date_created="2014-10-28 15:46:13.0" concept_name_id="126448" voided="false" uuid="126448BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160870" name="QID" locale="en" creator="1" date_created="2012-07-16 01:40:55.0" concept_name_id="109578" voided="false" uuid="109578BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="SHORT" locale_preferred="false"/>
-    <concept_name concept_id="160870" name="Four times daily" locale="en" creator="1" date_created="2012-07-16 01:40:55.0" concept_name_id="109579" voided="false" uuid="109579BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
-    <concept_name concept_id="160870" name="Four times a day" locale="en" creator="1" date_created="2012-07-16 01:40:55.0" concept_name_id="109580" voided="false" void_reason="" uuid="109580BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160870" name="QDS (four times a day)" locale="en" creator="1" date_created="2012-07-16 01:40:55.0" concept_name_id="109581" voided="false" void_reason="" uuid="109581BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160870" name="Four times per day" locale="en" creator="1" date_created="2013-12-27 20:54:03.0" concept_name_id="125294" voided="false" void_reason="" uuid="125294BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160870" name="4 times per day" locale="en" creator="1" date_created="2014-10-28 15:40:04.0" concept_name_id="126446" voided="false" uuid="126446BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160871" name="Four times daily, after meals and at bedtime" locale="en" creator="1" date_created="2012-07-16 01:42:13.0" concept_name_id="109582" voided="false" uuid="109582BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
-    <concept_name concept_id="160871" name="Four times a day, after meals and at bedtime" locale="en" creator="1" date_created="2012-07-16 01:42:13.0" concept_name_id="109583" voided="false" void_reason="" uuid="109583BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160871" name="QIDPCHS" locale="en" creator="1" date_created="2012-07-16 01:42:13.0" concept_name_id="109584" voided="false" uuid="109584BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="SHORT" locale_preferred="false"/>
-    <concept_name concept_id="160871" name="Four times per day, after meals and at bedtime" locale="en" creator="1" date_created="2013-12-27 20:54:29.0" concept_name_id="125295" voided="false" void_reason="" uuid="125295BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160871" name="4 times per day, after meals and at bedtime" locale="en" creator="1" date_created="2014-10-28 15:48:40.0" concept_name_id="126452" voided="false" uuid="126452BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160872" name="qac and qhs" locale="en" creator="1" date_created="2012-07-16 01:43:28.0" concept_name_id="109585" voided="false" void_reason="" uuid="109585BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160872" name="Four times daily, before meals and at bedtime" locale="en" creator="1" date_created="2012-07-16 01:43:28.0" concept_name_id="109586" voided="false" uuid="109586BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
-    <concept_name concept_id="160872" name="QIDACHS" locale="en" creator="1" date_created="2012-07-16 01:43:28.0" concept_name_id="109587" voided="false" uuid="109587BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="SHORT" locale_preferred="false"/>
-    <concept_name concept_id="160872" name="Four times a day, before meals and at bedtime" locale="en" creator="1" date_created="2013-12-27 20:55:31.0" concept_name_id="125296" voided="false" void_reason="" uuid="125296BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160872" name="Four times per day, before meals and at bedtime" locale="en" creator="1" date_created="2013-12-27 20:55:31.0" concept_name_id="125297" voided="false" void_reason="" uuid="125297BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
-    <concept_name concept_id="160872" name="4 times per day, before meals and at bedtime" locale="en" creator="1" date_created="2014-10-28 15:48:18.0" concept_name_id="126451" voided="false" uuid="126451BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
     <concept_name concept_id="162135" name="One time" locale="en" creator="1" date_created="2013-09-10 13:33:37.0" concept_name_id="124906" voided="false" uuid="124906BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
     <concept_name concept_id="162135" name="Single event" locale="en" creator="1" date_created="2013-09-10 13:33:37.0" concept_name_id="124907" voided="false" void_reason="" uuid="124907BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
     <concept_name concept_id="162135" name="Once" locale="en" creator="1" date_created="2013-12-27 20:56:35.0" concept_name_id="125298" voided="false" uuid="125298BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="false"/>
@@ -3897,6 +3851,10 @@
     <concept_name  concept_name_id="160371"  concept_id="165305"  name="TB Med Set"  locale="en"  locale_preferred="0"  creator="1"  date_created="2019-10-02 20:23:06"  concept_name_type="SHORT"  voided="0"  uuid="e1c5db70-cb78-4873-a06b-b4ba15476482"/>
     <concept_name  concept_name_id="160370"  concept_id="165304"  name="DAPSONE-CTX MEDSET"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-10-02 20:13:55"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="f1be6659-84d7-4bd8-b751-fc01c82e3dd1"/>
     <concept_name  concept_name_id="160376"  concept_id="165308"  name="ANTI FUNGAL MEDICATION"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-10-03 10:05:25"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="71cff1bd-cc11-4fca-8737-5da99942d95d"/>
+    <concept_name  concept_name_id="160501"  concept_id="165430"  name="ARV MEDICATION SET"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-11-25 12:06:58"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="07ee7da2-554a-41f5-b462-4a898a28897e"/>
+    <concept_name  concept_name_id="160502"  concept_id="165430"  name="ARV MED SET"  locale="en"  locale_preferred="0"  creator="1"  date_created="2019-11-25 12:06:58"  concept_name_type="SHORT"  voided="0" uuid="33c53193-4bc9-41db-b4a3-0b3dcc1f6c83"/>
+
+
 
     <concept_name  concept_name_id="160380"  concept_id="165319"  name="Nationality"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-10-07 16:12:31"  concept_name_type="FULLY_SPECIFIED"  voided="0"    uuid="218a436f-2a4b-4a4f-87e3-9f07bb4c4dc2"/>
     <concept_name  concept_name_id="160379"  concept_id="165318"  name="Foreigner"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-10-07 16:11:20"  concept_name_type="FULLY_SPECIFIED"  voided="0"    uuid="cf093d39-914f-49cb-92e7-57439b671afe"/>
@@ -4011,7 +3969,9 @@
     <concept_name  concept_name_id="160489"  concept_id="165409"  name="MEASLES ONE"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-11-05 08:57:30"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="3f16efc7-f8b4-4dc4-ad97-d1627903aec6"/>
     <concept_name  concept_name_id="160490"  concept_id="165410"  name="MEASLES TWO"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-11-05 08:58:26"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="f96ceefe-69c4-447f-9094-1c03f9384993"/>
     <concept_name  concept_name_id="160491"  concept_id="165410"  name="MR2"  locale="en"  locale_preferred="0"  creator="1"  date_created="2019-11-05 08:58:26"  concept_name_type="SHORT"  voided="0"  uuid="3dd11273-e2f4-4e9c-8b29-1c45c78c90f2"/>
-    <!--CONCEPT ANSWERS-->
+    <concept_name  concept_name_id="160501"  concept_id="165419"  name="Malaria Test"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-11-12 10:40:00"  concept_name_type="FULLY_SPECIFIED"  voided="0"   uuid="91fc9430-d52f-49d8-a1d8-eb1af9b3a1b2"/>
+
+        <!--CONCEPT ANSWERS-->
     <!--MCH-->
     <concept_answer  concept_answer_id="780"  concept_id="5282"  answer_concept="1143" creator="1" date_created="2006-04-15 09:35:11"  uuid="780CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"  sort_weight="780"/>
     <concept_answer  concept_answer_id="781"  concept_id="5282"  answer_concept="977" creator="1" date_created="2006-04-15 09:35:11"  uuid="781CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"  sort_weight="781"/>
@@ -4896,6 +4856,17 @@
     <concept_answer  concept_answer_id="7270"  concept_id="165200"  answer_concept="165273"    creator="1"  date_created="2019-09-24 08:35:33"  sort_weight="8"  uuid="431218b2-7d52-4899-82b2-cd98e43441e1"/>
     <concept_answer  concept_answer_id="7345"  concept_id="165316"  answer_concept="1065"  creator="1"  date_created="2019-10-07 17:46:34"  sort_weight="1"  uuid="ae9dddcf-e9ed-40e7-9bb4-81a6bf9bd693"/>
     <concept_answer  concept_answer_id="7346"  concept_id="165316"  answer_concept="1066"  creator="1"  date_created="2019-10-07 17:46:34"  sort_weight="2"  uuid="0b36057a-79c5-4b64-a546-cec8f5357f72"/>
+    <concept_answer  concept_answer_id="7366065"  concept_id="164954"  answer_concept="90002"  creator="1"  date_created="2019-12-12 11:26:40"  sort_weight="4"  uuid="e3d91332-5c10-490f-bb63-c642a1ac4a70"/>
+    <concept_answer  concept_answer_id="7366066"  concept_id="99362"  answer_concept="90002"  creator="1"  date_created="2019-12-12 11:27:05"  sort_weight="4"  uuid="ff20ce38-f614-4d8e-9c52-b75b832d362b"/>
+    <concept_answer  concept_answer_id="7366067"  concept_id="99785"  answer_concept="99786"  creator="1"  date_created="2019-12-12 11:28:09"  sort_weight="6"  uuid="d421ddfa-37f0-46ce-9727-41bbb807b722"/>
+    <concept_answer  concept_answer_id="7366068"  concept_id="99785"  answer_concept="99782"  creator="1"  date_created="2019-12-12 11:28:09"  sort_weight="7"  uuid="ce4053ee-0248-4140-972a-8e4cc39a44f1"/>
+    <concept_answer  concept_answer_id="7366069"  concept_id="99785"  answer_concept="90001"  creator="1"  date_created="2019-12-12 11:28:09"  sort_weight="8"  uuid="300fc613-4247-4e6b-9ae3-97dd3b7e46f6"/>
+    <concept_answer  concept_answer_id="7366070"  concept_id="99784"  answer_concept="99786"  creator="1"  date_created="2019-12-12 11:29:03"  sort_weight="6"  uuid="a55038d2-e222-483e-873f-5f5d4a23b1a1"/>
+    <concept_answer  concept_answer_id="7366071"  concept_id="99784"  answer_concept="99782"  creator="1"  date_created="2019-12-12 11:29:03"  sort_weight="7"  uuid="903d8ed2-4adc-46bf-a230-38a9e8e9e38f"/>
+    <concept_answer  concept_answer_id="7366072"  concept_id="99784"  answer_concept="90001"  creator="1"  date_created="2019-12-12 11:29:03"  sort_weight="8"  uuid="ac70d796-f524-48f9-8e28-16e9d1957183"/>
+    <concept_answer  concept_answer_id="7366073"  concept_id="99783"  answer_concept="99786"  creator="1"  date_created="2019-12-12 11:30:14"  sort_weight="6"  uuid="0bb89702-da34-4e52-bddb-7ad880bf1757"/>
+    <concept_answer  concept_answer_id="7366074"  concept_id="99783"  answer_concept="99782"  creator="1"  date_created="2019-12-12 11:30:14"  sort_weight="7"  uuid="adc4eb14-b11c-4f4a-b024-b2e9001c549c"/>
+    <concept_answer  concept_answer_id="7366075"  concept_id="99783"  answer_concept="90001"  creator="1"  date_created="2019-12-12 11:30:14"  sort_weight="8"  uuid="22babca4-1945-40ca-a5bc-af684c21898b"/>
 
     <!--    ART SUMMARY PAGE CONCEPT ANSWERS 2019-->
     <concept_answer  concept_answer_id="7229"  concept_id="90200"  answer_concept="165224"    creator="1"  date_created="2019-09-03 16:58:33"  sort_weight="13"  uuid="04a4b004-5a8f-4764-979c-6bddc5c8d781"/>
@@ -5103,6 +5074,34 @@
     <concept_answer  concept_answer_id="7366033"  concept_id="165407"  answer_concept="6046"  creator="1"  date_created="2019-11-05 08:26:17"  sort_weight="2"  uuid="c1537711-5969-4944-ad6d-b183194a86ee"/>
     <concept_answer  concept_answer_id="7366034"  concept_id="162839"  answer_concept="165409"  creator="1"  date_created="2019-11-05 08:58:50"  sort_weight="16"  uuid="9b32819e-bcf9-4bd1-a7cd-b1efdd8c58c5"/>
     <concept_answer  concept_answer_id="7366035"  concept_id="162839"  answer_concept="165410"  creator="1"  date_created="2019-11-05 08:58:50"  sort_weight="17"  uuid="9ce5d7ab-880c-4d07-9367-37a5815e2c09"/>
+    <concept_answer  concept_answer_id="7366038"  concept_id="1271"  answer_concept="165416"  creator="1"  date_created="2019-11-12 12:25:35"  sort_weight="21"  uuid="56a4f6ee-c0ea-49d3-983d-8adc7b953323"/>
+    <concept_answer  concept_answer_id="7366038"  concept_id="99428"  answer_concept="165420"  creator="1"  date_created="2019-11-27 10:02:47"  sort_weight="5"  uuid="148d93d2-69ca-4259-8dcb-ce460ef39bc1"/>
+    <concept_answer  concept_answer_id="7366039"  concept_id="99428"  answer_concept="165421"  creator="1"  date_created="2019-11-27 10:02:47"  sort_weight="6"  uuid="9637b293-7e75-411d-bac3-8b808a9a09f0"/>
+    <concept_answer  concept_answer_id="7366040"  concept_id="165422"  answer_concept="1175"  creator="1"  date_created="2019-11-27 10:15:44"  sort_weight="3"  uuid="bd0219d3-a5cd-4b6e-ac93-4e0323aad768"/>
+    <concept_answer  concept_answer_id="7366041"  concept_id="165422"  answer_concept="1065"  creator="1"  date_created="2019-11-27 10:15:44"  sort_weight="1"  uuid="77138db9-4b33-43be-bb7b-c5fe0a7152a1"/>
+    <concept_answer  concept_answer_id="7366042"  concept_id="165422"  answer_concept="1066"  creator="1"  date_created="2019-11-27 10:15:44"  sort_weight="2"  uuid="814a6702-c18c-446f-abcf-b0bcfdd8d419"/>
+    <concept_answer  concept_answer_id="7366043"  concept_id="165423"  answer_concept="1065"  creator="1"  date_created="2019-11-27 10:17:54"  sort_weight="2"  uuid="462160cd-3571-45b2-870a-be9a0a045e27"/>
+    <concept_answer  concept_answer_id="7366044"  concept_id="165423"  answer_concept="1066"  creator="1"  date_created="2019-11-27 10:17:54"  sort_weight="3"  uuid="6ca1693f-2d75-4375-a847-c83c02446613"/>
+    <concept_answer  concept_answer_id="7366045"  concept_id="165423"  answer_concept="1175"  creator="1"  date_created="2019-11-27 10:17:54"  sort_weight="1"  uuid="fd4278cf-023d-4cd6-a310-ed81eedf7fb9"/>
+    <concept_answer  concept_answer_id="7366046"  concept_id="165425"  answer_concept="99745"  creator="1"  date_created="2019-11-27 10:26:28"  sort_weight="1"  uuid="aea38242-e726-4a76-86ae-5d5b1ce167a7"/>
+    <concept_answer  concept_answer_id="7366047"  concept_id="165425"  answer_concept="99748"  creator="1"  date_created="2019-11-27 10:26:28"  sort_weight="4"  uuid="423b02ac-f7d0-4875-9aad-93fbfd8482b9"/>
+    <concept_answer  concept_answer_id="7366048"  concept_id="165425"  answer_concept="99747"  creator="1"  date_created="2019-11-27 10:26:28"  sort_weight="3"  uuid="5bc1b7b1-c881-47a3-a0ca-5dc356120359"/>
+    <concept_answer  concept_answer_id="7366049"  concept_id="165425"  answer_concept="99746"  creator="1"  date_created="2019-11-27 10:26:28"  sort_weight="2"  uuid="354e84cf-6ca1-46df-8b3f-13d3f85d7d3a"/>
+    <concept_answer  concept_answer_id="7366050"  concept_id="165425"  answer_concept="1175"  creator="1"  date_created="2019-11-27 10:26:28"  sort_weight="5"  uuid="3533ae34-4763-42ca-b08a-007f2ab11323"/>
+    <concept_answer  concept_answer_id="7366051"  concept_id="99787"  answer_concept="165426"  creator="1"  date_created="2019-11-29 12:44:51"  sort_weight="9"  uuid="fc19d5a1-c829-4afe-a23e-a80429ee192c"/>
+    <concept_answer  concept_answer_id="7366063"  concept_id="99787"  answer_concept="99005"  creator="1"  date_created="2019-12-09 12:44:51"  sort_weight="10"  uuid="5f74cec7-3322-48ce-aa75-c767826be3da"/>
+    <concept_answer  concept_answer_id="7366064"  concept_id="99787"  answer_concept="90002"  creator="1"  date_created="2019-12-09 12:44:54"  sort_weight="11"  uuid="cad8738c-704e-4159-8da6-955a289c6dbf"/>
+    <concept_answer  concept_answer_id="7366052"  concept_id="165429"  answer_concept="165438"  creator="1"  date_created="2019-11-29 14:34:20"  sort_weight="1"  uuid="f666f1a4-e638-4668-9066-ba41633013a8"/>
+    <concept_answer  concept_answer_id="7366053"  concept_id="165429"  answer_concept="165431"  creator="1"  date_created="2019-11-29 14:34:20"  sort_weight="2"  uuid="b0b5907e-a103-45b9-afc4-0cae947a09fa"/>
+    <concept_answer  concept_answer_id="7366054"  concept_id="165435"  answer_concept="165434"  creator="1"  date_created="2019-11-29 14:57:30"  sort_weight="3"  uuid="c1a01123-1445-46a2-8ca4-1ac4593f95e3"/>
+    <concept_answer  concept_answer_id="7366055"  concept_id="165435"  answer_concept="165432"  creator="1"  date_created="2019-11-29 14:57:30"  sort_weight="2"  uuid="d87385c9-0f03-452a-86f2-350f5ab797fb"/>
+    <concept_answer  concept_answer_id="7366056"  concept_id="165435"  answer_concept="165433"  creator="1"  date_created="2019-11-29 14:57:30"  sort_weight="1"  uuid="46eafab8-c049-45a2-aade-6aafd07d3a7a"/>
+    <concept_answer  concept_answer_id="7366057"  concept_id="165437"  answer_concept="902"  creator="1"  date_created="2019-12-03 12:09:12"  sort_weight="1"  uuid="e331c873-a0da-4e4b-8bb6-d2c5b58c147d"/>
+    <concept_answer  concept_answer_id="7366058"  concept_id="165437"  answer_concept="90138"  creator="1"  date_created="2019-12-03 12:09:12"  sort_weight="3"  uuid="0a81d6e4-67c8-4788-b9ba-e9456b01f53c"/>
+    <concept_answer  concept_answer_id="7366059"  concept_id="165437"  answer_concept="165436"  creator="1"  date_created="2019-12-03 12:09:12"  sort_weight="2"  uuid="344c9e7e-1a91-40fc-9def-2f2959ad3713"/>
+    <concept_answer  concept_answer_id="7366060"  concept_id="90216"  answer_concept="165439"  creator="1"  date_created="2019-12-03 12:43:39"  sort_weight="12"  uuid="5dbe80b8-4a5d-497d-8d2a-7f96728963c8"/>
+    <concept_answer  concept_answer_id="7366061"  concept_id="99428"  answer_concept="99430"  creator="1"  date_created="2019-12-09 12:43:39"  sort_weight="10"  uuid="2a165d2e-f182-433a-97c3-1845897de224"/>
+    <concept_answer  concept_answer_id="7366062"  concept_id="99428"  answer_concept="162873"  creator="1"  date_created="2019-12-09 12:43:40"  sort_weight="11"  uuid="40bd57d1-5648-46ed-85d7-c5d3547c50bd"/>
 
     <!--CONCEPT SET-->
     <!--MCH-->
@@ -5605,6 +5604,23 @@
     <concept_set  concept_set_id="2637"  concept_id="165311"  concept_set="162988"  sort_weight="6"  creator="1"  date_created="2019-10-03 21:42:13"  uuid="e8f9e3b2-98b8-44a5-8daf-a7a3a039455e"/>
     <concept_set  concept_set_id="2638"  concept_id="165310"  concept_set="99063"  sort_weight="6"  creator="1"  date_created="2019-10-03 21:42:15"  uuid="1d17b2f0-347b-47d4-bfc4-7b6680817a0b"/>
     <concept_set  concept_set_id="2639"  concept_id="165384"  concept_set="99670"  sort_weight="17"  creator="1"  date_created="2019-10-23 15:06:32"  uuid="3ead755b-8cbc-46f7-b8d8-94dcba27e54c"/>
+    <concept_set  concept_set_id="2650"  concept_id="90315"  concept_set="165430"  sort_weight="0"  creator="1"  date_created="2019-11-25 12:06:58"  uuid="5fe4b30a-c680-4d9c-a474-da50a5665c84"/>
+    <concept_set  concept_set_id="2651"  concept_id="99038"  concept_set="165430"  sort_weight="1"  creator="1"  date_created="2019-11-25 12:06:58"  uuid="0e7d7eec-de78-42ba-9f9b-abc2fb656f49"/>
+    <concept_set  concept_set_id="2652"  concept_id="99036"  concept_set="165430"  sort_weight="2"  creator="1"  date_created="2019-11-25 12:06:58"  uuid="be77cadc-c8eb-4b3f-aded-730ca4cbe845"/>
+    <concept_set  concept_set_id="2653"  concept_id="1282"  concept_set="165430"  sort_weight="3"  creator="1"  date_created="2019-11-25 12:06:58"  uuid="7e83b35e-665d-467f-93b6-da0947fe34e7"/>
+    <concept_set  concept_set_id="2654"  concept_id="1444"  concept_set="165430"  sort_weight="4"  creator="1"  date_created="2019-11-25 12:06:58"  uuid="c9f8472e-c87f-433e-aa4f-8747be63629b"/>
+    <concept_set  concept_set_id="2655"  concept_id="160856"  concept_set="165430"  sort_weight="5"  creator="1"  date_created="2019-11-25 12:06:58"  uuid="baa19d57-9c0b-445b-a253-2c39b68e7581"/>
+    <concept_set  concept_set_id="2657"  concept_id="160855"  concept_set="165430"  sort_weight="7"  creator="1"  date_created="2019-11-25 12:06:58"  uuid="acf5eafc-b96e-4493-b230-7d0a4dfdd0d5"/>
+    <concept_set  concept_set_id="2656"  concept_id="1519"  concept_set="165430"  sort_weight="6"  creator="1"  date_created="2019-11-25 12:06:58"  uuid="0eca31fe-3efe-42dd-821b-9d8caf4976de"/>
+    <concept_set  concept_set_id="2659"  concept_id="1191"  concept_set="165430"  sort_weight="9"  creator="1"  date_created="2019-11-25 12:06:58"  uuid="86a30e15-4cf1-4a65-8d8f-d69c772853f4"/>
+    <concept_set  concept_set_id="2661"  concept_id="160742"  concept_set="165430"  sort_weight="11"  creator="1"  date_created="2019-11-25 12:06:58"  uuid="ee3daaaa-a474-4b5e-a54a-b016d0d355d6"/>
+    <concept_set  concept_set_id="2660"  concept_id="6098"  concept_set="165430"  sort_weight="10"  creator="1"  date_created="2019-11-25 12:06:58"  uuid="7cea5f83-3f47-4743-bfc5-c0967c8f2075"/>
+    <concept_set  concept_set_id="2662"  concept_id="160632"  concept_set="165430"  sort_weight="12"  creator="1"  date_created="2019-11-25 12:06:58"  uuid="4c51d68e-c471-4311-9e7d-63068bd9bcf9"/>
+    <concept_set  concept_set_id="2663"  concept_id="159368"  concept_set="165430"  sort_weight="13"  creator="1"  date_created="2019-11-25 12:06:58"  uuid="a8830b97-bd21-416f-a39b-1cfc9a626d11"/>
+    <concept_set  concept_set_id="2664"  concept_id="1732"  concept_set="165430"  sort_weight="14"  creator="1"  date_created="2019-11-25 12:06:58"  uuid="060f8bc7-2188-491b-8dd1-650a8ccb61a7"/>
+    <concept_set  concept_set_id="2658"  concept_id="1190"  concept_set="165430"  sort_weight="8"  creator="1"  date_created="2019-11-25 12:06:58"  uuid="f6d1283b-26b0-4eed-bb1a-73e08f32c73b"/>
+    <concept_set  concept_set_id="2665"  concept_id="159367"  concept_set="165430"  sort_weight="15"  creator="1"  date_created="2019-11-25 12:06:58"  uuid="ee95b8ca-bab7-4d57-8abc-62f9302b36b0"/>
+
 
     <!--LAB SETS-->
     <concept_set  concept_set_id="2647"  concept_id="165290"  concept_set="165418"  sort_weight="0"  creator="1"  date_created="2019-11-05 14:30:55"  uuid="e2a931f6-b42a-449b-9b5e-526980f58eb9"/>
@@ -5617,6 +5633,9 @@
     <concept_set  concept_set_id="2640"  concept_id="165411"  concept_set="162476"  sort_weight="8"  creator="1"  date_created="2019-11-05 14:07:56"  uuid="875607eb-6c9a-4882-8f61-be9c658cceaf"/>
     <concept_set  concept_set_id="2649"  concept_id="730"  concept_set="657"  sort_weight="1"  creator="1"  date_created="2019-11-05 15:38:11"  uuid="5f7e0fb8-a4c1-40ce-81d5-9e35a00531bf"/>
     <concept_set  concept_set_id="2648"  concept_id="5497"  concept_set="657"  sort_weight="0"  creator="1"  date_created="2019-11-05 15:38:11"  uuid="5bc049a0-d8f5-4e50-b404-3c9b73acc027"/>
+    <concept_set  concept_set_id="2650"  concept_id="165360"  concept_set="165419"  sort_weight="0"  creator="1"  date_created="2019-11-12 10:40:00"  uuid="cca90e40-13ab-431f-b531-9ea0ffbec9db"/>
+    <concept_set  concept_set_id="2651"  concept_id="32"  concept_set="165419"  sort_weight="1"  creator="1"  date_created="2019-11-12 10:40:00"  uuid="bd7191ea-19fe-42a8-a629-2189b7ce1772"/>
+    <concept_set  concept_set_id="2652"  concept_id="1643"  concept_set="165419"  sort_weight="2"  creator="1"  date_created="2019-11-12 10:40:00"  uuid="643f67af-52c4-412e-ba17-40251697b000"/>
 
     <!--LAB REFERENCE MAPPING-->
     <concept_reference_term  concept_reference_term_id="279332"  concept_source_id="1"  name="Dried blood spot specimen"  code="440500007" creator="1"  date_created="2019-11-05 14:04:30"  retired="0" uuid="6955c1ad-6cab-4c78-826e-bdbdbd677afb"/>

@@ -30,6 +30,7 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(PatientIdentifierTypes.RESEARCH_PATIENT_ID);
         install(PatientIdentifierTypes.SMC_CLIENT_NUMBER);
         install(PatientIdentifierTypes.REFUGEE_IDENTIFICATION_NUMBER);
+        install(PatientIdentifierTypes.PATIENT_IUC_HEALTH_ID);
         log.info("Patient IdentifierTypes installed");
 
         // install person attribute types
@@ -82,6 +83,7 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(Locations.PHARMACY);
         install(Locations.RECEPTION);
         install(Locations.TRIAGE);
+        install(Locations.COUNSELING_CENTER);
 
         // Install Encounter Role
         install(encounterRole(EncounterRoles.ASSISTANT_CIRCUMCISER_NAME,EncounterRoles.ASSISTANT_CIRCUMCISER_DESCRIPTION,EncounterRoles.ASSISTANT_CIRCUMCISER_UUID));
