@@ -208,6 +208,7 @@
     <role_privilege  role="Base Role" privilege="View Patient Programs"/>
     <role_privilege  role="Base Role" privilege="Add Patient Programs"/>
     <role_privilege  role="Base Role" privilege="Edit Patient Programs"/>
+    <role_privilege  role="Base Role" privilege="Get Programs"/>
 
     <!--***** PERSON/LOCATION CENTERED ROLES *****-->
 
@@ -216,7 +217,8 @@
     <role_role  parent_role="Base Role"  child_role="Reception"/>
 
     <!-- role privilege -->
-    <role_privilege  role="Reception"  privilege="App: fingerprint.findPatient"/>
+    <role_privilege  role="Reception"  privilege="App: ugandaemrpoc.findPatient"/>
+    <role_privilege  role="Reception"  privilege="Add Visits"/>
 
 
     <!--* TRIAGE ROLE *-->
@@ -273,11 +275,14 @@
     <role_privilege  role="HIV Clinic"  privilege="Task: HIV Clinic Access"/>
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.lastARTVisitSummary"/>
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.artStatus"/>
+    <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.lastARTVisitSummary"/>
+    <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.artStatus"/>
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.patientSummary"/>
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.viralLoadHistory"/>
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.dsdmPatientHistory"/>
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.directionsToResidence"/>
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemrpoc.artclinic"/>
+    <role_privilege  role="HIV Clinic"  privilege="Task: coreapps.markPatientDead"/>
 
     <!--* OPD Clinic *-->
     <!--role-role-->
@@ -285,6 +290,8 @@
 
     <!-- role privilege -->
     <role_privilege  role="OPD Clinic"  privilege="App: ugandaemrpoc.outpatient"/>
+    <role_privilege  role="OPD Clinic"  privilege="Task: coreapps.markPatientDead"/>
+
 
     <!--* MCH Clinic *-->
     <!--role-role-->
@@ -292,6 +299,7 @@
 
     <!-- role privilege -->
     <role_privilege  role="MCH Clinic"  privilege="App: ugandaemrpoc.mchclinic"/>
+    <role_privilege  role="MCH Clinic"  privilege="Task: coreapps.markPatientDead"/>
 
     <!--* TB Clinic *-->
     <!--role-role-->
@@ -299,6 +307,7 @@
 
     <!-- role privilege -->
     <role_privilege  role="TB Clinic"  privilege="App: ugandaemrpoc.tbclinic"/>
+    <role_privilege  role="TB Clinic"  privilege="Task: coreapps.markPatientDead"/>
 
 
     <!--***** REPORTING ROLES *****-->
