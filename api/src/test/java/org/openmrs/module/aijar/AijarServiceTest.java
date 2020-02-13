@@ -61,4 +61,21 @@ public class AijarServiceTest extends BaseModuleContextSensitiveTest {
 
     }
 
+    @Test
+    public void isTransferredIn_ShouldReturnFalseWhenPatientIsNotTransferIn() {
+        AijarService aijarService=Context.getService(AijarService.class);
+        Patient patient=Context.getPatientService().getPatient(10008);
+        Assert.assertFalse(aijarService.isTransferredIn(patient,new Date()));
+
+    }
+
+    @Test
+    public void isTransferredOut_ShouldReturnFalseWhenPatientIsNotTransferredOut() {
+        AijarService aijarService=Context.getService(AijarService.class);
+        Patient patient=Context.getPatientService().getPatient(10008);
+        Assert.assertFalse(aijarService.isTransferredIn(patient,new Date()));
+    }
+
+
+
 }

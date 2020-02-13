@@ -401,7 +401,6 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 
     @Override
     public List<Encounter> getTransferHistory(Patient patient) {
-        Map map = new HashMap();
 
         EncounterService encounterService = Context.getEncounterService();
 
