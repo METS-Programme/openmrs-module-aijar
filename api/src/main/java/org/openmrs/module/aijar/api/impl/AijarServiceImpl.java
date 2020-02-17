@@ -311,7 +311,7 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 
 		SimpleDateFormat formatterExt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-		String formattedDate = formatterExt.format(OpenmrsUtil.firstSecondOfDay(new Date()));
+		String currentDate = formatterExt.format(OpenmrsUtil.firstSecondOfDay(new Date()));
 
 		//TODO Change AdministrationService to Autowired
 		AdministrationService administrationService = Context.getAdministrationService();
@@ -321,7 +321,7 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 		VisitService visitService = Context.getVisitService();
 
 		List activeVisitList = null;
-		activeVisitList = administrationService.executeSQL("select visit.visit_id from visit inner join visit_type on (visit.visit_type_id = visit_type.visit_type_id)  where visit_type.uuid='"+visitTypeUUID+"' AND visit.date_stopped IS NULL AND  visit.date_started < '" + formattedDate + "'", true);
+		activeVisitList = administrationService.executeSQL("select visit.visit_id from visit inner join visit_type on (visit.visit_type_id = visit_type.visit_type_id)  where visit_type.uuid='"+visitTypeUUID+"' AND visit.date_stopped IS NULL AND  visit.date_started < '" + currentDate + "'", true);
 
 		for (Object object : activeVisitList) {
 			ArrayList<Integer> integers = (ArrayList) object;
