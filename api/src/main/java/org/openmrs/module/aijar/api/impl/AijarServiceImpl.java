@@ -309,10 +309,11 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
-		SimpleDateFormat formatterExt = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat formatterExt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-		String formattedDate = formatterExt.format(new Date()) + " " + "00:00:00";
+		String formattedDate = formatterExt.format(OpenmrsUtil.firstSecondOfDay(new Date()));
 
+		//TODO Change AdministrationService to Autowired
 		AdministrationService administrationService = Context.getAdministrationService();
 
 		String visitTypeUUID =administrationService.getGlobalProperty("ugandaemr.autoCloseVisit.visitTypeUUID");
