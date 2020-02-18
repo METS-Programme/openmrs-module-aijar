@@ -133,12 +133,10 @@
     <role_privilege  role="Base Role"  privilege="Add Patient Identifiers"/>
     <role_privilege  role="Base Role"  privilege="Add Patients"/>
     <role_privilege  role="Base Role"  privilege="Add People"/>
-    <role_privilege  role="Base Role"  privilege="App: coreapps.findPatient"/>
     <role_privilege  role="Base Role"  privilege="App: coreapps.mergePatient"/>
     <role_privilege  role="Base Role"  privilege="App: coreapps.patientDashboard"/>
     <role_privilege  role="Base Role"  privilege="App: coreapps.patientVisits"/>
     <role_privilege  role="Base Role"  privilege="App: referenceapplication.vitals"/>
-    <role_privilege  role="Base Role"  privilege="App: registrationapp.registerPatient"/>
     <role_privilege  role="Base Role"  privilege="Delete Patient Identifiers"/>
     <role_privilege  role="Base Role"  privilege="Delete Patients"/>
     <role_privilege  role="Base Role"  privilege="Delete People"/>
@@ -219,6 +217,9 @@
     <!-- role privilege -->
     <role_privilege  role="Reception"  privilege="App: ugandaemrpoc.findPatient"/>
     <role_privilege  role="Reception"  privilege="Add Visits"/>
+    <role_privilege  role="Data Clerk"  privilege="App: fingerprint.addPatientFingerprint"/>
+    <role_privilege  role="Data Clerk"  privilege="App: fingerprint.fingerprintDetails"/>
+    <role_privilege  role="Data Clerk"  privilege="App: fingerprint.statistic"/>
 
 
     <!--* TRIAGE ROLE *-->
@@ -445,13 +446,27 @@
     <role_role  parent_role="Base Role"  child_role="Data Clerk"/>
 
     <!-- role privilege -->
-    <role_privilege  role="Data Clerk"  privilege="App: fingerprint.findPatient"/>
-    <role_privilege  role="Data Clerk"  privilege="App: patientqueueing.providerDashboard"/>
+    <role_privilege  role="Reception"  privilege="App: ugandaemrpoc.findPatient"/>
+    <role_privilege  role="Reception"  privilege="Add Visits"/>
     <role_privilege  role="Data Clerk"  privilege="Task: HIV Clinic Access"/>
+    <role_privilege  role="Data Clerk"  privilege="App: ugandaemr.widget.lastARTVisitSummary"/>
+    <role_privilege  role="Data Clerk"  privilege="App: ugandaemr.widget.artStatus"/>
     <role_privilege  role="Data Clerk"  privilege="App: ugandaemr.widget.lastARTVisitSummary"/>
     <role_privilege  role="Data Clerk"  privilege="App: ugandaemr.widget.artStatus"/>
     <role_privilege  role="Data Clerk"  privilege="App: ugandaemr.widget.patientSummary"/>
     <role_privilege  role="Data Clerk"  privilege="App: ugandaemr.widget.viralLoadHistory"/>
     <role_privilege  role="Data Clerk"  privilege="App: ugandaemr.widget.dsdmPatientHistory"/>
     <role_privilege  role="Data Clerk"  privilege="App: ugandaemr.widget.directionsToResidence"/>
+    <role_privilege  role="Data Clerk"  privilege="Task: coreapps.markPatientDead"/>
+    <role_privilege  role="Data Clerk"  privilege="Task: coreapps.editRelationships"/>
+    <role_privilege  role="Data Clerk"  privilege="App: coreapps.patientDashboard"/>
+    <role_privilege  role="Data Clerk"  privilege="App: coreapps.mergePatient"/>
+    <role_privilege  role="Data Clerk"  privilege="Task: coreapps.createVisit"/>
+    <role_privilege  role="Data Clerk"  privilege="Task: coreapps.mergeVisits"/>
+    <role_privilege  role="Data Clerk"  privilege="App: coreapps.dataManagement"/>
+    <role_privilege  role="Data Clerk"  privilege="App: fingerprint.addPatientFingerprint"/>
+    <role_privilege  role="Data Clerk"  privilege="App: fingerprint.fingerprintDetails"/>
+    <role_privilege  role="Data Clerk"  privilege="App: fingerprint.statistic"/>
+
+
 </dataset>
