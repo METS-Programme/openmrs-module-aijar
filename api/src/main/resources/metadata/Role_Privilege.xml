@@ -218,9 +218,9 @@
     <!-- role privilege -->
     <role_privilege  role="Reception"  privilege="App: ugandaemrpoc.findPatient"/>
     <role_privilege  role="Reception"  privilege="Add Visits"/>
-    <role_privilege  role="Data Clerk"  privilege="App: fingerprint.addPatientFingerprint"/>
-    <role_privilege  role="Data Clerk"  privilege="App: fingerprint.fingerprintDetails"/>
-    <role_privilege  role="Data Clerk"  privilege="App: fingerprint.statistic"/>
+    <role_privilege  role="Reception"  privilege="App: fingerprint.addPatientFingerprint"/>
+    <role_privilege  role="Reception"  privilege="App: fingerprint.fingerprintDetails"/>
+    <role_privilege  role="Reception"  privilege="App: fingerprint.statistic"/>
 
 
     <!--* TRIAGE ROLE *-->
@@ -277,7 +277,6 @@
     <role_privilege  role="HIV Clinic"  privilege="Task: HIV Clinic Access"/>
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.lastARTVisitSummary"/>
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.artStatus"/>
-    <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.lastARTVisitSummary"/>
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.artStatus"/>
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.patientSummary"/>
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.viralLoadHistory"/>
@@ -447,11 +446,9 @@
     <role_role  parent_role="Base Role"  child_role="Data Clerk"/>
 
     <!-- role privilege -->
-    <role_privilege  role="Reception"  privilege="App: ugandaemrpoc.findPatient"/>
-    <role_privilege  role="Reception"  privilege="Add Visits"/>
+    <role_privilege  role="Data Clerk"  privilege="App: ugandaemrpoc.findPatient"/>
+    <role_privilege  role="Data Clerk"  privilege="Add Visits"/>
     <role_privilege  role="Data Clerk"  privilege="Task: HIV Clinic Access"/>
-    <role_privilege  role="Data Clerk"  privilege="App: ugandaemr.widget.lastARTVisitSummary"/>
-    <role_privilege  role="Data Clerk"  privilege="App: ugandaemr.widget.artStatus"/>
     <role_privilege  role="Data Clerk"  privilege="App: ugandaemr.widget.lastARTVisitSummary"/>
     <role_privilege  role="Data Clerk"  privilege="App: ugandaemr.widget.artStatus"/>
     <role_privilege  role="Data Clerk"  privilege="App: ugandaemr.widget.patientSummary"/>
