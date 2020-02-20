@@ -6,6 +6,16 @@
     <privilege  privilege="SQL Level Access"  description="Access to SQL Querying"  uuid="56439786-4d5e-494e-b507-e9d802a6b5a0"/>
 
 
+
+    <!--* DASHBOARD WIDGET *-->
+    <!--Fingerprint Privilleges-->
+    <privilege  privilege="App: fingerprint.add"  description="Able to add Patient fingerprint"  uuid="9c9d3fa6-10a9-11e8-b642-0ed5f89f718b"/>
+    <privilege  privilege="App: fingerprint.addPatientFingerprint"  description="Privilege to allow adding patient fingerprint"  uuid="6eb0cf64-d8b4-4ff9-8a6b-037b6468c696"/>
+    <privilege  privilege="App: fingerprint.configs"  description="Privilege to allow adding changing fingerprint settings"  uuid="8a27a36e-afb6-4c9d-82af-63325485a2d2"/>
+    <privilege  privilege="App: fingerprint.findPatient"  description="Able to search patient fingerprint"  uuid="9c9d4302-10a9-11e8-b642-0ed5f89f718b"/>
+    <privilege  privilege="App: fingerprint.fingerprintDetails"  description="Privilege to allow access to the fingerprint details on the patients dashboard"  uuid="4585ae16-4f1a-4df5-b1c5-221e716f8213"/>
+    <privilege  privilege="App: fingerprint.statistic"  description="Privilege to allow access to fingerprint statistics"  uuid="fc1a72d9-ea4a-445d-9392-2c21c25d9431"/>
+
     <!--* DASHBOARD WIDGET *-->
     <!--General Clinic-->
     <privilege  privilege="App: ugandaemr.widget.dataIntegrityViolation"  description="Access data integrity Violations on patient dashboard"  uuid="e6280dd4-52b0-47f9-81f1-670774b5af8e"/>
