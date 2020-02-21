@@ -67,6 +67,12 @@ public interface AijarService extends OpenmrsService {
 	 */
 	public void generateAndSaveUICForPatientsWithOut();
 
+	/**
+	 * This Method stops all active out patient visits
+	 */
+	public void stopActiveOutPatientVisits();
+
+
     /**
      * Gets transfer out encounters map.
      * @param patient the patient whose transfer out encounters are being queried
@@ -104,5 +110,4 @@ public interface AijarService extends OpenmrsService {
      * @return Map
      */
     public List<Encounter> getTransferHistory(Patient patient);
-
 }

@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.openmrs.*;
 import org.openmrs.api.PatientService;
 import org.openmrs.api.ProgramWorkflowService;
+import org.openmrs.api.VisitService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.aijar.api.AijarService;
 import org.openmrs.module.aijar.metadata.core.Programs;
@@ -62,6 +63,22 @@ public class AijarServiceTest extends BaseModuleContextSensitiveTest {
     }
 
     @Test
+    public void stopActiveOutPatientVisits_shouldCompleteAllVisitOfSetTypeInGlobalProperty() {
+
+        VisitService visitService=Context.getVisitService();
+        AijarService aijarService=Context.getService(AijarService.class);
+
+        Assert.assertTrue(visitService.getActiveVisitsByPatient(Context.getPatientService().getPatient(10110)).size()>0);
+
+        aijarService.stopActiveOutPatientVisits();
+
+        Assert.assertTrue(visitService.getActiveVisitsByPatient(Context.getPatientService().getPatient(10110)).size()==0);
+
+
+
+    }
+
+    @Test
     public void isTransferredIn_ShouldReturnFalseWhenPatientIsNotTransferIn() {
         AijarService aijarService=Context.getService(AijarService.class);
         Patient patient=Context.getPatientService().getPatient(10008);
@@ -75,7 +92,6 @@ public class AijarServiceTest extends BaseModuleContextSensitiveTest {
         Patient patient=Context.getPatientService().getPatient(10008);
         Assert.assertFalse(aijarService.isTransferredIn(patient,new Date()));
     }
-
 
 
 }

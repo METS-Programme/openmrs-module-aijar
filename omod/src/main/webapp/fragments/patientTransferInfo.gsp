@@ -6,7 +6,7 @@
 
     </div>
     <% if (transferredOut == true) { %>
-    <div class="info-body" style="background: yellow">
+    <div class="info-body">
 
         <div>
             <strong>${ui.message("aijar.patient.transfer.out.date")}:</strong>
@@ -46,6 +46,6 @@
         </tbody>
     </table>
     <%} else{%>
-    <div class="info-body" style="background: yellow">${ui.message("aijar.patient.transfer.nodata")}</div>
+    <div class="info-body">${ui.message("aijar.patient.transfer.nodata")}</div>
     <%}%>
 </div>
