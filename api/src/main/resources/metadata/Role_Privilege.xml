@@ -5,8 +5,6 @@
     <privilege  privilege="Task: HIV Clinic Access"  description="Able to access HIV patient clinic information"  uuid="7e0465e4-2119-11e8-b467-0ed5f89f718b"/>
     <privilege  privilege="SQL Level Access"  description="Access to SQL Querying"  uuid="56439786-4d5e-494e-b507-e9d802a6b5a0"/>
 
-
-
     <!--* DASHBOARD WIDGET *-->
     <!--Fingerprint Privilleges-->
     <privilege  privilege="App: fingerprint.add"  description="Able to add Patient fingerprint"  uuid="9c9d3fa6-10a9-11e8-b642-0ed5f89f718b"/>
@@ -102,6 +100,7 @@
     <privilege  privilege="App: ugandaemrreports.UgandaEMRReports2014HMISTools"  description="UgandaEMR Reports 2014 HMIS Tools report access privillege"  uuid="ef0e24a2-b40b-425f-b514-4c929ebd7e9c"/>
     <privilege  privilege="App: ugandaemrreports.UgandaEMRReports2019HMISTools"  description="UgandaEMR Reports 2019 HMIS Tools report access privillege"  uuid="b5e71c75-d0fa-4f42-9f37-1bdf9285d72e"/>
     <privilege  privilege="App: ugandaemrreports.viralLoadSupression"  description="Viral Load Supression report access privillege"  uuid="9fb9c77a-e7c4-477a-9439-90556218c1d5"/>
+
     <privilege  privilege="App: ugandaemrpoc.artclinic"  description="Access to the HIV clinic provider dashboard"  uuid="93e8e3ba-775d-4a05-b547-bf67ab0f42e8"/>
     <privilege  privilege="App: ugandaemrpoc.laboratory"  description="Access to the laboratory dashboard"  uuid="0adadcd3-43b3-4cb6-9a81-39f7e6240846"/>
     <privilege  privilege="App: ugandaemrpoc.outpatient"  description="Access to the OPD clinic provider dashboard"  uuid="27c729b9-1426-436b-8c37-976a29c6f28d"/>
@@ -180,7 +179,6 @@
     <role_privilege  role="Base Role"  privilege="Patient Dashboard - View Patient Summary"/>
     <role_privilege  role="Base Role"  privilege="Task: coreapps.deletePatient"/>
     <role_privilege  role="Base Role"  privilege="Task: emr.patient.encounter.delete"/>
-    <role_privilege  role="Base Role"  privilege="Task: emr.patient.encounter.edit"/>
     <role_privilege  role="Base Role"  privilege="View Appointment Types"/>
     <role_privilege  role="Base Role"  privilege="View Appointments"/>
     <role_privilege  role="Base Role"  privilege="View Appointments Blocks"/>

@@ -176,5 +176,96 @@
         <description>The UUID of the visit type that will be closed</description>
         <defaultValue>7b0f5697-27e3-40c4-8bae-f4049abfb4ed</defaultValue>
     </globalProperty>
+
+
+    <privilege>
+        <name>Task: HIV Clinic Access</name>
+        <description>Able to access HIV patient clinic information</description>
+    </privilege>
+
+    <privilege>
+        <name>SQL Level Access</name>
+        <description>Access to SQL Querying</description>
+    </privilege>
+
+    <privilege>
+        <name>App: ugandaemr.widget.dataIntegrityViolation</name>
+        <description>Access data integrity Violations on patient dashboard</description>
+    </privilege>
+
+    <privilege>
+        <name>App: ugandaemr.widget.lastARTVisitSummary</name>
+        <description>Access Last ART Visit Summary on patient dashborad</description>
+    </privilege>
+
+    <privilege>
+        <name>App: ugandaemr.widget.artStatus</name>
+        <description>Access ART Status on patient dashboard</description>
+    </privilege>
+
+    <privilege>
+        <name>App: ugandaemr.widget.patientSummary</name>
+        <description>Access Patient Summary on patient dashboard</description>
+    </privilege>
+
+    <privilege>
+        <name>App: ugandaemr.widget.viralLoadHistory</name>
+        <description>Access Viral load History on patient dashboard</description>
+    </privilege>
+
+    <privilege>
+        <name>App: ugandaemr.widget.dsdmPatientHistory</name>
+        <description>For Widget that shows the patient history in DSDM Model</description>
+    </privilege>
+
+    <privilege>
+        <name>App: ugandaemr.widget.directionsToResidence</name>
+        <description>Access Directions to Residence on patient dashboard</description>
+    </privilege>
+
+    <privilege>
+        <name>App: ugandaemr.widget.eidSummary</name>
+        <description>Access eidSummary On Patient Dashboard</description>
+    </privilege>
+
+    <privilege>
+        <name>App: ugandaemr.widget.mchSummary</name>
+        <description>Access MCH Summary on patient Dashboard</description>
+    </privilege>
+
+    <privilege>
+        <name>App: ugandaemr.report.cohortBuilder</name>
+        <description>Access Link to Manage cohort builder reports</description>
+    </privilege>
+
+    <privilege>
+        <name>App: ugandaemr.backup.backupDatabase</name>
+        <description>Access App to the Backup</description>
+    </privilege>
+
+    <privilege>
+        <name>App: fingerprint.findPatient</name>
+        <description>Privilege to allow access to find patient fingerprint app</description>
+    </privilege>
+
+    <privilege>
+        <name>App: fingerprint.addPatientFingerprint</name>
+        <description>Privilege to allow adding patient fingerprint</description>
+    </privilege>
+
+    <privilege>
+        <name>App: fingerprint.fingerprintDetails</name>
+        <description>Privilege to allow access to the fingerprint details on the patients dashboard</description>
+    </privilege>
+
+    <privilege>
+        <name>App: fingerprint.configs</name>
+        <description>Privilege to allow adding changing fingerprint settings</description>
+    </privilege>
+
+    <privilege>
+        <name>App: fingerprint.statistic</name>
+        <description>Privilege to allow access to fingerprint statistics</description>
+    </privilege>
 </module>
 
