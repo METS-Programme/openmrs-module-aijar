@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.openmrs.*;
 import org.openmrs.api.PatientService;
 import org.openmrs.api.ProgramWorkflowService;
+import org.openmrs.api.VisitService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.aijar.api.AijarService;
 import org.openmrs.module.aijar.metadata.core.Programs;
@@ -60,5 +61,22 @@ public class AijarServiceTest extends BaseModuleContextSensitiveTest {
 //        assertEquals("X-1017-1-10011311092319",uniqueIdentifierCode); for patient 10001
 
     }
+
+    @Test
+    public void stopActiveOutPatientVisits_shouldCompleteAllVisitOfSetTypeInGlobalProperty() {
+
+        VisitService visitService=Context.getVisitService();
+        AijarService aijarService=Context.getService(AijarService.class);
+
+        Assert.assertTrue(visitService.getActiveVisitsByPatient(Context.getPatientService().getPatient(10110)).size()>0);
+
+        aijarService.stopActiveOutPatientVisits();
+
+        Assert.assertTrue(visitService.getActiveVisitsByPatient(Context.getPatientService().getPatient(10110)).size()==0);
+
+
+
+    }
+
 
 }
