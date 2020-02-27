@@ -134,4 +134,20 @@ public class EncounterTypes {
             return "22902411-19c1-4a02-b19a-bf1a9c24fd51";
         }
     };
+
+    public static EncounterTypeDescriptor MISSED_APPOINTMENT_TRACKING = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Missed Appointment Tracking";
+        }
+
+        @Override
+        public String description() {
+            return "This encounter type is for tracking followup for missed appointments";
+        }
+
+        public String uuid() {
+            return "791faefd-36b8-482f-ab78-20c297b03851";
+        }
+    };
 }
