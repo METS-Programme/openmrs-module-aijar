@@ -87,32 +87,32 @@
     });
 
 </script>
-<header class="header" >
-
+<header class="header">
     <div class="row">
         <div class="col-sm-4">
-            <div class="headerimage">
-                <a href="${logoLinkUrl}">
-                    <img src="${logoIconUrl}"  class="logoimage"/>
-                </a>
-            </div>
-            <div  class="headerelements">
-                <div style="padding-bottom: 10px;font-weight: bold;font-family: Trebuchet MS;">
-                    <span id="headertittle">U</span>GANDA</span><span id="headertittle">EMR</span>
+            <div class="row">
+                <div class="headerimage col-sm-2">
+                    <a href="${logoLinkUrl}"><img src="${logoIconUrl}" class="logoimage"/></a>
                 </div>
-                <span id="headersubtittle">Electronic Medical Records System</span>
-            </div>
 
+                <div class="headerelements col-sm-8">
+                    <div style="padding-bottom: 10px;font-weight: bold;font-family: Trebuchet MS;">
+                        <span id="headertittle">U</span>GANDA</span><span id="headertittle">EMR</span>
+                    </div>
+                    <span id="headersubtittle">Electronic Medical Records System</span>
+                </div>
+            </div>
         </div>
-        <div class="col-sm-4">
+
+        <div class="col-sm-3">
             <div class="healthcentrename">
                 ${healthCenter}
             </div>
         </div>
 
-        <div class="col-sm-4">
+        <div class="col-sm-5">
             <% if (context.authenticated) { %>
-            <ul class="user-options" style="padding: 20px;">
+            <ul class="user-options" style="padding: 15px;">
                 <li class="identifier">
                     <i class="icon-user small"></i>
                     ${context.authenticatedUser.username ?: context.authenticatedUser.systemId}
@@ -161,6 +161,5 @@
             </div>
             <% } %>
         </div>
-
     </div>
 </header>
