@@ -192,7 +192,7 @@ public class PatientStabilityFragmentController {
         try {
             finalDate = format.format(cal.getTime());
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Failed to format date",e);
         }
         return finalDate;
     }

@@ -1,4 +1,5 @@
 package org.openmrs.module.aijar;
+
 /**
  * Uganda customization specific constants
  * Created by ssmusoke on 06/01/2016.
@@ -37,5 +38,27 @@ public class AijarConstants {
     public static final String HSD_TB_NUMBER = "d1cda288-4853-4450-afbc-76bd4e65ea70";
 
     public static final String DISTRICT_TB_NUMBER = "67e9ec2f-4c72-408b-8122-3706909d77ec";
+
+    public static final  String TRANSFER_OUT_DATE_CONCEPT_ID="99165";
+    public static final  String TRANSFER_OUT_PLACE_CONCEPT_ID="90211";
+    public static final  String TRANSFER_FROM_CLINIC_CONCEPT_ID="164993";
+    public static final  String ART_CLINIC_CONCEPT_ID="165047";
+
+    public static final  String TRANSFER_IN_CONCEPT_ID="99110";
+    public static final  String TRANSFER_IN_FROM_CONCEPT_ID="165047";
+    public static final  String TRANSFER_IN_FROM_PLACE_CONCEPT_ID="99109";
+
+
+    public static final String  FACILITY_VISIT_TYPE_UUID="7b0f5697-27e3-40c4-8bae-f4049abfb4ed";
+    public  static final String ART_TRANSFER_SCHEDULE_NAME="ART Summary Patient Transfer Migration";
+    public static final String CHANGE_MESSAGE_FOR_TRANSFERS = "New Observation on patient transfers";
+
+    public static final String PATIENT_TRANSERRED_OUT ="transferredOut";
+    public  static final String PATIENT_TRANSFERED_OUT_LOCATION ="transferredOutTo";
+    public static final String PATIENT_TRANSFERED_OUT_DATE = "dateTransferredOut";
+
+    public static final String PATIENT_TRANSERRED_IN ="transferredIn";
+    public  static final String PATIENT_TRANSFERED_IN_LOCATION ="transferredInTo";
+    public static final String PATIENT_TRANSFERED_IN_DATE = "dateTransferredIn";
 
 }

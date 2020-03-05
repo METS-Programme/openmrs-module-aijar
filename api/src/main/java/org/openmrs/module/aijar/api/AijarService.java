@@ -13,6 +13,7 @@
  */
 package org.openmrs.module.aijar.api;
 
+import org.openmrs.Encounter;
 import org.openmrs.Patient;
 import org.openmrs.Person;
 import org.openmrs.annotation.Authorized;
@@ -22,7 +23,8 @@ import org.openmrs.util.PrivilegeConstants;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
-
+import java.util.List;
+import java.util.Map;
 
 /**
  * This service exposes module's core functionality. It is a Spring managed bean which is configured in moduleApplicationContext.xml.
@@ -70,4 +72,42 @@ public interface AijarService extends OpenmrsService {
 	 */
 	public void stopActiveOutPatientVisits();
 
+
+    /**
+     * Gets transfer out encounters map.
+     * @param patient the patient whose transfer out encounters are being queried
+     * @param date the date of the transfer out it can be null
+     * @return map of transfer out encounters for a patient.
+     */
+    public Map transferredOut(Patient patient, Date date);
+
+    /**
+     * Gets transfer in encounters.
+     * @param patient the patient whose transfer in encounters are being queried
+     * @param date the date of the transfer in it can be null
+     * @return map of transfer in encounters for a patient.
+     */
+    public Map transferredIn(Patient patient,Date date);
+
+    /**
+     * Check if Patient is transferred out. This method depends on transferredOut(Patient patient) method
+     * @param patient
+     * @return boolean
+     */
+    public boolean isTransferredOut(Patient patient, Date date);
+
+
+    /**
+     * Check if Patient is a transfer in. This method depends on transferredIn(Patient patient) method
+     * @param patient
+     * @return boolean
+     */
+    public boolean isTransferredIn(Patient patient,Date date);
+
+    /**
+     * Transfer Information for patient
+     * @param patient
+     * @return Map
+     */
+    public List<Encounter> getTransferHistory(Patient patient);
 }
