@@ -17,6 +17,11 @@
         <property name="mappingJarLocations">
             <ref bean="mappingJarResources"/>
         </property>
+        <property name="packagesToScan">
+            <list>
+                <value>org.openmrs</value>
+            </list>
+        </property>
     </bean>
 
 </beans>
