@@ -1,10 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
     <!-- PRIVILEGES-->
+    <!--* BASE PRIVILEGES *-->
+    <privilege  privilege="Add Encounters"  description="Able to add patient encounters"  uuid="129a9a7a-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="Add Observations"  description="Able to add patient observations"  uuid="129a9abd-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="Add Orders"  description="Able to add orders"  uuid="129a9af6-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="Add Patient Identifiers"  description="Able to add patient identifiers"  uuid="129a9b30-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="Add Patient Programs"  description="Able to add patients to programs"  uuid="129a9b6f-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="Add Patients"  description="Able to add patients"  uuid="129a9bab-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="Add People"  description="Able to add person objects"  uuid="129a9be1-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="Add Relationships"  description="Able to add relationships"  uuid="129a9c0a-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="App: coreapps.mergePatient"  description="Able to access the merge patient app"  uuid="7f86cae4-4943-45f3-a259-2377fbf34907"/>
+    <privilege  privilege="App: coreapps.patientDashboard"  description="Able to access the patient dashboard"  uuid="5f24c089-04f6-41f4-a333-e5971c829eeb"/>
+    <privilege  privilege="App: coreapps.patientVisits"  description="Able to access the patient visits screen"  uuid="affc7727-e7ca-486d-b3f2-e4136d65919d"/>
+    <privilege  privilege="App: referenceapplication.vitals"  description="Able to access the vitals app"  uuid="f426b38a-969c-4105-834f-f868d214bcf4"/>
+    <privilege  privilege="App: ugandaemr.widget.dataIntegrityViolation"  description="Access data integrity Violations on patient dashboard"  uuid="e6280dd4-52b0-47f9-81f1-670774b5af8e"/>
+    <privilege  privilege="Delete Patient Identifiers"  description="Able to delete patient identifiers"  uuid="129a9d62-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="Delete Patients"  description="Able to delete patients"  uuid="129a9daf-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="Delete People"  description="Able to delete objects"  uuid="129a9dd5-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="Edit Encounters"  description="Able to edit patient encounters"  uuid="129a9ed8-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="Edit Observations"  description="Able to edit patient observations"  uuid="129a9efb-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="Edit Orders"  description="Able to edit orders"  uuid="129a9f1f-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="Edit Patient Identifiers"  description="Able to edit patient identifiers"  uuid="129a9f43-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="Edit Patient Programs"  description="Able to edit patients in programs"  uuid="129a9f68-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="Edit Patients"  description="Able to edit patients"  uuid="129a9f8d-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="Edit People"  description="Able to edit person objects"  uuid="129a9fb2-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="Edit Relationships"  description="Able to edit relationships"  uuid="129a9fd7-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="Edit Visits"  description="Able to edit visits"  uuid="31889d58-cd72-4865-ac4a-fc17abeb0385"/>
+    <privilege  privilege="Get Care Settings"  description="Able to get Care Settings"  uuid="3ec4b6b2-0b67-4d67-9ab7-8d71e2b69229"/>
+    <privilege  privilege="Get Concept Classes"  description="Able to get concept classes"  uuid="d05118c6-2490-4d78-a41a-390e3596a238"/>
+    <privilege  privilege="Get Concept Datatypes"  description="Able to get concept datatypes"  uuid="d05118c6-2490-4d78-a41a-390e3596a237"/>
+    <privilege  privilege="Get Concept Proposals"  description="Able to get concept proposals to the system"  uuid="d05118c6-2490-4d78-a41a-390e3596a250"/>
+    <privilege  privilege="Get Concept Sources"  description="Able to get concept sources"  uuid="d05118c6-2490-4d78-a41a-390e3596a231"/>
+    <privilege  privilege="Get Concepts"  description="Able to get concept entries"  uuid="d05118c6-2490-4d78-a41a-390e3596a251"/>
+    <privilege  privilege="Get Encounter Roles"  description="Able to get encounter roles"  uuid="d05118c6-2490-4d78-a41a-390e3596a210"/>
+    <privilege  privilege="Get Encounter Types"  description="Able to get encounter types"  uuid="d05118c6-2490-4d78-a41a-390e3596a247"/>
+    <privilege  privilege="Get Encounters"  description="Able to get patient encounters"  uuid="d05118c6-2490-4d78-a41a-390e3596a248"/>
+    <privilege  privilege="Get Observations"  description="Able to get patient observations"  uuid="d05118c6-2490-4d78-a41a-390e3596a245"/>
+    <privilege  privilege="Get Order Frequencies"  description="Able to get Order Frequencies"  uuid="b452ae44-22ec-4cc3-a0f0-384789b37c12"/>
+    <privilege  privilege="Get Order Sets"  description="Able to get order sets"  uuid="33be7233-a15b-43ea-9d69-f3e4cfaf4d41"/>
+    <privilege  privilege="Get Order Types"  description="Able to get order types"  uuid="d05118c6-2490-4d78-a41a-390e3596a233"/>
+    <privilege  privilege="Get Orders"  description="Able to get orders"  uuid="d05118c6-2490-4d78-a41a-390e3596a241"/>
+    <privilege  privilege="Get Patient Identifiers"  description="Able to get patient identifiers"  uuid="d05118c6-2490-4d78-a41a-390e3596a243"/>
+    <privilege  privilege="Get Patient Programs"  description="Able to get which programs that patients are in"  uuid="d05118c6-2490-4d78-a41a-390e3596a227"/>
+    <privilege  privilege="Get Patients"  description="Able to get patients"  uuid="d05118c6-2490-4d78-a41a-390e3596a244"/>
+    <privilege  privilege="Get People"  description="Able to get person objects"  uuid="d05118c6-2490-4d78-a41a-390e3596a224"/>
+    <privilege  privilege="Get Programs"  description="Able to get patient programs"  uuid="d05118c6-2490-4d78-a41a-390e3596a228"/>
+    <privilege  privilege="Get Providers"  description="Able to get Providers"  uuid="d05118c6-2490-4d78-a41a-390e3596a211"/>
+    <privilege  privilege="Get Relationships"  description="Able to get relationships"  uuid="d05118c6-2490-4d78-a41a-390e3596a223"/>
+    <privilege  privilege="Get Users"  description="Able to get users in OpenMRS"  uuid="d05118c6-2490-4d78-a41a-390e3596a249"/>
+    <privilege  privilege="Get Visit Attribute Types"  description="Able to get visit attribute types"  uuid="d05118c6-2490-4d78-a41a-390e3596a213"/>
+    <privilege  privilege="Get Visit Types"  description="Able to get visit types"  uuid="d05118c6-2490-4d78-a41a-390e3596a215"/>
+    <privilege  privilege="Get Visits"  description="Able to get visits"  uuid="d05118c6-2490-4d78-a41a-390e3596a214"/>
+    <privilege  privilege="Manage Provider Schedules"  description="Ability to add/edit/purge appointment blocks"  uuid="044e4990-9e28-4906-a807-430c76060105"/>
+    <privilege  privilege="Manage Providers"  description="Able to edit Provider"  uuid="5652e96c-1718-4f95-8985-89a149e24d3d"/>
+    <privilege  privilege="Patient Dashboard - View Demographics Section"  description="Able to view the 'Demographics' tab on the patient dashboard"  uuid="129aa4e2-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="Patient Dashboard - View Overview Section"  description="Able to view the 'Overview' tab on the patient dashboard"  uuid="129aa58b-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="Patient Dashboard - View Patient Summary"  description="Able to view the 'Summary' tab on the patient dashboard"  uuid="129aa5b8-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="Patient Overview - View Relationships"  description="Able to view the Relationships portlet on the patient overview tab"  uuid="d05118c6-2490-4d78-a41a-390e3596a262"/>
+    <privilege  privilege="SQL Level Access"  description="Access to SQL Querying"  uuid="56439786-4d5e-494e-b507-e9d802a6b5a0"/>
+    <privilege  privilege="Task: coreapps.deletePatient"  description="Able to delete a patient"  uuid="ecf9d93c-67e4-441e-a3da-d457dd8ac23d"/>
+    <privilege  privilege="Task: coreapps.enrollInProgram"  description="Ability to enroll a patient in a program via the program status widget"  uuid="4b9f1d94-058a-4f64-986c-d9074127af44"/>
+    <privilege  privilege="Task: emr.patient.encounter.delete"  description="Able to delete patient encounters"  uuid="13d87cb7-0f31-4524-acd4-3cf5115ba34e"/>
+    <privilege  privilege="Task: emr.patient.encounter.edit"  description="Able to edit patient encounters"  uuid="d6b47e75-fca9-46c0-8b73-169d4d626230"/>
+    <privilege  privilege="View Appointment Types"  description="Ability to view appointment types"  uuid="6799b364-8c80-486a-a6fa-a567e5f6556e"/>
+    <privilege  privilege="View Appointments"  description="Ability to view appointments"  uuid="9fb5f1c1-54f7-426d-af10-4291ddf6bef8"/>
+    <privilege  privilege="View Appointments Blocks"  description="Ability to view the appointment blocks"  uuid="04e9f633-e39c-4b71-b21e-6cc9eba98a63"/>
+    <privilege  privilege="View Appointments Statistics"  description="Ability to view the appointments statistics page"  uuid="e5bab4c1-799a-4d9f-9352-1b6132798973"/>
+    <privilege  privilege="View Metadata Via Mapping"  description="Able to view metadata via a mapping"  uuid="dbc93470-9499-4a33-bf9f-93a61e5948df"/>
+    <privilege  privilege="View Observations"  description="Able to view patient observations"  uuid="129aa9c2-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="View Order Types"  description="Able to view order types"  uuid="129aa9e7-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="View Orders"  description="Able to view orders"  uuid="129aaa0a-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="View Patient Appointment History"  description="Ability to view the appointment history tab on the patient's dashboard"  uuid="6591b636-289a-4470-b333-d059476b83cb"/>
+    <privilege  privilege="View Patient Cohorts"  description="Able to view patient cohorts"  uuid="129aaa2e-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="View Patient Identifiers"  description="Able to view patient identifiers"  uuid="129aaa54-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="View Patient Programs"  description="Able to see which programs that patients are in"  uuid="129aaa7b-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="View Patients"  description="Able to view patients"  uuid="129aaaa0-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="View People"  description="Able to view person objects"  uuid="129aaac5-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="View Providers"  description="Able to view Provider"  uuid="8202e173-7d10-4da9-b279-424f056ee7ec"/>
+    <privilege  privilege="View Relationships"  description="Able to view relationships"  uuid="129aaba4-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="View Visits"  description="Able to view visits"  uuid="0b67ced8-a59c-4476-af36-25498b096c8f"/>
+    <privilege  privilege="Add Visits"  description="Able to add visits"  uuid="c6fe41a5-0daf-4047-b579-5c06c136bb8a"/>
+    <privilege  privilege="App: patientqueueing.providerDashboard"  description="Able to access Provider Dashboard"  uuid="dadeec04-6e88-43d1-9704-cacd1d313b22"/>
+    <privilege  privilege="Task: coreapps.markPatientDead"  description="Ability to Mark a patient dead/deceased."  uuid="205ebb45-79db-4bf5-a080-bac2421b5cb0"/>
+    <privilege  privilege="Task: coreapps.editRelationships"  description="Able to edit relationships"  uuid="5222e6c8-8b90-4c7f-9a8d-31cadf531f74"/>
+    <privilege  privilege="Task: coreapps.createVisit"  description="Able to create a visit"  uuid="034e2a04-469c-4e63-a235-4af4e6d1fc56"/>
+    <privilege  privilege="Task: coreapps.createRetrospectiveVisit"  description="Able to create a retrospective visit"  uuid="8437c737-240c-4c75-ac65-815632dab52c"/>
+    <privilege  privilege="Task: coreapps.mergeVisits"  description="Able to merge visits"  uuid="975587fd-fd6a-41fd-a464-9b6b50815d25"/>
+    <privilege  privilege="App: coreapps.dataManagement"  description="Able to access data management apps"  uuid="34c68bad-18a2-4f23-9697-7828ce728740"/>
+    <privilege  privilege="Get Diagnoses"  description="Able to get diagnoses"  uuid="932bc6a2-c09b-4119-90e3-82a70c334606"/>
+
+
+    <!-- PRIVILEGES-->
     <!--* TASKS *-->
     <privilege  privilege="Task: HIV Clinic Access"  description="Able to access HIV patient clinic information"  uuid="7e0465e4-2119-11e8-b467-0ed5f89f718b"/>
     <privilege  privilege="SQL Level Access"  description="Access to SQL Querying"  uuid="56439786-4d5e-494e-b507-e9d802a6b5a0"/>
 
+    <!--* DASHBOARD WIDGET *-->
+    <!--Fingerprint Privilleges-->
+    <privilege  privilege="App: fingerprint.add"  description="Able to add Patient fingerprint"  uuid="9c9d3fa6-10a9-11e8-b642-0ed5f89f718b"/>
+    <privilege  privilege="App: fingerprint.addPatientFingerprint"  description="Privilege to allow adding patient fingerprint"  uuid="6eb0cf64-d8b4-4ff9-8a6b-037b6468c696"/>
+    <privilege  privilege="App: fingerprint.configs"  description="Privilege to allow adding changing fingerprint settings"  uuid="8a27a36e-afb6-4c9d-82af-63325485a2d2"/>
+    <privilege  privilege="App: fingerprint.findPatient"  description="Able to search patient fingerprint"  uuid="9c9d4302-10a9-11e8-b642-0ed5f89f718b"/>
+    <privilege  privilege="App: fingerprint.fingerprintDetails"  description="Privilege to allow access to the fingerprint details on the patients dashboard"  uuid="4585ae16-4f1a-4df5-b1c5-221e716f8213"/>
+    <privilege  privilege="App: fingerprint.statistic"  description="Privilege to allow access to fingerprint statistics"  uuid="fc1a72d9-ea4a-445d-9392-2c21c25d9431"/>
 
     <!--* DASHBOARD WIDGET *-->
     <!--General Clinic-->
@@ -92,6 +191,7 @@
     <privilege  privilege="App: ugandaemrreports.UgandaEMRReports2014HMISTools"  description="UgandaEMR Reports 2014 HMIS Tools report access privillege"  uuid="ef0e24a2-b40b-425f-b514-4c929ebd7e9c"/>
     <privilege  privilege="App: ugandaemrreports.UgandaEMRReports2019HMISTools"  description="UgandaEMR Reports 2019 HMIS Tools report access privillege"  uuid="b5e71c75-d0fa-4f42-9f37-1bdf9285d72e"/>
     <privilege  privilege="App: ugandaemrreports.viralLoadSupression"  description="Viral Load Supression report access privillege"  uuid="9fb9c77a-e7c4-477a-9439-90556218c1d5"/>
+
     <privilege  privilege="App: ugandaemrpoc.artclinic"  description="Access to the HIV clinic provider dashboard"  uuid="93e8e3ba-775d-4a05-b547-bf67ab0f42e8"/>
     <privilege  privilege="App: ugandaemrpoc.laboratory"  description="Access to the laboratory dashboard"  uuid="0adadcd3-43b3-4cb6-9a81-39f7e6240846"/>
     <privilege  privilege="App: ugandaemrpoc.outpatient"  description="Access to the OPD clinic provider dashboard"  uuid="27c729b9-1426-436b-8c37-976a29c6f28d"/>
@@ -99,6 +199,8 @@
     <privilege  privilege="App: ugandaemrpoc.tbclinic"  description="Access to the TB Clinic provider dashboard"  uuid="6a33b789-e78d-4cf1-881b-b00e8fe1af84"/>
     <privilege  privilege="App: ugandaemrpoc.triage"  description="Access to the triage provider dashboard"  uuid="52b04846-410d-4b35-9d7f-8b3847b64681"/>
     <privilege  privilege="App: ugandaemrpoc.mchclinic"  description="Access to the mch provider dashboard"  uuid="7949e7fa-0564-11ea-a69e-362b9e155667"/>
+    <privilege  privilege="App: ugandaemrpoc.findPatient"  description="find patient ugandaemrpoc app privilege"  uuid="c837c951-b7bb-456d-8f49-8d439c0e8822"/>
+
 
 
 
@@ -129,85 +231,85 @@
 
     <!-- ROLE PRIVILEGES -->
     <!--* BASE ROLE *-->
-    <role_privilege  role="Base Role"  privilege="Add Observations"/>
-    <role_privilege  role="Base Role"  privilege="Add Patient Identifiers"/>
-    <role_privilege  role="Base Role"  privilege="Add Patients"/>
-    <role_privilege  role="Base Role"  privilege="Add People"/>
-    <role_privilege  role="Base Role"  privilege="App: coreapps.findPatient"/>
-    <role_privilege  role="Base Role"  privilege="App: coreapps.mergePatient"/>
-    <role_privilege  role="Base Role"  privilege="App: coreapps.patientDashboard"/>
-    <role_privilege  role="Base Role"  privilege="App: coreapps.patientVisits"/>
-    <role_privilege  role="Base Role"  privilege="App: referenceapplication.vitals"/>
-    <role_privilege  role="Base Role"  privilege="App: registrationapp.registerPatient"/>
-    <role_privilege  role="Base Role"  privilege="Delete Patient Identifiers"/>
-    <role_privilege  role="Base Role"  privilege="Delete Patients"/>
-    <role_privilege  role="Base Role"  privilege="Delete People"/>
-    <role_privilege  role="Base Role"  privilege="Edit Observations"/>
-    <role_privilege  role="Base Role"  privilege="Edit Patient Identifiers"/>
-    <role_privilege  role="Base Role"  privilege="Edit Patients"/>
-    <role_privilege  role="Base Role"  privilege="Edit People"/>
-    <role_privilege  role="Base Role"  privilege="Get Concept Classes"/>
-    <role_privilege  role="Base Role"  privilege="Get Concept Datatypes"/>
-    <role_privilege  role="Base Role"  privilege="Get Concept Proposals"/>
-    <role_privilege  role="Base Role"  privilege="Get Concept Sources"/>
-    <role_privilege  role="Base Role"  privilege="Get Concepts"/>
-    <role_privilege  role="Base Role"  privilege="Get Encounter Roles"/>
-    <role_privilege  role="Base Role"  privilege="Get Encounter Types"/>
-    <role_privilege  role="Base Role"  privilege="Get Encounters"/>
-    <role_privilege  role="Base Role"  privilege="Add Encounters"/>
-    <role_privilege  role="Base Role"  privilege="Edit Encounters"/>
-    <role_privilege  role="Base Role"  privilege="Task: emr.patient.encounter.edit"/>
-    <role_privilege  role="Base Role"  privilege="Get Observations"/>
-    <role_privilege  role="Base Role"  privilege="Get Patient Identifiers"/>
-    <role_privilege  role="Base Role"  privilege="Get Patients"/>
-    <role_privilege  role="Base Role"  privilege="Get People"/>
-    <role_privilege  role="Base Role"  privilege="Get Users"/>
-    <role_privilege  role="Base Role"  privilege="Get Visit Attribute Types"/>
-    <role_privilege  role="Base Role"  privilege="Get Visit Types"/>
-    <role_privilege  role="Base Role"  privilege="Get Visits"/>
-    <role_privilege  role="Base Role"  privilege="Edit Visits"/>
-    <role_privilege  role="Base Role"  privilege="View Visits"/>
-    <role_privilege  role="Base Role"  privilege="Patient Dashboard - View Demographics Section"/>
-    <role_privilege  role="Base Role"  privilege="Patient Dashboard - View Overview Section"/>
-    <role_privilege  role="Base Role"  privilege="Patient Dashboard - View Patient Summary"/>
-    <role_privilege  role="Base Role"  privilege="Task: coreapps.deletePatient"/>
-    <role_privilege  role="Base Role"  privilege="Task: emr.patient.encounter.delete"/>
-    <role_privilege  role="Base Role"  privilege="Task: emr.patient.encounter.edit"/>
-    <role_privilege  role="Base Role"  privilege="View Appointment Types"/>
-    <role_privilege  role="Base Role"  privilege="View Appointments"/>
-    <role_privilege  role="Base Role"  privilege="View Appointments Blocks"/>
-    <role_privilege  role="Base Role"  privilege="View Appointments Statistics"/>
-    <role_privilege  role="Base Role"  privilege="View Metadata Via Mapping"/>
-    <role_privilege  role="Base Role"  privilege="View Observations"/>
-    <role_privilege  role="Base Role"  privilege="View Patient Appointment History"/>
-    <role_privilege  role="Base Role"  privilege="View Patient Cohorts"/>
-    <role_privilege  role="Base Role"  privilege="View Patient Identifiers"/>
-    <role_privilege  role="Base Role"  privilege="View Patients"/>
-    <role_privilege  role="Base Role"  privilege="View People"/>
-    <role_privilege  role="Base Role"  privilege="App: ugandaemr.widget.dataIntegrityViolation"/>
-    <role_privilege  role="Base Role"  privilege="Get Providers"/>
-    <role_privilege  role="Base Role"  privilege="Manage Provider Schedules"/>
-    <role_privilege  role="Base Role"  privilege="Manage Providers"/>
-    <role_privilege  role="Base Role"  privilege="View Providers"/>
-    <role_privilege  role="Base Role"  privilege="Add Relationships"/>
-    <role_privilege  role="Base Role"  privilege="Edit Relationships"/>
-    <role_privilege  role="Base Role"  privilege="View Relationships"/>
-    <role_privilege  role="Base Role"  privilege="Get Relationships"/>
-    <role_privilege  role="Base Role"  privilege="Patient Overview - View Relationships"/>
-    <role_privilege  role="Base Role"  privilege="SQL Level Access"/>
+    <role_privilege  role="Base Role" privilege="Add Encounters"/>
+    <role_privilege  role="Base Role" privilege="Add Observations"/>
     <role_privilege  role="Base Role" privilege="Add Orders"/>
+    <role_privilege  role="Base Role" privilege="Add Patient Identifiers"/>
+    <role_privilege  role="Base Role" privilege="Add Patient Programs"/>
+    <role_privilege  role="Base Role" privilege="Add Patients"/>
+    <role_privilege  role="Base Role" privilege="Add People"/>
+    <role_privilege  role="Base Role" privilege="Add Relationships"/>
+    <role_privilege  role="Base Role" privilege="App: coreapps.mergePatient"/>
+    <role_privilege  role="Base Role" privilege="App: coreapps.patientDashboard"/>
+    <role_privilege  role="Base Role" privilege="App: coreapps.patientVisits"/>
+    <role_privilege  role="Base Role" privilege="App: referenceapplication.vitals"/>
+    <role_privilege  role="Base Role" privilege="App: ugandaemr.widget.dataIntegrityViolation"/>
+    <role_privilege  role="Base Role" privilege="Delete Patient Identifiers"/>
+    <role_privilege  role="Base Role" privilege="Delete Patients"/>
+    <role_privilege  role="Base Role" privilege="Delete People"/>
+    <role_privilege  role="Base Role" privilege="Edit Encounters"/>
+    <role_privilege  role="Base Role" privilege="Edit Observations"/>
     <role_privilege  role="Base Role" privilege="Edit Orders"/>
+    <role_privilege  role="Base Role" privilege="Edit Patient Identifiers"/>
+    <role_privilege  role="Base Role" privilege="Edit Patient Programs"/>
+    <role_privilege  role="Base Role" privilege="Edit Patients"/>
+    <role_privilege  role="Base Role" privilege="Edit People"/>
+    <role_privilege  role="Base Role" privilege="Edit Relationships"/>
+    <role_privilege  role="Base Role" privilege="Edit Visits"/>
+    <role_privilege  role="Base Role" privilege="Get Care Settings"/>
+    <role_privilege  role="Base Role" privilege="Get Concept Classes"/>
+    <role_privilege  role="Base Role" privilege="Get Concept Datatypes"/>
+    <role_privilege  role="Base Role" privilege="Get Concept Proposals"/>
+    <role_privilege  role="Base Role" privilege="Get Concept Sources"/>
+    <role_privilege  role="Base Role" privilege="Get Concepts"/>
+    <role_privilege  role="Base Role" privilege="Get Diagnoses"/>
+    <role_privilege  role="Base Role" privilege="Get Encounter Roles"/>
+    <role_privilege  role="Base Role" privilege="Get Encounter Types"/>
+    <role_privilege  role="Base Role" privilege="Get Encounters"/>
+    <role_privilege  role="Base Role" privilege="Get Observations"/>
     <role_privilege  role="Base Role" privilege="Get Order Frequencies"/>
     <role_privilege  role="Base Role" privilege="Get Order Sets"/>
     <role_privilege  role="Base Role" privilege="Get Order Types"/>
     <role_privilege  role="Base Role" privilege="Get Orders"/>
+    <role_privilege  role="Base Role" privilege="Get Patient Identifiers"/>
+    <role_privilege  role="Base Role" privilege="Get Patient Programs"/>
+    <role_privilege  role="Base Role" privilege="Get Patients"/>
+    <role_privilege  role="Base Role" privilege="Get People"/>
+    <role_privilege  role="Base Role" privilege="Get Programs"/>
+    <role_privilege  role="Base Role" privilege="Get Providers"/>
+    <role_privilege  role="Base Role" privilege="Get Relationships"/>
+    <role_privilege  role="Base Role" privilege="Get Users"/>
+    <role_privilege  role="Base Role" privilege="Get Visit Attribute Types"/>
+    <role_privilege  role="Base Role" privilege="Get Visit Types"/>
+    <role_privilege  role="Base Role" privilege="Get Visits"/>
+    <role_privilege  role="Base Role" privilege="Manage Provider Schedules"/>
+    <role_privilege  role="Base Role" privilege="Manage Providers"/>
+    <role_privilege  role="Base Role" privilege="Patient Dashboard - View Demographics Section"/>
+    <role_privilege  role="Base Role" privilege="Patient Dashboard - View Overview Section"/>
+    <role_privilege  role="Base Role" privilege="Patient Dashboard - View Patient Summary"/>
+    <role_privilege  role="Base Role" privilege="Patient Overview - View Relationships"/>
+    <role_privilege  role="Base Role" privilege="SQL Level Access"/>
+    <role_privilege  role="Base Role" privilege="Task: coreapps.deletePatient"/>
+    <role_privilege  role="Base Role" privilege="Task: coreapps.enrollInProgram"/>
+    <role_privilege  role="Base Role" privilege="Task: emr.patient.encounter.delete"/>
+    <role_privilege  role="Base Role" privilege="Task: emr.patient.encounter.edit"/>
+    <role_privilege  role="Base Role" privilege="View Appointment Types"/>
+    <role_privilege  role="Base Role" privilege="View Appointments Blocks"/>
+    <role_privilege  role="Base Role" privilege="View Appointments Statistics"/>
+    <role_privilege  role="Base Role" privilege="View Appointments"/>
+    <role_privilege  role="Base Role" privilege="View Metadata Via Mapping"/>
+    <role_privilege  role="Base Role" privilege="View Observations"/>
     <role_privilege  role="Base Role" privilege="View Order Types"/>
     <role_privilege  role="Base Role" privilege="View Orders"/>
-    <role_privilege  role="Base Role" privilege="Get Care Settings"/>
-    <role_privilege  role="Base Role" privilege="Get Patient Programs"/>
+    <role_privilege  role="Base Role" privilege="View Patient Appointment History"/>
+    <role_privilege  role="Base Role" privilege="View Patient Cohorts"/>
+    <role_privilege  role="Base Role" privilege="View Patient Identifiers"/>
     <role_privilege  role="Base Role" privilege="View Patient Programs"/>
-    <role_privilege  role="Base Role" privilege="Add Patient Programs"/>
-    <role_privilege  role="Base Role" privilege="Edit Patient Programs"/>
+    <role_privilege  role="Base Role" privilege="View Patients"/>
+    <role_privilege  role="Base Role" privilege="View People"/>
+    <role_privilege  role="Base Role" privilege="View Providers"/>
+    <role_privilege  role="Base Role" privilege="View Relationships"/>
+    <role_privilege  role="Base Role" privilege="View Visits"/>
 
     <!--***** PERSON/LOCATION CENTERED ROLES *****-->
 
@@ -216,7 +318,11 @@
     <role_role  parent_role="Base Role"  child_role="Reception"/>
 
     <!-- role privilege -->
-    <role_privilege  role="Reception"  privilege="App: fingerprint.findPatient"/>
+    <role_privilege  role="Reception"  privilege="App: ugandaemrpoc.findPatient"/>
+    <role_privilege  role="Reception"  privilege="Add Visits"/>
+    <role_privilege  role="Reception"  privilege="App: fingerprint.addPatientFingerprint"/>
+    <role_privilege  role="Reception"  privilege="App: fingerprint.fingerprintDetails"/>
+    <role_privilege  role="Reception"  privilege="App: fingerprint.statistic"/>
 
 
     <!--* TRIAGE ROLE *-->
@@ -278,6 +384,7 @@
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.dsdmPatientHistory"/>
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.directionsToResidence"/>
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemrpoc.artclinic"/>
+    <role_privilege  role="HIV Clinic"  privilege="Task: coreapps.markPatientDead"/>
 
     <!--* OPD Clinic *-->
     <!--role-role-->
@@ -285,6 +392,8 @@
 
     <!-- role privilege -->
     <role_privilege  role="OPD Clinic"  privilege="App: ugandaemrpoc.outpatient"/>
+    <role_privilege  role="OPD Clinic"  privilege="Task: coreapps.markPatientDead"/>
+
 
     <!--* MCH Clinic *-->
     <!--role-role-->
@@ -292,6 +401,7 @@
 
     <!-- role privilege -->
     <role_privilege  role="MCH Clinic"  privilege="App: ugandaemrpoc.mchclinic"/>
+    <role_privilege  role="MCH Clinic"  privilege="Task: coreapps.markPatientDead"/>
 
     <!--* TB Clinic *-->
     <!--role-role-->
@@ -299,6 +409,7 @@
 
     <!-- role privilege -->
     <role_privilege  role="TB Clinic"  privilege="App: ugandaemrpoc.tbclinic"/>
+    <role_privilege  role="TB Clinic"  privilege="Task: coreapps.markPatientDead"/>
 
 
     <!--***** REPORTING ROLES *****-->
@@ -436,8 +547,8 @@
     <role_role  parent_role="Base Role"  child_role="Data Clerk"/>
 
     <!-- role privilege -->
-    <role_privilege  role="Data Clerk"  privilege="App: fingerprint.findPatient"/>
-    <role_privilege  role="Data Clerk"  privilege="App: patientqueueing.providerDashboard"/>
+    <role_privilege  role="Data Clerk"  privilege="App: ugandaemrpoc.findPatient"/>
+    <role_privilege  role="Data Clerk"  privilege="Add Visits"/>
     <role_privilege  role="Data Clerk"  privilege="Task: HIV Clinic Access"/>
     <role_privilege  role="Data Clerk"  privilege="App: ugandaemr.widget.lastARTVisitSummary"/>
     <role_privilege  role="Data Clerk"  privilege="App: ugandaemr.widget.artStatus"/>
@@ -445,4 +556,21 @@
     <role_privilege  role="Data Clerk"  privilege="App: ugandaemr.widget.viralLoadHistory"/>
     <role_privilege  role="Data Clerk"  privilege="App: ugandaemr.widget.dsdmPatientHistory"/>
     <role_privilege  role="Data Clerk"  privilege="App: ugandaemr.widget.directionsToResidence"/>
+    <role_privilege  role="Data Clerk"  privilege="Task: coreapps.markPatientDead"/>
+    <role_privilege  role="Data Clerk"  privilege="Task: coreapps.editRelationships"/>
+    <role_privilege  role="Data Clerk"  privilege="App: coreapps.patientDashboard"/>
+    <role_privilege  role="Data Clerk"  privilege="App: coreapps.mergePatient"/>
+    <role_privilege  role="Data Clerk"  privilege="Task: coreapps.createVisit"/>
+    <role_privilege  role="Data Clerk"  privilege="Task: coreapps.createRetrospectiveVisit"/>
+    <role_privilege  role="Data Clerk"  privilege="Task: coreapps.mergeVisits"/>
+    <role_privilege  role="Data Clerk"  privilege="App: coreapps.dataManagement"/>
+    <role_privilege  role="Data Clerk"  privilege="App: fingerprint.addPatientFingerprint"/>
+    <role_privilege  role="Data Clerk"  privilege="App: fingerprint.fingerprintDetails"/>
+    <role_privilege  role="Data Clerk"  privilege="App: fingerprint.statistic"/>
 </dataset>
+
+
+
+
+
+
