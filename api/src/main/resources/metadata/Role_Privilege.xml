@@ -89,6 +89,8 @@
     <privilege  privilege="Task: coreapps.mergeVisits"  description="Able to merge visits"  uuid="975587fd-fd6a-41fd-a464-9b6b50815d25"/>
     <privilege  privilege="App: coreapps.dataManagement"  description="Able to access data management apps"  uuid="34c68bad-18a2-4f23-9697-7828ce728740"/>
     <privilege  privilege="Get Diagnoses"  description="Able to get diagnoses"  uuid="932bc6a2-c09b-4119-90e3-82a70c334606"/>
+    <privilege  privilege="Task: patientqueueing.completePatientQueue"  description="Able to complete a patient queue"  uuid="a8b9eb25-9bb0-4bbf-a97a-cb04aa1641d9"/>
+    <privilege  privilege="Task: patientqueueing.sendPatientToQueue"  description="Ability to send Patient To Queue"  uuid="c8e9aea2-eeff-453c-a0aa-e691120413d0"/>
 
 
     <!-- PRIVILEGES-->
@@ -348,7 +350,8 @@
     <!-- role privilege -->
     <role_privilege  role="Counselor"  privilege="App: ugandaemrpoc.counselingCenter"/>
     <role_privilege  role="Counselor"  privilege="Task: HIV Clinic Access"/>
-
+    <role_privilege  role="Counselor" privilege="Task: patientqueueing.completePatientQueue"/>
+    <role_privilege  role="Counselor" privilege="Task: patientqueueing.sendPatientToQueue"/>
 
     <!--* LABORATORY ROLE *-->
     <!--role-role-->
@@ -385,7 +388,8 @@
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.directionsToResidence"/>
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemrpoc.artclinic"/>
     <role_privilege  role="HIV Clinic"  privilege="Task: coreapps.markPatientDead"/>
-
+    <role_privilege  role="HIV Clinic" privilege="Task: patientqueueing.completePatientQueue"/>
+    <role_privilege  role="HIV Clinic" privilege="Task: patientqueueing.sendPatientToQueue"/>
     <!--* OPD Clinic *-->
     <!--role-role-->
     <role_role  parent_role="Base Role"  child_role="OPD Clinic"/>
@@ -393,7 +397,8 @@
     <!-- role privilege -->
     <role_privilege  role="OPD Clinic"  privilege="App: ugandaemrpoc.outpatient"/>
     <role_privilege  role="OPD Clinic"  privilege="Task: coreapps.markPatientDead"/>
-
+    <role_privilege  role="OPD Clinic" privilege="Task: patientqueueing.completePatientQueue"/>
+    <role_privilege  role="OPD Clinic" privilege="Task: patientqueueing.sendPatientToQueue"/>
 
     <!--* MCH Clinic *-->
     <!--role-role-->
@@ -402,7 +407,8 @@
     <!-- role privilege -->
     <role_privilege  role="MCH Clinic"  privilege="App: ugandaemrpoc.mchclinic"/>
     <role_privilege  role="MCH Clinic"  privilege="Task: coreapps.markPatientDead"/>
-
+    <role_privilege  role="MCH Clinic" privilege="Task: patientqueueing.completePatientQueue"/>
+    <role_privilege  role="MCH Clinic" privilege="Task: patientqueueing.sendPatientToQueue"/>
     <!--* TB Clinic *-->
     <!--role-role-->
     <role_role  parent_role="Base Role"  child_role="TB Clinic"/>
@@ -410,7 +416,8 @@
     <!-- role privilege -->
     <role_privilege  role="TB Clinic"  privilege="App: ugandaemrpoc.tbclinic"/>
     <role_privilege  role="TB Clinic"  privilege="Task: coreapps.markPatientDead"/>
-
+    <role_privilege  role="TB Clinic" privilege="Task: patientqueueing.completePatientQueue"/>
+    <role_privilege  role="TB Clinic" privilege="Task: patientqueueing.sendPatientToQueue"/>
 
     <!--***** REPORTING ROLES *****-->
     <!--* Base reporting *-->
