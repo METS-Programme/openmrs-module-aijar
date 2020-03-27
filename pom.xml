@@ -4,7 +4,7 @@
 
 	<groupId>org.openmrs.module</groupId>
 	<artifactId>aijar</artifactId>
-	<version>3.0.0-SNAPSHOT</version>
+	<version>3.0.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Aijar</name>
 	<description>Customizations for Uganda OpenMRS distribution</description>
@@ -102,14 +102,14 @@
 		<reportingCompatibilityVersion>2.0.6</reportingCompatibilityVersion>
 		<reportingUIVersion>1.6.0</reportingUIVersion>
 		<serializationxstreamVersion>0.2.14</serializationxstreamVersion>
-		<uicommonsVersion>2.11.0</uicommonsVersion>
+		<uicommonsVersion>2.12.0</uicommonsVersion>
 		<uiframeworkVersion>3.16.0</uiframeworkVersion>
 		<uilibraryVersion>2.0.6</uilibraryVersion>
 		<ugandaemrfingerprintVersion>1.0.11</ugandaemrfingerprintVersion>
 		<xformsVersion>4.3.12</xformsVersion>
 
 		<!-- core configuration library -->
-		<ugandaemrReportsVersion>2.0.12</ugandaemrReportsVersion>
+		<ugandaemrReportsVersion>2.0.13</ugandaemrReportsVersion>
 
 	</properties>
 
