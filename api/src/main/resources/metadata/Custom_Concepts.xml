@@ -1151,7 +1151,8 @@
     <concept concept_id="165486" retired="0" datatype_id="4" class_id="5" is_set="0" creator="1" date_created="2020-03-02 22:47:52" version="1.0" changed_by="1" date_changed="2020-03-02 22:47:52" uuid="e063241f-5a50-4fea-9bce-d1bf8332f081"/>
     <concept concept_id="165487" retired="0" datatype_id="1" class_id="3" is_set="0" creator="1" date_created="2020-03-03 15:42:51" version="1.0" changed_by="1" date_changed="2020-03-03 15:42:51" uuid="d62eb8dd-81bd-4d52-9b22-d3226fe6f7ab"/>
     <concept concept_id="165488" retired="0" datatype_id="1" class_id="3" is_set="0" creator="1" date_created="2020-03-03 15:46:13" version="1.0" changed_by="1" date_changed="2020-03-03 15:46:13" uuid="1743fc63-094c-412b-bcf9-793391102377"/>
-    <concept  concept_id="165792"  retired="0"  datatype_id="3"  class_id="5"  is_set="0"  creator="1"  date_created="2020-03-31 10:41:00"  version="1.0"  changed_by="1"  date_changed="2020-03-31 10:41:00"  uuid="23a6dc6e-ac16-4fa6-8029-155522548d04"/>
+    <concept concept_id="165792" retired="0" datatype_id="3" class_id="5" is_set="0" creator="1" date_created="2020-03-31 10:41:00" version="1.0" changed_by="1" date_changed="2020-03-31 10:41:00" uuid="23a6dc6e-ac16-4fa6-8029-155522548d04"/>
+    <concept concept_id="165793" retired="0" datatype_id="6" class_id="5" is_set="0" creator="1" date_created="2020-04-02 10:41:23" version="1.0" changed_by="1" date_changed="2020-04-02 10:41:23" uuid="04ba417e-6a17-4967-9ebf-16aac1432195"/>
         <!--CONCEPT NUMERIC-->
     <!--MCH-->
     <concept_numeric  concept_id="160081"  allow_decimal="0" />
@@ -1634,6 +1635,7 @@
     <concept_description concept_description_id="18403" concept_id="165482" description="The medication that a patient was due to refill at the appointment that they missed" locale="en" creator="1" date_created="2020-03-02 21:58:12" uuid="0b84dd75-e721-444f-8cd7-eeb32c861e08"/>
     <concept_description concept_description_id="18404" concept_id="165484" description="Outcomes for patient followups by the end of the quarter in which followup was started" locale="en" creator="1" date_created="2020-03-02 22:28:59" uuid="623e1a4d-bf68-42d1-a6f5-f78105b57935"/>
     <concept_description concept_description_id="18405" concept_id="165485" description="Patient followup outcomes at the end of the quarter after the one in which followup was started" locale="en" creator="1" date_created="2020-03-02 22:46:03" uuid="ac1fc24a-d54e-4ae2-bb22-994ac8edbaa6"/>
+    <concept_description concept_description_id="18406" concept_id="165793" description="The date when the INH (ISONIAZID) prophylaxis was completed" locale="en" creator="1" date_created="2020-04-02 10:41:23" uuid="3f4b4a0e-ab8d-4d17-a28b-2ce89bb34942"/>
     
     <!--CONCEPT NAME-->
     <!--ART-->
@@ -4138,6 +4140,9 @@
     <concept_name concept_name_id="160590" concept_id="165487" name="Number of combined iron and folic acid tablets" locale="en" locale_preferred="1" creator="1" date_created="2020-03-03 15:42:51" concept_name_type="FULLY_SPECIFIED" voided="0" uuid="f1c6ce59-a7d6-4050-82e4-17c87abe330c" />
     <concept_name concept_name_id="160591" concept_id="165488" name="Number of Misoprostol tablets given" locale="en" locale_preferred="1" creator="1" date_created="2020-03-03 15:46:13" concept_name_type="FULLY_SPECIFIED" voided="0" uuid="c074d2eb-c329-4ed6-8d75-cd999e054415" />
     <concept_name  concept_name_id="160919"  concept_id="165792"  name="TPT Side Effects"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-03-31 10:41:00"  concept_name_type="FULLY_SPECIFIED"  voided="0"   uuid="89a1b671-0cda-43d9-8b91-87f8ac46872a" />
+    <concept_name concept_name_id="160920" concept_id="165793" name="ISONIAZID END DATE" locale="en" locale_preferred="1" creator="1" date_created="2020-04-02 10:41:23" concept_name_type="FULLY_SPECIFIED" voided="0" uuid="6fa34e3a-3d8e-4e79-ac43-521336049df2" />
+    <concept_name concept_name_id="160921" concept_id="165793" name="INH END DATE" locale="en" locale_preferred="1" creator="1" date_created="2020-04-02 10:41:23" concept_name_type="SHORT" voided="0" uuid="29ff7df4-f7fe-44cf-a2a9-f546ada94044" />
+    
     <!--CONCEPT ANSWERS-->
     <!--MCH-->
     <concept_answer  concept_answer_id="780"  concept_id="5282"  answer_concept="1143" creator="1" date_created="2006-04-15 09:35:11"  uuid="780CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"  sort_weight="780"/>
