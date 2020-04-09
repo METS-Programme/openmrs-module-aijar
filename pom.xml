@@ -50,7 +50,7 @@
 		<openMRSVersion>2.3.0</openMRSVersion>
 		<openmrsTestutilsVersion>1.3</openmrsTestutilsVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<webservices.restModuleVersion>2.28.0</webservices.restModuleVersion>
+		<webservices.restModuleVersion>2.28.0</webservices.restModuleVersion> 
 
 		<!-- Modules Bundled for Uganda distribution  -->
 		<!-- TODO: Arrange the dependencies and variables in alphabetical order -->
@@ -413,8 +413,15 @@
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>webservices.rest-omod-common</artifactId>
 				<version>${webservices.restModuleVersion}</version>
-				<scope>test</scope>
+				<scope>provided</scope>
 			</dependency>
+			<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>webservices.rest-omod-common</artifactId>
+			<version>${webservices.restModuleVersion}</version>
+			<scope>provided</scope>
+			<type>test-jar</type>
+    	</dependency>
 		</dependencies>
 	</dependencyManagement>
 
