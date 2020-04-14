@@ -93,7 +93,7 @@
 		<openwebappsVersion>1.10.0</openwebappsVersion>
 		<patientFlagsVersion>3.0.2</patientFlagsVersion>
 		<providermanagementVersion>2.10.0</providermanagementVersion>
-		<referenceapplicationVersion>2.10.0-alpha</referenceapplicationVersion>
+		<referenceapplicationVersion>2.10.0-SNAPSHOT</referenceapplicationVersion>
 		<referencemetadataVersion>2.10.1</referencemetadataVersion>
 		<registrationappVersion>1.15.0</registrationappVersion>
 		<registrationcoreVersion>1.9.0</registrationcoreVersion>
@@ -109,7 +109,7 @@
 		<xformsVersion>4.3.12</xformsVersion>
 
 		<!-- core configuration library -->
-		<ugandaemrReportsVersion>2.0.13</ugandaemrReportsVersion>
+		<ugandaemrReportsVersion>2.0.14-SNAPSHOT</ugandaemrReportsVersion>
 
 	</properties>
 
