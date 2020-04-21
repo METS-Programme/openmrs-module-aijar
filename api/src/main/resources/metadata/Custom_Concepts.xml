@@ -1153,6 +1153,7 @@
     <concept concept_id="165488" retired="0" datatype_id="1" class_id="3" is_set="0" creator="1" date_created="2020-03-03 15:46:13" version="1.0" changed_by="1" date_changed="2020-03-03 15:46:13" uuid="1743fc63-094c-412b-bcf9-793391102377"/>
     <concept concept_id="165792" retired="0" datatype_id="3" class_id="5" is_set="0" creator="1" date_created="2020-03-31 10:41:00" version="1.0" changed_by="1" date_changed="2020-03-31 10:41:00" uuid="23a6dc6e-ac16-4fa6-8029-155522548d04"/>
     <concept concept_id="165793" retired="0" datatype_id="6" class_id="5" is_set="0" creator="1" date_created="2020-04-02 10:41:23" version="1.0" changed_by="1" date_changed="2020-04-02 10:41:23" uuid="04ba417e-6a17-4967-9ebf-16aac1432195"/>
+    <concept concept_id="165794" retired="0" datatype_id="2" class_id="11" is_set="0" creator="1" date_created="2020-04-17 10:41:23" version="1.0" changed_by="1" date_changed="2020-04-17 10:41:23" uuid="b3b96899-d0b5-4dc4-8999-968591fe61a6"/>
         <!--CONCEPT NUMERIC-->
     <!--MCH-->
     <concept_numeric  concept_id="160081"  allow_decimal="0" />
@@ -4142,7 +4143,8 @@
     <concept_name  concept_name_id="160919"  concept_id="165792"  name="TPT Side Effects"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-03-31 10:41:00"  concept_name_type="FULLY_SPECIFIED"  voided="0"   uuid="89a1b671-0cda-43d9-8b91-87f8ac46872a" />
     <concept_name concept_name_id="160920" concept_id="165793" name="ISONIAZID END DATE" locale="en" locale_preferred="1" creator="1" date_created="2020-04-02 10:41:23" concept_name_type="FULLY_SPECIFIED" voided="0" uuid="6fa34e3a-3d8e-4e79-ac43-521336049df2" />
     <concept_name concept_name_id="160921" concept_id="165793" name="INH END DATE" locale="en" locale_preferred="1" creator="1" date_created="2020-04-02 10:41:23" concept_name_type="SHORT" voided="0" uuid="29ff7df4-f7fe-44cf-a2a9-f546ada94044" />
-    
+    <concept_name concept_name_id="160922" concept_id="165794" name="BCG/POLIO" locale="en" locale_preferred="1" creator="1" date_created="2020-04-17 10:41:23" concept_name_type="FULLY_SPECIFIED" voided="0" uuid="c638d8aa-5ed5-4753-9105-161131eed75a" />
+
     <!--CONCEPT ANSWERS-->
     <!--MCH-->
     <concept_answer  concept_answer_id="780"  concept_id="5282"  answer_concept="1143" creator="1" date_created="2006-04-15 09:35:11"  uuid="780CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"  sort_weight="780"/>
@@ -4403,6 +4405,8 @@
     <concept_answer  concept_answer_id="7342"  concept_id="165315"  answer_concept="1364" creator="1"  date_created="2019-10-03 22:05:31"  sort_weight="4"  uuid="2a0962c5-e54a-4559-bfd4-3aa0c07267c1"/>
     <concept_answer  concept_answer_id="7343"  concept_id="165315"  answer_concept="1175" creator="1"  date_created="2019-10-03 22:05:31"  sort_weight="3"  uuid="2083a58e-0339-4c59-8355-af757b04902d"/>
     <concept_answer  concept_answer_id="7344"  concept_id="165315"  answer_concept="165313" creator="1"  date_created="2019-10-03 22:05:31"  sort_weight="2"  uuid="8e1b333f-5a6e-488d-914c-26659e1e45f7"/>
+    <concept_answer  concept_answer_id="7366195"  concept_id="165794"  answer_concept="1066" creator="1"  date_created="2020-04-17 13:04:30"  sort_weight="1"  uuid="83d38b5a-6a35-4b87-9770-1098b532c678"/>
+    <concept_answer  concept_answer_id="7366196"  concept_id="165794"  answer_concept="1065" creator="1"  date_created="2020-04-17 13:04:30"  sort_weight="2"  uuid="bf24dadc-18ce-4d6c-936c-ffa9e71a3aec"/>
 
 
 
