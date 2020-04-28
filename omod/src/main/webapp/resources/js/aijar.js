@@ -200,8 +200,8 @@ function validateRequiredField(prime, factor, message_to_throw, input_type) {
         }
     }
     else if (input_type === "check_box") {
-        selected_value = jq("#" + factor).find(":checkbox:first").attr("checked");
-        if (selected_value === "checked" && getValue(prime + '.value') === '') {
+        selected_value = jq("#" + factor).find(":checkbox:first");
+        if (selected_value.prop('checked') && getValue(prime + '.value') === '') {
             getField(prime + '.error').html(message_to_throw).show;
             jq('#' + prime).find("span").removeAttr("style");
             evaluationResult = false;
