@@ -4,6 +4,7 @@ import org.openmrs.module.aijar.metadata.core.Flags;
 import org.openmrs.module.aijar.metadata.core.Priorites;
 import org.openmrs.module.aijar.metadata.core.Tags;
 import org.openmrs.module.metadatadeploy.bundle.AbstractMetadataBundle;
+import org.openmrs.module.patientflags.Flag;
 import org.openmrs.module.patientflags.metadatadeploy.bundle.PatientFlagMetadataBundle;
 import org.springframework.stereotype.Component;
 
@@ -43,6 +44,7 @@ public class UgandaEMRPatientFlagMetadataBundle extends PatientFlagMetadataBundl
         install(Flags.DUE_FOR_SECOND_DNA_PCR);
         install(Flags.OVERDUE_FOR_SECOND_DNA_PCR);
         install(Flags.DUE_FOR_RAPID_TEST);
+        install(Flags.OVER_DUE_FOR_THIRD_DNA_PCR);
         install(Flags.OVERDUE_FOR_RAPID_TEST);
         install(Flags.HAS_DETECTABLE_VIRAL_LOAD);
         install(Flags.PATIENT_TRANSFERED_OUT);
