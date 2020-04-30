@@ -362,7 +362,7 @@ function blockEncounterOnSameDateEncounter(encounterDate, instruction) {
 
     if (jq('[name=encounterId]').val() == null) {
         jq.get(
-            getContextPath() + '/module/htmlformentry/lastEnteredForm.form',
+            getContextPath() + '/module/aijar/lastEnteredForm.form',
             {formId: formId, patientId: patientId, date: date, dateFormat: 'yyyy-MM-dd'},
             function (responseText) {
 
