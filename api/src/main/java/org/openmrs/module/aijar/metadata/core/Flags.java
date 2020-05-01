@@ -532,20 +532,64 @@ public class Flags {
         }
     };
 
+    public static FlagDescriptor DUE_FOR_THIRD_DNA_PCR = new FlagDescriptor() {
+        @Override
+        public String criteria() {
+            return "SELECT p.patient_id , DATE_FORMAT(DATE_ADD(pe.birthdate, INTERVAL 13 MONTH), '%d.%b.%Y') FROM patient p  \n" +
+                    " INNER JOIN obs o ON p.patient_id = o.person_id   INNER JOIN person pe ON p.patient_id = pe.person_id  \n" +
+                    "  INNER JOIN encounter e ON o.encounter_id = e.encounter_id   INNER JOIN encounter_type et ON e.encounter_type = et.encounter_type_id \n" +
+                    "  WHERE pe.dead=FALSE  \n" +
+                    "    AND (TIMESTAMPDIFF(MONTH, pe.birthdate, CURDATE()) BETWEEN 13 AND 14) AND et.uuid='9fcfcc91-ad60-4d84-9710-11cc25258719'        \n" +
+                    "     AND p.patient_id NOT IN (SELECT ee.patient_id FROM encounter ee INNER JOIN encounter_type ete ON ee.encounter_type = ete.encounter_type_id \n" +
+                    "     WHERE ete.uuid = '8d5b27bc-c2cc-11de-8d13-0010c6dffd0f' AND ee.voided = FALSE)  GROUP BY p.patient_id  \n" +
+                    "     HAVING p.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 99436 AND oo.voided = FALSE)\n" +
+                    "   AND p.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 90306 AND oo.voided = FALSE)";
+        }
+
+        @Override
+        public String message() {
+            return "Due for 3rd DNA PCR on ${1}";
+        }
+
+        @Override
+        public String priority() {
+            return Priorites.GREEN.uuid();
+        }
+
+        @Override
+        public List<String> tags() {
+            return Arrays.asList(Tags.PATIENT_STATUS.uuid());
+        }
+
+        @Override
+        public String name() {
+            return "Due for 3rd DNA PCR";
+        }
+
+        @Override
+        public String description() {
+            return "Exposed infants who are due for their third DNA PCR aged between 13 and 14 months";
+        }
+
+        @Override
+        public String uuid() {
+            return "636a9bd2-9f13-45ca-886b-9380a959965";
+        }
+    };
+
 
     public static FlagDescriptor OVER_DUE_FOR_THIRD_DNA_PCR = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT p.patient_id, DATE_FORMAT(DATE_ADD(MIN(oo.obs_datetime),INTERVAL 7 WEEK ),'%d.%b.%Y')\n" +
-                    "FROM obs oo inner join patient p on p.patient_id=oo.person_id\n" +
-                    " INNER JOIN person pe ON p.patient_id = pe.person_id\n" +
-                    " INNER JOIN encounter e ON oo.encounter_id = e.encounter_id   INNER JOIN encounter_type et ON e.encounter_type = et.encounter_type_id\n" +
-                    "where oo.value_coded = 99793  And pe.dead=FALSE AND  et.uuid='9fcfcc91-ad60-4d84-9710-11cc25258719'\n" +
-                    "AND p.patient_id NOT IN (SELECT ee.patient_id FROM encounter ee INNER JOIN encounter_type ete ON ee.encounter_type = ete.encounter_type_id\n" +
-                    "                       WHERE ete.uuid = '8d5b27bc-c2cc-11de-8d13-0010c6dffd0f' AND ee.voided = FALSE)\n" +
-                    "AND oo.voided = FALSE   group by oo.person_id\n" +
-                    "  HAVING TIMESTAMPDIFF(WEEK,MIN(oo.obs_datetime),CURDATE())>=7  and  p.patient_id  IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 99436 AND oo.voided = FALSE)\n" +
-                    "AND p.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 90306 AND oo.voided = FALSE)";
+            return "SELECT p.patient_id , DATE_FORMAT(DATE_ADD(pe.birthdate, INTERVAL 13 MONTH), '%d.%b.%Y') FROM patient p  \n" +
+                    "  INNER JOIN obs o ON p.patient_id = o.person_id   INNER JOIN person pe ON p.patient_id = pe.person_id  \n" +
+                    "  INNER JOIN encounter e ON o.encounter_id = e.encounter_id   INNER JOIN encounter_type et ON e.encounter_type = et.encounter_type_id +\n" +
+                    "  WHERE pe.dead=FALSE   \n" +
+                    "    AND  (TIMESTAMPDIFF(MONTH, pe.birthdate, CURDATE()) BETWEEN 15 AND 17) AND et.uuid='9fcfcc91-ad60-4d84-9710-11cc25258719' \n" +
+                    "   AND p.patient_id NOT IN (SELECT ee.patient_id FROM encounter ee INNER JOIN encounter_type ete ON ee.encounter_type = ete.encounter_type_id \n" +
+                    "  WHERE ete.uuid = '8d5b27bc-c2cc-11de-8d13-0010c6dffd0f' AND ee.voided = FALSE)  GROUP BY p.patient_id \n" +
+                    "  HAVING p.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 99436 AND oo.voided = FALSE)\n" +
+                    " AND p.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 90306 AND oo.voided = FALSE)";
         }
 
         @Override
