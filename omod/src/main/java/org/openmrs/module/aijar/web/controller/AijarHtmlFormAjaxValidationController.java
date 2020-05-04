@@ -57,11 +57,11 @@ public class AijarHtmlFormAjaxValidationController {
 
 		for(Encounter enc: encounters)
 		{
-			if(enc.getForm() != null)
+			Form encForm = enc.getForm();
+			if(encForm != null)
 			{
 				String encounterDate = dateFormatter.format(enc.getEncounterDatetime());
 
-				Form encForm = enc.getForm();
 				HtmlForm htmlForm = HtmlFormEntryUtil.getService().getHtmlFormByForm(encForm);
 				if(htmlForm != null && htmlForm.getId().equals(formId) && dateToCheck.compareTo(dateFormatter.parse(encounterDate)) == 0)
 				{
