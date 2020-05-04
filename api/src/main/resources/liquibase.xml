@@ -306,4 +306,33 @@
             <column name="uuid" value="8b5caeea-2c3b-11e8-b467-0ed5f89f718b" />
         </insert>
     </changeSet>
+
+	<changeSet author="rmakoba" id="ugandaemr-04052020-iss-9">
+		<preConditions onFail="MARK_RAN">
+			<not><tableExists tableName="public_holiday"/></not>
+		</preConditions>
+		<comment>
+			Create the public_holiday table
+		</comment>
+        <createTable tableName="public_holiday">
+            <column autoIncrement="true" name="public_holiday_id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column  name="public_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_description" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creator" type="INT"/>
+            <column name="date_created" type="datetime"/>
+            <column name="changed_by" type="INT"/>
+            <column name="date_changed" type="datetime"/>
+            <column name="voided" type="TINYINT(3)"/>
+            <column name="date_voided" type="datetime"/>
+            <column name="voided_by" type="INT"/>
+            <column name="void_reason" type="VARCHAR(255)"/>
+            <column name="uuid" type="VARCHAR(38)"/>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>

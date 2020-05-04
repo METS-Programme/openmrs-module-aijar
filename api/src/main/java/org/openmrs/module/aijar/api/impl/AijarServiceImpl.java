@@ -13,7 +13,6 @@
  */
 package org.openmrs.module.aijar.api.impl;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +37,7 @@ import org.openmrs.api.EncounterService;
 import org.openmrs.api.PatientService;
 import org.openmrs.api.PersonService;
 import org.openmrs.api.VisitService;
+import org.openmrs.api.APIException;
 import org.openmrs.api.AdministrationService;
 import org.openmrs.PatientIdentifierType;
 import org.openmrs.PatientIdentifier;
@@ -50,6 +50,7 @@ import org.openmrs.module.aijar.api.AijarService;
 import org.openmrs.module.aijar.api.db.AijarDAO;
 import org.openmrs.module.aijar.metadata.core.Locations;
 import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
+import org.openmrs.module.aijar.metadata.core.PublicHoliday;
 import org.openmrs.notification.Alert;
 import org.openmrs.util.OpenmrsUtil;
 import org.openmrs.parameter.EncounterSearchCriteria;
@@ -93,23 +94,28 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 	public void linkExposedInfantToMotherViaARTNumber(Person infant, String motherARTNumber) {
 		log.debug("Linking infant with ID " + infant.getPersonId() + " to mother with ART Number " + motherARTNumber);
 		List<PatientIdentifierType> artNumberPatientidentifierTypes = new ArrayList<>();
-		artNumberPatientidentifierTypes.add(Context.getPatientService().getPatientIdentifierTypeByUuid(PatientIdentifierTypes.ART_PATIENT_NUMBER.uuid()));
-		artNumberPatientidentifierTypes.add(Context.getPatientService().getPatientIdentifierTypeByUuid(PatientIdentifierTypes.HIV_CARE_NUMBER.uuid()));
+		artNumberPatientidentifierTypes.add(Context.getPatientService()
+				.getPatientIdentifierTypeByUuid(PatientIdentifierTypes.ART_PATIENT_NUMBER.uuid()));
+		artNumberPatientidentifierTypes.add(Context.getPatientService()
+				.getPatientIdentifierTypeByUuid(PatientIdentifierTypes.HIV_CARE_NUMBER.uuid()));
 		// find the mother by identifier
 		List<Patient> mothers = patientService.getPatients(null, // name of the person
-				motherARTNumber, //mother ART number
+				motherARTNumber, // mother ART number
 				artNumberPatientidentifierTypes, // ART Number and HIV Clinic number
 				true); // match Identifier exactly
 		if (mothers.size() != 0) {
 			Person potentialMother = mothers.get(0).getPerson();
 			// mothers have to be female and above 12 years of age
-			if (potentialMother.getAge() != null && potentialMother.getAge() > 12 & potentialMother.getGender().equals("F")) {
+			if (potentialMother.getAge() != null
+					&& potentialMother.getAge() > 12 & potentialMother.getGender().equals("F")) {
 				Relationship relationship = new Relationship();
-				relationship.setRelationshipType(personService.getRelationshipTypeByUuid("8d91a210-c2cc-11de-8d13-0010c6dffd0f"));
+				relationship.setRelationshipType(
+						personService.getRelationshipTypeByUuid("8d91a210-c2cc-11de-8d13-0010c6dffd0f"));
 				relationship.setPersonA(potentialMother);
 				relationship.setPersonB(infant);
 				personService.saveRelationship(relationship);
-				log.debug("Infant with ID " + infant.getPersonId() + " linked to mother with ID " + potentialMother.getPersonId());
+				log.debug("Infant with ID " + infant.getPersonId() + " linked to mother with ID "
+						+ potentialMother.getPersonId());
 			}
 		}
 	}
@@ -150,11 +156,10 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 		String monthCode = "";
 		String year = (cal.get(Calendar.YEAR) + "").substring(2, 4);
 
-
 		if (cal.get(Calendar.MONTH) <= 8) {
-			monthCode = "0" + (cal.get(Calendar.MONTH)+1);
+			monthCode = "0" + (cal.get(Calendar.MONTH) + 1);
 		} else {
-			monthCode = "" + (cal.get(Calendar.MONTH)+1);
+			monthCode = "" + (cal.get(Calendar.MONTH) + 1);
 		}
 
 		if (patient.getGender().equals("F")) {
@@ -163,13 +168,14 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 			genderCode = "1";
 		}
 
-		if (patient.getPerson().getPersonAddress() != null && !patient.getPerson().getPersonAddress().getCountry().isEmpty()) {
+		if (patient.getPerson().getPersonAddress() != null
+				&& !patient.getPerson().getPersonAddress().getCountry().isEmpty()) {
 			countryCode = patient.getPerson().getPersonAddress().getCountry().substring(0, 1);
 		} else {
 			countryCode = "X";
 		}
 
-		if (patient.getFamilyName()!=null&&!patient.getFamilyName().isEmpty()) {
+		if (patient.getFamilyName() != null && !patient.getFamilyName().isEmpty()) {
 			String firstLetter = replaceLettersWithNumber(patient.getFamilyName().substring(0, 1));
 			String secondLetter = replaceLettersWithNumber(patient.getFamilyName().substring(1, 2));
 			String thirdLetter = replaceLettersWithNumber(patient.getFamilyName().substring(2, 3));
@@ -178,7 +184,7 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 			familyNameCode = "X";
 		}
 
-		if (patient.getGivenName()!=null&& !patient.getGivenName().isEmpty()) {
+		if (patient.getGivenName() != null && !patient.getGivenName().isEmpty()) {
 			String firstLetter = replaceLettersWithNumber(patient.getGivenName().substring(0, 1));
 			String secondLetter = replaceLettersWithNumber(patient.getGivenName().substring(1, 2));
 			String thirdLetter = replaceLettersWithNumber(patient.getGivenName().substring(2, 3));
@@ -187,14 +193,14 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 			givenNameCode = "X";
 		}
 
-		if (patient.getMiddleName()!=null&&!patient.getMiddleName().isEmpty()) {
+		if (patient.getMiddleName() != null && !patient.getMiddleName().isEmpty()) {
 			middleNameCode = replaceLettersWithNumber(patient.getMiddleName().substring(0, 1));
 		} else {
 			middleNameCode = "X";
 		}
 
-
-		return countryCode + "-" + monthCode + year + "-" + genderCode + "-" + givenNameCode + familyNameCode + middleNameCode;
+		return countryCode + "-" + monthCode + year + "-" + genderCode + "-" + givenNameCode + familyNameCode
+				+ middleNameCode;
 	}
 
 	/**
@@ -203,8 +209,11 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 	@Override
 	public void generateAndSaveUICForPatientsWithOut() {
 		PatientService patientService = Context.getPatientService();
-		List list = Context.getAdministrationService().executeSQL("select patient.patient_id from patient where patient_id NOT IN(select patient.patient_id from patient inner join patient_identifier pi on (patient.patient_id = pi.patient_id)  inner join patient_identifier_type pit on (pi.identifier_type = pit.patient_identifier_type_id) where pit.uuid='877169c4-92c6-4cc9-bf45-1ab95faea242')", true);
-		PatientIdentifierType patientIdentifierType = patientService.getPatientIdentifierTypeByUuid("877169c4-92c6-4cc9-bf45-1ab95faea242");
+		List list = Context.getAdministrationService().executeSQL(
+				"select patient.patient_id from patient where patient_id NOT IN(select patient.patient_id from patient inner join patient_identifier pi on (patient.patient_id = pi.patient_id)  inner join patient_identifier_type pit on (pi.identifier_type = pit.patient_identifier_type_id) where pit.uuid='877169c4-92c6-4cc9-bf45-1ab95faea242')",
+				true);
+		PatientIdentifierType patientIdentifierType = patientService
+				.getPatientIdentifierTypeByUuid("877169c4-92c6-4cc9-bf45-1ab95faea242");
 		for (Object object : list) {
 			Integer patientId = (Integer) ((ArrayList) object).get(0);
 			Patient patient = patientService.getPatient(patientId);
@@ -222,8 +231,8 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 				patientIdentifier.setPatient(patient);
 				try {
 					patientService.savePatientIdentifier(patientIdentifier);
-				}catch (Exception e){
-					log.error("Failed to Save UIC for patient #"+patient.getPatientId(),e);
+				} catch (Exception e) {
+					log.error("Failed to Save UIC for patient #" + patient.getPatientId(), e);
 				}
 
 			}
@@ -232,6 +241,7 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 
 	/**
 	 * This Method replaces letters with number position in the alphabet
+	 * 
 	 * @param letter the alphabetical letter
 	 * @return number that matches the alphabetical letter position
 	 */
@@ -323,6 +333,7 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 		}
 		return numberToReturn;
 	}
+
 	/**
 	 * @see org.openmrs.module.aijar.api.AijarService#stopActiveOutPatientVisits()
 	 */
@@ -334,128 +345,166 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 
 		String currentDate = formatterExt.format(OpenmrsUtil.firstSecondOfDay(new Date()));
 
-		//TODO Change AdministrationService to Autowired
+		// TODO Change AdministrationService to Autowired
 		AdministrationService administrationService = Context.getAdministrationService();
 
-		String visitTypeUUID =administrationService.getGlobalProperty("ugandaemr.autoCloseVisit.visitTypeUUID");
+		String visitTypeUUID = administrationService.getGlobalProperty("ugandaemr.autoCloseVisit.visitTypeUUID");
 
 		VisitService visitService = Context.getVisitService();
 
 		List activeVisitList = null;
-		activeVisitList = administrationService.executeSQL("select visit.visit_id from visit inner join visit_type on (visit.visit_type_id = visit_type.visit_type_id)  where visit_type.uuid='"+visitTypeUUID+"' AND visit.date_stopped IS NULL AND  visit.date_started < '" + currentDate + "'", true);
+		activeVisitList = administrationService.executeSQL(
+				"select visit.visit_id from visit inner join visit_type on (visit.visit_type_id = visit_type.visit_type_id)  where visit_type.uuid='"
+						+ visitTypeUUID + "' AND visit.date_stopped IS NULL AND  visit.date_started < '" + currentDate
+						+ "'",
+				true);
 
 		for (Object object : activeVisitList) {
 			ArrayList<Integer> integers = (ArrayList) object;
 			Visit visit = visitService.getVisit(integers.get(0));
-			try{
-                Date largestEncounterDate = OpenmrsUtil.getLastMomentOfDay(visit.getStartDatetime());
+			try {
+				Date largestEncounterDate = OpenmrsUtil.getLastMomentOfDay(visit.getStartDatetime());
 
-                for (Encounter encounter : visit.getEncounters()) {
-                    if (encounter.getEncounterDatetime().after(largestEncounterDate)) {
-                        largestEncounterDate = OpenmrsUtil.getLastMomentOfDay(encounter.getEncounterDatetime());
-                    }
-                }
-                visitService.endVisit(visit, OpenmrsUtil.getLastMomentOfDay(largestEncounterDate));
-			}catch (Exception e){
-				log.error("Failed to auto close visit",e);
+				for (Encounter encounter : visit.getEncounters()) {
+					if (encounter.getEncounterDatetime().after(largestEncounterDate)) {
+						largestEncounterDate = OpenmrsUtil.getLastMomentOfDay(encounter.getEncounterDatetime());
+					}
+				}
+				visitService.endVisit(visit, OpenmrsUtil.getLastMomentOfDay(largestEncounterDate));
+			} catch (Exception e) {
+				log.error("Failed to auto close visit", e);
 			}
 
 		}
 	}
 
-    /**
-     * @see org.openmrs.module.aijar.api.AijarService#transferredOut(org.openmrs.Patient,java.util.Date)
-     */
-    @Override
-    public Map transferredOut(Patient patient, Date date) {
-        Map map = new HashMap();
-        EncounterService encounterService = Context.getEncounterService();
-        List<EncounterType> encounterTypes = encounterService.findEncounterTypes(TRANSFER_OUT.name());
+	/**
+	 * @see org.openmrs.module.aijar.api.AijarService#transferredOut(org.openmrs.Patient,java.util.Date)
+	 */
+	@Override
+	public Map transferredOut(Patient patient, Date date) {
+		Map map = new HashMap();
+		EncounterService encounterService = Context.getEncounterService();
+		List<EncounterType> encounterTypes = encounterService.findEncounterTypes(TRANSFER_OUT.name());
 
-        EncounterSearchCriteria encounterSearchCriteria = new EncounterSearchCriteriaBuilder().setPatient(patient).setIncludeVoided(false).setEncounterTypes(encounterTypes).setFromDate(date).createEncounterSearchCriteria();
+		EncounterSearchCriteria encounterSearchCriteria = new EncounterSearchCriteriaBuilder().setPatient(patient)
+				.setIncludeVoided(false).setEncounterTypes(encounterTypes).setFromDate(date)
+				.createEncounterSearchCriteria();
 
-        List<Encounter> encounters = encounterService.getEncounters(encounterSearchCriteria);
+		List<Encounter> encounters = encounterService.getEncounters(encounterSearchCriteria);
 
-        Collections.reverse(encounters);
-        if (encounters.size() > 0) {
-            Encounter encounter = encounters.get(0);
-            if (encounters.get(0).getEncounterType() == Context.getEncounterService().getEncounterType(TRANSFER_OUT.name())) {
-                List<Encounter> encounters1 = new ArrayList<>();
-                List<Concept> transferOutPlaceConceptList = new ArrayList<>();
-                transferOutPlaceConceptList.add(Context.getConceptService().getConcept(AijarConstants.TRANSFER_OUT_PLACE_CONCEPT_ID));
-                encounters1.add(encounter);
-                map.put(PATIENT_TRANSERRED_OUT, true);
-                map.put(PATIENT_TRANSFERED_OUT_DATE, encounter.getEncounterDatetime());
-                List<Person> people = new ArrayList<>();
-                people.add(patient.getPerson());
-                List<Obs> obsList = Context.getObsService().getObservations(people, encounters, transferOutPlaceConceptList, null, null, null, null, 1, null, null, null, false);
-                if (obsList.size() > 0) {
-                    map.put(PATIENT_TRANSFERED_OUT_LOCATION, obsList.get(0).getValueText());
-                }
-            } else {
-                map.put(PATIENT_TRANSERRED_OUT, false);
-            }
-        } else {
-            map.put(PATIENT_TRANSERRED_OUT, false);
-        }
-        return map;
-    }
+		Collections.reverse(encounters);
+		if (encounters.size() > 0) {
+			Encounter encounter = encounters.get(0);
+			if (encounters.get(0).getEncounterType() == Context.getEncounterService()
+					.getEncounterType(TRANSFER_OUT.name())) {
+				List<Encounter> encounters1 = new ArrayList<>();
+				List<Concept> transferOutPlaceConceptList = new ArrayList<>();
+				transferOutPlaceConceptList
+						.add(Context.getConceptService().getConcept(AijarConstants.TRANSFER_OUT_PLACE_CONCEPT_ID));
+				encounters1.add(encounter);
+				map.put(PATIENT_TRANSERRED_OUT, true);
+				map.put(PATIENT_TRANSFERED_OUT_DATE, encounter.getEncounterDatetime());
+				List<Person> people = new ArrayList<>();
+				people.add(patient.getPerson());
+				List<Obs> obsList = Context.getObsService().getObservations(people, encounters,
+						transferOutPlaceConceptList, null, null, null, null, 1, null, null, null, false);
+				if (obsList.size() > 0) {
+					map.put(PATIENT_TRANSFERED_OUT_LOCATION, obsList.get(0).getValueText());
+				}
+			} else {
+				map.put(PATIENT_TRANSERRED_OUT, false);
+			}
+		} else {
+			map.put(PATIENT_TRANSERRED_OUT, false);
+		}
+		return map;
+	}
 
-    /**
-     * @see org.openmrs.module.aijar.api.AijarService#transferredIn(org.openmrs.Patient,java.util.Date)
-     */
-    @Override
-    public Map transferredIn(Patient patient, Date date) {
-        Map map = new HashMap();
+	/**
+	 * @see org.openmrs.module.aijar.api.AijarService#transferredIn(org.openmrs.Patient,java.util.Date)
+	 */
+	@Override
+	public Map transferredIn(Patient patient, Date date) {
+		Map map = new HashMap();
 
-        EncounterService encounterService = Context.getEncounterService();
+		EncounterService encounterService = Context.getEncounterService();
 
-        Collection<EncounterType> encounterTypes = encounterService.findEncounterTypes(TRANSFER_IN.name());
+		Collection<EncounterType> encounterTypes = encounterService.findEncounterTypes(TRANSFER_IN.name());
 
-        EncounterSearchCriteria encounterSearchCriteria = new EncounterSearchCriteriaBuilder().setPatient(patient).setIncludeVoided(false).setEncounterTypes(encounterTypes).setFromDate(date).createEncounterSearchCriteria();
+		EncounterSearchCriteria encounterSearchCriteria = new EncounterSearchCriteriaBuilder().setPatient(patient)
+				.setIncludeVoided(false).setEncounterTypes(encounterTypes).setFromDate(date)
+				.createEncounterSearchCriteria();
 
-        List<Encounter> encounters = encounterService.getEncounters(encounterSearchCriteria);
+		List<Encounter> encounters = encounterService.getEncounters(encounterSearchCriteria);
 
-        if (encounters.size() > 0) {
-            map.put(PATIENT_TRANSERRED_IN, true);
-            List<Concept> transferInPlaceConceptList = new ArrayList<>();
-            List<Person> people = new ArrayList<>();
-            people.add(patient.getPerson());
-            transferInPlaceConceptList.add(Context.getConceptService().getConcept(TRANSFER_IN_FROM_PLACE_CONCEPT_ID));
-            List<Obs> obsList = Context.getObsService().getObservations(people, encounters, transferInPlaceConceptList, null, null, null, null, 1, null, null, null, false);
-            if (obsList.size() > 0) {
-                map.put(PATIENT_TRANSFERED_IN_LOCATION, obsList.get(0).getValueText());
-                map.put(PATIENT_TRANSFERED_IN_DATE, obsList.get(0).getEncounter().getEncounterDatetime());
-            } else {
-                map.put(PATIENT_TRANSFERED_IN_DATE, encounters.get(0).getEncounterDatetime());
-            }
-        } else {
-            map.put(PATIENT_TRANSERRED_IN, false);
-        }
-        return map;
-    }
+		if (encounters.size() > 0) {
+			map.put(PATIENT_TRANSERRED_IN, true);
+			List<Concept> transferInPlaceConceptList = new ArrayList<>();
+			List<Person> people = new ArrayList<>();
+			people.add(patient.getPerson());
+			transferInPlaceConceptList.add(Context.getConceptService().getConcept(TRANSFER_IN_FROM_PLACE_CONCEPT_ID));
+			List<Obs> obsList = Context.getObsService().getObservations(people, encounters, transferInPlaceConceptList,
+					null, null, null, null, 1, null, null, null, false);
+			if (obsList.size() > 0) {
+				map.put(PATIENT_TRANSFERED_IN_LOCATION, obsList.get(0).getValueText());
+				map.put(PATIENT_TRANSFERED_IN_DATE, obsList.get(0).getEncounter().getEncounterDatetime());
+			} else {
+				map.put(PATIENT_TRANSFERED_IN_DATE, encounters.get(0).getEncounterDatetime());
+			}
+		} else {
+			map.put(PATIENT_TRANSERRED_IN, false);
+		}
+		return map;
+	}
 
-    public boolean isTransferredOut(Patient patient, Date date) {
-        return (boolean) transferredOut(patient, date).get(PATIENT_TRANSERRED_OUT);
-    }
+	public boolean isTransferredOut(Patient patient, Date date) {
+		return (boolean) transferredOut(patient, date).get(PATIENT_TRANSERRED_OUT);
+	}
 
-    @Override
-    public boolean isTransferredIn(Patient patient, Date date) {
-        return (boolean) transferredOut(patient, date).get(PATIENT_TRANSERRED_OUT);
-    }
+	@Override
+	public boolean isTransferredIn(Patient patient, Date date) {
+		return (boolean) transferredOut(patient, date).get(PATIENT_TRANSERRED_OUT);
+	}
 
-    @Override
-    public List<Encounter> getTransferHistory(Patient patient) {
+	@Override
+	public List<Encounter> getTransferHistory(Patient patient) {
 
-        EncounterService encounterService = Context.getEncounterService();
+		EncounterService encounterService = Context.getEncounterService();
 
-        Collection<EncounterType> encounterTypes = encounterService.findEncounterTypes(TRANSFER_IN.name());
-        encounterTypes.addAll(encounterService.findEncounterTypes(TRANSFER_OUT.name()));
+		Collection<EncounterType> encounterTypes = encounterService.findEncounterTypes(TRANSFER_IN.name());
+		encounterTypes.addAll(encounterService.findEncounterTypes(TRANSFER_OUT.name()));
 
-        EncounterSearchCriteria encounterSearchCriteria = new EncounterSearchCriteriaBuilder().setPatient(patient).setIncludeVoided(false).setEncounterTypes(encounterTypes).createEncounterSearchCriteria();
+		EncounterSearchCriteria encounterSearchCriteria = new EncounterSearchCriteriaBuilder().setPatient(patient)
+				.setIncludeVoided(false).setEncounterTypes(encounterTypes).createEncounterSearchCriteria();
 
-        List<Encounter> encounters = encounterService.getEncounters(encounterSearchCriteria);
+		List<Encounter> encounters = encounterService.getEncounters(encounterSearchCriteria);
 
-        return encounters;
-    }
+		return encounters;
+	}
+
+	@Override
+	public List<PublicHoliday> getAllPublicHolidays() throws APIException {
+		return dao.getAllPublicHolidays();
+	}
+
+	@Override
+	public PublicHoliday getPublicHolidayByDate(Date publicHolidayDate) throws APIException {
+		return dao.getPublicHolidayByDate(publicHolidayDate);
+	}
+
+	@Override
+	public PublicHoliday savePublicHoliday(PublicHoliday publicHoliday) {
+		return dao.savePublicHoliday(publicHoliday);
+	}
+
+	@Override
+	public PublicHoliday getPublicHolidaybyUuid(String uuid) {
+		return dao.getPublicHolidaybyUuid(uuid);
+	}
+
+	@Override
+	public List<PublicHoliday> getPublicHolidaysByDate(Date publicHolidayDate) throws APIException {
+		return dao.getPublicHolidaysByDate(publicHolidayDate);
+	}
 }
