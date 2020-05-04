@@ -45,7 +45,7 @@ public class UgandaEMRPatientFlagMetadataBundle extends PatientFlagMetadataBundl
         install(Flags.OVERDUE_FOR_SECOND_DNA_PCR);
         install(Flags.DUE_FOR_RAPID_TEST);
         install(Flags.DUE_FOR_THIRD_DNA_PCR);
-        install(Flags.OVER_DUE_FOR_THIRD_DNA_PCR);
+        install(Flags.OVERDUE_FOR_THIRD_DNA_PCR);
         install(Flags.OVERDUE_FOR_RAPID_TEST);
         install(Flags.HAS_DETECTABLE_VIRAL_LOAD);
         install(Flags.PATIENT_TRANSFERED_OUT);

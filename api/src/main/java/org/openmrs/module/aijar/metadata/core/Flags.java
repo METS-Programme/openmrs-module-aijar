@@ -578,7 +578,7 @@ public class Flags {
     };
 
 
-    public static FlagDescriptor OVER_DUE_FOR_THIRD_DNA_PCR = new FlagDescriptor() {
+    public static FlagDescriptor OVERDUE_FOR_THIRD_DNA_PCR = new FlagDescriptor() {
         @Override
         public String criteria() {
             return "SELECT p.patient_id , DATE_FORMAT(DATE_ADD(pe.birthdate, INTERVAL 13 MONTH), '%d.%b.%Y') FROM patient p  \n" +
@@ -594,7 +594,7 @@ public class Flags {
 
         @Override
         public String message() {
-            return "Over Due for 3rd DNA PCR on ${1}";
+            return "OverDue for 3rd DNA PCR on ${1}";
         }
 
         @Override
@@ -614,7 +614,7 @@ public class Flags {
 
         @Override
         public String description() {
-            return "Exposed infants who are over due for their third DNA PCR, 6 weeks after breastfeeding and having taken a 2nd DNA PCR";
+            return "Exposed infants who are overdue for their third DNA PCR, 6 weeks after breastfeeding and having taken a 2nd DNA PCR";
         }
 
         @Override
