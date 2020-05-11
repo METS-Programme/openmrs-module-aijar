@@ -86,10 +86,10 @@
 		<openconceptlabVersion>1.1</openconceptlabVersion>
 		<openwebappsVersion>1.10.0</openwebappsVersion>
 		<patientFlagsVersion>3.0.2</patientFlagsVersion>
-		<providermanagementVersion>2.11.0-SNAPSHOT</providermanagementVersion>
+		<providermanagementVersion>2.10.0</providermanagementVersion>
 		<referenceapplicationVersion>2.10.0</referenceapplicationVersion>
 		<referencemetadataVersion>2.10.1</referencemetadataVersion>
-		<registrationappVersion>1.17.0-SNAPSHOT</registrationappVersion>
+		<registrationappVersion>1.17.0</registrationappVersion>
 		<registrationcoreVersion>1.9.0</registrationcoreVersion>
 		<reportingRestVersion>1.11.0</reportingRestVersion>
 		<reportingVersion>1.20.0</reportingVersion>
@@ -103,7 +103,7 @@
 		<xformsVersion>4.3.12</xformsVersion>
 
 		<!-- core configuration library -->
-		<ugandaemrReportsVersion>2.0.14-SNAPSHOT</ugandaemrReportsVersion>
+		<ugandaemrReportsVersion>2.0.17</ugandaemrReportsVersion>
 
 	</properties>
 
@@ -539,7 +539,7 @@
 		<repository>
 			<id>openmrs-repo-modules</id>
 			<name>OpenMRS Modules</name>
-			<url>https://mavenrepo.openmrs.org/nexus/content/repositories/modules</url>
+			<url>https://openmrs.jfrog.io/artifactory/modules/</url>
 		</repository>
 		<snapshotRepository>
 			<id>openmrs-repo-snapshots</id>
