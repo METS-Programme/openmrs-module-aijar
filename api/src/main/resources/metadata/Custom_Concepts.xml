@@ -368,6 +368,8 @@
     <concept  concept_id="165301"  retired="0" datatype_id="4"  class_id="1"  is_set="0"  creator="1"  date_created="2019-09-26 09:48:14"  version="1.0"  changed_by="1"  date_changed="2019-09-26 09:48:14" uuid="001c08bb-ac87-4c0a-9272-da17324f5b3b"/>
     <concept  concept_id="165309"  retired="0" datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2019-10-03 12:42:44"  version="1.0"  changed_by="1"  date_changed="2019-10-03 12:42:44" uuid="7e5beae4-7244-4c73-b4b2-cbaf11771f21"/>
     <concept  concept_id="165137"  retired="0" datatype_id="4"  class_id="1"  is_set="1"  creator="1"  date_created="2018-09-11 15:45:11"  version="NULL"  changed_by="1"  date_changed="2018-09-11 15:45:11" uuid="2774af28-0b9f-11ea-8d71-362b9e155667"/>
+    <concept  concept_id="165809"  retired="0" datatype_id="10" class_id="11" is_set="0"  creator="1"  date_created="2020-05-12 08:58:31"  version="1.0.0" changed_by="1" date_changed="2020-05-12 08:58:31" uuid="3df0131c-2747-4d77-9972-44268259f4a8"/>
+
     <!--KP-->
     <concept  concept_id="1533"  retired="0" datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2008-02-16 13:51:15"  version="1.0"  changed_by="1"  date_changed="2008-02-16 13:51:15"  retired_by="1" uuid="1533AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
     <concept  concept_id="1542"  retired="0" datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2008-02-16 13:51:15"  version="1.0"  changed_by="1"  date_changed="2016-06-01 21:23:14"  retired_by="1" uuid="1542AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
@@ -1893,6 +1895,8 @@
     <concept_name  concept_name_id="160151"  concept_id="165124"  name="CURRENT RESPONDENT GENDER"  locale="en"  locale_preferred="1"  creator="1"  date_created="2018-07-25 13:13:02"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="160151BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
     <concept_name  concept_name_id="160164"  concept_id="165135"  name="OTHER GENDER"  locale="en"  locale_preferred="1"  creator="1"  date_created="2018-08-13 21:20:48"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="99c623ca-9ff3-4a8d-b475-184c9a8e8795"/>
     <concept_name  concept_name_id="160165"  concept_id="165136"  name="OTHER OCCUPATION"  locale="en"  locale_preferred="1"  creator="1"  date_created="2018-08-13 21:31:27"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="8a4e2069-2d3a-4cc2-aae5-d0b3bc435404"/>
+    <concept_name  concept_name_id="160949"  concept_id="165809"  name="Split into drugs"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-05-12 08:58:31"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="7cb364f6-5cf5-4b1b-92e5-51f728af4a61"/>
+    <concept_name  concept_name_id="160950"  concept_id="165809"  name="Split regimen into drugs"  locale="en"  locale_preferred="0"  creator="1"  date_created="2020-05-12 08:58:31"   voided="0" uuid="57212706-37a1-4e36-9568-afba1bba69ce"/>
 
     <!--OPD-->
     <concept_name concept_id="1090" name="Never" locale="en" creator="1" date_created="2005-01-12 00:00:00.0" concept_name_id="151164" voided="false" uuid="1164BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
