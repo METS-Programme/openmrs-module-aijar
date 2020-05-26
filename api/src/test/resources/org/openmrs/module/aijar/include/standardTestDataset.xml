@@ -3,9 +3,9 @@
 
 	<global_property  property="ugandaemr.autoCloseVisit.visitTypeUUID"  property_value="7b0f5697-27e3-40c4-8bae-f4049abfb4ed"  description="The UUID of the visit type that will be closed"  uuid="7ac62fa5-4515-4bf6-8f0e-876e8f85d81d"/>
 	
-	<public_holiday public_holiday_id="1" public_date="2020-12-25 00:00:00" date_description="Christmas Day" creator="1" date_created="2016-04-05 16:43:19.0" voided="0" uuid="8d5b27bc-c2cc-11de-8d13-0010c6dffd0f"/>
-	<public_holiday public_holiday_id="2" public_date="2020-12-26 00:00:00" date_description="Boxing Day" creator="1" date_created="2016-04-05 16:43:19.0" voided="1" uuid="8r5b27bc-c2cc-11de-8d13-0010c6dffd0f"/>
-	<public_holiday public_holiday_id="3" public_date="2020-12-26 00:00:00" date_description="Date Day" creator="1" date_created="2016-04-05 16:43:19.0" voided="0" uuid="8r5b27bc-c2cc-13de-8d13-0010c6dffd0f"/>
+	<public_holiday public_holiday_id="1" public_holiday_date="2020-12-25 00:00:00" description="Christmas Day" creator="1" date_created="2016-04-05 16:43:19.0" voided="0" uuid="8d5b27bc-c2cc-11de-8d13-0010c6dffd0f"/>
+	<public_holiday public_holiday_id="2" public_holiday_date="2020-12-26 00:00:00" description="Boxing Day" creator="1" date_created="2016-04-05 16:43:19.0" voided="1" uuid="8r5b27bc-c2cc-11de-8d13-0010c6dffd0f"/>
+	<public_holiday public_holiday_id="3" public_holiday_date="2020-12-26 00:00:00" description="Date Day" creator="1" date_created="2016-04-05 16:43:19.0" voided="0" uuid="8r5b27bc-c2cc-13de-8d13-0010c6dffd0f"/>
 
 	<!-- Encounter Types -->
 	<encounter_type encounter_type_id="1" name="ART Card - Summary" description="Outpatient Adult Initial Visit" creator="1" date_created="2016-04-05 16:43:19.0" retired="false" uuid="8d5b27bc-c2cc-11de-8d13-0010c6dffd0f"/>

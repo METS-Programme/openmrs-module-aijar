@@ -21,10 +21,10 @@ public class PublicHoliday extends BaseOpenmrsData{
 	@Column(name = "public_holiday_id")
     private int publicHolidayId;
 
-    @Column(name = "public_date")
+    @Column(name = "public_holiday_date")
     private Date date;
 
-    @Column(name = "date_description")
+    @Column(name = "description")
     private String description;
 
     @Override
