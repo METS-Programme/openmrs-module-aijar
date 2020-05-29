@@ -1160,7 +1160,15 @@
     <concept concept_id="165816" retired="0" datatype_id="2" class_id="5" is_set="0" creator="1" date_created="2020-05-22 12:51:25" version="1.0" changed_by="1" date_changed="2020-05-22 12:51:25" uuid="8453f86e-270f-4a30-a2fb-799534012f96"/>
     <concept concept_id="165817" retired="0" datatype_id="2" class_id="5" is_set="0" creator="1" date_created="2020-05-22 13:17:38" version="1.0" changed_by="1" date_changed="2020-05-22 13:17:38" uuid="b0551461-d462-42f3-aeaf-9e1c05c58527"/>
     <concept concept_id="165818" retired="0" datatype_id="2" class_id="5" is_set="0" creator="1" date_created="2020-05-22 13:27:05" version="1.0" changed_by="1" date_changed="2020-05-22 13:27:05" uuid="bdb1ea82-e125-4cb9-8c25-2326337bd82c"/>
-        <!--CONCEPT NUMERIC-->
+    <concept concept_id="165819" retired="0" datatype_id="6" class_id="11"	is_set="0" creator="1" date_created="2020-05-28 13:55:08" version="1.0"	changed_by="1" date_changed="2020-05-28 13:55:08" uuid="1ae6f663-d3b0-4527-bb8f-4ed18a9ca96c"/>
+    <concept concept_id="165820" retired="0" datatype_id="6" class_id="11" is_set="0" creator="1" date_created="2020-05-22 14:00:05" version="1.0" changed_by="1" date_changed="2020-05-22 14:00:05" uuid="c4389c60-32f5-4390-b7c6-9095ff880df5"/>
+    <concept concept_id="165821" retired="0" datatype_id="2" class_id="11" is_set="0" creator="1" date_created="2020-05-22 14:05:05" version="1.0" changed_by="1" date_changed="2020-05-22 14:05:05" uuid="25a839f2-ab34-4a22-aa4d-558cdbcedc43"/>
+    <concept concept_id="165822" retired="0" datatype_id="2" class_id="1" is_set="0" creator="1" date_created="2020-05-22 14:10:05" version="1.0" changed_by="1" date_changed="2020-05-22 14:10:05" uuid="8f1ac242-b497-41eb-b140-36ba6ab2d4d4"/>
+    <concept concept_id="165823" retired="0" datatype_id="6" class_id="11" is_set="0" creator="1" date_created="2020-05-22 16:00:05" version="1.0" changed_by="1" date_changed="2020-05-22 16:00:05" uuid="b913c0d9-f279-4e43-bb8e-3d1a4cf1ad4d"/>
+    <concept concept_id="165824" retired="0" datatype_id="3" class_id="8" is_set="0" creator="1" date_created="2020-05-22 16:05:05" version="1.0" changed_by="1" date_changed="2020-05-22 16:05:05" uuid="1c654215-fcc4-439f-a975-ced21995ed15"/>
+
+
+    <!--CONCEPT NUMERIC-->
     <!--MCH-->
     <concept_numeric  concept_id="160081"  allow_decimal="0" />
     <concept_numeric  concept_id="159616"  allow_decimal="0" />
@@ -4162,6 +4170,12 @@
     <concept_name concept_name_id="161035" concept_id="165816" name="Checked Baby's Cord" locale="en" locale_preferred="1" creator="1" date_created="2020-05-22 12:51:25" concept_name_type="FULLY_SPECIFIED" voided="0" uuid="89e1cafb-d146-4fac-b73f-ca5983fb7d35" />
     <concept_name concept_name_id="161036" concept_id="165817" name="Baby is breathing and breastfeeding" locale="en" locale_preferred="1" creator="1" date_created="2020-05-22 13:17:38" concept_name_type="FULLY_SPECIFIED" voided="0" uuid="c1231816-6593-46ad-bbf7-24bb90301fcd" />
     <concept_name concept_name_id="161037" concept_id="165818" name="Checked baby apgar score at 5 minutes" locale="en" locale_preferred="1" creator="1" date_created="2020-05-22 13:27:05" concept_name_type="FULLY_SPECIFIED" voided="0" uuid="bc6b4cf3-b9e0-4467-a78a-bfdacbc042ae" />
+    <concept_name concept_name_id="161038" concept_id="165819" name="Date CD4 Sample Collected" locale="en" locale_preferred="1" creator="1" date_created="2020-05-28 13:55:08" concept_name_type="FULLY_SPECIFIED" voided="0" uuid="39509c06-5e03-4b19-bc60-2b9a237febf6" />
+    <concept_name concept_name_id="161039" concept_id="165820" name="Date of VL Sample Collection" locale="en" locale_preferred="1" creator="1" date_created="2020-05-28 14:00:43" concept_name_type="FULLY_SPECIFIED" voided="0" uuid="040e22ea-c1d3-43ae-b35c-1d102556a87e" />
+    <concept_name concept_name_id="161040" concept_id="165821" name="On Fluconazole Treatment" locale="en" locale_preferred="1" creator="1" date_created="2020-05-28 15:01:11" concept_name_type="FULLY_SPECIFIED" voided="0" uuid="352a87f1-bcc7-4e47-aca4-0f087265266b" />
+    <concept_name concept_name_id="161041" concept_id="165822" name="TB LAM Test Done" locale="en" locale_preferred="1" creator="1" date_created="2020-05-28 15:04:19" concept_name_type="FULLY_SPECIFIED" voided="0" uuid="3a8d132d-2c4e-4087-b618-5d59647f127c" />
+    <concept_name concept_name_id="161042" concept_id="165823" name="Date HIVR Results Recieved At Facility" locale="en" locale_preferred="1" creator="1" date_created="2020-05-28 16:20:35" concept_name_type="FULLY_SPECIFIED" voided="0" uuid="95cb8d57-63d0-4692-a304-db29d32c25bd" />
+    <concept_name concept_name_id="161043" concept_id="165824" name="HIVDR Results" locale="en" locale_preferred="1" creator="1" date_created="2020-05-28 17:20:35" concept_name_type="FULLY_SPECIFIED" voided="0" uuid="a66639b7-dce1-4599-8fe4-3dfbb903dc53" />
 
     <!--CONCEPT ANSWERS-->
     <!--MCH-->
@@ -5432,6 +5446,11 @@
     <concept_answer concept_answer_id="7366214" concept_id="165818" answer_concept="1175" creator="1" date_created="2020-05-22 13:27:05" sort_weight="3" uuid="6368758c-1d3f-4f03-8b81-acbac61f2a11"/>
     <concept_answer concept_answer_id="7366215" concept_id="165818" answer_concept="1066" creator="1" date_created="2020-05-22 13:27:05" sort_weight="2" uuid="f35659df-056b-41db-a819-8953f8cb19ba"/>
     <concept_answer concept_answer_id="7366216" concept_id="165818" answer_concept="1065" creator="1" date_created="2020-05-22 13:27:05" sort_weight="1" uuid="978a537b-ecf3-46ab-8330-2b76bd059389"/>
+    <concept_answer concept_answer_id="7366217" concept_id="165821" answer_concept="1066" creator="1" date_created="2020-05-28 16:27:05" sort_weight="1" uuid="f686d975-027e-4a56-8003-fceb88b71eff"/>
+    <concept_answer concept_answer_id="7366218" concept_id="165821" answer_concept="1065" creator="1" date_created="2020-05-28 16:27:05" sort_weight="1" uuid="fae0d80e-ded0-442d-bbd5-38708a0fa4cf"/>
+    <concept_answer concept_answer_id="7366219" concept_id="165821" answer_concept="1175" creator="1" date_created="2020-05-28 16:27:05" sort_weight="1" uuid="83b6034f-6c0c-40ed-a5e0-114d2075c257"/>
+    <concept_answer concept_answer_id="7366220" concept_id="165822" answer_concept="1065" creator="1" date_created="2020-05-28 15:27:05" sort_weight="1" uuid="89e81a2b-7dc7-4394-8050-26dd21f437fe"/>
+    <concept_answer concept_answer_id="7366221" concept_id="165822" answer_concept="1066" creator="1" date_created="2020-05-28 15:27:05" sort_weight="1" uuid="12d5ce7c-9ab6-4045-b313-c5b9cabba272"/>
 
     <!--CONCEPT SET-->
     <!--MCH-->
