@@ -5,7 +5,7 @@
 	
 	<public_holiday public_holiday_id="1" public_holiday_date="2020-01-01" name="New Years Day" description="Start of a new year" creator="1" date_created="2016-04-05 16:43:19.0" voided="0" uuid="8d5b27bc-c2cc-11de-8d13-0010c6dffd0f"/>
 	<public_holiday public_holiday_id="2" public_holiday_date="2020-05-01" name="Labour Day" description="A day wor workers to celebrate" creator="1" date_created="2016-04-05 16:43:19.0" voided="0" uuid="8r5b27bc-c2cc-11de-8d13-0010c6dffd0f"/>
-	<public_holiday public_holiday_id="3" public_holiday_date="2020-05-01" name="Labour Day" description="Voided Labour Day" creator="1" date_created="2016-04-05 16:43:19.0" voided="1" uuid="8r5b27bc-c2cc-13de-8d13-0010c6dffd0f"/>
+	<public_holiday public_holiday_id="3" public_holiday_date="2020-03-08" name="Womenz Day" description="A Day for women" creator="1" date_created="2016-04-05 16:43:19.0" voided="0" uuid="8r5b27bc-c2cc-13de-8d13-0010c6dffd0f"/>
 
 	<!-- Encounter Types -->
 	<encounter_type encounter_type_id="1" name="ART Card - Summary" description="Outpatient Adult Initial Visit" creator="1" date_created="2016-04-05 16:43:19.0" retired="false" uuid="8d5b27bc-c2cc-11de-8d13-0010c6dffd0f"/>
