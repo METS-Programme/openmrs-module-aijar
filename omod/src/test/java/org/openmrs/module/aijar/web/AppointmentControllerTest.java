@@ -26,7 +26,7 @@ public class AppointmentControllerTest extends RestControllerTestUtils {
         request.addParameter("nextAppointmentDate", "14/08/2008");
         SimpleObject result = deserialize(handle(request));
         Assert.assertEquals("2008-08-14",PropertyUtils.getProperty(result, "appointmentdate"));
-        Assert.assertEquals("",PropertyUtils.getProperty(result, "encountertype"));
+        Assert.assertEquals("",PropertyUtils.getProperty(result, "encountertypeUuid"));
         Assert.assertEquals(3,PropertyUtils.getProperty(result, "appointmentcount"));
 
     }
@@ -36,10 +36,10 @@ public class AppointmentControllerTest extends RestControllerTestUtils {
         String requestURI = "/rest/" + RestConstants.VERSION_1 + "/ugandaemr/appointmentcount";
         MockHttpServletRequest request = new MockHttpServletRequest(RequestMethod.GET.toString(), requestURI);
         request.addParameter("nextAppointmentDate", "14/08/2008");
-        request.addParameter("encounterType", "8d5b2be0-c2cc-11de-8d13-0010c6dffd0f");
+        request.addParameter("encounterTypeUuid", "8d5b2be0-c2cc-11de-8d13-0010c6dffd0f");
         SimpleObject result = deserialize(handle(request));
         Assert.assertEquals("2008-08-14",PropertyUtils.getProperty(result, "appointmentdate"));
-        Assert.assertEquals("8d5b2be0-c2cc-11de-8d13-0010c6dffd0f",PropertyUtils.getProperty(result, "encountertype"));
+        Assert.assertEquals("8d5b2be0-c2cc-11de-8d13-0010c6dffd0f",PropertyUtils.getProperty(result, "encountertypeUuid"));
         Assert.assertEquals(2,PropertyUtils.getProperty(result, "appointmentcount"));
     }
 
@@ -48,11 +48,11 @@ public class AppointmentControllerTest extends RestControllerTestUtils {
         String requestURI = "/rest/" + RestConstants.VERSION_1 + "/ugandaemr/appointmentcount";
         MockHttpServletRequest request = new MockHttpServletRequest(RequestMethod.GET.toString(), requestURI);
         request.addParameter("nextAppointmentDate", "14/08/2008");
-        request.addParameter("encounterType",
+        request.addParameter("encounterTypeUuid",
                 "8d5b2be0-c2cc-11de-8d13-0010c6dffd0f,334bf97e-28e2-4a27-8727-a5ce31c7cd66");
         SimpleObject result = deserialize(handle(request));
         Assert.assertEquals("2008-08-14",PropertyUtils.getProperty(result, "appointmentdate"));
-        Assert.assertEquals("8d5b2be0-c2cc-11de-8d13-0010c6dffd0f,334bf97e-28e2-4a27-8727-a5ce31c7cd66",PropertyUtils.getProperty(result, "encountertype"));
+        Assert.assertEquals("8d5b2be0-c2cc-11de-8d13-0010c6dffd0f,334bf97e-28e2-4a27-8727-a5ce31c7cd66",PropertyUtils.getProperty(result, "encountertypeUuid"));
         Assert.assertEquals(3,PropertyUtils.getProperty(result, "appointmentcount"));
     }
 
