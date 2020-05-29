@@ -24,8 +24,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class AppointmentCountController extends BaseRestController {
         private final Log log = LogFactory.getLog(AppointmentCountController.class);
-        @Autowired
-        AdministrationService administrationService;
 
         @RequestMapping(value = "/rest/" + RestConstants.VERSION_1 + "/" + AijarConstants.UGANDAEMR_MODULE_ID
                         + "/appointmentcount", method = RequestMethod.GET)
@@ -34,7 +32,7 @@ public class AppointmentCountController extends BaseRestController {
                         @RequestParam(required = true, value = "nextAppointmentDate") Date nextAppointmentDate,
                         @RequestParam(value = "encounterTypeUuid", defaultValue = "") String encounterTypeUuid) {
 
-               // AdministrationService administrationService = Context.getAdministrationService();
+                AdministrationService administrationService = Context.getAdministrationService();
                 SimpleObject response = new SimpleObject();
 
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
