@@ -50,7 +50,7 @@ import org.openmrs.module.aijar.api.AijarService;
 import org.openmrs.module.aijar.api.db.AijarDAO;
 import org.openmrs.module.aijar.metadata.core.Locations;
 import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
-import org.openmrs.module.aijar.metadata.core.PublicHoliday;
+import org.openmrs.module.aijar.ugandaemr.PublicHoliday;
 import org.openmrs.notification.Alert;
 import org.openmrs.util.OpenmrsUtil;
 import org.openmrs.parameter.EncounterSearchCriteria;
