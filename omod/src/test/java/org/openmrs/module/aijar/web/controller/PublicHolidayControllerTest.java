@@ -47,7 +47,7 @@ public class PublicHolidayControllerTest extends MainResourceControllerTest {
 
         Assert.assertNotNull(result);
         Assert.assertEquals(3, results.size());
-        Assert.assertEquals("Christmas Day", PropertyUtils.getProperty(results.get(0), "description"));
+        Assert.assertEquals("New Years Day", PropertyUtils.getProperty(results.get(0), "name"));
 
     }
 
@@ -59,20 +59,20 @@ public class PublicHolidayControllerTest extends MainResourceControllerTest {
         SimpleObject result = deserialize(handle(request));
 
         Assert.assertNotNull(result);
-        Assert.assertEquals("Christmas Day", PropertyUtils.getProperty(result, "description"));
+        Assert.assertEquals("New Years Day", PropertyUtils.getProperty(result, "name"));
         Assert.assertEquals(true, PropertyUtils.getProperty(result, "isPublicHoliday"));
 
     }
 
     @Test
     public void shouldGetPublicHolidayByDate() throws Exception {
-        String requestURI = getURI() + "/25-12-2020";
+        String requestURI = getURI() + "/01-01-2020";
         MockHttpServletRequest request = new MockHttpServletRequest(RequestMethod.GET.toString(), requestURI);
 
         SimpleObject result = deserialize(handle(request));
 
         Assert.assertNotNull(result);
-        Assert.assertEquals("Christmas Day", PropertyUtils.getProperty(result, "description"));
+        Assert.assertEquals("New Years Day", PropertyUtils.getProperty(result, "name"));
         Assert.assertEquals(true, PropertyUtils.getProperty(result, "isPublicHoliday"));
 
     }
@@ -99,13 +99,13 @@ public class PublicHolidayControllerTest extends MainResourceControllerTest {
     public void shouldSearchAndReturnListOfPublicHolidaysWithSpecifiedDate() throws Exception {
 
         MockHttpServletRequest req = new MockHttpServletRequest(RequestMethod.GET.toString(), getURI());
-        req.addParameter("date", "25/12/2020");
+        req.addParameter("date", "01/01/2020");
 
         SimpleObject result = deserialize(handle(req));
         List<Object> hits = (List<Object>) result.get("results");
 
         Assert.assertEquals(1, hits.size()); 
-        Assert.assertEquals("Christmas Day", PropertyUtils.getProperty(hits.get(0), "description"));
+        Assert.assertEquals("New Years Day", PropertyUtils.getProperty(hits.get(0), "name"));
         
     }
 
@@ -118,7 +118,9 @@ public class PublicHolidayControllerTest extends MainResourceControllerTest {
 
         SimpleObject result = deserialize(handle(request));
 
+        Assert.assertNotNull(PropertyUtils.getProperty(result, "uuid"));
         Assert.assertNotNull(PropertyUtils.getProperty(result, "description"));
+        Assert.assertNotNull(PropertyUtils.getProperty(result, "name"));
         Assert.assertNotNull(PropertyUtils.getProperty(result, "date"));
         Assert.assertNotNull(PropertyUtils.getProperty(result, "isPublicHoliday"));
     }
@@ -131,7 +133,9 @@ public class PublicHolidayControllerTest extends MainResourceControllerTest {
 
         SimpleObject result = deserialize(handle(request));
 
+        Assert.assertNotNull(PropertyUtils.getProperty(result, "uuid"));
         Assert.assertNotNull(PropertyUtils.getProperty(result, "description"));
+        Assert.assertNotNull(PropertyUtils.getProperty(result, "name"));
         Assert.assertNotNull(PropertyUtils.getProperty(result, "date"));
         Assert.assertNotNull(PropertyUtils.getProperty(result, "isPublicHoliday"));
     }
@@ -145,8 +149,10 @@ public class PublicHolidayControllerTest extends MainResourceControllerTest {
         request.addParameter("v", "full");
 
         SimpleObject result = deserialize(handle(request));
-        
+
+        Assert.assertNotNull(PropertyUtils.getProperty(result, "uuid"));
         Assert.assertNotNull(PropertyUtils.getProperty(result, "description"));
+        Assert.assertNotNull(PropertyUtils.getProperty(result, "name"));
         Assert.assertNotNull(PropertyUtils.getProperty(result, "date"));
         Assert.assertNotNull(PropertyUtils.getProperty(result, "isPublicHoliday"));
     }

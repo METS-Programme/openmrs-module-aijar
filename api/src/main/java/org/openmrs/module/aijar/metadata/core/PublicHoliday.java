@@ -21,6 +21,9 @@ public class PublicHoliday extends BaseOpenmrsData{
 	@Column(name = "public_holiday_id")
     private int publicHolidayId;
 
+    @Column(name = "name")
+    private String name;
+
     @Column(name = "public_holiday_date")
     private Date date;
 
@@ -51,6 +54,14 @@ public class PublicHoliday extends BaseOpenmrsData{
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

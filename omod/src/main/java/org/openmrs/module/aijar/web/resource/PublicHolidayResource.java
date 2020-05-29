@@ -83,7 +83,8 @@ public class PublicHolidayResource extends DelegatingCrudResource<PublicHoliday>
     public DelegatingResourceDescription getRepresentationDescription(Representation rep) {
         if (rep instanceof DefaultRepresentation) {
 			DelegatingResourceDescription description = new DelegatingResourceDescription();
-			description.addProperty("uuid");
+            description.addProperty("uuid");
+            description.addProperty("name");
 			description.addProperty("date");
 			description.addProperty("description");
 			description.addProperty("isPublicHoliday", findMethod("isPublicHoliday"));
@@ -92,7 +93,8 @@ public class PublicHolidayResource extends DelegatingCrudResource<PublicHoliday>
 			return description;
 		} else if (rep instanceof FullRepresentation) {
 			DelegatingResourceDescription description = new DelegatingResourceDescription();
-			description.addProperty("uuid");
+            description.addProperty("uuid");
+            description.addProperty("name");
 			description.addProperty("date");
             description.addProperty("description");
             description.addProperty("isPublicHoliday", findMethod("isPublicHoliday"));
@@ -101,7 +103,8 @@ public class PublicHolidayResource extends DelegatingCrudResource<PublicHoliday>
 			return description;
 		} else if (rep instanceof RefRepresentation) {
 			DelegatingResourceDescription description = new DelegatingResourceDescription();
-			description.addProperty("uuid");
+            description.addProperty("uuid");
+            description.addProperty("name");
 			description.addProperty("date");
             description.addProperty("description");
             description.addProperty("isPublicHoliday", findMethod("isPublicHoliday"));
