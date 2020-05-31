@@ -66,7 +66,7 @@ public class HibernateAijarDAO implements AijarDAO {
 
 	@Override
 	public List<PublicHoliday> getPublicHolidaysByDate(Date publicHolidayDate) {
-		return (List<PublicHoliday>) getSessionFactory().getCurrentSession().createCriteria(PublicHoliday.class).add(Restrictions.eq("public_holiday_date", publicHolidayDate)).list();
+		return (List<PublicHoliday>) getSessionFactory().getCurrentSession().createCriteria(PublicHoliday.class).add(Restrictions.eq("date", publicHolidayDate)).list();
 	}
 
 }
