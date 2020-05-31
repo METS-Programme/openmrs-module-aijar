@@ -56,5 +56,23 @@ public class AppointmentControllerTest extends RestControllerTestUtils {
         Assert.assertEquals(3,PropertyUtils.getProperty(result, "appointmentcount"));
     }
 
+    @Test
+    public void shouldReturnNoPatientsWhenSpecifiedDateDoesntHaveEncounter() throws Exception {
+        String requestURI = "/rest/" + RestConstants.VERSION_1 + "/ugandaemr/appointmentcount";
+        MockHttpServletRequest request = new MockHttpServletRequest(RequestMethod.GET.toString(), requestURI);
+        request.addParameter("nextAppointmentDate", "01/01/1980");
+        SimpleObject result = deserialize(handle(request));
+        Assert.assertEquals(0,PropertyUtils.getProperty(result, "appointmentcount"));
+    }
+
+    @Test
+    public void shouldReturnNoPatientsWhenSpecifiedEncounterUuidDoesntExist() throws Exception {
+        String requestURI = "/rest/" + RestConstants.VERSION_1 + "/ugandaemr/appointmentcount";
+        MockHttpServletRequest request = new MockHttpServletRequest(RequestMethod.GET.toString(), requestURI);
+        request.addParameter("nextAppointmentDate", "14/08/2008");
+        request.addParameter("encounterTypeUuid", "8p5b2be0-c2cc-11de-8d13-0010c6dffd0f");
+        SimpleObject result = deserialize(handle(request));
+        Assert.assertEquals(0,PropertyUtils.getProperty(result, "appointmentcount"));
+    }
 }
 

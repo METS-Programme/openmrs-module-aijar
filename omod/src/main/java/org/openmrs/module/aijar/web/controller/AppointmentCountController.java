@@ -43,11 +43,13 @@ public class AppointmentCountController extends BaseRestController {
                 String encounterFilterWhereClause = "";
                 if (!StringUtils.isEmpty(encounterTypeUuid)) {
                         String[] encounterType = encounterTypeUuid.split(",");
+                        ArrayList<String> trimmedEncounterType = new ArrayList<String>();
+
                         for (String enc : encounterType) {
-                                StringUtils.trimToEmpty(enc);
+                                trimmedEncounterType.add(StringUtils.trimToEmpty(enc));
                         }
                         encounterFilterWhereClause = " AND obs.encounter_id IN ( SELECT encounter.encounter_id FROM encounter INNER JOIN encounter_type ON encounter.encounter_type = encounter_type.encounter_type_id WHERE encounter_type.uuid IN('"
-                                        + StringUtils.join(encounterType, "','") + "'))";
+                                        + StringUtils.join(trimmedEncounterType, "','") + "'))";
                 }
 
                 log.debug("Checking number of appointments for " + returnDate + " for encounter types "
