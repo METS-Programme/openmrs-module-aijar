@@ -116,8 +116,10 @@ public class PublicHolidayResource extends DelegatingCrudResource<PublicHoliday>
     @Override
     public DelegatingResourceDescription getCreatableProperties() throws ResourceDoesNotSupportOperationException {
         DelegatingResourceDescription description = new DelegatingResourceDescription();
-        description.addProperty("description");
+        description.addProperty("name");
         description.addProperty("date");
+        description.addProperty("description");
+        
         return description;
     }
 
@@ -129,6 +131,10 @@ public class PublicHolidayResource extends DelegatingCrudResource<PublicHoliday>
 	protected PageableResult doSearch(RequestContext context) {
 
         String dateQuery = context.getParameter("date");
+
+        if (dateQuery == null){
+             dateQuery = context.getParameter("q");
+        }
 
         List<PublicHoliday> publicHolidaysByQuery= null;
        

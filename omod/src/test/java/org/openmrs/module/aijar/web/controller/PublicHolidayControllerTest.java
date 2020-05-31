@@ -83,6 +83,7 @@ public class PublicHolidayControllerTest extends MainResourceControllerTest {
         SimpleObject publicHoliday = new SimpleObject();
         publicHoliday.add("description", "testing this public holiday");
         publicHoliday.add("date", "2020-12-27");
+        publicHoliday.add("name", "any day really");
         String json = new ObjectMapper().writeValueAsString(publicHoliday);
 
         MockHttpServletRequest request = new MockHttpServletRequest(RequestMethod.POST.toString(), getURI());
