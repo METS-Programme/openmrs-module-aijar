@@ -1,4 +1,4 @@
-package org.openmrs.module.aijar.ugandaemr;
+package org.openmrs.module.ugandaemr;
 
 import java.util.Date;
 
