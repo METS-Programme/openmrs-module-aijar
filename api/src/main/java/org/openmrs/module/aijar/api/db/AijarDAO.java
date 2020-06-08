@@ -17,7 +17,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.openmrs.module.aijar.api.AijarService;
-import org.openmrs.module.aijar.ugandaemr.PublicHoliday;
+import org.openmrs.module.ugandaemr.PublicHoliday;
 
 /**
  *  Database methods for {@link AijarService}.

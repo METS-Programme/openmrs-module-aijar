@@ -22,7 +22,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.openmrs.api.APIException;
 import org.openmrs.module.aijar.api.db.AijarDAO;
-import org.openmrs.module.aijar.ugandaemr.PublicHoliday;
+import org.openmrs.module.ugandaemr.PublicHoliday;
 
 /**
  * It is a default implementation of {@link AijarDAO}.

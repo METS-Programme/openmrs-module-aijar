@@ -10,7 +10,7 @@ import java.util.List;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.aijar.AijarConstants;
 import org.openmrs.module.aijar.api.AijarService;
-import org.openmrs.module.aijar.ugandaemr.PublicHoliday;
+import org.openmrs.module.ugandaemr.PublicHoliday;
 import org.openmrs.module.webservices.rest.web.RequestContext;
 import org.openmrs.module.webservices.rest.web.RestConstants;
 import org.openmrs.module.webservices.rest.web.annotation.Resource;

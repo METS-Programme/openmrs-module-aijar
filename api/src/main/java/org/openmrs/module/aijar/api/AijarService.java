@@ -19,7 +19,7 @@ import org.openmrs.Person;
 import org.openmrs.annotation.Authorized;
 import org.openmrs.api.APIException;
 import org.openmrs.api.OpenmrsService;
-import org.openmrs.module.aijar.ugandaemr.PublicHoliday;
+import org.openmrs.module.ugandaemr.PublicHoliday;
 import org.openmrs.util.OpenmrsConstants;
 import org.openmrs.util.PrivilegeConstants;
 import org.springframework.transaction.annotation.Transactional;
