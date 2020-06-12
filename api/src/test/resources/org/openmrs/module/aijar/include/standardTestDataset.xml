@@ -4,8 +4,8 @@
 	<global_property  property="ugandaemr.autoCloseVisit.visitTypeUUID"  property_value="7b0f5697-27e3-40c4-8bae-f4049abfb4ed"  description="The UUID of the visit type that will be closed"  uuid="7ac62fa5-4515-4bf6-8f0e-876e8f85d81d"/>
 	
 	<public_holiday public_holiday_id="1" public_holiday_date="2020-01-01" name="New Years Day" description="Start of a new year" creator="1" date_created="2016-04-05 16:43:19.0" voided="0" uuid="8d5b27bc-c2cc-11de-8d13-0010c6dffd0f"/>
-	<public_holiday public_holiday_id="2" public_holiday_date="2020-05-01" name="Labour Day" description="A day for workers to celebrate" creator="1" date_created="2016-04-05 16:43:19.0" voided="0" uuid="8r5b27bc-c2cc-11de-8d13-0010c6dffd0f"/>
-	<public_holiday public_holiday_id="3" public_holiday_date="2020-03-08" name="Womenz Day" description="A Day for women" creator="1" date_created="2016-04-05 16:43:19.0" voided="0" uuid="8r5b27bc-c2cc-13de-8d13-0010c6dffd0f"/>
+	<public_holiday public_holiday_id="2" public_holiday_date="2020-05-01" name="Labour Day" description="A day for to celebrate workers" creator="1" date_created="2016-04-05 16:43:19.0" voided="0" uuid="8r5b27bc-c2cc-11de-8d13-0010c6dffd0f"/>
+	<public_holiday public_holiday_id="3" public_holiday_date="2020-03-08" name="International Women's Day" description="A Day to celebrate women" creator="1" date_created="2016-04-05 16:43:19.0" voided="0" uuid="8r5b27bc-c2cc-13de-8d13-0010c6dffd0f"/>
 
 	<!-- Encounter Types -->
 	<encounter_type encounter_type_id="1" name="ART Card - Summary" description="Outpatient Adult Initial Visit" creator="1" date_created="2016-04-05 16:43:19.0" retired="false" uuid="8d5b27bc-c2cc-11de-8d13-0010c6dffd0f"/>
