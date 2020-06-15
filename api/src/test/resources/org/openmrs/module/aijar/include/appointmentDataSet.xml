@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+
+	<encounter encounter_id="30001" visit_id="10006" encounter_type="2" patient_id="10004" location_id="1" form_id="1" encounter_datetime="2016-09-09 00:00:00.0" creator="1" date_created="2017-01-08 14:09:05.0" voided="false" uuid="b6eeee00-8277-6yut-aa88-441ee7725b5e"/>
+	<obs obs_id="20016" status="FINAL" person_id="10004" concept_id="5096" encounter_id="30001" obs_datetime="2016-09-09 00:00:00.0" location_id="1" value_datetime="2008-08-14 00:00:00.0" comments="" creator="1" date_created="2017-01-08 14:09:05.0" voided="false" uuid="88b92980-uiyh-40cd-8bca-733357c48126"/>
+
+	<encounter encounter_id="30002" visit_id="10006" encounter_type="26" patient_id="10002" location_id="1" form_id="1" encounter_datetime="2016-09-09 00:00:00.0" creator="1" date_created="2017-01-08 14:09:05.0" voided="false" uuid="b6eeee00-8277-0poi-aa88-441ee7725b5e"/>
+	<obs obs_id="20017" status="FINAL" person_id="10002" concept_id="5096" encounter_id="30002" obs_datetime="2016-11-09 00:00:00.0" location_id="1" value_datetime="2008-08-14 00:00:00.0" comments="" creator="1" date_created="2017-01-08 14:09:05.0" voided="false" uuid="88b92980-hnuy-40cd-8bca-733357c48126"/>
+	
+	<encounter encounter_id="30003" visit_id="10007" encounter_type="2" patient_id="10003" location_id="1" form_id="1" encounter_datetime="2016-09-09 00:00:00.0" creator="1" date_created="2017-01-08 14:09:05.0" voided="false" uuid="b6eeee00-8277-5try-aa88-441ee7725b5e"/>
+	<obs obs_id="20018" status="FINAL" person_id="10003" concept_id="5096" encounter_id="30003" obs_datetime="2016-10-09 00:00:00.0" location_id="1" value_datetime="2008-08-14 00:00:00.0" comments="" creator="1" date_created="2017-01-08 14:09:05.0" voided="false" uuid="88b92980-huyj-40cd-8bca-733357c48126"/>
+
+</dataset>
