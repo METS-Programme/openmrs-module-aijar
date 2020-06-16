@@ -338,4 +338,9 @@
             <column name="uuid" type="VARCHAR(38)"/>
         </createTable>
     </changeSet>
+
+	<include file="publicHoliday2020.xml"/>
+	<include file="publicHoliday2021.xml"/>
+
 </databaseChangeLog>
+
