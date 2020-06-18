@@ -340,8 +340,8 @@
     </changeSet>
 	
 	<changeSet id="ugandaemr-17052020-iss-9" author="rmakoba">
-		<preConditions onFail="MARK_RAN">
-				<not><tableExists tableName="public_holiday"/></not>
+		<preConditions onFail="CONTINUE">
+				<tableExists tableName="public_holiday"/>
 		</preConditions>
 		<comment>
 			Inserting Public holidays
