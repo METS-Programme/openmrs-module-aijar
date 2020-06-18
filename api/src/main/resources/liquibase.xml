@@ -346,6 +346,7 @@
 		<comment>
 			Inserting Public holidays
 		</comment>
+		<sql>
         REPLACE INTO `public_holiday` 
 (`public_holiday_id`, `public_holiday_date`, `name`, `description`, `date_created`, `creator`, `voided`, `uuid`)
 VALUES 
@@ -380,7 +381,8 @@ VALUES
 (28,'2021-10-09','Independence Day','Independence Day is a public holiday in Uganda','2020-06-17 00:00:00',1,0,'bc489c90-b9eb-48e7-84e7-82cd6bc8857a'),
 (29,'2021-12-25','Christmas Day','Christmas Day is one of the biggest Christian celebrations and falls on December 25 in the Gregorian calendar.','2020-06-17 00:00:00',1,0,'2355affe-690e-4ace-bdb7-a22bc71b8ede'),
 (30,'2021-12-26','Boxing Day','Boxing Day is a public holiday in Uganda','2020-06-17 00:00:00',1,0,'4bc8db62-6a50-431d-ab44-91493e6ed32d');               
-    </changeSet>
+    </sql>
+	</changeSet>
 
 </databaseChangeLog>
 
