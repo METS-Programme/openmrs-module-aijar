@@ -306,4 +306,83 @@
             <column name="uuid" value="8b5caeea-2c3b-11e8-b467-0ed5f89f718b" />
         </insert>
     </changeSet>
+
+	<changeSet author="rmakoba" id="ugandaemr-04052020-iss-9">
+		<preConditions onFail="MARK_RAN">
+				<not><tableExists tableName="public_holiday"/></not>
+		</preConditions>
+		<comment>
+			Create the public_holiday table
+		</comment>
+        <createTable tableName="public_holiday">
+            <column autoIncrement="true" name="public_holiday_id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column  name="public_holiday_date" type="date">
+                <constraints nullable="false" unique="true"/>
+            </column>
+			<column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="creator" type="INT"/>
+            <column name="date_created" type="datetime"/>
+            <column name="changed_by" type="INT"/>
+            <column name="date_changed" type="datetime"/>
+            <column name="voided" type="TINYINT(3)"/>
+            <column name="date_voided" type="datetime"/>
+            <column name="voided_by" type="INT"/>
+            <column name="void_reason" type="VARCHAR(255)"/>
+            <column name="uuid" type="VARCHAR(38)"/>
+        </createTable>
+    </changeSet>
+	
+	<changeSet id="ugandaemr-17052020-iss-9" author="rmakoba">
+		<preConditions onFail="CONTINUE">
+				<tableExists tableName="public_holiday"/>
+		</preConditions>
+		<comment>
+			Inserting Public holidays
+		</comment>
+		<sql>
+        REPLACE INTO `public_holiday` 
+(`public_holiday_id`, `public_holiday_date`, `name`, `description`, `date_created`, `creator`, `voided`, `uuid`)
+VALUES 
+(1,'2020-01-01','New Year’s Day','New Year’s Day is the first day of the year, or January 1, in the Gregorian calendar.','2020-06-17 00:00:00',1,0,'ce864849-abdf-4b29-9e99-a62c861f8543'),
+(2,'2020-01-26','Liberation Day','Liberation Day is a public holiday in Uganda','2020-06-17 00:00:00',1,0,'c49a70f2-ea66-42f9-bc4a-c5f876542615'),
+(3,'2020-02-16','Archbishop Janani Luwum Day','Remembrance of Archbishop Janani Luwum is a public holiday in Uganda','2020-06-17 00:00:00',1,0,'44800c9b-3995-4876-810a-22dada404da9'),
+(4,'2020-03-08','International Women’s Day','International Women’s Day is a public holiday in Uganda','2020-06-17 00:00:00',1,0,'4d34541a-f50c-4337-b870-8eede8dcec6f'),
+(5,'2020-04-10','Good Friday','Good Friday is a global Christian observance two days before Easter Sunday.','2020-06-17 00:00:00',1,0,'98080bc2-689c-46f3-9b36-04ce4a71a58c'),
+(6,'2020-04-12','Easter Sunday','Easter Sunday commemorates Jesus Christ’s resurrection, according to Christian belief.','2020-06-17 00:00:00',1,0,'0a5f810c-5488-4fcb-b8dd-830cda188648'),
+(7,'2020-04-13','Easter Monday','Easter Monday is the day after Easter Sunday.','2020-06-17 00:00:00',1,0,'cdc59214-de1a-4808-8faa-4079c6db7cde'),
+(8,'2020-05-01','Labour Day','May Day, or Labor Day, is a day off for workers in many countries around the world.','2020-06-17 00:00:00',1,0,'da4d2ca5-2b4c-4111-b77b-812d536885bb'),
+(9,'2020-05-24','Eid al-Fitr','Eid-al-Fitr is a holiday to mark the end of the Islamic month of Ramadan, during which Muslims fast during the hours of daylight.','2020-06-17 00:00:00',1,0,'667bad10-aa39-4317-b5e9-4e7b08251cc7'),
+(10,'2020-06-03','Martyr’s Day','Martyr’s Day is a public holiday in Uganda','2020-06-17 00:00:00',1,0,'69f66b76-6734-4eb7-af31-79b0b60484ec'),
+(11,'2020-06-09','National Heroes Day','National Heroes Day is a public holiday in Uganda','2020-06-17 00:00:00',1,0,'e98240f6-462d-4b24-9d65-1102bc37c1fd'),
+(12,'2020-07-31','Eid al-Adha','Eid al-Adha (Id ul-Adha) is an Islamic festival falling on the 10th day of the month of Dhul Hijja (Thou al-Hijja) to commemorate the willingness of Ibrahim (Abraham) to sacrifice his son.','2020-06-17 00:00:00',1,0,'b83a3a67-4228-40d3-8d53-ea49f9fca494'),
+(13,'2020-10-09','Independence Day','Independence Day is a public holiday in Uganda','2020-06-17 00:00:00',1,0,'bc489c90-b9eb-48e7-84e7-82cd6bc8857a'),
+(14,'2020-12-25','Christmas Day','Christmas Day is one of the biggest Christian celebrations and falls on December 25 in the Gregorian calendar.','2020-06-17 00:00:00',1,0,'2355affe-690e-4ace-bdb7-a22bc71b8ede'),
+(15,'2020-12-26','Boxing Day','Boxing Day is a public holiday in Uganda','2020-06-17 00:00:00',1,0,'4bc8db62-6a50-431d-ab44-91493e6ed32d'),
+          
+(16,'2021-01-01','New Year’s Day','New Year’s Day is the first day of the year, or January 1, in the Gregorian calendar.','2020-06-17 00:00:00',1,0,'ce864849-abdf-4b29-9e99-a62c861f8543'),
+(17,'2021-01-26','Liberation Day','Liberation Day is a public holiday in Uganda','2020-06-17 00:00:00',1,0,'c49a70f2-ea66-42f9-bc4a-c5f876542615'),
+(18,'2021-02-16','Archbishop Janani Luwum Day','Remembrance of Archbishop Janani Luwum is a public holiday in Uganda','2020-06-17 00:00:00',1,0,'44800c9b-3995-4876-810a-22dada404da9'),
+(19,'2021-03-08','International Women’s Day','International Women’s Day is a public holiday in Uganda','2020-06-17 00:00:00',1,0,'32f24eac-09b5-4edc-94a0-b1ba0b205e2a'),
+(20,'2021-04-02','Good Friday','Good Friday is a global Christian observance two days before Easter Sunday.','2020-06-17 00:00:00',1,0,'98080bc2-689c-46f3-9b36-04ce4a71a58c'),
+(21,'2021-04-04','Easter Sunday','Easter Sunday commemorates Jesus Christ’s resurrection, according to Christian belief.','2020-06-17 00:00:00',1,0,'0a5f810c-5488-4fcb-b8dd-830cda188648'),
+(22,'2021-04-05','Easter Monday','Easter Monday is the day after Easter Sunday.','2020-06-17 00:00:00',1,0,'cdc59214-de1a-4808-8faa-4079c6db7cde'),
+(23,'2021-05-01','Labour Day','May Day, or Labor Day, is a day off for workers in many countries around the world.','2020-06-17 00:00:00',1,0,'da4d2ca5-2b4c-4111-b77b-812d536885bb'),
+(24,'2021-05-13','Eid al-Fitr','Eid-al-Fitr is a holiday to mark the end of the Islamic month of Ramadan, during which Muslims fast during the hours of daylight.','2020-06-17 00:00:00',1,0,'667bad10-aa39-4317-b5e9-4e7b08251cc7'),
+(25,'2021-06-03','Martyr’s Day','Martyr’s Day is a public holiday in Uganda','2020-06-17 00:00:00',1,0,'69f66b76-6734-4eb7-af31-79b0b60484ec'),
+(26,'2021-06-09','National Heroes Day','National Heroes Day is a public holiday in Uganda','2020-06-17 00:00:00',1,0,'e98240f6-462d-4b24-9d65-1102bc37c1fd'),
+(27,'2021-07-20','Eid al-Adha','Eid al-Adha (Id ul-Adha) is an Islamic festival falling on the 10th day of the month of Dhul Hijja (Thou al-Hijja) to commemorate the willingness of Ibrahim (Abraham) to sacrifice his son.','2020-06-17 00:00:00',1,0,'b83a3a67-4228-40d3-8d53-ea49f9fca494'),
+(28,'2021-10-09','Independence Day','Independence Day is a public holiday in Uganda','2020-06-17 00:00:00',1,0,'bc489c90-b9eb-48e7-84e7-82cd6bc8857a'),
+(29,'2021-12-25','Christmas Day','Christmas Day is one of the biggest Christian celebrations and falls on December 25 in the Gregorian calendar.','2020-06-17 00:00:00',1,0,'2355affe-690e-4ace-bdb7-a22bc71b8ede'),
+(30,'2021-12-26','Boxing Day','Boxing Day is a public holiday in Uganda','2020-06-17 00:00:00',1,0,'4bc8db62-6a50-431d-ab44-91493e6ed32d');               
+    </sql>
+	</changeSet>
+
 </databaseChangeLog>
+
