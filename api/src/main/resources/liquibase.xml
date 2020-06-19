@@ -307,82 +307,19 @@
         </insert>
     </changeSet>
 
-	<changeSet id="ugandaemr-10062020-1315" author="mmwanje">
-		<preConditions onFail="MARK_RAN">
+	<changeSet id="ugandaemr-19-06-2020-0800" author="mmwanje">
+		<preConditions onFail="CONTINUE">
 			<sqlCheck expectedResult="0">
 				SELECT COUNT(*) FROM
-				metadatamapping_metadata_set_member WHERE uuid ='e4aab2eb-5d19-496f-858b-c1269d92c549';
+				metadatamapping_metadata_set_member WHERE uuid ='e1731641-30ab-102d-86b0-7a5022ba4115';
 			</sqlCheck>
 		</preConditions>
-		<comment>Enabling ART clinic number to be displayed in UgandaEMR on a patient dashboard</comment>
-		<insert tableName="metadatamapping_metadata_set_member">
-			<column name="metadata_set_member_id" value="1" />
-			<column name="metadata_set_id" value="1" />
-			<column name="metadata_class" value="org.openmrs.PatientIdentifierType" />
-			<column name="metadata_uuid" value="e1731641-30ab-102d-86b0-7a5022ba4115" />
-			<column name="name" value="null" />
-			<column name="description" value="null" />
-			<column name="sort_weight" value="null" />
-			<column name="creator" value="2" />
-			<column name="date_created" value="2020-06-10" />
-			<column name="retired" value="0" />
-			<column name="uuid" value="57c7a9df-193d-4d44-b34a-3156e6204bde" />
-		</insert>
-
-		<insert tableName="metadatamapping_metadata_set_member">
-			<column name="metadata_set_member_id" value="2" />
-			<column name="metadata_set_id" value="1" />
-			<column name="metadata_class" value="org.openmrs.PatientIdentifierType" />
-			<column name="metadata_uuid" value="2c5b695d-4bf3-452f-8a7c-fe3ee3432ffe" />
-			<column name="name" value="null" />
-			<column name="description" value="null" />
-			<column name="sort_weight" value="null" />
-			<column name="creator" value="2" />
-			<column name="date_created" value="2020-06-10" />
-			<column name="retired" value="0" />
-			<column name="uuid" value="2ae43d4b-0d41-4602-94f7-bc511592c71f" />
-		</insert>
-
-		<insert tableName="metadatamapping_metadata_set_member">
-			<column name="metadata_set_member_id" value="3" />
-			<column name="metadata_set_id" value="1" />
-			<column name="metadata_class" value="org.openmrs.PatientIdentifierType" />
-			<column name="metadata_uuid" value="a6217c17-5012-4514-b9f2-5d02d3d04c44" />
-			<column name="name" value="null" />
-			<column name="description" value="null" />
-			<column name="sort_weight" value="null" />
-			<column name="creator" value="2" />
-			<column name="date_created" value="2020-06-10" />
-			<column name="retired" value="0" />
-			<column name="uuid" value="4f530d1a-ad21-414d-8a53-033cf6c2db1f" />
-		</insert>
-
-		<insert tableName="metadatamapping_metadata_set_member">
-			<column name="metadata_set_member_id" value="4" />
-			<column name="metadata_set_id" value="1" />
-			<column name="metadata_class" value="org.openmrs.PatientIdentifierType" />
-			<column name="metadata_uuid" value="b0cc255e-ef57-4266-839e-0df7f5099eb9" />
-			<column name="name" value="null" />
-			<column name="description" value="null" />
-			<column name="sort_weight" value="null" />
-			<column name="creator" value="2" />
-			<column name="date_created" value="2020-06-10" />
-			<column name="retired" value="0" />
-			<column name="uuid" value="1728bad7-51fa-4391-9412-5cc1696f199a" />
-		</insert>
-
-		<insert tableName="metadatamapping_metadata_set_member">
-			<column name="metadata_set_member_id" value="5" />
-			<column name="metadata_set_id" value="1" />
-			<column name="metadata_class" value="org.openmrs.PatientIdentifierType" />
-			<column name="metadata_uuid" value="c9e42035-7112-45b3-bfcf-4b37e1091dd4" />
-			<column name="name" value="null" />
-			<column name="description" value="null" />
-			<column name="sort_weight" value="null" />
-			<column name="creator" value="2" />
-			<column name="date_created" value="2020-06-10" />
-			<column name="retired" value="0" />
-			<column name="uuid" value="190d2766-0fb1-4010-9260-2cdb6027f941" />
-		</insert>
+		<comment> Enabling ART clinic number to be displayed in UgandaEMR on a patient dashboard </comment>
+		<sql>
+			INSERT INTO metadatamapping_metadata_set_member (metadata_set_id, metadata_class, metadata_uuid, sort_weight, name, description, creator, date_created, changed_by, date_changed, retired, date_retired, retired_by, retire_reason, uuid)
+			SELECT  1,'org.openmrs.PatientIdentifierType', (SELECT patient_identifier_type.uuid FROM patient_identifier_type WHERE patient_identifier_type.uuid='e1731641-30ab-102d-86b0-7a5022ba4115') AS metadata_uuid,null, null, null, 2,NOW(), null, null, 0, null, null, null,'57c7a9df-193d-4d44-b34a-3156e6204bde';
+		</sql>
 	</changeSet>
+
+
 </databaseChangeLog>
