@@ -13,10 +13,16 @@
  */
 package org.openmrs.module.aijar.api.db.hibernate;
 
+import java.util.Date;
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
+import org.openmrs.api.APIException;
 import org.openmrs.module.aijar.api.db.AijarDAO;
+import org.openmrs.module.ugandaemr.PublicHoliday;
 
 /**
  * It is a default implementation of  {@link AijarDAO}.
@@ -38,5 +44,30 @@ public class HibernateAijarDAO implements AijarDAO {
      */
     public SessionFactory getSessionFactory() {
 	    return sessionFactory;
-    }
+	}
+	
+	public List<PublicHoliday> getAllPublicHolidays() {
+		return (List<PublicHoliday>) getSessionFactory().getCurrentSession().createCriteria(PublicHoliday.class).list();
+	}
+
+	public PublicHoliday getPublicHolidayByDate(Date publicHolidayDate) throws APIException {
+		return (PublicHoliday) getSessionFactory().getCurrentSession().createCriteria(PublicHoliday.class).add(Restrictions.eq("date", publicHolidayDate)).add(Restrictions.eq("voided", false)).uniqueResult();
+	}
+
+	public PublicHoliday savePublicHoliday(PublicHoliday publicHoliday) {
+        getSessionFactory().getCurrentSession().saveOrUpdate(publicHoliday);
+		return publicHoliday;
+	}
+
+	@Override
+	public PublicHoliday getPublicHolidaybyUuid(String uuid) {
+		return (PublicHoliday) getSessionFactory().getCurrentSession().createCriteria(PublicHoliday.class).add(Restrictions.eq("uuid", uuid))
+		.uniqueResult();
+	}
+
+	@Override
+	public List<PublicHoliday> getPublicHolidaysByDate(Date publicHolidayDate) {
+		return (List<PublicHoliday>) getSessionFactory().getCurrentSession().createCriteria(PublicHoliday.class).add(Restrictions.eq("date", publicHolidayDate)).list();
+	}
+	
 }
