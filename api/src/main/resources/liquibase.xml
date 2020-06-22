@@ -316,8 +316,8 @@
 		</preConditions>
 		<comment> Enabling ART clinic number to be displayed in UgandaEMR on a patient dashboard </comment>
 		<sql>
-            REPLACE INTO metadatamapping_metadata_set_member (metadata_set_member_id,metadata_set_id, metadata_class, metadata_uuid, sort_weight, name, description, creator, date_created, changed_by, date_changed, retired, date_retired, retired_by, retire_reason, uuid)
-            SELECT  1, 1,'org.openmrs.PatientIdentifierType', (SELECT patient_identifier_type.uuid FROM patient_identifier_type WHERE patient_identifier_type.uuid='e1731641-30ab-102d-86b0-7a5022ba4115') AS metadata_uuid,null, null, null, 2,NOW(), null, null, 0, null, null, null,'57c7a9df-193d-4d44-b34a-3156e6204bde';
+            REPLACE INTO metadatamapping_metadata_set_member (metadata_set_member_id, metadata_set_id, metadata_class, metadata_uuid, sort_weight, name, description, creator, date_created, changed_by, date_changed, retired, date_retired, retired_by, retire_reason, uuid)
+            SELECT 1, 1, 'org.openmrs.PatientIdentifierType', 'e1731641-30ab-102d-86b0-7a5022ba4115',null, null, null, 2, NOW(), null, null, 0, null, null, null,'57c7a9df-193d-4d44-b34a-3156e6204bde';
 		</sql>
 	</changeSet>
 
