@@ -76,6 +76,31 @@
     ]
   },
   {
+    "id": "ugandaemr.dashboardwidget.TPTStatus",
+    "instanceOf": "coreapps.template.dashboardWidget",
+    "description": "Summary of the patient's TPT status",
+    "order": 5,
+    "config": {
+      "widget": "latestobsforconceptlist",
+      "icon": "icon-user-md",
+      "label": "TPT STATUS",
+      "maxAge": "120m",
+      "concepts": "37d4ac43-b3b4-4445-b63b-e3acf47c8910,483939c7-79ba-4ca4-8c3e-346488c97fc7,813e21e7-4ccb-4fe9-aaab-3c0e40b6e356,23a6dc6e-ac16-4fa6-8029-155522548d04"
+    },
+    "requiredPrivilege": "App: ugandaemr.widget.tptStatus",
+    "extensions": [
+      {
+        "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardFirstColumn",
+        "appId": "ugandaemr.dashboardwidget.TPTStatus",
+        "extensionPointId": "patientDashboard.firstColumnFragments",
+        "extensionParams": {
+          "provider": "coreapps",
+          "fragment": "dashboardwidgets/dashboardWidget"
+        }
+      }
+    ]
+  },
+  {
     "id": "ugandaemr.dataIntegrityViolations",
     "instanceOf": "coreapps.template.dashboardWidget",
     "description": "Data quality violations for the patient based on entered data",
