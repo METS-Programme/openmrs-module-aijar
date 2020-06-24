@@ -13,7 +13,11 @@
  */
 package org.openmrs.module.aijar.api.db;
 
+import java.util.Date;
+import java.util.List;
+
 import org.openmrs.module.aijar.api.AijarService;
+import org.openmrs.module.ugandaemr.PublicHoliday;
 
 /**
  *  Database methods for {@link AijarService}.
@@ -23,4 +27,15 @@ public interface AijarDAO {
 	/*
 	 * Add DAO methods here
 	 */
+
+	public List<PublicHoliday> getAllPublicHolidays();
+
+	public PublicHoliday getPublicHolidayByDate(Date publicHolidayDate);
+
+	public PublicHoliday savePublicHoliday(PublicHoliday publicHolidays);
+
+	public PublicHoliday getPublicHolidaybyUuid(String uuid);
+
+	public List<PublicHoliday> getPublicHolidaysByDate(Date publicHolidayDate);
+	
 }
