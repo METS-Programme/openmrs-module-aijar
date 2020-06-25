@@ -1223,6 +1223,9 @@
     <concept  concept_id="161509"  retired="0" datatype_id="4"  class_id="8"  is_set="1"  creator="1"  date_created="2012-12-31 15:16:19"  version="1.0.0"  changed_by="1"  date_changed="2013-01-13 22:52:05"  retired_by="1" uuid="161509AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
     <concept  concept_id="160922"  retired="0" datatype_id="1"  class_id="1"  is_set="0"  creator="1"  date_created="2012-07-19 17:49:18"  version="1.0.0"  changed_by="1"  date_changed="2014-12-08 20:39:58"  retired_by="1" uuid="160922AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
 
+    <!-- DRUG  -->
+    <concept  concept_id="165874"  retired="0" datatype_id="4"  class_id="10"  is_set="1"  creator="1"  date_created="2020-06-25 09:47:20"  version="1.0.0"  changed_by="1"  date_changed="2020-06-25 09:47:20" uuid="7c9bde8d-a5a7-473f-99d5-4991dc6feb01"/>
+    <concept  concept_id="163017"  retired="0" datatype_id="4"  class_id="3"  is_set="0"  creator="1"  date_created="2016-03-23 15:06:01" changed_by="1"  date_changed="2020-06-25 08:11:33" uuid="14c56659-3d4e-4b88-b3ff-e2d43dbfb865"/>
 
     <!--CONCEPT NUMERIC-->
     <!--MCH-->
@@ -4319,6 +4322,8 @@
     <concept_name  concept_id="160922"  name="Human chorionic gonadotropin measurement"  locale="en"  creator="1"  date_created="2012-07-19 17:49:18"  concept_name_id="109700"  voided="0"  voided_by="1" uuid="109700BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1" changed_by="1"/>
     <concept_name  concept_id="160922"  name="Đo nồng độ HCG"  locale="vi"  creator="1"  date_created="2015-07-17 20:07:18"  concept_name_id="127599"  voided="0"  voided_by="1" uuid="127599BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1" changed_by="1"/>
 
+    <!-- DRUG -->
+    <concept_name  concept_name_id="161102"  concept_id="165874"  name="Other Drug Dispensed Set"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-06-25 09:47:20"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="83a9006b-5f14-4035-85e2-a5c8981773de"/>
 
     <!--CONCEPT ANSWERS-->
     <!--MCH-->
@@ -6205,6 +6210,13 @@
     <concept_set  concept_set_id="1028"  concept_id="1032"  concept_set="161476"  sort_weight="3"  creator="1"  date_created="2012-12-28 19:22:12"  uuid="1028AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>
     <concept_set  concept_set_id="1093"  concept_id="160922"  concept_set="161509"  sort_weight="0"  creator="1"  date_created="2012-12-31 15:16:19"  uuid="1093AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>
 
+    <!-- DRUG -->
+    <concept_set  concept_set_id="2828"  concept_id="99035"  concept_set="165874"  sort_weight="0"  creator="1"  date_created="2020-06-25 09:47:21"  uuid="c984c414-1aaf-4644-a461-25099f07c888"/>
+    <concept_set  concept_set_id="2829"  concept_id="1444"  concept_set="165874"  sort_weight="1"  creator="1"  date_created="2020-06-25 09:47:21"  uuid="5272c3e4-fc29-4e99-9e56-6fd9b362b1af"/>
+    <concept_set  concept_set_id="2830"  concept_id="159368"  concept_set="165874"  sort_weight="2"  creator="1"  date_created="2020-06-25 09:47:21"  uuid="f955c9d6-a6c4-494e-b2a5-9a87b7c2147e"/>
+    <concept_set  concept_set_id="2831"  concept_id="1732"  concept_set="165874"  sort_weight="3"  creator="1"  date_created="2020-06-25 09:47:21"  uuid="947a7ca0-bf1e-4651-9b58-1fb5683efe14"/>
+    <concept_set  concept_set_id="2832"  concept_id="165791"  concept_set="165874"  sort_weight="4"  creator="1"  date_created="2020-06-25 09:47:21"  uuid="ed942899-77f8-4dfb-b4da-5e299d2585c2"/>
+    <concept_set  concept_set_id="2833"  concept_id="160856"  concept_set="165874"  sort_weight="5"  creator="1"  date_created="2020-06-25 09:47:21"  uuid="5c75ce50-cc68-4aa2-9204-6a309b3b464d"/>
 
 
     <!--LAB REFERENCE MAPPING-->
