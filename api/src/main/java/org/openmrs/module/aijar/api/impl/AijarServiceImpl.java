@@ -38,6 +38,7 @@ import org.openmrs.api.EncounterService;
 import org.openmrs.api.PatientService;
 import org.openmrs.api.PersonService;
 import org.openmrs.api.VisitService;
+import org.openmrs.api.APIException;
 import org.openmrs.api.AdministrationService;
 import org.openmrs.PatientIdentifierType;
 import org.openmrs.PatientIdentifier;
@@ -50,6 +51,7 @@ import org.openmrs.module.aijar.api.AijarService;
 import org.openmrs.module.aijar.api.db.AijarDAO;
 import org.openmrs.module.aijar.metadata.core.Locations;
 import org.openmrs.module.aijar.metadata.core.PatientIdentifierTypes;
+import org.openmrs.module.ugandaemr.PublicHoliday;
 import org.openmrs.notification.Alert;
 import org.openmrs.util.OpenmrsUtil;
 import org.openmrs.parameter.EncounterSearchCriteria;
@@ -457,5 +459,30 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
         List<Encounter> encounters = encounterService.getEncounters(encounterSearchCriteria);
 
         return encounters;
-    }
+	}
+	
+	@Override
+	public List<PublicHoliday> getAllPublicHolidays() throws APIException {
+		return dao.getAllPublicHolidays();
+	}
+
+	@Override
+	public PublicHoliday getPublicHolidayByDate(Date publicHolidayDate) throws APIException {
+		return dao.getPublicHolidayByDate(publicHolidayDate);
+	}
+
+	@Override
+	public PublicHoliday savePublicHoliday(PublicHoliday publicHoliday) {
+		return dao.savePublicHoliday(publicHoliday);
+	}
+
+	@Override
+	public PublicHoliday getPublicHolidaybyUuid(String uuid) {
+		return dao.getPublicHolidaybyUuid(uuid);
+	}
+
+	@Override
+	public List<PublicHoliday> getPublicHolidaysByDate(Date publicHolidayDate) throws APIException {
+		return dao.getPublicHolidaysByDate(publicHolidayDate);
+	}
 }

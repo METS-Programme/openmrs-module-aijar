@@ -9,7 +9,8 @@ public class AijarConstants {
      * Module ID
      */
     public static final String MODULE_ID = "aijar";
-
+    public static final String UGANDAEMR_MODULE_ID = "ugandaemr";
+    
     /**
      * Global property names
      */
