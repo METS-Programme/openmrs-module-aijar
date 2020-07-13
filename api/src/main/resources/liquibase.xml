@@ -402,7 +402,7 @@ VALUES
 	<changeSet id="ugandaemr-10072020-1433" author="mmwanje">
 		<preConditions onFail="MARK_RAN">
 			<sqlCheck expectedResult="0">
-				SELECT COUNT(*) from role WHERE uuid =‘130106e6-04b4-11ea-8d71-362b9e155667’
+				SELECT COUNT(*) from role WHERE uuid ='130106e6-04b4-11ea-8d71-362b9e155667'
 			</sqlCheck>
 		</preConditions>
 		<comment>Removing the duplicated organizational phamarcy role</comment>
