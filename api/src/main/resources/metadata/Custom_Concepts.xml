@@ -4323,9 +4323,9 @@
     <concept_name  concept_id="160922"  name="Beta-hCG"  locale="en"  creator="1"  date_created="2012-07-19 17:49:18"  concept_name_id="109699"  voided="0"  voided_by="1" uuid="109699BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="SHORT"  locale_preferred="0" changed_by="1"/>
     <concept_name  concept_id="160922"  name="Human chorionic gonadotropin measurement"  locale="en"  creator="1"  date_created="2012-07-19 17:49:18"  concept_name_id="109700"  voided="0"  voided_by="1" uuid="109700BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1" changed_by="1"/>
     <concept_name  concept_id="160922"  name="Đo nồng độ HCG"  locale="vi"  creator="1"  date_created="2015-07-17 20:07:18"  concept_name_id="127599"  voided="0"  voided_by="1" uuid="127599BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1" changed_by="1"/>
-    <concept_name  concept_name_id="161105"  concept_id="165877"  name="Other Tests"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-07-15 10:10:22"  concept_name_type="FULLY_SPECIFIED"  uuid="07c07ac2-be89-45ac-8886-34a1e51a311a"/>
-    <concept_name  concept_name_id="161104"  concept_id="165876"  name="Test Result"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-07-15 10:01:57"  concept_name_type="FULLY_SPECIFIED"  uuid="6442234b-4b5a-4eb1-83d5-5138e1c890d4"/>
-    <concept_name  concept_name_id="161103"  concept_id="165875"  name="Test"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-07-15 09:01:55"  concept_name_type="FULLY_SPECIFIED"  uuid="a3d578b1-691b-4e7b-8a0f-8ff920cb29e0"/>
+    <concept_name  concept_name_id="161105"  concept_id="165877"  name="Other Tests"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-07-15 10:10:22" voided="0" concept_name_type="FULLY_SPECIFIED"  uuid="07c07ac2-be89-45ac-8886-34a1e51a311a"/>
+    <concept_name  concept_name_id="161104"  concept_id="165876"  name="Test Result"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-07-15 10:01:57" voided="0"  concept_name_type="FULLY_SPECIFIED"  uuid="6442234b-4b5a-4eb1-83d5-5138e1c890d4"/>
+    <concept_name  concept_name_id="161103"  concept_id="165875"  name="Test"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-07-15 09:01:55" voided="0" concept_name_type="FULLY_SPECIFIED"  uuid="a3d578b1-691b-4e7b-8a0f-8ff920cb29e0"/>
 
 
         <!-- DRUG -->
