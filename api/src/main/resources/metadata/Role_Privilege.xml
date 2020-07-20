@@ -216,7 +216,6 @@
     <role  role="Triage"     description="This Role is for reception. Registration of patient and checking of patient is assigned to this role"  uuid="13010876-04b4-11ea-8d71-362b9e155667"/>
     <role  role="Organizational: Clinician"  description="This is a person role which allows access to clinical function"  uuid="b136af7b-e96d-47c3-aa6c-d8687f940a39"/>
     <role  role="Organizational: Laboratory"  description="This role allows access to Laboratory function"  uuid="d08358e9-b292-4f51-8c6b-843fa3660fe0"/>
-    <role  role="Organizational: Pharmacy"  description="This role allows access to Pharmacy function"  uuid="130106e6-04b4-11ea-8d71-362b9e155667"/>
     <role  role="Base Reporting Data Manager"  description="This is the Base reporting role. It offers only aggregate reports to a user with this role"  uuid="cd8e60da-8f74-4791-8411-b1a41237171a"/>
     <role  role="HIV Data Management"  description="This role enables a user to access general reports and HIV specific reports."  uuid="16886017-0630-49e5-b928-50251b584ad0"/>
     <role  role="OPD Data Manager"  description="This role enables a user to access general reporting and OPD specific reports"  uuid="725af8e9-35c8-47ff-8d93-86e63899e1f5"/>
