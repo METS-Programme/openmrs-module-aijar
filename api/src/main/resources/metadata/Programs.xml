@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <!--Program workflow-->
+    <!--TB Program-->
+    <program_workflow  program_workflow_id="1"  program_id="2"  concept_id="159792"  creator="1"  date_created="2020-07-29 20:04:43"  retired="0"  changed_by="1"  date_changed="2020-07-29 20:06:21"  uuid="b70f609e-c3e8-4e4f-bd9e-97df5e95796a"/>
+
+    <!--Program Workflow State-->
+    <!--TB Treatment Phase -->
+    <program_workflow_state  program_workflow_state_id="1"  program_workflow_id="1"  concept_id="159795"  initial="1"  terminal="0"  creator="1"  date_created="2020-07-29 20:06:21"  retired="0"  uuid="0e2ff228-8dab-491d-9457-aaa47764ef8a"/>
+    <program_workflow_state  program_workflow_state_id="2"  program_workflow_id="1"  concept_id="159794"  initial="1"  terminal="0"  creator="1"  date_created="2020-07-29 20:06:21"  retired="0"  uuid="2fafcc3a-b5e2-4fb2-b534-d9b5f3e91b26"/>
+    <program_workflow_state  program_workflow_state_id="3"  program_workflow_id="1"  concept_id="159793"  initial="1"  terminal="0"  creator="1"  date_created="2020-07-29 21:17:16"  retired="0"  uuid="031d22b8-4fde-45ba-9e0a-6b87337b29f3"/>
+
+
+    <!--Program Attributes-->
+    <!--TB Program Attribute -->
+    <program_attribute_type  program_attribute_type_id="3"  name="TB District No."  description="The number that Identifies a patient in a TB program at District level"   min_occurs="0"    creator="1"  date_created="2020-07-29 09:30:34"     uuid="af9bac5e-d245-11ea-87d0-0242ac130003"/>
+    <program_attribute_type  program_attribute_type_id="4"  name="TB Health Unit TB No."  description="The number that Identifies a patient in a TB Program at Health Center Level"   min_occurs="0"    creator="1"  date_created="2020-07-29 09:30:34"     uuid="af9baf06-d245-11ea-87d0-0242ac130003"/>
+    <program_attribute_type  program_attribute_type_id="5"  name="TB Regimen"  description="The overall regimen the patient in a TB program is currently on"   min_occurs="0"    creator="1"  date_created="2020-07-29 09:29:51"     uuid="af9bb0c8-d245-11ea-87d0-0242ac130003"/>
+    <program_attribute_type  program_attribute_type_id="6"  name="Initial Phase Regimen"  description="The regimen the patient is currently on when in Initial Phase"   min_occurs="0"    creator="1"  date_created="2020-07-29 09:30:34"     uuid=" af9bb1a4-d245-11ea-87d0-0242ac130003"/>
+    <program_attribute_type  program_attribute_type_id="7"  name="Continuation Phase Regimen"  description="The regimen the patient is currently on when in Continuation Phase"   min_occurs="0"    creator="1"  date_created="2020-07-29 09:30:34"     uuid="af9bb26c-d245-11ea-87d0-0242ac130003"/>
+</dataset>
