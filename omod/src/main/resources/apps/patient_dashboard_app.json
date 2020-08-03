@@ -222,5 +222,29 @@
         }
       }
     ]
-  }
+  },{
+  "id": "ugandaemr.tb.program",
+  "instanceOf": "coreapps.template.dashboardWidget",
+  "description": "TB Patient Program",
+  "order": 10,
+  "config": {
+    "widget": "programstatus",
+    "icon": "icon-stethoscope",
+    "label": "TB Program Status",
+    "dateFormat": "dd MMM yyyy",
+    "program": "9dc21a72-0971-11e7-8037-507b9dc4c741",
+    "locationTag": "8d5b27bc-c2cc-11de-8d13-0010c6dffd0f"
+  },
+  "extensions": [
+    {
+      "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardSecondColumn",
+      "appId": "ugandaemr.tb.program",
+      "extensionPointId": "patientDashboard.secondColumnFragments",
+      "extensionParams": {
+        "provider": "coreapps",
+        "fragment": "dashboardwidgets/dashboardWidget"
+      }
+    }
+  ]
+}
 ]
