@@ -1228,6 +1228,16 @@
     <!-- DRUG  -->
     <concept  concept_id="165874"  retired="0" datatype_id="4"  class_id="10"  is_set="1"  creator="1"  date_created="2020-06-25 09:47:20"  version="1.0.0"  changed_by="1"  date_changed="2020-06-25 09:47:20" uuid="7c9bde8d-a5a7-473f-99d5-4991dc6feb01"/>
     <concept  concept_id="163017"  retired="0" datatype_id="4"  class_id="3"  is_set="0"  creator="1"  date_created="2016-03-23 15:06:01" changed_by="1"  date_changed="2020-06-25 08:11:33" uuid="14c56659-3d4e-4b88-b3ff-e2d43dbfb865"/>
+    <concept  concept_id="165875" retired="0"  datatype_id="4" class_id="3" is_set="false" creator="1" date_created="2020-07-23 16:09:59" version="" uuid="050af8bf-8dcb-4982-b506-2e6bc403ee31"/>
+    <concept  concept_id="165876" retired="0"  datatype_id="1" class_id="5" is_set="false" creator="1" date_created="2020-07-23 16:23:28" version="" uuid="c3a05447-2954-41fa-a38a-59acb05b5354"/>
+    <concept  concept_id="165877" retired="0"  datatype_id="1" class_id="11" is_set="false" creator="1" date_created="2020-07-23 16:43:47" version="" uuid="c43f7b20-9671-4c3f-94b6-2bef60ab350b"/>
+    <concept  concept_id="165878" retired="0"  datatype_id="6" class_id="11" is_set="false" creator="1" date_created="2020-07-23 16:45:50" version="" uuid="e99d5875-e0d3-40fc-86d0-b5441542212b"/>
+    <concept  concept_id="165878" retired="0"  datatype_id="6" class_id="11" is_set="false" creator="1" date_created="2020-07-23 16:45:50" version="" uuid="e99d5875-e0d3-40fc-86d0-b5441542212b"/>
+    <concept  concept_id="165879" retired="0"  datatype_id="6" class_id="11" is_set="false" creator="1" date_created="2020-07-23 16:48:11" version="" uuid="314f7673-3b3f-4b3d-b279-409129b69bfc"/>
+    <concept  concept_id="165880" retired="0"  datatype_id="1" class_id="11" is_set="false" creator="1" date_created="2020-07-24 09:57:09" version="" uuid="63a997a8-974f-4e81-9ef3-531fc8f47b19"/>
+    <concept  concept_id="165881" retired="0"  datatype_id="6" class_id="11" is_set="false" creator="1" date_created="2020-07-24 11:38:07" version="" uuid="481c5fdb-4719-4be3-84c0-a64172a426c7"/>
+    <concept  concept_id="165882" retired="0"  datatype_id="4" class_id="5" is_set="false" creator="1" date_created="2020-07-24 14:55:21" version="" uuid="b5171d08-77bf-40a8-a864-51caa6cd2480"/>
+    <concept  concept_id="165883" retired="0"  datatype_id="4" class_id="5" is_set="false" creator="1" date_created="2020-07-24 15:00:57" version="" uuid="952c6973-e163-4c0d-b6c8-a7071bd05e2a"/>
 
     <!--CONCEPT NUMERIC-->
     <!--MCH-->
@@ -1725,6 +1735,14 @@
 
     <!--TB-->
     <concept_description  concept_description_id="18511"  concept_id="165844"  description="All test done at Tb baseline examination"  locale="en"  creator="1"  date_created="2020-06-16 10:36:40" uuid="4d3269ca-0b02-44ff-8c1f-c87bafe8b23b"/>
+
+    <concept_description  concept_description_id="18512"  concept_id="165875"  description="3HP is a combination of Isoniazid(INH) and Rifapentine(RPT) used to prevent Latent TB for 12 weeks in individuals >2 yrs as an alternative to INH only or 3RH(Rifampicin and Isoniazid)"  locale="en"  creator="1"  date_created="2020-07-23 16:09:59"  uuid="724d7c3d-35e2-431e-a111-d3ba8d4db074"/>
+    <concept_description  concept_description_id="18513"  concept_id="165876"  description="3HP Dosage (number of pills dispensed)"  locale="en"  creator="1"  date_created="2020-07-23 16:23:28"  uuid="b68ff241-ce71-4eaa-8fba-842afd8f2e0c"/>
+    <concept_description  concept_description_id="18514"  concept_id="165877"  description="3HP number of days dispensed"  locale="en"  creator="1"  date_created="2020-07-23 16:43:47"  uuid="c46f3467-571c-4215-b035-ef831fc5c7a0"/>
+    <concept_description  concept_description_id="18515"  concept_id="165880"  description="Pyridoxine Dosage"  locale="en"  creator="1"  date_created="2020-07-24 09:57:09"  uuid="927b297d-ee36-47e3-b011-ae3336627412"/>
+    <concept_description  concept_description_id="18516"  concept_id="165881"  description="Date initiated on dapson"  locale="en"  creator="1"  date_created="2020-07-24 11:38:07"  uuid="e3047429-3b69-47c3-bbc2-95f64d485f3a"/>
+    <concept_description  concept_description_id="18517"  concept_id="165882"  description="TB Contact"  locale="en"  creator="1"  date_created="2020-07-24 14:55:21"  uuid="1d7400e2-40cc-462b-9427-767518293b6a"/>
+    <concept_description  concept_description_id="18518"  concept_id="165883"  description="Person working in the mining sector"  locale="en"  creator="1"  date_created="2020-07-24 15:00:57"  uuid="818ee999-41b0-4aff-9302-20f3a732064e"/>
 
     <!--CONCEPT NAME-->
     <!--ART-->
@@ -4330,6 +4348,15 @@
 
         <!-- DRUG -->
     <concept_name  concept_name_id="161102"  concept_id="165874"  name="Other Drug Dispensed Set"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-06-25 09:47:20"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="83a9006b-5f14-4035-85e2-a5c8981773de"/>
+    <concept_name  concept_name_id="161103"  concept_id="165875"  name="3HP - Isoniazid(INH) and Rifapentine(RPT)"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-07-23 16:09:59"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="ab7ab3e2-62e2-46ce-a165-9d3c8c9f19cc"/>
+    <concept_name  concept_name_id="161104"  concept_id="165876"  name="3HP - number of pills"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-07-23 16:23:28"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="d65d4a48-ca68-4ca0-a1d0-5b42337580e1"/>
+    <concept_name  concept_name_id="161105"  concept_id="165877"  name="3HP number of days"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-07-23 16:43:47"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="942108c9-d418-4fc6-b4f6-8f4a19a78b95"/>
+    <concept_name  concept_name_id="161106"  concept_id="165878"  name="3HP start date"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-07-23 16:45:50"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="80010865-eda1-457c-b466-942a56f18213"/>
+    <concept_name  concept_name_id="161107"  concept_id="165879"  name="3HP end date"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-07-23 16:48:11"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="0253fdde-1b27-46b2-948d-295c8bdba77e"/>
+    <concept_name  concept_name_id="161108"  concept_id="165880"  name="Pyridoxine - number of pills"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-07-24 09:57:09"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="7fe76756-f9b5-4925-b977-fe273cf5f757"/>
+    <concept_name  concept_name_id="161109"  concept_id="165881"  name="Dapson start date"  locale="en"  locale_preferred="1"  creator="1"  date_created="2018-07-04 12:21:58"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="651db99a-6d1f-4acf-98f1-97a09ccb8455"/>
+    <concept_name  concept_name_id="161110"  concept_id="165882"  name="TB Contact"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-07-24 14:55:21"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="f53894b0-23f1-476b-9130-378a0e6e50a9"/>
+    <concept_name  concept_name_id="161111"  concept_id="165883"  name="Miner"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-07-24 15:00:57"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="8d34f225-2f27-4695-9825-4bd37e162f81"/>
 
     <!--CONCEPT ANSWERS-->
     <!--MCH-->
