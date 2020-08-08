@@ -43,6 +43,11 @@ public class Programs {
         public String uuid() {
             return "9dc21a72-0971-11e7-8037-507b9dc4c741";
         }
+
+        @Override
+        public String outcomesConceptUuid() {
+            return "e44c8c4c-db50-4d1e-9d6e-092d3b31cfd6";
+        }
     };
 
     public static ProgramDescriptor HIV_PROGRAM = new ProgramDescriptor() {

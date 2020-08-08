@@ -145,12 +145,14 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             dataImporter.importData("metadata/Role_Privilege.xml");
             log.info("UgandaEMR Privileges Imported");
 
-            log.info("Start import of Program related objects");
-            dataImporter.importData("metadata/Programs.xml");
-            log.info(" Program related objects Imported");
+
 
             // install commonly used metadata
             installCommonMetadata(deployService);
+
+            log.info("Start import of Program related objects");
+            dataImporter.importData("metadata/Programs.xml");
+            log.info(" Program related objects Imported");
 
             // run the initializers
             for (Initializer initializer : getInitializers()) {
