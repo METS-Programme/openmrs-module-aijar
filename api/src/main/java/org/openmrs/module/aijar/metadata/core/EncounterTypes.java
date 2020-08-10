@@ -70,6 +70,22 @@ public class EncounterTypes {
         }
     };
 
+    public static EncounterTypeDescriptor TB_FOLLOWUP_ENCOUNTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "TB Encounter (Followup)";
+        }
+
+        @Override
+        public String description() {
+            return "An encounter for a return visit to the TB clinic";
+        }
+
+        public String uuid() {
+            return "455bad1f-5e97-4ee9-9558-ff1df8808732";
+        }
+    };
+
 
     public static EncounterTypeDescriptor VIRAL_LOAD_NON_SUPPRESSED  = new EncounterTypeDescriptor() {
         @Override
