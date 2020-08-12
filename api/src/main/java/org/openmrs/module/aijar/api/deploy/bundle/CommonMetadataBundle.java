@@ -56,6 +56,7 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(EncounterTypes.SMC_FOLLOW_UP_ENCOUNTER);
         install(EncounterTypes.OPD_ENCOUNTER);
         install(EncounterTypes.TB_SUMMARY_ENCOUNTER);
+        install(EncounterTypes.TB_FOLLOWUP_ENCOUNTER);
         install(EncounterTypes.VIRAL_LOAD_NON_SUPPRESSED);
         install(EncounterTypes.APPOINTMENT_FOLLOW_UP);
         install(EncounterTypes.TRIAGE);

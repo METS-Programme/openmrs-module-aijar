@@ -308,9 +308,9 @@
     </changeSet>
 
 
-	<changeSet id="ugandaemr-19-06-2020-0800" author="mmwanje">
-		<preConditions onFail="MARK_RAN">
-			<sqlCheck expectedResult="0">
+	<changeSet id="ugandaemr-08-08-2020-1155" author="mmwanje">
+		<preConditions onFail="CONTINUE">
+			<sqlCheck expectedResult="1">
 				SELECT COUNT(*) FROM
 				metadatamapping_metadata_set_member WHERE uuid ='e1731641-30ab-102d-86b0-7a5022ba4115';
 			</sqlCheck>
@@ -397,6 +397,19 @@ VALUES
 (29,'2021-12-25','Christmas Day','Christmas Day is one of the biggest Christian celebrations and falls on December 25 in the Gregorian calendar.','2020-06-17 00:00:00',1,0,'2355affe-690e-4ace-bdb7-a22bc71b8ede'),
 (30,'2021-12-26','Boxing Day','Boxing Day is a public holiday in Uganda','2020-06-17 00:00:00',1,0,'4bc8db62-6a50-431d-ab44-91493e6ed32d');
     </sql>
+	</changeSet>
+
+	<changeSet id="ugandaemr-10072020-1433" author="mmwanje">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="1">
+				SELECT COUNT(*) from role WHERE uuid ='130106e6-04b4-11ea-8d71-362b9e155667'
+			</sqlCheck>
+		</preConditions>
+		<comment>Removing the duplicated organizational phamarcy role</comment>
+		<sql>
+			DELETE FROM user_role WHERE role IN (SELECT role FROM role WHERE uuid = '130106e6-04b4-11ea-8d71-362b9e155667');
+			DELETE FROM role WHERE uuid ='130106e6-04b4-11ea-8d71-362b9e155667';
+		</sql>
 	</changeSet>
 
 </databaseChangeLog>
