@@ -38,6 +38,10 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
+import static org.openmrs.module.aijar.AijarConstants.GP_DHIS2;
+import static org.openmrs.module.aijar.AijarConstants.GP_HEALTH_CENTER_NAME;
+
+
 /**
  * Controller that lets a client check the status of their session this is a UgandaEMR override which is needed for the community app, and log out. (Authenticating is
  * handled through a filter, and may happen through this or any other resource.
@@ -67,7 +71,8 @@ public class UgandaEMRSessionController extends BaseRestController {
 		SimpleObject session = new SimpleObject();
 		session.add("sessionId", request.getSessionId()).add("authenticated", authenticated);
 		if (authenticated) {
-			session.add("healthFacilityId", Context.getAdministrationService().getGlobalProperty("ugandaemr.dhis2.organizationuuid"));
+			session.add("healthFacilityId", Context.getAdministrationService().getGlobalProperty(GP_DHIS2));
+			session.add("healthFacilityName", Context.getAdministrationService().getGlobalProperty(GP_HEALTH_CENTER_NAME));
 			session.add("user", ConversionUtil.convertToRepresentation(Context.getAuthenticatedUser(),
 			    new CustomRepresentation(USER_CUSTOM_REP)));
 			session.add("locale", Context.getLocale());
