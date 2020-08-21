@@ -412,6 +412,17 @@ VALUES
 		</sql>
 	</changeSet>
 
+	<changeSet id="ugandaemr-08212020-1258" author="dbaluku">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="1">
+				SELECT COUNT(*) from concept_numeric WHERE concept_id = 851 and allow_decimal = 0
+			</sqlCheck>
+		</preConditions>
+		<comment>Changing of CBC concept to allow decimal results</comment>
+		<sql>
+			UPDATE concept_numeric SET allow_decimal = 1 WHERE concept_id = 851
+		</sql>
+	</changeSet>
 </databaseChangeLog>
 
 
