@@ -276,12 +276,12 @@ public class Locations {
 
 		@Override
 		public String description() {
-			return "This is a location that serves all clients on community based DSD Models";
+			return "This is a location that caters all clients served in the community ";
 		}
 
 		@Override
 		public String name() {
-			return "COMMUNITY";
+			return "Community";
 		}
 
 		@Override
