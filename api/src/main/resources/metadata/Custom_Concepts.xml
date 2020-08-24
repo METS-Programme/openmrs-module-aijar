@@ -560,6 +560,8 @@
     <concept  concept_id="165203"  retired="0"  datatype_id="4"  class_id="4"  is_set="0"  creator="1"  date_created="2018-12-04 07:41:12"  version=""  changed_by="1"  date_changed="2018-12-04 07:49:49"  retired_by="1" uuid="165203AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
     <concept  concept_id="165204"  retired="0"  datatype_id="4"  class_id="4"  is_set="0"  creator="1"  date_created="2018-12-04 07:42:50"  version=""  changed_by="1"  date_changed="2018-12-04 07:43:23"  retired_by="1" uuid="165204AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
     <concept  concept_id="165205"  retired="0"  datatype_id="4"  class_id="4"  is_set="0"  creator="1"  date_created="2018-12-04 07:44:49"  version=""  changed_by="1"  date_changed="2018-12-04 07:45:00"  retired_by="1" uuid="165205AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+    <concept  concept_id="166049"  retired="0"  datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2020-08-24 15:40:34"  version=""  changed_by="1"  date_changed="2020-08-24 15:40:34" uuid="dad153b2-41e3-4b67-aaa6-e0de2956153b"/>
+
 
     <!--KP-->
     <concept  concept_id="1533"  retired="0" datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2008-02-16 13:51:15"  version="1.0"  changed_by="1"  date_changed="2008-02-16 13:51:15"  retired_by="1" uuid="1533AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
@@ -2457,6 +2459,7 @@
     <concept_name  concept_name_id="161278"  concept_id="166047"  name="DURATION SINCE FIRST TUBERCULOSIS SYMPTOMS"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-08-24 15:37:24"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="02f96492-704e-40e1-abf7-84b188d60bc1" />
     <concept_name  concept_name_id="161279"  concept_id="166048"  name="TRANSFER IN/EARLIER ART TREATMENT RECEIVED"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-08-24 15:38:39"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="afd3e770-9170-4280-9fbf-703716dc7203" />
     <concept_name  concept_name_id="161281"  concept_id="166050"  name="INTERNAL REFERRAL/LINKAGE"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-08-24 15:49:29"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="0c6fa18c-5125-419d-ad96-1f09d88788d6" />
+    <concept_name  concept_name_id="161280"  concept_id="166049"  name="LYMP NODES ENLARGED SITE"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-08-24 15:40:34"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="53421e66-624f-4ca7-8b8f-5313e3d063e0"/>
 
     <concept_name  concept_id="114362"  name="Paralysis"  locale="en"  creator="1"  date_created="2007-10-18 04:28:24"  concept_name_id="14952"  voided="0"  voided_by="1" uuid="14952BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1" changed_by="1"/>
     <concept_name  concept_id="126395"  name="Skin Nodule"  locale="en"  creator="1"  date_created="2007-10-18 04:28:24"  concept_name_id="26433"  voided="0"  voided_by="1" uuid="26433BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1" changed_by="1"/>
@@ -2473,6 +2476,7 @@
     <concept_name  concept_id="165204"  name="Hypertension, stage 3"  locale="en"  creator="1"  date_created="2018-12-04 07:42:50"  concept_name_id="142021"  voided="0"  voided_by="1"   void_reason=""  uuid="142021BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="0" changed_by="1"/>
     <concept_name  concept_id="165205"  name="Hypertension, stage 4"  locale="en"  creator="1"  date_created="2018-12-04 07:44:49"  concept_name_id="142022"  voided="0"  voided_by="1"   void_reason=""  uuid="142022BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="0" changed_by="1"/>
     <concept_name  concept_id="165205"  name="Severe hypertension"  locale="en"  creator="1"  date_created="2018-12-04 07:44:49"  concept_name_id="142023"  voided="0"  voided_by="1" uuid="142023BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1" changed_by="1"/>
+
 
 
     <!--KP-->
@@ -5267,6 +5271,11 @@
     <concept_answer  concept_answer_id="7366354"  concept_id="166050"  answer_concept="159937" creator="1"  date_created="2020-08-24 15:49:29"  sort_weight="4"  uuid="3cfd0152-d001-490c-a98f-848c60d835ac"/>
     <concept_answer  concept_answer_id="7366355"  concept_id="166050"  answer_concept="165048" creator="1"  date_created="2020-08-24 15:49:29"  sort_weight="2"  uuid="1a264026-f926-4b50-8910-99226c7eca30"/>
     <concept_answer  concept_answer_id="7366356"  concept_id="166050"  answer_concept="90012" creator="1"  date_created="2020-08-24 15:49:29"  sort_weight="5"  uuid="d3767c92-c815-4bb4-82f7-c4c0951b4afc"/>
+    <concept_answer  concept_answer_id="7366347"  concept_id="166049"  answer_concept="506" creator="1"  date_created="2020-08-24 15:40:34"  sort_weight="3"  uuid="3b9ac004-5a92-4e39-9bd5-7037672b2e9f"/>
+    <concept_answer  concept_answer_id="7366348"  concept_id="166049"  answer_concept="505" creator="1"  date_created="2020-08-24 15:40:34"  sort_weight="2"  uuid="5e98e46a-c17a-49e8-8a5a-73d34114f891"/>
+    <concept_answer  concept_answer_id="7366349"  concept_id="166049"  answer_concept="5112" creator="1"  date_created="2020-08-24 15:40:34"  sort_weight="1"  uuid="7e156fc8-dedb-4afe-a87f-945aa211c619"/>
+    <concept_answer  concept_answer_id="7366350"  concept_id="166049"  answer_concept="643" creator="1"  date_created="2020-08-24 15:40:34"  sort_weight="5"  uuid="98f991cf-33a0-4f35-8eb3-ef9be1298a13"/>
+    <concept_answer  concept_answer_id="7366351"  concept_id="166049"  answer_concept="504" creator="1"  date_created="2020-08-24 15:40:34"  sort_weight="4"  uuid="d70d54a2-6a47-4513-b66c-c73ae1c6dc2d"/>
 
 
 
