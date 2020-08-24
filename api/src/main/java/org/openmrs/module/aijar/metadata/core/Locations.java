@@ -276,7 +276,7 @@ public class Locations {
 
 		@Override
 		public String description() {
-			return "This is a location that caters all clients served in the community ";
+			return "This is a location that caters for  all clients served in the community ";
 		}
 
 		@Override
