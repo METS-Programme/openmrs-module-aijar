@@ -267,4 +267,37 @@ public class Locations {
 
 	};
 
+	public static LocationDescriptor Community = new LocationDescriptor(){
+
+		@Override
+		public String uuid() {
+			return "841cb8d9-b662-41ad-9e7f-d476caac48aa";
+		}
+
+		@Override
+		public String description() {
+			return "This is a location that caters for  all clients served in the community ";
+		}
+
+		@Override
+		public String name() {
+			return "Community";
+		}
+
+		@Override
+		public LocationDescriptor parent() {
+			return PARENT;
+		}
+
+		@Override
+		public List<LocationTagDescriptor> tags() {
+
+			return Arrays.asList(
+					LocationTags.VISIT_LOCATION
+			);
+
+		}
+
+	};
+
 }
