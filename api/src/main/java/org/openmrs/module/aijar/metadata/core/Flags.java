@@ -721,7 +721,7 @@ public class Flags {
                     " FROM (SELECT person_id, MAX(obs_datetime) as dt FROM obs b\n" +
                     "        WHERE b.concept_id = 856 AND b.voided = 0 group by person_id) latest_vl\n" +
                     "      INNER JOIN (SELECT c.person_id as patient_id, obs_datetime, value_numeric\n" +
-                    "                  FROM obs c WHERE c.concept_id = 856 AND c.voided = 0 AND c.value_numeric > 1) non_suppressed\n" +
+                    "                  FROM obs c WHERE c.concept_id = 856 AND c.voided = 0 AND c.value_numeric > 1000) non_suppressed\n" +
                     "      ON (latest_vl.person_id = non_suppressed.patient_id and latest_vl.dt = non_suppressed.obs_datetime)\n" +
                     "      INNER JOIN person pe ON pe.person_id = non_suppressed.patient_id WHERE pe.dead=FALSE\n" +
                     "      AND non_suppressed.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 90306 AND oo.voided = FALSE)";
