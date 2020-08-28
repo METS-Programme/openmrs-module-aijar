@@ -10,11 +10,10 @@ jq('#checkbox-autogenerate-identifier').click(function () {
 
 /* Remove the ability to edit the different patient identifiers by removing the link  */
 jq(document).ready(function () {
-    // remove the span with link to add a patient identifier with the em before containing the identifier name, and the
-    // break for spacing after the span
-    jq("div.identifiers > span.add-id").next("br").remove();
-    jq("div.identifiers > span.add-id").prev("em").remove();
-    jq("div.identifiers > span.add-id").remove();
+    // Remove identifiers without data
+    jq("div.identifiers br").remove(); // remove all breaks
+    jq("div.identifiers div:contains('Add')").remove(); // remove all identifiers without values
+    jq("div.identifiers div").addClass("pr-2");
     // remove the link to enable editing of the patient identifier
     jq(".editPatientIdentifier").each(function () {
         jq(this).attr('href', '').css({'cursor': 'pointer', 'pointer-events': 'none'}); // remove the href attribute so
