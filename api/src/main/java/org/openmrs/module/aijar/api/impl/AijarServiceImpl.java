@@ -450,13 +450,19 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
     public List<Encounter> getTransferHistory(Patient patient) {
 
         EncounterService encounterService = Context.getEncounterService();
+        Collection<EncounterType> encounterTypes = new ArrayList<>();
+        List<Encounter> encounters = new ArrayList<>();
 
-        Collection<EncounterType> encounterTypes = encounterService.findEncounterTypes(TRANSFER_IN.name());
-        encounterTypes.addAll(encounterService.findEncounterTypes(TRANSFER_OUT.name()));
+        encounterTypes.add(encounterService.getEncounterTypeByUuid(TRANSFER_IN.uuid()));
+        encounterTypes.add(encounterService.getEncounterTypeByUuid(TRANSFER_OUT.uuid()));
 
         EncounterSearchCriteria encounterSearchCriteria = new EncounterSearchCriteriaBuilder().setPatient(patient).setIncludeVoided(false).setEncounterTypes(encounterTypes).createEncounterSearchCriteria();
 
-        List<Encounter> encounters = encounterService.getEncounters(encounterSearchCriteria);
+
+
+        if (!encounterSearchCriteria.getEncounterTypes().isEmpty()) {
+            encounters = encounterService.getEncounters(encounterSearchCriteria);
+        }
 
         return encounters;
 	}
