@@ -451,18 +451,13 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 
         EncounterService encounterService = Context.getEncounterService();
         Collection<EncounterType> encounterTypes = new ArrayList<>();
-        List<Encounter> encounters = new ArrayList<>();
 
         encounterTypes.add(encounterService.getEncounterTypeByUuid(TRANSFER_IN.uuid()));
         encounterTypes.add(encounterService.getEncounterTypeByUuid(TRANSFER_OUT.uuid()));
 
         EncounterSearchCriteria encounterSearchCriteria = new EncounterSearchCriteriaBuilder().setPatient(patient).setIncludeVoided(false).setEncounterTypes(encounterTypes).createEncounterSearchCriteria();
 
-
-
-        if (!encounterSearchCriteria.getEncounterTypes().isEmpty()) {
-            encounters = encounterService.getEncounters(encounterSearchCriteria);
-        }
+		List<Encounter> encounters = encounterService.getEncounters(encounterSearchCriteria);
 
         return encounters;
 	}
