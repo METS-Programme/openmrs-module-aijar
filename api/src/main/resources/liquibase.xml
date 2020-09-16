@@ -423,6 +423,13 @@ VALUES
 			UPDATE concept_numeric SET allow_decimal = 1 WHERE concept_id = 851
 		</sql>
 	</changeSet>
+	<changeSet id="ugandaemr-081509-1604" author="ssmusoke">
+		<comment>Delete all existing notification alerts</comment>
+		<sql>
+			DELETE FROM notification_alert_recipient;
+			DELETE FROM notification_alert;
+		</sql>
+	</changeSet>
 </databaseChangeLog>
 
 
