@@ -145,6 +145,10 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             dataImporter.importData("metadata/Role_Privilege.xml");
             log.info("UgandaEMR Privileges Imported");
 
+            log.info("Start import of UgandaEMR Visits");
+            dataImporter.importData("metadata/VisitTypes.xml");
+            log.info("UgandaEMR Visits Imported");
+
 
 
             // install commonly used metadata

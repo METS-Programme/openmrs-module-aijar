@@ -10,11 +10,10 @@ jq('#checkbox-autogenerate-identifier').click(function () {
 
 /* Remove the ability to edit the different patient identifiers by removing the link  */
 jq(document).ready(function () {
-    // remove the span with link to add a patient identifier with the em before containing the identifier name, and the
-    // break for spacing after the span
-    jq("div.identifiers > span.add-id").next("br").remove();
-    jq("div.identifiers > span.add-id").prev("em").remove();
-    jq("div.identifiers > span.add-id").remove();
+    // Remove identifiers without data
+    jq("div.identifiers br").remove(); // remove all breaks
+    jq("div.identifiers div:contains('Add')").remove(); // remove all identifiers without values
+    jq("div.identifiers div").addClass("pr-2");
     // remove the link to enable editing of the patient identifier
     jq(".editPatientIdentifier").each(function () {
         jq(this).attr('href', '').css({'cursor': 'pointer', 'pointer-events': 'none'}); // remove the href attribute so
@@ -110,10 +109,12 @@ function dateValidator(prime, factor, alternative_factor, message_to_throw, alte
     if (getValue(factor + '.value') === '' && getValue(prime + '.value') !== '' && factorRequired === true) {
         getField(factor + '.error').html("Can Not Be Null").show;
         evaluationResult = false;
+        jq().toastmessage('showErrorToast', "Date Can Not Be Null ");
     }
     else if (getValue(factor + '.value') === '' && getValue(alternative_factor + '.value') === '' && getValue(prime + '.value') !== '' && factorRequired == false) {
         getField(alternative_factor + '.error').html("Can Not Be Null").show();
         evaluationResult = false;
+        jq().toastmessage('showErrorToast', "Date Can Not Be Null ");
     }
 
     if (getValue(factor + '.value') === '' && getValue(alternative_factor + '.value') !== "" && factorRequired === false) {
@@ -129,36 +130,42 @@ function dateValidator(prime, factor, alternative_factor, message_to_throw, alte
                 if (getValue(prime + '.value') > getValue(factor + '.value')) {
                     getField(prime + '.error').html(message_to_throw).show();
                     evaluationResult = false;
+                    jq().toastmessage('showErrorToast', message_to_throw);
                 }
                 break;
             case "less_than":
                 if (getValue(prime + '.value') < getValue(factor + '.value')) {
                     getField(prime + '.error').html(message_to_throw).show();
                     evaluationResult = false;
+                    jq().toastmessage('showErrorToast', message_to_throw);
                 }
                 break;
             case "equal_to":
                 if (!(getValue(prime + '.value') === getValue(factor + '.value'))) {
                     getField(prime + '.error').html(message_to_throw).show();
                     evaluationResult = false;
+                    jq().toastmessage('showErrorToast', message_to_throw);
                 }
                 break;
             case "greater_or_equal":
                 if (getValue(prime + '.value') >= getValue(factor + '.value')) {
                     getField(prime + '.error').html(message_to_throw).show();
                     evaluationResult = false;
+                    jq().toastmessage('showErrorToast', message_to_throw);
                 }
                 break;
             case "less_or_equal":
                 if (getValue(prime + '.value') <= getValue(factor + '.value')) {
                     getField(prime + '.error').html(message_to_throw).show();
                     evaluationResult = false;
+                    jq().toastmessage('showErrorToast', message_to_throw);
                 }
                 break;
             case "not_equal":
                 if (getValue(prime + '.value') !== getValue(factor + '.value')) {
                     getField(prime + '.error').html(message_to_throw).show();
                     evaluationResult = false;
+                    jq().toastmessage('showErrorToast', message_to_throw);
                 }
                 break;
         }
@@ -189,6 +196,7 @@ function validateRequiredField(prime, factor, message_to_throw, input_type) {
             getField(prime + '.error').html(message_to_throw).show;
             jq('#' + prime).find("span").removeAttr("style");
             evaluationResult = false;
+            jq().toastmessage('showErrorToast', message_to_throw);
         }
     }
     else if (input_type === "hidden") {
@@ -197,6 +205,7 @@ function validateRequiredField(prime, factor, message_to_throw, input_type) {
             getField(prime + '.error').html(message_to_throw).show;
             jq('#' + prime).find("span").removeAttr("style");
             evaluationResult = false;
+            jq().toastmessage('showErrorToast', message_to_throw);
         }
     }
     else if (input_type === "check_box") {
@@ -205,6 +214,7 @@ function validateRequiredField(prime, factor, message_to_throw, input_type) {
             getField(prime + '.error').html(message_to_throw).show;
             jq('#' + prime).find("span").removeAttr("style");
             evaluationResult = false;
+            jq().toastmessage('showErrorToast', message_to_throw);
         }
     }
     else if (input_type === "text") {
@@ -213,6 +223,7 @@ function validateRequiredField(prime, factor, message_to_throw, input_type) {
             getField(prime + '.error').html(message_to_throw).show;
             jq('#' + prime).find("span").removeAttr("style");
             evaluationResult = false;
+            jq().toastmessage('showErrorToast', message_to_throw);
         }
     }
     return evaluationResult;

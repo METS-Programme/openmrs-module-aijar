@@ -9,10 +9,7 @@
  */
 package org.openmrs.module.aijar.web.controller;
 
-import org.apache.commons.lang3.LocaleUtils;
-import org.openmrs.Location;
-import org.openmrs.api.APIException;
-import org.openmrs.api.AdministrationService;
+import org.openmrs.Provider;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.aijar.AijarConstants;
 import org.openmrs.module.webservices.rest.SimpleObject;
@@ -20,23 +17,16 @@ import org.openmrs.module.webservices.rest.web.ConversionUtil;
 import org.openmrs.module.webservices.rest.web.RestConstants;
 import org.openmrs.module.webservices.rest.web.api.RestService;
 import org.openmrs.module.webservices.rest.web.representation.CustomRepresentation;
-import org.openmrs.module.webservices.rest.web.representation.Representation;
 import org.openmrs.module.webservices.rest.web.v1_0.controller.BaseRestController;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import static org.openmrs.module.aijar.AijarConstants.GP_DHIS2;
 import static org.openmrs.module.aijar.AijarConstants.GP_HEALTH_CENTER_NAME;
@@ -52,6 +42,8 @@ import static org.openmrs.module.aijar.AijarConstants.GP_HEALTH_CENTER_NAME;
 public class UgandaEMRSessionController extends BaseRestController {
 	
 	public static final String USER_CUSTOM_REP = "(uuid,display,username,systemId,person:(uuid,names:(display,givenName,middleName,familyName,familyName2)),roles:(uuid,name,privileges:(uuid,name)))";
+
+	public static final String PROVIDER_CUSTOM_REP = "(uuid)";
 	
 	@Autowired
 	RestService restService;
@@ -76,6 +68,12 @@ public class UgandaEMRSessionController extends BaseRestController {
 			session.add("user", ConversionUtil.convertToRepresentation(Context.getAuthenticatedUser(),
 			    new CustomRepresentation(USER_CUSTOM_REP)));
 			session.add("locale", Context.getLocale());
+
+			Collection<Provider> providerCollection = Context.getProviderService().getProvidersByPerson(Context.getAuthenticatedUser().getPerson());
+			if (providerCollection != null && !providerCollection.isEmpty()) {
+				session.add("provider", ConversionUtil.convertToRepresentation(providerCollection.iterator().next(),
+						new CustomRepresentation(PROVIDER_CUSTOM_REP)));
+			}
 		}
 		return session;
 	}

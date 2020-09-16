@@ -26,6 +26,12 @@
 		<developer>
 			<name>Stephen S. Musoke</name>
 		</developer>
+		<developer>
+			<name>Solomon Ssevume</name>
+		</developer>
+		<developer>
+			<name>Dderick Baluku</name>
+		</developer>
 	</developers>
 
 	<organization>
@@ -67,7 +73,7 @@
 		<databaseBackupVersion>1.3.0</databaseBackupVersion>
 		<dataEntryStatisticsVersion>1.7.0</dataEntryStatisticsVersion>
 		<dataexchangeVersion>1.3.3</dataexchangeVersion>
-		<dataintegrityVersion>4.4.1</dataintegrityVersion>
+		<dataintegrityVersion>4.4.3</dataintegrityVersion>
 		<emrapiVersion>1.29.0</emrapiVersion>
 		<eventVersion>2.7.0</eventVersion>
 		<fhirVersion>1.20.0</fhirVersion>
