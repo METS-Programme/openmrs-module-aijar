@@ -765,6 +765,9 @@
     <concept  concept_id="165873"  retired="0" datatype_id="3"  class_id="5"  is_set="0"  creator="1"  date_created="2020-06-23 15:09:37"  version="1.0.0"  changed_by="1"  date_changed="2020-06-23 15:09:37" uuid="6965a8c4-7be5-47ee-a872-e158bd9545b1"/>
     <concept  concept_id="165872"  retired="0" datatype_id="8"  class_id="5"  is_set="0"  creator="1"  date_created="2020-06-23 14:57:56"  version="1.0.0"  changed_by="1"  date_changed="2020-06-23 14:57:56" uuid="dfbf41ad-44de-48db-b653-54273789c0c6"/>
     <concept  concept_id="165871"  retired="0" datatype_id="10"  class_id="5"  is_set="0"  creator="1"  date_created="2020-06-23 14:33:12"  version="1.0.0"  changed_by="1"  date_changed="2020-06-23 14:33:12" uuid="b16f3f1d-aba3-4f8b-bf2d-116162c0b4fb"/>
+    <concept  concept_id="156080"  retired="0" datatype_id="4"  class_id="4"  is_set="0"  creator="1"  date_created="2010-04-23 20:10:26"  version="" uuid="156080AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+
+
 
     <!-- EMTCT Module Concept List -->
     <concept  concept_id="160446"  retired="false"  datatype_id="4"  class_id="11"  is_set="false"  creator="1"  date_created="2012-06-07 17:32:55"  version="1.0"  changed_by="1" uuid="160446AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
@@ -3194,7 +3197,9 @@
     <concept_name concept_name_id="141255" concept_id="164957" name="X-RAY EXAM DATE" locale="en" locale_preferred="false" creator="1" date_created="2017-06-02 07:36:01.0" voided="false" uuid="60ed037d-2f30-49c4-a5fd-d43ba0b122f1"/>
     <concept_name concept_name_id="141258" concept_id="164960" name="2RHZE/10RH" locale="en" locale_preferred="true" creator="1" date_created="2017-06-19 06:01:17.0" concept_name_type="FULLY_SPECIFIED" voided="false" uuid="7d95496d-39b9-418a-80a6-65b259d1f799"/>
     <concept_name concept_name_id="141259" concept_id="164961" name="2RHZE/4RH" locale="en" locale_preferred="true" creator="1" date_created="2017-06-19 06:02:20.0" concept_name_type="FULLY_SPECIFIED" voided="false" uuid="45d8790a-4d9d-46a5-a8b6-40f4b13fee04"/>
-    <concept_name  concept_name_id="160226"  concept_id="165178"  name="Presumptive TB Case Refereed for TB Services"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-07-08 15:51:26"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="076983a2-5ac0-43a7-a313-301fb565afe0"/>
+    <concept_name concept_name_id="160226"  concept_id="165178"  name="Presumptive TB Case Refereed for TB Services"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-07-08 15:51:26"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="076983a2-5ac0-43a7-a313-301fb565afe0"/>
+    <concept_name concept_name_id="102308" concept_id="156080"  name="drug resistant tuberculosis"  locale="en"  creator="1"  date_created="2010-04-23 20:11:27"  voided="0"  voided_by="1"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1" changed_by="1" uuid="102308BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
+
 
     <!--MCH-->
     <concept_name  concept_id="159616"  name="Duration of labor"  locale="en"  creator="1"  date_created="2010-10-29 19:11:29"  concept_name_id="106971"  voided="0"  voided_by="1" uuid="106971BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1"/>
