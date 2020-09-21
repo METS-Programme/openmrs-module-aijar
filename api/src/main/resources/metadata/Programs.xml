@@ -3,12 +3,20 @@
     <!--Program workflow-->
     <!--TB Program-->
     <program_workflow  program_workflow_id="1"  program_id="2"  concept_id="159792"  creator="1"  date_created="2020-07-29 20:04:43"  retired="0"  changed_by="1"  date_changed="2020-07-29 20:06:21"  uuid="b70f609e-c3e8-4e4f-bd9e-97df5e95796a"/>
+    <program_workflow  program_workflow_id="2"  program_id="2"  concept_id="166053"  creator="1"  date_created="2020-09-18 15:44:42"  retired="0"  changed_by="1"  date_changed="2020-09-18 16:09:17"  uuid="d6e3ed60-ffc7-4108-ab07-706d7b542d99"/>
+
+
 
     <!--Program Workflow State-->
     <!--TB Treatment Phase -->
     <program_workflow_state  program_workflow_state_id="1"  program_workflow_id="1"  concept_id="159795"  initial="1"  terminal="0"  creator="1"  date_created="2020-07-29 20:06:21"  retired="0"  uuid="0e2ff228-8dab-491d-9457-aaa47764ef8a"/>
     <program_workflow_state  program_workflow_state_id="2"  program_workflow_id="1"  concept_id="159794"  initial="1"  terminal="0"  creator="1"  date_created="2020-07-29 20:06:21"  retired="0"  uuid="2fafcc3a-b5e2-4fb2-b534-d9b5f3e91b26"/>
     <program_workflow_state  program_workflow_state_id="3"  program_workflow_id="1"  concept_id="159793"  initial="1"  terminal="0"  creator="1"  date_created="2020-07-29 21:17:16"  retired="0"  uuid="031d22b8-4fde-45ba-9e0a-6b87337b29f3"/>
+
+    <!--TB Infection Type/Level -->
+    <program_workflow_state  program_workflow_state_id="4"  program_workflow_id="2"  concept_id="166052"  initial="1"  terminal="0"  creator="1"  date_created="2020-09-18 15:47:17"  retired="0" uuid="dc3fbc52-15a9-444c-99d1-65f01f9199dd"/>
+    <program_workflow_state  program_workflow_state_id="5"  program_workflow_id="2"  concept_id="156080"  initial="1"  terminal="0"  creator="1"  date_created="2020-09-18 15:47:17"  retired="0" uuid="673966b1-e181-4b46-a526-f7ac6954c59b"/>
+
 
 
     <!--Program Attributes-->
