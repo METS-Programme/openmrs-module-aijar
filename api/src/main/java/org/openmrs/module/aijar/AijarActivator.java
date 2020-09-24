@@ -183,6 +183,11 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 
             // generate OpenMRS ID for patients without the identifier
             generateOpenMRSIdentifierForPatientsWithout();
+
+            //update concept name for concept id  163017 to ABC-3TC-LPV/r as fully specified
+            administrationService.executeSQL("UPDATE concept_name SET concept_name_type = 'FULLY_SPECIFIED',locale_preferred = 1 WHERE concept_name_id = 134334 and concept_id=163017", false);
+            administrationService.executeSQL("UPDATE concept_name SET locale_preferred = 0,concept_name_type = null WHERE concept_name_id = 134333 and concept_id=163017", false);
+
             log.info("aijar Module started");
 
         } catch (Exception e) {
@@ -407,7 +412,6 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
         List<Initializer> l = new ArrayList<Initializer>();
         l.add(new AppConfigurationInitializer());
         l.add(new HtmlFormsInitializer(AijarConstants.MODULE_ID));
-        l.add(new AlertConfigurationInitializer());
         return l;
     }
 }

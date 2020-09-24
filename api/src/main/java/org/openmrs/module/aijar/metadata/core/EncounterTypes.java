@@ -87,6 +87,39 @@ public class EncounterTypes {
     };
 
 
+    public static EncounterTypeDescriptor DR_TB_SUMMARY_ENCOUNTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "DR TB Summary (Enrollment)";
+        }
+
+        @Override
+        public String description() {
+            return "An encounter for the initial visit to the Drug Resistance TB Program";
+        }
+
+        public String uuid() {
+            return "0271ee3d-f274-49d1-b376-c842f075413f";
+        }
+    };
+
+    public static EncounterTypeDescriptor DR_TB_FOLLOWUP_ENCOUNTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "DR TB Encounter (Followup)";
+        }
+
+        @Override
+        public String description() {
+            return "An encounter for a return visit to the Drug Resistance TB Program";
+        }
+
+        public String uuid() {
+            return "41f8609d-e13b-4dff-8379-47ac5876512e";
+        }
+    };
+
+
     public static EncounterTypeDescriptor VIRAL_LOAD_NON_SUPPRESSED  = new EncounterTypeDescriptor() {
         @Override
         public String name() {
