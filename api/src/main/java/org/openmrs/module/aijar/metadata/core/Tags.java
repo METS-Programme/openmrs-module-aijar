@@ -11,7 +11,7 @@ public class Tags {
     public static TagDescriptor PATIENT_STATUS = new TagDescriptor() {
         @Override
         public List<String> roles() {
-            List<String> rolesList = Arrays.asList("System Developer"); // Roles use the name as the primary key
+            List<String> rolesList = Arrays.asList("System Developer","Data Clerk","HIV Clinic","Organizational: Clinician","HIV Data Management","TB Clinic","MCH Clinic"); // Roles use the name as the primary key
             return rolesList;
         }
 
