@@ -177,6 +177,38 @@
                 },
                 {
                   "type": "personAttribute",
+                  "label": "Telephone Number 2",
+                  "formFieldName": "phoneNumber2",
+                  "uuid": "8c44d411-285f-46c6-9f17-c2f919823b34",
+                  "widget": {
+                    "providerName": "uicommons",
+                    "fragmentId": "field/text",
+                    "config": {
+                      "regex": "^[0-9]{10}$|^$"
+                    }
+                  },
+                  "cssClasses": [
+                    "number", "regex"
+                  ]
+                },
+                {
+                  "type": "personAttribute",
+                  "label": "Telephone Number 3",
+                  "formFieldName": "phoneNumber3",
+                  "uuid": "a00eda65-2f66-4fda-a683-c1787eb626a9",
+                  "widget": {
+                    "providerName": "uicommons",
+                    "fragmentId": "field/text",
+                    "config": {
+                      "regex": "^[0-9]{10}$|^$"
+                    }
+                  },
+                  "cssClasses": [
+                    "number", "regex"
+                  ]
+                },
+                {
+                  "type": "personAttribute",
                   "label": "aijar.registrationapp.father.question",
                   "formFieldName": "father",
                   "uuid": "63535ca9-bb53-4a46-a14b-831788c25c10",
