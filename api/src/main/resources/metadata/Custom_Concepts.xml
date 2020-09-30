@@ -1065,6 +1065,16 @@
     <concept  concept_id="166119"  retired="0" datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2020-09-22 13:29:44"  version="1.0"  changed_by="1"  date_changed="2020-09-22 13:29:44" uuid="aa7135e4-92f6-453e-bfea-923e08ec7052"/>
     <concept  concept_id="164369"  retired="0" datatype_id="4"  class_id="11" is_set="0"  creator="1"  date_created="2017-01-16 19:16:13" version=""   changed_by="1"   date_changed="2017-01-16 19:16:20"   uuid="164369AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
 
+    <concept  concept_id="166140"  retired="0"  datatype_id="1"  class_id="5"  is_set="0"  creator="1"  date_created="2020-09-28 11:56:26"  version="1.0"  changed_by="1"  date_changed="2020-09-28 12:22:41" uuid="c79a1434-2ef5-4353-a746-298c12940afb"/>
+    <concept  concept_id="166141"  retired="0"  datatype_id="4"  class_id="1"  is_set="0"  creator="1"  date_created="2020-09-28 12:47:47"  version="1.0"  changed_by="1"  date_changed="2020-09-28 12:47:47" uuid="bd05891e-791a-43f3-ad0c-573f47f37088"/>
+    <concept  concept_id="166142"  retired="0"  datatype_id="3"  class_id="7"  is_set="0"  creator="1"  date_created="2020-09-30 11:02:12"  version="1.0"  changed_by="1"  date_changed="2020-09-30 11:02:12" uuid="03cb44ea-b7d0-41ef-9dbe-6bf48a92b2fa"/>
+    <concept  concept_id="166143"  retired="0"  datatype_id="3"  class_id="7"  is_set="0"  creator="1"  date_created="2020-09-30 11:02:57"  version="1.0"  changed_by="1"  date_changed="2020-09-30 11:02:57" uuid="0ddded6f-272f-499f-879a-4c9acfe3b252"/>
+    <concept  concept_id="166144"  retired="0"  datatype_id="3"  class_id="7"  is_set="0"  creator="1"  date_created="2020-09-30 11:03:26"  version="1.0"  changed_by="1"  date_changed="2020-09-30 11:03:26" uuid="b082648f-3ec6-4d23-a263-e8b9603f237d"/>
+    <concept  concept_id="166145"  retired="0"  datatype_id="3"  class_id="7"  is_set="0"  creator="1"  date_created="2020-09-30 11:06:43"  version="1.0"  changed_by="1"  date_changed="2020-09-30 11:06:43" uuid="c2043e62-9bda-4ede-bc7a-3a9837f874ed"/>
+    <concept  concept_id="166146"  retired="0"  datatype_id="3"  class_id="7"  is_set="0"  creator="1"  date_created="2020-09-30 11:09:01"  version="1.0"  changed_by="1"  date_changed="2020-09-30 11:09:01" uuid="f1e3d265-3ef1-45de-9c51-faccb6128c8f"/>
+    <concept  concept_id="166147"  retired="0"  datatype_id="3"  class_id="11"  is_set="0"  creator="1"  date_created="2020-09-30 11:18:43"  version="1.0"  changed_by="1"  date_changed="2020-09-30 11:18:43" uuid="07a9ce66-3827-48e5-a3f1-c0bfc42c6176"/>
+    <concept  concept_id="166148"  retired="0"  datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2020-09-30 15:07:05"  version="1.0"  changed_by="1"  date_changed="2020-09-30 15:07:05" uuid="71aae99f-5e5e-4e8b-be9c-e811ffbd7f8d"/>
+    <concept  concept_id="166149"  retired="0"  datatype_id="4"  class_id="10"  is_set="1"  creator="1"  date_created="2020-09-30 15:14:29"  version="1.0"  changed_by="1"  date_changed="2020-09-30 15:14:29" uuid="74074ffb-89d1-4af1-8910-5e18551acc78"/>
 
 
     <!-- EMTCT Module Concept List -->
@@ -2070,13 +2080,21 @@
 
     <!--TB-->
     <concept_description  concept_description_id="18511"  concept_id="165844"  description="All test done at Tb baseline examination"  locale="en"  creator="1"  date_created="2020-06-16 10:36:40" uuid="4d3269ca-0b02-44ff-8c1f-c87bafe8b23b"/>
-
     <concept_description  concept_description_id="18512"  concept_id="165884"  description="3HP is a combination of Isoniazid(INH) and Rifapentine(RPT) used to prevent Latent TB for 12 weeks in individuals >2 yrs as an alternative to INH only or 3RH(Rifampicin and Isoniazid)"  locale="en"  creator="1"  date_created="2020-07-23 16:09:59"  uuid="724d7c3d-35e2-431e-a111-d3ba8d4db074"/>
     <concept_description  concept_description_id="18513"  concept_id="165885"  description="3HP Dosage (number of pills dispensed)"  locale="en"  creator="1"  date_created="2020-07-23 16:23:28"  uuid="b68ff241-ce71-4eaa-8fba-842afd8f2e0c"/>
     <concept_description  concept_description_id="18515"  concept_id="165880"  description="Pyridoxine Dosage"  locale="en"  creator="1"  date_created="2020-07-24 09:57:09"  uuid="927b297d-ee36-47e3-b011-ae3336627412"/>
     <concept_description  concept_description_id="18516"  concept_id="165881"  description="Date initiated on dapson"  locale="en"  creator="1"  date_created="2020-07-24 11:38:07"  uuid="e3047429-3b69-47c3-bbc2-95f64d485f3a"/>
     <concept_description  concept_description_id="18517"  concept_id="165882"  description="TB Contact"  locale="en"  creator="1"  date_created="2020-07-24 14:55:21"  uuid="1d7400e2-40cc-462b-9427-767518293b6a"/>
     <concept_description  concept_description_id="18518"  concept_id="165883"  description="Person working in the mining sector"  locale="en"  creator="1"  date_created="2020-07-24 15:00:57"  uuid="818ee999-41b0-4aff-9302-20f3a732064e"/>
+    <concept_description  concept_description_id="18519"  concept_id="166142"  description="Next of kin district"  locale="en"  creator="1"  date_created="2020-09-30 11:02:12"    uuid="46a378e7-e749-4362-83e5-e2e91bf149b7"/>
+    <concept_description  concept_description_id="18520"  concept_id="166143"  description="Next of kin sub county"  locale="en"  creator="1"  date_created="2020-09-30 11:02:57"    uuid="77222005-4bd7-40e6-9ffb-8adfe3fb0881"/>
+    <concept_description  concept_description_id="18521"  concept_id="166144"  description="Next of kin sub county"  locale="en"  creator="1"  date_created="2020-09-30 11:03:26"    uuid="02ca743d-d655-4a37-a570-2567cde20bdc"/>
+    <concept_description  concept_description_id="18522"  concept_id="166145"  description="Phone number of patient`s Treatment supporter"  locale="en"  creator="1"  date_created="2020-09-30 11:06:43"    uuid="83a6bcab-9724-4d6a-b913-a1a1e5bdc075"/>
+    <concept_description  concept_description_id="18523"  concept_id="166146"  description="Parish of patient`s treatment supporter"  locale="en"  creator="1"  date_created="2020-09-30 11:09:01"    uuid="3c074f90-706a-4846-b593-359a286d7ac3"/>
+    <concept_description  concept_description_id="18524"  concept_id="166147"  description="Name of TB patient who is living in the same household or in frequent contact with a source case"  locale="en"  creator="1"  date_created="2020-09-30 11:18:43"    uuid="fc8b1f6b-9024-4466-8299-0eb94ebb3aae"/>
+    <concept_description  concept_description_id="18525"  concept_id="166148"  description="Medical diagnosis other than tuberculosis"  locale="en"  creator="1"  date_created="2020-09-30 15:07:05"    uuid="a06f1d9e-fadc-43d0-8483-7c6f8f12b524"/>
+
+
 
     <!--CONCEPT NAME-->
     <!--ART-->
@@ -5091,6 +5109,17 @@
     <concept_name  concept_name_id="161046"  concept_id="165827"  name="Family Member"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-06-15 11:24:30"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="11d33295-769f-4fd4-aed6-1d6b28f586ee"/>
     <concept_name  concept_name_id="161045"  concept_id="165826"  name="Unit TB No"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-06-15 11:17:20"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="36071816-6e06-4cdd-a8d2-9464c69d07f0"/>
 
+    <concept_name  concept_name_id="161475"  concept_id="166140"  name="Total doses for DR-TB drugs missed"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-09-28 11:56:26"  concept_name_type="FULLY_SPECIFIED"  voided="0"   uuid="ae0ffb70-f943-4dec-bbf3-e3dc92173d9d""/>
+    <concept_name  concept_name_id="161476"  concept_id="166141"  name="SL LPA"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-09-28 12:47:47"  concept_name_type="FULLY_SPECIFIED"  voided="0"   uuid="7ec547e4-ee9f-4717-9762-0ff2038f79d9""/>
+    <concept_name  concept_name_id="161477"  concept_id="166142"  name="Next of kin district"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-09-30 11:02:12"  concept_name_type="FULLY_SPECIFIED"  voided="0"   uuid="8ff834d9-e41e-40ab-ab48-1577c8e53bb3""/>
+    <concept_name  concept_name_id="161478"  concept_id="166143"  name="Next of kin sub county"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-09-30 11:02:57"  concept_name_type="FULLY_SPECIFIED"  voided="0"   uuid="2d4a705d-b914-4b79-bcd7-eda0074a0ff9""/>
+    <concept_name  concept_name_id="161479"  concept_id="166144"  name="Next of kin parish"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-09-30 11:03:26"  concept_name_type="FULLY_SPECIFIED"  voided="0"   uuid="200c7719-78cc-4aa7-995b-60a254055894""/>
+    <concept_name  concept_name_id="161480"  concept_id="166145"  name="Treatment supporter phone number"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-09-30 11:06:43"  concept_name_type="FULLY_SPECIFIED"  voided="0"   uuid="328f154d-99fd-4f0e-a085-72a9c1f3ceb4""/>
+    <concept_name  concept_name_id="161481"  concept_id="166146"  name="Treatment supporter parish"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-09-30 11:09:01"  concept_name_type="FULLY_SPECIFIED"  voided="0"   uuid="55ad4b0a-2371-4f56-b044-96137ef2554c""/>
+    <concept_name  concept_name_id="161482"  concept_id="166147"  name="TB contact name"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-09-30 11:18:43"  concept_name_type="FULLY_SPECIFIED"  voided="0"   uuid="b0ee6e3a-be90-4068-8d64-49a247ddbd62""/>
+    <concept_name  concept_name_id="161483"  concept_id="166148"  name="Diagnosis other than TB"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-09-30 15:07:05"  concept_name_type="FULLY_SPECIFIED"  voided="0"   uuid="bb630e09-a8f2-4b22-814e-61899225c0bf""/>
+    <concept_name  concept_name_id="161484"  concept_id="166149"  name="Diagnosis other than TB set"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-09-30 15:14:29"  concept_name_type="FULLY_SPECIFIED"  voided="0"   uuid="1d2c4f73-6b53-425a-80eb-7340faed0019""/>
+
 
     <!--LAB TEST -->
     <concept_name  concept_id="161476"  name="Syphilis serological panel"  locale="en"  creator="1"  date_created="2012-12-28 19:22:12"  concept_name_id="111043"  voided="0"  voided_by="1" uuid="111043BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1" changed_by="1"/>
@@ -6002,6 +6031,20 @@
     <concept_answer  concept_answer_id="7366257"  concept_id="165396"  answer_concept="90001" creator="1"  date_created="2020-06-23 14:29:31"  sort_weight="4"  uuid="04c4c0fa-2d1f-44ee-9490-3b7ea9f4eeea"/>
     <concept_answer  concept_answer_id="7366357"  concept_id="166053"  answer_concept="166052" creator="1"  date_created="2020-09-18 15:41:17"  sort_weight="1"  uuid="52b7f1da-2c53-43df-b2ac-1d368af5d2ca"/>
     <concept_answer  concept_answer_id="7366358"  concept_id="166053"  answer_concept="156080" creator="1"  date_created="2020-09-18 15:41:17"  sort_weight="2"  uuid="7a6894c0-27ae-47dc-b78d-ea521e8d9c52"/>
+    <concept_answer  concept_answer_id="7366424"  concept_id="166148"  answer_concept="6033" creator="1"  date_created="2020-09-30 15:07:05"  sort_weight="5"  uuid="970e7822-8f67-4e1f-89e8-11fd3194f464"/>
+    <concept_answer  concept_answer_id="7366425"  concept_id="166148"  answer_concept="119481" creator="1"  date_created="2020-09-30 15:07:05"  sort_weight="1"  uuid="71b4ce3d-d97a-49a7-8210-bb5fea28846a"/>
+    <concept_answer  concept_answer_id="7366426"  concept_id="166148"  answer_concept="134337" creator="1"  date_created="2020-09-30 15:07:05"  sort_weight="2"  uuid="c1d85337-3ddd-4953-a73d-9f948cc6478b"/>
+    <concept_answer  concept_answer_id="7366427"  concept_id="166148"  answer_concept="99095" creator="1"  date_created="2020-09-30 15:07:05"  sort_weight="4"  uuid="3e31c1ad-51cf-46b0-bd6c-c340ff55772d"/>
+    <concept_answer  concept_answer_id="7366428"  concept_id="166148"  answer_concept="165939" creator="1"  date_created="2020-09-30 15:07:05"  sort_weight="8"  uuid="b7cb596a-c3d5-4f9b-a927-46bb8dfe7113"/>
+    <concept_answer  concept_answer_id="7366429"  concept_id="166148"  answer_concept="68" creator="1"  date_created="2020-09-30 15:07:05"  sort_weight="3"  uuid="dec1e554-3264-4da2-8385-6482200500eb"/>
+    <concept_answer  concept_answer_id="7366430"  concept_id="166148"  answer_concept="165238" creator="1"  date_created="2020-09-30 15:07:05"  sort_weight="7"  uuid="9f228624-124a-4afe-b4f5-3a5f13b866a0"/>
+    <concept_answer  concept_answer_id="7366431"  concept_id="166148"  answer_concept="90001" creator="1"  date_created="2020-09-30 15:07:05"  sort_weight="9"  uuid="95700863-ae5a-4407-9d02-4619f7b3dfac"/>
+    <concept_answer  concept_answer_id="7366432"  concept_id="166148"  answer_concept="145131" creator="1"  date_created="2020-09-30 15:07:05"  sort_weight="6"  uuid="115a4fb9-2cb6-4d9a-bd35-da144d0178a5"/>
+    <concept_answer  concept_answer_id="7366433"  concept_id="159984"  answer_concept="90001" creator="1"  date_created="2020-09-30 15:23:59"  sort_weight="6416"  uuid="7accf317-a08b-43bd-8ac1-ac9fc5febe81"/>
+    <concept_answer  concept_answer_id="7366434"  concept_id="159956"  answer_concept="166121" creator="1"  date_created="2020-09-30 15:47:59"  sort_weight="3182"  uuid="beb86c7d-9c6c-41fb-89d1-eac7b291c79e"/>
+    <concept_answer  concept_answer_id="7366436"  concept_id="159956"  answer_concept="165649" creator="1"  date_created="2020-09-30 15:50:23"  sort_weight="3183"  uuid="2110f22e-5b63-4daa-94fd-b53bc4a9b477"/>
+
+
 
     <concept_answer  concept_answer_id="3138"  concept_id="160040"  answer_concept="42"  creator="1"  date_created="2011-01-17 21:06:31" sort_weight="3138" uuid="3138CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"/>
     <concept_answer  concept_answer_id="3003"  concept_id="159982"  answer_concept="664"  creator="1"  date_created="2010-12-16 14:26:55" sort_weight="3003" uuid="3003CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"/>
@@ -7175,6 +7218,10 @@
     <concept_set  concept_set_id="2914"  concept_id="78788"  concept_set="166122"  sort_weight="0"  creator="1"  date_created="2020-09-22 18:28:38"  uuid="087a9955-e49f-45be-93e3-f8ceab4b871c"/>
     <concept_set  concept_set_id="2913"  concept_id="166120"  concept_set="166121"  sort_weight="1"  creator="1"  date_created="2020-09-22 18:23:52"  uuid="c1d30a4a-f31d-4ce0-871f-9c3149afb9d3"/>
     <concept_set  concept_set_id="2912"  concept_id="165788"  concept_set="166121"  sort_weight="0"  creator="1"  date_created="2020-09-22 18:23:52"  uuid="649d265a-eb71-44c7-b018-88017d885cad"/>
+    <concept_set  concept_set_id="2922"  concept_id="159948"  concept_set="166149"  sort_weight="0"  creator="1"  date_created="2020-09-30 15:14:29"  uuid="1e6a2149-28b0-454f-afce-0c57c8f9af6d"/>
+    <concept_set  concept_set_id="2923"  concept_id="166148"  concept_set="166149"  sort_weight="1"  creator="1"  date_created="2020-09-30 15:14:29"  uuid="8c3432e3-ec82-4ab0-baa4-98644e447bbf"/>
+    <concept_set  concept_set_id="2924"  concept_id="99692"  concept_set="166149"  sort_weight="2"  creator="1"  date_created="2020-09-30 15:14:29"  uuid="990d757b-c33f-4cdb-906c-2af0464d8acf"/>
+
 
 
 
