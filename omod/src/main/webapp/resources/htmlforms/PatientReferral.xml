@@ -849,4 +849,5 @@
         <br/>
         <submit submitLabel="Save"/>
     </div>
+    <postSubmissionAction class="org.openmrs.module.aijar.htmlformentry.PatientReferralPostSubmissionAction"/>
 </htmlform>

@@ -14,19 +14,20 @@
 package org.openmrs.module.aijar.api;
 
 import org.openmrs.Encounter;
+import org.openmrs.Obs;
 import org.openmrs.Patient;
 import org.openmrs.Person;
-import org.openmrs.annotation.Authorized;
+import org.openmrs.Concept;
 import org.openmrs.api.APIException;
 import org.openmrs.api.OpenmrsService;
+import org.openmrs.module.htmlformentry.FormEntrySession;
 import org.openmrs.module.ugandaemr.PublicHoliday;
-import org.openmrs.util.OpenmrsConstants;
-import org.openmrs.util.PrivilegeConstants;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * This service exposes module's core functionality. It is a Spring managed bean which is configured in moduleApplicationContext.xml.
@@ -122,5 +123,40 @@ public interface AijarService extends OpenmrsService {
     public PublicHoliday savePublicHoliday(PublicHoliday publicHoliday);
 
     public PublicHoliday getPublicHolidaybyUuid(String  uuid);
+
+
+	/**
+	 * This method is used to create an HIV Summary encounter based on values from another encounter
+	 * @param formEntrySession the formEntrySession where
+	 * @return
+	 */
+	public Encounter createPatientHIVSummaryEncounterOnTransferIn(FormEntrySession formEntrySession);
+
+	/**
+	 * Checks id a patient has an HIV Summary page
+	 *
+	 * @param patient           the patient to be changed
+	 * @param encounterTypeUUID the uuid for the HIV encounter Type
+	 * @return boolean
+	 */
+	public boolean hasHIVSummaryPage(Patient patient, String encounterTypeUUID);
+
+	/**
+	 * Generates observation from an existing Observation
+	 * @param observations a list of observation to look into for a specific concept
+	 * @param lookUpConceptId the concept which will be used to lookup for an observation to be used to create another obs
+	 * @param conceptIDForNewObs the concept id which will be the concept for the new observation.
+	 * @param encounter the target encounter where the observation will be saved.
+	 * @return an observation with a encounter, value and a concept.
+	 */
+	public Obs generateObsFromObs(Set<Obs> observations, Integer lookUpConceptId, Integer conceptIDForNewObs, Encounter encounter);
+
+	/**
+	 * Helper Method to create Obs
+	 * @param concept   the concept
+	 * @param encounter the encounter where the obs will be created
+	 * @return a created obs
+	 */
+	public Obs createNewObs(Concept concept, Encounter encounter);
     
 }
