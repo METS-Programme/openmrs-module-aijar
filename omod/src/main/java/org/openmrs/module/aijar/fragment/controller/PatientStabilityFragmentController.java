@@ -38,10 +38,10 @@ public class PatientStabilityFragmentController {
         /**
          * Last Viral Load
          */
-        List<Obs> vlDateObsList = getObsListFromIdList("SELECT obs_id FROM obs where  obs.value_datetime BETWEEN '" + getDateBefore(encounterVisit.getStartDatetime(), 0, -1) + "' AND '" + encounterVisit.getStartDatetime() + "' AND obs.person_id='" + patient.getPatientId() + "' AND obs.concept_id = 163023 AND obs.voided = false  ORDER BY  obs.encounter_id DESC");
+        List<Obs> vlDateObsList = getObsListFromIdList("SELECT obs_id FROM obs where obs.person_id='" + patient.getPatientId() + "' AND obs.concept_id = 163023 AND obs.voided = false  ORDER BY  obs.encounter_id DESC LIMIT 1");
 
         if (vlDateObsList.size() > 0) {
-            List<Obs> vlObsList = getObsListFromIdList("SELECT obs_id FROM obs where obs.person_id='" + patient.getPatientId() + "' AND obs.concept_id = 856 AND encounter_id='" + vlDateObsList.get(0).getEncounter().getEncounterId() + "' AND obs.voided = false  ORDER BY  obs.encounter_id DESC");
+            List<Obs> vlObsList = getObsListFromIdList("SELECT obs_id FROM obs where obs.person_id='" + patient.getPatientId() + "' AND obs.concept_id = 856 AND encounter_id='" + vlDateObsList.get(0).getEncounter().getEncounterId() + "' AND obs.voided = false  ORDER BY  obs.encounter_id DESC LIMIT 1");
 
             if (vlObsList.size() > 0) {
                 model.addAttribute("vlObs", vlObsList.get(0));
