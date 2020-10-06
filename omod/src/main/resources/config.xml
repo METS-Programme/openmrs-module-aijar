@@ -199,7 +199,7 @@
     <globalProperty>
         <property>ugandaemr.dsdm.viralloadSuppressionCopies</property>
         <description>The highest value for a suppression viral load for a patient</description>
-        <defaultValue>1000</defaultValue>
+        <defaultValue>999</defaultValue>
     </globalProperty>
 
     <globalProperty>
