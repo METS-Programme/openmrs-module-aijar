@@ -139,7 +139,7 @@ public interface AijarService extends OpenmrsService {
 	 * @param encounterTypeUUID the uuid for the HIV encounter Type
 	 * @return boolean
 	 */
-	public boolean hasHIVSummaryPage(Patient patient, String encounterTypeUUID);
+	public Encounter hasHIVSummaryPage(Patient patient, String encounterTypeUUID);
 
 	/**
 	 * Generates observation from an existing Observation

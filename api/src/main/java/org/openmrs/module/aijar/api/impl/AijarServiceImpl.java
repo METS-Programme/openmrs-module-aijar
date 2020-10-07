@@ -465,7 +465,7 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 
         return encounters;
 	}
-	
+
 	@Override
 	public List<PublicHoliday> getAllPublicHolidays() throws APIException {
 		return dao.getAllPublicHolidays();
@@ -491,112 +491,125 @@ public class AijarServiceImpl extends BaseOpenmrsService implements AijarService
 		return dao.getPublicHolidaysByDate(publicHolidayDate);
 	}
 
-	/**
-	 * @see org.openmrs.module.aijar.api.AijarService#createPatientHIVSummaryEncounterOnTransferIn(org.openmrs.module.htmlformentry.FormEntrySession)
-	 */
-	public Encounter createPatientHIVSummaryEncounterOnTransferIn(FormEntrySession formEntrySession) {
-		ConceptService conceptService = Context.getConceptService();
-		EncounterService encounterService = Context.getEncounterService();
-		Encounter encounter = new Encounter();
-		encounter.setEncounterType(encounterService.getEncounterTypeByUuid("8d5b27bc-c2cc-11de-8d13-0010c6dffd0f"));
-		encounter.setLocation(formEntrySession.getEncounter().getLocation());
-		encounter.setPatient(formEntrySession.getPatient());
-		encounter.setEncounterDatetime(new Date());
-		encounter.setForm(Context.getFormService().getFormByUuid("52653a60-8300-4c13-be4d-4b746da06fee"));
+    /**
+     * @see org.openmrs.module.aijar.api.AijarService#createPatientHIVSummaryEncounterOnTransferIn(org.openmrs.module.htmlformentry.FormEntrySession)
+     */
+    public Encounter createPatientHIVSummaryEncounterOnTransferIn(FormEntrySession formEntrySession) {
+        ConceptService conceptService = Context.getConceptService();
+        EncounterService encounterService = Context.getEncounterService();
+        Encounter encounter;
 
-		//*Transfer in information//.
-		Obs transferInObsGroup = createNewObs(conceptService.getConcept(99065), encounter);
-		encounter.addObs(transferInObsGroup);
-
-		Obs transferInDate = createNewObs(conceptService.getConcept(99160), encounter);
-		transferInDate.setValueDate(new Date());
-		transferInObsGroup.addGroupMember(transferInDate);
-		encounter.addObs(transferInDate);
-
-		Obs transferInFromObs = generateObsFromObs(formEntrySession.getEncounter().getAllObs(), 99109, 90206, encounter);
-		transferInObsGroup.addGroupMember(transferInFromObs);
-		encounter.addObs(transferInFromObs);
-
-		Obs transferInRegimen = generateObsFromObs(formEntrySession.getEncounter().getAllObs(), 90315, 99064, encounter);
-		transferInObsGroup.addGroupMember(transferInRegimen);
-		encounter.addObs(transferInRegimen);
-
-		//*ART Start in information or Baseline Information//.
-		Obs baselineRegimenObsGroup = createNewObs(conceptService.getConcept(99162), encounter);
-		encounter.addObs(baselineRegimenObsGroup);
-
-		Obs artStartDate = generateObsFromObs(formEntrySession.getEncounter().getAllObs(), 99161, 99161, encounter);
-		baselineRegimenObsGroup.addGroupMember(artStartDate);
-		encounter.addObs(artStartDate);
-
-		Obs artStartRegimen = generateObsFromObs(formEntrySession.getEncounter().getAllObs(), 99061, 99061, encounter);
-		baselineRegimenObsGroup.addGroupMember(artStartRegimen);
-		encounter.addObs(artStartRegimen);
-
-		Obs baselineWeight = generateObsFromObs(formEntrySession.getEncounter().getAllObs(), 99069, 99069, encounter);
-		baselineRegimenObsGroup.addGroupMember(baselineWeight);
-		encounter.addObs(baselineWeight);
-
-		Obs baselineCD4 = generateObsFromObs(formEntrySession.getEncounter().getAllObs(), 99071, 99071, encounter);
-		baselineRegimenObsGroup.addGroupMember(baselineCD4);
-		encounter.addObs(baselineCD4);
-
-		Obs baselineWHOClinicStage = generateObsFromObs(formEntrySession.getEncounter().getAllObs(), 163026, 99070, encounter);
-		baselineRegimenObsGroup.addGroupMember(baselineWHOClinicStage);
-		encounter.addObs(baselineWHOClinicStage);
-
-		encounterService.saveEncounter(encounter);
-
-		return encounter;
-	}
+        if (hasHIVSummaryPage(formEntrySession.getPatient(), "8d5b27bc-c2cc-11de-8d13-0010c6dffd0f") == null) {
+            encounter = new Encounter();
+            encounter.setEncounterType(encounterService.getEncounterTypeByUuid("8d5b27bc-c2cc-11de-8d13-0010c6dffd0f"));
+            encounter.setLocation(formEntrySession.getEncounter().getLocation());
+            encounter.setPatient(formEntrySession.getPatient());
+            encounter.setEncounterDatetime(new Date());
+            encounter.setForm(Context.getFormService().getFormByUuid("52653a60-8300-4c13-be4d-4b746da06fee"));
 
 
-	/**
-	 * @see org.openmrs.module.aijar.api.AijarService#hasHIVSummaryPage(org.openmrs.Patient,java.lang.String)
-	 */
-	public boolean hasHIVSummaryPage(Patient patient, String encounterTypeUUID) {
-		EncounterService encounterService = Context.getEncounterService();
-		Collection<EncounterType> encounterTypes = new ArrayList<>();
-		encounterTypes.add(encounterService.getEncounterTypeByUuid(encounterTypeUUID));
-		EncounterSearchCriteria encounterSearchCriteria = new EncounterSearchCriteriaBuilder().setPatient(patient).setIncludeVoided(false).setEncounterTypes(encounterTypes).createEncounterSearchCriteria();
-		List<Encounter> encounters = encounterService.getEncounters(encounterSearchCriteria);
-		if (!encounters.isEmpty()) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+            //*ART Start in information or Baseline Information//.
+            Obs baselineRegimenObsGroup = createNewObs(conceptService.getConcept(99162), encounter);
+            encounter.addObs(baselineRegimenObsGroup);
+
+            Obs artStartDate = generateObsFromObs(formEntrySession.getEncounter().getAllObs(), 99161, 99161, encounter);
+            baselineRegimenObsGroup.addGroupMember(artStartDate);
+            encounter.addObs(artStartDate);
+
+            Obs artStartRegimen = generateObsFromObs(formEntrySession.getEncounter().getAllObs(), 99061, 99061, encounter);
+            baselineRegimenObsGroup.addGroupMember(artStartRegimen);
+            encounter.addObs(artStartRegimen);
+
+            Obs baselineWeight = generateObsFromObs(formEntrySession.getEncounter().getAllObs(), 99069, 99069, encounter);
+            baselineRegimenObsGroup.addGroupMember(baselineWeight);
+            encounter.addObs(baselineWeight);
+
+            Obs baselineCD4 = generateObsFromObs(formEntrySession.getEncounter().getAllObs(), 99071, 99071, encounter);
+            baselineRegimenObsGroup.addGroupMember(baselineCD4);
+            encounter.addObs(baselineCD4);
+
+            Obs baselineWHOClinicStage = generateObsFromObs(formEntrySession.getEncounter().getAllObs(), 163026, 99070, encounter);
+            baselineRegimenObsGroup.addGroupMember(baselineWHOClinicStage);
+            encounter.addObs(baselineWHOClinicStage);
+
+        } else {
+            encounter = hasHIVSummaryPage(formEntrySession.getPatient(), "8d5b27bc-c2cc-11de-8d13-0010c6dffd0f");
+        }
+
+        //*Transfer in information//.
+        Obs transferInObsGroup = createNewObs(conceptService.getConcept(99065), encounter);
+        encounter.addObs(transferInObsGroup);
+
+        Obs transferInDate = createNewObs(conceptService.getConcept(99160), encounter);
+        transferInDate.setValueDate(new Date());
+        transferInObsGroup.addGroupMember(transferInDate);
+        encounter.addObs(transferInDate);
+
+        Obs transferInFromObs = generateObsFromObs(formEntrySession.getEncounter().getAllObs(), 99109, 90206, encounter);
+        transferInObsGroup.addGroupMember(transferInFromObs);
+        encounter.addObs(transferInFromObs);
+
+        Obs transferInRegimen = generateObsFromObs(formEntrySession.getEncounter().getAllObs(), 90315, 99064, encounter);
+        transferInObsGroup.addGroupMember(transferInRegimen);
+        encounter.addObs(transferInRegimen);
 
 
-	/**
-	 * @see org.openmrs.module.aijar.api.AijarService#generateObsFromObs(java.util.Set,java.lang.Integer,java.lang.Integer,org.openmrs.Encounter)
-	 */
-	public Obs generateObsFromObs(Set<Obs> observations, Integer lookUpConceptId, Integer conceptIDForNewObs, Encounter encounter) {
-		for (Obs obs : observations) {
-			if (lookUpConceptId.equals(obs.getConcept().getConceptId())) {
-				Obs newObs = createNewObs(Context.getConceptService().getConcept(conceptIDForNewObs), encounter);
-				newObs.setValueBoolean(obs.getValueBoolean());
-				newObs.setValueCoded(obs.getValueCoded());
-				newObs.setValueDate(obs.getValueDate());
-				newObs.setValueDatetime(obs.getValueDatetime());
-				newObs.setValueNumeric(obs.getValueNumeric());
-				newObs.setValueText(obs.getValueText());
-				return newObs;
-			}
-		}
-		return null;
-	}
+        encounterService.saveEncounter(encounter);
 
-	/**
-	 * @see org.openmrs.module.aijar.api.AijarService#createNewObs(org.openmrs.Concept,org.openmrs.Encounter)
-	 */
-	public Obs createNewObs(Concept concept, Encounter encounter) {
-		Obs obs = new Obs();
-		obs.setObsDatetime(encounter.getEncounterDatetime());
-		obs.setPerson(encounter.getPatient());
-		obs.setLocation(encounter.getLocation());
-		obs.setEncounter(encounter);
-		obs.setConcept(concept);
-		return obs;
-	}
+        return encounter;
+    }
+
+
+    /**
+     * @see org.openmrs.module.aijar.api.AijarService#hasHIVSummaryPage(org.openmrs.Patient, java.lang.String)
+     */
+    public Encounter hasHIVSummaryPage(Patient patient, String encounterTypeUUID) {
+        EncounterService encounterService = Context.getEncounterService();
+        Collection<EncounterType> encounterTypes = new ArrayList<>();
+        encounterTypes.add(encounterService.getEncounterTypeByUuid(encounterTypeUUID));
+        EncounterSearchCriteria encounterSearchCriteria = new EncounterSearchCriteriaBuilder().setPatient(patient).setIncludeVoided(false).setEncounterTypes(encounterTypes).createEncounterSearchCriteria();
+        List<Encounter> encounters = encounterService.getEncounters(encounterSearchCriteria);
+        if (!encounters.isEmpty()) {
+            for (Encounter encounter : encounters) {
+                if (encounterTypeUUID.equals(encounter.getEncounterType().getUuid())) {
+                    return encounter;
+                }
+            }
+        }
+
+        return null;
+    }
+
+
+    /**
+     * @see org.openmrs.module.aijar.api.AijarService#generateObsFromObs(java.util.Set, java.lang.Integer, java.lang.Integer, org.openmrs.Encounter)
+     */
+    public Obs generateObsFromObs(Set<Obs> observations, Integer lookUpConceptId, Integer conceptIDForNewObs, Encounter encounter) {
+        for (Obs obs : observations) {
+            if (lookUpConceptId.equals(obs.getConcept().getConceptId())) {
+                Obs newObs = createNewObs(Context.getConceptService().getConcept(conceptIDForNewObs), encounter);
+                newObs.setValueBoolean(obs.getValueBoolean());
+                newObs.setValueCoded(obs.getValueCoded());
+                newObs.setValueDate(obs.getValueDate());
+                newObs.setValueDatetime(obs.getValueDatetime());
+                newObs.setValueNumeric(obs.getValueNumeric());
+                newObs.setValueText(obs.getValueText());
+                return newObs;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * @see org.openmrs.module.aijar.api.AijarService#createNewObs(org.openmrs.Concept, org.openmrs.Encounter)
+     */
+    public Obs createNewObs(Concept concept, Encounter encounter) {
+        Obs obs = new Obs();
+        obs.setObsDatetime(encounter.getEncounterDatetime());
+        obs.setPerson(encounter.getPatient());
+        obs.setLocation(encounter.getLocation());
+        obs.setEncounter(encounter);
+        obs.setConcept(concept);
+        return obs;
+    }
 }
