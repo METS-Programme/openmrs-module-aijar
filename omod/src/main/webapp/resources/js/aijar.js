@@ -268,8 +268,8 @@ function enableContainer(container) {
 function disableContainer(container) {
     jq(container).find("input").attr("disabled", true);
     jq(container).find('select').attr("disabled", true);
-    jq(container).find("input").fadeTo(250, 0.25);
-    jq(container).find("select").fadeTo(250, 0.25);
+    jq(container).find("input").fadeTo(250, 0.50);
+    jq(container).find("select").fadeTo(250, 0.50);
 }
 
 
