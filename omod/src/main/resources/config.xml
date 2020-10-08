@@ -183,6 +183,37 @@
 		<defaultValue>100</defaultValue>
 	</globalProperty>
 
+    <globalProperty>
+        <property>ugandaemr.dsdm.allowClinicalOverrideDSDMPatientStability</property>
+        <description>When set to true, this allows to override the decision made by the system about DSDM Stability </description>
+        <defaultValue>false</defaultValue>
+        <dataType>org.openmrs.customdatatype.datatype.BooleanDatatype</dataType>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.dsdm.currentRegimenDurationRequirementInMonths</property>
+        <description>The number of months when on current regimen required for patient to be categorized as stable</description>
+        <defaultValue>6</defaultValue>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.dsdm.viralloadSuppressionCopies</property>
+        <description>The highest value for a suppression viral load for a patient</description>
+        <defaultValue>999</defaultValue>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.dsdm.minmunNoOfMonthsOnTBTreatmentRequired</property>
+        <description>The highest value for a suppression viral load for a patient</description>
+        <defaultValue>2</defaultValue>
+    </globalProperty>
+
+    <globalProperty>
+        <property>ugandaemr.dsdm.validPeriodInMothsForViralLoad</property>
+        <description>The Number of months a viral load is valid from the date of sample collection</description>
+        <defaultValue>12</defaultValue>
+    </globalProperty>
+
 
     <privilege>
         <name>Task: HIV Clinic Access</name>
