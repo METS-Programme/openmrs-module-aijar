@@ -389,6 +389,7 @@
     <role_privilege  role="HIV Clinic"  privilege="Task: coreapps.markPatientDead"/>
     <role_privilege  role="HIV Clinic" privilege="Task: patientqueueing.completePatientQueue"/>
     <role_privilege  role="HIV Clinic" privilege="Task: patientqueueing.sendPatientToQueue"/>
+    <role_privilege  role="HIV Clinic"  privilege="Add Visits"/>
     <!--* OPD Clinic *-->
     <!--role-role-->
     <role_role  parent_role="Base Role"  child_role="OPD Clinic"/>
