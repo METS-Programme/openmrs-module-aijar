@@ -1053,7 +1053,7 @@
     <concept  concept_id="166131"  retired="0" datatype_id="4"  class_id="5"  is_set="1"  creator="1"  date_created="2020-09-22 18:49:32"  version="1.0"  changed_by="1"  date_changed="2020-09-22 18:49:32" uuid="dcf856c6-a585-4638-bdae-ab21ae79f3e5"/>
     <concept  concept_id="166130"  retired="0" datatype_id="3"  class_id="5"  is_set="0"  creator="1"  date_created="2020-09-22 18:47:10"  version="1.0"  changed_by="1"  date_changed="2020-09-22 18:47:10" uuid="3993bf94-efdc-44d0-bffb-db4a04642500"/>
     <concept  concept_id="166129"  retired="0" datatype_id="3"  class_id="5"  is_set="0"  creator="1"  date_created="2020-09-22 18:46:27"  version="1.0"  changed_by="1"  date_changed="2020-09-22 18:46:27" uuid="180b439a-ebef-4b8e-9019-ab28332163b6"/>
-    <concept  concept_id="166128"  retired="0" datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2020-09-22 18:43:56"  version="1.0"  changed_by="1"  date_changed="2020-09-22 18:43:56" uuid="b50e0e43-79b9-4461-b7f8-5c0863d63682"/>
+    <concept  concept_id="166128"  retired="0" datatype_id="1"  class_id="5"  is_set="0"  creator="1"  date_created="2020-09-22 18:43:56"  version="1.0"  changed_by="1"  date_changed="2020-09-22 18:43:56" uuid="b50e0e43-79b9-4461-b7f8-5c0863d63682"/>
     <concept  concept_id="166127"  retired="0" datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2020-09-22 18:43:30"  version="1.0"  changed_by="1"  date_changed="2020-09-22 18:43:30" uuid="213eb803-029f-4515-8450-e671c35dd9a6"/>
     <concept  concept_id="166126"  retired="0" datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2020-09-22 18:43:11"  version="1.0"  changed_by="1"  date_changed="2020-09-22 18:43:11" uuid="5251a21c-3f0e-40bd-b403-dda2a77a084f"/>
     <concept  concept_id="166125"  retired="0" datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2020-09-22 18:39:49"  version="1.0"  changed_by="1"  date_changed="2020-09-22 18:39:49" uuid="62f7d841-4494-43f3-a4ca-a85109b107fc"/>
@@ -1075,6 +1075,14 @@
     <concept  concept_id="166147"  retired="0"  datatype_id="3"  class_id="11"  is_set="0"  creator="1"  date_created="2020-09-30 11:18:43"  version="1.0"  changed_by="1"  date_changed="2020-09-30 11:18:43" uuid="07a9ce66-3827-48e5-a3f1-c0bfc42c6176"/>
     <concept  concept_id="166148"  retired="0"  datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2020-09-30 15:07:05"  version="1.0"  changed_by="1"  date_changed="2020-09-30 15:07:05" uuid="71aae99f-5e5e-4e8b-be9c-e811ffbd7f8d"/>
     <concept  concept_id="166149"  retired="0"  datatype_id="4"  class_id="10"  is_set="1"  creator="1"  date_created="2020-09-30 15:14:29"  version="1.0"  changed_by="1"  date_changed="2020-09-30 15:14:29" uuid="74074ffb-89d1-4af1-8910-5e18551acc78"/>
+
+    <concept  concept_id="166150"  retired="0"  datatype_id="4"  class_id="10"  is_set="1"  creator="1"  date_created="2020-10-21 13:31:15"  version="1.0"  changed_by="1"  date_changed="2020-10-21 15:18:30"  uuid="ce85d44b-9abb-42af-8327-1fc39b1ad1c3"/>
+    <concept  concept_id="166151"  retired="0"  datatype_id="4"  class_id="10"  is_set="1"  creator="1"  date_created="2020-10-21 15:19:04"  version="1.0"  changed_by="1"  date_changed="2020-10-21 15:21:09"  uuid="d400e1ff-afcc-43f2-ae07-745e04d89a6c"/>
+    <concept  concept_id="166152"  retired="0"  datatype_id="4"  class_id="10"  is_set="1"  creator="1"  date_created="2020-10-21 15:26:13"  version="1.0"  changed_by="1"  date_changed="2020-10-21 15:26:13"  uuid="377e6eef-f10f-4b13-8073-029e6587c3d7"/>
+    <concept  concept_id="166153"  retired="0"  datatype_id="4"  class_id="10"  is_set="1"  creator="1"  date_created="2020-10-21 15:29:51"  version="1.0"  changed_by="1"  date_changed="2020-10-21 15:29:51"  uuid="31805aa5-4697-4313-a142-405e0aa3483b"/>
+    <concept  concept_id="166154"  retired="0"  datatype_id="4"  class_id="1"   is_set="0"  creator="1"  date_created="2020-10-21 15:37:30"  version="1.0"  changed_by="1"  date_changed="2020-10-21 15:37:30"  uuid="c0bbf82d-e198-4381-8552-ae8e175460bb"/>
+    <concept  concept_id="166155"  retired="0"  datatype_id="3"  class_id="7"   is_set="0"  creator="1"  date_created="2020-10-21 15:41:47"  version="1.0"  changed_by="1"  date_changed="2020-10-21 15:41:47"  uuid="48a416bc-cb85-4aa7-b76d-92b444d38251"/>
+    <concept  concept_id="166156"  retired="0"  datatype_id="1"  class_id="5"   is_set="0"  creator="1"  date_created="2020-10-21 16:01:04"  version="1.0"  changed_by="1"  date_changed="2020-10-21 16:01:04"  uuid="dc9df4c6-5284-45ef-b811-779e0c2d478d"/>
 
 
     <!-- EMTCT Module Concept List -->
@@ -1673,6 +1681,9 @@
     <concept_numeric  concept_id="165880" allow_decimal="0"/>
     <concept_numeric  concept_id="165885" allow_decimal="0"/>
     <concept_numeric  concept_id="165886" allow_decimal="0"/>
+    <concept_numeric  concept_id="166156" allow_decimal="0"/>
+
+
 
 
     <!-- DRUG -->
@@ -1889,6 +1900,12 @@
     <concept_description concept_description_id="1516" concept_id="1678" description="TB Prophylaxis regimen including: Rifampicin and Isoniazid" locale="en" creator="1" date_created="2009-04-26 01:16:35.0" uuid="1516FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"/>
     <concept_description concept_description_id="16282" concept_id="159635" description="Telephone number to contact person." locale="en" creator="1" date_created="2010-10-31 22:02:07.0" changed_by="1" date_changed="2015-10-01 21:05:09.0" uuid="16282FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"/>
     <concept_description concept_description_id="18076" concept_id="163756" description="The month after the start of treatment the test was taken.  For example: M0, M2, M3, M5, END." locale="en" creator="1" date_created="2016-07-30 22:50:31.0" changed_by="1" date_changed="2016-07-30 22:50:39.0" uuid="18076FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"/>
+
+    <concept_description  concept_description_id="18526"  concept_id="166150"  description="TB Medication Diagnosis Set"  locale="en"  creator="1"  date_created="2020-10-21 13:31:15"  uuid="06e49428-61ab-4485-b311-8df6847a854b"/>
+    <concept_description  concept_description_id="18527"  concept_id="166152"  description="TB DST Result Set"  locale="en"  creator="1"  date_created="2020-10-21 15:26:13"  uuid="ff1be93e-aabe-4933-bc5a-2584d9da423e"/>
+    <concept_description  concept_description_id="18528"  concept_id="166153"  description="TB Adverse Events Set"  locale="en"  creator="1"  date_created="2020-10-21 15:29:51"  uuid="a10cad35-d678-486e-bbcd-bbaec1a0bd76"/>
+    <concept_description  concept_description_id="18529"  concept_id="166155"  description="Next of Kin Village"  locale="en"  creator="1"  date_created="2020-10-21 15:41:47"  uuid="f683f734-ff7a-4d59-8663-2c770983fd2e"/>
+    <concept_description  concept_description_id="18530"  concept_id="166156"  description="Percentage Doses of ARVs Missed"  locale="en"  creator="1"  date_created="2020-10-21 16:01:04"  uuid="19794fca-c338-4c53-9b03-79ce3f51ec95"/>
 
     <!--OPD-->
     <concept_description concept_description_id="1445" concept_id="1597" description="New encounter with patient for purposes of reporting. Defined differently in different locales. Usually new episode of disease." locale="en" creator="1" date_created="2008-07-29 00:00:00.0" uuid="1445FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"/>
@@ -3955,7 +3972,7 @@
     <concept_name  concept_name_id="161465"  concept_id="166131"  name="Clinical Review"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-09-22 18:49:32"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="982b7f5c-1d2f-4367-9037-0d16d2b666ec"/>
     <concept_name  concept_name_id="161464"  concept_id="166130"  name="Plan of action"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-09-22 18:47:10"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="fbebd1f7-9813-4a0c-8cdb-ca2123d4aff9"/>
     <concept_name  concept_name_id="161463"  concept_id="166129"  name="Key finding"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-09-22 18:46:27"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="bce36fac-2662-4a8e-b91f-7d2bd8b6c70e"/>
-    <concept_name  concept_name_id="161462"  concept_id="166128"  name="% doses for MDR-TB drugs missed"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-09-22 18:43:56"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="57159b4a-e920-477b-aa4f-a2e26981ac74"/>
+    <concept_name  concept_name_id="161462"  concept_id="166128"  name="Percentage doses for MDR-TB drugs missed"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-09-22 18:43:56"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="57159b4a-e920-477b-aa4f-a2e26981ac74"/>
     <concept_name  concept_name_id="161461"  concept_id="166127"  name="Not supervised"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-09-22 18:43:30"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="b0817575-d489-430b-a6b1-b39f4560526a"/>
     <concept_name  concept_name_id="161460"  concept_id="166126"  name="Drugs not taken"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-09-22 18:43:11"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="9298bcc2-c05b-42f8-87a3-ea0b84407cf6"/>
     <concept_name  concept_name_id="161459"  concept_id="166125"  name="Incomplete dose"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-09-22 18:39:49"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="852a845a-269c-4bf7-bad1-ada7271f651e"/>
@@ -4605,7 +4622,6 @@
     <concept_name concept_id="163145" name="Microgynon" locale="en" creator="1" date_created="2016-10-21 10:02:56" concept_name_id="161315" voided="false"  uuid="ca5a31d3-8304-41dc-ab26-05218bc2253e" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
     <concept_name concept_id="163146" name="Female Condoms" locale="en" creator="1" date_created="2016-10-21 10:02:56" concept_name_id="161316" voided="false"  uuid="699e50d7-b83d-4cf8-ad98-ed815077ab09" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
     <concept_name concept_id="163147" name="Male Condoms" locale="en" creator="1" date_created="2016-10-21 10:02:56" concept_name_id="161317" voided="false"  uuid="4b32bb02-d11c-4e8b-a517-62d4a7374217" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
-    <concept_name concept_id="163148" name="Ovrette" locale="en" creator="1" date_created="2016-10-21 10:02:56" concept_name_id="161318" voided="false"  uuid="b906f0cb-e65b-4fdf-a7e9-88e23ad2eb1b" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
 
     <!--LAB-->
     <concept_name  concept_id="1429"  name="RH TYPE"  locale="en"  creator="1"  date_created="2006-12-17 11:49:51"  concept_name_id="1600"  voided="0"  voided_by="1" uuid="1600BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1"/>
@@ -5119,6 +5135,14 @@
     <concept_name  concept_name_id="161482"  concept_id="166147"  name="TB contact name"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-09-30 11:18:43"  concept_name_type="FULLY_SPECIFIED"  voided="0"   uuid="b0ee6e3a-be90-4068-8d64-49a247ddbd62"/>
     <concept_name  concept_name_id="161483"  concept_id="166148"  name="Diagnosis other than TB"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-09-30 15:07:05"  concept_name_type="FULLY_SPECIFIED"  voided="0"   uuid="bb630e09-a8f2-4b22-814e-61899225c0bf"/>
     <concept_name  concept_name_id="161484"  concept_id="166149"  name="Diagnosis other than TB set"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-09-30 15:14:29"  concept_name_type="FULLY_SPECIFIED"  voided="0"   uuid="1d2c4f73-6b53-425a-80eb-7340faed0019"/>
+
+    <concept_name  concept_name_id="161485"  concept_id="166150"  name="TB Medication Diagnosis Set"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-10-21 13:31:15"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="a263eb77-4808-4c76-96df-89e56a58ef14" />
+    <concept_name  concept_name_id="161486"  concept_id="166151"  name="Previous TB Treatment Set"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-10-21 15:19:04"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="c48497b3-5523-4c15-b54e-b444304629e9" />
+    <concept_name  concept_name_id="161487"  concept_id="166152"  name="TB DST Result Set"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-10-21 15:26:13"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="c112383c-9cad-4159-ba47-35b239dc13de" />
+    <concept_name  concept_name_id="161488"  concept_id="166153"  name="TB Adverse Events Set"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-10-21 15:29:51"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="8c2eeebd-1a04-422b-b663-588f94d7ae6b" />
+    <concept_name  concept_name_id="161489"  concept_id="166154"  name="Full DST"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-10-21 15:37:30"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="220525e6-c177-4570-a151-9800c79ce8a0" />
+    <concept_name  concept_name_id="161490"  concept_id="166155"  name="Next of Kin Village"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-10-21 15:41:47"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="5f9c54a8-678a-47b4-9139-45eb2de27324" />
+    <concept_name  concept_name_id="161491"  concept_id="166156"  name="Percentage Doses of ARVs Missed"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-10-21 16:01:04"  concept_name_type="FULLY_SPECIFIED"  uuid="92107530-cf6c-4309-b521-3066d72854ad" />
 
 
     <!--LAB TEST -->
