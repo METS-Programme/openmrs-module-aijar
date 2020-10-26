@@ -4,7 +4,7 @@
 
 	<groupId>org.openmrs.module</groupId>
 	<artifactId>aijar</artifactId>
-	<version>3.1.0</version>
+	<version>3.1.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Aijar</name>
 	<description>Customizations for Uganda OpenMRS distribution</description>
@@ -27,10 +27,16 @@
 			<name>Stephen S. Musoke</name>
 		</developer>
 		<developer>
-			<name>Solomon Ssevume</name>
+			<name>Solomon Ssevvume</name>
 		</developer>
 		<developer>
-			<name>Dderick Baluku</name>
+			<name>Derick Baluku</name>
+		</developer>
+		<developer>
+			<name>Mwanje Musa</name>
+		</developer>
+		<developer>
+			<name>Semujju  David</name>
 		</developer>
 	</developers>
 
