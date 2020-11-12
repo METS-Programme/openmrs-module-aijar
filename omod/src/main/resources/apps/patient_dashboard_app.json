@@ -133,7 +133,8 @@
       "icon": "icon-user-md",
       "label": "VIRAL LOAD HISTORY",
       "concepts": "0b434cfa-b11c-4d14-aaa2-9aed6ca2da88,dca12261-30ab-102d-86b0-7a5022ba4115,dc8d83e3-30ab-102d-86b0-7a5022ba4115",
-      "maxRecords": "5"
+      "maxRecords": "5",
+      "encounterType": "8d5b2be0-c2cc-11de-8d13-0010c6dffd0f"
     },
     "requiredPrivilege": "App: ugandaemr.widget.viralLoadHistory",
     "extensions": [
