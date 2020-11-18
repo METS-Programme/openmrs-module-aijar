@@ -4,7 +4,7 @@
 
 	<groupId>org.openmrs.module</groupId>
 	<artifactId>aijar</artifactId>
-	<version>3.1.2</version>
+	<version>3.2.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Aijar</name>
 	<description>Customizations for Uganda OpenMRS distribution</description>
@@ -49,7 +49,7 @@
 		<connection>scm:git:git@github.com:METS-Programme/openmrs-module-aijar.git</connection>
 		<developerConnection>scm:git:git@github.com:METS-Programme/openmrs-module-aijar.git</developerConnection>
 		<url>scm:git:https://github.com/METS-Programme/openmrs-module-aijar</url>
-		<tag>3.1.2</tag>
+		<tag>3.1.0</tag>
 	</scm>
 
 	<modules>
