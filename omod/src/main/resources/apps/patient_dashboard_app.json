@@ -247,5 +247,29 @@
       }
     }
   ]
+},{
+  "id": "ugandaemr.tb.history.programs",
+  "instanceOf": "coreapps.template.dashboardWidget",
+  "description": "TB Treatment History",
+  "order": 10,
+  "config": {
+    "widget": "programs",
+    "icon": "icon-stethoscope",
+    "label": "TB Treatment History",
+    "dateFormat": "dd.MMM.yyyy",
+    "supportedPrograms": "9dc21a72-0971-11e7-8037-507b9dc4c741",
+    "enableProgramDashboards": false
+  },
+  "extensions": [
+    {
+      "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardSecondColumn",
+      "appId": "ugandaemr.tb.history.programs",
+      "extensionPointId": "patientDashboard.secondColumnFragments",
+      "extensionParams": {
+        "provider": "coreapps",
+        "fragment": "dashboardwidgets/dashboardWidget"
+      }
+    }
+  ]
 }
 ]
