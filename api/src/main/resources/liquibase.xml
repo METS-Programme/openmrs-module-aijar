@@ -8,6 +8,17 @@
         See http://www.liquibase.org/manual/home#available_database_refactorings
         for a list of supported elements and attributes
     -->
+	<changeSet id="ugandaemr-27112020-1441" author="ssmusoke">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="100">
+				SELECT property_value
+				FROM global_property
+				WHERE property = 'ugandaemr.maximumPatientsPerDay'
+			</sqlCheck>
+		</preConditions>
+		<comment>Reset maximum patients per day value to blank which is unlimited</comment>
+		<sql>UPDATE global_property SET property_value = '' WHERE property = 'ugandaemr.maximumPatientsPerDay'</sql>
+	</changeSet>
 	<changeSet id="ugandaemr-05092018-1043" author="ssmusoke">
 		<comment>Fix bad data for the ART care section which is causing an error when saving the summary page</comment>
 		<sql>
