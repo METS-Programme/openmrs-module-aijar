@@ -1,251 +1,278 @@
 [
-  {
-    "id": "ugandaemr.dashboardwidget.EIDSummary",
-    "instanceOf": "coreapps.template.dashboardWidget",
-    "description": "Summary for an HIV exposed infant",
-    "order": 10,
-    "config": {
-      "widget": "latestobsforconceptlist",
-      "icon": "icon-user-md",
-      "label": "EID SUMMARY",
-      "maxAge": "120m",
-      "concepts": "51941f01-307f-44ca-9351-401bc008a208,b6a6210b-ccdf-45fc-80dd-1567f65e2d98,1f627527-2f97-4f21-9b61-2b79d887950f,e1b4efbf-0dff-4e9e-a2f2-34edcb02a5d0,4092ad52-3db3-47f5-b497-126e1202f1eb,162881AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,977b16f4-2d3e-40d2-ba51-54794c98f7ef"
-    },
-    "requiredPrivilege": "App: ugandaemr.widget.eidSummary",
-    "extensions": [
-      {
-        "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardSecondColumn",
-        "appId": "ugandaemr.dashboardwidget.EIDSummary",
-        "extensionPointId": "patientDashboard.secondColumnFragments",
-        "extensionParams": {
-          "provider": "coreapps",
-          "fragment": "dashboardwidgets/dashboardWidget"
-        },
-        "require":"patient.person.age < 10"
-      }
-    ]
-  },
-  {
-    "id": "ugandaemr.dashboardwidget.MCHSummary",
-    "instanceOf": "coreapps.template.dashboardWidget",
-    "description": "Displays obstetric summary of mother receiving MCH services",
-    "order": 10,
-    "config": {
-      "widget": "latestobsforconceptlist",
-      "icon": "icon-user-md",
-      "label": "MCH SUMMARY",
-      "concepts": "5f86d19d-9546-4466-89c0-6f80c101191b,dcc39097-30ab-102d-86b0-7a5022ba4115,1053AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,dca0a383-30ab-102d-86b0-7a5022ba4115,dcc033e5-30ab-102d-86b0-7a5022ba4115,d5b0394c-424f-41db-bc2f-37180dcdbe74,dc548e89-30ab-102d-86b0-7a5022ba4115,1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160081AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-    },
-    "requiredPrivilege": "App: ugandaemr.widget.mchSummary",
-    "extensions": [
-      {
-        "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardFirstColumn",
-        "appId": "ugandaemr.dashboardwidget.MCHSummary",
-        "extensionPointId": "patientDashboard.firstColumnFragments",
-        "extensionParams": {
-          "provider": "coreapps",
-          "fragment": "dashboardwidgets/dashboardWidget"
-        },
-        "require":"patient.person.gender=='F'"
-      }
-    ]
-  },
-  {
-    "id": "ugandaemr.dashboardwidget.ARTStatus",
-    "instanceOf": "coreapps.template.dashboardWidget",
-    "description": "Summary of the patient's ART status",
-    "order": 5,
-    "config": {
-      "widget": "latestobsforconceptlist",
-      "icon": "icon-user-md",
-      "label": "ART STATUS",
-      "maxAge": "120m",
-      "concepts": "dce12b4f-30ab-102d-86b0-7a5022ba4115,ab505422-26d9-41f1-a079-c3d222000440,c3332e8d-2548-4ad6-931d-6855692694a3,c17bd9df-23e6-4e65-ba42-eb6d9250ca3f,d65cfbee-ba13-4cba-aa5c-2a6438219a90"
-    },
-    "requiredPrivilege": "App: ugandaemr.widget.artStatus",
-    "extensions": [
-      {
-        "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardFirstColumn",
-        "appId": "ugandaemr.dashboardwidget.ARTStatus",
-        "extensionPointId": "patientDashboard.firstColumnFragments",
-        "extensionParams": {
-          "provider": "coreapps",
-          "fragment": "dashboardwidgets/dashboardWidget"
-        }
-      }
-    ]
-  },
-  {
-    "id": "ugandaemr.dashboardwidget.TPTStatus",
-    "instanceOf": "coreapps.template.dashboardWidget",
-    "description": "Summary of the patient's TPT status",
-    "order": 5,
-    "config": {
-      "widget": "latestobsforconceptlist",
-      "icon": "icon-user-md",
-      "label": "TPT STATUS",
-      "maxAge": "120m",
-      "concepts": "37d4ac43-b3b4-4445-b63b-e3acf47c8910,483939c7-79ba-4ca4-8c3e-346488c97fc7,813e21e7-4ccb-4fe9-aaab-3c0e40b6e356,23a6dc6e-ac16-4fa6-8029-155522548d04"
-    },
-    "requiredPrivilege": "App: ugandaemr.widget.tptStatus",
-    "extensions": [
-      {
-        "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardFirstColumn",
-        "appId": "ugandaemr.dashboardwidget.TPTStatus",
-        "extensionPointId": "patientDashboard.firstColumnFragments",
-        "extensionParams": {
-          "provider": "coreapps",
-          "fragment": "dashboardwidgets/dashboardWidget"
-        }
-      }
-    ]
-  },
-  {
-    "id": "ugandaemr.dataIntegrityViolations",
-    "instanceOf": "coreapps.template.dashboardWidget",
-    "description": "Data quality violations for the patient based on entered data",
-    "order": 10,
-    "config": {
-      "widget": "dataintegrityviolations",
-      "icon": "icon-question-sign",
-      "label": "DATA QUALITY VIOLATIONS",
-      "maxResults": "8"
-    },
-    "requiredPrivilege": "App: ugandaemr.widget.dataIntegrityViolation",
-    "extensions": [
-      {
-        "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardFirstColumn",
-        "appId": "ugandaemr.dataIntegrityViolations",
-        "extensionPointId": "patientDashboard.firstColumnFragments",
-        "extensionParams": {
-          "provider": "coreapps",
-          "fragment": "dashboardwidgets/dashboardWidget"
-        }
-      }
-    ]
-    },{
-    "id": "ugandaemr.viralLoadHistory",
-    "instanceOf": "coreapps.template.dashboardWidget",
-    "description": "Viral Load history for the patient",
-    "order": 5,
-    "config": {
-      "widget": "obsacrossencounters",
-      "icon": "icon-user-md",
-      "label": "VIRAL LOAD HISTORY",
-      "concepts": "0b434cfa-b11c-4d14-aaa2-9aed6ca2da88,dca12261-30ab-102d-86b0-7a5022ba4115,dc8d83e3-30ab-102d-86b0-7a5022ba4115",
-      "maxRecords": "5",
-      "encounterType": "8d5b2be0-c2cc-11de-8d13-0010c6dffd0f"
-    },
-    "requiredPrivilege": "App: ugandaemr.widget.viralLoadHistory",
-    "extensions": [
-      {
-        "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardFirstColumn",
-        "appId": "ugandaemr.viralLoadHistory",
-        "extensionPointId": "patientDashboard.firstColumnFragments",
-        "extensionParams": {
-          "provider": "coreapps",
-          "fragment": "dashboardwidgets/dashboardWidget"
-        }
-      }
-    ]
-  },
-  {
-    "id": "ugandaemr.lastARTVisitSummary",
-    "instanceOf": "coreapps.template.dashboardWidget",
-    "description": "Information from the patient's last ART visit",
-    "order": 1,
-    "config": {
-      "widget": "latestobsforconceptlist",
-      "icon": "icon-user-md",
-      "label": "LAST ART VISIT SUMMARY",
-      "concepts": "dcac04cf-30ab-102d-86b0-7a5022ba4115,160288AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,dd2b0b4d-30ab-102d-86b0-7a5022ba4115,b0e53f0a-eaca-49e6-b663-d0df61601b70,7593ede6-6574-4326-a8a6-3d742e843659,dcdff274-30ab-102d-86b0-7a5022ba4115"
-    },
-    "requiredPrivilege": "App: ugandaemr.widget.lastARTVisitSummary",
-    "extensions": [
-      {
-        "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardFirstColumn",
-        "appId": "ugandaemr.lastARTVisitSummary",
-        "extensionPointId": "patientDashboard.secondColumnFragments",
-        "extensionParams": {
-          "provider": "coreapps",
-          "fragment": "dashboardwidgets/dashboardWidget"
-        }
-      }
-    ]
-  },
-  {
-    "id": "ugandaemr.directionstoresidence",
-    "instanceOf": "coreapps.template.dashboardWidget",
-    "description": "Directions to client residence",
-    "order": 15,
-    "config": {
-      "widget": "latestobsforconceptlist",
-      "icon": "icon-question-sign",
-      "label": "DIRECTIONS TO RESIDENCE",
-      "concepts": "dce122f3-30ab-102d-86b0-7a5022ba4115",
-      "maxResults": "1"
-    },
-    "requiredPrivilege": "App: ugandaemr.widget.directionsToResidence",
-    "extensions": [
-      {
-        "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardFirstColumn",
-        "appId": "ugandaemr.directionstoresidence",
-        "extensionPointId": "patientDashboard.firstColumnFragments",
-        "extensionParams": {
-          "provider": "coreapps",
-          "fragment": "dashboardwidgets/dashboardWidget"
-        }
-      }
-    ]
-  },
-  {
-    "id": "ugandaemr.dsdm.programs",
-    "instanceOf": "coreapps.template.dashboardWidget",
-    "description": "List of DSDM Programs",
-    "order": 10,
-    "config": {
-      "widget": "programs",
-      "icon": "icon-stethoscope",
-      "label": "Patient DSDM Model History",
-      "dateFormat": "dd.MMM.yyyy",
-      "supportedPrograms": "de5d54ae-c304-11e8-9ad0-529269fb1459,de5d5b34-c304-11e8-9ad0-529269fb1459,de5d5896-c304-11e8-9ad0-529269fb1459,de5d5da0-c304-11e8-9ad0-529269fb1459,de5d6034-c304-11e8-9ad0-529269fb1459",
-      "enableProgramDashboards": false
-    },
-    "requiredPrivilege": "App: ugandaemr.widget.dsdmPatientHistory",
-    "extensions": [
-      {
-        "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardSecondColumn",
-        "appId": "ugandaemr.dsdm.programs",
-        "extensionPointId": "patientDashboard.secondColumnFragments",
-        "extensionParams": {
-          "provider": "coreapps",
-          "fragment": "dashboardwidgets/dashboardWidget"
-        }
-      }
-    ]
-  },{
-  "id": "ugandaemr.tb.program",
-  "instanceOf": "coreapps.template.dashboardWidget",
-  "description": "TB Patient Program",
-  "order": 10,
-  "config": {
-    "widget": "programstatus",
-    "icon": "icon-stethoscope",
-    "label": "TB Program Status",
-    "dateFormat": "dd MMM yyyy",
-    "program": "9dc21a72-0971-11e7-8037-507b9dc4c741",
-    "locationTag": "8d5b27bc-c2cc-11de-8d13-0010c6dffd0f"
-  },
-  "extensions": [
     {
-      "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardSecondColumn",
-      "appId": "ugandaemr.tb.program",
-      "extensionPointId": "patientDashboard.secondColumnFragments",
-      "extensionParams": {
-        "provider": "coreapps",
-        "fragment": "dashboardwidgets/dashboardWidget"
-      }
+      "id": "ugandaemr.dashboardwidget.EIDSummary",
+      "instanceOf": "coreapps.template.dashboardWidget",
+      "description": "Summary for an HIV exposed infant",
+      "order": 10,
+      "config": {
+        "widget": "latestobsforconceptlist",
+        "icon": "icon-user-md",
+        "label": "EID SUMMARY",
+        "maxAge": "120m",
+        "concepts": "51941f01-307f-44ca-9351-401bc008a208,b6a6210b-ccdf-45fc-80dd-1567f65e2d98,1f627527-2f97-4f21-9b61-2b79d887950f,e1b4efbf-0dff-4e9e-a2f2-34edcb02a5d0,4092ad52-3db3-47f5-b497-126e1202f1eb,162881AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,977b16f4-2d3e-40d2-ba51-54794c98f7ef"
+      },
+      "requiredPrivilege": "App: ugandaemr.widget.eidSummary",
+      "extensions": [
+        {
+          "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardSecondColumn",
+          "appId": "ugandaemr.dashboardwidget.EIDSummary",
+          "extensionPointId": "patientDashboard.secondColumnFragments",
+          "extensionParams": {
+            "provider": "coreapps",
+            "fragment": "dashboardwidgets/dashboardWidget"
+          },
+          "require":"patient.person.age < 10"
+        }
+      ]
+    },
+    {
+      "id": "ugandaemr.dashboardwidget.MCHSummary",
+      "instanceOf": "coreapps.template.dashboardWidget",
+      "description": "Displays obstetric summary of mother receiving MCH services",
+      "order": 10,
+      "config": {
+        "widget": "latestobsforconceptlist",
+        "icon": "icon-user-md",
+        "label": "MCH SUMMARY",
+        "concepts": "5f86d19d-9546-4466-89c0-6f80c101191b,dcc39097-30ab-102d-86b0-7a5022ba4115,1053AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,dca0a383-30ab-102d-86b0-7a5022ba4115,dcc033e5-30ab-102d-86b0-7a5022ba4115,d5b0394c-424f-41db-bc2f-37180dcdbe74,dc548e89-30ab-102d-86b0-7a5022ba4115,1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160081AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      },
+      "requiredPrivilege": "App: ugandaemr.widget.mchSummary",
+      "extensions": [
+        {
+          "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardFirstColumn",
+          "appId": "ugandaemr.dashboardwidget.MCHSummary",
+          "extensionPointId": "patientDashboard.firstColumnFragments",
+          "extensionParams": {
+            "provider": "coreapps",
+            "fragment": "dashboardwidgets/dashboardWidget"
+          },
+          "require":"patient.person.gender=='F'"
+        }
+      ]
+    },
+    {
+      "id": "ugandaemr.dashboardwidget.ARTStatus",
+      "instanceOf": "coreapps.template.dashboardWidget",
+      "description": "Summary of the patient's ART status",
+      "order": 5,
+      "config": {
+        "widget": "latestobsforconceptlist",
+        "icon": "icon-user-md",
+        "label": "ART STATUS",
+        "maxAge": "120m",
+        "concepts": "dce12b4f-30ab-102d-86b0-7a5022ba4115,ab505422-26d9-41f1-a079-c3d222000440,c3332e8d-2548-4ad6-931d-6855692694a3,c17bd9df-23e6-4e65-ba42-eb6d9250ca3f,d65cfbee-ba13-4cba-aa5c-2a6438219a90"
+      },
+      "requiredPrivilege": "App: ugandaemr.widget.artStatus",
+      "extensions": [
+        {
+          "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardFirstColumn",
+          "appId": "ugandaemr.dashboardwidget.ARTStatus",
+          "extensionPointId": "patientDashboard.firstColumnFragments",
+          "extensionParams": {
+            "provider": "coreapps",
+            "fragment": "dashboardwidgets/dashboardWidget"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ugandaemr.dashboardwidget.TPTStatus",
+      "instanceOf": "coreapps.template.dashboardWidget",
+      "description": "Summary of the patient's TPT status",
+      "order": 5,
+      "config": {
+        "widget": "latestobsforconceptlist",
+        "icon": "icon-user-md",
+        "label": "TPT STATUS",
+        "maxAge": "120m",
+        "concepts": "37d4ac43-b3b4-4445-b63b-e3acf47c8910,483939c7-79ba-4ca4-8c3e-346488c97fc7,813e21e7-4ccb-4fe9-aaab-3c0e40b6e356,23a6dc6e-ac16-4fa6-8029-155522548d04"
+      },
+      "requiredPrivilege": "App: ugandaemr.widget.tptStatus",
+      "extensions": [
+        {
+          "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardFirstColumn",
+          "appId": "ugandaemr.dashboardwidget.TPTStatus",
+          "extensionPointId": "patientDashboard.firstColumnFragments",
+          "extensionParams": {
+            "provider": "coreapps",
+            "fragment": "dashboardwidgets/dashboardWidget"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ugandaemr.dataIntegrityViolations",
+      "instanceOf": "coreapps.template.dashboardWidget",
+      "description": "Data quality violations for the patient based on entered data",
+      "order": 10,
+      "config": {
+        "widget": "dataintegrityviolations",
+        "icon": "icon-question-sign",
+        "label": "DATA QUALITY VIOLATIONS",
+        "maxResults": "8"
+      },
+      "requiredPrivilege": "App: ugandaemr.widget.dataIntegrityViolation",
+      "extensions": [
+        {
+          "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardFirstColumn",
+          "appId": "ugandaemr.dataIntegrityViolations",
+          "extensionPointId": "patientDashboard.firstColumnFragments",
+          "extensionParams": {
+            "provider": "coreapps",
+            "fragment": "dashboardwidgets/dashboardWidget"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ugandaemr.viralLoadHistory",
+      "instanceOf": "coreapps.template.dashboardWidget",
+      "description": "Viral Load history for the patient",
+      "order": 5,
+      "config": {
+        "widget": "obsacrossencounters",
+        "icon": "icon-user-md",
+        "label": "VIRAL LOAD HISTORY",
+        "concepts": "0b434cfa-b11c-4d14-aaa2-9aed6ca2da88,dca12261-30ab-102d-86b0-7a5022ba4115,dc8d83e3-30ab-102d-86b0-7a5022ba4115",
+        "maxRecords": "5",
+        "encounterType": "8d5b2be0-c2cc-11de-8d13-0010c6dffd0f"
+      },
+      "requiredPrivilege": "App: ugandaemr.widget.viralLoadHistory",
+      "extensions": [
+        {
+          "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardFirstColumn",
+          "appId": "ugandaemr.viralLoadHistory",
+          "extensionPointId": "patientDashboard.firstColumnFragments",
+          "extensionParams": {
+            "provider": "coreapps",
+            "fragment": "dashboardwidgets/dashboardWidget"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ugandaemr.lastARTVisitSummary",
+      "instanceOf": "coreapps.template.dashboardWidget",
+      "description": "Information from the patient's last ART visit",
+      "order": 1,
+      "config": {
+        "widget": "latestobsforconceptlist",
+        "icon": "icon-user-md",
+        "label": "LAST ART VISIT SUMMARY",
+        "concepts": "dcac04cf-30ab-102d-86b0-7a5022ba4115,160288AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,dd2b0b4d-30ab-102d-86b0-7a5022ba4115,b0e53f0a-eaca-49e6-b663-d0df61601b70,7593ede6-6574-4326-a8a6-3d742e843659,dcdff274-30ab-102d-86b0-7a5022ba4115"
+      },
+      "requiredPrivilege": "App: ugandaemr.widget.lastARTVisitSummary",
+      "extensions": [
+        {
+          "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardFirstColumn",
+          "appId": "ugandaemr.lastARTVisitSummary",
+          "extensionPointId": "patientDashboard.secondColumnFragments",
+          "extensionParams": {
+            "provider": "coreapps",
+            "fragment": "dashboardwidgets/dashboardWidget"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ugandaemr.directionstoresidence",
+      "instanceOf": "coreapps.template.dashboardWidget",
+      "description": "Directions to client residence",
+      "order": 15,
+      "config": {
+        "widget": "latestobsforconceptlist",
+        "icon": "icon-question-sign",
+        "label": "DIRECTIONS TO RESIDENCE",
+        "concepts": "dce122f3-30ab-102d-86b0-7a5022ba4115",
+        "maxResults": "1"
+      },
+      "requiredPrivilege": "App: ugandaemr.widget.directionsToResidence",
+      "extensions": [
+        {
+          "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardFirstColumn",
+          "appId": "ugandaemr.directionstoresidence",
+          "extensionPointId": "patientDashboard.firstColumnFragments",
+          "extensionParams": {
+            "provider": "coreapps",
+            "fragment": "dashboardwidgets/dashboardWidget"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ugandaemr.dsdm.programs",
+      "instanceOf": "coreapps.template.dashboardWidget",
+      "description": "List of DSDM Programs",
+      "order": 10,
+      "config": {
+        "widget": "programs",
+        "icon": "icon-stethoscope",
+        "label": "Patient DSDM Model History",
+        "dateFormat": "dd.MMM.yyyy",
+        "supportedPrograms": "de5d54ae-c304-11e8-9ad0-529269fb1459,de5d5b34-c304-11e8-9ad0-529269fb1459,de5d5896-c304-11e8-9ad0-529269fb1459,de5d5da0-c304-11e8-9ad0-529269fb1459,de5d6034-c304-11e8-9ad0-529269fb1459",
+        "enableProgramDashboards": false
+      },
+      "requiredPrivilege": "App: ugandaemr.widget.dsdmPatientHistory",
+      "extensions": [
+        {
+          "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardSecondColumn",
+          "appId": "ugandaemr.dsdm.programs",
+          "extensionPointId": "patientDashboard.secondColumnFragments",
+          "extensionParams": {
+            "provider": "coreapps",
+            "fragment": "dashboardwidgets/dashboardWidget"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ugandaemr.tb.program",
+      "instanceOf": "coreapps.template.dashboardWidget",
+      "description": "TB Patient Program",
+      "order": 10,
+      "config": {
+        "widget": "programstatus",
+        "icon": "icon-stethoscope",
+        "label": "TB Program Status",
+        "dateFormat": "dd MMM yyyy",
+        "program": "9dc21a72-0971-11e7-8037-507b9dc4c741",
+        "locationTag": "8d5b27bc-c2cc-11de-8d13-0010c6dffd0f"
+      },
+      "extensions": [
+        {
+          "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardSecondColumn",
+          "appId": "ugandaemr.tb.program",
+          "extensionPointId": "patientDashboard.secondColumnFragments",
+          "extensionParams": {
+            "provider": "coreapps",
+            "fragment": "dashboardwidgets/dashboardWidget"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ugandaemr.tb.history.programs",
+      "instanceOf": "coreapps.template.dashboardWidget",
+      "description": "TB Treatment History",
+      "order": 10,
+      "config": {
+        "widget": "programs",
+        "icon": "icon-stethoscope",
+        "label": "TB Treatment History",
+        "dateFormat": "dd.MMM.yyyy",
+        "supportedPrograms": "9dc21a72-0971-11e7-8037-507b9dc4c741",
+        "enableProgramDashboards": false
+      },
+      "extensions": [
+        {
+          "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardSecondColumn",
+          "appId": "ugandaemr.tb.history.programs",
+          "extensionPointId": "patientDashboard.secondColumnFragments",
+          "extensionParams": {
+            "provider": "coreapps",
+            "fragment": "dashboardwidgets/dashboardWidget"
+          }
+        }
+      ]
     }
-  ]
-}
 ]
