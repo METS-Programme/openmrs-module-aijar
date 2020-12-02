@@ -180,7 +180,7 @@
     <globalProperty>
 		<property>ugandaemr.maximumPatientsPerDay</property>
         <description>The maxiumum number of patients that can have appointments on a single day</description>
-		<defaultValue>100</defaultValue>
+		<defaultValue></defaultValue>
 	</globalProperty>
 
     <globalProperty>
